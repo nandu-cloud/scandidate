@@ -1,0 +1,49 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+   #drawer
+   class="sidenav"
+    fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === true">
+    <!-- <mat-toolbar>Scandidate</mat-toolbar> -->
+    <mat-icon class="close" (click)="drawer.close()">close</mat-icon>
+    <mat-nav-list>
+      <img mat-card-image src="../images/1555604_th1.jpg" alt="">
+      <a mat-list-item routerLink="/dashboard"><mat-icon class="space">dvr</mat-icon>Dashboard</a>
+      <a mat-list-item routerLink="/organization-list"><mat-icon class="space">domain</mat-icon>Onboard Organization</a>
+      <a mat-list-item routerLink="/inistution-list"><mat-icon class="space">school</mat-icon>Onboard Institution</a>
+      <a mat-list-item routerLink="/users-list"><mat-icon class="space">people</mat-icon> Onboard User</a>
+      <a mat-list-item href="#"><mat-icon class="space">settings</mat-icon> Setting</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button class="toggleBtn"
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <!-- <span>Scandidate</span> -->
+      <img mat-card-image src="../../assets/images/logo1.png" width="50" height="50" alt="" class="pl-2">
+      <span class="spacer"></span>
+        <mat-icon matBadge="30" class="lg:ml-7 flex items-center justify-start lg:mb-0 mb-0 cursor-pointer">
+          notifications
+ </mat-icon>
+      <!-- <mat-icon class="lg:ml-4 h-15 w-15 flex items-center justify-start lg:mb-0 mb-4 cursor-pointer">account_circle</mat-icon> -->
+      <a routerLink="/user-profile" class="lg:ml-4 flex items-center justify-start lg:md-0 mb-0 cursor-pointer">
+        <img src="https://s3.amazonaws.com/f6s-public/profiles/1545337_th1.jpg" class="rounded-full w-8 h-8 border-2 border-transparent hover:border-indigo-400" alt="Andy Leverenz">
+      </a>
+      <mat-icon [matMenuTriggerFor]="afterMenu">keyboard_arrow_down</mat-icon>
+      <mat-menu #afterMenu="matMenu">
+        <!-- <span mat-menu-item class="block px-4 py-2 text-gray-800 hover:text-green-700"><mat-icon>restore</mat-icon>Reset password</span> -->
+        <a routerLink="/login"> <span mat-menu-item class="block px-4 py-2 text-gray-800 hover:text-green-700"><mat-icon>exit_to_app</mat-icon>Logout</span></a>
+      </mat-menu>
+      
+    </mat-toolbar>
+    <ng-content></ng-content>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,105 @@
+<div class="w-full p-2 br-about">
+    <app-navbar></app-navbar>
+</div>
+<div class="pt-4 lg:pl-40 lg:pr-20 pl-6 md:pl-6">
+    <h1 class="hd-add">Dashboard</h1>
+<div class="flex flex-wrap mt-12">
+    <div class="w-1/3 ">
+        <div class="br-about">
+            <h3 class=" flex justify-center">COUNT:5</h3>
+            <div class="lg:pl-10 lg:pb-6">
+            <table matSort>
+                <tr>
+                  <th mat-sort-header="no">S.No</th>
+                  <th mat-sort-header="name">Organization Name</th>
+                </tr>
+              
+                <tr *ngFor="let dessert of sortedData">
+                  <td>{{dessert.no}}</td>
+                  <td>{{dessert.name}}</td>
+                </tr>
+              </table>
+            </div>
+        </div>
+    </div>
+    <div class="w-1/3  pl-10">
+        <div class="br-about">
+            <h3 class=" flex justify-center">COUNT:10</h3>
+            <div class="lg:pl-10 lg:pb-6">
+            <table matSort>
+                <tr>
+                  <th mat-sort-header="no">S.No</th>
+                  <th mat-sort-header="name">Insitution Name</th>
+                </tr>
+              
+                <tr *ngFor="let dessert of sortedData">
+                  <td>{{dessert.no}}</td>
+                  <td>{{dessert.name}}</td>
+                </tr>
+              </table>
+            </div>
+        </div>
+    </div>
+    <div class="w-1/3 pl-10">
+        <div class="br-about">
+            <h3 class=" flex justify-center">COUNT:10</h3>
+            <div class="lg:pl-10 lg:pb-6">
+            <table matSort>
+                <tr>
+                  <th mat-sort-header="no">S.No</th>
+                  <th mat-sort-header="name">Users Name</th>
+                </tr>
+              
+                <tr *ngFor="let dessert of sortedData">
+                  <td>{{dessert.no}}</td>
+                  <td>{{dessert.name}}</td>
+                </tr>
+              </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="flex flex-wrap mt-12">
+    <div class="w-1/3">
+        <h4 class="sub-hd-size">Organization Onboarding Trend</h4>
+    <div style="display: block;" class="br-about">
+        <canvas baseChart 
+                    [datasets]="lineChartData"
+                    [labels]="lineChartLabels"
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColors"
+                    [legend]="lineChartLegend"
+                    [chartType]="lineChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+    </div>
+</div>
+    <div class="w-1/3 pl-10">
+        <h4 class="sub-hd-size">Institution Onboarding Trend</h4>
+    <div style="display: block" class="br-about">
+        <canvas baseChart
+                [data]="pieChartData"
+                [labels]="pieChartLabels"
+                [chartType]="pieChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+      </div>
+    </div>
+    <div class="w-1/3 pl-10">
+        <h4 class="sub-hd-size">Users Onboarding Trend</h4>
+        <div style="display: block;" class="br-about">
+            <canvas baseChart 
+              [options]="barChartOptions"
+              [plugins]="barChartPlugins"
+              [legend]="barChartLegend"
+              [chartType]="barChartType"
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              >
+            </canvas>
+          </div>
+    </div>
+  </div>
+</div>

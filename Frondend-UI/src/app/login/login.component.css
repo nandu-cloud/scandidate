@@ -1,0 +1,28 @@
+.mat-input-element{
+  padding:1em 8em;
+  border-bottom:1px solid gray;
+}
+.example-header-image {
+  background-image: url('../../assets/images/logo1.png');
+  background-size: cover;
+}
+.mat-card-avatar{
+  width: 100px;
+  height: 100px;
+  border-radius: 0%;
+}
+.text{
+  color: rgb(56, 49, 49);
+  font-size: small;
+}
+.otp {
+  height: 45px;
+  width: 45px;
+  font-size: 25px;
+  text-align: center;
+  border: 1px solid #000000;
+  padding-right: 5px;
+}
+
+
+

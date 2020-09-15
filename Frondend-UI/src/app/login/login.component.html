@@ -1,0 +1,167 @@
+
+  <div class="flex justify-center text-center px-4 ">
+    <div class="login-form-flex sm:bg-local md:bg-scroll lg:bg-local xl:bg-fixed bg-cover">
+      <div class="max-w-sm w-full lg:max-w-full md:max-w-full lg:flex md:flex">
+        <div class="lg:h-auto md:h-auto lg:w-1/2 md:w-1/2 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden md:flex-shrink-0" title="Woman holding a mug">
+            <mat-card class="example-card">
+              <img mat-card-image src="../../assets/images/Scandidate-Login.png" >
+            </mat-card>
+        </div>
+        <!-- Login page -->
+          <div class="bg-white rounded-b lg:rounded-b-none lg:rounded-r lg:w-64 sm:p-12 p-4 flex flex-col justify-between leading-normal" *ngIf="showlogin">
+            <form class="bg-white shadow-md rounded pr-12 lg:pl-16 pl-4 pt-12 pb-12 mb-4 ">
+              <div class="mb-4">
+                <mat-card-header class="pb-6 flex justify-center">
+                  <div mat-card-avatar class="example-header-image"></div>
+                </mat-card-header>
+                <div class="block text-gray-700 text-sm font-bold mb-2 ">
+                  <mat-form-field >
+                    <mat-label>Email</mat-label>
+                    <input matInput  class="w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" [formControl]="email" required autocomplete="new-password" />
+                    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div>
+                <div class="block text-gray-700 text-sm font-bold mb-2">
+                <mat-form-field>
+                  <mat-label>Password</mat-label>
+                  <input  matInput [type]="hide ? 'password' : 'text'" class="border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required autocomplete="off" />
+                  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <!-- <mat-icon class="flex content-end">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+                  </button>
+                </mat-form-field>
+              </div>
+              </div>
+              <div class="flex justify-between mb-6">
+                <a class="inline-block align-baseline text-sm text-gray-500 hover:text-green-200 pd" href="/login">
+                  <input type="checkbox" class="checked:bg-gray-500 checked:border-transparent">Remember Me
+                </a>
+                <a class="inline-block align-baseline text-sm text-gray-500 hover:text-green-200"
+                  (click)="forgetPassword()">
+                  Forgot Password?
+                </a>
+              </div>
+              <div class="flex items-center justify-center">
+                <button class="lg-button focus:outline-none focus:shadow-outline" type="button" (click)="login()">
+                  Login
+                </button>
+              </div>
+            </form>
+          </div>
+          <!--  Forget Password -->
+      <div
+      class="bg-white rounded-b lg:rounded-b-none lg:rounded-r lg:w-64 sm:p-12 p-4 flex flex-col justify-between leading-normal"
+      *ngIf="showForgetPassword">
+      <form class="bg-white shadow-md rounded pr-12 lg:pl-16 pl-4  pb-6 ">
+        <mat-form-field>
+          <span class="material-icons" (click)="loginPage()">arrow_back</span>
+        </mat-form-field>
+        <div class="mb-4">
+          <mat-card-header class="pb-6 flex justify-center">
+            <a routerLink="/home">
+              <div mat-card-avatar class="example-header-image"></div>
+            </a>
+          </mat-card-header>
+          <div class="block text-gray-700 text-sm font-bold mb-2 ">
+            <h2 class="hd-size">Forgot your password?</h2>
+            <h4>Please enter your registered E-mail address
+              to receive a verification code.</h4> 
+            <mat-form-field>
+              <h5>Email*</h5>
+              <input matInput placeholder="xyz@example.com"
+                class=" shadow rounded w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-solid border-4 border-gray-600 input-w"
+                required>
+              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div>
+        </div>
+        <div class="flex items-center justify-center">
+          <button class="lg-button focus:outline-none focus:shadow-outline" type="button" (click)="verifyOtp()">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+    <!--  Verify OTP-->
+    <div class="bg-white rounded-b lg:rounded-b-none lg:rounded-r lg:w-64 sm:p-12 p-4 flex flex-col justify-between leading-normal"
+      *ngIf="showOtp">
+      <form class="bg-white shadow-md rounded pr-12 lg:pl-16 pl-4 pb-6 mb-4 ">
+        <mat-form-field>
+          <span class="material-icons" (click)="forgetPassword()">arrow_back</span>
+        </mat-form-field>
+        <div class="mb-4">
+          <mat-card-header class="pb-6 flex justify-center">
+            <a routerLink="/home">
+              <div mat-card-avatar class="example-header-image"></div>
+            </a>
+          </mat-card-header>
+          <div class="block text-gray-700 text-sm font-bold mb-2 ">
+            <h2 class="hd-size">Verification</h2>
+            <h4>Please enter the verification code we sent
+              to your email address.</h4>
+            <mat-form-field>
+              <div class="flex items-center justify-center ml-20">
+                <input class="otp mr-6" type="text" maxlength="1" />
+                <input class="otp mr-6" type="text" maxlength="1" />
+                <input class="otp mr-6" type="text" maxlength="1" />
+                <input class="otp mr-6" type="text" maxlength="1" />
+              </div>
+              <div class="flex justify-center mt-4 ml-12">
+                <p>Didn't recieve code?<a class="anchr-styles">Resend Now</a></p>
+              </div>
+            </mat-form-field>
+          </div>
+        </div>
+        <div>
+        </div>
+        <div class="flex items-center justify-center">
+          <button class="lg-button focus:outline-none focus:shadow-outline" type="button" (click)="newPassword()">
+            Verify
+          </button>
+        </div>
+      </form>
+    </div>
+    <!--  New Password-->
+    <div class="bg-white rounded-b lg:rounded-b-none lg:rounded-r lg:w-64 sm:p-12 p-4 flex flex-col justify-between leading-normal" *ngIf="showNewPassword">
+      <form class="bg-white shadow-md rounded pr-12 lg:pl-16 pl-4 pt-12 pb-12 mb-4 ">
+        <span class="material-icons table-caption" (click)="verifyOtp()">arrow_back</span>
+        <div class="mb-4">
+          <mat-card-header class="pb-6 flex justify-center">
+            <div mat-card-avatar class="example-header-image"></div>
+          </mat-card-header>
+          <h4 class="justify-center hd-size">Reset your password</h4>
+          <div class="block text-gray-700 text-sm font-bold mb-2 ">
+            <mat-form-field >
+              <mat-label>New Password</mat-label>
+              <input matInput  class="w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required autocomplete="new-password" />
+            </mat-form-field>
+          </div>
+        </div>
+        <div>
+          <div class="block text-gray-700 text-sm font-bold mb-2">
+          <mat-form-field>
+            <mat-label>Confirm Password</mat-label>
+            <input  matInput [type]="hide ? 'password' : 'text'" class="border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required autocomplete="off" />
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <!-- <mat-icon class="flex content-end">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+            </button>
+          </mat-form-field>
+        </div>
+        </div>
+        <div class="flex items-center justify-center">
+          <button class="lg-button focus:outline-none focus:shadow-outline" type="button" (click)= "openDialog()">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+      </div> 
+    </div>
+  </div>
+  
+<router-outlet></router-outlet>
+  
+  

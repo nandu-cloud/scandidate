@@ -1,0 +1,87 @@
+<div class="w-full p-2 br-about">
+ <app-navbar></app-navbar>
+</div>
+<div class="pt-16 lg:pl-64 pl-12 md:pl-48">
+<form  class="login-form">
+    <h1 class="hd-add">Add Institution</h1>
+    <div class="flex flex-wrap">
+        <div class="w-full md:w-1/2 sm:w-full">
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input  matInput type="text"    name="username"  required  class="br-btm input-w" autoComplete='off'>
+            </mat-form-field> 
+            <mat-form-field>
+                <mat-label>Contact Person Name</mat-label>
+                <input  matInput   type="text"  name="cPerson"  required  class="br-btm input-w" autoComplete='off'>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Address</mat-label>
+                <input  matInput   type="text"  name="address"  required  class="br-btm input-w" autoComplete='off'>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input  matInput  type="text"  name="email"  required  class="br-btm input-w" autoComplete='off'>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Postal Code</mat-label>
+                <input  matInput  type="text"  name="pCode"  required  class="br-btm input-w" autoComplete='off'>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <textarea  matInput name="description" class="br-btm input-w" autoComplete='off'></textarea>
+            </mat-form-field>
+            <div class="group-gap">
+                <div class="avatar-upload">
+                    <div class="avatar-edit">
+                        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" />
+                    </div>
+                    <div class="avatar-preview">
+                        <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'"></div>
+                    </div>
+                </div>
+                <button mat-button  (click)="fileInput.click()">
+                    <mat-icon>file_upload</mat-icon>
+                     Upload Logo
+                </button>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2 sm:w-full">
+            <mat-form-field>
+                <mat-label>Code</mat-label>
+                <input  matInput type="number"  name="code"  required  class="br-btm input-w" autoComplete='off'>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Contact</mat-label>
+                <input  matInput   type="text"  name="contact"    class="br-btm input-w" autoComplete='off'>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Type</mat-label>
+                <input  matInput   type="text"  name="type"  required  class="br-btm input-w" autoComplete='off'>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Size</mat-label>
+                <input  matInput   type="number"  name="type"  required  class="br-btm input-w" autoComplete='off'>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Active Form</mat-label>
+                <input  matInput  type="text"  name="active"  required  class="br-btm input-w" autoComplete='off'>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Course Offered</mat-label>
+                <mat-select [formControl]="toppings" multiple class="br-btm input-w">
+                  <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="flex justify-end lg:pb-6 lg:pr-48">
+        <a routerLink="/inistution-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button">
+          Cancle
+        </button>
+        </a>
+        <button class="lg-button focus:outline-none focus:shadow-outline" type="button" (click)="openDialog()">
+          Submit
+        </button>
+    </div>
+</form>
+</div>
