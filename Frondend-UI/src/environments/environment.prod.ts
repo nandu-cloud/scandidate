@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  environmentName: 'production',
+  apiUrl: '',
+  version:"1.0"
 };
