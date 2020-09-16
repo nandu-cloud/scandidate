@@ -4,19 +4,9 @@ const colors = require("./../helpers/colors");
 
 const env = process.env.NODE_ENV;
 
-let mongoURI = "";
-
-if (env.trim() === "development") {
-  mongoURI = process.env.MONGODB_DEV_URI;
-} else if (env.trim() === "uat") {
-  mongoURI = process.env.MONGODB_UAT_URI;
-} else if (env.trim() === "production") {
-  mongoURI = process.env.MONGODB_PROD_URI;
-}
-
 // Mongo DB connection
 mongoose
-  .connect(mongoURI, {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
