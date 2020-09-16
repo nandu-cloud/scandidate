@@ -11,6 +11,8 @@ import { OrganizationListComponent } from './organization-list/organization-list
 import { InsitutionalListComponent } from  './insitutional-list/insitutional-list.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AddInsitutionalUserComponent } from './add-insitutional-user/add-insitutional-user.component';
+import { InsitutionalUserListComponent } from './insitutional-user-list/insitutional-user-list.component';
 import { from } from 'rxjs';
 const routes: Routes = [  {path: 'login' , component: LoginComponent},
 { path: '',  redirectTo: '/login', pathMatch: 'full' },
@@ -22,7 +24,9 @@ const routes: Routes = [  {path: 'login' , component: LoginComponent},
 {path: 'organization-list', component:OrganizationListComponent},
 {path: 'inistution-list', component:InsitutionalListComponent},
 {path: 'users-list', component:UsersListComponent},
-{path: 'dashboard', component:DashboardComponent}
+{path: 'dashboard', component:DashboardComponent},
+{path: 'add-insitution-users', component:AddInsitutionalUserComponent},
+{path: 'insitution-users-list', component:InsitutionalUserListComponent}
 ];
 
 @NgModule({
