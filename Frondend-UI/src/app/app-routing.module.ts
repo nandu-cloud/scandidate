@@ -27,7 +27,7 @@ const routes: Routes = [  {path: 'login' , component: LoginComponent},
 {path: 'users-list', component:UsersListComponent},
 {path: 'dashboard', component:DashboardComponent},
 {path: 'add-insitution-users', component:AddInsitutionalUserComponent},
-{path: 'insitution-users-list', component:InsitutionalUserListComponent}
+{path: 'insitution-users-list', component:InsitutionalUserListComponent},
 {path: 'student-list', component: StudentListComponent}
 ];
 
