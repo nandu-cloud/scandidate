@@ -24,6 +24,17 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddInsitutionalUserComponent } from './add-insitutional-user/add-insitutional-user.component';
 import { InsitutionalUserListComponent } from './insitutional-user-list/insitutional-user-list.component';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { StudentListComponent } from './student-list/student-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +49,8 @@ import { InsitutionalUserListComponent } from './insitutional-user-list/insituti
     UsersListComponent,
     DashboardComponent,
     AddInsitutionalUserComponent,
-    InsitutionalUserListComponent
+    InsitutionalUserListComponent,
+    StudentListComponent
   ],
   imports: [
     BrowserModule,
