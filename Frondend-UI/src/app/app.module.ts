@@ -6,7 +6,7 @@ import { MaterialModule } from './material/material.module';
 import { ChartsModule } from 'ng2-charts';
 import { from } from 'rxjs';
 import { LoginComponent } from './login/login.component';
-import { FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { AddOrganizationComponent } from './add-organization/add-organization.component';
@@ -26,7 +26,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatFormFieldModule } from '@angular/material/form-field';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,11 +59,16 @@ import { MatListModule } from '@angular/material/list';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatMenuModule,
+    MatFormFieldModule
   ],
   providers: [
-    { provide: MatDialogRef,useValue: {} },
-  
+    { provide: MatDialogRef, useValue: {} },
+
   ],
   bootstrap: [AppComponent]
 })

@@ -1,3 +1,4 @@
+
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav
    #drawer
@@ -5,7 +6,7 @@
     fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === true">
+      [opened]="(isHandset$ | async) ? 'true':'false'">
     <!-- <mat-toolbar>Scandidate</mat-toolbar> -->
     <mat-icon class="close" (click)="drawer.close()">close</mat-icon>
     <mat-nav-list>
