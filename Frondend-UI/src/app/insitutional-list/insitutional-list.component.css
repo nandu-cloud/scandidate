@@ -1,5 +1,7 @@
 th {
     background-color: rgb(108, 180, 59);
+    color: black;
+    font-size: 14px;
   }
   .hd{
     padding-left: 130px;
@@ -32,13 +34,8 @@ th {
       /* position: relative; */
       margin: 56px auto;
       }
-  
   }
-  /* 
-  .search{
-    margin-left: 393px;
-  } */
-  
   .org{
     padding-left:15px;font-weight:bold;padding-top:11px; font-size: 15px;
   }
+ 

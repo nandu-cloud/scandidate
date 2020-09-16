@@ -11,8 +11,8 @@ import { map, shareReplay } from 'rxjs/operators';
 })
 export class NavbarComponent {
   openNav: void;
-  public appAdmin :boolean = false;
-  public insitutionadmin : boolean =true;
+  public appAdmin :boolean = true;
+  public insitutionadmin : boolean =false;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),

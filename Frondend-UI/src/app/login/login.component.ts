@@ -58,8 +58,7 @@ export class LoginComponent implements OnInit {
     this.dialog.open(DialogElementsExampleDialog);
   }
   login(){
-    // this.router.navigate(['/dashboard']);
-    location.assign('/dashboard');
+    this.router.navigate(['/dashboard']);
   }
 
 }
