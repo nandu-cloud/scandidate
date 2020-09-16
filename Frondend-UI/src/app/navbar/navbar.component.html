@@ -9,7 +9,7 @@
       [opened]="(isHandset$ | async) ? 'true':'false'">
     <!-- <mat-toolbar>Scandidate</mat-toolbar> -->
     <mat-icon class="close" (click)="drawer.close()">close</mat-icon>
-    <mat-nav-list>
+    <mat-nav-list *ngIf="appAdmin">
       <img mat-card-image src="../images/1555604_th1.jpg" alt="">
       <a mat-list-item routerLink="/dashboard"><mat-icon class="space">dvr</mat-icon>Dashboard</a>
       <a mat-list-item routerLink="/organization-list"><mat-icon class="space">domain</mat-icon>Onboard Organization</a>
@@ -17,9 +17,15 @@
       <a mat-list-item routerLink="/users-list"><mat-icon class="space">people</mat-icon> Onboard User</a>
       <a mat-list-item href="#"><mat-icon class="space">settings</mat-icon> Setting</a>
     </mat-nav-list>
+    <mat-nav-list *ngIf="insitutionadmin">
+      <img mat-card-image src="../images/1555604_th1.jpg" alt="">
+      <a mat-list-item routerLink="/insitution-users-list"><mat-icon class="space">casino</mat-icon>Operational user</a>
+      <a mat-list-item routerLink="/student-list"><mat-icon class="space">people</mat-icon>Student List</a>
+      <a mat-list-item routerLink="/"><mat-icon class="space">settings</mat-icon> Setting</a>
+    </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
+  <mat-sidenav-content >
+    <mat-toolbar color="primary" class="br-about">
       <button class="toggleBtn"
         type="button"
         aria-label="Toggle sidenav"
