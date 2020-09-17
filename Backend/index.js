@@ -25,6 +25,10 @@ app.use(
   "/api/scandidateuser",
   require("./components/scandidate/user/userRoute")
 );
+app.use(
+  "/api/scandidate/organisation",
+  require("./components/scandidate/organization-onboard/orgOnboardRoute")
+);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Cannot find ${req.originalUrl} on the server`, 404));
