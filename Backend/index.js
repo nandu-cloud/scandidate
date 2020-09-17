@@ -19,6 +19,13 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/", express.static(path.join(__dirname, "../Frondend-UI/dist")));
 
+// api routes
+app.use("/api/auth", require("./components/auth/authRoute"));
+app.use(
+  "/api/scandidateuser",
+  require("./components/scandidate/user/userRoute")
+);
+
 app.all("*", (req, res, next) => {
   next(new AppError(`Cannot find ${req.originalUrl} on the server`, 404));
 });

@@ -20,7 +20,7 @@ async function createUser(data) {
   details.avatarLink = data.avatarLink;
   details.noOfAssociatedUsers = data.noOfAssociatedUsers;
   details.onboardedById = data.onboardedById;
-  details.status = true;
+  details.status = data.status;
   details.createdAt = new Date();
   details.updatedAt = new Date();
 
@@ -38,16 +38,16 @@ async function createUser(data) {
 
 async function getAllUsers(data) {
   try {
-    let result = await userModel.find({});
+    let result = await userModel.find({}).sort({ _id: -1 }).lean();
     return result;
   } catch (err) {
     throw err;
   }
 }
 
-async function getSingleUser(data) {
+async function getUserById(data) {
   try {
-    let result = await userModel.findById({ _id: data._id });
+    let result = await userModel.findById({ _id: data._id }).lean();
     return result;
   } catch (err) {
     throw err;
@@ -96,7 +96,7 @@ async function deleteUser(data) {
 module.exports = {
   createUser: createUser,
   getAllUsers: getAllUsers,
-  getSingleUser: getSingleUser,
+  getUserById: getUserById,
   updateUser: updateUser,
   deleteUser: deleteUser,
 };
