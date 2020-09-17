@@ -55,12 +55,15 @@ export class LoginComponent implements OnInit {
     this.showForgetPassword=false;
   }
   openDialog() {
-    this.dialog.open(DialogElementsExampleDialog);
+    const dialogRef = this.dialog.open(DialogElementsExampleDialog);
+    dialogRef.afterClosed().subscribe(result => {
+     this.showlogin = true;
+     this.showNewPassword = false;
+    });
   }
   login(){
     this.router.navigate(['/dashboard']);
   }
-
 }
 @Component({
   selector: 'dialog-elements-example-dialog',
@@ -71,6 +74,5 @@ export class DialogElementsExampleDialog {
     ) {}
     close(){
       this.dialogRef.close(true);
-      location.reload();
    }
 }
