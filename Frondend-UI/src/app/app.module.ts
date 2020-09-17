@@ -35,6 +35,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { StudentListComponent } from './student-list/student-list.component';
+import { AddStudentComponent } from './add-student/add-student.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +51,8 @@ import { StudentListComponent } from './student-list/student-list.component';
     DashboardComponent,
     AddInsitutionalUserComponent,
     InsitutionalUserListComponent,
-    StudentListComponent
+    StudentListComponent,
+    AddStudentComponent
   ],
   imports: [
     BrowserModule,

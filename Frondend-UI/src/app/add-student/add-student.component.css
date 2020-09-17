@@ -1,0 +1,7 @@
+.mat-input-element{
+    border: 1px solid gray !important;
+    background: white !important;
+}
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }

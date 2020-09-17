@@ -15,6 +15,7 @@ import { AddInsitutionalUserComponent } from './add-insitutional-user/add-insitu
 import { InsitutionalUserListComponent } from './insitutional-user-list/insitutional-user-list.component';
 import { from } from 'rxjs';
 import { StudentListComponent } from './student-list/student-list.component';
+import { AddStudentComponent } from './add-student/add-student.component';
 const routes: Routes = [  {path: 'login' , component: LoginComponent},
 { path: '',  redirectTo: '/login', pathMatch: 'full' },
 {path: 'add-organization' , component:AddOrganizationComponent  },
@@ -28,7 +29,8 @@ const routes: Routes = [  {path: 'login' , component: LoginComponent},
 {path: 'dashboard', component:DashboardComponent},
 {path: 'add-insitution-users', component:AddInsitutionalUserComponent},
 {path: 'insitution-users-list', component:InsitutionalUserListComponent},
-{path: 'student-list', component: StudentListComponent}
+{path: 'student-list', component: StudentListComponent},
+{path: 'add-student', component: AddStudentComponent}
 ];
 
 @NgModule({
