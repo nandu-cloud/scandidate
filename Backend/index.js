@@ -21,13 +21,20 @@ app.use("/", express.static(path.join(__dirname, "../Frondend-UI/dist")));
 
 // api routes
 app.use("/api/auth", require("./components/auth/authRoute"));
+
 app.use(
   "/api/scandidateuser",
   require("./components/scandidate/user/userRoute")
 );
+
 app.use(
   "/api/scandidate/organisation",
   require("./components/scandidate/organization-onboard/orgOnboardRoute")
+);
+
+app.use(
+  "/api/scandidate/institute",
+  require("./components/scandidate/institute-onboard/instituteOnboardRoute")
 );
 
 app.all("*", (req, res, next) => {
