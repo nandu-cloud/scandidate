@@ -39,3 +39,7 @@ th {
 .org{
   padding-left:15px;font-weight:bold;padding-top:11px;font-size: 15px;
 }
+.mat-header-cell{
+  background-color: rgb(108, 180, 59);
+  color: black;
+}
