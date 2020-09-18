@@ -17,7 +17,7 @@ module.exports.verifyJWTToken = async (req, res, next) => {
   } catch (err) {
     const message =
       err.name === "JsonWebTokenError" ? "Unauthorized" : err.message;
-    return next(new AppError(message, 400));
+    return next(new AppError(message, 403));
   }
 };
 

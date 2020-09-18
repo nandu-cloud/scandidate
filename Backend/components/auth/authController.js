@@ -1,23 +1,21 @@
 const authDAL = require("./authDAL");
 const bcrypt = require("bcrypt");
 const authJWT = require("./../../middlewares/authJWT");
-
+const authValidator = require("./authValidator");
 const colors = require("./../../helpers/colors");
 const AppError = require("./../../helpers/appError");
 
 module.exports.getUserAuth = async function (req, res, next) {
-  //     try {
-  //        const data = { email: req.body.email, password: req.body.password };
-  //   } catch (error) {
-  //     if (error.isJoi === true) {
-  //       return next(new AppError(error.message, 422));
-  //     }
-  //   }
-  const data = {
-    email: req.body.email.toLowerCase(),
-    password: req.body.password,
-  };
   try {
+    try {
+      await authValidator.authSchema.validateAsync(req.body);
+    } catch (error) {
+      if (error.isJoi === true) return next(new AppError(error.message, 422));
+    }
+    const data = {
+      email: req.body.email.toLowerCase(),
+      password: req.body.password,
+    };
     let userData = await authDAL.authUser(data);
     if (userData != null) {
       try {

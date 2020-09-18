@@ -56,27 +56,9 @@ async function getUserById(data) {
 
 async function updateUser(data) {
   try {
-    let result = await userModel.findOneAndUpdate(
-      { _id: data._id },
-      {
-        organizationId: data.organizationId,
-        institutionId: data.institutionId,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        role: data.role,
-        subRole: data.subRole,
-        email: data.email,
-        phoneNumber: data.phoneNumber,
-        dateOfBirth: data.dateOfBirth,
-        employeeId: data.employeeId,
-        currentAddress: data.currentAddress,
-        permanentAddress: data.permanentAddress,
-        aboutMe: data.aboutMe,
-        noOfAssociatedUsers: data.noOfAssociatedUsers,
-        status: data.status,
-      },
-      { new: true }
-    );
+    let result = await userModel.findOneAndUpdate({ _id: data._id }, data, {
+      new: true,
+    });
     return result;
   } catch (err) {
     throw err;
