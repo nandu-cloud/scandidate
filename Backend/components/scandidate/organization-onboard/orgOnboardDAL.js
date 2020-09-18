@@ -79,9 +79,6 @@ async function updateOrganisation(data) {
   }
 }
 
-
-
-
 // export functions 
 module.exports = {
   getAllOrganisation: getAllOrganisation,
