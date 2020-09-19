@@ -83,7 +83,7 @@ module.exports.updateMethod = async function (req, res, next) {
   }
 };
 
-module.exports.deleteUserMethod = async function (req, res) {
+module.exports.deleteUserMethod = async function (req, res, next) {
   try {
     const data = { _id: mongoose.Types.ObjectId(req.params.userId) };
     const userExsits = await userDAL.getUserById(data);

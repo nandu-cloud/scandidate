@@ -23,7 +23,7 @@ app.use("/", express.static(path.join(__dirname, "../Frondend-UI/dist")));
 app.use("/api/auth", require("./components/auth/authRoute"));
 
 app.use(
-  "/api/scandidateuser",
+  "/api/scandidate/user",
   require("./components/scandidate/user/userRoute")
 );
 
