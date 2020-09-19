@@ -53,31 +53,18 @@ async function deleteOrganisation(data) {
   }
 }
 
-
-//Update
 async function updateOrganisation(data) {
   try {
-    let result = await organizationModel.findOneAndUpdate(
-      { _id: data._id },
-      {
-        organizationName: data.organizationName,
-        contactPersonName: data.contactPersonName,
-        organisationAddress: data.organisationAddress,
-        organisationType: data.organisationType,
-        organisationEmail: data.organisationEmail,
-        organisationEmployeeSize: data.organisationEmployeeSize,
-        organisationActiveFrom: data.organisationActiveFrom,
-        organisationZIP: data.organisationZIP,
-        organisationDescription: data.organisationDescription,
-        avatarLink: data.avatarLink,
-      },
-      { new: true }
-    );
+    let result = await organizationModel.findOneAndUpdate({ _id: data._id }, data, {
+      new: true,
+    });
     return result;
   } catch (err) {
     throw err;
   }
 }
+
+
 
 // export functions 
 module.exports = {

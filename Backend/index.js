@@ -32,10 +32,10 @@ app.use(
   require("./components/scandidate/organization-onboard/orgOnboardRoute")
 );
 
-//app.use(
-  //"/api/scandidate/institute",
-  //require("./components/scandidate/institute-onboard/instituteOnboardRoute")
-//);
+app.use(
+  "/api/scandidate/institute",
+  require("./components/scandidate/institute-onboard/instituteOnboardRoute")
+);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Cannot find ${req.originalUrl} on the server`, 404));
