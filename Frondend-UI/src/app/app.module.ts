@@ -19,7 +19,7 @@ import { OrganizationListComponent } from './organization-list/organization-list
 import { InsitutionalListComponent } from './insitutional-list/insitutional-list.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import {MatDialogModule , MatDialogRef} from '@angular/material/dialog';
-import { MAT_LABEL_GLOBAL_OPTIONS } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MAT_LABEL_GLOBAL_OPTIONS } from '@angular/material/core';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddInsitutionalUserComponent } from './add-insitutional-user/add-insitutional-user.component';
 import { InsitutionalUserListComponent } from './insitutional-user-list/insitutional-user-list.component';
@@ -62,6 +62,7 @@ import { TokenInterceptor } from './services/interceptor.service';
   providers: [
     { provide: MatDialogRef,useValue: {} },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
 
   ],
   bootstrap: [AppComponent]
