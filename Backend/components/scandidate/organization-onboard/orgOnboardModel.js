@@ -44,6 +44,15 @@ let onboardOrganizationSchema =mongoose.Schema({
     avatarLink: {
         type: String,
         required: false,
+      },
+      status:{
+        type: Boolean,
+      },
+      contact:{
+        type: Number,
+      },
+      code:{
+          type: String
       }
 });
 

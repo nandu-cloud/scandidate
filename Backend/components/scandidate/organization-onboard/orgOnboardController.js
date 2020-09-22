@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 module.exports.onboardOrganisationMethod = async function (req, res, next) {
   const data = req.body;
   try {
+    
     await orgnisationValidator.organisationCreationSchema.validateAsync(data);
     let organisationData = await orgnisationDAL.onboardOrganisation(data);
     return res.status(200).json({ status: "SUCCESS", data: organisationData });

@@ -17,7 +17,7 @@ module.exports.onboardInstituteMethod = async function (req, res, next) {
   }
 };
 
-//Get All Organisation Data
+//Get All Institute Data
 module.exports.getAllMethod = async function (req, res, next) {
   const data = {};
   try {

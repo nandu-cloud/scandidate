@@ -11,6 +11,8 @@ const organisationCreationSchema = Joi.object({
     organisationActiveFrom: Joi.date().required(),
     organisationDescription: Joi.string(),
     status: Joi.boolean().required(),
+    contact:Joi.number(),
+    code:Joi.string(),
 });
 
 const organisationUpdationSchema = Joi.object({

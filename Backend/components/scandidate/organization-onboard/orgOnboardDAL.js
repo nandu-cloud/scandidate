@@ -15,6 +15,9 @@ async function onboardOrganisation(data) {
   ordDtata.organisationZIP = data.organisationZIP;
   ordDtata.organisationDescription = data.organisationDescription;
   ordDtata.avatarLink = data.avatarLink;
+  ordDtata.contact = data.contact;
+  ordDtata.code = data.code;
+  ordDtata.status = data.status;
   try {
     let result = await ordDtata.save();
     return result;
