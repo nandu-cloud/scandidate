@@ -1,6 +1,6 @@
 <app-navbar>
 <div class="pt-16 lg:pl-64 pl-12 md:pl-48 bg-white">
-<form  class="login-form">
+<form  class="login-form" [formGroup]="createUserData" (ngSubmit)="onSubmit()">
     <h1 class="hd-add">Add User</h1>
     <div class="flex flex-wrap sm:flex-wrap mt-8">
         <div class="w-1/4 ">
@@ -8,7 +8,7 @@
                 <button  (click)="fileInput.click()">
                    <div class="avatar-upload">
                     <div class="avatar-edit">
-                        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" />
+                        <input type='file' id="imageUpload" formControlName="avatarLink" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" />
                     </div>
                     <div class="avatar-preview w-32 h-32 lg:ml-32 lg:mt-4 -ml-8 mt-2 border-2 border-transparent">
                         <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'" ><mat-icon>camera_enhance</mat-icon></div>
@@ -21,7 +21,7 @@
         <div class="w-3/4">
             <mat-form-field class=" lg:ml-12 sm:ml-10">
                 <mat-label>About Me</mat-label>
-                <textarea  matInput name="caddress" class="br-about" rows="8" autoComplete='off'></textarea>
+                <textarea  matInput name="aboutMe" formControlName="aboutMe" class="br-about" rows="8" autoComplete='off'></textarea>
             </mat-form-field>
         </div>
     </div>
@@ -29,36 +29,42 @@
         <div class="w-full md:w-1/2 sm:w-full">
             <mat-form-field>
                 <mat-label>First Name</mat-label>
-                <input  matInput type="text"    name="fname"  required  class="br-btm input-w" autoComplete='off'>
+                <input  matInput type="text"    name="firstName" formControlName="firstName"  required  class="br-btm input-w" autoComplete='off'>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Last Name</mat-label>
-                <input  matInput   type="text"  name="lname"  required  class="br-btm input-w" autoComplete='off'>
+                <input  matInput   type="text"  name="lastName"  formControlName="lastName" required  class="br-btm input-w" autoComplete='off'>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Employee ID</mat-label>
-                <input  matInput   type="text"  name="eid"  required  class="br-btm input-w" autoComplete='off'>
+                <input  matInput   type="text"  name="employeeId" formControlName="employeeId" class="br-btm input-w" autoComplete='off'>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Parament Address</mat-label>
-                <textarea  matInput name="paddress" class="br-txtarea input-w" rows="6" autoComplete='off'></textarea>
+                <textarea  matInput name="permanentAddress" formControlName="permanentAddress" class="br-txtarea input-w" rows="6" autoComplete='off'></textarea>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Select Role</mat-label>
-                <mat-select  class="br-btm input-w">
+                <mat-select  class="br-btm input-w" formControlName="role" required>
                   <!-- <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option> -->
-                  <mat-option value="ad">Admin</mat-option>
-                  <mat-option value="us">User</mat-option>
+                  <mat-option value="SCANDIDATE">Scandidate</mat-option>
+                  <mat-option value="ORGANIZATION">Organization</mat-option>
+                  <mat-option value="INSTITUTION">Institution</mat-option>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field>
+           
+            <!-- <mat-form-field>
                 <mat-label>Organization</mat-label>
                 <mat-select   class="br-btm input-w">
-                  <!-- <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option> -->
+                  <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
                   <mat-option value="ar">Aroha Technologies</mat-option>
                   <mat-option value="dv">Dvara</mat-option>
                   <mat-option value="wi">Wipro</mat-option>
                 </mat-select>
+            </mat-form-field> -->
+            <mat-form-field>
+                <mat-label>Organization</mat-label>
+                <input  matInput   type="text"  name="organizationId" formControlName="organizationId" class="br-btm input-w" autoComplete='off'>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Associated ops user institution/organization</mat-label>
@@ -72,38 +78,50 @@
         <div class="w-full md:w-1/2 sm:w-full">
             <mat-form-field>
                 <mat-label>DOB</mat-label>
-                <input matInput [matDatepicker]="picker2" class="br-btm input-w">
+                <input matInput [matDatepicker]="picker2" formControlName="dateOfBirth" class="br-btm input-w" required>
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2 color="primary"></mat-datepicker>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Email</mat-label>
-                <input  matInput   type="text"  name="email"    class="br-btm input-w" autoComplete='off'>
+                <input  matInput   type="text"  name="email"  formControlName="email"  class="br-btm input-w" required autoComplete='off'>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Contact</mat-label>
-                <input  matInput   type="text"  name="contact"  required  class="br-btm input-w" autoComplete='off'>
+                <input  matInput   type="text"  name="contact"  formControlName="phoneNumber" required  class="br-btm input-w" autoComplete='off'>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Current Address</mat-label>
-                <textarea  matInput name="caddress" class="br-txtarea input-w" rows="6" autoComplete='off'></textarea>
+                <textarea  matInput name="currentAddress" formControlName="currentAddress" class="br-txtarea input-w" rows="6" autoComplete='off'></textarea>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Status</mat-label>
-                <mat-select   class="br-btm input-w">
-                  <mat-option value="active">Active</mat-option>
-                  <mat-option value="inactive">InActive</mat-option>
-                  <mat-option value="delete">Delete</mat-option>
+                <mat-label>Sub Role</mat-label>
+                <mat-select  class="br-btm input-w" formControlName="subRole" required>
+                  <!-- <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option> -->
+                  <mat-option value="ADMIN">Admin</mat-option>
+                  <mat-option value="OPERATIONAL_USER">Operational User</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
+                <mat-label>Status</mat-label>
+                <mat-select   class="br-btm input-w" formControlName="status" required>
+                  <mat-option value="true">True</mat-option>
+                  <mat-option value="false">False</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <!-- <mat-form-field>
                 <mat-label>Institutions</mat-label>
                 <mat-select  class="br-btm input-w">
-                  <!-- <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option> -->
+                  <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
                   <mat-option value="a">Svce,Tirupati</mat-option>
                   <mat-option value="b">JNTU,Anathapur</mat-option>
                   <mat-option value="c">Sv Universcity</mat-option>
                 </mat-select>
+            </mat-form-field> -->
+            <mat-form-field>
+                <mat-label>Institution ID</mat-label>
+                <input  matInput   type="text"  name="institutionId"  formControlName="institutionId"  class="br-btm input-w" autoComplete='off'>
+                <!-- <Inpu  matInput name="institutionId" formControlName="institutionId" class="br-txtarea input-w" rows="6" autoComplete='off'></Inpu> -->
             </mat-form-field>
             
         </div>

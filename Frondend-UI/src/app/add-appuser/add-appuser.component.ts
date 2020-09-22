@@ -1,18 +1,64 @@
-import { Component, ChangeDetectorRef, ElementRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormArray, Validators,FormControl } from "@angular/forms";
+import { Component, ChangeDetectorRef, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { FormBuilder, FormArray, Validators,FormControl, FormGroup } from "@angular/forms";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { Router,ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from '../services/user.service';
+import { AppuserService } from '../services/appuser.service';
+
 @Component({
   selector: 'app-add-appuser',
   templateUrl: './add-appuser.component.html',
   styleUrls: ['./add-appuser.component.css']
 })
-export class AddAppuserComponent  {
+export class AddAppuserComponent implements OnInit {
+  createUserData: FormGroup;
+  teamSubscription$: any;
+  setMessage: any = {};
+  msg: String; status: String;
   constructor(
-    public fb: FormBuilder,
-    private cd: ChangeDetectorRef,public dialog: MatDialog
-  ) {}
+    public fb: FormBuilder, private router: Router,
+    private cd: ChangeDetectorRef,public dialog: MatDialog, private user: UserService,
+    private appUserService: AppuserService
+    ) {
+      this.createUserData = new FormGroup({
+      firstName: new FormControl(),
+      lastName: new FormControl(),
+      role: new FormControl(),
+      subRole: new FormControl(),
+      email: new FormControl(),
+      dateOfBirth: new FormControl(),
+      status: new FormControl(),
+      phoneNumber: new FormControl(),
+      organizationId: new FormControl(),
+      institutionId: new FormControl(),
+      employeeId: new FormControl(),
+      currentAddress: new FormControl(),
+      permanentAddress: new FormControl(),
+      aboutMe: new FormControl(),
+      avatarLink: new FormControl()
+    })
+    }
 
+  ngOnInit() {
+
+  }
+
+  onSubmit(){
+    if (this.createUserData.invalid) {
+      return;
+    }
+    this.teamSubscription$ = this.appUserService.createUserData(this.createUserData.value).subscribe(resp => {
+      console.log("response Object ", resp);
+      this.openDialog();
+      if (this.status === 'ERROR') {
+        this.router.navigate(['/admin']);
+        this.setMessage = { message: this.msg, error: true };
+      } else if (this.status == 'SUCCESS') {
+        this.router.navigate(['/users-list']);
+        this.setMessage = { message: this.msg, msg: true };
+      }
+    })
+  }
   registrationForm = this.fb.group({
     file: [null]
   })  
