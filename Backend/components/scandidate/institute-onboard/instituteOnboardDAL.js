@@ -25,6 +25,10 @@ async function onboardInstitute(data) {
   instituteData.instituteZIP = data.instituteZIP;
   instituteData.instituteDescription = data.instituteDescription;
   instituteData.avatarLink = data.avatarLink;
+  instituteData.status = data.status;
+  instituteData.contact = data.contact;
+  instituteData.code = data.code;
+
   try {
     let result = await instituteData.save();
     return result;

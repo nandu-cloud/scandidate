@@ -44,6 +44,15 @@ let onboardInstituteSchema =mongoose.Schema({
     avtarLink: {
         type: String,
         required: false,
+      },
+      status:{
+        type: Boolean,
+      },
+      contact:{
+        type: Number,
+      },
+      code:{
+          type: String
       }
 });
 
