@@ -6,40 +6,20 @@ import { Observable, of as observableOf, merge } from 'rxjs';
 
 // TODO: Replace this with your own data model type
 export interface UserListItem {
-  userName: string;
-  id: number;
-  dob: number;
-  contact: number;
-  code: string;
+  firstName: string;
+  lastName: string;
+  role: string;
+  subRole: string;
+  email: string;
+  phoneNumber: number;
+  dateOfBirth: string;
   status: string;
-  userOrg: string;
-  userInst: string;
-  linkedUsers: number;
+
 }
 
 // TODO: replace this with real data from your application
 const EXAMPLE_DATA: UserListItem[] = [
-  // tslint:disable-next-line: max-line-length
-  {id: 1, userName: 'Swapna', dob: 1979, contact: 7789876789, code: 'D24J', status: 'Active',
-   userOrg: 'None', userInst: 'None', linkedUsers: 3},
-  {id: 2, userName: 'Sri', dob: 1989, contact: 8908656543, code: 'D24J', status: 'Active',
-  userOrg: 'None', userInst: 'None', linkedUsers: 3},
-  {id: 3, userName: 'Grany', dob: 1949, contact: 9978456434, code: 'D24J', status: 'Active',
-  userOrg: 'None', userInst: 'None', linkedUsers: 3},
-  {id: 4, userName: 'Navya', dob: 1989, contact: 8943545345, code: 'D24J', status: 'Active',
-  userOrg: 'None', userInst: 'None', linkedUsers: 3},
-  {id: 5, userName: 'Anusri', dob: 1980, contact: 7890667890, code: 'D24J', status: 'Active',
-  userOrg: 'None', userInst: 'None', linkedUsers: 3},
-  {id: 6, userName: 'Hema', dob: 1999, contact: 8789023456, code: 'D24J', status: 'Active',
-  userOrg: 'None', userInst: 'None', linkedUsers: 3},
-  {id: 7, userName: 'Navya', dob: 1979, contact: 8886578974, code: 'D24J', status: 'Active',
-  userOrg: 'None', userInst: 'None', linkedUsers: 3},
-  {id: 8, userName: 'Ranbi', dob: 1987, contact: 9994056789, code: 'D24J', status: 'Active',
-  userOrg: 'None', userInst: 'None', linkedUsers: 3},
-  {id: 9, userName: 'Bavani', dob: 1970, contact: 6789034568, code: 'D24J', status: 'Active',
-  userOrg: 'None', userInst: 'None', linkedUsers: 3},
-  {id: 10, userName: 'Harini', dob: 1991, contact: 6578509876, code: 'D24J', status: 'Active',
-  userOrg: 'None', userInst: 'None', linkedUsers: 3}
+
 ];
 
 /**
@@ -102,15 +82,14 @@ export class UserListDataSource extends DataSource<UserListItem> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'userName': return compare(a.userName, b.userName, isAsc);
-        case 'dob': return compare(+a.dob, +b.dob, isAsc);
-        case 'id': return compare(+a.id, +b.id, isAsc);
-        case 'contact': return compare(+a.contact, +b.contact, isAsc);
-        case 'code': return compare(a.code, b.code, isAsc);
+        case 'firstName': return compare(a.firstName, b.firstName, isAsc);
+        case 'lastName': return compare(a.lastName, b.lastName, isAsc);
+        case 'role': return compare(a.role, b.role, isAsc);
+        case 'subRole': return compare(a.subRole, b.subRole, isAsc);
+        case 'email': return compare(a.email, b.email, isAsc);
+        case 'phoneNumber': return compare(+a.phoneNumber, +b.phoneNumber, isAsc);
+        case 'dateOfBirth': return compare(a.dateOfBirth, b.dateOfBirth, isAsc);
         case 'status': return compare(a.status, b.status, isAsc);
-        case 'userOrg': return compare(a.userOrg, b.userOrg, isAsc);
-        case 'userInst': return compare(a.userInst, b.userInst, isAsc);
-        case 'linkedUsers': return compare(+a.linkedUsers, +b.linkedUsers, isAsc);
         default: return 0;
       }
     });

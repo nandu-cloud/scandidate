@@ -11,6 +11,8 @@ export class AppuserService {
   baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient) { }
+
+  // Create Opps user
   createUserData(createUserData): Observable<any> {
     var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': 'number'} =
     {
@@ -27,5 +29,10 @@ export class AppuserService {
         })
       }
     );
+  }
+
+  // get Opps users list
+  getUser(): Observable<any>{
+    return this.http.get(this.baseUrl + '/api/scandidate/user');
   }
 }
