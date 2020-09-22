@@ -24,5 +24,9 @@ export class addOrganizationService {
       }
     );
   }
+
+  public getOrganizationData() : Observable<any> {
+    return this.http.get(this.baseUrl + '/api/scandidate/organisation');
+  }
  
 }

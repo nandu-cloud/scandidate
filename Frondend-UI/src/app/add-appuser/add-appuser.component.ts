@@ -2,7 +2,6 @@ import { Component, ChangeDetectorRef, ElementRef, ViewChild, OnInit } from '@an
 import { FormBuilder, FormArray, Validators,FormControl, FormGroup } from "@angular/forms";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserService } from '../services/user.service';
 import { AppuserService } from '../services/appuser.service';
 
 @Component({
@@ -17,7 +16,7 @@ export class AddAppuserComponent implements OnInit {
   msg: String; status: String;
   constructor(
     public fb: FormBuilder, private router: Router,
-    private cd: ChangeDetectorRef,public dialog: MatDialog, private user: UserService,
+    private cd: ChangeDetectorRef,public dialog: MatDialog, 
     private appUserService: AppuserService
     ) {
       this.createUserData = new FormGroup({

@@ -10,15 +10,7 @@
    <div class="lg:w-4/12 lg:-ml-4 lg:mt-0 xl:w-1/4 xl:ml-56 md:w-2/4 md:ml-40 md:-mt-8 sm:w-4/6">
      <div class="pt-2 relative mx-auto mr-5 text-black-600" >
         <input class="border-2 border-black bg-white h-10 px-5 pr-24 rounded-lg text-sm focus:outline-none"
-          type="search" name="search" placeholder="Search">
-        
-          <!-- <svg class="search text-gray-600 w-4 fill-current -ml-10 absolute top-0 right-0" xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
-            viewBox="0 0 56.966 56.966" xml:space="preserve">
-            <path
-              d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
-          </svg> -->
-          
+          type="search" name="search" placeholder="Search" (keyup)="applyFilter($event)" #input>    
       </div>
   </div> 
 
@@ -29,55 +21,54 @@
 </div>
 
 <div class="mat-elevation-z8 data-table">
-  <table mat-table class="full-width-table" matSort aria-label="Elements">
-    <!-- Id Column -->
-    <ng-container matColumnDef="id">
-      <mat-header-cell  *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
-    </ng-container>
-
+  <table mat-table [dataSource]="dataSource" class="full-width-table"  aria-label="Elements">
+    
     <!-- Name Column -->
     <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Oranization Name</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef >Oranization Name</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.organizationName}}</mat-cell>
     </ng-container>
 
     <!-- Email -->
-    <ng-container matColumnDef="active">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Active</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.active}}</mat-cell>
+    <ng-container matColumnDef="pName">
+      <mat-header-cell *matHeaderCellDef >contact Person</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.contactPersonName}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="contact">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Organization Contact</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef >Organization Contact</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.contact}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="code">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Organization code</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef >Organization code</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.code}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>status</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.status}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef>status</mat-header-cell>
+      <mat-cell *matCellDef="let row"><span class="bg-green-500 text-white pt-2 pb-2 pl-4 pr-4 text-bold capitalize">{{row.status}}</span></mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="action">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Action</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef >Action</mat-header-cell>
       <mat-cell *matCellDef="let row">	<mat-icon>edit</mat-icon>	<mat-icon>delete</mat-icon>{{row.action}}</mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
   </table>
 
-  <mat-paginator #paginator
+  <!-- <mat-paginator #paginator
       [length]="dataSource?.data.length"
       [pageIndex]="0"
       [pageSize]="50"
       [pageSizeOptions]="[1, 5, 10, 15, 25]">
-  </mat-paginator>
+  </mat-paginator> -->
+  <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator>
 </div>
 </div>
 </app-navbar>
