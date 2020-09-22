@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { AddOrganizationComponent } from './add-organization/add-organization.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient ,HttpInterceptor, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AddInitutionComponent } from './add-initution/add-initution.component';
 import { AddAppuserComponent } from './add-appuser/add-appuser.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -23,19 +23,11 @@ import { MAT_LABEL_GLOBAL_OPTIONS } from '@angular/material/core';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddInsitutionalUserComponent } from './add-insitutional-user/add-insitutional-user.component';
 import { InsitutionalUserListComponent } from './insitutional-user-list/insitutional-user-list.component';
-
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { StudentCsvUploadComponent } from './student-csv-upload/student-csv-upload.component';
 import { StudentListComponent } from './student-list/student-list.component';
 import { AddStudentComponent } from './add-student/add-student.component';
+import { FileUploadModule } from 'ng2-file-upload';
+import { TokenInterceptor } from './services/interceptor.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +44,8 @@ import { AddStudentComponent } from './add-student/add-student.component';
     AddInsitutionalUserComponent,
     InsitutionalUserListComponent,
     StudentListComponent,
-    AddStudentComponent
+    AddStudentComponent,
+    StudentCsvUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -63,10 +56,12 @@ import { AddStudentComponent } from './add-student/add-student.component';
     AppRoutingModule,
     LayoutModule,
     HttpClientModule,
-    ChartsModule
+    ChartsModule,
+    FileUploadModule
   ],
   providers: [
-    { provide: MatDialogRef, useValue: {} },
+    { provide: MatDialogRef,useValue: {} },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
 
   ],
   bootstrap: [AppComponent]

@@ -1,0 +1,89 @@
+<app-navbar>
+    <div class="pt-16 lg:pl-32 pl-12 md:pl-48 bg-white">
+            <h1 class="hd-add">1)csv attributes</h1>
+            <p class="font-bold">Below fields are Manditory in excel</p>
+            <div class="flex flex-wrap mt-4">
+                <div class="lg:w-1/3 sm:w-full md:w-1/3 pl-10 pb-6">
+                    <mat-list role="list">
+                        <mat-list-item role="listitem">Name</mat-list-item>
+                        <mat-list-item role="listitem">Roll No</mat-list-item>
+                        <mat-list-item role="listitem">Name of course</mat-list-item>
+                        <mat-list-item role="listitem">ExtraActivities Certificates</mat-list-item>
+                      </mat-list>
+                </div>
+                <div class="lg:w-1/3 sm:w-full md:w-1/3 pl-10 pb-6">
+                    <mat-list role="list">
+                        <mat-list-item role="listitem">Student Type</mat-list-item>
+                        <mat-list-item role="listitem">Year of Joining</mat-list-item>
+                        <mat-list-item role="listitem">Year of Passing</mat-list-item>
+                      </mat-list>
+                </div>
+                <div class="lg:w-1/3  sm:w-full md:w-1/3 pl-10 pb-6">
+                    <mat-list role="list">
+                        <mat-list-item role="listitem">Phone Number</mat-list-item>
+                        <mat-list-item role="listitem">Email</mat-list-item>
+                        <mat-list-item role="listitem">Address</mat-list-item>
+                      </mat-list>
+                </div>
+            </div>
+            <h1 class="hd-add">2)Upload Csv</h1>
+            <div class="container mt-5 mb-5">
+                <div class="row">
+                    <div class="group-gap lg:p-16 lg:mr-16">
+                        <div class="avatar-upload">
+                            <div class="avatar-edit">
+                                <input type='file' id="imageUpload"  #fileInput ng2FileSelect [uploader]="uploader" (onFileSelected)="onFileSelected($event)" />
+                            </div>
+                           
+                        </div>
+                        <button mat-button  (click)="fileInput.click()" class="bg-gray-200">
+                            <mat-icon>backup</mat-icon>
+                            <p>Upload your .csv file to add</p>
+                        </button>
+                    </div>
+                    <div class=" mt-5">
+                        <h2>Upload Status</h2>
+                    <form>
+                        <table class="table lg:w-3/5 ">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Size</th>
+                                    <!-- <th>Type</th> -->
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="lg:w-full text-center">
+                                <tr *ngFor="let item of uploader.queue">
+                                    <td>
+                                        {{ item?.file?.name }}
+                                    </td>
+                                   
+                                    <td>
+                                        {{ item?.file?.size/1024/1024 | number:'.2' }} MB
+                                    </td>
+                                    <!-- <td>
+                                        {{item?.file?.type}}
+                                    </td> -->
+                                    <td>
+                                        <button mat-button  (click)="item.remove()">
+                                            <mat-icon class="text-red-600">delete</mat-icon>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="flex justify-end lg:pb-6 lg:pr-48 mt-10">
+                            <a routerLink="/organization-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button">
+                              Cancel
+                            </button></a>
+                            <button class="lg-button focus:outline-none focus:shadow-outline" type="button" >
+                              Upload
+                            </button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+</app-navbar>

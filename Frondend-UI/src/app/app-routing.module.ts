@@ -13,6 +13,7 @@ import { UsersListComponent } from './users-list/users-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddInsitutionalUserComponent } from './add-insitutional-user/add-insitutional-user.component';
 import { InsitutionalUserListComponent } from './insitutional-user-list/insitutional-user-list.component';
+import { StudentCsvUploadComponent } from './student-csv-upload/student-csv-upload.component';
 import { from } from 'rxjs';
 import { StudentListComponent } from './student-list/student-list.component';
 import { AddStudentComponent } from './add-student/add-student.component';
@@ -30,7 +31,8 @@ const routes: Routes = [  {path: 'login' , component: LoginComponent},
 {path: 'add-insitution-users', component:AddInsitutionalUserComponent},
 {path: 'insitution-users-list', component:InsitutionalUserListComponent},
 {path: 'student-list', component: StudentListComponent},
-{path: 'add-student', component: AddStudentComponent}
+{path: 'add-student', component: AddStudentComponent},
+{path: 'csvUpload',component: StudentCsvUploadComponent}
 ];
 
 @NgModule({

@@ -1,30 +1,47 @@
 import { Component, ChangeDetectorRef, ElementRef, ViewChild ,OnInit} from '@angular/core';
-import { FormBuilder, FormArray, Validators,FormControl } from "@angular/forms";
+import { FormBuilder, FormArray, Validators,FormControl,FormGroup } from "@angular/forms";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router,ActivatedRoute } from '@angular/router';
+import { from, Subscription, throwError } from 'rxjs';
+import { LoginService } from '../services/login.service';
+import { StorageService } from '../services/storage.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [LoginService, StorageService]
 })
 export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
   hide = true;
   name:string;
   showlogin:boolean=true;
   showForgetPassword:boolean=false;
   showOtp:boolean=false;
   showNewPassword:boolean=false;
+  public setMessage: any = {};
+  loginSubscription : Subscription;
+  error = "";
   email = new FormControl('', [Validators.required, Validators.email]);
-
   getErrorMessage() {
     if (this.email.hasError('required')) {
       return 'You must enter a value';
     }
-
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+      return this.email.hasError('email') ? 'Not a valid email' : '';
+    }
+  close(){
+    setTimeout(() => {
+      this.error='';
+     }, 100);
+     this.loginForm.reset();
   }
-  
-  constructor(private router:Router,private route:ActivatedRoute,public dialog: MatDialog) { }
+  constructor(private router:Router,private route:ActivatedRoute,public dialog: MatDialog,public _loginService: LoginService
+    , public _sessionStorage: StorageService) {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required])
+    })
+   }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -61,9 +78,38 @@ export class LoginComponent implements OnInit {
      this.showNewPassword = false;
     });
   }
-  login(){
-    this.router.navigate(['/dashboard']);
-  }
+  onSubmit(){
+    if (this.loginForm.invalid) {
+      return;
+    }
+    this.loginSubscription = this._loginService.checkUserLogin(this.loginForm.value).subscribe(resp => {
+      let email = resp.data.email;
+      let name = resp.data.firstName;
+      let role = resp.data.role;
+      let subRole = resp.data.subRole;
+      let userId = resp.data._id;  
+      let token = resp.data.token;
+      let errMsg = resp.message;
+
+      this._sessionStorage.setSession('token',token);
+      this._sessionStorage.setSession('LoginName',name);
+      this._sessionStorage.setSession('role',role);
+      this._sessionStorage.setSession('subRole',subRole);
+      this._sessionStorage.setSession('ID',userId);
+
+      if( role == 'SCANDIDATE'){
+        this.router.navigate(['/dashboard']);
+      } else{
+        this.router.navigate(['/insitution-users-list']);
+      }
+    }, err => {
+    this.setMessage = { message: err.error.message, error: true };
+    this.error = this.setMessage.message;
+    throw this.setMessage.message;
+    // alert(error);
+    // this.loginForm.reset();
+  })
+}
 }
 @Component({
   selector: 'dialog-elements-example-dialog',
