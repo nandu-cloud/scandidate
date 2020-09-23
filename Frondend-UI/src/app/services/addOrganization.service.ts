@@ -2,19 +2,26 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment'
 import { Observable } from 'rxjs';
-
+import { Router,ActivatedRoute } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
+
 export class addOrganizationService {
   baseUrl = environment.baseUrl;
-  constructor(private http: HttpClient) { }
+  orgIdedit: number;
+  orgIdupdate:number;
+  constructor(private http: HttpClient,private route:ActivatedRoute) {
+    this.route.params.subscribe(params => {
+      this.orgIdupdate = params.id;
+});
+   }
 
   checkAddOrganization(addOrgData): Observable<any> {
     var orgData: { 'organizationName': string, 'contactPersonName': string ,'organisationAddress': string ,'organisationType': string, 'organisationEmail': string ,
-                 'organisationEmployeeSize':number , 'organisationActiveFrom' : string , 'organisationZIP' : number, 'organisationDescription': string , 'status' : boolean} = 
-                { 'organizationName': addOrgData.name, 'contactPersonName': addOrgData.cPesonName ,'organisationAddress': addOrgData.address, 'organisationType' : addOrgData.type,
-                  'organisationEmail': addOrgData.email,'organisationEmployeeSize':addOrgData.size,'organisationActiveFrom':addOrgData.activeform,'organisationZIP':addOrgData.pCode,'organisationDescription': addOrgData.description,'status':true};
+                 'organisationEmployeeSize':number , 'organisationActiveFrom' : string , 'organisationZIP' : number, 'organisationDescription': string , 'status' : boolean , 'contact' : number , 'code': string} = 
+                { 'organizationName': addOrgData.organizationName, 'contactPersonName': addOrgData.contactPersonName ,'organisationAddress': addOrgData.organisationAddress, 'organisationType' : addOrgData.organisationType,
+                  'organisationEmail': addOrgData.organisationEmail,'organisationEmployeeSize':addOrgData.organisationEmployeeSize,'organisationActiveFrom':addOrgData.organisationActiveFrom,'organisationZIP':addOrgData.organisationZIP,'organisationDescription': addOrgData.organisationDescription,'status':true,'contact':addOrgData.contact,'code':addOrgData.code};
     return this.http.post(this.baseUrl + '/api/scandidate/organisation', orgData
       , {
         headers: new HttpHeaders({
@@ -29,4 +36,21 @@ export class addOrganizationService {
     return this.http.get(this.baseUrl + '/api/scandidate/organisation');
   }
  
+  editOrganization(editOrgData) : Observable<any> {
+    return this.http.get(this.baseUrl + '/api/scandidate/organisation/' +editOrgData );
+  }
+
+  updateOrganization(updateOrgData) : Observable<any>{
+    var orgData: { 'organizationName': string, 'contactPersonName': string ,'organisationAddress': string ,'organisationType': string, 'organisationEmail': string ,
+    'organisationEmployeeSize':number , 'organisationActiveFrom' : string , 'organisationZIP' : number, 'organisationDescription': string , 'status' : boolean , 'contact' : number , 'code': string} = 
+   { 'organizationName': updateOrgData.organizationName, 'contactPersonName': updateOrgData.contactPersonName ,'organisationAddress': updateOrgData.organisationAddress, 'organisationType' : updateOrgData.organisationType,
+     'organisationEmail': updateOrgData.organisationEmail,'organisationEmployeeSize':updateOrgData.organisationEmployeeSize,'organisationActiveFrom':updateOrgData.organisationActiveFrom,'organisationZIP':updateOrgData.organisationZIP,'organisationDescription': updateOrgData.organisationDescription,'status':updateOrgData.status,'contact':updateOrgData.contact,'code':updateOrgData.code};
+    return this.http.put(this.baseUrl + '/api/scandidate/organisation/' +this.orgIdupdate, orgData,
+    {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      })
+    })
+  }
 }

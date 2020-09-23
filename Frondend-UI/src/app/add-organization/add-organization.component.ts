@@ -1,40 +1,53 @@
-import { Component, ChangeDetectorRef, ElementRef, ViewChild } from '@angular/core';
+import { Component, ChangeDetectorRef, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { FormBuilder, FormArray, Validators, FormGroup ,FormControl} from "@angular/forms";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router,ActivatedRoute } from '@angular/router';
 import { from, Subscription } from 'rxjs';
 import { addOrganizationService } from '../services/addOrganization.service';
 import { StorageService } from '../services/storage.service';
+
 @Component({
   selector: 'app-add-organization',
   templateUrl: './add-organization.component.html',
   styleUrls: ['./add-organization.component.css'],
   providers: [ addOrganizationService,StorageService ]
 })
-export class AddOrganizationComponent  {
+export class AddOrganizationComponent implements OnInit {
+  [x: string]: any;
   organizationForm: FormGroup;
   orgSubscription: Subscription;
+  orgupdateSubscription: Subscription;
   public setMessage: any = {};
   error = '';
+  editorganizationSubscription: Subscription;
+  createOrgData: FormGroup;
+  editOrgData: FormGroup;
+  orgIdedit:number;
+  id;
   minDate = new Date(1990, 0, 1);
   maxDate = new Date;
+  orgIdupdate : number ;
   constructor(
     public fb: FormBuilder,
-    private cd: ChangeDetectorRef,public dialog: MatDialog,public orgService: addOrganizationService
+    private cd: ChangeDetectorRef,public dialog: MatDialog,public orgService: addOrganizationService,public route:ActivatedRoute
   ) {
+    this.route.params.subscribe(params => {
+          this.orgIdedit = params.id;
+    });
     this.organizationForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      cPesonName: new FormControl('', [Validators.required,Validators.minLength(5)]),
-      address : new FormControl('',[Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      pCode : new FormControl('',[Validators.required]),
-      file : new FormControl('',[Validators.required]),
-      description : new FormControl('',[Validators.required]),
+      organizationName: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      contactPersonName: new FormControl('', [Validators.required,Validators.minLength(5)]),
+      organisationAddress : new FormControl('',[Validators.required]),
+      organisationEmail: new FormControl('', [Validators.required, Validators.email]),
+      organisationZIP : new FormControl('',[Validators.required]),
+      status : new FormControl('',[Validators.required]),
+      organisationDescription : new FormControl('',[Validators.required]),
       code : new FormControl('',[Validators.required]),
       contact : new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
-      type : new FormControl('',[Validators.required]),
-      size : new FormControl('',[Validators.required]),
-      activeform : new FormControl('',[Validators.required]),
+      organisationType : new FormControl('',[Validators.required]),
+      organisationEmployeeSize : new FormControl('',[Validators.required]),
+      organisationActiveFrom : new FormControl('',[Validators.required]),
+      file : new FormControl('',[Validators.required]),
     })
   }
 
@@ -81,11 +94,34 @@ export class AddOrganizationComponent  {
     });
   }
 
-  onSubmit(){
-    if(this.organizationForm.invalid){
-      return;
-    }
+  ngOnInit(){
+    if(this.orgIdedit){
+    this.editorganizationSubscription = this.orgService.editOrganization(this.orgIdedit).subscribe(respObj => {
+      console.log(respObj.data);
+      this.id = respObj.data._id;
+      this.organizationForm.patchValue(respObj.data);
+    }, err => {
+      this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
+    })
+  }
+}
+
+  submit(){
+    if(!this.orgIdedit){
+    
     this.orgSubscription = this.orgService.checkAddOrganization(this.organizationForm.value).subscribe(resp =>{
+      this.openDialog();
+
+    }), err =>{
+      this.setMessage = { message: err.error.message, error: true };
+      this.error = this.setMessage.message;
+      throw this.setMessage.message;
+    }
+  }
+}
+  update(id:number){
+    this.orgIdupdate = id;
+    this.orgupdateSubscription = this.orgService.updateOrganization(this.organizationForm.value).subscribe(resp =>{
       this.openDialog();
 
     }), err =>{
