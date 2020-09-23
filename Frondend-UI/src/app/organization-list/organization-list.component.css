@@ -27,14 +27,7 @@ th {
   }
 
 }
-/* @media (min-width: 1024px) {
 
-  .data-table {
-    width: 80%;
-    margin: 56px auto;
-    }
-
-} */
 .data-table {
   width: 80%;
   margin: 56px auto;
@@ -45,4 +38,7 @@ th {
 .mat-header-cell{
   background-color: rgb(108, 180, 59);
   color: black;
+}
+.action{
+  padding-right: 2em !important;
 }
