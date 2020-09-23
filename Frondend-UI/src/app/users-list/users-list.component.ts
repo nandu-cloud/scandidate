@@ -5,7 +5,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { from, Subscription } from 'rxjs';
 import { UserListDataSource, UserListItem } from './user-list-datasource';
 import { AppuserService } from '../services/appuser.service';
-
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-users-list',
@@ -23,7 +23,8 @@ export class UsersListComponent implements  OnInit {
   displayedColumns = ['firstName', 'role', 'subRole', 'email', 'phoneNumber', 'dateOfBirth', 'status', 'action'];
 
   constructor(
-    private appuserService: AppuserService
+    private appuserService: AppuserService,
+    private route: ActivatedRoute,public router:Router
   ) {}
   ngOnInit() {
     // this.dataSource = new UserListDataSource();
@@ -40,6 +41,28 @@ export class UsersListComponent implements  OnInit {
     })
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  addd(){
+    this.router.navigate(['add-appuser'], {
+      queryParams: {
+        a:'new',
+      }
+    })
+  }
+
+  editUser(elemtnt){
+    console.log(elemtnt)
+   this.router.navigate(['add-appuser'], {
+      queryParams: {
+        a:'update',
+       userr: elemtnt._id
+      }
+    })
+  }
   // ngAfterViewInit() {
   //   this.dataSource.sort = this.sort;
   //   this.dataSource.paginator = this.paginator;

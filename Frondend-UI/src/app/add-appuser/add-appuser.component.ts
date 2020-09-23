@@ -14,49 +14,123 @@ export class AddAppuserComponent implements OnInit {
   teamSubscription$: any;
   setMessage: any = {};
   msg: String; status: String;
+  userDataaa: any;
+  pagetype = "new";
+  userIDddddd: any;
   constructor(
     public fb: FormBuilder, private router: Router,
-    private cd: ChangeDetectorRef,public dialog: MatDialog, 
-    private appUserService: AppuserService
+    private cd: ChangeDetectorRef,public dialog: MatDialog,
+    private appUserService: AppuserService,private route:ActivatedRoute
     ) {
       this.createUserData = new FormGroup({
-      firstName: new FormControl(),
-      lastName: new FormControl(),
-      role: new FormControl(),
-      subRole: new FormControl(),
-      email: new FormControl(),
-      dateOfBirth: new FormControl(),
-      status: new FormControl(),
-      phoneNumber: new FormControl(),
-      organizationId: new FormControl(),
-      institutionId: new FormControl(),
-      employeeId: new FormControl(),
-      currentAddress: new FormControl(),
-      permanentAddress: new FormControl(),
-      aboutMe: new FormControl(),
-      avatarLink: new FormControl()
-    })
+        firstName: new FormControl(),
+        lastName: new FormControl(),
+        role: new FormControl(),
+        subRole: new FormControl(),
+        email: new FormControl(),
+        dateOfBirth: new FormControl(),
+        status: new FormControl(),
+        phoneNumber: new FormControl(),
+        organizationId: new FormControl(),
+        institutionId: new FormControl(),
+        employeeId: new FormControl(),
+        currentAddress: new FormControl(),
+        permanentAddress: new FormControl(),
+        aboutMe: new FormControl(),
+        avatarLink: new FormControl()
+      })
+      this.route.queryParams.subscribe(params => {
+     console.log(params)
+     if(params.a === 'new'){
+        this.pagetype = 'new'
+        this.createUserData = new FormGroup({
+          firstName: new FormControl(),
+          lastName: new FormControl(),
+          role: new FormControl(),
+          subRole: new FormControl(),
+          email: new FormControl(),
+          dateOfBirth: new FormControl(),
+          status: new FormControl(),
+          phoneNumber: new FormControl(),
+          organizationId: new FormControl(),
+          institutionId: new FormControl(),
+          employeeId: new FormControl(),
+          currentAddress: new FormControl(),
+          permanentAddress: new FormControl(),
+          aboutMe: new FormControl(),
+          avatarLink: new FormControl()
+        })
+      }else{
+        // alert('hello')
+        console.log(params.userr);
+        this.userIDddddd = (params.userr)
+        console.log(this.userIDddddd)
+        this.pagetype = 'update'
+        // this.userDataaa =JSON.parse(JSON.parse(JSON.stringify(params)).userr)
+        console.log(this.userDataaa)
+        this.getuserDataByID()
+       
+      }
+    
+    });
     }
 
   ngOnInit() {
 
   }
 
-  onSubmit(){
+
+  getuserDataByID(){
+    this.appUserService.getUserById(this.userIDddddd).subscribe(respObj => {
+      console.log(respObj)
+      this.createUserData = new FormGroup({
+        firstName: new FormControl(respObj.data.firstName),
+        lastName: new FormControl(respObj.data.lastName),
+        role: new FormControl(respObj.data.role),
+        subRole: new FormControl(respObj.data.subRole),
+        email: new FormControl(respObj.data.email),
+        dateOfBirth: new FormControl(respObj.data.dateOfBirth),
+        status: new FormControl(respObj.data.status),
+        phoneNumber: new FormControl(respObj.data.phoneNumber),
+        organizationId: new FormControl(respObj.data.organizationId),
+        institutionId: new FormControl(respObj.data.institutionId),
+        employeeId: new FormControl(respObj.data.employeeId),
+        currentAddress: new FormControl(respObj.data.currentAddress),
+        permanentAddress: new FormControl(respObj.data.permanentAddress),
+        aboutMe: new FormControl(respObj.data.aboutMe),
+        avatarLink: new FormControl(respObj.data.avatarLink)
+      })
+    }, err => {
+      this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
+    })
+  }
+
+  onupdate(){
     if (this.createUserData.invalid) {
       return;
-    }
-    this.teamSubscription$ = this.appUserService.createUserData(this.createUserData.value).subscribe(resp => {
+    }else{
+      this.appUserService.editUser(this.createUserData.value,this.userIDddddd).subscribe(resp => {
       console.log("response Object ", resp);
       this.openDialog();
-      if (this.status === 'ERROR') {
-        this.router.navigate(['/admin']);
-        this.setMessage = { message: this.msg, error: true };
-      } else if (this.status == 'SUCCESS') {
-        this.router.navigate(['/users-list']);
-        this.setMessage = { message: this.msg, msg: true };
-      }
     })
+  }
+  }
+
+  onSubmit(){
+    // alert('submit')
+    if (this.createUserData.invalid) {
+      console.log(this.createUserData.value)
+    // alert('invalid')
+
+      return;
+    }else{
+    // alert('valid')
+
+      this.appUserService.createUserData(this.createUserData.value).subscribe(resp => {
+      console.log("response Object ", resp);
+      this.openDialog();
+    })
+  }
   }
   registrationForm = this.fb.group({
     file: [null]
@@ -64,6 +138,9 @@ export class AddAppuserComponent implements OnInit {
   openDialog() {
     this.dialog.open(DialogElementsExampleDialog);
   }
+  // openDialogBox() {
+  //   this.dialog.open(DialogElementsExampleDialog);
+  // }
   @ViewChild('fileInput') el: ElementRef;
   imageUrl: any = 'https://s3.amazonaws.com/f6s-public/profiles/1545337_th1.jpg';
   editFile: boolean = true;
