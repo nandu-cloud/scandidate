@@ -22,6 +22,7 @@ const routes: Routes = [  {path: 'login' , component: LoginComponent},
 {path: 'add-organization' , component:AddOrganizationComponent  },
 {path: 'navbar' , component:NavbarComponent },
 {path: 'add-institution', component:AddInitutionComponent},
+{path: 'add-institution/:id', component:AddInitutionComponent},
 {path: 'add-appuser', component:AddAppuserComponent},
 {path: 'user-profile', component:UserProfileComponent},
 {path: 'organization-list', component:OrganizationListComponent},
@@ -33,7 +34,7 @@ const routes: Routes = [  {path: 'login' , component: LoginComponent},
 {path: 'insitution-users-list', component:InsitutionalUserListComponent},
 {path: 'student-list', component: StudentListComponent},
 {path: 'add-student', component: AddStudentComponent},
-{path: 'csvUpload',component: StudentCsvUploadComponent}
+{path: 'csvUpload',component: StudentCsvUploadComponent},
 ];
 
 @NgModule({

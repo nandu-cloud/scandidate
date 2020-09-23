@@ -26,6 +26,8 @@ const instituteUpdationSchema = Joi.object({
     instituteZIP: Joi.number(),
     instituteDescription: Joi.string(),
     status: Joi.boolean().required(),
+    contact:Joi.number(),
+    code:Joi.string(),
 });
 
 module.exports = {

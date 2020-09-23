@@ -53,7 +53,7 @@ export class AddOrganizationComponent implements OnInit {
 
   registrationForm = this.fb.group({
     file: [null]
-  })  
+  })
   openDialog() {
     this.dialog.open(DialogElementsExampleDialog);
   }
@@ -79,7 +79,7 @@ export class AddOrganizationComponent implements OnInit {
         this.removeUpload = true;
       }
       // ChangeDetectorRef since file is loading outside the zone
-      this.cd.markForCheck();        
+      this.cd.markForCheck();
     }
   }
 
@@ -107,11 +107,12 @@ export class AddOrganizationComponent implements OnInit {
 }
 
   submit(){
+    console.log("khfdjhf")
     if(!this.orgIdedit){
-    
     this.orgSubscription = this.orgService.checkAddOrganization(this.organizationForm.value).subscribe(resp =>{
-      this.openDialog();
+      console.log(this.organizationForm.value)
 
+      this.openDialog();
     }), err =>{
       this.setMessage = { message: err.error.message, error: true };
       this.error = this.setMessage.message;

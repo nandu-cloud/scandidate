@@ -155,5 +155,8 @@
       }
     }
   },
-  "defaultProject": "material-ui"
+  "defaultProject": "material-ui",
+  "cli": {
+    "analytics": false
+  }
 }
