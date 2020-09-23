@@ -9,7 +9,7 @@ const data = new Uint8Array(
   Buffer.from(`
 export const environment = {
   production:true,
-  apiUrl:'${server_url}',
+  baseUrl:'${server_url}',
   version:'${version}'
 };
 `)
