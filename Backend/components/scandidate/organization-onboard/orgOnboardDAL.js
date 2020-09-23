@@ -1,8 +1,7 @@
 // import mongoose models
 const organizationModel = require("./orgOnboardModel");
 
-
-//Add Organisation
+// Add Organisation
 async function onboardOrganisation(data) {
   const ordDtata = new organizationModel();
   ordDtata.organizationName = data.organizationName;
@@ -14,7 +13,7 @@ async function onboardOrganisation(data) {
   ordDtata.organisationActiveFrom = data.organisationActiveFrom;
   ordDtata.organisationZIP = data.organisationZIP;
   ordDtata.organisationDescription = data.organisationDescription;
-  ordDtata.avatarLink = data.avatarLink;
+  ordDtata.organisationLogo = data.organisationLogo;
   ordDtata.contact = data.contact;
   ordDtata.code = data.code;
   ordDtata.status = data.status;
@@ -26,7 +25,7 @@ async function onboardOrganisation(data) {
   }
 }
 
-//Get All Organisation
+// Get All Organisation
 async function getAllOrganisation(data) {
   try {
     let result = await organizationModel.find({}).sort({ _id: -1 }).lean();
@@ -36,7 +35,7 @@ async function getAllOrganisation(data) {
   }
 }
 
-//Find Organisation By Id
+// Find Organisation By Id
 async function getOrganisationById(data) {
   try {
     let result = await organizationModel.findById({ _id: data._id }).lean();
@@ -46,7 +45,7 @@ async function getOrganisationById(data) {
   }
 }
 
-//Delete Organisation
+// Delete Organisation
 async function deleteOrganisation(data) {
   try {
     let result = await organizationModel.deleteOne({ _id: data._id });
@@ -58,18 +57,20 @@ async function deleteOrganisation(data) {
 
 async function updateOrganisation(data) {
   try {
-    let result = await organizationModel.findOneAndUpdate({ _id: data._id }, data, {
-      new: true,
-    });
+    let result = await organizationModel.findOneAndUpdate(
+      { _id: data._id },
+      data,
+      {
+        new: true,
+      }
+    );
     return result;
   } catch (err) {
     throw err;
   }
 }
 
-
-
-// export functions 
+// export functions
 module.exports = {
   getAllOrganisation: getAllOrganisation,
   onboardOrganisation: onboardOrganisation,

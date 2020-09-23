@@ -1,8 +1,7 @@
 // import mongoose models
 const instituteModel = require("./instituteOnboardModel");
 
-
-//Get All Institute
+// Get All Institute
 async function getAllInstitute(data) {
   try {
     let result = await instituteModel.find({}).sort({ _id: -1 }).lean();
@@ -12,7 +11,7 @@ async function getAllInstitute(data) {
   }
 }
 
-//Add Institute
+// Add Institute
 async function onboardInstitute(data) {
   const instituteData = new instituteModel();
   instituteData.instituteName = data.instituteName;
@@ -24,7 +23,7 @@ async function onboardInstitute(data) {
   instituteData.instituteActiveFrom = data.instituteActiveFrom;
   instituteData.instituteZIP = data.instituteZIP;
   instituteData.instituteDescription = data.instituteDescription;
-  instituteData.avatarLink = data.avatarLink;
+  instituteData.instituteLogo = data.instituteLogo;
   instituteData.status = data.status;
   instituteData.contact = data.contact;
   instituteData.code = data.code;
@@ -37,7 +36,7 @@ async function onboardInstitute(data) {
   }
 }
 
-//Find Institute By Id
+// Find Institute By Id
 async function getInstituteById(data) {
   try {
     let result = await instituteModel.findById({ _id: data._id }).lean();
@@ -47,7 +46,7 @@ async function getInstituteById(data) {
   }
 }
 
-//Delete Institute
+// Delete Institute
 async function deleteInstitute(data) {
   try {
     let result = await instituteModel.deleteOne({ _id: data._id });
@@ -57,24 +56,26 @@ async function deleteInstitute(data) {
   }
 }
 
-
-//Update
+// Update
 async function updateInstitute(data) {
   try {
-    let result = await instituteModel.findOneAndUpdate({ _id: data._id }, data, {
-      new: true,
-    });
+    let result = await instituteModel.findOneAndUpdate(
+      { _id: data._id },
+      data,
+      {
+        new: true,
+      }
+    );
     return result;
   } catch (err) {
     throw err;
   }
 }
-// export functions 
+// export functions
 module.exports = {
   getAllInstitute: getAllInstitute,
-  onboardInstitute:onboardInstitute,
-  getInstituteById:getInstituteById,
-  deleteInstitute:deleteInstitute,
-  updateInstitute:updateInstitute
+  onboardInstitute: onboardInstitute,
+  getInstituteById: getInstituteById,
+  deleteInstitute: deleteInstitute,
+  updateInstitute: updateInstitute,
 };
-

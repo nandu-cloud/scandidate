@@ -1,5 +1,7 @@
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
+const fs = require("fs");
+const path = require("path");
 const AppError = require("./../../../helpers/appError");
 const colors = require("./../../../helpers/colors");
 const userDAL = require("./userDAL");
@@ -98,4 +100,31 @@ module.exports.deleteUserMethod = async function (req, res, next) {
     console.log(colors.red, `deleteUserMethod err ${err}`);
     return next(new AppError(err, 400));
   }
+};
+
+module.exports.avatarUploadMethod = async function (req, res, next) {
+  if (!req.file) return next(new AppError("No file uploaded!", 400));
+  return res.status(200).json({
+    status: "SUCCESS",
+    message: "user avatar image uploaded successfully!",
+    data: { avatarLink: `${req.file.filename}` },
+  });
+};
+
+module.exports.avatarDeleteMethod = async function (req, res, next) {
+  const data = req.params.avatarLink;
+  const filePath = path.join(__dirname, `../../../uploads/user_avatar/${data}`);
+  fs.unlink(filePath, (err) => {
+    if (err) {
+      console.log(colors.red, "inside err...");
+      if (err.code == "ENOENT")
+        return next(new AppError("user avatar not found", 404));
+      return next(new AppError("Unable to delete the file", 400));
+    }
+    return res.status(200).json({
+      status: "SUCCESS",
+      message: "user avatar removed successfully",
+      data: null,
+    });
+  });
 };

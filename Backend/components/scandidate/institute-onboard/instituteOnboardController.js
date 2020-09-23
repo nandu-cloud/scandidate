@@ -1,11 +1,12 @@
+const mongoose = require("mongoose");
+const fs = require("fs");
+const path = require("path");
 const AppError = require("./../../../helpers/appError");
 const colors = require("./../../../helpers/colors");
 const instituteDAL = require("./instituteOnboardDAL");
-const instituteValidator = require("./instituteOnboardValidator")
-const mongoose = require("mongoose");
+const instituteValidator = require("./instituteOnboardValidator");
 
-
-//Add Institute
+// Add Institute
 module.exports.onboardInstituteMethod = async function (req, res, next) {
   const data = req.body;
   try {
@@ -17,7 +18,7 @@ module.exports.onboardInstituteMethod = async function (req, res, next) {
   }
 };
 
-//Get All Institute Data
+// Get All Institute Data
 module.exports.getAllMethod = async function (req, res, next) {
   const data = {};
   try {
@@ -30,12 +31,13 @@ module.exports.getAllMethod = async function (req, res, next) {
   }
 };
 
-//Get Institute By Id
+// Get Institute By Id
 module.exports.getInstituteByIdMethod = async function (req, res, next) {
   try {
     const data = { _id: mongoose.Types.ObjectId(req.params.instituteId) };
     let instituteData = await instituteDAL.getInstituteById(data);
-    if (!instituteData) return next(new AppError("Institute does not exists!", 404));
+    if (!instituteData)
+      return next(new AppError("Institute does not exists!", 404));
     return res.status(200).json({
       status: "SUCCESS",
       message: null,
@@ -46,16 +48,18 @@ module.exports.getInstituteByIdMethod = async function (req, res, next) {
   }
 };
 
-
-//Update Institute
+// Update Institute
 module.exports.updateInstituteMethod = async function (req, res, next) {
   const data = req.body;
   try {
-    let result = await instituteValidator.instituteUpdationSchema.validateAsync(data);
-    data._id = mongoose.Types.ObjectId(req.params.instituteId); 
+    let result = await instituteValidator.instituteUpdationSchema.validateAsync(
+      data
+    );
+    data._id = mongoose.Types.ObjectId(req.params.instituteId);
     const instituteExsits = await instituteDAL.getInstituteById(data);
-    if (!instituteExsits) return next(new AppError("user does not exists!", 404));
-    result._id = mongoose.Types.ObjectId(req.params.instituteId); 
+    if (!instituteExsits)
+      return next(new AppError("user does not exists!", 404));
+    result._id = mongoose.Types.ObjectId(req.params.instituteId);
     let instituteData = await instituteDAL.updateInstitute(result);
     return res.status(200).json({
       status: "SUCCESS",
@@ -67,12 +71,13 @@ module.exports.updateInstituteMethod = async function (req, res, next) {
   }
 };
 
-//Delete Institute
-module.exports.deleteInstituteMethod = async function (req, res,next) {
+// Delete Institute
+module.exports.deleteInstituteMethod = async function (req, res, next) {
   try {
     const data = { _id: mongoose.Types.ObjectId(req.params.instituteId) };
     const instituteExsits = await instituteDAL.getInstituteById(data);
-    if (!instituteExsits) return next(new AppError("Organisation does not exists!", 404));
+    if (!instituteExsits)
+      return next(new AppError("Organisation does not exists!", 404));
     const instituteData = await instituteDAL.deleteInstitute(data);
     return res.status(200).json({
       status: "SUCCESS",
@@ -82,4 +87,34 @@ module.exports.deleteInstituteMethod = async function (req, res,next) {
   } catch (err) {
     return next(new AppError(err, 400));
   }
+};
+
+module.exports.instLogoUploadMethod = async function (req, res, next) {
+  if (!req.file) return next(new AppError("No file uploaded!", 400));
+  return res.status(200).json({
+    status: "SUCCESS",
+    message: "Institute logo uploaded successfully!",
+    data: { instituteLogo: `${req.file.filename}` },
+  });
+};
+
+module.exports.instLogoDeleteMethod = async function (req, res, next) {
+  const data = req.params.instituteLogo;
+  const filePath = path.join(
+    __dirname,
+    `../../../uploads/institute_logo/${data}`
+  );
+  fs.unlink(filePath, (err) => {
+    if (err) {
+      console.log(colors.red, "inside err...");
+      if (err.code == "ENOENT")
+        return next(new AppError("Institute logo not found", 404));
+      return next(new AppError("Unable to delete the file", 400));
+    }
+    return res.status(200).json({
+      status: "SUCCESS",
+      message: "Institute logo removed successfully",
+      data: null,
+    });
+  });
 };

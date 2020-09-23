@@ -19,6 +19,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/", express.static(path.join(__dirname, "../Frondend-UI/dist")));
 
+app.use("/public", express.static(path.join(__dirname, "uploads")));
+
 // api routes
 app.use("/api/auth", require("./components/auth/authRoute"));
 
