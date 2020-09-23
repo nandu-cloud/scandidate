@@ -53,19 +53,16 @@
                 </mat-select>
             </mat-form-field>
            
-            <!-- <mat-form-field>
-                <mat-label>Organization</mat-label>
-                <mat-select   class="br-btm input-w">
-                  <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
-                  <mat-option value="ar">Aroha Technologies</mat-option>
-                  <mat-option value="dv">Dvara</mat-option>
-                  <mat-option value="wi">Wipro</mat-option>
-                </mat-select>
-            </mat-form-field> -->
             <mat-form-field>
                 <mat-label>Organization</mat-label>
-                <input  matInput   type="text"  name="organizationId" formControlName="organizationId" class="br-btm input-w" autoComplete='off'>
+                <mat-select   class="br-btm input-w" formControlName="organizationId" >
+                  <mat-option *ngFor="let itm of allOrganizations" [value]="itm._id">{{itm.organizationName}}</mat-option>
+                </mat-select>
             </mat-form-field>
+            <!-- <mat-form-field>
+                <mat-label>Organization</mat-label>
+                <input  matInput   type="text"  name="organizationId" formControlName="organizationId" class="br-btm input-w" autoComplete='off'>
+            </mat-form-field> -->
             <!-- <mat-form-field>
                 <mat-label>Associated ops user institution/organization</mat-label>
                 <mat-select  class="br-btm input-w">
@@ -109,15 +106,15 @@
                   <mat-option value="false">False</mat-option>
                 </mat-select>
             </mat-form-field>
-            <!-- <mat-form-field>
+            <mat-form-field>
                 <mat-label>Institutions</mat-label>
                 <mat-select  class="br-btm input-w" formControlName="noOfAssociatedUsers">
-                  <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                  <!-- <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option> -->
                   <mat-option value="a">Svce,Tirupati</mat-option>
                   <mat-option value="b">JNTU,Anathapur</mat-option>
                   <mat-option value="c">Sv Universcity</mat-option>
                 </mat-select>
-            </mat-form-field> -->
+            </mat-form-field>
             <mat-form-field>
                 <mat-label>Institution ID</mat-label>
                 <input  matInput   type="text"  name="institutionId"  formControlName="institutionId"  class="br-btm input-w" autoComplete='off'>

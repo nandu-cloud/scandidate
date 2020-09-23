@@ -1,7 +1,8 @@
-import { Component, ChangeDetectorRef, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, ElementRef, ViewChild, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormArray, Validators,FormControl, FormGroup } from "@angular/forms";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
+import { addOrganizationService } from '../services/addOrganization.service';
 import { AppuserService } from '../services/appuser.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class AddAppuserComponent implements OnInit {
   constructor(
     public fb: FormBuilder, private router: Router,
     private cd: ChangeDetectorRef,public dialog: MatDialog,
-    private appUserService: AppuserService,private route:ActivatedRoute
+    private appUserService: AppuserService,private route:ActivatedRoute,private Org:addOrganizationService
     ) {
       this.createUserData = new FormGroup({
         firstName: new FormControl(),
@@ -36,6 +37,7 @@ export class AddAppuserComponent implements OnInit {
         employeeId: new FormControl(),
         currentAddress: new FormControl(),
         permanentAddress: new FormControl(),
+        noOfAssociatedUsers: new FormControl(),
         aboutMe: new FormControl(),
         avatarLink: new FormControl()
       })
@@ -57,6 +59,7 @@ export class AddAppuserComponent implements OnInit {
           employeeId: new FormControl(),
           currentAddress: new FormControl(),
           permanentAddress: new FormControl(),
+          noOfAssociatedUsers: new FormControl(),
           aboutMe: new FormControl(),
           avatarLink: new FormControl()
         })
@@ -75,8 +78,16 @@ export class AddAppuserComponent implements OnInit {
     });
     }
 
-  ngOnInit() {
+    allOrganizations=[]
+    getallOrganizations(){
+      this.Org.getOrganizationData().subscribe(respObj => {
+        this.allOrganizations = respObj.data;
+      })
 
+    }
+
+  ngOnInit() {
+this.getallOrganizations()
   }
 
 
@@ -97,6 +108,7 @@ export class AddAppuserComponent implements OnInit {
         employeeId: new FormControl(respObj.data.employeeId),
         currentAddress: new FormControl(respObj.data.currentAddress),
         permanentAddress: new FormControl(respObj.data.permanentAddress),
+        noOfAssociatedUsers: new FormControl(respObj.data.noOfAssociatedUsers),
         aboutMe: new FormControl(respObj.data.aboutMe),
         avatarLink: new FormControl(respObj.data.avatarLink)
       })
@@ -111,7 +123,12 @@ export class AddAppuserComponent implements OnInit {
     }else{
       this.appUserService.editUser(this.createUserData.value,this.userIDddddd).subscribe(resp => {
       console.log("response Object ", resp);
+      this.methodtype = 'Update'
+
+      setTimeout(() => {
       this.openDialog();
+        
+      }, 300);
     })
   }
   }
@@ -128,15 +145,38 @@ export class AddAppuserComponent implements OnInit {
 
       this.appUserService.createUserData(this.createUserData.value).subscribe(resp => {
       console.log("response Object ", resp);
+      if(resp.status == "SUCCESS"){
+        this.methodtype = 'create'
+        setTimeout(() => {
       this.openDialog();
+          
+        }, 300);
+      }else{
+        alert(resp.message)
+      }
     })
   }
   }
   registrationForm = this.fb.group({
     file: [null]
   })  
+
+  methodtype;
   openDialog() {
-    this.dialog.open(DialogElementsExampleDialog);
+    // this.dialog.open(DialogElementsExampleDialog);
+
+    const dialogRef = this.dialog.open(DialogElementsExampleDialog, {
+      // width: '350px',
+      // data: { item }
+    });
+    dialogRef.componentInstance.methodType = this.methodtype;
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == undefined) {
+
+      } else {
+        // this.getallAssntbasedonSub()
+      }
+    })
   }
   // openDialogBox() {
   //   this.dialog.open(DialogElementsExampleDialog);
@@ -183,9 +223,23 @@ export class AddAppuserComponent implements OnInit {
   selector: 'dialog-elements-example-dialog',
   templateUrl: 'dialog-elements-example.html',
 })
-export class DialogElementsExampleDialog {
+export class DialogElementsExampleDialog implements OnInit {
+  @Input() methodType:any;
+  method:any;
   constructor(public dialogRef: MatDialogRef<DialogElementsExampleDialog>,private router:Router
-    ) {}
+    ) {
+    }
+
+    ngOnInit(){
+      console.log(this.methodType)
+      if(this.methodType == 'create'){
+this.method="Operational User onboard Succesfully"
+      }else{
+        this.method="Operational User Updated Succesfully"
+
+      }
+
+    }
     close(){
       this.dialogRef.close(true);
       this.router.navigate(['/users-list']);
