@@ -58,7 +58,7 @@ export class UsersListComponent implements  OnInit {
     console.log(elemtnt)
    this.router.navigate(['add-appuser'], {
       queryParams: {
-        a:'update',
+        // a:'update',
        userr: elemtnt._id
       }
     })
