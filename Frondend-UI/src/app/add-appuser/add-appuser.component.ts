@@ -4,7 +4,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { Router, ActivatedRoute } from '@angular/router';
 import { addOrganizationService } from '../services/addOrganization.service';
 import { AppuserService } from '../services/appuser.service';
-
+import { instituteService } from '../services/addInstitute.service';
 @Component({
   selector: 'app-add-appuser',
   templateUrl: './add-appuser.component.html',
@@ -20,8 +20,10 @@ export class AddAppuserComponent implements OnInit {
   userIDddddd: any;
   constructor(
     public fb: FormBuilder, private router: Router,
-    private cd: ChangeDetectorRef,public dialog: MatDialog,
-    private appUserService: AppuserService,private route:ActivatedRoute,private Org:addOrganizationService
+    private cd: ChangeDetectorRef, public dialog: MatDialog,
+    private appUserService: AppuserService, private route: ActivatedRoute,
+    private Org: addOrganizationService,
+    private Inst: instituteService
     ) {
       this.createUserData = new FormGroup({
         firstName: new FormControl(),
@@ -86,8 +88,15 @@ export class AddAppuserComponent implements OnInit {
 
     }
 
+    allInstitutions=[]
+    getInstitution(){
+     this.Inst.getInstitutionList().subscribe(respObj => {
+       this.allInstitutions = respObj.data;
+     })
+    }
   ngOnInit() {
 this.getallOrganizations()
+this.getInstitution()
   }
 
 
@@ -233,9 +242,9 @@ export class DialogElementsExampleDialog implements OnInit {
     ngOnInit(){
       console.log(this.methodType)
       if(this.methodType == 'create'){
-this.method="Operational User onboard Succesfully"
+this.method="Operational User onboard Successfully"
       }else{
-        this.method="Operational User Updated Succesfully"
+        this.method="Operational User Updated Successfully"
 
       }
 

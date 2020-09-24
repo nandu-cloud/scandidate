@@ -106,21 +106,27 @@
                   <mat-option value="false">False</mat-option>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field>
+            <!-- <mat-form-field>
                 <mat-label>Institutions</mat-label>
                 <mat-select  class="br-btm input-w" formControlName="noOfAssociatedUsers">
-                  <!-- <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option> -->
+                  <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
                   <mat-option value="a">Svce,Tirupati</mat-option>
                   <mat-option value="b">JNTU,Anathapur</mat-option>
                   <mat-option value="c">Sv Universcity</mat-option>
                 </mat-select>
-            </mat-form-field>
-            <mat-form-field>
+            </mat-form-field> -->
+            <!-- <mat-form-field>
                 <mat-label>Institution ID</mat-label>
                 <input  matInput   type="text"  name="institutionId"  formControlName="institutionId"  class="br-btm input-w" autoComplete='off'>
-                <!-- <Inpu  matInput name="institutionId" formControlName="institutionId" class="br-txtarea input-w" rows="6" autoComplete='off'></Inpu> -->
-            </mat-form-field>
+                <Inpu  matInput name="institutionId" formControlName="institutionId" class="br-txtarea input-w" rows="6" autoComplete='off'></Inpu>
+            </mat-form-field> -->
             
+            <mat-form-field>
+                <mat-label>Institution</mat-label>
+                <mat-select   class="br-btm input-w" formControlName="institutionId" >
+                  <mat-option *ngFor="let itm of allInstitutions" [value]="itm._id">{{itm.instituteName}}</mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
     </div>
     <div class="flex justify-end lg:pb-6 lg:pr-48">
