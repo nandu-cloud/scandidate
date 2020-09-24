@@ -44,9 +44,13 @@ export class AddAppuserComponent implements OnInit {
         aboutMe: new FormControl(),
         avatarLink: new FormControl()
       })
-      this.route.queryParams.subscribe(params => {
-    //  console.log(params.id)
-     if(params.a == 'new'){
+      let k = this.route.snapshot.params['id'];
+console.log('testtsttttt'+k)
+      if(k == undefined){
+
+    //   this.route.queryParams.subscribe(params => {
+    // //  console.log(params.id)
+    //  if(params.a == 'new'){
       //  alert()
         this.pagetype = 'new'
         this.createUserData = new FormGroup({
@@ -69,8 +73,8 @@ export class AddAppuserComponent implements OnInit {
         })
       }else{
         // alert('hello')
-        console.log(params.userr);
-        this.userIDddddd = (params.userr)
+        // console.log(params.userr);
+        this.userIDddddd = k
         console.log(this.userIDddddd)
         this.pagetype = 'update'
         // this.userDataaa =JSON.parse(JSON.parse(JSON.stringify(params)).userr)
@@ -79,7 +83,7 @@ export class AddAppuserComponent implements OnInit {
        
       }
     
-    });
+    // });
     }
 
     allOrganizations=[]
@@ -98,6 +102,8 @@ export class AddAppuserComponent implements OnInit {
      })
     }
   ngOnInit() {
+    let k = this.route.snapshot.params['id'];
+    console.log('testtsttttt'+k)
       this.getallOrganizations()
       this.getInstitution()
   }
