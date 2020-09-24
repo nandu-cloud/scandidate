@@ -12,11 +12,12 @@ import { instituteService } from '../services/addInstitute.service';
 })
 export class AddAppuserComponent implements OnInit {
   createUserData: FormGroup;
+  // [x: string]: any;
   teamSubscription$: any;
   setMessage: any = {};
   msg: String; status: String;
   userDataaa: any;
-  pagetype = "new";
+  pagetype ='new';
   userIDddddd: any;
   constructor(
     public fb: FormBuilder, private router: Router,
@@ -32,7 +33,7 @@ export class AddAppuserComponent implements OnInit {
         subRole: new FormControl(),
         email: new FormControl(),
         dateOfBirth: new FormControl(),
-        status: new FormControl(),
+        status: new FormControl(true),
         phoneNumber: new FormControl(),
         organizationId: new FormControl(),
         institutionId: new FormControl(),
@@ -44,8 +45,9 @@ export class AddAppuserComponent implements OnInit {
         avatarLink: new FormControl()
       })
       this.route.queryParams.subscribe(params => {
-     console.log(params)
-     if(params.a === 'new'){
+    //  console.log(params.id)
+     if(params.a == 'new'){
+      //  alert()
         this.pagetype = 'new'
         this.createUserData = new FormGroup({
           firstName: new FormControl(),
@@ -54,7 +56,7 @@ export class AddAppuserComponent implements OnInit {
           subRole: new FormControl(),
           email: new FormControl(),
           dateOfBirth: new FormControl(),
-          status: new FormControl(),
+          status: new FormControl(true),
           phoneNumber: new FormControl(),
           organizationId: new FormControl(),
           institutionId: new FormControl(),
@@ -88,6 +90,7 @@ export class AddAppuserComponent implements OnInit {
 
     }
 
+    // tslint:disable-next-line: member-ordering
     allInstitutions=[]
     getInstitution(){
      this.Inst.getInstitutionList().subscribe(respObj => {
@@ -95,8 +98,8 @@ export class AddAppuserComponent implements OnInit {
      })
     }
   ngOnInit() {
-this.getallOrganizations()
-this.getInstitution()
+      this.getallOrganizations()
+      this.getInstitution()
   }
 
 

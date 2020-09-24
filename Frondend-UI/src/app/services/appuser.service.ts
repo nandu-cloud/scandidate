@@ -14,19 +14,19 @@ export class AppuserService {
 
   // Create Opps user
   createUserData(createUserData): Observable<any> {
-    var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': 'number'
-  //  'organizationId': string, 'institutionId': string, 'employeeId': string, 'currentAddress': string, 'permanentAddress': string, 'aboutMe': string,
-  //   'noOfAssociatedUsers': string
+    var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': 'number',
+   'organizationId': string, 'institutionId': string, 'employeeId': string, 'currentAddress': string, 'permanentAddress': string, 'aboutMe': string,
+    'noOfAssociatedUsers': number
   } =
     {
       'firstName': createUserData.firstName, 'lastName': createUserData.lastName, 'role':
       createUserData.role, 'subRole': createUserData.subRole, 'email': createUserData.email,
        'dateOfBirth': createUserData.dateOfBirth, 'status': createUserData.status,
-       'phoneNumber': createUserData.phoneNumber
-      //  'organizationId': createUserData.organizationId,
-      //  'institutionId': createUserData.institutionId, 'employeeId': createUserData.employeeId,
-      //  'currentAddress': createUserData.currentAddress, 'permanentAddress': createUserData.permanentAddress, 'aboutMe': createUserData.aboutMe,
-      //  'noOfAssociatedUsers': createUserData.noOfAssociatedUsers
+       'phoneNumber': createUserData.phoneNumber,
+       'organizationId': createUserData.organizationId,
+       'institutionId': createUserData.institutionId, 'employeeId': createUserData.employeeId,
+       'currentAddress': createUserData.currentAddress, 'permanentAddress': createUserData.permanentAddress, 'aboutMe': createUserData.aboutMe,
+       'noOfAssociatedUsers': 1
     };
 
     return this.http.post(this.baseUrl + '/api/scandidate/user', create

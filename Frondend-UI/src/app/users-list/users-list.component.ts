@@ -58,11 +58,16 @@ export class UsersListComponent implements  OnInit {
     console.log(elemtnt)
    this.router.navigate(['add-appuser'], {
       queryParams: {
-        // a:'update',
+        a:'update',
        userr: elemtnt._id
       }
     })
   }
+
+  // itemid;
+  // editt(itm){
+  //   this.itemid= itm
+  // }
   // ngAfterViewInit() {
   //   this.dataSource.sort = this.sort;
   //   this.dataSource.paginator = this.paginator;
