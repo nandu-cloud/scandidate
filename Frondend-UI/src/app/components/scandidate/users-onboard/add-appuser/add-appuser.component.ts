@@ -19,6 +19,8 @@ export class AddAppuserComponent implements OnInit {
   userDataaa: any;
   pagetype ='new';
   userIDddddd: any;
+  imageUrl: any = '';
+  imageFilename:string='';
   fileToUpload: File = null;
   constructor(
     public fb: FormBuilder, private router: Router,
@@ -107,7 +109,8 @@ console.log('testtsttttt'+k)
     console.log('testtsttttt'+k)
       this.getallOrganizations()
       this.getInstitution()
-  }
+    // this.appUserService.deleteFile(this.imageFilename).subscribe();
+    }
 
 
   getuserDataByID(){
@@ -130,7 +133,10 @@ console.log('testtsttttt'+k)
         noOfAssociatedUsers: new FormControl(respObj.data.noOfAssociatedUsers),
         aboutMe: new FormControl(respObj.data.aboutMe),
         avatarLink: new FormControl(respObj.data.avatarLink)
-      })
+      });
+      this.createUserData.patchValue(respObj.data);
+      this.imageUrl = `http://localhost:2000/public/user_avatar/${respObj.data.avatarLink}`;
+      this.imageFilename = respObj.data.avatarLink;
     }, err => {
       this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
     })
@@ -202,7 +208,7 @@ console.log('testtsttttt'+k)
   //   this.dialog.open(DialogElementsExampleDialog);
   // }
   @ViewChild('fileInput') el: ElementRef;
-  imageUrl: any = 'http://localhost:2000/public/user_avatar/filename.png';
+  
   editFile: boolean = true;
   removeUpload: boolean = false;
   toppings = new FormControl();
@@ -210,7 +216,7 @@ console.log('testtsttttt'+k)
     this.fileToUpload = file.item(0);
     var render = new FileReader();
     render.onload = (event: any) => {
-      this.imageUrl = event.target.result;
+      // this.imageUrl = event.target.result;
     }
     render.readAsDataURL(this.fileToUpload);
 
@@ -220,6 +226,8 @@ console.log('testtsttttt'+k)
         console.log(data.data.avatarLink);
         this.createUserData.patchValue({avatarLink: data.data.avatarLink});
       
+        this.imageUrl = `http://localhost:2000/public/user_avatar/${data.data.avatarLink}`;
+        
       }
     )
 

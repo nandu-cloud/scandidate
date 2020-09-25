@@ -49,11 +49,17 @@ export class AppuserService {
 
   editUser(editUserData,userid): Observable<any> {
     // this.editUserData = this.('emailForEdit');
-    var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': 'number'} = 
+    var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': 'number',
+    'organizationId': string, 'institutionId': string, 'employeeId': string, 'currentAddress': string, 'permanentAddress': string, 'aboutMe': string,
+    'noOfAssociatedUsers': number, 'avatarLink': string} = 
     { 'firstName': editUserData.firstName, 'lastName': editUserData.lastName, 'role':
     editUserData.role, 'subRole': editUserData.subRole, 'email': editUserData.email,
      'dateOfBirth': editUserData.dateOfBirth, 'status': editUserData.status,
-     'phoneNumber': editUserData.phoneNumber};
+     'phoneNumber': editUserData.phoneNumber, 'organizationId': editUserData.organizationId,
+     'institutionId': editUserData.institutionId, 'employeeId': editUserData.employeeId,
+     'currentAddress': editUserData.currentAddress, 'permanentAddress': editUserData.permanentAddress,
+      'aboutMe': editUserData.aboutMe,
+     'noOfAssociatedUsers': 1, 'avatarLink': editUserData.avatarLink};
     return this.http.put(this.baseUrl + '/api/scandidate/user/'+userid, create
       , {
         headers: new HttpHeaders({
@@ -71,5 +77,9 @@ export class AppuserService {
    return this.http.post(this.baseUrl + '/api/scandidate/user/uploadavatar', formData
    
    );
+  }
+
+  deleteFile(fileDelete: string): Observable<any> {
+    return this.http.delete(this.baseUrl + '/api/scandidate/user/deleteavatar/:avatarLink' + fileDelete);
   }
 }
