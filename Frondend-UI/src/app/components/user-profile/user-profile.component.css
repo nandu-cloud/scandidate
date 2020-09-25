@@ -17,6 +17,9 @@ input.mat-input-element {
     width: 80px !important;
     height: 80px !important;
 }
+input.mat-input-element {
+    margin-top: 0.3625em !important;
+}
 }
 @media (max-width: 768px){
 .mat-button {
@@ -62,9 +65,9 @@ input.mat-input-element {
     background: #E91E63;
   }
   
-  /* .avatar-upload .avatar-edit .custom-label:hover {
+  .avatar-upload .avatar-edit .custom-label:hover {
     opacity: 1;
-  } */
+  }
   
   .avatar-upload .avatar-edit .custom-label:after {
     position: absolute;
@@ -77,7 +80,7 @@ input.mat-input-element {
   }
   
   .avatar-upload .avatar-edit .upload-image:after {
-    content: url('../../assets/images/int-logo.png');
+    content: url('../../../assets/images/int-logo.png');
   }
   
   .avatar-upload .avatar-edit .remove-image:after {
@@ -86,8 +89,6 @@ input.mat-input-element {
   }
   
   .avatar-upload .avatar-preview {
-    width: 100px;
-    height: 100px;
     position: absolute;
     border-radius: 100%;
     overflow: hidden;
@@ -106,9 +107,17 @@ input.mat-input-element {
     background-position: center;
   }
   .mat-button{
-      margin:15px 10px 40px ;
+    margin:15px 10px 40px ;
   }
   .group-gap{
-      border:1px dotted gray;
-      width: 64%;
+    width: 64%;
+  }
+  .mat-select{
+    padding: 10px 0px;
+  }
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: white !important;
+  }
+  .br-txtarea{
+    border: 1px solid gray;
   }

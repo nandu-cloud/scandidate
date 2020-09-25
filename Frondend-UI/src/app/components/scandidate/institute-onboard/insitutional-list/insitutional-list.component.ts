@@ -3,8 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
-import { instituteService } from '../services/addInstitute.service';
-import { StorageService } from '../services/storage.service';
+import { instituteService } from '../../../../services/institute.service';
+import { StorageService } from '../../../../services/storage.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-insitutional-list',

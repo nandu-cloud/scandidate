@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { AddOrganizationComponent} from './add-organization/add-organization.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { AddInitutionComponent } from './add-initution/add-initution.component';
-import { AddAppuserComponent } from './add-appuser/add-appuser.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { OrganizationListComponent } from './organization-list/organization-list.component';
-import { InsitutionalListComponent } from  './insitutional-list/insitutional-list.component';
-import { UsersListComponent } from './users-list/users-list.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AddInsitutionalUserComponent } from './add-insitutional-user/add-insitutional-user.component';
-import { InsitutionalUserListComponent } from './insitutional-user-list/insitutional-user-list.component';
-import { StudentCsvUploadComponent } from './student-csv-upload/student-csv-upload.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { AddOrganizationComponent} from './components/scandidate/organization-onboard/add-organization/add-organization.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { AddInitutionComponent } from './components/scandidate/institute-onboard/add-initution/add-initution.component';
+import { AddAppuserComponent } from './components/scandidate/users-onboard/add-appuser/add-appuser.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { OrganizationListComponent } from './components/scandidate/organization-onboard/organization-list/organization-list.component';
+import { InsitutionalListComponent } from  './components/scandidate/institute-onboard/insitutional-list/insitutional-list.component';
+import { UsersListComponent } from './components/scandidate/users-onboard/users-list/users-list.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AddInsitutionalUserComponent } from './components/institution/users/add-insitutional-user/add-insitutional-user.component';
+import { InsitutionalUserListComponent } from './components/institution/users/insitutional-user-list/insitutional-user-list.component';
+import { StudentCsvUploadComponent } from './components/institution/students/student-csv-upload/student-csv-upload.component';
 import { from } from 'rxjs';
-import { StudentListComponent } from './student-list/student-list.component';
-import { AddStudentComponent } from './add-student/add-student.component';
+import { StudentListComponent } from './components/institution/students/student-list/student-list.component';
+import { AddStudentComponent } from './components/institution/students/add-student/add-student.component';
 const routes: Routes = [  {path: 'login' , component: LoginComponent},
 { path: '',  redirectTo: '/login', pathMatch: 'full' },
 {path: 'add-organization' , component:AddOrganizationComponent  },

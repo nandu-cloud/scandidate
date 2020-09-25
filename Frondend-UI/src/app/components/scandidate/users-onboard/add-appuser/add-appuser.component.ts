@@ -2,9 +2,9 @@ import { Component, ChangeDetectorRef, ElementRef, ViewChild, OnInit, Input } fr
 import { FormBuilder, FormArray, Validators,FormControl, FormGroup } from "@angular/forms";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
-import { addOrganizationService } from '../services/addOrganization.service';
-import { AppuserService } from '../services/appuser.service';
-import { instituteService } from '../services/addInstitute.service';
+import { addOrganizationService } from '../../../../services/organization.service';
+import { AppuserService } from '../../../../services/appuser.service';
+import { instituteService } from '../../../../services/institute.service';
 @Component({
   selector: 'app-add-appuser',
   templateUrl: './add-appuser.component.html',

@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { from, Subscription } from 'rxjs';
 import { UserListDataSource, UserListItem } from './user-list-datasource';
-import { AppuserService } from '../services/appuser.service';
+import { AppuserService } from '../../../../services/appuser.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

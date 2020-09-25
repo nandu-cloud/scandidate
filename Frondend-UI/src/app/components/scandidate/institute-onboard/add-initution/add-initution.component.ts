@@ -3,8 +3,8 @@ import { FormBuilder, FormArray, Validators, FormGroup ,FormControl} from "@angu
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router,ActivatedRoute } from '@angular/router';
 import { from, Subscription } from 'rxjs';
-import { instituteService } from '../services/addInstitute.service';
-import { StorageService } from '../services/storage.service';
+import { instituteService } from '../../../../services/institute.service';
+import { StorageService } from '../../../../services/storage.service';
 @Component({
   selector: 'app-add-initution',
   templateUrl: './add-initution.component.html',

@@ -3,8 +3,8 @@ import { FormBuilder, FormArray, Validators,FormControl,FormGroup } from "@angul
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router,ActivatedRoute } from '@angular/router';
 import { from, Subscription, throwError } from 'rxjs';
-import { LoginService } from '../services/login.service';
-import { StorageService } from '../services/storage.service';
+import { LoginService } from '../../../services/login.service';
+import { StorageService } from '../../../services/storage.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

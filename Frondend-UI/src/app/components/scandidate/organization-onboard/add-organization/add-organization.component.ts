@@ -3,9 +3,9 @@ import { FormBuilder, FormArray, Validators, FormGroup ,FormControl} from "@angu
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router,ActivatedRoute } from '@angular/router';
 import { from, Subscription } from 'rxjs';
-import { environment } from '../../environments/environment'
-import { addOrganizationService } from '../services/addOrganization.service';
-import { StorageService } from '../services/storage.service';
+import { environment } from '../../../../../environments/environment'
+import { addOrganizationService } from '../../../../services/organization.service';
+import { StorageService } from '../../../../services/storage.service';
 
 @Component({
   selector: 'app-add-organization',

@@ -80,7 +80,7 @@ input.mat-input-element {
   }
   
   .avatar-upload .avatar-edit .upload-image:after {
-    content: url('../../assets/images/int-logo.png');
+    content: url('../../../../../assets/images/int-logo.png');
   }
   
   .avatar-upload .avatar-edit .remove-image:after {

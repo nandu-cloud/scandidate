@@ -3,8 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { from, Subscription } from 'rxjs';
-import { addOrganizationService} from  '../services/addOrganization.service' ;
-import { StorageService} from '../services/storage.service';
+import { addOrganizationService} from  '../../../../services/organization.service' ;
+import { StorageService} from '../../../../services/storage.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 @Component({
