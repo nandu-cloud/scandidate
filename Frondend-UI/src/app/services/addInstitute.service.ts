@@ -7,7 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   providedIn: 'root'
 })
 
-export class instituteService {
+export class instituteService  {
   baseUrl = environment.baseUrl;
   instituteIdedit: number;
   instituteIdupdate: number;

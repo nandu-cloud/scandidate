@@ -174,12 +174,7 @@ console.log('testtsttttt'+k)
         alert(resp.message)
       }
     })
-      this.appUserService.postFile(this.fileToUpload).subscribe(
-      data => {
-        this.createUserData.patchValue({avatarLink: data.avatarLink});
-        console.log(data);
-      }
-    )
+ 
   }
   }
   registrationForm = this.fb.group({
@@ -219,7 +214,15 @@ console.log('testtsttttt'+k)
     }
     render.readAsDataURL(this.fileToUpload);
 
-    this.cd.markForCheck();
+    // this.cd.markForCheck();
+    this.appUserService.postFile(this.fileToUpload).subscribe(
+      data => {
+        console.log(data.data.avatarLink);
+        this.createUserData.patchValue({avatarLink: data.data.avatarLink});
+      
+      }
+    )
+
   }
 
 

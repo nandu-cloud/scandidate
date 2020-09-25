@@ -20,6 +20,7 @@ export class AddOrganizationComponent implements OnInit {
   public setMessage: any = {};
   error = '';
   editorganizationSubscription: Subscription;
+  orglogoSubscription : Subscription;
   createOrgData: FormGroup;
   editOrgData: FormGroup;
   orgIdedit:number;
@@ -27,6 +28,8 @@ export class AddOrganizationComponent implements OnInit {
   minDate = new Date(1990, 0, 1);
   maxDate = new Date;
   orgIdupdate : number ;
+  imageUrl: any = '';
+  imageFilename:string='';
   constructor(
     public fb: FormBuilder,
     private cd: ChangeDetectorRef,public dialog: MatDialog,public orgService: addOrganizationService,public route:ActivatedRoute
@@ -47,7 +50,7 @@ export class AddOrganizationComponent implements OnInit {
       organisationType : new FormControl('',[Validators.required]),
       organisationEmployeeSize : new FormControl('',[Validators.required]),
       organisationActiveFrom : new FormControl('',[Validators.required]),
-      file : new FormControl('',[Validators.required]),
+      organisationLogo : new FormControl('',[Validators.required]),
     })
   }
 
@@ -59,47 +62,38 @@ export class AddOrganizationComponent implements OnInit {
   }
 
   @ViewChild('fileInput') el: ElementRef;
-  imageUrl: any = '../../assets/images/org-logo.png';
+
   editFile: boolean = true;
   removeUpload: boolean = false;
 
-  uploadFile(event) {
-    let reader = new FileReader(); // HTML5 FileReader API
-    let file = event.target.files[0];
-    if (event.target.files && event.target.files[0]) {
-      reader.readAsDataURL(file);
-
-      // When file uploads set it to file formcontrol
-      reader.onload = () => {
-        this.imageUrl = reader.result;
-        this.registrationForm.patchValue({
-          file: reader.result
-        });
-        this.editFile = false;
-        this.removeUpload = true;
-      }
-      // ChangeDetectorRef since file is loading outside the zone
-      this.cd.markForCheck();
+  uploadFile(file: FileList) {
+    this.fileToUpload = file.item(0);
+    var render = new FileReader();
+    render.onload = (event: any) => {
+      // this.imageUrl = event.target.result;
     }
+    render.readAsDataURL(this.fileToUpload);
+    this.orgSubscription = this.orgService.postFile(this.fileToUpload).subscribe(
+      data => {
+        this.organizationForm.patchValue({organisationLogo: data.data.organisationLogo});
+        console.log(data.data.organisationLogo);
+
+        this.imageUrl=`http://localhost:2000/public/organization_logo/${data.data.organisationLogo}`;
+        this.orgSubscription = this.orgService.deleteFile(this.imageFilename).subscribe();
+      }
+    )
+    
+    
   }
 
-  // Function to remove uploaded file
-  removeUploadedFile() {
-    let newFileList = Array.from(this.el.nativeElement.files);
-    this.imageUrl = 'https://i.pinimg.com/236x/d6/27/d9/d627d9cda385317de4812a4f7bd922e9--man--iron-man.jpg';
-    this.editFile = true;
-    this.removeUpload = false;
-    this.registrationForm.patchValue({
-      file: [null]
-    });
-  }
-
-  ngOnInit(){
+ ngOnInit(){
     if(this.orgIdedit){
     this.editorganizationSubscription = this.orgService.editOrganization(this.orgIdedit).subscribe(respObj => {
       console.log(respObj.data);
       this.id = respObj.data._id;
       this.organizationForm.patchValue(respObj.data);
+      this.imageUrl=`http://localhost:2000/public/organization_logo/${respObj.data.organisationLogo}`;
+      this.imageFilename=respObj.data.organisationLogo;
     }, err => {
       this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
     })
@@ -107,7 +101,6 @@ export class AddOrganizationComponent implements OnInit {
 }
 
   submit(){
-    console.log("khfdjhf")
     if(!this.orgIdedit){
     this.orgSubscription = this.orgService.checkAddOrganization(this.organizationForm.value).subscribe(resp =>{
       console.log(this.organizationForm.value)
@@ -118,6 +111,7 @@ export class AddOrganizationComponent implements OnInit {
       this.error = this.setMessage.message;
       throw this.setMessage.message;
     }
+    
   }
 }
   update(id:number){

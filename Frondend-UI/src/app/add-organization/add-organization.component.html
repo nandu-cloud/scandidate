@@ -32,13 +32,13 @@
             <div class="group-gap">
                 <div class="avatar-upload">
                     <div class="avatar-edit">
-                        <input type='file' formControlName="file" required id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" />
+                        <input type='file'  required id="imageUpload" accept=".png,.jpeg"   #logoLink (change)="uploadFile($event.target.files)" />
                     </div>
                     <div class="avatar-preview">
                         <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'"></div>
                     </div>
                 </div>
-                <button mat-button  (click)="fileInput.click()">
+                <button mat-button  (click)="logoLink.click()">
                     <mat-icon>file_upload</mat-icon>
                      Upload Logo
                 </button>

@@ -62,9 +62,9 @@ input.mat-input-element {
     background: #E91E63;
   }
   
-  .avatar-upload .avatar-edit .custom-label:hover {
+  /* .avatar-upload .avatar-edit .custom-label:hover {
     opacity: 1;
-  }
+  } */
   
   .avatar-upload .avatar-edit .custom-label:after {
     position: absolute;
