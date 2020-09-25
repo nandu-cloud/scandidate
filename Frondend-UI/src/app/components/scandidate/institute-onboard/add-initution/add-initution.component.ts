@@ -5,6 +5,8 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { from, Subscription } from 'rxjs';
 import { instituteService } from '../../../../services/institute.service';
 import { StorageService } from '../../../../services/storage.service';
+import { environment } from '../../../../../environments/environment'
+
 @Component({
   selector: 'app-add-initution',
   templateUrl: './add-initution.component.html',
@@ -12,6 +14,7 @@ import { StorageService } from '../../../../services/storage.service';
   providers: [ instituteService,StorageService ]
 })
 export class AddInitutionComponent implements OnInit {
+  baseUrl = environment.baseUrl;
   [x: string]: any;
   instituteForm: FormGroup;
   instituteSubscription: Subscription;
@@ -26,6 +29,8 @@ export class AddInitutionComponent implements OnInit {
   minDate = new Date(1990, 0, 1);
   maxDate = new Date;
   instituteIdupdate : number ;
+  imageUrl: any = '';
+  imageFilename:string='';
   constructor(
     public fb: FormBuilder,
     private cd: ChangeDetectorRef,public dialog: MatDialog,public instituteService: instituteService,public route:ActivatedRoute
@@ -46,7 +51,7 @@ export class AddInitutionComponent implements OnInit {
       instituteType : new FormControl('',[Validators.required]),
       instituteStudentSize : new FormControl('',[Validators.required]),
       instituteActiveFrom : new FormControl('',[Validators.required]),
-      file : new FormControl('',[Validators.required]),
+      instituteLogo : new FormControl('',[Validators.required]),
     })
   }
 
@@ -58,40 +63,28 @@ export class AddInitutionComponent implements OnInit {
   }
 
   @ViewChild('fileInput') el: ElementRef;
-  imageUrl: any = '../../assets/images/org-logo.png';
   editFile: boolean = true;
   removeUpload: boolean = false;
 
-  uploadFile(event) {
-    let reader = new FileReader(); // HTML5 FileReader API
-    let file = event.target.files[0];
-    if (event.target.files && event.target.files[0]) {
-      reader.readAsDataURL(file);
-
-      // When file uploads set it to file formcontrol
-      reader.onload = () => {
-        this.imageUrl = reader.result;
-        this.registrationForm.patchValue({
-          file: reader.result
-        });
-        this.editFile = false;
-        this.removeUpload = true;
-      }
-      // ChangeDetectorRef since file is loading outside the zone
-      this.cd.markForCheck();
+  uploadFile(file: FileList) {
+    this.fileToUpload = file.item(0);
+    var render = new FileReader();
+    render.onload = (event: any) => {
+      // this.imageUrl = event.target.result;
     }
+    render.readAsDataURL(this.fileToUpload);
+    this.instituteSubscription = this.instituteService.postFile(this.fileToUpload).subscribe(
+      data => {
+        this.instituteForm.patchValue({instituteLogo: data.data.instituteLogo});
+        console.log(data.data.instituteLogo);
+        this.imageUrl=`${this.baseUrl}/public/institute_logo/${data.data.instituteLogo}`;
+       // this.instituteSubscription = this.instituteService.deleteFile(this.imageFilename).subscribe();
+      }
+    )
+
+
   }
 
-  // Function to remove uploaded file
-  removeUploadedFile() {
-    let newFileList = Array.from(this.el.nativeElement.files);
-    this.imageUrl = 'https://i.pinimg.com/236x/d6/27/d9/d627d9cda385317de4812a4f7bd922e9--man--iron-man.jpg';
-    this.editFile = true;
-    this.removeUpload = false;
-    this.registrationForm.patchValue({
-      file: [null]
-    });
-  }
 
   ngOnInit(){
     if(this.instituteIdedit){
@@ -99,6 +92,8 @@ export class AddInitutionComponent implements OnInit {
       console.log(respObj.data);
       this.id = respObj.data._id;
       this.instituteForm.patchValue(respObj.data);
+      this.imageUrl=`${this.baseUrl}/public/institute_logo/${respObj.data.instituteLogo}`;
+      this.imageFilename=respObj.data.instituteLogo;
     }, err => {
       this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
     })
@@ -106,7 +101,6 @@ export class AddInitutionComponent implements OnInit {
 }
 
   submit(){
-    console.log("khfdjhf")
     if(!this.instituteIdedit){
     this.instituteSubscription = this.instituteService.checkAddInstitute(this.instituteForm.value).subscribe(resp =>{
       this.openDialog();

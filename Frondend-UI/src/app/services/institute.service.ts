@@ -28,7 +28,8 @@ export class instituteService  {
       'instituteZIP': number,
       'instituteDescription': string,
       'status': boolean,
-      'contact': number, 'code': string
+      'contact': number, 'code': string,
+      'instituteLogo' : string
     } =
     {
       'instituteName': addInstituteData.instituteName,
@@ -41,7 +42,8 @@ export class instituteService  {
       'instituteZIP': addInstituteData.instituteZIP,
       'instituteDescription': addInstituteData.instituteDescription,
       'status': true, 'contact': addInstituteData.contact,
-      'code': addInstituteData.code
+      'code': addInstituteData.code,
+      'instituteLogo': addInstituteData.instituteLogo,
     };
     return this.http.post(this.baseUrl + '/api/scandidate/institute', instituteData
       , {
@@ -60,6 +62,20 @@ export class instituteService  {
     return this.http.get(this.baseUrl + '/api/scandidate/institute/' + editInstituteData);
   }
 
+  //post Image
+  postFile(fileToUpload: File) :Observable<any>{
+    const formData: FormData = new FormData();
+    formData.append('logo', fileToUpload);
+   return this.http.post(this.baseUrl + '/api/scandidate/institute/uploadlogo', formData
+
+   );
+  }
+
+  //Delete Image
+  deleteFile(fileDelete: string): Observable<any> {
+    return this.http.delete(this.baseUrl + '/api/scandidate/institute/deletelogo/'+fileDelete);
+  }
+
   public updateInstitute(updateInstituteData): Observable<any> {
     var instituteData: {
       'instituteName': string,
@@ -72,7 +88,8 @@ export class instituteService  {
       'instituteZIP': number,
       'instituteDescription': string,
       'status': boolean,
-      'contact': number, 'code': string
+      'contact': number, 'code': string,
+      'instituteLogo' : string
     } =
     {
       'instituteName': updateInstituteData.instituteName,
@@ -85,7 +102,8 @@ export class instituteService  {
       'instituteZIP': updateInstituteData.instituteZIP,
       'instituteDescription': updateInstituteData.instituteDescription,
       'status': true, 'contact': updateInstituteData.contact,
-      'code': updateInstituteData.code
+      'code': updateInstituteData.code,
+      'instituteLogo': updateInstituteData.instituteLogo,
     };
     return this.http.put(this.baseUrl + '/api/scandidate/institute/'+this.instituteIdupdate, instituteData
       , {
