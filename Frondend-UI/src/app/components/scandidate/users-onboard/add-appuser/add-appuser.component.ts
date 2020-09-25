@@ -116,24 +116,7 @@ console.log('testtsttttt'+k)
   getuserDataByID(){
     this.appUserService.getUserById(this.userIDddddd).subscribe(respObj => {
       console.log(respObj)
-      this.createUserData = new FormGroup({
-        firstName: new FormControl(respObj.data.firstName),
-        lastName: new FormControl(respObj.data.lastName),
-        role: new FormControl(respObj.data.role),
-        subRole: new FormControl(respObj.data.subRole),
-        email: new FormControl(respObj.data.email),
-        dateOfBirth: new FormControl(respObj.data.dateOfBirth),
-        status: new FormControl(respObj.data.status),
-        phoneNumber: new FormControl(respObj.data.phoneNumber),
-        organizationId: new FormControl(respObj.data.organizationId),
-        institutionId: new FormControl(respObj.data.institutionId),
-        employeeId: new FormControl(respObj.data.employeeId),
-        currentAddress: new FormControl(respObj.data.currentAddress),
-        permanentAddress: new FormControl(respObj.data.permanentAddress),
-        noOfAssociatedUsers: new FormControl(respObj.data.noOfAssociatedUsers),
-        aboutMe: new FormControl(respObj.data.aboutMe),
-        avatarLink: new FormControl(respObj.data.avatarLink)
-      });
+      
       this.createUserData.patchValue(respObj.data);
       this.imageUrl = `http://localhost:2000/public/user_avatar/${respObj.data.avatarLink}`;
       this.imageFilename = respObj.data.avatarLink;
@@ -204,9 +187,7 @@ console.log('testtsttttt'+k)
       }
     })
   }
-  // openDialogBox() {
-  //   this.dialog.open(DialogElementsExampleDialog);
-  // }
+ 
   @ViewChild('fileInput') el: ElementRef;
   
   editFile: boolean = true;
@@ -220,31 +201,19 @@ console.log('testtsttttt'+k)
     }
     render.readAsDataURL(this.fileToUpload);
 
-    // this.cd.markForCheck();
     this.appUserService.postFile(this.fileToUpload).subscribe(
       data => {
         console.log(data.data.avatarLink);
         this.createUserData.patchValue({avatarLink: data.data.avatarLink});
       
         this.imageUrl = `http://localhost:2000/public/user_avatar/${data.data.avatarLink}`;
-        
+        this.appUserService.deleteFile(this.imageFilename).subscribe();
       }
     )
 
   }
 
 
-
-  // Function to remove uploaded file
-  removeUploadedFile() {
-    let newFileList = Array.from(this.el.nativeElement.files);
-    this.imageUrl = 'https://i.pinimg.com/236x/d6/27/d9/d627d9cda385317de4812a4f7bd922e9--man--iron-man.jpg';
-    this.editFile = true;
-    this.removeUpload = false;
-    this.registrationForm.patchValue({
-      file: [null]
-    });
-  }
 
 
 }
