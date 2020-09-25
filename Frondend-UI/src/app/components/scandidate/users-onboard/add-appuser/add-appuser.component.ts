@@ -5,6 +5,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { addOrganizationService } from '../../../../services/organization.service';
 import { AppuserService } from '../../../../services/appuser.service';
 import { instituteService } from '../../../../services/institute.service';
+import { from, Subscription } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-add-appuser',
   templateUrl: './add-appuser.component.html',
@@ -12,16 +15,23 @@ import { instituteService } from '../../../../services/institute.service';
 })
 export class AddAppuserComponent implements OnInit {
   createUserData: FormGroup;
-  // [x: string]: any;
+  [x: string]: any;
+  baseUrl = environment.baseUrl;
   teamSubscription$: any;
+  userupdateSubscription: Subscription;
+  edituserSubscription: Subscription;
   setMessage: any = {};
   msg: String; status: String;
+  error = '';
   userDataaa: any;
+  userIdedit: number;
   pagetype ='new';
   userIDddddd: any;
+  updateUserData : number;
   imageUrl: any = '';
   imageFilename:string='';
   fileToUpload: File = null;
+  id: any;
   constructor(
     public fb: FormBuilder, private router: Router,
     private cd: ChangeDetectorRef, public dialog: MatDialog,
@@ -29,7 +39,11 @@ export class AddAppuserComponent implements OnInit {
     private Org: addOrganizationService,
     private Inst: instituteService
     ) {
+      this.route.params.subscribe(params => {
+          this.userIdedit = params.id;
+      });
       this.createUserData = new FormGroup({
+        _id: new FormControl(), 
         firstName: new FormControl(),
         lastName: new FormControl(),
         role: new FormControl(),
@@ -46,47 +60,7 @@ export class AddAppuserComponent implements OnInit {
         noOfAssociatedUsers: new FormControl(),
         aboutMe: new FormControl(),
         avatarLink: new FormControl()
-      })
-      let k = this.route.snapshot.params['id'];
-console.log('testtsttttt'+k)
-      if(k == undefined){
-
-    //   this.route.queryParams.subscribe(params => {
-    // //  console.log(params.id)
-    //  if(params.a == 'new'){
-      //  alert()
-        this.pagetype = 'new'
-        this.createUserData = new FormGroup({
-          firstName: new FormControl(),
-          lastName: new FormControl(),
-          role: new FormControl(),
-          subRole: new FormControl(),
-          email: new FormControl(),
-          dateOfBirth: new FormControl(),
-          status: new FormControl(true),
-          phoneNumber: new FormControl(),
-          organizationId: new FormControl(),
-          institutionId: new FormControl(),
-          employeeId: new FormControl(),
-          currentAddress: new FormControl(),
-          permanentAddress: new FormControl(),
-          noOfAssociatedUsers: new FormControl(),
-          aboutMe: new FormControl(),
-          avatarLink: new FormControl()
-        })
-      }else{
-        // alert('hello')
-        // console.log(params.userr);
-        this.userIDddddd = k
-        console.log(this.userIDddddd)
-        this.pagetype = 'update'
-        // this.userDataaa =JSON.parse(JSON.parse(JSON.stringify(params)).userr)
-        console.log(this.userDataaa)
-        this.getuserDataByID()
-       
-      }
-    
-    // });
+      });
     }
 
     allOrganizations=[]
@@ -104,67 +78,61 @@ console.log('testtsttttt'+k)
        this.allInstitutions = respObj.data;
      })
     }
+
   ngOnInit() {
-    let k = this.route.snapshot.params['id'];
-    console.log('testtsttttt'+k)
-      this.getallOrganizations()
-      this.getInstitution()
-    // this.appUserService.deleteFile(this.imageFilename).subscribe();
+    // let k = this.route.snapshot.params['id'];
+      this.getallOrganizations();
+      this.getInstitution();
+      if(this.userIdedit){
+        this.edituserSubscription = this.appUserService.getUserById(this.userIdedit).subscribe(respObj => {
+          console.log(respObj.data);
+          this.id = respObj.data._id;
+        
+          this.createUserData.patchValue(respObj.data);
+          this.imageUrl = `${this.baseUrl}/public/user_avatar/${respObj.data.avatarLink}`;
+          this.imageFilename = respObj.data.avatarLink;
+        }, err => {
+          this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
+        })
+      }
+
     }
 
 
   getuserDataByID(){
-    this.appUserService.getUserById(this.userIDddddd).subscribe(respObj => {
-      console.log(respObj)
-      
-      this.createUserData.patchValue(respObj.data);
-      this.imageUrl = `http://localhost:2000/public/user_avatar/${respObj.data.avatarLink}`;
-      this.imageFilename = respObj.data.avatarLink;
-    }, err => {
-      this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
-    })
+
   }
 
-  onupdate(){
-    if (this.createUserData.invalid) {
-      return;
-    }else{
-      this.appUserService.editUser(this.createUserData.value,this.userIDddddd).subscribe(resp => {
-      console.log("response Object ", resp);
-      this.methodtype = 'Update'
-
-      setTimeout(() => {
+  onupdate(id: number){
+    this.updateUserData = id;
+    // console.log(this.userIDddddd);
+      // console.log(this.createUserData)
+    this.userupdateSubscription = this.appUserService.editUser(this.createUserData.value).subscribe(resp => {
       this.openDialog();
-        
-      }, 300);
-    })
-  }
+      console.log("response Object", resp);
+    // tslint:disable-next-line: no-unused-expression
+    }), err => {
+      this.setMessage = { message: err.error.message, error: true };
+      this.error = this.setMessage.message;
+      throw this.setMessage.message;
+    };
   }
 
   onSubmit(){
-    // alert('submit')
-    if (this.createUserData.invalid) {
-      console.log(this.createUserData.value)
-    // alert('invalid')
+    if (!this.userIdedit) {
 
-      return;
-    }else{
-    // alert('valid')
+this.userSubscription = this.appUserService.createUserData(this.createUserData.value).subscribe(resp => {
+  console.log(this.createUserData.value);
+  this.openDialog();
 
-      this.appUserService.createUserData(this.createUserData.value).subscribe(resp => {
-      console.log("response Object ", resp);
-      if(resp.status == "SUCCESS"){
-        this.methodtype = 'create'
-        setTimeout(() => {
-      this.openDialog();
+    // tslint:disable-next-line: no-unused-expression
+    }), err =>{
+      this.setMessage = { message: err.error.message, error: true };
+      this.eror = this.setMessage.message;
+      throw this.setMessage.message;
+    }
 
-        }, 300);
-      }else{
-        alert(resp.message)
-      }
-    })
- 
-  }
+    }
   }
   registrationForm = this.fb.group({
     file: [null]
@@ -172,21 +140,9 @@ console.log('testtsttttt'+k)
 
   methodtype;
   openDialog() {
-    // this.dialog.open(DialogElementsExampleDialog);
-
-    const dialogRef = this.dialog.open(DialogElementsExampleDialog, {
-      // width: '350px',
-      // data: { item }
-    });
-    dialogRef.componentInstance.methodType = this.methodtype;
-    dialogRef.afterClosed().subscribe(result => {
-      if (result == undefined) {
-
-      } else {
-        // this.getallAssntbasedonSub()
-      }
-    })
+    this.dialog.open(DialogElementsExampleDialog);
   }
+
  
   @ViewChild('fileInput') el: ElementRef;
   
@@ -201,13 +157,13 @@ console.log('testtsttttt'+k)
     }
     render.readAsDataURL(this.fileToUpload);
 
-    this.appUserService.postFile(this.fileToUpload).subscribe(
+    this.userSubscription = this.appUserService.postFile(this.fileToUpload).subscribe(
       data => {
         console.log(data.data.avatarLink);
         this.createUserData.patchValue({avatarLink: data.data.avatarLink});
       
-        this.imageUrl = `http://localhost:2000/public/user_avatar/${data.data.avatarLink}`;
-        this.appUserService.deleteFile(this.imageFilename).subscribe();
+        this.imageUrl = `${this.baseUrl}/public/user_avatar/${data.data.avatarLink}`;
+        this.userSubscription = this.appUserService.deleteFile(this.imageFilename).subscribe();
       }
     )
 
@@ -221,23 +177,11 @@ console.log('testtsttttt'+k)
   selector: 'dialog-elements-example-dialog',
   templateUrl: 'dialog-elements-example.html',
 })
-export class DialogElementsExampleDialog implements OnInit {
-  @Input() methodType:any;
-  method:any;
+export class DialogElementsExampleDialog {
   constructor(public dialogRef: MatDialogRef<DialogElementsExampleDialog>,private router:Router
     ) {
     }
 
-    ngOnInit(){
-      console.log(this.methodType)
-      if(this.methodType == 'create'){
-this.method="Operational User onboard Successfully"
-      }else{
-        this.method="Operational User Updated Successfully"
-
-      }
-
-    }
     close(){
       this.dialogRef.close(true);
       this.router.navigate(['/users-list']);

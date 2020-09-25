@@ -2,6 +2,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,12 @@ import { environment } from '../../environments/environment';
 export class AppuserService {
 
   baseUrl = environment.baseUrl;
-
-  constructor(private http: HttpClient) { }
+  userIdupdate: number;
+  constructor(private http: HttpClient, private route:ActivatedRoute) {
+    this.route.params.subscribe(params => {
+      this.userIdupdate = params.id;
+    })
+   }
 
   // Create Opps user
   createUserData(createUserData): Observable<any> {
@@ -47,20 +52,21 @@ export class AppuserService {
   }
 
 
-  editUser(editUserData,userid): Observable<any> {
+  editUser(updateUserData): Observable<any> {
+   
     // this.editUserData = this.('emailForEdit');
     var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': 'number',
     'organizationId': string, 'institutionId': string, 'employeeId': string, 'currentAddress': string, 'permanentAddress': string, 'aboutMe': string,
     'noOfAssociatedUsers': number, 'avatarLink': string} = 
-    { 'firstName': editUserData.firstName, 'lastName': editUserData.lastName, 'role':
-    editUserData.role, 'subRole': editUserData.subRole, 'email': editUserData.email,
-     'dateOfBirth': editUserData.dateOfBirth, 'status': editUserData.status,
-     'phoneNumber': editUserData.phoneNumber, 'organizationId': editUserData.organizationId,
-     'institutionId': editUserData.institutionId, 'employeeId': editUserData.employeeId,
-     'currentAddress': editUserData.currentAddress, 'permanentAddress': editUserData.permanentAddress,
-      'aboutMe': editUserData.aboutMe,
-     'noOfAssociatedUsers': 1, 'avatarLink': editUserData.avatarLink};
-    return this.http.put(this.baseUrl + '/api/scandidate/user/'+userid, create
+    { 'firstName': updateUserData.firstName, 'lastName': updateUserData.lastName, 'role':
+    updateUserData.role, 'subRole': updateUserData.subRole, 'email': updateUserData.email,
+     'dateOfBirth': updateUserData.dateOfBirth, 'status': updateUserData.status,
+     'phoneNumber': updateUserData.phoneNumber, 'organizationId': updateUserData.organizationId,
+     'institutionId': updateUserData.institutionId, 'employeeId': updateUserData.employeeId,
+     'currentAddress': updateUserData.currentAddress, 'permanentAddress': updateUserData.permanentAddress,
+      'aboutMe': updateUserData.aboutMe,
+     'noOfAssociatedUsers': 1, 'avatarLink': updateUserData.avatarLink};
+    return this.http.put(this.baseUrl + '/api/scandidate/user/'+ updateUserData._id, create
       , {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'

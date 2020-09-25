@@ -6,6 +6,7 @@ import { from, Subscription } from 'rxjs';
 import { UserListDataSource, UserListItem } from './user-list-datasource';
 import { AppuserService } from '../../../../services/appuser.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-users-list',
@@ -17,6 +18,8 @@ export class UsersListComponent implements  OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<UserListItem>;
   setMessage: any = {};
+  userIdedit: number;
+  updateUserData: FormGroup;
   dataSource: MatTableDataSource<UserListItem>;
   public userSubscription: Subscription;
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
@@ -24,7 +27,8 @@ export class UsersListComponent implements  OnInit {
 
   constructor(
     private appuserService: AppuserService,
-    private route: ActivatedRoute,public router:Router
+    private route: ActivatedRoute,public router:Router,
+    private formBuilder: FormBuilder
   ) {}
   ngOnInit() {
     // this.dataSource = new UserListDataSource();
@@ -54,15 +58,21 @@ export class UsersListComponent implements  OnInit {
     })
   }
 
-  editUser(elemtnt){
-    console.log(elemtnt)
-   this.router.navigate(['add-appuser'], {
-      queryParams: {
-        a:'update',
-       userr: elemtnt._id
-      }
+  edit(id:number){
+    this.userIdedit = id;
+    this.updateUserData = this.formBuilder.group({
+      _id:['', [Validators.required]],
     })
   }
+  // editUser(elemtnt){
+  //   console.log(elemtnt)
+  //  this.router.navigate(['add-appuser'], {
+  //     queryParams: {
+  //       a:'update',
+  //      userr: elemtnt._id
+  //     }
+  //   })
+  // }
 
   // itemid;
   // editt(itm){

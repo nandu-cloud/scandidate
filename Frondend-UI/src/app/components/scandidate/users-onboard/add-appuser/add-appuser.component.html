@@ -102,8 +102,8 @@
             <mat-form-field *ngIf="pagetype == 'update'">
                 <mat-label>Status</mat-label>
                 <mat-select   class="br-btm input-w" formControlName="status" required>
-                  <mat-option [value]="true">True</mat-option>
-                  <mat-option [value]="false">False</mat-option>
+                  <mat-option [value]="true">Active</mat-option>
+                  <mat-option [value]="false">Inactive</mat-option>
                 </mat-select>
             </mat-form-field>
             <!-- <mat-form-field>
@@ -133,10 +133,10 @@
         <a routerLink="/users-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button">
           Cancel
         </button></a>
-        <button class="lg-button focus:outline-none focus:shadow-outline" type="button" (click)="onSubmit()" *ngIf="pagetype == 'new'">
+        <button class="lg-button focus:outline-none focus:shadow-outline" type="button" (click)="onSubmit()" *ngIf= "!id">
           Submit
         </button>
-        <button class="lg-button focus:outline-none focus:shadow-outline" type="button" (click)="onupdate()" *ngIf="pagetype == 'update'">
+        <button class="lg-button focus:outline-none focus:shadow-outline" type="button" (click)="onupdate(id)" *ngIf = "id">
             Update
           </button>
     </div>
