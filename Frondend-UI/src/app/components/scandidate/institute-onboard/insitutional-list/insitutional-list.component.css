@@ -42,3 +42,6 @@ th {
     background-color: rgb(108, 180, 59);
     color: black;
   }
+  .mat-row:nth-child(1){
+    background-color: #00000060;
+  }

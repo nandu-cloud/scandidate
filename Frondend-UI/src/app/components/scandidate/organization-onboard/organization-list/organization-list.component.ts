@@ -30,7 +30,6 @@ export class OrganizationListComponent implements  OnInit {
     ngOnInit() {
       this.displayedColumns = ['name', 'pName', 'contact', 'code', 'status', 'action'];
       this.organizationSubscription = this._orgService.getOrganizationData().subscribe(respObj => {
-        console.log(respObj)
         this.dataSource = new MatTableDataSource(respObj.data);
         this.dataSource.paginator = this.paginator;
       }, err => {

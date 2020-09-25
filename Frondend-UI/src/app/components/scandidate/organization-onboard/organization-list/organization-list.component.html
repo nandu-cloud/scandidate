@@ -47,21 +47,25 @@
 
     <ng-container matColumnDef="status">
       <mat-header-cell *matHeaderCellDef>status</mat-header-cell>
-      <mat-cell *matCellDef="let row"><span class="bg-green-500 text-white pt-2 pb-2 pl-4 pr-4 w-24 text-center text-bold capitalize">{{(row.status)?"Active":"Inactive"}}</span></mat-cell>
+      <mat-cell *matCellDef="let row" ><span class="pt-2 pb-2 pl-4 pr-4 w-24 text-center text-white text-bold capitalize" [ngStyle]="{'background-color':row.status == true ? 'green' : 'blue' }">{{(row.status)?"Active":"Inactive"}}</span></mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="action">
       <mat-header-cell *matHeaderCellDef >Action</mat-header-cell>
-      <mat-cell *matCellDef="let row">	<a [routerLink]="['/add-organization/',row._id]"><mat-icon class="action" (click)=edit(row._id) ><span class="bg-black text-white pt-2 pb-2 pl-2 pr-2 mr-10">edit</span></mat-icon>{{row.action}}</a></mat-cell>
+      <mat-cell *matCellDef="let row" >	<a [routerLink]="['/add-organization/',row._id]"><mat-icon class="action" (click)=edit(row._id) ><span class="bg-black text-white pt-2 pb-2 pl-2 pr-2 mr-10">edit</span></mat-icon>{{row.action}}</a></mat-cell>
     </ng-container>
-
+    
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"   > 
+    </mat-row>>
     <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
     </tr>
+   
   </table>
   <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator>
 </div>
 </div>
+
 </app-navbar>
+

@@ -42,3 +42,6 @@ th {
 .action{
   padding-right: 2em !important;
 }
+.mat-row:nth-child(1){
+  background-color: #00000060;
+}
