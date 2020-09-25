@@ -73,13 +73,13 @@ export class AppuserService {
   postFile(fileToUpload: File) :Observable<any>{
     const formData: FormData = new FormData();
 
-    formData.append('avatar', fileToUpload, fileToUpload.name);
+    formData.append('avatar', fileToUpload);
    return this.http.post(this.baseUrl + '/api/scandidate/user/uploadavatar', formData
    
    );
   }
 
   deleteFile(fileDelete: string): Observable<any> {
-    return this.http.delete(this.baseUrl + '/api/scandidate/user/deleteavatar/:avatarLink' + fileDelete);
+    return this.http.delete(this.baseUrl + '/api/scandidate/user/deleteavatar/' + fileDelete);
   }
 }
