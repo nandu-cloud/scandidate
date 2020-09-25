@@ -55,13 +55,11 @@ const userSchema = new mongoose.Schema({
   },
   currentAddress: {
     type: String,
-    required: false,
-    select: false,
+    required: false
   },
   permanentAddress: {
     type: String,
-    required: false,
-    select: false,
+    required: false
   },
   aboutMe: {
     type: String,
