@@ -3,6 +3,7 @@ import { FormBuilder, FormArray, Validators, FormGroup ,FormControl} from "@angu
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router,ActivatedRoute } from '@angular/router';
 import { from, Subscription } from 'rxjs';
+import { environment } from '../../environments/environment'
 import { addOrganizationService } from '../services/addOrganization.service';
 import { StorageService } from '../services/storage.service';
 
@@ -14,6 +15,7 @@ import { StorageService } from '../services/storage.service';
 })
 export class AddOrganizationComponent implements OnInit {
   [x: string]: any;
+  baseUrl = environment.baseUrl;
   organizationForm: FormGroup;
   orgSubscription: Subscription;
   orgupdateSubscription: Subscription;
@@ -78,7 +80,7 @@ export class AddOrganizationComponent implements OnInit {
         this.organizationForm.patchValue({organisationLogo: data.data.organisationLogo});
         console.log(data.data.organisationLogo);
 
-        this.imageUrl=`http://localhost:2000/public/organization_logo/${data.data.organisationLogo}`;
+        this.imageUrl=`${this.baseUrl}/public/organization_logo/${data.data.organisationLogo}`;
         this.orgSubscription = this.orgService.deleteFile(this.imageFilename).subscribe();
       }
     )
@@ -92,7 +94,7 @@ export class AddOrganizationComponent implements OnInit {
       console.log(respObj.data);
       this.id = respObj.data._id;
       this.organizationForm.patchValue(respObj.data);
-      this.imageUrl=`http://localhost:2000/public/organization_logo/${respObj.data.organisationLogo}`;
+      this.imageUrl=`${this.baseUrl}/public/organization_logo/${respObj.data.organisationLogo}`;
       this.imageFilename=respObj.data.organisationLogo;
     }, err => {
       this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
