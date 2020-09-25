@@ -5,10 +5,10 @@
     <div class="flex flex-wrap sm:flex-wrap mt-8">
         <div class="w-1/4 ">
             <div class="group-gap">
-                <button  (click)="fileInput.click()">
+                <button  (click)="avatar.click()">
                    <div class="avatar-upload">
                     <div class="avatar-edit">
-                        <input type='file' id="imageUpload" formControlName="avatarLink" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" />
+                        <input type='file' id="imageUpload" formControlName="avatarLink" accept=".png, .jpg, .jpeg" [value]="avatar" #avatar (change)="uploadFile($event.target.files)" />
                     </div>
                     <div class="avatar-preview w-32 h-32 lg:ml-32 lg:mt-4 -ml-8 mt-2 border-2 border-transparent">
                         <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'" ><mat-icon>camera_enhance</mat-icon></div>

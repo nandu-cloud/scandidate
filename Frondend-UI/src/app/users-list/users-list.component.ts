@@ -20,7 +20,7 @@ export class UsersListComponent implements  OnInit {
   dataSource: MatTableDataSource<UserListItem>;
   public userSubscription: Subscription;
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['firstName', 'role', 'subRole', 'email', 'phoneNumber', 'dateOfBirth', 'status', 'action'];
+  displayedColumns = ['firstName', 'role', 'subRole', 'email', 'phoneNumber', 'status', 'action'];
 
   constructor(
     private appuserService: AppuserService,

@@ -16,7 +16,7 @@ export class AppuserService {
   createUserData(createUserData): Observable<any> {
     var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': 'number',
    'organizationId': string, 'institutionId': string, 'employeeId': string, 'currentAddress': string, 'permanentAddress': string, 'aboutMe': string,
-    'noOfAssociatedUsers': number
+    'noOfAssociatedUsers': number, 'avatarLink': string
   } =
     {
       'firstName': createUserData.firstName, 'lastName': createUserData.lastName, 'role':
@@ -26,7 +26,7 @@ export class AppuserService {
        'organizationId': createUserData.organizationId,
        'institutionId': createUserData.institutionId, 'employeeId': createUserData.employeeId,
        'currentAddress': createUserData.currentAddress, 'permanentAddress': createUserData.permanentAddress, 'aboutMe': createUserData.aboutMe,
-       'noOfAssociatedUsers': 1
+       'noOfAssociatedUsers': 1, 'avatarLink': createUserData.avatarLink
     };
 
     return this.http.post(this.baseUrl + '/api/scandidate/user', create
@@ -61,5 +61,15 @@ export class AppuserService {
         })
       }
     );
+  }
+
+  //post Image
+  postFile(fileToUpload: File) :Observable<any>{
+    const formData: FormData = new FormData();
+
+    formData.append('avatar', fileToUpload, fileToUpload.name);
+   return this.http.post(this.baseUrl + '/api/scandidate/user/uploadavatar', formData
+   
+   );
   }
 }

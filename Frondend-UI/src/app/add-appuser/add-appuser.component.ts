@@ -19,6 +19,7 @@ export class AddAppuserComponent implements OnInit {
   userDataaa: any;
   pagetype ='new';
   userIDddddd: any;
+  fileToUpload: File = null;
   constructor(
     public fb: FormBuilder, private router: Router,
     private cd: ChangeDetectorRef, public dialog: MatDialog,
@@ -167,12 +168,18 @@ console.log('testtsttttt'+k)
         this.methodtype = 'create'
         setTimeout(() => {
       this.openDialog();
-          
+
         }, 300);
       }else{
         alert(resp.message)
       }
     })
+      this.appUserService.postFile(this.fileToUpload).subscribe(
+      data => {
+        this.createUserData.patchValue({avatarLink: data.avatarLink});
+        console.log(data);
+      }
+    )
   }
   }
   registrationForm = this.fb.group({
@@ -200,29 +207,22 @@ console.log('testtsttttt'+k)
   //   this.dialog.open(DialogElementsExampleDialog);
   // }
   @ViewChild('fileInput') el: ElementRef;
-  imageUrl: any = 'https://s3.amazonaws.com/f6s-public/profiles/1545337_th1.jpg';
+  imageUrl: any = 'http://localhost:2000/public/user_avatar/filename.png';
   editFile: boolean = true;
   removeUpload: boolean = false;
   toppings = new FormControl();
-  uploadFile(event) {
-    let reader = new FileReader(); // HTML5 FileReader API
-    let file = event.target.files[0];
-    if (event.target.files && event.target.files[0]) {
-      reader.readAsDataURL(file);
-
-      // When file uploads set it to file formcontrol
-      reader.onload = () => {
-        this.imageUrl = reader.result;
-        this.registrationForm.patchValue({
-          file: reader.result
-        });
-        this.editFile = false;
-        this.removeUpload = true;
-      }
-      // ChangeDetectorRef since file is loading outside the zone
-      this.cd.markForCheck();        
+  uploadFile(file: FileList) {
+    this.fileToUpload = file.item(0);
+    var render = new FileReader();
+    render.onload = (event: any) => {
+      this.imageUrl = event.target.result;
     }
+    render.readAsDataURL(this.fileToUpload);
+
+    this.cd.markForCheck();
   }
+
+
 
   // Function to remove uploaded file
   removeUploadedFile() {
