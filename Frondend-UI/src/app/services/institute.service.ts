@@ -101,7 +101,7 @@ export class instituteService  {
       'instituteActiveFrom': updateInstituteData.instituteActiveFrom,
       'instituteZIP': updateInstituteData.instituteZIP,
       'instituteDescription': updateInstituteData.instituteDescription,
-      'status': true, 'contact': updateInstituteData.contact,
+      'status': updateInstituteData.status, 'contact': updateInstituteData.contact,
       'code': updateInstituteData.code,
       'instituteLogo': updateInstituteData.instituteLogo,
     };

@@ -76,7 +76,6 @@ export class AddInitutionComponent implements OnInit {
     this.instituteSubscription = this.instituteService.postFile(this.fileToUpload).subscribe(
       data => {
         this.instituteForm.patchValue({instituteLogo: data.data.instituteLogo});
-        console.log(data.data.instituteLogo);
         this.imageUrl=`${this.baseUrl}/public/institute_logo/${data.data.instituteLogo}`;
        // this.instituteSubscription = this.instituteService.deleteFile(this.imageFilename).subscribe();
       }
