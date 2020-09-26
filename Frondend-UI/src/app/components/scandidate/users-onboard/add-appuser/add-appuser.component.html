@@ -99,7 +99,7 @@
                   <mat-option value="OPERATIONAL_USER">Operational User</mat-option>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field *ngIf="pagetype == 'update'">
+            <mat-form-field *ngIf="id">
                 <mat-label>Status</mat-label>
                 <mat-select   class="br-btm input-w" formControlName="status" required>
                   <mat-option [value]="true">Active</mat-option>
