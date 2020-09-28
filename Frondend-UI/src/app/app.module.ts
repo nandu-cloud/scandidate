@@ -29,8 +29,6 @@ import { AddStudentComponent } from './components/institution/students/add-stude
 import { FileUploadModule } from 'ng2-file-upload';
 import { TokenInterceptor } from './services/interceptor.service';
 import { AddCandidateComponent } from './components/organization/employees/add-candidate/add-candidate.component';
-import { OrganizationUserListComponent } from './components/organization/users/organization-user-list/organization-user-list.component';
-import { AddOrganizationUserComponent } from './components/organization/users/add-organization-user/add-organization-user.component';
 import { CandidateListComponent } from './components/organization/employees/candidate-list/candidate-list.component';
 
 import { OrganizationUsersListComponent } from './components/organization/users/users-list/organization-users-list/organization-users-list.component';
@@ -54,8 +52,6 @@ import { AddOppuserComponent } from './components/organization/users/add-oppuser
     AddStudentComponent,
     StudentCsvUploadComponent,
     AddCandidateComponent,
-    OrganizationUserListComponent,
-    AddOrganizationUserComponent,
     CandidateListComponent,
     OrganizationUsersListComponent,
     AddOppuserComponent

@@ -15,8 +15,6 @@ import { InsitutionalUserListComponent } from './components/institution/users/in
 import { StudentCsvUploadComponent } from './components/institution/students/student-csv-upload/student-csv-upload.component';
 import { StudentListComponent } from './components/institution/students/student-list/student-list.component';
 import { AddStudentComponent } from './components/institution/students/add-student/add-student.component';
-import { AddOrganizationUserComponent } from './components/organization/users/add-organization-user/add-organization-user.component';
-import { OrganizationUserListComponent } from './components/organization/users/organization-user-list/organization-user-list.component';
 import { AddCandidateComponent } from './components/organization/employees/add-candidate/add-candidate.component';
 import { CandidateListComponent } from './components/organization/employees/candidate-list/candidate-list.component';
 import { OrganizationUsersListComponent } from './components/organization/users/users-list/organization-users-list/organization-users-list.component';
@@ -41,8 +39,6 @@ const routes: Routes = [  {path: 'login' , component: LoginComponent},
 {path: 'student-list', component: StudentListComponent},
 {path: 'add-student', component: AddStudentComponent},
 {path: 'csvUpload',component: StudentCsvUploadComponent},
-{path: 'add-organization-user', component: AddOrganizationUserComponent},
-{path: 'organization-user-list', component: OrganizationUserListComponent},
 {path: 'add-candidate', component: AddCandidateComponent},
 {path: 'candidate-list', component: CandidateListComponent},
 {path: 'orgnization-users-list' , component:OrganizationUsersListComponent},
