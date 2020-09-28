@@ -98,10 +98,8 @@ export class LoginComponent implements OnInit {
       this._sessionStorage.setSession('ID',userId);
 
       if( role == 'SCANDIDATE'){
-        this.router.navigate(['/dashboard']);
-      } else{
-        this.router.navigate(['/insitution-users-list']);
-      }
+        this.router.navigate(['/dashboard'])
+            } 
     }, err => {
     this.setMessage = { message: err.error.message, error: true };
     this.error = this.setMessage.message;
