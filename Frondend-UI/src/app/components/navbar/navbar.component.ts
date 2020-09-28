@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
 
@@ -9,10 +9,12 @@ import { map, shareReplay } from 'rxjs/operators';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   openNav: void;
-  public appAdmin :boolean = true;
-  public insitutionadmin : boolean =false;
+  public appAdmin :boolean ;
+  public insitutionadmin : boolean ;
+  public organizationadmin : boolean ;
+  public profileImg : boolean;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -20,4 +22,16 @@ export class NavbarComponent {
     );
 
   constructor(private breakpointObserver: BreakpointObserver) {}
+  ngOnInit(){
+    let role = window.sessionStorage.getItem('role');
+    let subrole = window.sessionStorage.getItem('subRole');
+    if( role == 'SCANDIDATE'){
+      this.appAdmin = true;
+      this.profileImg = false;
+    } else {
+      this.insitutionadmin = true;
+      this.appAdmin = false;
+    }
+    
+  }
   }

@@ -31,7 +31,7 @@ export class AppuserService {
        'organizationId': createUserData.organizationId,
        'institutionId': createUserData.institutionId, 'employeeId': createUserData.employeeId,
        'currentAddress': createUserData.currentAddress, 'permanentAddress': createUserData.permanentAddress, 'aboutMe': createUserData.aboutMe,
-       'noOfAssociatedUsers': 1, 'avatarLink': createUserData.avatarLink
+       'noOfAssociatedUsers': 1, 'avatarLink': createUserData.avatarLink == ""?undefined:createUserData.avatarLink
     };
 
     return this.http.post(this.baseUrl + '/api/scandidate/user', create

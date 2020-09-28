@@ -21,7 +21,7 @@ export class addOrganizationService {
     var orgData: { 'organizationName': string, 'contactPersonName': string ,'organisationAddress': string ,'organisationType': string, 'organisationEmail': string ,
                  'organisationEmployeeSize':number , 'organisationActiveFrom' : string , 'organisationZIP' : number, 'organisationDescription': string , 'status' : boolean , 'contact' : number , 'code': string , 'organisationLogo' : string} =
                 { 'organizationName': addOrgData.organizationName, 'contactPersonName': addOrgData.contactPersonName ,'organisationAddress': addOrgData.organisationAddress, 'organisationType' : addOrgData.organisationType,
-                  'organisationEmail': addOrgData.organisationEmail,'organisationEmployeeSize':addOrgData.organisationEmployeeSize,'organisationActiveFrom':addOrgData.organisationActiveFrom,'organisationZIP':addOrgData.organisationZIP,'organisationDescription': addOrgData.organisationDescription,'status':true,'contact':addOrgData.contact,'code':addOrgData.code , 'organisationLogo':addOrgData.organisationLogo};
+                  'organisationEmail': addOrgData.organisationEmail,'organisationEmployeeSize':addOrgData.organisationEmployeeSize,'organisationActiveFrom':addOrgData.organisationActiveFrom,'organisationZIP':addOrgData.organisationZIP,'organisationDescription': addOrgData.organisationDescription,'status':true,'contact':addOrgData.contact,'code':addOrgData.code , 'organisationLogo':addOrgData.organisationLogo == ""?undefined:addOrgData.organisationLogo};
     return this.http.post(this.baseUrl + '/api/scandidate/organisation', orgData
       , {
         headers: new HttpHeaders({

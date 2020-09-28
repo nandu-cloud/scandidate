@@ -33,6 +33,8 @@ import { OrganizationUserListComponent } from './components/organization/users/o
 import { AddOrganizationUserComponent } from './components/organization/users/add-organization-user/add-organization-user.component';
 import { CandidateListComponent } from './components/organization/employees/candidate-list/candidate-list.component';
 
+import { OrganizationUsersListComponent } from './components/organization/users/users-list/organization-users-list/organization-users-list.component';
+import { AddOppuserComponent } from './components/organization/users/add-oppuser/add-oppuser/add-oppuser.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +56,9 @@ import { CandidateListComponent } from './components/organization/employees/cand
     AddCandidateComponent,
     OrganizationUserListComponent,
     AddOrganizationUserComponent,
-    CandidateListComponent
+    CandidateListComponent,
+    OrganizationUsersListComponent,
+    AddOppuserComponent
   ],
   imports: [
     BrowserModule,

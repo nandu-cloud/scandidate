@@ -1,0 +1,77 @@
+<app-navbar>
+    <div class="bg-white">
+    <div class="hd flex flex-wrap overflow-hidden">
+    
+      <div class="org overflow-hidden lg:w-1/3 xl:w-1/6 md:mr-48 sm:w-4/6 lg:mr-8 mt-2">
+        Organization Users List
+      </div>
+    
+      
+       <div class="lg:w-4/12 lg:-ml-4 lg:mt-0 xl:w-1/4 xl:ml-56 md:w-2/4 md:ml-40 md:-mt-8 sm:w-4/6">
+         <div class="pt-2 relative mx-auto mr-5 text-black-600" >
+            <input class="border-2 border-black bg-white h-10 px-5 pr-24 rounded-lg text-sm focus:outline-none"
+              type="search" name="search" placeholder="Search" (keyup)="applyFilter($event)" #input>    
+          </div>
+      </div> 
+    
+      <div class="add1 overflow-hidden lg:w-1/6 lg:mt-0 lg:ml-0 xl:w-1/6 xl:ml-32 md:w-1/5 md:-mt-8 md:-ml-8 sm:w-5/12">
+        <a routerLink = '/add-oppuser'><button mat-raised-button class="add py-2 px-4 bg-black text-white rounded inline-flex items-center"><mat-icon>add</mat-icon>Add</button> </a>
+      </div>
+    
+    </div>
+    
+    <div class="mat-elevation-z8 data-table">
+      <table mat-table [dataSource]="dataSource" class="full-width-table"  aria-label="Elements">
+        
+        <!-- Name Column -->
+        <ng-container matColumnDef="userName">
+          <mat-header-cell *matHeaderCellDef >User Name</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.userName}}</mat-cell>
+        </ng-container>
+    
+        <!-- Email -->
+        <ng-container matColumnDef="phone">
+          <mat-header-cell *matHeaderCellDef >Phone Number</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.phone}}</mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef >Email</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.email}}</mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="address">
+          <mat-header-cell *matHeaderCellDef >Address</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.address}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="department">
+            <mat-header-cell *matHeaderCellDef >Department</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.department}}</mat-cell>
+          </ng-container>
+    
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef>status</mat-header-cell>
+          <mat-cell *matCellDef="let row" ><span class="pt-2 pb-2 pl-4 pr-4 w-24 text-center text-white text-bold capitalize" [ngStyle]="{'background-color':row.status == true ? 'green' : 'blue' }">{{(row.status)?"Active":"Inactive"}}</span></mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef >Action</mat-header-cell>
+          <mat-cell *matCellDef="let row" ><mat-icon class="action"  ><span class="bg-black text-white pt-2 pb-2 pl-2 pr-2 mr-10">edit</span></mat-icon>{{row.action}}</mat-cell>
+        </ng-container>
+        
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"   > 
+        </mat-row>>
+        <div class="p-4" *matNoDataRow>
+          <p>No data matching the filter "{{input.value}}"</p>
+        </div>
+       
+      </table>
+      <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator>
+    </div>
+    </div>
+    
+    </app-navbar>
+    
+    

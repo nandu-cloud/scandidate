@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/auth/login/login.component';
 import { AddOrganizationComponent} from './components/scandidate/organization-onboard/add-organization/add-organization.component';
@@ -14,13 +13,15 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AddInsitutionalUserComponent } from './components/institution/users/add-insitutional-user/add-insitutional-user.component';
 import { InsitutionalUserListComponent } from './components/institution/users/insitutional-user-list/insitutional-user-list.component';
 import { StudentCsvUploadComponent } from './components/institution/students/student-csv-upload/student-csv-upload.component';
-import { from } from 'rxjs';
 import { StudentListComponent } from './components/institution/students/student-list/student-list.component';
 import { AddStudentComponent } from './components/institution/students/add-student/add-student.component';
 import { AddOrganizationUserComponent } from './components/organization/users/add-organization-user/add-organization-user.component';
 import { OrganizationUserListComponent } from './components/organization/users/organization-user-list/organization-user-list.component';
 import { AddCandidateComponent } from './components/organization/employees/add-candidate/add-candidate.component';
 import { CandidateListComponent } from './components/organization/employees/candidate-list/candidate-list.component';
+import { OrganizationUsersListComponent } from './components/organization/users/users-list/organization-users-list/organization-users-list.component';
+import { AddOppuserComponent } from './components/organization/users/add-oppuser/add-oppuser/add-oppuser.component';
+import { from } from 'rxjs';
 const routes: Routes = [  {path: 'login' , component: LoginComponent},
 { path: '',  redirectTo: '/login', pathMatch: 'full' },
 {path: 'add-organization' , component:AddOrganizationComponent  },
@@ -43,7 +44,9 @@ const routes: Routes = [  {path: 'login' , component: LoginComponent},
 {path: 'add-organization-user', component: AddOrganizationUserComponent},
 {path: 'organization-user-list', component: OrganizationUserListComponent},
 {path: 'add-candidate', component: AddCandidateComponent},
-{path: 'candidate-list', component: CandidateListComponent}
+{path: 'candidate-list', component: CandidateListComponent},
+{path: 'orgnization-users-list' , component:OrganizationUsersListComponent},
+{path: 'add-oppuser' , component:AddOppuserComponent}
 ];
 
 @NgModule({

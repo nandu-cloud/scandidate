@@ -43,7 +43,7 @@ export class instituteService  {
       'instituteDescription': addInstituteData.instituteDescription,
       'status': true, 'contact': addInstituteData.contact,
       'code': addInstituteData.code,
-      'instituteLogo': addInstituteData.instituteLogo,
+      'instituteLogo': addInstituteData.instituteLogo == ""?undefined:addInstituteData.instituteLogo
     };
     return this.http.post(this.baseUrl + '/api/scandidate/institute', instituteData
       , {
