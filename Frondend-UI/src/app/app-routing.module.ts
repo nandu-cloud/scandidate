@@ -20,6 +20,7 @@ import { CandidateListComponent } from './components/organization/employees/cand
 import { OrganizationUsersListComponent } from './components/organization/users/users-list/organization-users-list/organization-users-list.component';
 import { AddOppuserComponent } from './components/organization/users/add-oppuser/add-oppuser/add-oppuser.component';
 import { from } from 'rxjs';
+import { ResetPasswordComponent } from './components/reset-password/reset-password/reset-password.component';
 const routes: Routes = [  {path: 'login' , component: LoginComponent},
 { path: '',  redirectTo: '/login', pathMatch: 'full' },
 {path: 'add-organization' , component:AddOrganizationComponent  },
@@ -42,7 +43,8 @@ const routes: Routes = [  {path: 'login' , component: LoginComponent},
 {path: 'add-candidate', component: AddCandidateComponent},
 {path: 'candidate-list', component: CandidateListComponent},
 {path: 'orgnization-users-list' , component:OrganizationUsersListComponent},
-{path: 'add-oppuser' , component:AddOppuserComponent}
+{path: 'add-oppuser' , component:AddOppuserComponent},
+{path: 'reset-password',component:ResetPasswordComponent}
 ];
 
 @NgModule({

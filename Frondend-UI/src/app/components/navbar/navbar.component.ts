@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Output} from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { from, Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-
-
+import { Router } from '@angular/router';
+import { LoginService } from '../../services/login.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
+  providers: [LoginService]
 })
 export class NavbarComponent implements OnInit {
   openNav: void;
@@ -21,7 +22,7 @@ export class NavbarComponent implements OnInit {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver,private lService:LoginService,public router:Router) {}
   ngOnInit(){
     let role = window.sessionStorage.getItem('role');
     let subrole = window.sessionStorage.getItem('subRole');

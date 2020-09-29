@@ -33,6 +33,7 @@ import { CandidateListComponent } from './components/organization/employees/cand
 
 import { OrganizationUsersListComponent } from './components/organization/users/users-list/organization-users-list/organization-users-list.component';
 import { AddOppuserComponent } from './components/organization/users/add-oppuser/add-oppuser/add-oppuser.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password/reset-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,8 @@ import { AddOppuserComponent } from './components/organization/users/add-oppuser
     AddCandidateComponent,
     CandidateListComponent,
     OrganizationUsersListComponent,
-    AddOppuserComponent
+    AddOppuserComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
