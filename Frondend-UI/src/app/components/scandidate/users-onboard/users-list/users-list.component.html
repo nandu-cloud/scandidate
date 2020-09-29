@@ -41,7 +41,7 @@
     <!-- Name Column -->
     <ng-container matColumnDef="firstName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>User Name</th>
-      <td mat-cell *matCellDef="let row">{{row.firstName + row.lastName}}</td>
+      <td mat-cell *matCellDef="let row">{{row.firstName}} {{row.lastName}}</td>
     </ng-container>
 
     <ng-container matColumnDef="role">
