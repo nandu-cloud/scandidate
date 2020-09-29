@@ -56,8 +56,8 @@ export class AppuserService {
    
     // this.editUserData = this.('emailForEdit');
     var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': 'number',
-    'organizationId': string, 'institutionId': string, 'employeeId': string, 'currentAddress': string, 'permanentAddress': string, 'aboutMe': string,
-    'noOfAssociatedUsers': number, 'avatarLink': string} = 
+    'organizationId': string, 'institutionId': string, 'employeeId': string, 'currentAddress': string, 'permanentAddress': string,
+     'aboutMe': string, 'noOfAssociatedUsers': number, 'avatarLink': string} = 
     { 'firstName': updateUserData.firstName, 'lastName': updateUserData.lastName, 'role':
     updateUserData.role, 'subRole': updateUserData.subRole, 'email': updateUserData.email,
      'dateOfBirth': updateUserData.dateOfBirth, 'status': updateUserData.status,

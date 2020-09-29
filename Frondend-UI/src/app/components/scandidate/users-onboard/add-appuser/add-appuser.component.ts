@@ -7,6 +7,7 @@ import { AppuserService } from '../../../../services/appuser.service';
 import { instituteService } from '../../../../services/institute.service';
 import { from, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-appuser',
@@ -37,29 +38,30 @@ export class AddAppuserComponent implements OnInit {
     private cd: ChangeDetectorRef, public dialog: MatDialog,
     private appUserService: AppuserService, private route: ActivatedRoute,
     private Org: addOrganizationService,
-    private Inst: instituteService
+    private Inst: instituteService,
+    public matSnackBar: MatSnackBar
     ) {
       this.route.params.subscribe(params => {
           this.userIdedit = params.id;
       });
       this.createUserData = new FormGroup({
         _id: new FormControl(), 
-        firstName: new FormControl(),
-        lastName: new FormControl(),
-        role: new FormControl(),
-        subRole: new FormControl(),
-        email: new FormControl(),
-        dateOfBirth: new FormControl(),
-        status: new FormControl(true),
-        phoneNumber: new FormControl(),
-        organizationId: new FormControl(),
-        institutionId: new FormControl(),
-        employeeId: new FormControl(),
-        currentAddress: new FormControl(),
-        permanentAddress: new FormControl(),
-        noOfAssociatedUsers: new FormControl(),
+        firstName: new FormControl('', [Validators.required]),
+        lastName: new FormControl('', [Validators.required]),
+        role: new FormControl('', [Validators.required]),
+        subRole: new FormControl('', [Validators.required]),
+        email: new FormControl('', [Validators.required]),
+        dateOfBirth: new FormControl('', [Validators.required]),
+        status: new FormControl(true, [Validators.required]),
+        phoneNumber: new FormControl('', [Validators.required]),
+        organizationId: new FormControl('', [Validators.required]),
+        institutionId: new FormControl('', [Validators.required]),
+        employeeId: new FormControl('', [Validators.required]),
+        currentAddress: new FormControl('', [Validators.required]),
+        permanentAddress: new FormControl('', [Validators.required]),
+        noOfAssociatedUsers: new FormControl('', [Validators.required]),
         aboutMe: new FormControl(),
-        avatarLink: new FormControl()
+        avatarLink: new FormControl('', [Validators.required])
       });
     }
 
@@ -108,6 +110,8 @@ export class AddAppuserComponent implements OnInit {
     // console.log(this.userIDddddd);
       // console.log(this.createUserData)
     this.userupdateSubscription = this.appUserService.editUser(this.createUserData.value).subscribe(resp => {
+  this.methodtype="update"
+      
       this.openDialog();
       console.log("response Object", resp);
     // tslint:disable-next-line: no-unused-expression
@@ -119,19 +123,30 @@ export class AddAppuserComponent implements OnInit {
   }
 
   onSubmit(){
-    if (!this.userIdedit) {
+    if (!this.userIdedit && this.createUserData.valid) {
 
 this.userSubscription = this.appUserService.createUserData(this.createUserData.value).subscribe(resp => {
   console.log(this.createUserData.value);
+  this.methodtype="create"
   this.openDialog();
 
     // tslint:disable-next-line: no-unused-expression
     }), err =>{
-      this.setMessage = { message: err.error.message, error: true };
       this.eror = this.setMessage.message;
+      this.setMessage = { message: err.error.message, error: true };
       throw this.setMessage.message;
     }
 
+    }else{
+      // this.setMessage = { message: "Please Enter All", error: true };
+      // this.eror = this.setMessage.message;
+      // alert(this.eror)
+      this.matSnackBar.open("Please enter all fields", '', {
+        verticalPosition: 'top',
+        duration: 2000,
+        panelClass: 'snack-error'
+      });
+      // throw this.setMessage.message;
     }
   }
   registrationForm = this.fb.group({
@@ -140,8 +155,19 @@ this.userSubscription = this.appUserService.createUserData(this.createUserData.v
 
   methodtype;
   openDialog() {
-    this.dialog.open(DialogElementsExampleDialog);
+    // this.dialog.open(DialogElementsExampleDialog);
+    const dialogRef = this.dialog.open(DialogElementsExampleDialog, {
+      
+    });
+    dialogRef.componentInstance.metrhodType = this.methodtype;
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == undefined) {
+
+      } else {
+      }
+    })
   }
+  
 
  
   @ViewChild('fileInput') el: ElementRef;
@@ -177,9 +203,22 @@ this.userSubscription = this.appUserService.createUserData(this.createUserData.v
   selector: 'dialog-elements-example-dialog',
   templateUrl: 'dialog-elements-example.html',
 })
-export class DialogElementsExampleDialog {
+export class DialogElementsExampleDialog implements OnInit{
+  @Input() metrhodType: any
+  Message: any;
   constructor(public dialogRef: MatDialogRef<DialogElementsExampleDialog>,private router:Router
     ) {
+      console.log(this.metrhodType)
+    }
+
+    ngOnInit(){
+      console.log(this.metrhodType)
+      if(this.metrhodType == 'update'){
+        this.Message="Users onboarded Updated successfully"
+      }else{
+        this.Message="Users onboarded Created successfully"
+
+      }
     }
 
     close(){
