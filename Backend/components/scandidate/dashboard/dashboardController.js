@@ -24,10 +24,11 @@ module.exports.countTotalOrgInstUsers = async function (req, res, next) {
 
 module.exports.orgOnboardTrend = async function (req, res, next) {
   const data = {
-    fromDate: req.body.fromDate,
-    toDate: req.body.toDate || new Date(),
+    fromDate: new Date(req.body.fromDate),
+    toDate: new Date(req.body.toDate) || new Date(),
     filter: req.body.filter || "MONTH",
   };
+  console.log(data);
   let mongoQuery;
   if (data.filter === "DAY") {
     mongoQuery = [
