@@ -15,6 +15,48 @@ async function authUser(data) {
   }
 }
 
+async function updateOTP(data) {
+  try {
+    let result = await userModel.updateOne(
+      { email: data.email },
+      { $set: { otp: data.otp, updatedAt: new Date() } }
+    );
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
+async function updateNewPassword(data) {
+  try {
+    let result = await userModel.updateOne(
+      { email: data.email },
+      {
+        $set: { password: data.hash, updatedAt: new Date() },
+        $unset: { otp: "" },
+      }
+    );
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
+async function updateNewPasswordById(data) {
+  try {
+    let result = await userModel.findByIdAndUpdate(
+      { _id: data._id },
+      { password: data.hash, updatedAt: new Date() }
+    );
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
 module.exports = {
   authUser: authUser,
+  updateOTP: updateOTP,
+  updateNewPassword: updateNewPassword,
+  updateNewPasswordById: updateNewPasswordById,
 };

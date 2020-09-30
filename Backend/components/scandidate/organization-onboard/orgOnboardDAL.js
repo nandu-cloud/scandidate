@@ -17,6 +17,8 @@ async function onboardOrganisation(data) {
   ordDtata.contact = data.contact;
   ordDtata.code = data.code;
   ordDtata.status = data.status;
+  ordDtata.createdAt = new Date();
+  ordDtata.updatedAt = new Date();
   try {
     let result = await ordDtata.save();
     return result;

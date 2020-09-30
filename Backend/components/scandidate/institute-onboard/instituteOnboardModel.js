@@ -53,6 +53,14 @@ let onboardInstituteSchema = mongoose.Schema({
   code: {
     type: String,
   },
+  createdAt: {
+    type: Date,
+    default: new Date(),
+  },
+  updatedAt: {
+    type: Date,
+    default: new Date(),
+  },
 });
 
 module.exports = mongoose.model(

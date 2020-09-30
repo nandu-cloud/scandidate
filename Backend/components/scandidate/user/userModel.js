@@ -55,11 +55,11 @@ const userSchema = new mongoose.Schema({
   },
   currentAddress: {
     type: String,
-    required: false
+    required: false,
   },
   permanentAddress: {
     type: String,
-    required: false
+    required: false,
   },
   aboutMe: {
     type: String,
@@ -81,6 +81,9 @@ const userSchema = new mongoose.Schema({
   status: {
     type: Boolean,
     required: [true, "status cannot be empty"],
+  },
+  otp: {
+    type: Number,
   },
   createdAt: {
     type: Date,

@@ -5,6 +5,7 @@ const path = require("path");
 const AppError = require("./../../../helpers/appError");
 const colors = require("./../../../helpers/colors");
 const userDAL = require("./userDAL");
+const authDAL = require("./../../auth/authDAL");
 const userValidator = require("./userValidator");
 const saltRounds = 10;
 
@@ -12,6 +13,10 @@ module.exports.createUserMethod = async function (req, res, next) {
   const data = req.body;
   try {
     await userValidator.userCreationSchema.validateAsync(data);
+
+    let emailExists = await authDAL.authUser(data);
+    if (emailExists != null)
+      return next(new AppError("User email already exsits!", 404));
 
     if (!data.password) {
       data.password = data.phoneNumber.toString();
