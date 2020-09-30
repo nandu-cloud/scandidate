@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, ElementRef, ViewChild, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormArray, Validators, FormGroup ,FormControl} from "@angular/forms";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router,ActivatedRoute } from '@angular/router';
@@ -52,17 +52,29 @@ export class AddOrganizationComponent implements OnInit {
       organisationType : new FormControl('',[Validators.required]),
       organisationEmployeeSize : new FormControl('',[Validators.required]),
       organisationActiveFrom : new FormControl('',[Validators.required]),
-      organisationLogo : new FormControl('',[Validators.required]),
+      organisationLogo : new FormControl(''),
+      legalEntityName: new FormControl('',[Validators.required]),
+      nisationType : new FormControl('',[Validators.required]),
+      organizationLocation : new FormControl('',[Validators.required]),
+      state : new FormControl('',[Validators.required]),
+      headQuaterLocation : new FormControl('',[Validators.required]),
+      organizationGstn: new FormControl(''),
+      organizationCin : new FormControl(''),
+      organizationPan: new FormControl('')
     })
   }
 
   registrationForm = this.fb.group({
     file: [null]
   })
+  methodtype;
   openDialog() {
-    this.dialog.open(DialogElementsExampleDialog);
-  }
+    const dialogRef = this.dialog.open(DialogElementsExampleDialog,{
 
+    });
+    dialogRef.componentInstance.methodType = this.methodtype;
+  }
+ 
   @ViewChild('fileInput') el: ElementRef;
 
   editFile: boolean = true;
@@ -105,7 +117,7 @@ export class AddOrganizationComponent implements OnInit {
   submit(){
     if(!this.orgIdedit){
     this.orgSubscription = this.orgService.checkAddOrganization(this.organizationForm.value).subscribe(resp =>{
-      console.log(this.organizationForm.value)
+      console.log(this.organizationForm.value);
 
       this.openDialog();
     }), err =>{
@@ -119,6 +131,7 @@ export class AddOrganizationComponent implements OnInit {
   update(id:number){
     this.orgIdupdate = id;
     this.orgupdateSubscription = this.orgService.updateOrganization(this.organizationForm.value).subscribe(resp =>{
+      this.methodtype="update";
       this.openDialog();
 
     }), err =>{
@@ -132,9 +145,24 @@ export class AddOrganizationComponent implements OnInit {
   selector: 'dialog-elements-example-dialog',
   templateUrl: 'dialog-elements-example.html',
 })
-export class DialogElementsExampleDialog {
+export class DialogElementsExampleDialog implements OnInit{
+  @Input() methodType: any
+  Message: any;
   constructor(public dialogRef: MatDialogRef<DialogElementsExampleDialog>,private router:Router
-  ) {}
+    ) {
+      console.log(this.methodType)
+    }
+
+    ngOnInit(){
+      console.log(this.methodType)
+      if(this.methodType == 'update'){
+        this.Message="Organization Updated successfully"
+      }else{
+        this.Message="Organization Onboarded successfully"
+
+      }
+    }
+
   close(){
     this.dialogRef.close(true);
     this.router.navigate(['/organization-list']);

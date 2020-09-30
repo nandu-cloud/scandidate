@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, ElementRef, ViewChild, OnInit ,Input } from '@angular/core';
 import { FormBuilder, FormArray, Validators, FormGroup ,FormControl} from "@angular/forms";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router,ActivatedRoute } from '@angular/router';
@@ -21,6 +21,7 @@ export class AddInitutionComponent implements OnInit {
   instituteUpdateSubscription: Subscription;
   setMessage: any = {};
   error = '';
+  Message = '';
   editInstituteSubscription: Subscription;
   createInstituteData: FormGroup;
   editInstituteData: FormGroup;
@@ -51,15 +52,21 @@ export class AddInitutionComponent implements OnInit {
       instituteType : new FormControl('',[Validators.required]),
       instituteStudentSize : new FormControl('',[Validators.required]),
       instituteActiveFrom : new FormControl('',[Validators.required]),
-      instituteLogo : new FormControl('',[Validators.required]),
+      instituteLogo : new FormControl(),
+      instituteLocation : new FormControl('',[Validators.required]),
+      state : new FormControl('',[Validators.required])
     })
   }
 
   registrationForm = this.fb.group({
     file: [null]
   })
+  methodtype;
   openDialog() {
-    this.dialog.open(DialogElementsExampleDialog);
+    const dialogRef = this.dialog.open(DialogElementsExampleDialog,{
+
+    });
+    dialogRef.componentInstance.methodType = this.methodtype;
   }
 
   @ViewChild('fileInput') el: ElementRef;
@@ -80,10 +87,7 @@ export class AddInitutionComponent implements OnInit {
        // this.instituteSubscription = this.instituteService.deleteFile(this.imageFilename).subscribe();
       }
     )
-
-
   }
-
 
   ngOnInit(){
     if(this.instituteIdedit){
@@ -113,6 +117,7 @@ export class AddInitutionComponent implements OnInit {
   update(id:number){
     this.instituteIdupdate = id;
     this.instituteUpdateSubscription = this.instituteService.updateInstitute(this.instituteForm.value).subscribe(resp =>{
+      this.methodtype="update";
       this.openDialog();
 
     }), err =>{
@@ -126,9 +131,23 @@ export class AddInitutionComponent implements OnInit {
   selector: 'dialog-elements-example-dialog',
   templateUrl: 'dialog-elements-example.html',
 })
-export class DialogElementsExampleDialog {
+export class DialogElementsExampleDialog implements OnInit{
+  @Input() methodType: any
+  Message: any;
   constructor(public dialogRef: MatDialogRef<DialogElementsExampleDialog>,private router:Router
-  ) {}
+    ) {
+      console.log(this.methodType)
+    }
+
+    ngOnInit(){
+      console.log(this.methodType)
+      if(this.methodType == 'update'){
+        this.Message="Inistution Updated successfully"
+      }else{
+        this.Message="Inistution Onboarded successfully"
+
+      }
+    }
   close(){
     this.dialogRef.close(true);
     this.router.navigate(['/inistution-list']);

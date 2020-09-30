@@ -29,7 +29,9 @@ export class instituteService  {
       'instituteDescription': string,
       'status': boolean,
       'contact': number, 'code': string,
-      'instituteLogo' : string
+      'instituteLogo' : string,
+      'instituteLocation':string,
+      'state':string
     } =
     {
       'instituteName': addInstituteData.instituteName,
@@ -43,6 +45,8 @@ export class instituteService  {
       'instituteDescription': addInstituteData.instituteDescription,
       'status': true, 'contact': addInstituteData.contact,
       'code': addInstituteData.code,
+      'instituteLocation':addInstituteData.instituteLocation,
+      'state':addInstituteData.state,
       'instituteLogo': addInstituteData.instituteLogo == ""?undefined:addInstituteData.instituteLogo
     };
     return this.http.post(this.baseUrl + '/api/scandidate/institute', instituteData
