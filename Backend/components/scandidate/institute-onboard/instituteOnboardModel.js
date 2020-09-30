@@ -25,7 +25,7 @@ let onboardInstituteSchema = mongoose.Schema({
     unique: true,
   },
   instituteStudentSize: {
-    type: Number,
+    type: String,
     required: false,
   },
   instituteActiveFrom: {
@@ -55,13 +55,18 @@ let onboardInstituteSchema = mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: new Date(),
   },
   updatedAt: {
     type: Date,
-    default: new Date(),
   },
+  instituteLocation:{
+    type: String
+  },
+  state:{
+    type: String
+  }
 });
+
 
 module.exports = mongoose.model(
   "institutes",

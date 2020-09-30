@@ -60,6 +60,7 @@ module.exports.updateInstituteMethod = async function (req, res, next) {
     if (!instituteExsits)
       return next(new AppError("user does not exists!", 404));
     result._id = mongoose.Types.ObjectId(req.params.instituteId);
+    result.updatedAt=new Date();
     let instituteData = await instituteDAL.updateInstitute(result);
     return res.status(200).json({
       status: "SUCCESS",

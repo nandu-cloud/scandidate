@@ -29,6 +29,8 @@ async function onboardInstitute(data) {
   instituteData.code = data.code;
   instituteData.createdAt = new Date();
   instituteData.updatedAt = new Date();
+  instituteData.instituteLocation=data.instituteLocation;
+  instituteData.state=data.state;
 
   try {
     let result = await instituteData.save();

@@ -6,7 +6,7 @@ const instituteCreationSchema = Joi.object({
   instituteAddress: Joi.string().required(),
   instituteType: Joi.string().required(),
   instituteEmail: Joi.string().email().required(),
-  instituteStudentSize: Joi.number(),
+  instituteStudentSize: Joi.string(),
   instituteActiveFrom: Joi.date().required(),
   instituteZIP: Joi.number(),
   instituteDescription: Joi.string(),
@@ -14,7 +14,10 @@ const instituteCreationSchema = Joi.object({
   contact: Joi.number(),
   code: Joi.string(),
   instituteLogo: Joi.string(),
+  instituteLocation:Joi.string(),
+  state:Joi.string(),
 });
+
 
 const instituteUpdationSchema = Joi.object({
   instituteName: Joi.string().min(1),
@@ -22,7 +25,7 @@ const instituteUpdationSchema = Joi.object({
   instituteAddress: Joi.string().required(),
   instituteType: Joi.string().required(),
   instituteEmail: Joi.string().email().required(),
-  instituteStudentSize: Joi.number(),
+  instituteStudentSize: Joi.string(),
   instituteActiveFrom: Joi.date().required(),
   instituteZIP: Joi.number(),
   instituteDescription: Joi.string(),
@@ -30,6 +33,8 @@ const instituteUpdationSchema = Joi.object({
   contact: Joi.number(),
   code: Joi.string(),
   instituteLogo: Joi.string(),
+  instituteLocation:Joi.string(),
+  state:Joi.string(),
 });
 
 module.exports = {
