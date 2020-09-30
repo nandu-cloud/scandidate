@@ -70,6 +70,7 @@ module.exports.sendOTPEmail = async function (req, res, next) {
     if (!userData)
       return next(new AppError("The user email does not exists !", 404));
     let otp = Math.floor(1000 + Math.random() * 9000);
+    result.otp = otp;
     // Create sendEmail params
     var params = {
       Destination: {
@@ -118,9 +119,9 @@ module.exports.sendOTPEmail = async function (req, res, next) {
       .catch((err) =>
         next(new AppError("Failed to send OTP through email !!!", 400))
       );
-  } catch (err) {
+  } catch (error) {
     if (error.isJoi === true) return next(new AppError(error.message, 422));
-    return next(new AppError(err, 400));
+    return next(new AppError(error, 400));
   }
 };
 
@@ -147,9 +148,9 @@ module.exports.verifyOTP = async function (req, res, next) {
         data: { isVerified: true },
       });
     }
-  } catch (err) {
+  } catch (error) {
     if (error.isJoi === true) return next(new AppError(error.message, 422));
-    return next(new AppError(err, 400));
+    return next(new AppError(error, 400));
   }
 };
 
@@ -157,25 +158,27 @@ module.exports.loginPasswordReset = async function (req, res, next) {
   try {
     const data = {
       email: req.body.email.toLowerCase(),
-      otp: req.body.otp,
       newPassword: req.body.newPassword,
       confirmPassword: req.body.confirmPassword,
     };
-    let result = await authValidator.verifyOTPSchema.validateAsync(data);
+    let result = await authValidator.loginPasswordResetSchema.validateAsync(
+      data
+    );
+    let userData = await authDAL.authUser(result);
     if (!userData)
       return next(new AppError("The user email does not exists !", 404));
     // password encryption
     let hash = bcrypt.hashSync(data.newPassword, saltRounds);
     result.hash = hash;
-    await authDAL.authUser(result);
+    await authDAL.updateNewPassword(result);
     res.status(200).json({
       status: "SUCCESS",
       message: "The password has been changed successfully!",
     });
-  } catch (err) {
+  } catch (error) {
     if (error.isJoi === true) return next(new AppError(error.message, 422));
-    console.log(colors.red, ` err:${err}`);
-    return next(new AppError(err, 400));
+    console.log(colors.red, ` err:${error}`);
+    return next(new AppError(error, 400));
   }
 };
 
@@ -193,14 +196,14 @@ module.exports.resetPassword = async function (req, res, next) {
     // password encryption
     let hash = bcrypt.hashSync(data.newPassword, saltRounds);
     result.hash = hash;
-    await authDAL.updateNewPasswordById(data);
+    await authDAL.updateNewPasswordById(result);
     res.status(200).json({
       status: "SUCCESS",
       message: "The password has been changed successfully!",
     });
-  } catch (err) {
+  } catch (error) {
     if (error.isJoi === true) return next(new AppError(error.message, 422));
-    console.log(colors.red, `err:${err}`);
-    return next(new AppError(err, 400));
+    console.log(colors.red, `err:${error}`);
+    return next(new AppError(error, 400));
   }
 };

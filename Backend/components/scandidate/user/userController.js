@@ -35,8 +35,8 @@ module.exports.createUserMethod = async function (req, res, next) {
     }
   } catch (error) {
     if (error.isJoi === true) return next(new AppError(error.message, 422));
-    console.log(colors.red, `bcrypt err:${err}`);
-    return next(new AppError(err, 400));
+    console.log(colors.red, `bcrypt err:${error}`);
+    return next(new AppError(error, 400));
   }
 };
 
@@ -83,10 +83,10 @@ module.exports.updateMethod = async function (req, res, next) {
       message: "user has been updated successfully",
       data: userData,
     });
-  } catch (err) {
+  } catch (error) {
     if (error.isJoi === true) return next(new AppError(error.message, 422));
-    console.log(colors.red, `updateMethod err ${err}`);
-    return next(new AppError(err, 400));
+    console.log(colors.red, `updateMethod err ${error}`);
+    return next(new AppError(error, 400));
   }
 };
 

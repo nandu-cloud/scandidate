@@ -16,15 +16,20 @@ const verifyOTPSchema = Joi.object({
 
 const loginPasswordResetSchema = Joi.object({
   email: Joi.string().email().required(),
-  otp: Joi.number().required(),
   newPassword: Joi.string().required(),
-  confirmPassword: Joi.string().valid(Joi.ref("newPassword")).required(),
+  confirmPassword: Joi.string()
+    .valid(Joi.ref("newPassword"))
+    .error(new Error("new password must match confirm password"))
+    .required(),
 });
 
 const passwordResetSchema = Joi.object({
   _id: Joi.string().min(24).max(24).required(),
   newPassword: Joi.string().required(),
-  confirmPassword: Joi.string().valid(Joi.ref("newPassword")).required(),
+  confirmPassword: Joi.string()
+    .valid(Joi.ref("newPassword"))
+    .error(new Error("new password must match confirm password"))
+    .required(),
 });
 
 module.exports = {
