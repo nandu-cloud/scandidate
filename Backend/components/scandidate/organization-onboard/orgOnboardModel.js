@@ -25,7 +25,7 @@ let onboardOrganizationSchema = mongoose.Schema({
     unique: true,
   },
   organisationEmployeeSize: {
-    type: Number,
+    type: String,
     required: false,
   },
   organisationActiveFrom: {
@@ -55,12 +55,28 @@ let onboardOrganizationSchema = mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: new Date(),
   },
   updatedAt: {
     type: Date,
-    default: new Date(),
   },
+  legalEntityName:{
+    type:String,
+  },
+  organizationLocation:{
+    type:String,
+  },
+  state:{
+    type:String,
+  },
+  headQuaterLocation:{
+    type:String
+  },
+  organizationGstn:{
+    type:String
+  },
+  organizationCin:{
+    type:String
+  }
 });
 
 module.exports = mongoose.model(

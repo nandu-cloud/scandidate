@@ -6,7 +6,7 @@ const organisationCreationSchema = Joi.object({
   organisationAddress: Joi.string().required(),
   organisationType: Joi.string().required(),
   organisationEmail: Joi.string().email().required(),
-  organisationEmployeeSize: Joi.number(),
+  organisationEmployeeSize: Joi.string(),
   organisationZIP: Joi.number(),
   organisationActiveFrom: Joi.date().required(),
   organisationDescription: Joi.string(),
@@ -14,6 +14,14 @@ const organisationCreationSchema = Joi.object({
   contact: Joi.number(),
   code: Joi.string(),
   organisationLogo: Joi.string(),
+
+  legalEntityName:Joi.string(),
+  organizationLocation:Joi.string(),
+  state:Joi.string(),
+  headQuaterLocation:Joi.string(),
+  organizationGstn:Joi.string(),
+  organizationCin:Joi.string(),
+
 });
 
 const organisationUpdationSchema = Joi.object({
@@ -22,7 +30,7 @@ const organisationUpdationSchema = Joi.object({
   organisationAddress: Joi.string().required(),
   organisationType: Joi.string().required(),
   organisationEmail: Joi.string().email().required(),
-  organisationEmployeeSize: Joi.number(),
+  organisationEmployeeSize: Joi.string(),
   organisationZIP: Joi.number(),
   organisationActiveFrom: Joi.date().required(),
   organisationDescription: Joi.string(),
@@ -30,6 +38,12 @@ const organisationUpdationSchema = Joi.object({
   contact: Joi.number(),
   code: Joi.string(),
   organisationLogo: Joi.string(),
+  legalEntityName:Joi.string(),
+  organizationLocation:Joi.string(),
+  state:Joi.string(),
+  headQuaterLocation:Joi.string(),
+  organizationGstn:Joi.string(),
+  organizationCin:Joi.string(),
 });
 
 module.exports = {

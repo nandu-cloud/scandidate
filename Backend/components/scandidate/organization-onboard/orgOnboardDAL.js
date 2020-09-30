@@ -3,24 +3,31 @@ const organizationModel = require("./orgOnboardModel");
 
 // Add Organisation
 async function onboardOrganisation(data) {
-  const ordDtata = new organizationModel();
-  ordDtata.organizationName = data.organizationName;
-  ordDtata.contactPersonName = data.contactPersonName;
-  ordDtata.organisationAddress = data.organisationAddress;
-  ordDtata.organisationType = data.organisationType;
-  ordDtata.organisationEmail = data.organisationEmail;
-  ordDtata.organisationEmployeeSize = data.organisationEmployeeSize;
-  ordDtata.organisationActiveFrom = data.organisationActiveFrom;
-  ordDtata.organisationZIP = data.organisationZIP;
-  ordDtata.organisationDescription = data.organisationDescription;
-  ordDtata.organisationLogo = data.organisationLogo;
-  ordDtata.contact = data.contact;
-  ordDtata.code = data.code;
-  ordDtata.status = data.status;
-  ordDtata.createdAt = new Date();
-  ordDtata.updatedAt = new Date();
+  const orgDtata = new organizationModel();
+  orgDtata.organizationName = data.organizationName;
+  orgDtata.contactPersonName = data.contactPersonName;
+  orgDtata.organisationAddress = data.organisationAddress;
+  orgDtata.organisationType = data.organisationType;
+  orgDtata.organisationEmail = data.organisationEmail;
+  orgDtata.organisationEmployeeSize = data.organisationEmployeeSize;
+  orgDtata.organisationActiveFrom = data.organisationActiveFrom;
+  orgDtata.organisationZIP = data.organisationZIP;
+  orgDtata.organisationDescription = data.organisationDescription;
+  orgDtata.organisationLogo = data.organisationLogo;
+  orgDtata.contact = data.contact;
+  orgDtata.code = data.code;
+  orgDtata.status = data.status;
+  orgDtata.createdAt = new Date();
+  orgDtata.updatedAt = new Date();
+  orgDtata.legalEntityName=data.legalEntityName;
+  orgDtata.organizationLocation=data.organizationLocation;
+  orgDtata.state=data.state;
+  orgDtata.headQuaterLocation=data.headQuaterLocation;
+  orgDtata.organizationGstn=data.organizationGstn;
+  orgDtata.organizationCin=data.organizationCin;
+  
   try {
-    let result = await ordDtata.save();
+    let result = await orgDtata.save();
     return result;
   } catch (err) {
     throw err;

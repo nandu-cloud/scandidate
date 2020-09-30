@@ -60,6 +60,7 @@ module.exports.updateOrganisationMethod = async function (req, res, next) {
     if (!organisationExsits)
       return next(new AppError("user does not exists!", 404));
     result._id = mongoose.Types.ObjectId(req.params.organisationId);
+    result.updatedAt=new Date();
     let organisationData = await orgnisationDAL.updateOrganisation(result);
     return res.status(200).json({
       status: "SUCCESS",
