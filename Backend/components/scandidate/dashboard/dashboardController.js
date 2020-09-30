@@ -33,6 +33,11 @@ module.exports.orgOnboardTrend = async function (req, res, next) {
     mongoQuery = [
       [
         {
+          $match: {
+            createdAt: { $gte: data.fromDate, $lte: data.toDate },
+          },
+        },
+        {
           $project: {
             month: { $month: "$createdAt" },
             year: { $year: "$createdAt" },
@@ -52,6 +57,11 @@ module.exports.orgOnboardTrend = async function (req, res, next) {
     mongoQuery = [
       [
         {
+          $match: {
+            createdAt: { $gte: data.fromDate, $lte: data.toDate },
+          },
+        },
+        {
           $project: {
             month: { $month: "$createdAt" },
             year: { $year: "$createdAt" },
@@ -70,6 +80,11 @@ module.exports.orgOnboardTrend = async function (req, res, next) {
   } else if (data.filter === "YEAR") {
     mongoQuery = [
       [
+        {
+          $match: {
+            createdAt: { $gte: data.fromDate, $lte: data.toDate },
+          },
+        },
         {
           $project: {
             month: { $month: "$createdAt" },
@@ -111,6 +126,11 @@ module.exports.instOnboardTrend = async function (req, res, next) {
     mongoQuery = [
       [
         {
+          $match: {
+            createdAt: { $gte: data.fromDate, $lte: data.toDate },
+          },
+        },
+        {
           $project: {
             month: { $month: "$createdAt" },
             year: { $year: "$createdAt" },
@@ -130,6 +150,11 @@ module.exports.instOnboardTrend = async function (req, res, next) {
     mongoQuery = [
       [
         {
+          $match: {
+            createdAt: { $gte: data.fromDate, $lte: data.toDate },
+          },
+        },
+        {
           $project: {
             month: { $month: "$createdAt" },
             year: { $year: "$createdAt" },
@@ -148,6 +173,11 @@ module.exports.instOnboardTrend = async function (req, res, next) {
   } else if (data.filter === "YEAR") {
     mongoQuery = [
       [
+        {
+          $match: {
+            createdAt: { $gte: data.fromDate, $lte: data.toDate },
+          },
+        },
         {
           $project: {
             month: { $month: "$createdAt" },
