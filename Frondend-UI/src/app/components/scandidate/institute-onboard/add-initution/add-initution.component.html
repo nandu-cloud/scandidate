@@ -5,7 +5,7 @@
     <div class="flex flex-wrap">
         <div class="w-full md:w-1/2 sm:w-full">
             <mat-form-field>
-                <mat-label>Name</mat-label>
+                <mat-label>Institute Name</mat-label>
                 <input  matInput type="text" formControlName="instituteName"  required  class="br-btm input-w" autoComplete='off'>
             </mat-form-field>
 
@@ -15,7 +15,7 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Address</mat-label>
-                <input  matInput   type="text"  formControlName="instituteAddress"  required  class="br-btm input-w" autoComplete='off'>
+                <input  matInput   type="text"  formControlName="instituteAddress" required  class="br-btm input-w" autoComplete='off'>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Location(City/Town)</mat-label>
@@ -52,7 +52,7 @@
         <div class="w-full md:w-1/2 sm:w-full">
             <mat-form-field>
                 <mat-label>Code</mat-label>
-                <input  matInput type="text" formControlName="code"  required  class="br-btm input-w" autoComplete='off'>
+                <input  matInput type="text" formControlName="code"    class="br-btm input-w" autoComplete='off'>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Phone Number</mat-label>
@@ -64,14 +64,14 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Institution type</mat-label>
-                <input  matInput   type="text"  formControlName="instituteType"  required  class="br-btm input-w" autoComplete='off'>
+                <input  matInput   type="text"  formControlName="instituteType"    class="br-btm input-w" autoComplete='off'>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Student size</mat-label>
-                <input  matInput   type="text"  formControlName="instituteStudentSize"  required  class="br-btm input-w" autoComplete='off'>
+                <input  matInput   type="text"  formControlName="instituteStudentSize"    class="br-btm input-w" autoComplete='off'>
             </mat-form-field>
             <mat-form-field>
-              <mat-label>Active Form</mat-label>
+              <mat-label>Active From</mat-label>
               <!-- <input  matInput  type="text"  formControlName="activeform"  required  class="br-btm input-w" autoComplete='off'> -->
               <input matInput [matDatepicker]="picker2" [min]="minDate"
               [max]="maxDate" formControlName="instituteActiveFrom"  class="br-btm input-w">

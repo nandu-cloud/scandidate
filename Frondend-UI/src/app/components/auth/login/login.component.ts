@@ -117,8 +117,13 @@ export class LoginComponent implements OnInit {
       this._sessionStorage.setSession('subRole',subRole);
       this._sessionStorage.setSession('ID',userId);
 
-      
+      if(role == 'SCANDIDATE'){
         this.router.navigate(['/dashboard']);
+      } else if(role == 'INSTITUTION'){
+        this.router.navigate(['/insitution-users-list']);
+      } else {
+        this.router.navigate(['/orgnization-users-list']);
+      }
     }, err => {
     this.setMessage = { message: err.error.message, error: true };
     this.error = this.setMessage.message;

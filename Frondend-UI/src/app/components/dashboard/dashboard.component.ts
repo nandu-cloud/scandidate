@@ -1,10 +1,36 @@
 import { Component, OnInit,ViewChild ,ElementRef} from '@angular/core';
+import * as moment from 'moment';
+import { from, Subscription } from 'rxjs';
+import { DashboardService } from '../../services/dashboard.service'
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  providers: [DashboardService]
 })
-export class DashboardComponent  {
+export class DashboardComponent implements OnInit {
+  dashboardCount : Subscription;
+  institutionsCount = '';
+  organizationsCount = '';
+  usersCount = '';
+  inistutionGraph : Subscription;
+  organizationGraph : Subscription;
+  InistutionGraph : Subscription;
+  points = [];
+  month = [];
+  Inistutionpoints = [];
+  InistutionMonth = [];
+  OrggraphData = {
+    "fromDate":"Wed Jan 20 2020 00:00:00 GMT+0530 (India Standard Time)",
+    "toDate":new Date(),
+    "filter":"MONTH"
+}
+InsgraphData = {
+  "fromDate":"Wed Jan 20 2020 00:00:00 GMT+0530 (India Standard Time)",
+    "toDate":new Date(),
+    "filter":"MONTH"
+}
+  constructor(private dService: DashboardService) {}
   @ViewChild('myCanvas')
   public canvas: ElementRef;
   public context: CanvasRenderingContext2D;
@@ -24,13 +50,29 @@ export class DashboardComponent  {
   public chartOptions1: any;
 
   ngOnInit() {
+    this.dashboardCount = this.dService.gettotalCount().subscribe(respObj => {
+      console.log(respObj.data);
+      this.institutionsCount = respObj.data.institutionsCount;
+      this.organizationsCount = respObj.data.organizationsCount;
+      this.usersCount = respObj.data.usersCount;
+    });
+
+    this.organizationGraph = this.dService.organizationGraph(this.OrggraphData).subscribe(respObj => {
+      console.log(respObj);
+      for(var i=0;respObj.data.length > i;i++){
+        let count = respObj.data[i].total;
+        let mon = respObj.data[i]._id.month;
+        this.points.push(count);
+        var monthName = moment(mon, 'M').format('MMM');
+        this.month.push(monthName);
+      }
 
     this.chartData = [{
-      data: [0, 1, 6, 2, 5,7,0,9,2,5,0,9],
+      data: this.points,
       label: 'organization',
       fill: false
     }];
-    this.chartLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May','Jun','July','Aug','Sep','Oct','Nov','Dec'];
+    this.chartLabels = this.month;
     this.chartColors = [{
       backgroundColor: 'rgba(0, 0, 0, 0.2)',
          borderColor: 'rgba(108, 180, 9, 1)'
@@ -70,12 +112,25 @@ export class DashboardComponent  {
          }]
       }
     }
+    });
+
+    // Inistution Graph
+
+    this.InistutionGraph = this.dService.inistutionGraph(this.InsgraphData).subscribe(respObj => {
+      console.log(respObj);
+      for(var i=0;respObj.data.length > i;i++){
+        let count1 = respObj.data[i].total;
+        let mon1 = respObj.data[i]._id.month;
+        this.Inistutionpoints.push(count1);
+        var monthName = moment(mon1, 'M').format('MMM');
+        this.InistutionMonth.push(monthName);
+      }
   this.chartData1 = [{
-    data: [3, 1, 4, 2, 5,2,0,9,4,1,0,9],
+    data: this.Inistutionpoints,
     label: 'Insitution',
     fill: false
   }];
-  this.chartLabels1 = ['Jan', 'Feb', 'Mar', 'Apr', 'May','Jun','July','Aug','Sep','Oct','Nov','Dec'];
+  this.chartLabels1 =  this.InistutionMonth;
   this.chartColors1 = [{
     backgroundColor: 'rgba(1, 1, 1, 0.2)',
        borderColor: 'rgba(108, 180, 9, 1)'
@@ -115,6 +170,8 @@ export class DashboardComponent  {
        }]
     }
   }
+})
 };
+  
 }
 

@@ -28,10 +28,21 @@ export class NavbarComponent implements OnInit {
     let subrole = window.sessionStorage.getItem('subRole');
     if( role == 'SCANDIDATE'){
       this.appAdmin = true;
-      this.profileImg = false;
-    } else {
+      this.insitutionadmin = false;
+      this.organizationadmin = false;
+    } else if( role == 'INSTITUTION') {
       this.insitutionadmin = true;
       this.appAdmin = false;
+      this.organizationadmin = false;
+    } else {
+      this.insitutionadmin = false;
+      this.appAdmin = false;
+      this.organizationadmin = true;
+    }
+    if((role == 'SCANDIDATE') && (subrole == 'ADMIN')) {
+      this.profileImg = false;
+    } else {
+      this.profileImg = true;
     }
     
   }

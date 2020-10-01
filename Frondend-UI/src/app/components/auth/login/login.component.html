@@ -127,7 +127,7 @@
                   <input class="otp mr-6" type="string" [(ngModel)]="otp3" name= "otp2" maxlength="1"  (keyup)="close()"/>
                 </div>
                 <div class="flex justify-center mt-4 ml-12">
-                  <p>Didn't recieve code?<a class="anchr-styles">Resend Now</a></p>
+                  <p>Didn't recieve code?<a class="anchr-styles" (click)="emailVerification()">Resend Now</a></p>
                 </div>
               </mat-form-field>
           </div>
