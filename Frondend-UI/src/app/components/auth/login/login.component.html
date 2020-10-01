@@ -60,11 +60,18 @@
       <div
       class="bg-white rounded-b lg:rounded-b-none lg:rounded-r lg:w-64 sm:p-12 p-4 flex flex-col justify-between leading-normal"
       *ngIf="showForgetPassword">
-      <form class="bg-white shadow-md rounded pr-12 lg:pl-16 pl-4  pb-6 ">
+      <form class="bg-white shadow-md rounded pr-12 lg:pl-16 pl-4  pb-6 " [formGroup]="forgetPwd" (ngSubmit)="emailVerification()" novalidate>
         <mat-form-field>
           <span class="material-icons" (click)="loginPage()">arrow_back</span>
         </mat-form-field>
         <div class="mb-4">
+          <div class="bg-red-100 border border-red-400 text-red-700 py-3 mb-4 rounded relative" role="alert" *ngIf="error">
+            <strong class="font-bold mr-4">Error ::</strong>
+            <span class="block sm:inline">{{error}}</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3" (click)="close()">
+              <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+            </span>
+          </div>
           <mat-card-header class="pb-6 flex justify-center">
               <div mat-card-avatar class="example-header-image"></div>
           </mat-card-header>
@@ -74,8 +81,8 @@
               to receive a verification code.</h4> 
             <mat-form-field>
               <h5>Email*</h5>
-              <input matInput placeholder="xyz@example.com"
-                class=" shadow rounded w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-solid border-4 border-gray-600 input-w"
+              <input matInput placeholder="xyz@example.com" formControlName="email"
+                class=" shadow rounded w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-solid border-4 border-gray-600 input-w" (keyup)="close()"
                 required>
              
             </mat-form-field>
@@ -84,7 +91,7 @@
         <div>
         </div>
         <div class="flex items-center justify-center">
-          <button class="lg-button focus:outline-none focus:shadow-outline" type="button" (click)="verifyOtp()">
+          <button class="lg-button focus:outline-none focus:shadow-outline" type="submit" >
             Submit
           </button>
         </div>
@@ -93,11 +100,18 @@
     <!--  Verify OTP-->
     <div class="bg-white rounded-b lg:rounded-b-none lg:rounded-r lg:w-64 sm:p-12 p-4 flex flex-col justify-between leading-normal"
       *ngIf="showOtp">
-      <form class="bg-white shadow-md rounded pr-12 lg:pl-16 pl-4 pb-6 mb-4 ">
+      <form class="bg-white shadow-md rounded pr-12 lg:pl-16 pl-4 pb-6 mb-4 "  (ngSubmit)="verifyEmailOtp()" novalidate>
         <mat-form-field>
           <span class="material-icons" (click)="forgetPassword()">arrow_back</span>
         </mat-form-field>
         <div class="mb-4">
+          <div class="bg-red-100 border border-red-400 text-red-700 py-3 mb-4 rounded relative" role="alert" *ngIf="error">
+            <strong class="font-bold mr-4">Error ::</strong>
+            <span class="block sm:inline">{{error}}</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3" (click)="close()">
+              <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+            </span>
+          </div>
           <mat-card-header class="pb-6 flex justify-center">
               <div mat-card-avatar class="example-header-image"></div>
           </mat-card-header>
@@ -105,23 +119,23 @@
             <h2 class="hd-size">Verification</h2>
             <h4>Please enter the verification code we sent
               to your email address.</h4>
-            <mat-form-field>
-              <div class="flex items-center justify-center ml-20">
-                <input class="otp mr-6" type="text" maxlength="1" />
-                <input class="otp mr-6" type="text" maxlength="1" />
-                <input class="otp mr-6" type="text" maxlength="1" />
-                <input class="otp mr-6" type="text" maxlength="1" />
-              </div>
-              <div class="flex justify-center mt-4 ml-12">
-                <p>Didn't recieve code?<a class="anchr-styles">Resend Now</a></p>
-              </div>
-            </mat-form-field>
+              <mat-form-field>
+                <div class="flex items-center justify-center ml-20">
+                  <input class="otp mr-6" type="string" [(ngModel)]="otp" name="otp" maxlength="1"  (keyup)="close()"/>
+                  <input class="otp mr-6" type="string" [(ngModel)]="otp1" name="opt1" maxlength="1"  (keyup)="close()"/>
+                  <input class="otp mr-6" type="string" [(ngModel)]="otp2" name="otp2" maxlength="1"  (keyup)="close()"/>
+                  <input class="otp mr-6" type="string" [(ngModel)]="otp3" name= "otp2" maxlength="1"  (keyup)="close()"/>
+                </div>
+                <div class="flex justify-center mt-4 ml-12">
+                  <p>Didn't recieve code?<a class="anchr-styles">Resend Now</a></p>
+                </div>
+              </mat-form-field>
           </div>
         </div>
         <div>
         </div>
         <div class="flex items-center justify-center">
-          <button class="lg-button focus:outline-none focus:shadow-outline" type="button" (click)="newPassword()">
+          <button class="lg-button focus:outline-none focus:shadow-outline" type="submit" >
             Verify
           </button>
         </div>
@@ -129,9 +143,16 @@
     </div>
     <!--  New Password-->
     <div class="bg-white rounded-b lg:rounded-b-none lg:rounded-r lg:w-64 sm:p-12 p-4 flex flex-col justify-between leading-normal" *ngIf="showNewPassword">
-      <form class="bg-white shadow-md rounded pr-12 lg:pl-16 pl-4 pt-12 pb-12 mb-4 ">
+      <form class="bg-white shadow-md rounded pr-12 lg:pl-16 pl-4 pt-12 pb-12 mb-4 " [formGroup]="resetForm" (ngSubmit)="onResetPwd()" novalidate>
         <span class="material-icons table-caption" (click)="verifyOtp()">arrow_back</span>
         <div class="mb-4">
+          <div class="bg-red-100 border border-red-400 text-red-700 py-3 mb-4 rounded relative" role="alert" *ngIf="error">
+            <strong class="font-bold mr-4">Error ::</strong>
+            <span class="block sm:inline">{{error}}</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3" (click)="close()">
+              <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+            </span>
+          </div>
           <mat-card-header class="pb-6 flex justify-center">
             <div mat-card-avatar class="example-header-image"></div>
           </mat-card-header>
@@ -139,7 +160,7 @@
           <div class="block text-gray-700 text-sm font-bold mb-2 ">
             <mat-form-field >
               <mat-label>New Password</mat-label>
-              <input matInput  class="w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required autocomplete="new-password" />
+              <input matInput formControlName="newPassword" class="w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required autocomplete="new-password"  (keyup)="close()"/>
             </mat-form-field>
           </div>
         </div>
@@ -147,7 +168,7 @@
           <div class="block text-gray-700 text-sm font-bold mb-2">
           <mat-form-field>
             <mat-label>Confirm Password</mat-label>
-            <input  matInput [type]="hide ? 'password' : 'text'" class="border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required autocomplete="off" />
+            <input  matInput formControlName="confirmPassword" [type]="hide ? 'password' : 'text'" class="border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required autocomplete="off" (keyup)="close()"/>
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon class="flex content-end">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
@@ -155,7 +176,7 @@
         </div>
         </div>
         <div class="flex items-center justify-center">
-          <button class="lg-button focus:outline-none focus:shadow-outline" type="button" (click)= "openDialog()">
+          <button class="lg-button focus:outline-none focus:shadow-outline" type="submit" >
             Submit
           </button>
         </div>

@@ -14,7 +14,23 @@ import { StorageService } from '../../../services/storage.service';
 })
 export class ResetPasswordComponent implements OnInit {
   hide = true;
-  constructor(public dialog: MatDialog,private router:Router) { }
+  resetForm : FormGroup;
+  public setMessage: any = {};
+  error :string= '';
+  resetSubscription : Subscription;
+  close(){
+    setTimeout(() => {
+      this.error='';
+     }, 100);
+     this.resetForm.reset();
+  }
+  
+  constructor(public dialog: MatDialog,private router:Router ,private _loginService:LoginService) { 
+    this.resetForm = new FormGroup({
+      newPassword: new FormControl('', [Validators.required,Validators.minLength(6)]),
+      confirmPassword: new FormControl('', [Validators.required,Validators.minLength(6)])
+    })
+  }
 
   ngOnInit(): void {
   }
@@ -24,6 +40,19 @@ export class ResetPasswordComponent implements OnInit {
      this.router.navigate(['/login']);
     });
   }
+  onSubmit(){
+    if (this.resetForm.invalid) {
+      return;
+    }
+    this.resetSubscription = this._loginService.resetPassword(this.resetForm.value).subscribe(resp => {
+      console.log(resp);
+      this.openDialog();
+    }, err => {
+      this.setMessage = { message: err.error.message, error: true };
+      this.error = this.setMessage.message;
+      throw this.setMessage.message;
+    });
+}
 }
 @Component({
   selector: 'dialog-elements-example-dialog',

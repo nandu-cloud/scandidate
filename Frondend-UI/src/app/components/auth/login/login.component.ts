@@ -13,6 +13,9 @@ import { StorageService } from '../../../services/storage.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  forgetPwd: FormGroup;
+  verifyData: FormGroup;
+  resetForm: FormGroup;
   hide = true;
   name:string;
   showlogin:boolean=true;
@@ -21,6 +24,15 @@ export class LoginComponent implements OnInit {
   showNewPassword:boolean=false;
   public setMessage: any = {};
   loginSubscription : Subscription;
+  emailSubscription : Subscription;
+  otpSubscription : Subscription;
+  resetSubscription : Subscription;
+  verifyEmail:string;
+  Otp : number;
+  otp : number ;
+  otp1 : number ;
+  otp2 : number ;
+  otp3 : number ;
   error = "";
   email = new FormControl('', [Validators.required, Validators.email]);
   getErrorMessage() {
@@ -40,6 +52,14 @@ export class LoginComponent implements OnInit {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
+    })
+    this.forgetPwd = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email])
+    })
+    
+    this.resetForm = new FormGroup({
+      newPassword: new FormControl('', [Validators.required,Validators.minLength(6)]),
+      confirmPassword: new FormControl('', [Validators.required,Validators.minLength(6)])
     })
    }
 
@@ -97,9 +117,8 @@ export class LoginComponent implements OnInit {
       this._sessionStorage.setSession('subRole',subRole);
       this._sessionStorage.setSession('ID',userId);
 
-      if( role == 'SCANDIDATE'){
-        this.router.navigate(['/dashboard'])
-            } 
+      
+        this.router.navigate(['/dashboard']);
     }, err => {
     this.setMessage = { message: err.error.message, error: true };
     this.error = this.setMessage.message;
@@ -107,6 +126,43 @@ export class LoginComponent implements OnInit {
     // alert(error);
     // this.loginForm.reset();
   })
+}
+emailVerification(){
+  this.emailSubscription = this._loginService.emailVerification(this.forgetPwd.value).subscribe(resp => {
+    this.verifyEmail = this.forgetPwd.value;
+    this.verifyOtp();
+  }, err => {
+    this.setMessage = { message: err.error.message, error: true };
+    this.error = this.setMessage.message;
+    throw this.setMessage.message;
+  })
+}
+
+verifyEmailOtp(){
+  this.Otp = this.otp + this.otp1 + this.otp2 + this.otp3;
+  var converOtp: number = +this.Otp;
+  console.log(converOtp);
+  this.emailSubscription = this._loginService.otpVerification(this.verifyEmail,converOtp).subscribe(resp => {
+    this.Otp = converOtp;
+    this.newPassword();
+  }, err => {
+    this.setMessage = { message: err.error.message, error: true };
+    this.error = this.setMessage.message;
+    throw this.setMessage.message;
+  })
+}
+onResetPwd(){
+  if (this.resetForm.invalid) {
+    return;
+  }
+  this.resetSubscription = this._loginService.resetLoginPassword(this.verifyEmail,this.Otp,this.resetForm.value,).subscribe(resp => {
+    console.log(resp);
+    this.openDialog();
+  }, err => {
+    this.setMessage = { message: err.error.message, error: true };
+    this.error = this.setMessage.message;
+    throw this.setMessage.message;
+  });
 }
 }
 @Component({

@@ -22,4 +22,49 @@ export class LoginService {
     );
   }
  
+  resetPassword(loginData): Observable<any> {
+    let userId=window.sessionStorage.getItem('ID');
+    var resetData: { 'newPassword': string, 'confirmPassword': string } = { 'newPassword': loginData.newPassword, 'confirmPassword': loginData.confirmPassword };
+    return this.http.put(this.baseUrl + '/api/auth/passwordreset/'+userId, resetData
+      , {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        })
+      }
+    );
+  }
+  emailVerification(emailData): Observable<any> {
+    var email: { 'email': string,  } = { 'email': emailData.email };
+    return this.http.put(this.baseUrl + '/api/auth/sendemailotp', email
+      , {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        })
+      }
+    );
+  }
+  otpVerification(emailVerify,otpData): Observable<any> {
+    var otp: { 'otp': number, 'email':string } = { 'otp': otpData ,'email': emailVerify.email};
+    return this.http.put(this.baseUrl + '/api/auth/verifyotp', otp
+      , {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        })
+      }
+    );
+  }
+  resetLoginPassword(email,otp,pwdData): Observable<any> {
+    var resetData: { 'newPassword': string, 'confirmPassword': string , 'email': string , 'otp':number } = { 'newPassword': pwdData.newPassword, 'confirmPassword': pwdData.confirmPassword ,'email':email.email , 'otp':otp};
+    return this.http.put(this.baseUrl + '/api/auth/loginpasswordreset', resetData
+      , {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        })
+      }
+    );
+  }
 }
