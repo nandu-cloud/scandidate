@@ -49,22 +49,23 @@ export class AddAppuserComponent implements OnInit {
       });
       this.createUserData = new FormGroup({
         _id: new FormControl(), 
-        firstName: new FormControl('', [Validators.required]),
-        lastName: new FormControl('', [Validators.required]),
+        firstName: new FormControl('', [Validators.required, Validators.minLength(5)]),
+        lastName: new FormControl('', [Validators.required, Validators.minLength(5)]),
         role: new FormControl('', [Validators.required]),
         subRole: new FormControl('', [Validators.required]),
-        email: new FormControl('', [Validators.required]),
+        email: new FormControl('', [Validators.required, Validators.email,
+                            Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
         dateOfBirth: new FormControl('', [Validators.required]),
         status: new FormControl(true, [Validators.required]),
-        phoneNumber: new FormControl('', [Validators.required]),
+        phoneNumber: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
         organizationId: new FormControl(),
         institutionId: new FormControl(),
-        employeeId: new FormControl('', [Validators.required]),
-        currentAddress: new FormControl('', [Validators.required]),
-        permanentAddress: new FormControl('', [Validators.required]),
+        employeeId: new FormControl(),
+        currentAddress: new FormControl(),
+        permanentAddress: new FormControl(),
         noOfAssociatedUsers: new FormControl(),
         aboutMe: new FormControl(),
-        avatarLink: new FormControl('', [Validators.required])
+        avatarLink: new FormControl()
       });
     }
 
@@ -86,12 +87,13 @@ export class AddAppuserComponent implements OnInit {
 
   ngOnInit() {
     // let k = this.route.snapshot.params['id'];
-      
-      if(this.userIdedit){
+    this.getallOrganizations();
+    this.getInstitution();
+    if (this.userIdedit){
         this.edituserSubscription = this.appUserService.getUserById(this.userIdedit).subscribe(respObj => {
           console.log(respObj.data);
           this.id = respObj.data._id;
-        
+
           this.createUserData.patchValue(respObj.data);
           this.imageUrl = `${this.baseUrl}/public/user_avatar/${respObj.data.avatarLink}`;
           this.imageFilename = respObj.data.avatarLink;
@@ -99,8 +101,7 @@ export class AddAppuserComponent implements OnInit {
             value: respObj.data.role
           }
           this.selectedTpe(obj);
-          this.getallOrganizations();
-          this.getInstitution();
+
                 }, err => {
           this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
         })
@@ -146,6 +147,7 @@ export class AddAppuserComponent implements OnInit {
       this.error = this.setMessage.message;
       throw this.setMessage.message;
     };
+
   }
 
   onSubmit(){
