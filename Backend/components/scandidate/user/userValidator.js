@@ -1,8 +1,8 @@
 const Joi = require("joi");
 
 const userCreationSchema = Joi.object({
-  organizationId: Joi.string().min(24).max(24),
-  institutionId: Joi.string().min(24).max(24),
+  organizationId: Joi.string().min(24).max(24).empty(""),
+  institutionId: Joi.string().min(24).max(24).empty(""),
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   role: Joi.string().uppercase().required(),
@@ -22,22 +22,22 @@ const userCreationSchema = Joi.object({
 });
 
 const updationSchema = Joi.object({
-  organizationId: Joi.string().min(24).max(24),
-  institutionId: Joi.string().min(24).max(24),
+  organizationId: Joi.string().min(24).max(24).empty(""),
+  institutionId: Joi.string().min(24).max(24).empty(""),
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   role: Joi.string().required(),
   subRole: Joi.string().required(),
   email: Joi.string().email().required(),
-  phoneNumber: Joi.number(),
+  phoneNumber: Joi.number().empty(""),
   dateOfBirth: Joi.date().required(),
-  employeeId: Joi.string(),
-  currentAddress: Joi.string(),
-  permanentAddress: Joi.string(),
-  aboutMe: Joi.string(),
-  avatarLink: Joi.string(),
-  noOfAssociatedUsers: Joi.number(),
-  onboardedById: Joi.string().min(24).max(24),
+  employeeId: Joi.string().empty(""),
+  currentAddress: Joi.string().empty(""),
+  permanentAddress: Joi.string().empty(""),
+  aboutMe: Joi.string().empty(""),
+  avatarLink: Joi.string().empty(""),
+  noOfAssociatedUsers: Joi.number().empty(""),
+  onboardedById: Joi.string().min(24).max(24).empty(""),
   status: Joi.boolean().required(),
 });
 
