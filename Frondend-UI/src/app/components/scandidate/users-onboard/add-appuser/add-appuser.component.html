@@ -1,5 +1,5 @@
 <app-navbar>
-<div class="pt-16 lg:pl-64 pl-12 md:pl-48 bg-white">
+<div class="pt-16 lg:pl-40 pl-12 md:pl-48 bg-white">
 <form  class="login-form" [formGroup]="createUserData" >
     <h1 class="hd-add">Add User</h1>
     
@@ -22,8 +22,8 @@
                 <textarea  matInput name="permanentAddress" formControlName="permanentAddress" class="br-txtarea input-w" rows="6" autoComplete='off'></textarea>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Select Role</mat-label>
-                <mat-select  class="br-btm input-w" formControlName="role" required>
+                <mat-label>Role</mat-label>
+                <mat-select  class="br-btm input-w" formControlName="role" required (selectionChange)="selectedTpe($event)">
                   <!-- <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option> -->
                   <mat-option value="SCANDIDATE">Scandidate</mat-option>
                   <mat-option value="ORGANIZATION">Organization</mat-option>
@@ -31,10 +31,17 @@
                 </mat-select>
             </mat-form-field>
            
-            <mat-form-field>
+            <mat-form-field *ngIf="subroleTypeee == 'ORGANIZATION'">
                 <mat-label>Organization</mat-label>
                 <mat-select   class="br-btm input-w" formControlName="organizationId" >
                   <mat-option *ngFor="let itm of allOrganizations" [value]="itm._id">{{itm.organizationName}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="subroleTypeee == 'INSTITUTZON'">
+                <mat-label>Institution</mat-label>
+                <mat-select   class="br-btm input-w" formControlName="institutionId" >
+                  <mat-option *ngFor="let itm of allInstitutions" [value]="itm._id">{{itm.instituteName}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <!-- <mat-form-field>
@@ -92,8 +99,8 @@
                 <mat-label>Sub Role</mat-label>
                 <mat-select  class="br-btm input-w" formControlName="subRole" required>
                   <!-- <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option> -->
-                  <mat-option value="ADMIN">Admin</mat-option>
-                  <mat-option value="OPERATIONAL_USER">Operational User</mat-option>
+                  <mat-option value="ADMIN" *ngIf="((subroleTypeee == 'ORGANIZATION') ||  ( subroleTypeee=='INSTITUTZON'))">Admin</mat-option>
+                  <mat-option value="OPERATIONAL_USER"  *ngIf="subroleTypeee == 'SCANDIDATE' ">Operational User</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field *ngIf="id">
@@ -118,12 +125,7 @@
                 <Inpu  matInput name="institutionId" formControlName="institutionId" class="br-txtarea input-w" rows="6" autoComplete='off'></Inpu>
             </mat-form-field> -->
             
-            <mat-form-field>
-                <mat-label>Institution</mat-label>
-                <mat-select   class="br-btm input-w" formControlName="institutionId" >
-                  <mat-option *ngFor="let itm of allInstitutions" [value]="itm._id">{{itm.instituteName}}</mat-option>
-                </mat-select>
-            </mat-form-field>
+            
             <!-- <div class="w-1/4"> -->
                 <mat-form-field>
                     <mat-label>About User</mat-label>

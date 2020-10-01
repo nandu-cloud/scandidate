@@ -32,7 +32,10 @@ export class AddAppuserComponent implements OnInit {
   imageUrl: any = '';
   imageFilename:string='';
   fileToUpload: File = null;
+  selectedValue: any;
   id: any;
+  organizationId: null;
+  institutionId: null;
   constructor(
     public fb: FormBuilder, private router: Router,
     private cd: ChangeDetectorRef, public dialog: MatDialog,
@@ -54,12 +57,12 @@ export class AddAppuserComponent implements OnInit {
         dateOfBirth: new FormControl('', [Validators.required]),
         status: new FormControl(true, [Validators.required]),
         phoneNumber: new FormControl('', [Validators.required]),
-        organizationId: new FormControl('', [Validators.required]),
-        institutionId: new FormControl('', [Validators.required]),
+        organizationId: new FormControl(),
+        institutionId: new FormControl(),
         employeeId: new FormControl('', [Validators.required]),
         currentAddress: new FormControl('', [Validators.required]),
         permanentAddress: new FormControl('', [Validators.required]),
-        noOfAssociatedUsers: new FormControl('', [Validators.required]),
+        noOfAssociatedUsers: new FormControl(),
         aboutMe: new FormControl(),
         avatarLink: new FormControl('', [Validators.required])
       });
@@ -83,8 +86,7 @@ export class AddAppuserComponent implements OnInit {
 
   ngOnInit() {
     // let k = this.route.snapshot.params['id'];
-      this.getallOrganizations();
-      this.getInstitution();
+      
       if(this.userIdedit){
         this.edituserSubscription = this.appUserService.getUserById(this.userIdedit).subscribe(respObj => {
           console.log(respObj.data);
@@ -93,13 +95,37 @@ export class AddAppuserComponent implements OnInit {
           this.createUserData.patchValue(respObj.data);
           this.imageUrl = `${this.baseUrl}/public/user_avatar/${respObj.data.avatarLink}`;
           this.imageFilename = respObj.data.avatarLink;
-        }, err => {
+          const obj = {
+            value: respObj.data.role
+          }
+          this.selectedTpe(obj);
+          this.getallOrganizations();
+          this.getInstitution();
+                }, err => {
           this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
         })
       }
 
     }
 
+    // setReplyTypeValue() {
+    //   // set 'predefined' or 'opentype' based on selected value of the form
+    //    this.role = this.selectedValue
+    //  }
+    subroleTypeee
+    selectedTpe(evt){
+      console.log(evt)
+      if(evt.value =='SCANDIDATE'){
+        this.subroleTypeee="SCANDIDATE"
+      }else if(evt.value =='ORGANIZATION'){
+        this.subroleTypeee="ORGANIZATION";
+
+
+      }else{
+        this.subroleTypeee="INSTITUTZON"
+
+      }
+    }
 
   getuserDataByID(){
 
@@ -123,6 +149,7 @@ export class AddAppuserComponent implements OnInit {
   }
 
   onSubmit(){
+    console.log(this.createUserData.value)
     if (!this.userIdedit && this.createUserData.valid) {
 
 this.userSubscription = this.appUserService.createUserData(this.createUserData.value).subscribe(resp => {

@@ -19,6 +19,20 @@ export class AppuserService {
 
   // Create Opps user
   createUserData(createUserData): Observable<any> {
+    let organId
+    let instituteeId
+    if( createUserData.role == 'SCANDIDATE'){
+  organId = undefined
+  instituteeId = undefined
+}else if(createUserData.role == 'ORGANIZATION'){
+  organId = createUserData.organizationId
+
+  instituteeId = undefined
+}else{
+  organId = undefined
+
+  instituteeId=createUserData.institutionId
+}
     var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': 'number',
    'organizationId': string, 'institutionId': string, 'employeeId': string, 'currentAddress': string, 'permanentAddress': string, 'aboutMe': string,
     'noOfAssociatedUsers': number, 'avatarLink': string
@@ -28,8 +42,8 @@ export class AppuserService {
       createUserData.role, 'subRole': createUserData.subRole, 'email': createUserData.email,
        'dateOfBirth': createUserData.dateOfBirth, 'status': createUserData.status,
        'phoneNumber': createUserData.phoneNumber,
-       'organizationId': createUserData.organizationId,
-       'institutionId': createUserData.institutionId, 'employeeId': createUserData.employeeId,
+       'organizationId': organId,
+       'institutionId':instituteeId, 'employeeId': createUserData.employeeId,
        'currentAddress': createUserData.currentAddress, 'permanentAddress': createUserData.permanentAddress, 'aboutMe': createUserData.aboutMe,
        'noOfAssociatedUsers': 1, 'avatarLink': createUserData.avatarLink == ""?undefined:createUserData.avatarLink
     };
@@ -53,7 +67,20 @@ export class AppuserService {
 
 
   editUser(updateUserData): Observable<any> {
-   
+//     let organId
+//     let instituteeId
+//     if( updateUserData.role == 'SCANDIDATE'){
+//   organId = undefined
+//   instituteeId = undefined
+// }else if(updateUserData.role == 'ORGANIZATION'){
+//   organId = updateUserData.organizationId
+
+//   instituteeId = undefined
+// }else{
+//   organId = undefined
+
+//   instituteeId=updateUserData.institutionId
+// }
     // this.editUserData = this.('emailForEdit');
     var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': 'number',
     'organizationId': string, 'institutionId': string, 'employeeId': string, 'currentAddress': string, 'permanentAddress': string,
@@ -65,7 +92,8 @@ export class AppuserService {
      'institutionId': updateUserData.institutionId, 'employeeId': updateUserData.employeeId,
      'currentAddress': updateUserData.currentAddress, 'permanentAddress': updateUserData.permanentAddress,
       'aboutMe': updateUserData.aboutMe,
-     'noOfAssociatedUsers': 1, 'avatarLink': updateUserData.avatarLink};
+     'noOfAssociatedUsers': 1,
+      'avatarLink': updateUserData.avatarLink};
     return this.http.put(this.baseUrl + '/api/scandidate/user/'+ updateUserData._id, create
       , {
         headers: new HttpHeaders({
