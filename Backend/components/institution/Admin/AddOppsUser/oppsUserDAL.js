@@ -35,7 +35,41 @@ async function createUser(data) {
   }
 }
 
+//Get All User Of Current Institution
+async function getAllUsers(data) {
+  try {
+    let result = await userModel.find({ institutionId: data.institutionId }).sort({ _id: -1 }).lean();
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
+//Get User By ID
+async function getUserById(data) {
+  try {
+    let result = await userModel.findById({ _id: data._id }).lean();
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
+//Update User
+async function updateUser(data) {
+  try {
+    let result = await userModel.findOneAndUpdate({ _id: data._id }, data, {
+      new: true,
+    });
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
 
 module.exports = {
     createUser: createUser,
+    getAllUsers:getAllUsers,
+    getUserById:getUserById,
+    updateUser:updateUser,
   };

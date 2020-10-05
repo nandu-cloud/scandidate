@@ -46,7 +46,7 @@ app.use(
 
 app.use(
   "/api/institute/addUser",
-  require("./components/institution/institute/AddOppsUser/oppsUserRoute")
+  require("./components/institution/Admin/AddOppsUser/oppsUserRoute")
 );
 
 app.all("*", (req, res, next) => {
