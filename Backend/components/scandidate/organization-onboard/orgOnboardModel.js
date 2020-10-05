@@ -30,7 +30,6 @@ let onboardOrganizationSchema = mongoose.Schema({
   },
   organisationActiveFrom: {
     type: Date,
-    required: [true, "Date cannot be empty"],
   },
   organisationZIP: {
     type: Number,

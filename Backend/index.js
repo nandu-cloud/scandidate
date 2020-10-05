@@ -44,6 +44,11 @@ app.use(
   require("./components/scandidate/dashboard/dashboardRoute")
 );
 
+app.use(
+  "/api/institute/addUser",
+  require("./components/institution/institute/AddOppsUser/oppsUserRoute")
+);
+
 app.all("*", (req, res, next) => {
   next(new AppError(`Cannot find ${req.originalUrl} on the server`, 404));
 });

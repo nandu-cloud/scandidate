@@ -8,7 +8,7 @@ const organisationCreationSchema = Joi.object({
   organisationEmail: Joi.string().email().required(),
   organisationEmployeeSize: Joi.string(),
   organisationZIP: Joi.number(),
-  organisationActiveFrom: Joi.date().required(),
+  organisationActiveFrom: Joi.date(),
   organisationDescription: Joi.string(),
   status: Joi.boolean().required(),
   contact: Joi.number(),
