@@ -67,4 +67,7 @@ export class LoginService {
       }
     );
   }
+  getUserById(_userId): Observable<any>{
+    return this.http.get(this.baseUrl + '/api/scandidate/user/'+_userId);
+  }
 }

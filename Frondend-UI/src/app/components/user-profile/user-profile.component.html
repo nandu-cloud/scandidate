@@ -1,12 +1,12 @@
 <app-navbar>
 <div class="pt-16 lg:pl-64 pl-12 md:pl-48 bg-white">
-<form  class="login-form">
+<form  class="profile-form" [formGroup]="profileForm" >
     <div class="flex flex-wrap sm:flex-wrap mt-8">
         <div class="w-1/4 ">
             <div class="group-gap">
                  <div class="avatar-upload">
                     <div class="avatar-edit">
-                        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" />
+                        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput  />
                     </div>
                     <div class="avatar-preview w-32 h-32 lg:ml-24  -ml-8 mt-2 border-2 border-transparent">
                         <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'" ></div>
@@ -17,7 +17,7 @@
         <div class="w-3/4">
             <mat-form-field class=" lg:ml-12 sm:ml-10">
                 <mat-label>About Me</mat-label>
-                <textarea  matInput name="caddress" class="br-about" rows="8" autoComplete='off'></textarea>
+                <textarea  matInput name="caddress"  readonly disabled formControlName="aboutMe" class="br-about" rows="8" autoComplete='off'></textarea>
             </mat-form-field>
         </div>
     </div>
@@ -25,29 +25,29 @@
         <div class="w-full md:w-1/2 sm:w-full">
             <mat-form-field>
                 <mat-label>First Name</mat-label>
-                <input  matInput type="text"    name="fname"  required  class="br-btm input-w" autoComplete='off'>
+                <input  matInput type="text"  formControlName="firstName"  name="fname"  readonly  class="br-btm input-w" autoComplete='off'>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Employee ID</mat-label>
-                <input  matInput   type="text"  name="eid"  required  class="br-btm input-w" autoComplete='off'>
+                <input  matInput   type="text"  name="eid" formControlName="employeeId"  readonly  class="br-btm input-w" autoComplete='off'>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Address</mat-label>
-                <input  matInput type="text" name="paddress" class="br-btm input-w"  autoComplete='off'>
+                <input  matInput type="text" name="paddress" formControlName="permanentAddress" class="br-btm input-w"  autoComplete='off' readonly>
             </mat-form-field>
         </div>
         <div class="w-full md:w-1/2 sm:w-full">
             <mat-form-field>
                 <mat-label>Last Name</mat-label>
-                <input  matInput type="text"  name="lname"  required  class="br-btm input-w" autoComplete='off'>
+                <input  matInput type="text"  name="lname" formControlName="lastName" readonly  class="br-btm input-w" autoComplete='off'>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Email</mat-label>
-                <input  matInput   type="text"  name="email"    class="br-btm input-w" autoComplete='off'>
+                <input  matInput   type="text"  name="email"  formControlName="email"  readonly class="br-btm input-w" autoComplete='off'>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Contact Number</mat-label>
-                <input  matInput   type="text"  name="contact"  required  class="br-btm input-w" autoComplete='off'>
+                <mat-label>Phone Number</mat-label>
+                <input  matInput   type="text"  name="contact" formControlName="phoneNumber" readonly  class="br-btm input-w" autoComplete='off'>
             </mat-form-field>
         </div>
     </div>
