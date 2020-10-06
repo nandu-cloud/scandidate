@@ -47,7 +47,6 @@ const userSchema = new mongoose.Schema({
   },
   dateOfBirth: {
     type: Date,
-    required: [true, "DOB cannot be empty"],
   },
   employeeId: {
     type: String,

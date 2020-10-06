@@ -10,7 +10,7 @@ const userCreationSchema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string(),
   phoneNumber: Joi.number(),
-  dateOfBirth: Joi.date().required(),
+  dateOfBirth: Joi.date(),
   employeeId: Joi.string(),
   currentAddress: Joi.string(),
   permanentAddress: Joi.string(),
