@@ -23,6 +23,20 @@
   border: 1px solid #000000;
   padding-right: 5px;
 }
-
-
+.image-text{
+  color: black !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  text-align: left;
+}
+.image-text li{
+  margin-bottom: 15px;
+  list-style: circle !important;
+}
+.image-text p{
+  font-size: 17px !important;
+}
+img {
+  width: 87% !important;
+}
 
