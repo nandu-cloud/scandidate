@@ -120,6 +120,7 @@ export class LoginComponent implements OnInit {
       if(role == 'SCANDIDATE'){
         this.router.navigate(['/dashboard']);
       } else if(role == 'INSTITUTION'){
+       localStorage.setItem('instutuinId', resp.data.institutionId)
         this.router.navigate(['/insitution-users-list']);
       } else {
         this.router.navigate(['/orgnization-users-list']);

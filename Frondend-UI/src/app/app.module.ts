@@ -30,6 +30,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { TokenInterceptor } from './services/interceptor.service';
 import { AddCandidateComponent } from './components/organization/employees/add-candidate/add-candidate.component';
 import { CandidateListComponent } from './components/organization/employees/candidate-list/candidate-list.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { OrganizationUsersListComponent } from './components/organization/users/users-list/organization-users-list/organization-users-list.component';
 import { AddOppuserComponent } from './components/organization/users/add-oppuser/add-oppuser/add-oppuser.component';
