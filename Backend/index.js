@@ -49,6 +49,11 @@ app.use(
   require("./components/institution/Admin/AddOppsUser/oppsUserRoute")
 );
 
+app.use(
+  "/api/institute/operational/student",
+  require("./components/institution/OppsUser/AddStudent/studentRoute")
+);
+
 app.all("*", (req, res, next) => {
   next(new AppError(`Cannot find ${req.originalUrl} on the server`, 404));
 });
