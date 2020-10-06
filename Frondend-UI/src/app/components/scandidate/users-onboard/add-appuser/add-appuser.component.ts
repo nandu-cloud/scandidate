@@ -69,6 +69,12 @@ export class AddAppuserComponent implements OnInit {
       });
     }
 
+    close(){
+      setTimeout(() => {
+        this.error='';
+       }, 100);
+      //  this.loginForm.reset();
+    }
     allOrganizations=[]
     getallOrganizations(){
       this.Org.getOrganizationData().subscribe(respObj => {
@@ -109,10 +115,6 @@ export class AddAppuserComponent implements OnInit {
 
     }
 
-    // setReplyTypeValue() {
-    //   // set 'predefined' or 'opentype' based on selected value of the form
-    //    this.role = this.selectedValue
-    //  }
     subroleTypeee
     selectedTpe(evt){
       console.log(evt)
@@ -142,11 +144,11 @@ export class AddAppuserComponent implements OnInit {
       this.openDialog();
       console.log("response Object", resp);
     // tslint:disable-next-line: no-unused-expression
-    }), err => {
+    }, err => {
       this.setMessage = { message: err.error.message, error: true };
       this.error = this.setMessage.message;
       throw this.setMessage.message;
-    };
+    });
 
   }
 
@@ -160,11 +162,11 @@ this.userSubscription = this.appUserService.createUserData(this.createUserData.v
   this.openDialog();
 
     // tslint:disable-next-line: no-unused-expression
-    }), err =>{
+    }, err =>{
       this.eror = this.setMessage.message;
       this.setMessage = { message: err.error.message, error: true };
       throw this.setMessage.message;
-    }
+    })
 
     }else{
       // this.setMessage = { message: "Please Enter All", error: true };

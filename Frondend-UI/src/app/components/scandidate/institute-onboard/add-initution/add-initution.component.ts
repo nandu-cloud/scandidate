@@ -57,6 +57,12 @@ export class AddInitutionComponent implements OnInit {
       state : new FormControl('',[Validators.required])
     })
   }
+  close(){
+    setTimeout(() => {
+      this.error='';
+     }, 100);
+    //  this.loginForm.reset();
+  }
 
   registrationForm = this.fb.group({
     file: [null]
@@ -107,11 +113,11 @@ export class AddInitutionComponent implements OnInit {
     if(!this.instituteIdedit){
     this.instituteSubscription = this.instituteService.checkAddInstitute(this.instituteForm.value).subscribe(resp =>{
       this.openDialog();
-    }), err =>{
+    }, err =>{
       this.setMessage = { message: err.error.message, error: true };
       this.error = this.setMessage.message;
       throw this.setMessage.message;
-    }
+    })
   }
 }
   update(id:number){
@@ -120,11 +126,11 @@ export class AddInitutionComponent implements OnInit {
       this.methodtype="update";
       this.openDialog();
 
-    }), err =>{
+    }, err =>{
       this.setMessage = { message: err.error.message, error: true };
       this.error = this.setMessage.message;
       throw this.setMessage.message;
-    }
+    })
   }
 }
 @Component({

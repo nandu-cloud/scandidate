@@ -43,12 +43,12 @@ export class AddOrganizationComponent implements OnInit {
       organizationName: new FormControl('', [Validators.required, Validators.minLength(5)]),
       contactPersonName: new FormControl('', [Validators.required,Validators.minLength(5)]),
       organisationAddress : new FormControl('',[Validators.required]),
-      organisationEmail: new FormControl('', [Validators.required, Validators.email]),
+      organisationEmail: new FormControl('', [Validators.email]),
       organisationZIP : new FormControl('',[Validators.required]),
       status : new FormControl('',[Validators.required]),
       organisationDescription : new FormControl(''),
       code : new FormControl(''),
-      contact : new FormControl('',[Validators.minLength(10),Validators.maxLength(10)]),
+      contact : new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
       organisationType : new FormControl(''),
       organisationEmployeeSize : new FormControl(''),
       organisationActiveFrom : new FormControl('',[Validators.required]),
@@ -61,6 +61,12 @@ export class AddOrganizationComponent implements OnInit {
       organizationCin : new FormControl(''),
       organizationPan: new FormControl('')
     })
+  }
+  close(){
+    setTimeout(() => {
+      this.error='';
+     }, 100);
+    //  this.loginForm.reset();
   }
 
   registrationForm = this.fb.group({
@@ -119,11 +125,11 @@ export class AddOrganizationComponent implements OnInit {
       console.log(this.organizationForm.value);
 
       this.openDialog();
-    }), err =>{
+    }, err =>{
       this.setMessage = { message: err.error.message, error: true };
       this.error = this.setMessage.message;
       throw this.setMessage.message;
-    }
+    })
     
   }
 }
@@ -133,11 +139,11 @@ export class AddOrganizationComponent implements OnInit {
       this.methodtype="update";
       this.openDialog();
 
-    }), err =>{
+    }, err =>{
       this.setMessage = { message: err.error.message, error: true };
       this.error = this.setMessage.message;
       throw this.setMessage.message;
-    }
+    })
   }
 }
 @Component({
