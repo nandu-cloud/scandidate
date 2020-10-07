@@ -24,7 +24,7 @@ function fileFilter(req, file, cb) {
   if (ext === "png" || ext === "jpeg" || ext === "doc" || ext === "pdf" || ext === "docx") {
     cb(null, true);
   } else {
-    cb(new Error("The file extension is invalid! only png/jpeg are accepted."));
+    cb(new Error("The file extension is invalid! only png/jpeg/pdf/doc are accepted."));
     // cb(null, false);
   }
 }
