@@ -5,6 +5,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { InsitutionalListDataSource, InsitutionalListItem } from './insitutional-user-list-datasource';
 import { AdministituteService } from '../../../../services/administitute.service';
 import { Subscription } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-insitutional-user-list',
   templateUrl: './insitutional-user-list.component.html',
@@ -14,15 +15,17 @@ export class InsitutionalUserListComponent implements  OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<InsitutionalListItem>;
-  dataSource: any;
+  dataSource: MatTableDataSource<InsitutionalListItem>;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'institutename', 'active', 'contact', 'code', 'status', 'action'];
-  route: any;
+
   userIdedit: number;
+  updateUserData: FormGroup;
   edituserSubscription: Subscription;
  constructor(
-   private instituteUser: AdministituteService
+   private instituteUser: AdministituteService,
+   private formBuilder: FormBuilder
  ){
 //   this.route.params.subscribe(params => {
 //     this.userIdedit = params.id;
@@ -45,6 +48,13 @@ export class InsitutionalUserListComponent implements  OnInit {
     console.log(respObj.data);
     this.dataSource = new MatTableDataSource(respObj.data);
     this.dataSource.paginator = this.paginator;
+  })
+}
+
+edit(id:number){
+  this.userIdedit = id;
+  this.updateUserData = this.formBuilder.group({
+    _id:['', [Validators.required]]
   })
 }
   // ngAfterViewInit() {

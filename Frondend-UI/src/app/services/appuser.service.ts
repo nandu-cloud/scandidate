@@ -66,11 +66,12 @@ export class AppuserService {
   getUser(): Observable<any>{
     return this.http.get(this.baseUrl + '/api/scandidate/user');
   }
+  // get by id (edit)
   getUserById(_userId): Observable<any>{
     return this.http.get(this.baseUrl + '/api/scandidate/user/'+_userId);
   }
 
-
+  // Update
   editUser(updateUserData): Observable<any> {
 //     let organId
 //     let instituteeId
