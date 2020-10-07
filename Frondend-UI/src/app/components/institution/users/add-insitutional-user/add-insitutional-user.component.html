@@ -87,7 +87,7 @@
                   <mat-option [value]="false">Inactive</mat-option>
                 </mat-select>
             </mat-form-field> -->
-            <div class="md:flex md:items-center mb-6">
+            <div class="md:flex md:items-center mb-6" *ngIf="id">
               <div class="md:w-1/3">
                 <mat-label class="block text-black-500 font-bold md:text-left mb-1 md:mb-0 pr-4">
                   Status
@@ -106,8 +106,11 @@
             <a routerLink="/insitution-users-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button">
               Cancel
             </button></a>
-            <button class="lg-button focus:outline-none focus:shadow-outline" type="button" (click)="onSubmit()">
+            <button class="lg-button focus:outline-none focus:shadow-outline" type="button" (click)="onSubmit()" *ngIf= "!id">
               Submit
+            </button>
+            <button class="lg-button focus:outline-none focus:shadow-outline" type="button" (click)="onupdate(id)" *ngIf = "id">
+              Update
             </button>
         </div>
 </div>

@@ -105,7 +105,7 @@
                 <mat-label>Sub Role</mat-label>
                 <mat-select  class="br-btm input-w" formControlName="subRole" required>
                   <!-- <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option> -->
-                  <mat-option value="ADMIN" *ngIf="((subroleTypeee == 'ORGANIZATION') ||  ( subroleTypeee=='INSTITUTZON'))">Admin</mat-option>
+                  <mat-option value="ADMIN" *ngIf="((subroleTypeee == 'SCANDIDATE' ||subroleTypeee == 'ORGANIZATION') ||  ( subroleTypeee=='INSTITUTZON'))">Admin</mat-option>
                   <mat-option value="OPERATIONAL_USER"  *ngIf="subroleTypeee == 'SCANDIDATE' ">Operational User</mat-option>
                 </mat-select>
             </mat-form-field>

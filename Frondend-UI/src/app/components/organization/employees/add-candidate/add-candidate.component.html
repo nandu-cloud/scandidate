@@ -1,1 +1,264 @@
-<p>add-candidate works!</p>
+<app-navbar>
+    <div class="pt-16 lg:pl-64 pl-12 md:pl-48 bg-white">
+    <form  class="login-form" [formGroup]="createCandidate"  novalidate>
+        <h1 class="hd-add">Add Candidate</h1>
+        <div class="flex flex-wrap">
+            <div class="w-full md:w-1/2 sm:w-full">
+                <mat-form-field>
+                    <mat-label>First Name</mat-label>
+                    <input  matInput  type="text"   class="br-btm input-w" autoComplete='off' >
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Second Name</mat-label>
+                    <input  matInput  type="text"      class="br-btm input-w" autoComplete='off'>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Candidate Id</mat-label>
+                    <input  matInput   type="text"    class="br-btm input-w" autoComplete='off'>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input  matInput  type="text"   class="br-btm input-w" autoComplete='off'>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Role</mat-label>
+                    <input  matInput  type="text"    class="br-btm input-w" autoComplete='off'>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Department</mat-label>
+                    <input  matInput  type="text" class="br-btm input-w" autoComplete='off'>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Address</mat-label>
+                    <input  matInput type="text"  class="br-btm input-w" autoComplete='off'>
+                </mat-form-field>
+                <h1 class="hd-add">Conduct</h1>
+                <mat-form-field>
+                    <mat-label>Punctuality</mat-label>
+                    <mat-select  class="br-btm input-w">
+                      <mat-option value="Unsatisfactory">Unsatisfactory</mat-option>
+                      <mat-option value="needs_improvment">Needs Improvement</mat-option>
+                      <mat-option value="meets_expectations">Meets Expectations</mat-option>
+                      <mat-option value="exceeds_expectations">Exceeds Expectations</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Discipline</mat-label>
+                    <mat-select  class="br-btm input-w">
+                      <mat-option value="Unsatisfactory">Unsatisfactory</mat-option>
+                      <mat-option value="needs_improvment">Needs Improvement</mat-option>
+                      <mat-option value="meets_expectations">Meets Expectations</mat-option>
+                      <mat-option value="exceeds_expectations">Exceeds Expectations</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <h1 class="hd-add">Merit - Quality</h1>
+                <mat-form-field>
+                    <mat-label>Academic Knowledge</mat-label>
+                    <mat-select  class="br-btm input-w">
+                      <mat-option value="Unsatisfactory">Unsatisfactory</mat-option>
+                      <mat-option value="needs_improvment">Needs Improvement</mat-option>
+                      <mat-option value="meets_expectations">Meets Expectations</mat-option>
+                      <mat-option value="exceeds_expectations">Exceeds Expectations</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Product Knowledge</mat-label>
+                    <mat-select  class="br-btm input-w">
+                      <mat-option value="Unsatisfactory">Unsatisfactory</mat-option>
+                      <mat-option value="needs_improvment">Needs Improvement</mat-option>
+                      <mat-option value="meets_expectations">Meets Expectations</mat-option>
+                      <mat-option value="exceeds_expectations">Exceeds Expectations</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Industry Knowledge</mat-label>
+                    <mat-select  class="br-btm input-w">
+                      <mat-option value="Unsatisfactory">Unsatisfactory</mat-option>
+                      <mat-option value="needs_improvment">Needs Improvement</mat-option>
+                      <mat-option value="meets_expectations">Meets Expectations</mat-option>
+                      <mat-option value="exceeds_expectations">Exceeds Expectations</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Communication Skills</mat-label>
+                    <mat-select  class="br-btm input-w">
+                      <mat-option value="needs_improvment">Needs Improvement</mat-option>
+                      <mat-option value="meets_expectations">Meets Expectations</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <!-- <mat-form-field>
+                  <mat-radio-group aria-label="Select an option">
+                  <mat-label>Discrepancy In Declaration And Documents</mat-label>
+            
+                    <mat-radio-button value="needs_improvment">Option 1</mat-radio-button>
+                    <mat-radio-button value="meets_expectations">Option</mat-radio-button>
+                  </mat-radio-group>
+              </mat-form-field> -->
+       
+                <!-- <mat-radio-group aria-label="Issues">
+                  <mat-label>Discrepancy In Declaration And Documents</mat-label>
+                  <mat-radio-button value="1">Option 1</mat-radio-button>
+                  <mat-radio-button value="2">Option 1</mat-radio-button>
+                </mat-radio-group> -->
+                <!-- <div class="group-gap">
+                    <div class="avatar-upload">
+                        <div class="avatar-edit">
+                            <input type='file'  required id="imageUpload" accept=".png,.jpeg"   #logoLink (change)="uploadFile($event.target.files)" />
+                        </div>
+                        <div class="avatar-preview">
+                            <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'"></div>
+                        </div>
+                    </div>
+                    <button mat-button  (click)="logoLink.click()">
+                        <mat-icon>file_upload</mat-icon>
+                         Upload Logo
+                    </button>
+                </div> -->
+            </div>
+            <div class="w-full md:w-1/2 sm:w-full">
+                <mat-form-field>
+                    <mat-label>DOB</mat-label>
+                    <!-- <input  matInput  type="text"  formControlName="activeform"  required  class="br-btm input-w" autoComplete='off'> -->
+                    <input matInput [matDatepicker]="picker2" 
+                      class="br-btm input-w">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2 color="primary"></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Contact</mat-label>
+                    <input  matInput   type="text"    class="br-btm input-w" autoComplete='off'>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Adhar Number</mat-label>
+                    <input  matInput   type="text"    class="br-btm input-w" autoComplete='off'>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Joining Date</mat-label>
+                    <input  matInput   type="number"     class="br-btm input-w" autoComplete='off'>
+                </mat-form-field>
+                
+                <mat-form-field>
+                    <mat-label>Exit Date</mat-label>
+                    <input  matInput type="text" class="br-btm input-w" autoComplete='off'>
+                </mat-form-field>
+               
+                <mat-form-field>
+                    <mat-label>Professional Experience</mat-label>
+                    <input  matInput type="text"  class="br-btm input-w" autoComplete='off'>
+                </mat-form-field>
+
+                <!-- <mat-form-field>
+                    <mat-label>Status</mat-label>
+                    <mat-select class="br-btm input-w" formControlName="status">
+                      <mat-option  [value]= true>Active</mat-option>
+                      <mat-option  [value]= false>Inactive</mat-option>
+                    </mat-select>
+                </mat-form-field> -->
+                <!-- <div class="w-full md:w-1/2 sm:w-full"> -->
+                    <h1 class="hd-add">Work Ethic</h1>
+                    <mat-form-field>
+                        <mat-label>Self Driven</mat-label>
+                        <mat-select  class="br-btm input-w">
+                          <mat-option value="Unsatisfactory">Unsatisfactory</mat-option>
+                      <mat-option value="needs_improvment">Needs Improvement</mat-option>
+                      <mat-option value="meets_expectations">Meets Expectations</mat-option>
+                      <mat-option value="exceeds_expectations">Exceeds Expectations</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Creativity</mat-label>
+                        <mat-select  class="br-btm input-w">
+                          <mat-option value="Unsatisfactory">Unsatisfactory</mat-option>
+                      <mat-option value="needs_improvment">Needs Improvement</mat-option>
+                      <mat-option value="meets_expectations">Meets Expectations</mat-option>
+                      <mat-option value="exceeds_expectations">Exceeds Expectations</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Informal organization-sense of belonging</mat-label>
+                        <mat-select  class="br-btm input-w">
+                          <mat-option value="Unsatisfactory">Unsatisfactory</mat-option>
+                      <mat-option value="needs_improvment">Needs Improvement</mat-option>
+                      <mat-option value="meets_expectations">Meets Expectations</mat-option>
+                      <mat-option value="exceeds_expectations">Exceeds Expectations</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Initiative</mat-label>
+                        <mat-select  class="br-btm input-w">
+                          <mat-option value="Unsatisfactory">Unsatisfactory</mat-option>
+                          <mat-option value="needs_improvment">Needs Improvement</mat-option>
+                          <mat-option value="meets_expectations">Meets Expectations</mat-option>
+                          <mat-option value="exceeds_expectations">Exceeds Expectations</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Work Independently</mat-label>
+                        <mat-select  class="br-btm input-w">
+                          <mat-option value="Unsatisfactory">Unsatisfactory</mat-option>
+                          <mat-option value="needs_improvment">Needs Improvement</mat-option>
+                          <mat-option value="meets_expectations">Meets Expectations</mat-option>
+                          <mat-option value="exceeds_expectations">Exceeds Expectations</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Team Work</mat-label>
+                        <mat-select  class="br-btm input-w">
+                          <mat-option value="Unsatisfactory">Unsatisfactory</mat-option>
+                      <mat-option value="needs_improvment">Needs Improvement</mat-option>
+                      <mat-option value="meets_expectations">Meets Expectations</mat-option>
+                      <mat-option value="exceeds_expectations">Exceeds Expectations</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Deals Constructively With Pressure</mat-label>
+                        <mat-select  class="br-btm input-w">
+                          <mat-option value="Unsatisfactory">Unsatisfactory</mat-option>
+                          <mat-option value="needs_improvment">Needs Improvement</mat-option>
+                          <mat-option value="meets_expectations">Meets Expectations</mat-option>
+                          <mat-option value="exceeds_expectations">Exceeds Expectations</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <h1 class="hd-add">Performance</h1>
+                    <mat-form-field>
+                        <mat-label>Volume</mat-label>
+                        <mat-select  class="br-btm input-w">
+                          <mat-option value="SCANDIDATE">Scandidate</mat-option>
+                          <mat-option value="ORGANIZATION">Organization</mat-option>
+                          <mat-option value="INSTITUTION">Institution</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Quality </mat-label>
+                        <mat-select  class="br-btm input-w">
+                          <mat-option value="Unsatisfactory">Unsatisfactory</mat-option>
+                          <mat-option value="needs_improvment">Needs Improvement</mat-option>
+                          <mat-option value="meets_expectations">Meets Expectations</mat-option>
+                          <mat-option value="exceeds_expectations">Exceeds Expectations</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Consistency</mat-label>
+                        <mat-select  class="br-btm input-w">
+                          <mat-option value="needs_improvment">Needs Improvement</mat-option>
+                          <mat-option value="meets_expectations">Meets Expectations</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                <!-- </div> -->
+            </div>
+        </div>
+        <div class="flex justify-end lg:pb-6 lg:pr-48">
+            <a routerLink="/organization-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button">
+              Cancel
+            </button></a>
+            <button class="lg-button focus:outline-none focus:shadow-outline" type="submit">
+              Submit
+            </button>
+            <!-- <button class="lg-button focus:outline-none focus:shadow-outline">
+                update
+              </button> -->
+        </div>
+    </form>
+    </div>
+    </app-navbar>

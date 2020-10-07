@@ -10,6 +10,8 @@ export class AdministituteService {
   baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient) { }
+
+  // add user
   createUser(createUser,id): Observable<any> {
       var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'phoneNumber': number,'institutionId':string, 'status': boolean} =
        { 'firstName': createUser.firstName,
@@ -34,6 +36,33 @@ export class AdministituteService {
   // get Opps users list
   getUser(institutionId): Observable<any>{
     return this.http.get(this.baseUrl + '/api/institute/addUser/'+ institutionId);
+  }
+
+  // edit user
+  getUserById(userId): Observable<any>{
+    return this.http.get(this.baseUrl + '/api/institute/addUser/oppsUser/'+ userId);
+  }
+
+  //Update
+  updateUser(updateUser, id): Observable<any>{
+     var create: {'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'phoneNumber': number,'institutionId':string, 'status': boolean}=
+     {
+      'firstName': updateUser.firstName,
+      'lastName': updateUser.lastName,
+      'role': 'INSTITUTION',
+      'subRole': 'OPERATIONAL_USER',
+      'email': updateUser.email,
+      'phoneNumber': updateUser.phoneNumber,
+      'institutionId': localStorage.getItem('instutuinId'),
+      'status': updateUser.status
+     };
+     return this.http.put(this.baseUrl + '/api/institute/addUser/oppsUser/'+ id, create
+      , {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+      }
+     )
   }
 }
 
