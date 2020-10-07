@@ -159,5 +159,9 @@ a{
 button{
     cursor: pointer !important;
 }
-
-
+.mat-icon {
+    cursor: default !important;
+}
+.material-icons{
+    cursor: default !important;
+}

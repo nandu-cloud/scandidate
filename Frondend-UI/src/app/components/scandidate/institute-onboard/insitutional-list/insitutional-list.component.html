@@ -62,7 +62,7 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
       <div class="p-4" *matNoDataRow>
-        <p>No data matching the filter "{{input.value}}"</p>
+        <p>No data matching the filter </p>
       </div>
     </table>
     <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator>
