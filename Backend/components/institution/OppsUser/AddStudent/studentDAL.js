@@ -9,7 +9,8 @@ async function addStudent(data) {
   studentData.yearOfPassout = data.yearOfPassout;
   studentData.studentType = data.studentType;
   studentData.extraActivity = data.extraActivity;
-  studentData.documentLink = data.documentLink;
+  studentData.extraActivityDocumentLink = data.extraActivityDocumentLink;
+  studentData.extraActivityNameOfDocument=data.extraActivityNameOfDocument;
   studentData.eductionalDocumentLinks = data.eductionalDocumentLinks;
   studentData.firstName = data.firstName;
   studentData.lastName = data.lastName;

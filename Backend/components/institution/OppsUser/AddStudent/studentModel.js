@@ -19,7 +19,10 @@ const studentSchema = new mongoose.Schema({
     extraActivity: {
         type: Boolean,
     },
-    documentLink: {
+    extraActivityDocumentLink: {
+        type: String,
+    },
+    extraActivityNameOfDocument:{
         type: String,
     },
     noOfEductionalDocuments: {
