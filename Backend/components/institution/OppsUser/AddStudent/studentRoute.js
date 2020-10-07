@@ -8,7 +8,7 @@ const addStudentController = require("./studentController");
 const authJWT = require("./../../../../middlewares/authJWT");
 
 // organization logo images Storage Path
-const uploadPath = path.join(__dirname, "./../../../../uploads/student_doc");
+const uploadPath = path.join(__dirname, "../../../../uploads/student_doc");
 
 let storage = multer.diskStorage({
   destination: function (req, file, cb) {
