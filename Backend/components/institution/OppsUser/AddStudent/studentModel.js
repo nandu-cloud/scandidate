@@ -17,12 +17,12 @@ const studentSchema = new mongoose.Schema({
         type: String,
     },
     extraActivity: {
-        type: Boolean,
+        type: String,
     },
     extraActivityDocumentLink: {
         type: String,
     },
-    extraActivityNameOfDocument:{
+    extraActivityDocumentName:{
         type: String,
     },
     noOfEductionalDocuments: {

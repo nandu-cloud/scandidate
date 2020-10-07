@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const AppError = require("./../../../../helpers/appError");
 const studentDAL = require("./studentDAL");
 const studentDataValidator = require("./studentValidator");
+const fs = require("fs");
+const path = require("path");
 
 // Add Organisation
 module.exports.addStudentMethod = async function (req, res, next) {
@@ -16,19 +18,19 @@ module.exports.addStudentMethod = async function (req, res, next) {
 };
 
 module.exports.getAllMethod = async function (req, res, next) {
-    const data = {};
-    try {
-      let studentData = await studentDAL.getAllUsers(data);
-      return res
-        .status(200)
-        .json({ status: "SUCCESS", message: null, data: studentData });
-    } catch (err) {
-      console.log(colors.red, `getAllMethod err ${err}`);
-      return next(new AppError(err, 400));
-    }
-  };
+  const data = {};
+  try {
+    let studentData = await studentDAL.getAllUsers(data);
+    return res
+      .status(200)
+      .json({ status: "SUCCESS", message: null, data: studentData });
+  } catch (err) {
+    console.log(colors.red, `getAllMethod err ${err}`);
+    return next(new AppError(err, 400));
+  }
+};
 
- // Get Student By Id
+// Get Student By Id
 module.exports.getStudentByIdMethod = async function (req, res, next) {
   try {
     const data = { _id: mongoose.Types.ObjectId(req.params.studentId) };
@@ -57,7 +59,7 @@ module.exports.updateMethod = async function (req, res, next) {
     if (!studentExsits)
       return next(new AppError("Student does not exists!", 404));
     result._id = mongoose.Types.ObjectId(req.params.studentId);
-    result.updatedAt=new Date();
+    result.updatedAt = new Date();
     let studentData = await studentDAL.updateStudent(result);
     return res.status(200).json({
       status: "SUCCESS",
@@ -69,3 +71,29 @@ module.exports.updateMethod = async function (req, res, next) {
   }
 };
 
+//upload Extra Activity Documents
+module.exports.extraActivityDocUpload = async function (req, res, next) {
+  if (!req.file) return next(new AppError("No file uploaded!", 400));
+  return res.status(200).json({
+    status: "SUCCESS",
+    message: "File uploaded successfully!",
+    data: { extraActivityDocumentName: `${req.file.filename}` },
+  });
+};
+
+//upload Multi Files
+module.exports.fileUpload = async function (req, res, next) {
+  let arraylength = req.files.length;
+  let filesname = [];
+  var i;
+  for (i = 0; i < arraylength; i++) {
+    filesname.push(req.files[i].filename);
+  }
+  // let filesName=''
+  if (!req.files) return next(new AppError("No file uploaded!", 400));
+  return res.status(200).json({
+    status: "SUCCESS",
+    message: "File uploaded successfully!",
+    data: { filesName: filesname },
+  });
+};
