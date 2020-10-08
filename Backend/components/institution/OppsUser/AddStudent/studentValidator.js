@@ -14,7 +14,7 @@ const addStudentSchema = Joi.object({
   extraActivity: Joi.string(),
   extraActivityDocumentName:Joi.string(),
   noOfEductionalDocuments: Joi.number(),
-  eductionalDocumentNames: Joi.string(),
+  eductionalDocumentNames: Joi.array(),
   addedById:Joi.string().min(24).max(24).empty(""),
 });
 
@@ -31,10 +31,9 @@ const updateStudentSchema = Joi.object({
   studentType: Joi.string(),
   address: Joi.string(),
   extraActivity: Joi.string(),
-  extraActivityDocumentLink: Joi.string(),
   extraActivityDocumentName:Joi.string(),
   noOfEductionalDocuments: Joi.number(),
-  eductionalDocumentLinks: Joi.string(),
+  eductionalDocumentNames: Joi.array(),
   addedById:Joi.string().min(24).max(24).empty(""),
 });
 

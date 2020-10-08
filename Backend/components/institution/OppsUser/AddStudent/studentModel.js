@@ -26,7 +26,7 @@ const studentSchema = new mongoose.Schema({
         type: Number,
     },
     eductionalDocumentNames:{
-        type: String,
+        type: Array,
     },
     firstName: {
         type: String,
