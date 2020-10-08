@@ -19,16 +19,13 @@ const studentSchema = new mongoose.Schema({
     extraActivity: {
         type: String,
     },
-    extraActivityDocumentLink: {
-        type: String,
-    },
     extraActivityDocumentName:{
         type: String,
     },
     noOfEductionalDocuments: {
         type: Number,
     },
-    eductionalDocumentLinks: {
+    eductionalDocumentNames:{
         type: String,
     },
     firstName: {
