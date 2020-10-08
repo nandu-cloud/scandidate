@@ -45,7 +45,8 @@ const routes: Routes = [  {path: 'login' , component: LoginComponent},
 {path: 'candidate-list', component: CandidateListComponent},
 {path: 'orgnization-users-list' , component:OrganizationUsersListComponent},
 {path: 'add-oppuser' , component:AddOppuserComponent},
-{path: 'reset-password',component:ResetPasswordComponent}
+{path: 'reset-password',component:ResetPasswordComponent},
+{path: 'add-student/:id',component:AddStudentComponent}
 ];
 
 @NgModule({

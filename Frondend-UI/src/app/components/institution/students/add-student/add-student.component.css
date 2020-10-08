@@ -5,3 +5,15 @@
 .mat-radio-button ~ .mat-radio-button {
     margin-left: 16px;
   }
+  
+.avatar-upload .avatar-edit input {
+    display: none;
+}
+
+#imagePreview{
+    margin-left: 70px;
+    margin-bottom: -27px;
+}
+
+  
+  
