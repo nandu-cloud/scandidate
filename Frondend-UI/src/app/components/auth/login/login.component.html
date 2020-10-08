@@ -35,8 +35,14 @@
                 <div class="block text-gray-700 text-sm font-bold mb-2 ">
                   <mat-form-field >
                     <mat-label>Email</mat-label>
-                    <input matInput formControlName="email" class="w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  required autocomplete="new-password" />
-                    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                    <input matInput formControlName="email" class="w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" matInput required autocomplete="new-password" />
+                    <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+                <mat-error *ngIf ="loginForm.get('email').errors?.required">
+                  Required email address
+                </mat-error>
+                <mat-error *ngIf ="loginForm.get('email').errors?.email">
+                  Enter a valid email address
+                </mat-error>
                   </mat-form-field>
                 </div>
               </div>
@@ -48,6 +54,9 @@
                   <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                   <mat-icon class="flex content-end">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </button>
+                  <mat-error *ngIf ="loginForm.get('password').errors?.required">
+                    Required Password
+                  </mat-error>
                 </mat-form-field>
               </div>
               </div>
