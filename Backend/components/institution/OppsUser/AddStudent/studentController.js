@@ -94,6 +94,7 @@ module.exports.fileUpload = async function (req, res, next) {
   return res.status(200).json({
     status: "SUCCESS",
     message: "File uploaded successfully!",
-    data: { filesName: filesname },
+    data: { filesName: filesname,fileCount:arraylength },
+
   });
 };
