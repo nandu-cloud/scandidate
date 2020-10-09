@@ -1,11 +1,15 @@
 const mongoose = require("mongoose");
 const AppError = require("./../../../../helpers/appError");
 const studentDAL = require("./studentDAL");
+const colors = require("./../../../../helpers/colors");
 const studentDataValidator = require("./studentValidator");
 const fs = require("fs");
 const path = require("path");
+const csv         = require('csvtojson');  
+const bodyParser  = require('body-parser');  
 
-// Add Organisation
+
+// Add Student
 module.exports.addStudentMethod = async function (req, res, next) {
   const data = req.body;
   try {
@@ -16,6 +20,22 @@ module.exports.addStudentMethod = async function (req, res, next) {
     return next(new AppError(err, 400));
   }
 };
+
+//Upload CSV
+module.exports.uploadCsv = async function (req, res, next) {
+  let path=req.file.path;
+  let id=req.body._id;
+  try {
+    let studentData = await studentDAL.addStudentCsv(path,id);
+    return res
+      .status(200)
+      .json({ status: "SUCCESS", message: null, data: studentData });
+  } catch (err) {
+    console.log(colors.red, `uploadCsv err ${err}`);
+    return next(new AppError(err, 400));
+  }
+};
+
 
 module.exports.getAllMethod = async function (req, res, next) {
   const data = {};
@@ -43,6 +63,7 @@ module.exports.getStudentByIdMethod = async function (req, res, next) {
       data: studentData,
     });
   } catch (err) {
+
     return next(new AppError(err, 400));
   }
 };
