@@ -30,7 +30,7 @@ let onboardInstituteSchema = mongoose.Schema({
   },
   instituteActiveFrom: {
     type: Date,
-    required: [true, "Date cannot be empty"],
+    required: false,
   },
   instituteZIP: {
     type: Number,

@@ -1,21 +1,24 @@
+const { required } = require("joi");
 const Joi = require("joi");
 
 const addStudentSchema = Joi.object({
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   roll: Joi.string().required(),
-  email: Joi.string().email(),
-  phoneNumber: Joi.number(),
-  nameOfCourse:Joi.string(),
-  yearOfJoining: Joi.number(),
-  yearOfPassout:Joi.number(),
-  studentType: Joi.string(),
-  address: Joi.string(),
-  extraActivity: Joi.string(),
-  extraActivityDocumentName:Joi.string(),
-  noOfEductionalDocuments: Joi.number(),
-  eductionalDocumentNames: Joi.array(),
-  addedById:Joi.string().min(24).max(24).empty(""),
+  yearOfJoining: Joi.number().required(),
+  yearOfPassout:Joi.number().required(),
+  studentType: Joi.string().required(),
+  addedById:Joi.string().required().min(24).max(24).empty(""),
+
+  email: Joi.string().email().allow('').allow(null),
+  phoneNumber: Joi.number().allow('').allow(null),
+  nameOfCourse:Joi.string().allow('').allow(null),
+  address: Joi.string().allow('').allow(null),
+  extraActivity: Joi.string().allow('').allow(null),
+  extraActivityDocumentName:Joi.string().allow('').allow(null),
+  noOfEductionalDocuments: Joi.number().allow('').allow(null),
+  eductionalDocumentNames: Joi.array().allow('').allow(null),
+  
 });
 
 
@@ -23,18 +26,19 @@ const updateStudentSchema = Joi.object({
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   roll: Joi.string().required(),
-  email: Joi.string().email(),
-  phoneNumber: Joi.number(),
-  nameOfCourse:Joi.string(),
-  yearOfJoining: Joi.number(),
-  yearOfPassout:Joi.number(),
-  studentType: Joi.string(),
-  address: Joi.string(),
-  extraActivity: Joi.string(),
-  extraActivityDocumentName:Joi.string(),
-  noOfEductionalDocuments: Joi.number(),
-  eductionalDocumentNames: Joi.array(),
-  addedById:Joi.string().min(24).max(24).empty(""),
+  yearOfJoining: Joi.number().required(),
+  yearOfPassout:Joi.number().required(),
+  studentType: Joi.string().required(),
+  addedById:Joi.string().required().min(24).max(24),
+
+  email: Joi.string().email().allow('').allow(null),
+  phoneNumber: Joi.number().allow('').allow(null),
+  nameOfCourse:Joi.string().allow('').allow(null),
+  address: Joi.string().allow('').allow(null),
+  extraActivity: Joi.string().allow('').allow(null),
+  extraActivityDocumentName:Joi.string().allow('').allow(null),
+  noOfEductionalDocuments: Joi.number().allow('').allow(null),
+  eductionalDocumentNames: Joi.array().allow('').allow(null),
 });
 
 module.exports = {

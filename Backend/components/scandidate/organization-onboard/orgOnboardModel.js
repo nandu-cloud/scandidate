@@ -13,7 +13,7 @@ let onboardOrganizationSchema = mongoose.Schema({
   },
   organisationAddress: {
     type: String,
-    required: true,
+    required: false,
   },
   organisationType: {
     type: String,
@@ -45,9 +45,11 @@ let onboardOrganizationSchema = mongoose.Schema({
   },
   status: {
     type: Boolean,
+    required:true,
   },
   contact: {
     type: Number,
+    
   },
   code: {
     type: String,
