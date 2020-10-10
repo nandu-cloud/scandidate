@@ -51,7 +51,7 @@ module.exports.orgOnboardTrend = async function (req, res, next) {
             total: { $sum: 1 },
           },
         },
-        // { $sort: { createdAt: 1 } },
+        { $sort: { "_id.day": 1 } },
       ],
     ];
   } else if (data.filter === "MONTH") {
@@ -75,7 +75,7 @@ module.exports.orgOnboardTrend = async function (req, res, next) {
             total: { $sum: 1 },
           },
         },
-        // { $sort: { createdAt: 1 } },
+        { $sort: { "_id.month": 1 } },
       ],
     ];
   } else if (data.filter === "YEAR") {
@@ -99,7 +99,7 @@ module.exports.orgOnboardTrend = async function (req, res, next) {
             total: { $sum: 1 },
           },
         },
-        // { $sort: { createdAt: 1 } },
+        { $sort: { "_id.year": 1 } },
       ],
     ];
   }
@@ -144,7 +144,7 @@ module.exports.instOnboardTrend = async function (req, res, next) {
             total: { $sum: 1 },
           },
         },
-        // { $sort: { createdAt: 1 } },
+        { $sort: { "_id.day": 1 } },
       ],
     ];
   } else if (data.filter === "MONTH") {
@@ -168,7 +168,7 @@ module.exports.instOnboardTrend = async function (req, res, next) {
             total: { $sum: 1 },
           },
         },
-        // { $sort: { createdAt: 1 } },
+        { $sort: { "_id.month": 1 } },
       ],
     ];
   } else if (data.filter === "YEAR") {
@@ -192,7 +192,7 @@ module.exports.instOnboardTrend = async function (req, res, next) {
             total: { $sum: 1 },
           },
         },
-        // { $sort: { createdAt: 1 } },
+        { $sort: { "_id.year": 1 } },
       ],
     ];
   }
