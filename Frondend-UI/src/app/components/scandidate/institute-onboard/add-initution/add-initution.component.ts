@@ -40,16 +40,16 @@ export class AddInitutionComponent implements OnInit {
           this.instituteIdedit = params.id;
     });
     this.instituteForm = new FormGroup({
-      instituteName: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      instituteName: new FormControl('', [Validators.required, Validators.minLength(3)]),
       contactPersonName: new FormControl('', [Validators.required,Validators.minLength(5)]),
       instituteAddress : new FormControl('',[Validators.required]),
       instituteEmail: new FormControl('', [Validators.required, Validators.email]),
-      instituteZIP : new FormControl('',[Validators.required]),
+      instituteZIP : new FormControl('',[Validators.required,Validators.pattern(/^[0-9]{5,7}$/)]),
       status : new FormControl('',[Validators.required]),
       instituteDescription : new FormControl(''),
       code : new FormControl(''),
-      contact : new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
-      instituteType : new FormControl(''),
+      contact : new FormControl('',[Validators.required,Validators.pattern(/^[0-9]{10}$/)]),
+      instituteType : new FormControl('',[Validators.required]),
       instituteStudentSize : new FormControl(''),
       instituteActiveFrom : new FormControl('',[Validators.required]),
       instituteLogo : new FormControl(),
@@ -148,9 +148,9 @@ export class DialogElementsExampleDialog implements OnInit{
     ngOnInit(){
       console.log(this.methodType)
       if(this.methodType == 'update'){
-        this.Message="Inistution Updated successfully"
+        this.Message="Institution Updated successfully."
       }else{
-        this.Message="Inistution Onboarded successfully"
+        this.Message="Institution Onboarded successfully."
 
       }
     }
