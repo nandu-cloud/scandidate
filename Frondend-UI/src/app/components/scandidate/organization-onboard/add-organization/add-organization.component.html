@@ -2,39 +2,66 @@
 <app-navbar>
 <div class="pt-16 lg:pl-64 pl-12 md:pl-48 bg-white">
 <form  class="login-form" [formGroup]="organizationForm"  novalidate>
-    <div class="bg-red-100 border border-red-400 text-red-700 py-3 mb-4 rounded relative" role="alert" *ngIf="error">
+    <!-- <div class="bg-red-100 border border-red-400 text-red-700 py-3 mb-4 rounded relative" role="alert" *ngIf="error">
         <strong class="font-bold mr-4">Error ::</strong>
         <span class="block sm:inline">{{error}}</span>
         <span class="absolute top-0 bottom-0 right-0 px-4 py-3" (click)="close()">
           <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
         </span>
-      </div>
+      </div> -->
     <h1 class="hd-add">Add Organization</h1>
     <div class="flex flex-wrap">
         <div class="w-full md:w-1/2 sm:w-full">
             <mat-form-field>
                 <mat-label>Company Name</mat-label>
                 <input  matInput formControlName="organizationName"  type="text"  required  class="br-btm input-w" autoComplete='off' >
+                <mat-error *ngIf ="organizationForm.get('organizationName').errors?.required">
+                    Required company Name.
+                   </mat-error>
+                   <mat-error *ngIf ="organizationForm.get('organizationName').errors?.minlength">
+                     company name must be at least 3 characters long.
+                    </mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Legal Entity Name</mat-label>
                 <input  matInput formControlName="legalEntityName"  type="text"  required  class="br-btm input-w" autoComplete='off' >
+                <mat-error *ngIf ="organizationForm.get('legalEntityName').errors?.required">
+                    Required legal entity name.
+                   </mat-error>
+                <mat-error *ngIf ="organizationForm.get('legalEntityName').errors?.minlength">
+                    legal entity name must be at least 5 characters long.
+                   </mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Contact Person Name</mat-label>
                 <input matInput  formControlName="contactPersonName"  type="text"    required  class="br-btm input-w" autoComplete='off'>
+                <mat-error *ngIf ="organizationForm.get('contactPersonName').errors?.required">
+                    Required contact person name.
+                   </mat-error>
+                <mat-error *ngIf ="organizationForm.get('contactPersonName').errors?.minlength">
+                    Contact Person name must be at least 5 characters long.
+                   </mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Location(City/Town)</mat-label>
                 <input matInput formControlName="organizationLocation"  type="text"  required  class="br-btm input-w" autoComplete='off' >
+                <mat-error *ngIf ="organizationForm.get('organizationLocation').errors?.required">
+                    Required location.
+                </mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>State</mat-label>
                 <input matInput formControlName="state"  type="text"  required  class="br-btm input-w" autoComplete='off' >
+                <mat-error *ngIf ="organizationForm.get('state').errors?.required">
+                    Required state.
+                </mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Address</mat-label>
                 <input matInput type="text"  formControlName="organisationAddress"  required  class="br-btm input-w" autoComplete='off'>
+                <mat-error *ngIf ="organizationForm.get('organisationAddress').errors?.required">
+                    Required organization address.
+                </mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Email</mat-label>
@@ -43,6 +70,14 @@
             <mat-form-field>
                 <mat-label>Postal Code</mat-label>
                 <input  matInput type="text"  formControlName="organisationZIP"  required  class="br-btm input-w" autoComplete='off'>
+                <mat-error *ngIf="organizationForm.controls['organisationZIP'].hasError('required')">
+                    Please enter
+                    <strong>valid zipcode</strong>
+                </mat-error>
+                <mat-error *ngIf="organizationForm.controls['organisationZIP'].hasError('pattern')">
+                    zip code
+                    <strong>minimum length is 5 and maximum length is 7.</strong>
+                </mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Description</mat-label>
@@ -70,11 +105,20 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Phone Number</mat-label>
-                <input  matInput   type="text"  formControlName="contact"  required  class="br-btm input-w" autoComplete='off'>
+                <input  matInput   type="text"  formControlName="contact"  required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{10}$">
+                <mat-error *ngIf ="organizationForm.get('contact').errors?.required">
+                    Required phone number.
+                </mat-error>
+                <mat-error *ngIf="!organizationForm.get('contact').errors?.required && organizationForm.get('contact').errors?.pattern">
+                    Please enter valid mumber
+                   </mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Industry Type</mat-label>
-                <input  matInput   type="text"  formControlName="organisationType"    class="br-btm input-w" autoComplete='off'>
+                <input  matInput   type="text"  formControlName="organisationType"    class="br-btm input-w" autoComplete='off' required>
+                <mat-error *ngIf ="organizationForm.get('organisationType').errors?.required">
+                    Required industry type.
+                </mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Company Size</mat-label>
@@ -83,6 +127,9 @@
             <mat-form-field>
                 <mat-label>Head Quarter Location</mat-label>
                 <input  matInput   type="text"  formControlName="headQuaterLocation"  required  class="br-btm input-w" autoComplete='off'>
+                <mat-error *ngIf ="organizationForm.get('headQuaterLocation').errors?.required">
+                    Required head quater location.
+                </mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>GSTN (optional)</mat-label>
@@ -103,6 +150,9 @@
                 [max]="maxDate" formControlName="organisationActiveFrom"  class="br-btm input-w">
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2 color="primary"></mat-datepicker>
+                <mat-error *ngIf ="organizationForm.get('organisationActiveFrom').errors?.required">
+                    Choose date.
+                </mat-error>
             </mat-form-field>
             <mat-form-field *ngIf ="id">
                 <mat-label>Status</mat-label>

@@ -40,11 +40,11 @@ export class AddOrganizationComponent implements OnInit {
           this.orgIdedit = params.id;
     });
     this.organizationForm = new FormGroup({
-      organizationName: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      organizationName: new FormControl('', [Validators.required, Validators.minLength(3)]),
       contactPersonName: new FormControl('', [Validators.required,Validators.minLength(5)]),
       organisationAddress : new FormControl('',[Validators.required]),
-      organisationEmail: new FormControl('', [Validators.email]),
-      organisationZIP : new FormControl('',[Validators.required]),
+      organisationEmail: new FormControl('', [Validators.required,Validators.email]),
+      organisationZIP : new FormControl('',[Validators.required,Validators.pattern(/^[0-9]{5,7}$/)]),
       status : new FormControl('',[Validators.required]),
       organisationDescription : new FormControl(''),
       code : new FormControl(''),
