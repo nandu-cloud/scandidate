@@ -34,14 +34,33 @@ export class StudentListComponent implements  OnInit {
        this.studentListSubscription = this.stuService.getStudentData().subscribe(respObj => {
          this.dataSource = new MatTableDataSource(respObj.data);
          this.dataSource.paginator = this.paginator;
+         var dataRecords = respObj.data;
+         this.dataSource.filterPredicate = 
+          (data: typeof dataRecords, filtersJson: string) => {
+            const matchFilter = [];
+            const filters = JSON.parse(filtersJson);
+
+            filters.forEach(filter => {
+              const val = data[filter.id] === null ? '' : data[filter.id];
+              matchFilter.push(val.toLowerCase().includes(filter.value.toLowerCase()));
+            });
+              return matchFilter.every(Boolean);
+          };
        }, err => {
          this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
        })
      }
-     applyFilter(event: Event) {
-       const filterValue = (event.target as HTMLInputElement).value;
-       this.dataSource.filter = filterValue.trim().toLowerCase();
-     }
+     applyFilter(filterValue: string) {
+      const tableFilters = [];
+      tableFilters.push({
+        id: 'firstName',
+        value: filterValue
+      });
+      this.dataSource.filter = JSON.stringify(tableFilters);
+        if (this.dataSource.paginator) {
+          this.dataSource.paginator.firstPage();
+        }
+    }
      edit(id:number){
        this.stuIdedit = id;
        this.editstdData = this.formBuilder.group({

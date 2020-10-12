@@ -18,7 +18,7 @@ export class InsitutionalUserListComponent implements  OnInit {
   dataSource: MatTableDataSource<InsitutionalListItem>;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'institutename', 'active', 'contact', 'code', 'status', 'action'];
+  displayedColumns = ['name', 'institutename', 'active', 'contact', 'code', 'status', 'action'];
 
   userIdedit: number;
   updateUserData: FormGroup;
@@ -31,23 +31,40 @@ export class InsitutionalUserListComponent implements  OnInit {
 //     this.userIdedit = params.id;
 // });
  }
+ 
   ngOnInit() {
-    // this.dataSource = new InsitutionalListDataSource();
- 
-    this.get()
- 
+    this.get();
   }
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  applyFilter(filterValue: string) {
+    const tableFilters = [];
+    tableFilters.push({
+      id: 'firstName',
+      value: filterValue
+    });
+    this.dataSource.filter = JSON.stringify(tableFilters);
+      if (this.dataSource.paginator) {
+        this.dataSource.paginator.firstPage();
+      }
   }
   get()
-{
+  {
   const k = localStorage.getItem('instutuinId')
   this.edituserSubscription = this.instituteUser.getUser(k).subscribe(respObj => {
+    var dataRecords = respObj.data;
     console.log(respObj.data);
     this.dataSource = new MatTableDataSource(respObj.data);
     this.dataSource.paginator = this.paginator;
+    this.dataSource.filterPredicate = 
+    (data: typeof dataRecords, filtersJson: string) => {
+      const matchFilter = [];
+      const filters = JSON.parse(filtersJson);
+
+      filters.forEach(filter => {
+        const val = data[filter.id] === null ? '' : data[filter.id];
+        matchFilter.push(val.toLowerCase().includes(filter.value.toLowerCase()));
+      });
+        return matchFilter.every(Boolean);
+    };
   })
 }
 
@@ -57,6 +74,7 @@ edit(id:number){
     _id:['', [Validators.required]]
   })
 }
+
   // ngAfterViewInit() {
   //   this.dataSource.sort = this.sort;
   //   this.dataSource.paginator = this.paginator;

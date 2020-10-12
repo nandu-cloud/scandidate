@@ -27,20 +27,39 @@ export class InsitutionalListComponent implements OnInit {
     private _storage: StorageService,
     private _instituteService: instituteService
   ) { }
-
+  applyFilter(filterValue: string) {
+    const tableFilters = [];
+    tableFilters.push({
+      id: 'instituteName',
+      value: filterValue
+    });
+    this.dataSource.filter = JSON.stringify(tableFilters);
+      if (this.dataSource.paginator) {
+        this.dataSource.paginator.firstPage();
+      }
+  }
   ngOnInit() {
     this.displayedColumns = ['name', 'pName', 'contact', 'code', 'status', 'action'];
     this.instituteSubscription = this._instituteService.getInstitutionList().subscribe(respObj => {
       console.log(respObj)
-      this.msg=respObj.message
+      this.msg=respObj.message;
       this.dataSource = new MatTableDataSource(respObj.data);
+      var dataRecords = respObj.data;
       this.dataSource.paginator = this.paginator;
+      this.dataSource.filterPredicate = 
+      (data: typeof dataRecords, filtersJson: string) => {
+      const matchFilter = [];
+      const filters = JSON.parse(filtersJson);
+
+      filters.forEach(filter => {
+        const val = data[filter.id] === null ? '' : data[filter.id];
+        matchFilter.push(val.toLowerCase().includes(filter.value.toLowerCase()));
+      });
+        return matchFilter.every(Boolean);
+    };
     }, err => {
       this.setMessage = { message: this.msg, error: true };
     })
   }
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+ 
 }
