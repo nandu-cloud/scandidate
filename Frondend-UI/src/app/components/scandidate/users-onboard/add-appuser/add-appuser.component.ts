@@ -57,7 +57,7 @@ export class AddAppuserComponent implements OnInit {
                             Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
         dateOfBirth: new FormControl('', [Validators.required]),
         status: new FormControl(true, [Validators.required]),
-        phoneNumber: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+        phoneNumber: new FormControl('', [Validators.required, Validators.pattern("^[0-9]{10}$")]),
         organizationId: new FormControl(),
         institutionId: new FormControl(),
         employeeId: new FormControl(),

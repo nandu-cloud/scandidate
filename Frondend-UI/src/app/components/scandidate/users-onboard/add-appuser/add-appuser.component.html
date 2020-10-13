@@ -14,10 +14,16 @@
             <mat-form-field>
                 <mat-label>First Name</mat-label>
                 <input  matInput type="text"    name="firstName" formControlName="firstName"  required  class="br-btm input-w" autoComplete='off'>
+                <mat-error *ngIf ="createUserData.get('firstName').errors?.required">
+                    Required first Name.
+                   </mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Last Name</mat-label>
                 <input  matInput   type="text"  name="lastName"  formControlName="lastName" required  class="br-btm input-w" autoComplete='off'>
+                <mat-error *ngIf ="createUserData.get('lastName').errors?.required">
+                    Required last Name.
+                   </mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Employee ID</mat-label>
@@ -35,6 +41,9 @@
                   <mat-option value="ORGANIZATION">Organization</mat-option>
                   <mat-option value="INSTITUTION">Institution</mat-option>
                 </mat-select>
+                <mat-error *ngIf ="createUserData.get('role').errors?.required">
+                    Required role.
+                </mat-error>
             </mat-form-field>
            
             <mat-form-field *ngIf="subroleTypeee == 'ORGANIZATION'">
@@ -49,6 +58,7 @@
                 <mat-select   class="br-btm input-w" formControlName="institutionId" >
                   <mat-option *ngFor="let itm of allInstitutions" [value]="itm._id">{{itm.instituteName}}</mat-option>
                 </mat-select>
+                
             </mat-form-field>
             <!-- <mat-form-field>
                 <mat-label>Organization</mat-label>
@@ -88,14 +98,29 @@
                 <input matInput [matDatepicker]="picker2" formControlName="dateOfBirth" class="br-btm input-w" required>
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2 color="primary"></mat-datepicker>
+                <mat-error *ngIf ="createUserData.get('dateOfBirth').errors?.required">
+                    Required date of birth.
+                   </mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Email</mat-label>
                 <input  matInput   type="text"  name="email"  formControlName="email"  class="br-btm input-w" required autoComplete='off'>
+                <mat-error *ngIf ="createUserData.get('email').errors?.required">
+                    Required email address.
+                </mat-error>
+                <mat-error *ngIf ="createUserData.get('email').errors?.email">
+                    Enter a valid email address.
+                </mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Contact</mat-label>
-                <input  matInput   type="text"  name="contact"  formControlName="phoneNumber" required  class="br-btm input-w" autoComplete='off'>
+                <input  matInput   type="text"  name="contact"  formControlName="phoneNumber" required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{10}$">
+            <mat-error *ngIf ="createUserData.get('phoneNumber').errors?.required">
+                Required phone number.
+            </mat-error>
+            <mat-error *ngIf="!createUserData.get('phoneNumber').errors?.required && createUserData.get('phoneNumber').errors?.pattern">
+                Please enter valid mumber
+               </mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Current Address</mat-label>
@@ -108,6 +133,9 @@
                   <mat-option value="ADMIN" *ngIf="((subroleTypeee == 'SCANDIDATE' ||subroleTypeee == 'ORGANIZATION') ||  ( subroleTypeee=='INSTITUTZON'))">Admin</mat-option>
                   <mat-option value="OPERATIONAL_USER"  *ngIf="subroleTypeee == 'SCANDIDATE' ">Operational User</mat-option>
                 </mat-select>
+                <mat-error *ngIf ="createUserData.get('subRole').errors?.required">
+                    Required sub role.
+                </mat-error>
             </mat-form-field>
             <mat-form-field *ngIf="id">
                 <mat-label>Status</mat-label>
