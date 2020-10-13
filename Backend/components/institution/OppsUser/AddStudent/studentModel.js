@@ -57,6 +57,10 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: false,
     },
+    instituteId: {
+        type: String,
+        required: false,
+    },
     createdAt: {
         type: Date,
         default: new Date(),

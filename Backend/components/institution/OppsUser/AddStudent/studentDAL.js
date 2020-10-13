@@ -22,6 +22,7 @@ async function addStudent(data) {
   studentData.phoneNumber = data.phoneNumber;
   studentData.address = data.address;
   studentData.addedById = data.addedById;
+  studentData.instituteId=data.instituteId;
   studentData.createdAt = new Date();
   studentData.updatedAt = new Date();
 
@@ -34,9 +35,7 @@ async function addStudent(data) {
 }
 
 //Add Student From CSV
-
-async function addStudentCsv(path,id) {
-  console.log(id)
+async function addStudentCsv(path,id,instituteId1) {
   var yearOfJoining;
   var yearOfPassout;
   var phoneNumber;
@@ -54,6 +53,7 @@ async function addStudentCsv(path,id) {
         jsonObj[x].phoneNumber = phoneNumber;
 
         jsonObj[x].addedById=id;
+        jsonObj[x].instituteId=instituteId1;
       };
       try {
         let result = studentModel.insertMany(jsonObj);

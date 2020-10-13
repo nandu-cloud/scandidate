@@ -24,9 +24,11 @@ module.exports.addStudentMethod = async function (req, res, next) {
 //Upload CSV
 module.exports.uploadCsv = async function (req, res, next) {
   let path=req.file.path;
+  console.log("TTT ",req.body)
   let id=req.body._id;
+  let instituteId=req.body.instituteId;
   try {
-    let studentData = await studentDAL.addStudentCsv(path,id);
+    let studentData = await studentDAL.addStudentCsv(path,id,instituteId);
     return res
       .status(200)
       .json({ status: "SUCCESS", message: null, data: studentData });
