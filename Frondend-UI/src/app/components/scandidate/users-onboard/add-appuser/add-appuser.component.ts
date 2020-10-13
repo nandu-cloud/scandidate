@@ -7,12 +7,12 @@ import { AppuserService } from '../../../../services/appuser.service';
 import { instituteService } from '../../../../services/institute.service';
 import { from, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { StorageService } from '../../../../services/storage.service';
 @Component({
   selector: 'app-add-appuser',
   templateUrl: './add-appuser.component.html',
-  styleUrls: ['./add-appuser.component.css']
+  styleUrls: ['./add-appuser.component.css'],
+  providers: [ addOrganizationService,StorageService,AppuserService ]
 })
 export class AddAppuserComponent implements OnInit {
   createUserData: FormGroup;
@@ -42,7 +42,6 @@ export class AddAppuserComponent implements OnInit {
     private appUserService: AppuserService, private route: ActivatedRoute,
     private Org: addOrganizationService,
     private Inst: instituteService,
-    public matSnackBar: MatSnackBar
     ) {
       this.route.params.subscribe(params => {
           this.userIdedit = params.id;
@@ -68,13 +67,17 @@ export class AddAppuserComponent implements OnInit {
         avatarLink: new FormControl()
       });
     }
-
-    close(){
-      setTimeout(() => {
-        this.error='';
-       }, 100);
-      //  this.loginForm.reset();
+    registrationForm = this.fb.group({
+      file: [null]
+    })
+    methodtype;
+    openDialog() {
+      const dialogRef = this.dialog.open(DialogElementsExampleDialog,{
+    });
+      dialogRef.componentInstance.metrhodType = this.methodtype;
     }
+   
+    @ViewChild('fileInput') el: ElementRef;
     allOrganizations=[]
     getallOrganizations(){
       this.Org.getOrganizationData().subscribe(respObj => {
@@ -82,8 +85,6 @@ export class AddAppuserComponent implements OnInit {
       })
 
     }
-
-    // tslint:disable-next-line: member-ordering
     allInstitutions=[]
     getInstitution(){
      this.Inst.getInstitutionList().subscribe(respObj => {
@@ -92,14 +93,12 @@ export class AddAppuserComponent implements OnInit {
     }
 
   ngOnInit() {
-    // let k = this.route.snapshot.params['id'];
     this.getallOrganizations();
     this.getInstitution();
     if (this.userIdedit){
         this.edituserSubscription = this.appUserService.getUserById(this.userIdedit).subscribe(respObj => {
           console.log(respObj.data);
           this.id = respObj.data._id;
-
           this.createUserData.patchValue(respObj.data);
           this.imageUrl = `${this.baseUrl}/public/user_avatar/${respObj.data.avatarLink}`;
           this.imageFilename = respObj.data.avatarLink;
@@ -107,43 +106,27 @@ export class AddAppuserComponent implements OnInit {
             value: respObj.data.role
           }
           this.selectedTpe(obj);
-
-                }, err => {
+        }, err => {
           this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
         })
       }
-
     }
-
-    subroleTypeee
+    subroleTypeee;
     selectedTpe(evt){
       console.log(evt)
       if(evt.value =='SCANDIDATE'){
         this.subroleTypeee="SCANDIDATE"
       }else if(evt.value =='ORGANIZATION'){
         this.subroleTypeee="ORGANIZATION";
-
-
       }else{
         this.subroleTypeee="INSTITUTZON"
-
       }
     }
-
-  getuserDataByID(){
-
-  }
-
   onupdate(id: number){
     this.updateUserData = id;
-    // console.log(this.userIDddddd);
-      // console.log(this.createUserData)
     this.userupdateSubscription = this.appUserService.editUser(this.createUserData.value).subscribe(resp => {
-  this.methodtype="update"
-      
-      this.openDialog();
-      console.log("response Object", resp);
-    // tslint:disable-next-line: no-unused-expression
+    this.methodtype="update"
+    this.openDialog();
     }, err => {
       this.setMessage = { message: err.error.message, error: true };
       this.error = this.setMessage.message;
@@ -153,59 +136,19 @@ export class AddAppuserComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.createUserData.value)
-    if (!this.userIdedit && this.createUserData.valid) {
-
-this.userSubscription = this.appUserService.createUserData(this.createUserData.value).subscribe(resp => {
-  console.log(this.createUserData.value);
-  this.methodtype="create"
-  this.openDialog();
-
-    // tslint:disable-next-line: no-unused-expression
-    }, err =>{
-      this.eror = this.setMessage.message;
-      this.setMessage = { message: err.error.message, error: true };
-      throw this.setMessage.message;
+    if(!this.userIdedit){
+      this.userSubscription = this.appUserService.createUserData(this.createUserData.value).subscribe(resp => {
+        console.log(this.createUserData.value);
+        this.methodtype="create";
+        this.openDialog();
+      }, err =>{
+        this.eror = this.setMessage.message;
+        this.setMessage = { message: err.error.message, error: true };
+        throw this.setMessage.message;
     })
-
-    }else{
-      // this.setMessage = { message: "Please Enter All", error: true };
-      // this.eror = this.setMessage.message;
-      // alert(this.eror)
-      this.matSnackBar.open("Please enter all fields", '', {
-        verticalPosition: 'top',
-        duration: 2000,
-        panelClass: 'snack-error'
-      });
-      // throw this.setMessage.message;
     }
   }
-  registrationForm = this.fb.group({
-    file: [null]
-  })  
-
-  methodtype;
-  openDialog() {
-    // this.dialog.open(DialogElementsExampleDialog);
-    const dialogRef = this.dialog.open(DialogElementsExampleDialog, {
-      
-    });
-    dialogRef.componentInstance.metrhodType = this.methodtype;
-    dialogRef.afterClosed().subscribe(result => {
-      if (result == undefined) {
-
-      } else {
-      }
-    })
-  }
-  
-
  
-  @ViewChild('fileInput') el: ElementRef;
-  
-  editFile: boolean = true;
-  removeUpload: boolean = false;
-  toppings = new FormControl();
   uploadFile(file: FileList) {
     this.fileToUpload = file.item(0);
     var render = new FileReader();

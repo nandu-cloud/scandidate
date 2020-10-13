@@ -62,12 +62,6 @@ export class AddOrganizationComponent implements OnInit {
       organizationPan: new FormControl('')
     })
   }
-  close(){
-    setTimeout(() => {
-      this.error='';
-     }, 100);
-    //  this.loginForm.reset();
-  }
 
   registrationForm = this.fb.group({
     file: [null]
@@ -75,8 +69,7 @@ export class AddOrganizationComponent implements OnInit {
   methodtype;
   openDialog() {
     const dialogRef = this.dialog.open(DialogElementsExampleDialog,{
-
-    });
+  });
     dialogRef.componentInstance.methodType = this.methodtype;
   }
  
@@ -101,11 +94,9 @@ export class AddOrganizationComponent implements OnInit {
         this.orgSubscription = this.orgService.deleteFile(this.imageFilename).subscribe();
       }
     )
-    
-    
   }
 
- ngOnInit(){
+ngOnInit(){
     if(this.orgIdedit){
     this.editorganizationSubscription = this.orgService.editOrganization(this.orgIdedit).subscribe(respObj => {
       console.log(respObj.data);
@@ -123,14 +114,12 @@ export class AddOrganizationComponent implements OnInit {
     if(!this.orgIdedit){
     this.orgSubscription = this.orgService.checkAddOrganization(this.organizationForm.value).subscribe(resp =>{
       console.log(this.organizationForm.value);
-
       this.openDialog();
     }, err =>{
       this.setMessage = { message: err.error.message, error: true };
       this.error = this.setMessage.message;
       throw this.setMessage.message;
     })
-    
   }
 }
   update(id:number){
@@ -138,7 +127,6 @@ export class AddOrganizationComponent implements OnInit {
     this.orgupdateSubscription = this.orgService.updateOrganization(this.organizationForm.value).subscribe(resp =>{
       this.methodtype="update";
       this.openDialog();
-
     }, err =>{
       this.setMessage = { message: err.error.message, error: true };
       this.error = this.setMessage.message;
