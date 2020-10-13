@@ -34,17 +34,14 @@
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Phone Number</mat-label>
-                    <input  matInput formControlName="phoneNumber"  type="text"  required  class="br-btm input-w" autoComplete='off' >
+                    <input  matInput   type="text"  formControlName="phoneNumber"  required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{10}$">
                     <mat-error *ngIf ="studentForm.get('phoneNumber').errors?.required">
-                      Required 10 digit phoneNumber 
+                        Required phone number.
                     </mat-error>
-                    <mat-error *ngIf ="studentForm.get('phoneNumber').errors?.minlength">
-                      Enter 10 digit phoneNumber
-                    </mat-error>
-                    <mat-error *ngIf ="studentForm.get('phoneNumber').errors?.maxlength">
-                      Enter 10 digit phoneNumber
-                    </mat-error>
-                  </mat-form-field>
+                    <mat-error *ngIf="!studentForm.get('phoneNumber').errors?.required && studentForm.get('phoneNumber').errors?.pattern">
+                        Please enter valid mumber
+                       </mat-error>
+                </mat-form-field>
                   
                   <mat-form-field>
                     <mat-label>Extra activities</mat-label>
@@ -76,6 +73,10 @@
                   <mat-form-field>
                     <mat-label>Name of course</mat-label>
                     <input  matInput formControlName="nameOfCourse"  type="text"  required  class="br-btm input-w" autoComplete='off' >
+                    <mat-error *ngIf ="studentForm.get('nameOfCourse').errors?.required">
+                      Required course Name 
+                    </mat-error>
+                    
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Student Type</mat-label>
@@ -87,11 +88,17 @@
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Year of Joining</mat-label>
-                    <input  matInput formControlName="yearOfJoining"  type="text"  class="br-btm input-w" autoComplete='off' >
+                    <input  matInput formControlName="yearOfJoining" required type="text"  class="br-btm input-w" autoComplete='off' >
+                    <mat-error *ngIf ="studentForm.get('yearOfJoining').errors?.required">
+                      Required Year of joining  
+                    </mat-error>
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Year of Passing</mat-label>
-                    <input  matInput formControlName="yearOfPassout"  type="text"   class="br-btm input-w" autoComplete='off' >
+                    <input  matInput formControlName="yearOfPassout" required  type="text"   class="br-btm input-w" autoComplete='off' >
+                    <mat-error *ngIf ="studentForm.get('yearOfJoining').errors?.required">
+                      Required Year of passedout 
+                    </mat-error>
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Address</mat-label>

@@ -38,5 +38,15 @@ export class CandidateListComponent implements OnInit {
   ngOnInit(): void {
     this.dataSource.sort = this.sort;
   }
-
+  applyFilter(filterValue: string) {
+    const tableFilters = [];
+    tableFilters.push({
+      id: 'name',
+      value: filterValue
+    });
+    this.dataSource.filter = JSON.stringify(tableFilters);
+      if (this.dataSource.paginator) {
+        this.dataSource.paginator.firstPage();
+      }
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef, ElementRef, ViewChild ,OnInit} from '@angular/core';
-import { FormBuilder, FormArray, Validators } from "@angular/forms";
+import { FormBuilder, FormArray, Validators, FormGroup, FormControl } from "@angular/forms";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router,ActivatedRoute } from '@angular/router';
 
@@ -9,11 +9,19 @@ import { Router,ActivatedRoute } from '@angular/router';
   styleUrls: ['./add-oppuser.component.css']
 })
 export class AddOppuserComponent implements OnInit {
-
+  organizationUserForm : FormGroup;
   constructor(
     public fb: FormBuilder,
     private cd: ChangeDetectorRef,public dialog: MatDialog
-  ) {}
+  ) {
+    this.organizationUserForm = new FormGroup({
+      name : new FormControl('',Validators.required),
+      phoneNumber : new FormControl('',Validators.required),
+      email : new FormControl('',Validators.required),
+      department : new FormControl('',Validators.required),
+      address : new FormControl('')
+    })
+  }
 
   registrationForm = this.fb.group({
     file: [null]

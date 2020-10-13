@@ -38,9 +38,16 @@ export class OrganizationUsersListComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
  
   }
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  applyFilter(filterValue: string) {
+    const tableFilters = [];
+    tableFilters.push({
+      id: 'userName',
+      value: filterValue
+    });
+    this.dataSource.filter = JSON.stringify(tableFilters);
+      if (this.dataSource.paginator) {
+        this.dataSource.paginator.firstPage();
+      }
   }
   
 
