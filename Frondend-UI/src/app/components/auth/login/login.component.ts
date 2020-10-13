@@ -35,12 +35,6 @@ export class LoginComponent implements OnInit {
   otp3 : number ;
   error = "";
   email = new FormControl('', [Validators.required, Validators.email]);
-  // getErrorMessage() {
-  //   if (this.email.hasError('required')) {
-  //     return 'Email Is ';
-  //   }
-  //     return this.email.hasError('email') ? 'Not a valid email' : '';
-  //   }
   close(){
     setTimeout(() => {
       this.error='';
@@ -109,6 +103,7 @@ export class LoginComponent implements OnInit {
       let subRole = resp.data.subRole;
       let userId = resp.data._id;  
       let token = resp.data.token;
+      let iniId = resp.data.institutionId;
       let errMsg = resp.message;
 
       this._sessionStorage.setSession('token',token);
@@ -116,6 +111,7 @@ export class LoginComponent implements OnInit {
       this._sessionStorage.setSession('role',role);
       this._sessionStorage.setSession('subRole',subRole);
       this._sessionStorage.setSession('ID',userId);
+      this._sessionStorage.setSession('InistutionId',iniId);
 
       if(role == 'SCANDIDATE'){
         this.router.navigate(['/dashboard']);

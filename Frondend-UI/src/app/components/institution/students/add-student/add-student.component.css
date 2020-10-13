@@ -1,19 +1,23 @@
-.mat-input-element{
-    border: 1px solid gray !important;
-    background: white !important;
+.mat-radio-button {
+    margin-top: 40px !important;
 }
-.mat-radio-button ~ .mat-radio-button {
-    margin-left: 16px;
-  }
-  
 .avatar-upload .avatar-edit input {
     display: none;
 }
-
-#imagePreview{
-    margin-left: 70px;
-    margin-bottom: -27px;
+.mat-form-field-infix{
+    padding: 0px !important;
 }
-
-  
-  
+input.mat-input-element {
+    margin-top: -1.0625em !important;
+}
+@media (min-width: 1024px){
+.input-w{
+    width: 350px !important;
+}
+}
+.image-text{
+    color: black !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    text-align: left;
+  }
