@@ -35,6 +35,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { OrganizationUsersListComponent } from './components/organization/users/users-list/organization-users-list/organization-users-list.component';
 import { AddOppuserComponent } from './components/organization/users/add-oppuser/add-oppuser/add-oppuser.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password/reset-password.component';
+
+import {InstitutionDashboardComponent} from './components/instituteDashboard/institutionDashboard.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +59,9 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     CandidateListComponent,
     OrganizationUsersListComponent,
     AddOppuserComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    InstitutionDashboardComponent
+    
   ],
   imports: [
     BrowserModule,

@@ -117,7 +117,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/dashboard']);
       } else if(role == 'INSTITUTION'){
        localStorage.setItem('instutuinId', resp.data.institutionId)
-        this.router.navigate(['/insitution-users-list']);
+        this.router.navigate(['/institutionDashboard']);
       } else {
         this.router.navigate(['/orgnization-users-list']);
       }
