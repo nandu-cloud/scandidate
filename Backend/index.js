@@ -59,6 +59,12 @@ app.use(
   require("./components/institution/dashboard/dashboardRoute")
 );
 
+
+app.use(
+  "/api/organisation/admin",
+  require("./components/organization/Admin/addOppsUser/addUserRoute")
+);
+
 app.all("*", (req, res, next) => {
   next(new AppError(`Cannot find ${req.originalUrl} on the server`, 404));
 });
