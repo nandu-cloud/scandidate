@@ -104,6 +104,7 @@ export class LoginComponent implements OnInit {
       let userId = resp.data._id;  
       let token = resp.data.token;
       let iniId = resp.data.institutionId;
+      let orgId = resp.data.organizationId;
       let errMsg = resp.message;
 
       this._sessionStorage.setSession('token',token);
@@ -112,6 +113,7 @@ export class LoginComponent implements OnInit {
       this._sessionStorage.setSession('subRole',subRole);
       this._sessionStorage.setSession('ID',userId);
       this._sessionStorage.setSession('InistutionId',iniId);
+      this._sessionStorage.setSession('organizationId',orgId);
 
       if(role == 'SCANDIDATE'){
         this.router.navigate(['/dashboard']);
@@ -119,6 +121,7 @@ export class LoginComponent implements OnInit {
        localStorage.setItem('instutuinId', resp.data.institutionId)
         this.router.navigate(['/institutionDashboard']);
       } else {
+        localStorage.setItem('organizationId',resp.data.organizationId);
         this.router.navigate(['/orgnization-users-list']);
       }
     }, err => {

@@ -4,16 +4,18 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { from, Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdminOrganizationService } from '../../../../../services/admin-organization.service';
 
 @Component({
   selector: 'app-organization-users-list',
   templateUrl: './organization-users-list.component.html',
-  styleUrls: ['./organization-users-list.component.css']
+  styleUrls: ['./organization-users-list.component.css'],
+  providers: [ AdminOrganizationService ]
 })
 export class OrganizationUsersListComponent implements OnInit {
   public dataSource: any;
   displayedColumns : string[];
-  organizationSubscription : Subscription;
+  organizationAdminSubscription : Subscription;
   editorganizationSubscription: Subscription;
   setMessage : any = {};
   createOrgData: FormGroup;
@@ -22,26 +24,33 @@ export class OrganizationUsersListComponent implements OnInit {
   respObj : any = [];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private formBuilder: FormBuilder,private router:Router) { }
+  constructor(private formBuilder: FormBuilder,private router:Router,public orgUserService: AdminOrganizationService) { }
 
   ngOnInit() {
-    this.displayedColumns = ['userName', 'phone', 'email', 'address', 'department', 'status' ,'action'];
-    this.respObj = [
-      { userName: 'Himaja', phone: 7789876789, email: 'him@gmail.com', address: 'D24J', department: 'IT', status:'Active'},
-      { userName: 'Theja', phone: 7789876789, email: 'him@gmail.com', address: 'D24J', department: 'IT', status:'Active'},
-      { userName: 'Murali', phone: 7789876789, email: 'him@gmail.com', address: 'D24J', department: 'IT', status:'Active'},
-      { userName: 'Jessu', phone: 7789876789, email: 'him@gmail.com', address: 'D24J', department: 'IT', status:'Active'},
-      { userName: 'Tharak', phone: 7789876789, email: 'him@gmail.com', address: 'D24J', department: 'IT', statu:'Active'}
-    
-    ];
-      this.dataSource = new MatTableDataSource(this.respObj);
+    this.displayedColumns = ['userName', 'phoneNumber', 'email', 'role', 'subRole', 'status' ,'action'];
+    this.organizationAdminSubscription = this.orgUserService.getOrganizationUserList().subscribe(respObj => {
+      this.dataSource = new MatTableDataSource(respObj.data);
       this.dataSource.paginator = this.paginator;
- 
+      var dataRecords = respObj.data;
+      this.dataSource.filterPredicate = 
+      (data: typeof dataRecords, filtersJson: string) => {
+        const matchFilter = [];
+        const filters = JSON.parse(filtersJson);
+
+        filters.forEach(filter => {
+          const val = data[filter.id] === null ? '' : data[filter.id];
+          matchFilter.push(val.toLowerCase().includes(filter.value.toLowerCase()));
+        });
+          return matchFilter.every(Boolean);
+      };
+    }, err => {
+      this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
+    })
   }
   applyFilter(filterValue: string) {
     const tableFilters = [];
     tableFilters.push({
-      id: 'userName',
+      id: 'firstName',
       value: filterValue
     });
     this.dataSource.filter = JSON.stringify(tableFilters);
@@ -49,6 +58,11 @@ export class OrganizationUsersListComponent implements OnInit {
         this.dataSource.paginator.firstPage();
       }
   }
-  
+  edit(id:number){
+    this.orgIdedit = id;
+    this.editOrgData = this.formBuilder.group({
+      _id:['', [Validators.required]],
+    })
+  }
 
 }
