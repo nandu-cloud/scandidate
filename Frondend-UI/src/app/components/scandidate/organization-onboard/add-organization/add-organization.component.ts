@@ -123,6 +123,7 @@ ngOnInit(){
   }
 }
   update(id:number){
+    if( this.organizationForm.valid){
     this.orgIdupdate = id;
     this.orgupdateSubscription = this.orgService.updateOrganization(this.organizationForm.value).subscribe(resp =>{
       this.methodtype="update";
@@ -132,7 +133,7 @@ ngOnInit(){
       this.error = this.setMessage.message;
       throw this.setMessage.message;
     })
-  }
+  }}
 }
 @Component({
   selector: 'dialog-elements-example-dialog',

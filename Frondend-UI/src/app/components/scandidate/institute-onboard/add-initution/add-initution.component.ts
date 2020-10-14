@@ -121,6 +121,7 @@ export class AddInitutionComponent implements OnInit {
   }
 }
   update(id:number){
+    if( this.instituteForm.valid){
     this.instituteIdupdate = id;
     this.instituteUpdateSubscription = this.instituteService.updateInstitute(this.instituteForm.value).subscribe(resp =>{
       this.methodtype="update";
@@ -132,6 +133,7 @@ export class AddInitutionComponent implements OnInit {
       throw this.setMessage.message;
     })
   }
+}
 }
 @Component({
   selector: 'dialog-elements-example-dialog',

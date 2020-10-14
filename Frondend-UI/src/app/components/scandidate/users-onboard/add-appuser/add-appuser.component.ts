@@ -123,6 +123,7 @@ export class AddAppuserComponent implements OnInit {
       }
     }
   onupdate(id: number){
+    if( this.createUserData.valid){
     this.updateUserData = id;
     this.userupdateSubscription = this.appUserService.editUser(this.createUserData.value).subscribe(resp => {
     this.methodtype="update"
@@ -132,7 +133,7 @@ export class AddAppuserComponent implements OnInit {
       this.error = this.setMessage.message;
       throw this.setMessage.message;
     });
-
+  }
   }
 
   onSubmit(){
