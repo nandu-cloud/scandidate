@@ -28,32 +28,28 @@ app.use(
   "/api/scandidate/user",
   require("./components/scandidate/user/userRoute")
 );
-
 app.use(
   "/api/scandidate/organisation",
   require("./components/scandidate/organization-onboard/orgOnboardRoute")
 );
-
 app.use(
   "/api/scandidate/institute",
   require("./components/scandidate/institute-onboard/instituteOnboardRoute")
 );
-
 app.use(
   "/api/scandidate/dashboard",
   require("./components/scandidate/dashboard/dashboardRoute")
 );
 
+
 app.use(
   "/api/institute/addUser",
   require("./components/institution/Admin/AddOppsUser/oppsUserRoute")
 );
-
 app.use(
   "/api/institute/operational/student",
   require("./components/institution/OppsUser/AddStudent/studentRoute")
 );
-
 app.use(
   "/api/institute/dashboard",
   require("./components/institution/dashboard/dashboardRoute")
@@ -63,6 +59,10 @@ app.use(
 app.use(
   "/api/organisation/admin",
   require("./components/organization/Admin/addOppsUser/addUserRoute")
+);
+app.use(
+  "/api/organisation/operational",
+  require("./components/organization/OppsUser/AddEmployee/employeeRoute")
 );
 
 app.all("*", (req, res, next) => {
