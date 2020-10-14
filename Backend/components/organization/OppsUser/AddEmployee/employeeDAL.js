@@ -48,9 +48,46 @@ async function addEmployee(data) {
     }
 }
 
+//Get All
+async function getAllUsers(data) {
+    try {
+      let result = await employeeModel.find({}).sort({ _id: -1 }).lean();
+      return result;
+    } catch (err) {
+      throw err;
+    }
+  }
 
+  // Find By Id
+async function getEmplyeeById(data) {
+    try {
+      let result = await employeeModel.findById({ _id: data._id }).lean();
+      return result;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  // Update Employee Details
+async function updateEmployee(data) {
+    try {
+      let result = await employeeModel.findOneAndUpdate(
+        { _id: data._id },
+        data,
+        {
+          new: true,
+        }
+      );
+      return result;
+    } catch (err) {
+      throw err;
+    }
+  }
 
 // export functions
 module.exports = {
     addEmployee: addEmployee,
+    getAllUsers:getAllUsers,
+    getEmplyeeById:getEmplyeeById,
+    updateEmployee:updateEmployee
 };
