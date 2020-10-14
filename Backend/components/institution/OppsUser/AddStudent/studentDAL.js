@@ -22,7 +22,7 @@ async function addStudent(data) {
   studentData.phoneNumber = data.phoneNumber;
   studentData.address = data.address;
   studentData.addedById = data.addedById;
-  studentData.instituteId=data.instituteId;
+  studentData.instituteId = data.instituteId;
   studentData.createdAt = new Date();
   studentData.updatedAt = new Date();
 
@@ -35,33 +35,38 @@ async function addStudent(data) {
 }
 
 //Add Student From CSV
-async function addStudentCsv(path,id,instituteId1) {
+async function addStudentCsv(path, id, instituteId1) {
   var yearOfJoining;
   var yearOfPassout;
   var phoneNumber;
-  csv()
-    .fromFile(path)
-    .then((jsonObj) => {
-      for (var x = 0; x < jsonObj.length; x++) {
-        yearOfJoining = parseInt(jsonObj[x].yearOfJoining)
-        jsonObj[x].yearOfJoining = yearOfJoining;
+  try {
+    csv()
+      .fromFile(path)
+      .then((jsonObj) => {
+        for (var x = 0; x < jsonObj.length; x++) {
+          console.log(jsonObj[x].yearOfJoining)
+          yearOfJoining = parseInt(jsonObj[x].yearOfJoining)
+          jsonObj[x].yearOfJoining = yearOfJoining;
 
-        yearOfPassout = parseInt(jsonObj[x].yearOfPassout);
-        jsonObj[x].yearOfPassout = yearOfPassout;
+          yearOfPassout = parseInt(jsonObj[x].yearOfPassout);
+          jsonObj[x].yearOfPassout = yearOfPassout;
 
-        phoneNumber = parseInt(jsonObj[x].phoneNumber);
-        jsonObj[x].phoneNumber = phoneNumber;
+          phoneNumber = parseInt(jsonObj[x].phoneNumber);
+          jsonObj[x].phoneNumber = phoneNumber;
 
-        jsonObj[x].addedById=id;
-        jsonObj[x].instituteId=instituteId1;
-      };
-      try {
-        let result = studentModel.insertMany(jsonObj);
-        return result;
-      } catch (err) {
-        throw err;
-      }
-    });
+          jsonObj[x].addedById = id;
+          jsonObj[x].instituteId = instituteId1;
+        };
+        try {
+          let result = studentModel.insertMany(jsonObj);
+          return result;
+        } catch (err) {
+          throw err;
+        }
+      });
+  } catch (err) {
+    throw err;
+  }
 }
 
 async function getAllUsers(data) {
