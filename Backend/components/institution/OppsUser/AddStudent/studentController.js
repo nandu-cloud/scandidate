@@ -21,10 +21,9 @@ module.exports.addStudentMethod = async function (req, res, next) {
   }
 };
 
-//Upload CSV
+// Upload CSV
 module.exports.uploadCsv = async function (req, res, next) {
-  let path=req.file.path;
-  console.log("TTT ",req.body)
+  let path = req.file.path;
   let id=req.body._id;
   let instituteId=req.body.instituteId;
   try {
