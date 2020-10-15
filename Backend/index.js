@@ -64,6 +64,10 @@ app.use(
   "/api/organisation/operational",
   require("./components/organization/OppsUser/AddEmployee/employeeRoute")
 );
+app.use(
+  "/api/organisation/dashboard",
+  require("./components/organization/Dashboard/dashboardRoute")
+);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Cannot find ${req.originalUrl} on the server`, 404));
