@@ -36,7 +36,9 @@ import { OrganizationUsersListComponent } from './components/organization/users/
 import { AddOppuserComponent } from './components/organization/users/add-oppuser/add-oppuser/add-oppuser.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password/reset-password.component';
 
-import {InstitutionDashboardComponent} from './components/instituteDashboard/institutionDashboard.component'
+import {InstitutionDashboardComponent} from './components/instituteDashboard/institutionDashboard.component';
+import {OrganizationDashboardComponent} from './components/organizationDashboard/organizationDashboard.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +62,8 @@ import {InstitutionDashboardComponent} from './components/instituteDashboard/ins
     OrganizationUsersListComponent,
     AddOppuserComponent,
     ResetPasswordComponent,
-    InstitutionDashboardComponent
+    InstitutionDashboardComponent,
+    OrganizationDashboardComponent
     
   ],
   imports: [

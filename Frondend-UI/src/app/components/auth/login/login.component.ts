@@ -122,7 +122,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/institutionDashboard']);
       } else {
         localStorage.setItem('organizationId',resp.data.organizationId);
-        this.router.navigate(['/orgnization-users-list']);
+        this.router.navigate(['/organizationDashboard']);
       }
     }, err => {
     this.setMessage = { message: err.error.message, error: true };

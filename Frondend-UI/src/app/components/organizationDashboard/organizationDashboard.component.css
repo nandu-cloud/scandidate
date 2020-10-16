@@ -1,0 +1,10 @@
+.ins-icon{
+    height: 60px !important;
+    width: 70px !important;
+    background-color: #6CB43B;
+    color: white;
+    box-shadow: 0 0 15px rgba(1, 1, 1, 0.2);
+}
+.border-btm{
+    border-bottom: 1px solid #80808059;
+}
