@@ -23,6 +23,7 @@ import { from } from 'rxjs';
 import { ResetPasswordComponent } from './components/reset-password/reset-password/reset-password.component';
 import { InstitutionDashboardComponent } from './components/instituteDashboard/institutionDashboard.component';
 import { OrganizationDashboardComponent } from './components/organizationDashboard/organizationDashboard.component';
+import { ScandidateSettingsComponent } from './components/scandidate/scandidate-settings/scandidate-settings.component';
 const routes: Routes = [  {path: 'login' , component: LoginComponent},
 { path: '',  redirectTo: '/login', pathMatch: 'full' },
 {path: 'add-organization' , component:AddOrganizationComponent  },
@@ -52,7 +53,8 @@ const routes: Routes = [  {path: 'login' , component: LoginComponent},
 {path: 'institutionDashboard',component:InstitutionDashboardComponent},
 {path: 'organizationDashboard',component:OrganizationDashboardComponent},
 {path: 'add-organizationuser/:id', component: AddOppuserComponent},
-{path: 'add-candidate/:id',component: AddCandidateComponent}
+{path: 'add-candidate/:id',component: AddCandidateComponent},
+{path: 'scandidate-settings', component: ScandidateSettingsComponent}
 ];
 
 @NgModule({

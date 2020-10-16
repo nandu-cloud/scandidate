@@ -162,7 +162,7 @@ export class AddAppuserComponent implements OnInit {
       data => {
         console.log(data.data.avatarLink);
         this.createUserData.patchValue({avatarLink: data.data.avatarLink});
-      
+
         this.imageUrl = `${this.baseUrl}/public/user_avatar/${data.data.avatarLink}`;
         this.userSubscription = this.appUserService.deleteFile(this.imageFilename).subscribe();
       }

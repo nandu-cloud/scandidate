@@ -19,6 +19,7 @@ export class AddInsitutionalUserComponent implements OnInit {
   edituserSubscription: Subscription;
   userupdateSubscription: Subscription;
   id: any;
+  userId: any;
   updateUserData: number;
   constructor(
     public fb: FormBuilder,
@@ -67,7 +68,8 @@ export class AddInsitutionalUserComponent implements OnInit {
   }
   onSubmit(){
     const id =localStorage.getItem('instutuinId')
-    this.userSubscription = this.instituteUser.createUser(this.createUser.value,id).subscribe(resp => {
+    const userId = localStorage.getItem('_id')
+    this.userSubscription = this.instituteUser.createUser(this.createUser.value, id, userId).subscribe(resp => {
       console.log(this.createUser.value);
       this.methodtype = "create"
       this.openDialog();
@@ -85,10 +87,10 @@ export class AddInsitutionalUserComponent implements OnInit {
     })
   }
 
-  onupdate(id: number){
+  onupdate(id: number, userId: number){
     this.updateUserData = id;
     // const instid =localStorage.getItem('instutuinId');
-    this.userupdateSubscription = this.instituteUser.updateUser(this.createUser.value, id).subscribe(resp => {
+    this.userupdateSubscription = this.instituteUser.updateUser(this.createUser.value, id, userId).subscribe(resp => {
       this.methodtype = "update";
       this.openDialog();
       console.log("response Object", resp);
