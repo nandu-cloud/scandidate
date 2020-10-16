@@ -39,6 +39,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import {InstitutionDashboardComponent} from './components/instituteDashboard/institutionDashboard.component';
 import {OrganizationDashboardComponent} from './components/organizationDashboard/organizationDashboard.component';
 
+import { ScandidateSettingsComponent } from './components/scandidate/scandidate-settings/scandidate-settings.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,8 +64,9 @@ import {OrganizationDashboardComponent} from './components/organizationDashboard
     AddOppuserComponent,
     ResetPasswordComponent,
     InstitutionDashboardComponent,
-    OrganizationDashboardComponent
+    OrganizationDashboardComponent,
     
+    ScandidateSettingsComponent
   ],
   imports: [
     BrowserModule,
