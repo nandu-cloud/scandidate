@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit,Input } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router,ActivatedRoute } from '@angular/router';
 import { StudentService } from '../../../../services/student.service';
@@ -47,11 +47,11 @@ export class AddStudentComponent implements OnInit {
       roll : new FormControl(),
       email : new FormControl('', [Validators.email,Validators.required]),
       address : new FormControl(''),
-      noOfEductionalDocuments : new FormControl(''),
+      noOfEductionalDocuments : new FormControl('',[Validators.maxLength(1)]),
       nameOfCourse: new FormControl('', [Validators.required]),
-      yearOfJoining: new FormControl('',[Validators.required]),
+      yearOfJoining: new FormControl('',[Validators.required,this.validateJoining()]),
       phoneNumber : new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
-      yearOfPassout: new FormControl('',[Validators.required]),
+      yearOfPassout: new FormControl('',[Validators.required,this.validatePassout()]),
       studentType : new FormControl(''),
       extraActivity : new FormControl(''),
       extraActivityDocumentName : new FormControl(),
@@ -61,7 +61,27 @@ export class AddStudentComponent implements OnInit {
       extraActivityDocumentLink : new FormControl()
     })
    }
-  
+   validatePassout(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      if (this.studentForm !== undefined) {
+        //const arrivalDate = control.value;
+        const exitDate = this.studentForm.controls['yearOfPassout'].value;
+        const joiningDate = this.studentForm.controls['yearOfJoining'].value
+        if (exitDate <= joiningDate) return { requiredToDate: true };
+      }
+    };
+  }
+
+  validateJoining(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      if (this.studentForm !== undefined) {
+        const exitDate = this.studentForm.controls['yearOfPassout'].value;
+        const fexitDate = new Date(exitDate);
+        const joiningDate = this.studentForm.controls['yearOfJoining'].value;
+        if (fexitDate <= joiningDate) return { requiredFromDate: true };
+      }
+    };
+  }
    activities(event) {
     if(event.value == "1"){
       this.extraActivities = true;
