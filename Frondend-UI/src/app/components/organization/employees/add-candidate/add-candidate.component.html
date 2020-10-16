@@ -81,6 +81,7 @@
                   <mat-error *ngIf ="createCandidate.get('dateOfJoining').errors?.required">
                     Please enter  dateOfJoining
                   </mat-error>
+                  <mat-error *ngIf="createCandidate.get('dateOfJoining').hasError('requiredFromDate')">Joining date should be less than exit date</mat-error>   
                 </mat-form-field>
                 <mat-form-field>
                   <mat-label>Releving Date</mat-label>
@@ -90,23 +91,27 @@
                   <mat-error *ngIf ="createCandidate.get('exitDate').errors?.required">
                     please enter exit date
                   </mat-error>
+                  <mat-error *ngIf="createCandidate.get('exitDate').hasError('requiredToDate')"> Exit date should be grater than joining date</mat-error>
                 </mat-form-field>
                 <mat-form-field>
                   <mat-label>Adhar Number</mat-label>
-                  <input  matInput formControlName="adharNumber"   type="text"    class="br-btm input-w" autoComplete='off'>
+                  <input  matInput formControlName="adharNumber"   type="text" class="br-btm input-w" autoComplete='off'>
               </mat-form-field>
               <mat-form-field>
                   <mat-label>Pan Number</mat-label>
-                  <input  matInput formControlName="panNumber"   type="number"     class="br-btm input-w" autoComplete='off'>
+                  <input  matInput formControlName="panNumber"   type="text"  class="br-btm input-w" autoComplete='off'>
               </mat-form-field>
               <mat-form-field>
                   <mat-label>Professional Experience</mat-label>
-                  <input  matInput formControlName="professionalExperience" type="text"  class="br-btm input-w" autoComplete='off'  required>
+                  <input  matInput formControlName="professionalExperience" type="text"  class="br-btm input-w" autoComplete='off'  required pattern="^[0-9]$">
                   <mat-error *ngIf ="createCandidate.get('professionalExperience').errors?.required">
-                    Required phone number.
+                    please enter number.
                 </mat-error>
                 <mat-error *ngIf ="createCandidate.get('professionalExperience').errors?.maxlength">
-                    Please enter valid number
+                  Please enter Number 
+                </mat-error>
+                <mat-error *ngIf= "createCandidate.get('professionalExperience').errors?.pattern">
+                please enter valid number
                 </mat-error>
               </mat-form-field>
             </div>

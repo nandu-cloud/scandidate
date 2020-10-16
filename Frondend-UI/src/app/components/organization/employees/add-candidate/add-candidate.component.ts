@@ -1,6 +1,6 @@
 import { Input } from '@angular/core';
 import { Component, ChangeDetectorRef, ElementRef, ViewChild ,OnInit} from '@angular/core';
-import { FormBuilder, FormArray, Validators, FormGroup, FormControl } from "@angular/forms";
+import { FormBuilder, FormArray, Validators, FormGroup, FormControl, ValidatorFn, AbstractControl } from "@angular/forms";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router,ActivatedRoute } from '@angular/router';
 import { EmployeeService } from  '../../../../services/employee.service';
@@ -41,8 +41,8 @@ export class AddCandidateComponent implements OnInit {
       role: new FormControl(''),
       department: new FormControl(''),
       address : new FormControl(''),
-      dateOfJoining : new FormControl('',[Validators.required]),
-      exitDate : new FormControl('',[Validators.required]),
+      dateOfJoining : new FormControl('',[Validators.required,this.validateJoiningDate()]),
+      exitDate : new FormControl('',[Validators.required,this.validateExitDate()]),
       punctuality: new FormControl('', [Validators.required]),
       discipline: new FormControl('', [Validators.required]),
       dateOfBirth : new FormControl(''),
@@ -64,6 +64,27 @@ export class AddCandidateComponent implements OnInit {
       quality: new FormControl('', [Validators.required]),
       consistency: new FormControl('', [Validators.required])
     });
+  }
+  validateExitDate(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      if (this.createCandidate !== undefined) {
+        //const arrivalDate = control.value;
+        const exitDate = this.createCandidate.controls['exitDate'].value;
+        const joiningDate = this.createCandidate.controls['dateOfJoining'].value
+        if (exitDate <= joiningDate) return { requiredToDate: true };
+      }
+    };
+  }
+
+  validateJoiningDate(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      if (this.createCandidate !== undefined) {
+        const exitDate = this.createCandidate.controls['exitDate'].value;
+        const fexitDate = new Date(exitDate);
+        const joiningDate = this.createCandidate.controls['dateOfJoining'].value;
+        if (fexitDate <= joiningDate) return { requiredFromDate: true };
+      }
+    };
   }
   close(){
     setTimeout(() => {
