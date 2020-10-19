@@ -119,10 +119,12 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/dashboard']);
       } else if(role == 'INSTITUTION'){
        localStorage.setItem('instutuinId', resp.data.institutionId)
-        this.router.navigate(['/institutionDashboard']);
+       this.router.navigate(['/institutionDashboard']);
+       localStorage.setItem('_id', resp.data._id)
+       this.router.navigate(['/insitution-users-list']);
       } else {
         localStorage.setItem('organizationId',resp.data.organizationId);
-        this.router.navigate(['/orgnization-users-list']);
+        this.router.navigate(['/organizationDashboard']);
       }
     }, err => {
     this.setMessage = { message: err.error.message, error: true };

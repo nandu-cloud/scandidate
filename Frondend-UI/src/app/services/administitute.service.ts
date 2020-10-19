@@ -12,8 +12,8 @@ export class AdministituteService {
   constructor(private http: HttpClient) { }
 
   // add user
-  createUser(createUser,id): Observable<any> {
-      var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'phoneNumber': number,'institutionId':string, 'status': boolean} =
+  createUser(createUser,id, userId): Observable<any> {
+      var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'phoneNumber': number,'institutionId':string, 'onboardedById':string, 'status': boolean} =
        { 'firstName': createUser.firstName,
           'lastName': createUser.lastName,
           'role': 'INSTITUTION',
@@ -21,7 +21,8 @@ export class AdministituteService {
           'email': createUser.email,
           'phoneNumber': createUser.phoneNumber,
           'institutionId': id,
-          'status': createUser.status
+          'onboardedById': userId,
+          'status': true
        };
 
       return this.http.post(this.baseUrl + '/api/institute/addUser', create,
@@ -44,8 +45,8 @@ export class AdministituteService {
   }
 
   //Update
-  updateUser(updateUser, id): Observable<any>{
-     var create: {'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'phoneNumber': number,'institutionId':string, 'status': boolean}=
+  updateUser(updateUser, id, userId): Observable<any>{
+     var create: {'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'phoneNumber': number,'institutionId':string, '_id':string, 'status': boolean}=
      {
       'firstName': updateUser.firstName,
       'lastName': updateUser.lastName,
@@ -54,6 +55,7 @@ export class AdministituteService {
       'email': updateUser.email,
       'phoneNumber': updateUser.phoneNumber,
       'institutionId': localStorage.getItem('instutuinId'),
+      '_id': localStorage.getItem('_id'),
       'status': updateUser.status
      };
      return this.http.put(this.baseUrl + '/api/institute/addUser/oppsUser/'+ id, create

@@ -40,7 +40,7 @@
                     </mat-error>
                     <mat-error *ngIf="!studentForm.get('phoneNumber').errors?.required && studentForm.get('phoneNumber').errors?.pattern">
                         Please enter valid mumber
-                       </mat-error>
+                    </mat-error>
                 </mat-form-field>
                   
                   <mat-form-field>
@@ -88,16 +88,24 @@
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Year of Joining</mat-label>
-                    <input  matInput formControlName="yearOfJoining" required type="text"  class="br-btm input-w" autoComplete='off' >
+                    <input  matInput formControlName="yearOfJoining" required type="text"  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{4}$">
                     <mat-error *ngIf ="studentForm.get('yearOfJoining').errors?.required">
                       Required Year of joining  
+                    </mat-error>
+                    <mat-error *ngIf="studentForm.get('yearOfJoining').hasError('requiredFromDate')">Joining year should be less than Passout year</mat-error>   
+                    <mat-error *ngIf="!studentForm.get('yearOfJoining').errors?.required && studentForm.get('yearOfJoining').errors?.pattern">
+                      Please enter valid year
                     </mat-error>
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Year of Passing</mat-label>
-                    <input  matInput formControlName="yearOfPassout" required  type="text"   class="br-btm input-w" autoComplete='off' >
-                    <mat-error *ngIf ="studentForm.get('yearOfJoining').errors?.required">
+                    <input  matInput formControlName="yearOfPassout" required  type="text"   class="br-btm input-w" autoComplete='off' pattern="^[0-9]{4}$">
+                    <mat-error *ngIf ="studentForm.get('yearOfPassout').errors?.required">
                       Required Year of passedout 
+                    </mat-error>
+                    <mat-error *ngIf="studentForm.get('yearOfPassout').hasError('requiredToDate')"> Passout Year should be grater than joining Year</mat-error>
+                    <mat-error *ngIf="!studentForm.get('yearOfPassout').errors?.required && studentForm.get('yearOfPassout').errors?.pattern">
+                      Please enter valid year
                     </mat-error>
                   </mat-form-field>
                   <mat-form-field>
@@ -106,7 +114,10 @@
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>No of Education Documents</mat-label>
-                    <input  matInput formControlName="noOfEductionalDocuments"  type="text"  class="br-btm input-w" autoComplete='off' >
+                    <input  matInput formControlName="noOfEductionalDocuments"  type="text"  class="br-btm input-w" autoComplete='off' pattern="^[0-9]$">
+                    <mat-error *ngIf="studentForm.get('noOfEductionalDocuments').errors?.pattern">
+                      Please enter valid number
+                    </mat-error>
                   </mat-form-field>
                   <div class="group-gap">
                     <div class="avatar-upload">

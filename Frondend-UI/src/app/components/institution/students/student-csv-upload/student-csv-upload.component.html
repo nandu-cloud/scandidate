@@ -29,6 +29,7 @@
             </div>
             <h1 class="hd-add">2)Upload CSV</h1>
             <div class="container mt-5 mb-5">
+                <form [formGroup]= "csvupload" action="" ngSubmit="onSubmit()">
                 <div class="row">
                     <div class="group-gap lg:p-16 lg:mr-16">
                         <div class="avatar-upload">
@@ -44,7 +45,7 @@
                     </div>
                     <div class=" mt-5">
                         <h2>Upload Status</h2>
-                    <form>
+                    
                         <table class="table lg:w-3/5 ">
                             <thead>
                                 <tr>
@@ -82,9 +83,10 @@
                               Upload
                             </button>
                         </div>
-                        </form>
+                       
                     </div>
                 </div>
+                </form>
             </div>
     </div>
 </app-navbar>

@@ -25,6 +25,12 @@ export class DashboardService {
     return this.http.get(this.baseUrl + '/api/institute/dashboard/count/id');
   }
 
+  public getorganizationCount() : Observable<any> {
+    var id = window.sessionStorage.getItem('ID');
+    console.log(id);
+    return this.http.get(this.baseUrl + '/api/organisation/dashboard/count/id');
+  }
+
   organizationGraph(updateOrgData) : Observable<any>{
   
     return this.http.put(this.baseUrl + '/api/scandidate/dashboard/orgonboardtrend', updateOrgData,
