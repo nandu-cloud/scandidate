@@ -62,7 +62,12 @@ export class AddOrganizationComponent implements OnInit {
       organizationPan: new FormControl('')
     })
   }
-
+  close(){
+    setTimeout(() => {
+      this.error='';
+     }, 100);
+    //  this.loginForm.reset();
+  }
   registrationForm = this.fb.group({
     file: [null]
   })

@@ -106,6 +106,7 @@ export class LoginComponent implements OnInit {
       let iniId = resp.data.institutionId;
       let orgId = resp.data.organizationId;
       let errMsg = resp.message;
+      let logo = resp.data.avatarLink;
 
       this._sessionStorage.setSession('token',token);
       this._sessionStorage.setSession('LoginName',name);
@@ -114,6 +115,7 @@ export class LoginComponent implements OnInit {
       this._sessionStorage.setSession('ID',userId);
       this._sessionStorage.setSession('InistutionId',iniId);
       this._sessionStorage.setSession('organizationId',orgId);
+      this._sessionStorage.setSession('logo',logo);
 
       if(role == 'SCANDIDATE'){
         this.router.navigate(['/dashboard']);
