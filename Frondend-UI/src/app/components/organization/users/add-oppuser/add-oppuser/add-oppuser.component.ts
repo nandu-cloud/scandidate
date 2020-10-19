@@ -1,7 +1,7 @@
 import { Input } from '@angular/core';
 import { Component, ChangeDetectorRef, ElementRef, ViewChild ,OnInit} from '@angular/core';
 import { FormBuilder, FormArray, Validators, FormGroup, FormControl } from "@angular/forms";
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router,ActivatedRoute } from '@angular/router';
 import { AdminOrganizationService } from '../../../../../services/admin-organization.service';
 import { StorageService } from '../../../../../services/storage.service';
@@ -28,21 +28,22 @@ export class AddOppuserComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     private cd: ChangeDetectorRef,public dialog: MatDialog,public route:ActivatedRoute,public orgAdminService : AdminOrganizationService
-  ) {
+  )  {
     this.route.params.subscribe(params => {
       this.userIdedit = params.id;
   });
     this.organizationUserForm = new FormGroup({
-      firstName : new FormControl('',Validators.required),
-      lastName : new FormControl('',Validators.required),
-      phoneNumber : new FormControl('',Validators.required),
-      email : new FormControl('',Validators.required),
-      role: new FormControl('INSTITUTION',Validators.required),
-      subRole: new FormControl('OPERATIONAL_USER',Validators.required),
-      dateOfBirth : new FormControl('',Validators.required),
+      _id: new FormControl(), 
+      firstName : new FormControl('',[Validators.required]),
+      lastName : new FormControl('',[Validators.required]),
+      phoneNumber : new FormControl('',[Validators.required]),
+      email : new FormControl('',[Validators.required]),
+      role: new FormControl('INSTITUTION',[Validators.required]),
+      subRole: new FormControl('OPERATIONAL_USER',[Validators.required]),
+      dateOfBirth : new FormControl('',[Validators.required]),
       address : new FormControl(''),
-      status : new FormControl()
-    })
+      status : new FormControl('')
+    });
   }
   close(){
     setTimeout(() => {
@@ -60,7 +61,7 @@ export class AddOppuserComponent implements OnInit {
     dialogRef.componentInstance.methodType = this.methodtype;
   }
 
-  ngOnInit(){
+  ngOnInit() : void{
     if(this.userIdedit){
       this.editorganizationuserSubscription = this.orgAdminService.editOrganizationUser(this.userIdedit).subscribe(respObj => {
         console.log(respObj.data);

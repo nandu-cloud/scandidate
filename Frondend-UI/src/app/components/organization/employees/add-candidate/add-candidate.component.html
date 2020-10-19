@@ -13,17 +13,17 @@
             <div class="w-full md:w-1/2 sm:w-full">
                 <mat-form-field>
                     <mat-label>First Name</mat-label>
-                    <input  matInput formControlName="firstName"  type="text"   class="br-btm input-w" autoComplete='off' required>
+                    <input  matInput formControlName="firstName"  type="text" class="br-btm input-w" autoComplete='off' required>
                     <mat-error *ngIf ="createCandidate.get('firstName').errors?.required">
                         Required Employee Name.
                     </mat-error>
                     <mat-error *ngIf ="createCandidate.get('firstName').errors?.minlength">
                       Employee name must be at least 5 characters long.
                     </mat-error>
-                  </mat-form-field>
+                </mat-form-field>
                 <mat-form-field>
                     <mat-label>Last Name</mat-label>
-                    <input  matInput formControlName="lastName"  type="text"      class="br-btm input-w" autoComplete='off' required>
+                    <input  matInput formControlName="lastName"  type="text" class="br-btm input-w" autoComplete='off' required>
                     <mat-error *ngIf ="createCandidate.get('lastName').errors?.required">
                       Required Employee Last Name.
                   </mat-error>
@@ -33,11 +33,11 @@
                   </mat-form-field>
                 <mat-form-field>
                   <mat-label>Employee ID</mat-label>
-                  <input  matInput formControlName="employeeId"  type="text"      class="br-btm input-w" autoComplete='off'>
+                  <input  matInput formControlName="employeeId"  type="text"  class="br-btm input-w" autoComplete='off'>
               </mat-form-field>
                 <mat-form-field>
                   <mat-label>Phone Number</mat-label>
-                  <input  matInput formControlName="phoneNumber"  type="text"      class="br-btm input-w" autoComplete='off' required pattern="^[0-9]{10}$">
+                  <input  matInput formControlName="phoneNumber"  type="text"  class="br-btm input-w" autoComplete='off' required pattern="^[0-9]{10}$">
                   <mat-error *ngIf ="createCandidate.get('phoneNumber').errors?.required">
                     Required phone number.
                 </mat-error>

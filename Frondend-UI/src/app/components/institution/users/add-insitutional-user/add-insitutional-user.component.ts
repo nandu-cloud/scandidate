@@ -1,13 +1,15 @@
 import { Component, ChangeDetectorRef, ElementRef, ViewChild, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormArray, Validators, FormGroup, FormControl } from "@angular/forms";
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AdministituteService } from '../../../../services/administitute.service';
+import { StorageService } from '../../../../services/storage.service'
 @Component({
   selector: 'app-add-insitutional-user',
   templateUrl: './add-insitutional-user.component.html',
-  styleUrls: ['./add-insitutional-user.component.css']
+  styleUrls: ['./add-insitutional-user.component.css'],
+  providers: [ AdministituteService ,StorageService ]
 })
 export class AddInsitutionalUserComponent implements OnInit {
   createUser: FormGroup;
@@ -31,14 +33,14 @@ export class AddInsitutionalUserComponent implements OnInit {
       this.userIdedit = params.id;
   });
     this.createUser = new FormGroup({
-      firstName: new FormControl(),
-      lastName: new FormControl(),
+      firstName: new FormControl('',[Validators.required]),
+      lastName: new FormControl('',[Validators.required]),
       role: new FormControl('INSTITUTION'),
       subRole: new FormControl('OPERATIONAL_USER'),
-      email: new FormControl(),
-      dateOfBirth: new FormControl(),
-      phoneNumber: new FormControl(),
-      status: new FormControl()
+      email: new FormControl('',[Validators.required]),
+      dateOfBirth: new FormControl(''),
+      phoneNumber: new FormControl('',[Validators.required]),
+      status: new FormControl('')
     })
   }
 
@@ -54,17 +56,10 @@ export class AddInsitutionalUserComponent implements OnInit {
   }
   methodtype;
   openDialog() {
-    // this.dialog.open(DialogElementsExampleDialog);
     const dialogRef = this.dialog.open(DialogElementsExampleDialog, {
       
     });
     dialogRef.componentInstance.metrhodType = this.methodtype;
-    dialogRef.afterClosed().subscribe(result => {
-      if (result == undefined) {
-
-      } else {
-      }
-    })
   }
   onSubmit(){
     const id =localStorage.getItem('instutuinId')

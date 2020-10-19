@@ -11,17 +11,17 @@
                     Required first Name.
                    </mat-error>
                    <mat-error *ngIf ="createUser.get('firstName').errors?.minlength">
-                     company name must be at least 3 characters long.
+                     Name name must be at least 3 characters long.
                     </mat-error>
               </mat-form-field>
               <mat-form-field>
                 <mat-label>Last Name</mat-label>
                 <input  matInput formControlName="lastName"  type="text"  required  class="br-btm input-w" autoComplete='off' >
                 <mat-error *ngIf ="createUser.get('lastName').errors?.required">
-                    Required company Name.
+                    Required Last Name.
                    </mat-error>
                    <mat-error *ngIf ="createUser.get('lastName').errors?.minlength">
-                     company name must be at least 3 characters long.
+                     Last name must be at least 3 characters long.
                     </mat-error>
               </mat-form-field>
               <mat-form-field>
@@ -44,16 +44,13 @@
               </mat-form-field>
               <mat-form-field>
                 <mat-label>Phone Number</mat-label>
-                <input  matInput formControlName="phoneNumber"  type="text"  required  class="br-btm input-w" autoComplete='off' >
+                <input  matInput formControlName="phoneNumber"  type="text"  required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{10}$" >
                 <mat-error *ngIf ="createUser.get('phoneNumber').errors?.required">
-                  Required 10 digit phoneNumber 
-                </mat-error>
-                <mat-error *ngIf ="createUser.get('phoneNumber').errors?.minlength">
-                  Enter 10 digit phoneNumber
-                </mat-error>
-                <mat-error *ngIf ="createUser.get('phoneNumber').errors?.maxlength">
-                  Enter 10 digit phoneNumber
-                </mat-error>
+                  Required phone number.
+              </mat-error>
+              <mat-error *ngIf="!createUser.get('phoneNumber').errors?.required && createUser.get('phoneNumber').errors?.pattern">
+                  Please enter valid mumber
+              </mat-error>
               </mat-form-field>
               <mat-form-field *ngIf ="id">
                 <mat-label>Status</mat-label>
@@ -64,17 +61,17 @@
             </mat-form-field>
             </div>
           </div>
-        </form>
           <div class="flex justify-end lg:pb-6 lg:pr-48">
             <a routerLink="/insitution-users-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button">
               Cancel
             </button></a>
-            <button class="lg-button focus:outline-none focus:shadow-outline" type="button" (click)="onSubmit()" *ngIf= "!id">
+            <button class="lg-button focus:outline-none focus:shadow-outline" type="submit" (click)="onSubmit()" *ngIf= "!id">
               Submit
             </button>
-            <button class="lg-button focus:outline-none focus:shadow-outline" type="button" (click)="onupdate(id)" *ngIf = "id">
+            <button class="lg-button focus:outline-none focus:shadow-outline"  (click)="onupdate(id)" *ngIf = "id">
               Update
             </button>
         </div>
+      </form>
 </div>
 </app-navbar>

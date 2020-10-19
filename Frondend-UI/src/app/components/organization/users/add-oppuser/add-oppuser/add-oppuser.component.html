@@ -7,13 +7,13 @@
           <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
         </span>
       </div> 
-            <h1 class="hd-add pb-6">Operational User Form</h1>
-            <form class="login-form" [formGroup]="organizationUserForm"  novalidate>
+            <form class="login-form" [formGroup]="organizationUserForm">
+              <h1 class="hd-add pb-6">Operational User Form</h1>
               <div class="flex flex-wrap">
                 <div class="w-full md:w-1/2 sm:w-full">
                   <mat-form-field>
                     <mat-label>First Name</mat-label>
-                    <input  matInput formControlName="firstName"  type="text"  required  class="br-btm input-w" autoComplete='off' >
+                    <input  matInput formControlName="firstName"  type="text" class="br-btm input-w" autoComplete='off' required>
                     <mat-error *ngIf ="organizationUserForm.get('firstName').errors?.required">
                         Required company Name.
                     </mat-error>
@@ -23,17 +23,17 @@
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Last Name</mat-label>
-                    <input  matInput formControlName="lastName"  type="text"  required  class="br-btm input-w" autoComplete='off' >
-                    <mat-error *ngIf ="organizationUserForm.get('lastName').errors?.required">
+                    <input  matInput formControlName="lastName"  type="text" class="br-btm input-w" autoComplete='off' required>
+                    <mat-error *ngIf = "organizationUserForm.get('lastName').errors?.required">
                         Required company Name.
                     </mat-error>
-                    <mat-error *ngIf ="organizationUserForm.get('lastName').errors?.minlength">
+                    <mat-error *ngIf = "organizationUserForm.get('lastName').errors?.minlength">
                       company name must be at least 5 characters long.
                     </mat-error>
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Phone Number</mat-label>
-                    <input  matInput   type="text"  formControlName="phoneNumber" required class="br-btm input-w" autoComplete='off' pattern="^[0-9]{10}$">
+                    <input  matInput   type="text"  formControlName="phoneNumber" class="br-btm input-w" autoComplete='off' required pattern="^[0-9]{10}$">
                     <mat-error *ngIf ="organizationUserForm.get('phoneNumber').errors?.required">
                       Required phone number.
                   </mat-error>
@@ -43,7 +43,7 @@
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Email</mat-label>
-                    <input  matInput   type="email"  formControlName="email" required  class="br-btm input-w" autoComplete='off'>
+                    <input  matInput   type="email"  formControlName="email"  class="br-btm input-w" autoComplete='off' required>
                     <mat-error *ngIf ="organizationUserForm.get('email').errors?.required">
                       Required email address
                     </mat-error>
@@ -62,11 +62,11 @@
                 <div class="w-full md:w-1/2 sm:w-full">
                   <mat-form-field>
                     <mat-label>Role</mat-label>
-                    <input  matInput formControlName="role"  type="text"  required  class="br-btm input-w" autoComplete='off' >
+                    <input  matInput formControlName="role"  type="text" class="br-btm input-w" autoComplete='off' required>
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Sub Role</mat-label>
-                    <input  matInput formControlName="subRole"  type="text"  required  class="br-btm input-w" autoComplete='off' >
+                    <input  matInput formControlName="subRole"  type="text"  class="br-btm input-w" autoComplete='off' required>
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Date of Birth</mat-label>
@@ -78,24 +78,24 @@
                     <mat-error *ngIf ="organizationUserForm.get('dateOfBirth').errors?.required">
                         Choose date.
                     </mat-error>
-                </mat-form-field>
+                  </mat-form-field>
                 <mat-form-field>
                   <mat-label>Address</mat-label>
                   <input  matInput   type="text"  formControlName="address"  class="br-btm input-w" autoComplete='off'>
                 </mat-form-field>
                 </div>
               </div>
-              </form>
               <div class="flex justify-end lg:pb-6 lg:pr-48">
                 <a routerLink="/orgnization-users-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button">
                   Cancel
                 </button></a>
-                <button class="lg-button focus:outline-none focus:shadow-outline" type="submit" (click)=submit() *ngIf="!id" >
+                <button class="lg-button focus:outline-none focus:shadow-outline" type="submit" (click)="submit()" *ngIf="!id" >
                   Submit
                 </button>
                 <button class="lg-button focus:outline-none focus:shadow-outline" (click)=update(id)  *ngIf="id" >
                     update
-                  </button>
+                </button>
             </div>
+          </form>
     </div>
     </app-navbar>
