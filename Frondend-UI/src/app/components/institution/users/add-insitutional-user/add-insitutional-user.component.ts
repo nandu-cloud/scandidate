@@ -33,13 +33,14 @@ export class AddInsitutionalUserComponent implements OnInit {
       this.userIdedit = params.id;
   });
     this.createUser = new FormGroup({
-      firstName: new FormControl('',[Validators.required]),
-      lastName: new FormControl('',[Validators.required]),
+      firstName: new FormControl('',[Validators.required, Validators.minLength(5)]),
+      lastName: new FormControl('',[Validators.required, Validators.minLength(5)]),
       role: new FormControl('INSTITUTION'),
       subRole: new FormControl('OPERATIONAL_USER'),
-      email: new FormControl('',[Validators.required]),
+      email: new FormControl('',[Validators.required, Validators.email,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
       dateOfBirth: new FormControl(''),
-      phoneNumber: new FormControl('',[Validators.required]),
+      phoneNumber: new FormControl('',[Validators.required, Validators.pattern("^[0-9]{10}$")]),
       status: new FormControl('')
     })
   }
