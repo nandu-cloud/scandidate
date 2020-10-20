@@ -59,22 +59,65 @@
     <div class="flex-1 max-w-5xl mx-auto">
        <div class="bg-white rounded-lg showdow mb-32">
         
-          <div class="flex mb-24">
-            <div class="w-1/6 h-12">
+          <div class="flex mb-20 mt-12">
+            <div class="w-1/6 h-5">
                 <mat-icon class="text-5xl">chrome_reader_mode</mat-icon>
             </div>
-            <div class="w-10/12 h-12">
-                <h1 class="info"><a [routerLink]="['/add-appuser']">Personal Info</a></h1>
-                <p class="text-xl">Provide all your personal details and how to reach you</p>
+            <div class="w-6/12 h-5">
+                <h1 class="info">About Me</h1>
+                <!-- <p class="text-xl">Provide all your personal details and how to reach you</p> -->
+            </div>
+            <div class="w-1/6 h-5">
+                <mat-icon class="text-5xl"><a [routerLink]="['']">edit</a></mat-icon>
             </div>
         </div>
         <div class="-mt-6 w-9/12 border-t border-gray-500"></div>
-        <div class="flex mb-20 mt-12">
-            <div class="w-1/6 h-12">
+
+        <div class="flex mb-20 mt-5">
+            <div class="w-1/6 h-5">
+                <mat-icon class="text-5xl">settings_phone</mat-icon>
+            </div>
+            <div class="w-6/12 h-5">
+                <h1 class="material-icons"><a [routerLink]="['']">Phone Number</a></h1>
+                <!-- <p class="text-xl">Provide all your personal details and how to reach you</p> -->
+            </div>
+            <div class="w-1/6 h-5">
+                <mat-icon class="text-5xl"><a [routerLink]="['']">edit</a></mat-icon>
+            </div>
+        </div>
+        <div class="-mt-6 w-9/12 border-t border-gray-500"></div>
+
+        <div class="flex mb-20 mt-5">
+            <div class="w-1/6 h-5">
+                <mat-icon class="text-5xl">settings</mat-icon>
+            </div>
+            <div class="w-10/12 h-5">
+                <h1 class="info"><a [routerLink]="['/reset-password']">Reset Password</a></h1>
+                <!-- <p class="text-xl">Provide all your personal details and how to reach you</p> -->
+            </div>
+        </div>
+        <div class="-mt-6 w-9/12 border-t border-gray-500"></div>
+
+        <div class="flex mb-20 mt-5">
+            <div class="w-1/6 h-5">
+                <mat-icon class="text-5xl">photo</mat-icon>
+            </div>
+            <div class="w-6/12 h-5">
+                <h1 class="info"><a [routerLink]="['/']">Upload Image</a></h1>
+                <!-- <p class="text-xl">Provide all your personal details and how to reach you</p> -->
+            </div>
+            <div class="w-1/6 h-5">
+                <mat-icon class="text-5xl"><a [routerLink]="['']">edit</a></mat-icon>
+            </div>
+        </div>
+        <div class="-mt-6 w-9/12 border-t border-gray-500"></div>
+        
+        <div class="flex mb-20 mt-5">
+            <div class="w-1/6 h-5">
             	<mat-icon class="text-5xl"> vpn_key</mat-icon>
             </div>
-            <div class="w-10/12 h-12">
-                <h1 class="font-bold">Login & Security</h1>
+            <div class="w-10/12 h-5">
+                <h1 class="font-bold"><a [routerLink]="['/login']">Login & Security</a></h1>
                 <p class="text-xl">Change your password and make sure your account is secure</p>
             </div>
         </div>

@@ -54,7 +54,7 @@ const routes: Routes = [  {path: 'login' , component: LoginComponent},
 {path: 'organizationDashboard',component:OrganizationDashboardComponent},
 {path: 'add-organizationuser/:id', component: AddOppuserComponent},
 {path: 'add-candidate/:id',component: AddCandidateComponent},
-{path: 'scandidate-settings', component: ScandidateSettingsComponent}
+{path: 'settings', component: ScandidateSettingsComponent}
 ];
 
 @NgModule({
