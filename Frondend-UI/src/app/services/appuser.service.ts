@@ -73,22 +73,7 @@ export class AppuserService {
 
   // Update
   editUser(updateUserData): Observable<any> {
-//     let organId
-//     let instituteeId
-//     if( updateUserData.role == 'SCANDIDATE'){
-//   organId = undefined
-//   instituteeId = undefined
-// }else if(updateUserData.role == 'ORGANIZATION'){
-//   organId = updateUserData.organizationId
-
-//   instituteeId = undefined
-// }else{
-//   organId = undefined
-
-//   instituteeId=updateUserData.institutionId
-// }
-    // this.editUserData = this.('emailForEdit');
-    var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': 'number',
+    var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': number,
     'organizationId': string, 'institutionId': string, 'employeeId': string, 'currentAddress': string, 'permanentAddress': string,
      'aboutMe': string, 'noOfAssociatedUsers': number, 'avatarLink': string} = 
     { 'firstName': updateUserData.firstName, 'lastName': updateUserData.lastName, 'role':
@@ -110,6 +95,23 @@ export class AppuserService {
         })
       }
     );
+  }
+
+  //update settings data for user 
+
+  updateUser(data): Observable<any> {
+    var id = window.sessionStorage.getItem('ID');
+    var userData: {'phoneNumber': number,'aboutMe': string,'avatarLink': string} = {
+      'phoneNumber' : data.phoneNumber , 'aboutMe': data.aboutMe == ""|| data.aboutMe == null?undefined:data.aboutMe,
+      'avatarLink': data.avatarLink == ""|| data.avatarLink == null?undefined:data.avatarLink
+    };
+    return this.http.put(this.baseUrl + '/api/scandidate/user/'+ id, userData , 
+    {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+    })
+  }
+  );
   }
 
   //post Image

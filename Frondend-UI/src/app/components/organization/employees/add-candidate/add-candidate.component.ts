@@ -24,6 +24,12 @@ export class AddCandidateComponent implements OnInit {
   empIdedit: any;
   id;
   empIdupdate: number;
+  termination: string;
+  showCase : string;
+  suspention : string;
+  discrepancy: string;
+  compliance : string;
+  warning : string;
   constructor(
     public fb: FormBuilder,
     private cd: ChangeDetectorRef,public dialog: MatDialog,public route:ActivatedRoute,public empService : EmployeeService
@@ -62,7 +68,15 @@ export class AddCandidateComponent implements OnInit {
       dealConstructivelyWithPressure: new FormControl('', [Validators.required]),
       volume: new FormControl('', [Validators.required]),
       quality: new FormControl('', [Validators.required]),
-      consistency: new FormControl('', [Validators.required])
+      consistency: new FormControl('', [Validators.required]),
+      awards: new FormControl('', [Validators.required]),
+      discrepancy: new FormControl(''),
+      compliance: new FormControl(''),
+      warning : new FormControl(''),
+      showcaseissued : new FormControl(''),
+      suspention : new FormControl(''),
+      termination : new FormControl('')
+
     });
   }
   validateExitDate(): ValidatorFn {
@@ -126,6 +140,9 @@ export class AddCandidateComponent implements OnInit {
       throw this.setMessage.message;
     })
   }
+}
+uploadFile(){
+
 }
 update(id:number){
   this.empIdupdate = id;

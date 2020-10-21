@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AppuserService } from 'src/app/services/appuser.service';
+import { Component, ChangeDetectorRef, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { FormBuilder, FormArray, Validators,FormControl, FormGroup } from "@angular/forms";
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
+import { environment } from '../../../../environments/environment';
+import { LoginService } from '../../../services/login.service';
+import { AppuserService } from '../../../services/appuser.service';
+import { DialogElementsExampleDialog } from '../users-onboard/add-appuser/add-appuser.component';
 
 @Component({
   selector: 'app-scandidate-settings',
@@ -9,19 +14,72 @@ import { AppuserService } from 'src/app/services/appuser.service';
 })
 export class ScandidateSettingsComponent implements OnInit {
   userIdedit: number;
-  updateUserData: FormGroup;
+  settingForm: FormGroup;
+  setMessage: { message: any; error: boolean; };
+  error: any;
+  baseUrl = environment.baseUrl;
+  imageFilename: any;
+  fileToUpload: File = null;
+  userSubscription : Subscription;
+  id;
+  updateUserData: string;
+  userupdateSubscription : Subscription;
   constructor(
-    private formBuilder: FormBuilder,
-    private appuserService: AppuserService,
-  ) { }
-
-  ngOnInit(): void {
+    public fb: FormBuilder,
+    private cd: ChangeDetectorRef,public dialog: MatDialog,private lService:LoginService,private appUserService : AppuserService
+  ) {
+    this.settingForm = new FormGroup({
+      phoneNumber: new FormControl({value: '', disabled: false }),
+      aboutMe: new FormControl({ value: '',disabled: false }),
+      avatarLink: new FormControl({ value: '',disabled: false }),
+    })
+   }
+   @ViewChild('fileInput') el: ElementRef;
+   imageUrl: any = '';
+   editFile: boolean = true;
+   public profileSubscription : Subscription;
+   openDialog() {
+    const dialogRef = this.dialog.open(DialogElementsExampleDialog);
   }
-
-  edit(id:number){
-    this.userIdedit = id;
-    this.updateUserData = this.formBuilder.group({
-      _id:['', [Validators.required]],
+  ngOnInit(): void {
+    var userid = window.sessionStorage.getItem('ID');
+    this.profileSubscription = this.lService.getUserById(userid).subscribe(resp => {
+      this.settingForm.patchValue(resp.data);
+      this.imageUrl=`${this.baseUrl}/public/user_avatar/${resp.data.avatarLink}`;
+      this.imageFilename=resp.data.avatarLink;
+    }, err => {
+      this.setMessage = { message: err.error.message, error: true };
+      this.error = this.setMessage.message;
+      throw this.setMessage.message;
     })
   }
-}
+  uploadFile(file: FileList) {
+    this.fileToUpload = file.item(0);
+    var render = new FileReader();
+    render.onload = (event: any) => {
+      // this.imageUrl = event.target.result;
+    }
+    render.readAsDataURL(this.fileToUpload);
+
+    this.userSubscription = this.appUserService.postFile(this.fileToUpload).subscribe(
+      data => {
+        console.log(data.data.avatarLink);
+        this.settingForm.patchValue({avatarLink: data.data.avatarLink});
+
+        this.imageUrl = `${this.baseUrl}/public/user_avatar/${data.data.avatarLink}`;
+        this.userSubscription = this.appUserService.deleteFile(this.imageFilename).subscribe();
+      }
+    )
+
+  }
+  save(id: number){
+    this.updateUserData = window.sessionStorage.getItem('ID');
+    this.userupdateSubscription = this.appUserService.updateUser(this.settingForm.value).subscribe(resp => {
+      this
+    }, err => {
+      this.setMessage = { message: err.error.message, error: true };
+      this.error = this.setMessage.message;
+      throw this.setMessage.message;
+    });
+  }
+  }
