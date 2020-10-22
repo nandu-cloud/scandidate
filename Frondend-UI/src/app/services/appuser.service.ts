@@ -99,11 +99,23 @@ export class AppuserService {
 
   //update settings data for user 
 
-  updateUser(data): Observable<any> {
+  updateUser(data,getData): Observable<any> {
     var id = window.sessionStorage.getItem('ID');
-    var userData: {'phoneNumber': number,'aboutMe': string,'avatarLink': string} = {
-      'phoneNumber' : data.phoneNumber , 'aboutMe': data.aboutMe == ""|| data.aboutMe == null?undefined:data.aboutMe,
-      'avatarLink': data.avatarLink == ""|| data.avatarLink == null?undefined:data.avatarLink
+    console.log(getData);
+    var userData: {'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': number,
+    'organizationId': string, 'institutionId': string, 'employeeId': string, 'currentAddress': string, 'permanentAddress': string,
+     'aboutMe': string, 'noOfAssociatedUsers': number, 'avatarLink': string} = {
+      'firstName': getData.firstName, 'lastName': getData.lastName, 'role':getData.role, 'subRole': getData.subRole, 'email': getData.email,
+       'dateOfBirth': getData.dateOfBirth, 'status': getData.status,
+       'phoneNumber': data.phoneNumber,
+        'organizationId': getData.organizationId == ""||getData.organizationId == null?undefined:getData.organizationId,
+       'institutionId': getData.institutionId == ""||getData.institutionId == null?undefined:getData.institutionId,
+        'employeeId': getData.employeeId == ""||getData.employeeId == null?undefined:getData.employeeId,
+       'currentAddress': getData.currentAddress == "" || getData.currentAddress == null?undefined:getData.currentAddress,
+        'permanentAddress': getData.permanentAddress == "" || getData.permanentAddress == null?undefined:getData.permanentAddress,
+        'aboutMe': data.aboutMe == ""|| data.aboutMe == null?undefined:data.aboutMe,
+       'noOfAssociatedUsers': 1,
+        'avatarLink': data.avatarLink == ""|| data.avatarLink == null?undefined:data.avatarLink
     };
     return this.http.put(this.baseUrl + '/api/scandidate/user/'+ id, userData , 
     {

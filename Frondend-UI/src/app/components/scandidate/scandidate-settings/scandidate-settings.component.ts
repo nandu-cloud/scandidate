@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { LoginService } from '../../../services/login.service';
 import { AppuserService } from '../../../services/appuser.service';
-import { DialogElementsExampleDialog } from '../users-onboard/add-appuser/add-appuser.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-scandidate-settings',
@@ -24,6 +24,7 @@ export class ScandidateSettingsComponent implements OnInit {
   id;
   updateUserData: string;
   userupdateSubscription : Subscription;
+  getData : any;
   constructor(
     public fb: FormBuilder,
     private cd: ChangeDetectorRef,public dialog: MatDialog,private lService:LoginService,private appUserService : AppuserService
@@ -45,7 +46,9 @@ export class ScandidateSettingsComponent implements OnInit {
     var userid = window.sessionStorage.getItem('ID');
     this.profileSubscription = this.lService.getUserById(userid).subscribe(resp => {
       this.settingForm.patchValue(resp.data);
+      this.getData = resp.data;
       this.imageUrl=`${this.baseUrl}/public/user_avatar/${resp.data.avatarLink}`;
+      console.log(this.imageUrl);
       this.imageFilename=resp.data.avatarLink;
     }, err => {
       this.setMessage = { message: err.error.message, error: true };
@@ -74,12 +77,33 @@ export class ScandidateSettingsComponent implements OnInit {
   }
   save(id: number){
     this.updateUserData = window.sessionStorage.getItem('ID');
-    this.userupdateSubscription = this.appUserService.updateUser(this.settingForm.value).subscribe(resp => {
-      this
+    this.userupdateSubscription = this.appUserService.updateUser(this.settingForm.value,this.getData).subscribe(resp => {
+      console.log(resp.data);
+      this.openDialog();
     }, err => {
       this.setMessage = { message: err.error.message, error: true };
       this.error = this.setMessage.message;
       throw this.setMessage.message;
     });
   }
+  }
+  @Component({
+    selector: 'dialog-elements-example-dialog',
+    templateUrl: 'dialog-elements-example.html',
+  })
+  export class DialogElementsExampleDialog implements OnInit{
+   
+    Message: any;
+    constructor(public dialogRef: MatDialogRef<DialogElementsExampleDialog>,private router:Router
+      ) {
+      }
+  
+      ngOnInit(){
+      }
+  
+      close(){
+        this.dialogRef.close(true);
+        this.router.navigate(['/user-profile']);
+     }
+  
   }
