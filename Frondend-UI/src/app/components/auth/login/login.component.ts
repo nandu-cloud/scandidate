@@ -123,7 +123,7 @@ export class LoginComponent implements OnInit {
        localStorage.setItem('instutuinId', resp.data.institutionId)
        this.router.navigate(['/institutionDashboard']);
        localStorage.setItem('_id', resp.data._id)
-       this.router.navigate(['/insitution-users-list']);
+       this.router.navigate(['/institutionDashboard']);
       } else {
         localStorage.setItem('organizationId',resp.data.organizationId);
         this.router.navigate(['/organizationDashboard']);
