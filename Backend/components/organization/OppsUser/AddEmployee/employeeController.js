@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const AppError = require("./../../../../helpers/appError");
 const employeeDAL = require("./employeeDAL");
 const employeeDataValidator = require("./employeeValidator");
+const colors = require("./../../../../helpers/colors");
  
 
 // Add Employee
@@ -18,7 +19,7 @@ module.exports.addEmployeeMethod = async function (req, res, next) {
 
 //Get All Employee
 module.exports.getAllMethod = async function (req, res, next) {
-    const data = {};
+  const data = { organisationId: mongoose.Types.ObjectId(req.params.organisationId) };
     try {
       let employeeData = await employeeDAL.getAllUsers(data);
       return res

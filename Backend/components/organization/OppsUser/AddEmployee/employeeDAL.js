@@ -51,7 +51,7 @@ async function addEmployee(data) {
 //Get All
 async function getAllUsers(data) {
     try {
-      let result = await employeeModel.find({}).sort({ _id: -1 }).lean();
+      let result = await employeeModel.find({ organisationId: data.organisationId }).lean();
       return result;
     } catch (err) {
       throw err;
