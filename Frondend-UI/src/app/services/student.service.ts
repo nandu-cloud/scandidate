@@ -21,11 +21,11 @@ addStudent(studentData): Observable<any> {
   var id = window.sessionStorage.getItem('ID');
   var inistutionId = window.sessionStorage.getItem('InistutionId');
   var studentData1: { 'nameOfCourse': string, 'yearOfJoining': number ,'yearOfPassout': number ,'studentType': string, 'extraActivity': string ,
-               'firstName':string , 'lastName' : string , 'roll' : string, 'email': string , 'phoneNumber' : number , 'address' : number , 'addedById': string,'instituteId':string,'extraActivityDocumentName':string,'eductionalDocumentNames':string,'noOfEductionalDocuments': number} =
+               'firstName':string , 'lastName' : string , 'roll' : string, 'email': string , 'phoneNumber' : number , 'address' : number , 'addedById': string,'instituteId':string,'extraActivityDocumentName':string,'eductionalDocumentNames':string,'noOfEductionalDocuments': number,'InistutionName': string} =
               { 'nameOfCourse': studentData.nameOfCourse, 'yearOfJoining': studentData.yearOfJoining ,'yearOfPassout': studentData.yearOfPassout, 'studentType' : studentData.studentType,
                 'extraActivity': studentData.extraActivity,'firstName':studentData.firstName,'lastName':studentData.lastName,'roll':studentData.roll,'email': studentData.email,'phoneNumber':studentData.phoneNumber,'address':studentData.address , 
-                'eductionalDocumentNames':studentData.eductionalDocumentNames,'noOfEductionalDocuments': studentData.noOfEductionalDocuments,'extraActivityDocumentName': studentData.extraActivityDocumentName == ""? undefined : studentData.extraActivityDocumentName ,'addedById':id ,'instituteId': inistutionId
-                
+                'eductionalDocumentNames':studentData.eductionalDocumentNames,'noOfEductionalDocuments': studentData.noOfEductionalDocuments,'extraActivityDocumentName': studentData.extraActivityDocumentName == ""? undefined : studentData.extraActivityDocumentName ,'addedById':id ,'instituteId': inistutionId,
+                'InistutionName': studentData.InistutionName
               };
   return this.http.post(this.baseUrl + '/api/institute/operational/student', studentData1
     , {
@@ -38,7 +38,8 @@ addStudent(studentData): Observable<any> {
 }
 
 public getStudentData() : Observable<any> {
-  return this.http.get(this.baseUrl + '/api/institute/operational/student');
+  var inistutionId = window.sessionStorage.getItem('InistutionId');
+  return this.http.get(this.baseUrl + '/api/institute/operational/student//getAllStudent/'+inistutionId);
 }
 
 editStudent(editStuData) : Observable<any> {
@@ -48,11 +49,11 @@ updateStudent(updateStudentData) : Observable<any>{
   var id = window.sessionStorage.getItem('ID');
   var inistutionId = window.sessionStorage.getItem('InistutionId');
   var updatestudent: { 'nameOfCourse': string, 'yearOfJoining': number ,'yearOfPassout': number ,'studentType': string, 'extraActivity': string ,
-  'firstName':string , 'lastName' : string , 'roll' : string, 'email': string , 'phoneNumber' : number , 'address' : number , 'addedById': string , 'instituteId': string, 'extraActivityDocumentName':string,'eductionalDocumentNames':string,'noOfEductionalDocuments': number} =
+  'firstName':string , 'lastName' : string , 'roll' : string, 'email': string , 'phoneNumber' : number , 'address' : number , 'addedById': string , 'instituteId': string, 'extraActivityDocumentName':string,'eductionalDocumentNames':string,'noOfEductionalDocuments': number,'InistutionName':string} =
  { 'nameOfCourse': updateStudentData.nameOfCourse, 'yearOfJoining': updateStudentData.yearOfJoining ,'yearOfPassout': updateStudentData.yearOfPassout, 'studentType' : updateStudentData.studentType,
    'extraActivity': updateStudentData.extraActivity,'firstName':updateStudentData.firstName,'lastName':updateStudentData.lastName,'roll':updateStudentData.roll,'email': updateStudentData.email,'phoneNumber':updateStudentData.phoneNumber,'address':updateStudentData.address , 
-   'addedById':id,'instituteId' : inistutionId,'eductionalDocumentNames':updateStudentData.eductionalDocumentNames,'noOfEductionalDocuments': updateStudentData.noOfEductionalDocuments,'extraActivityDocumentName': updateStudentData.extraActivityDocumentName == ""? undefined : updateStudentData.extraActivityDocumentName
-   
+   'addedById':id,'instituteId' : inistutionId,'eductionalDocumentNames':updateStudentData.eductionalDocumentNames,'noOfEductionalDocuments': updateStudentData.noOfEductionalDocuments,'extraActivityDocumentName': updateStudentData.extraActivityDocumentName == ""? undefined : updateStudentData.extraActivityDocumentName,
+   'InistutionName':updateStudentData.InistutionName
  };
   return this.http.put(this.baseUrl + '/api/institute/operational/student/' +this.stdIdupdate, updatestudent,
   {

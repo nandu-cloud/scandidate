@@ -1,0 +1,99 @@
+<app-navbar>
+    <div class="bg-white">
+    <div class="hd flex flex-wrap overflow-hidden">
+    
+      <div class="org overflow-hidden lg:w-1/3 xl:w-1/6 md:mr-48 sm:w-4/6 lg:mr-8 mt-2">
+        Search Employee Data
+      </div>
+      <form  class="login-form" [formGroup]="searchForm"  novalidate>
+        <div class="flex flex-wrap">
+            <div class="w-full md:w-1/5 sm:w-full">
+                <mat-form-field>
+                    <mat-label>Employee Name</mat-label>
+                    <input  matInput formControlName="organizationName"  type="text"  class="br-btm input-w" autoComplete='off' >
+                </mat-form-field>
+            </div>
+            <div class="w-full md:w-1/5 sm:w-full">
+                <mat-form-field>
+                    <mat-label>Year of Joining</mat-label>
+                    <input  matInput formControlName="organizationName"  type="text"  class="br-btm input-w" autoComplete='off' >
+                </mat-form-field>
+            </div>
+            <div class="w-full md:w-1/5 sm:w-full">
+                <mat-form-field>
+                    <mat-label>Phone Number</mat-label>
+                    <input  matInput formControlName="organizationName"  type="text"  class="br-btm input-w" autoComplete='off' >
+                </mat-form-field>
+            </div>
+            <div class="w-full md:w-1/5 sm:w-full">
+                <mat-form-field>
+                    <mat-label>Organization Name</mat-label>
+                    <input  matInput formControlName="organizationName"  type="text"  class="br-btm input-w" autoComplete='off' >
+                </mat-form-field>
+            </div>
+            <div class="w-full md:w-1/6 sm:w-full">
+                <button mat-raised-button class="bg-black text-white rounded inline-flex items-center"><mat-icon>search</mat-icon></button> 
+            </div>
+        </div>
+      </form>
+    </div>
+    <div class="mat-elevation-z8 data-table">
+      <table mat-table [dataSource]="dataSource" class="full-width-table"  aria-label="Elements">
+        
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef >Employee Name</mat-header-cell>
+          <!-- <mat-cell *matCellDef="let row">{{row.firstName}}</mat-cell> -->
+        </ng-container>
+    
+        <!-- Email -->
+        <ng-container matColumnDef="roll">
+          <mat-header-cell *matHeaderCellDef >Employee ID</mat-header-cell>
+          <!-- <mat-cell *matCellDef="let row">{{row.roll}}</mat-cell> -->
+        </ng-container>
+    
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef >Email</mat-header-cell>
+          <!-- <mat-cell *matCellDef="let row">{{row.email}}</mat-cell> -->
+        </ng-container>
+    
+        <ng-container matColumnDef="phoneNumber">
+          <mat-header-cell *matHeaderCellDef >phone Number</mat-header-cell>
+          <!-- <mat-cell *matCellDef="let row">{{row.phoneNumber}}</mat-cell> -->
+        </ng-container>
+  
+        <ng-container matColumnDef="nameOfCourse">
+          <mat-header-cell *matHeaderCellDef >Name Of Course</mat-header-cell>
+          <!-- <mat-cell *matCellDef="let row">{{row.nameOfCourse}}</mat-cell> -->
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+            <mat-header-cell *matHeaderCellDef >Address</mat-header-cell>
+            <!-- <mat-cell *matCellDef="let row">{{row.nameOfCourse}}</mat-cell> -->
+        </ng-container>
+
+        <ng-container matColumnDef="yoj">
+            <mat-header-cell *matHeaderCellDef >Year of Joining</mat-header-cell>
+            <!-- <mat-cell *matCellDef="let row">{{row.nameOfCourse}}</mat-cell> -->
+        </ng-container>
+
+        <ng-container matColumnDef="yop">
+            <mat-header-cell *matHeaderCellDef >Year of Passing</mat-header-cell>
+            <!-- <mat-cell *matCellDef="let row">{{row.nameOfCourse}}</mat-cell> -->
+        </ng-container>
+        
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"   > 
+        </mat-row>>
+        <div class="p-4" *matNoDataRow>
+          <p>No data matching the filter </p>
+        </div>
+       
+      </table>
+      <!-- <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator> -->
+    </div>
+    </div>
+    
+    </app-navbar>
+    
+    

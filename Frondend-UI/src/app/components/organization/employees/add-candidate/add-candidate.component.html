@@ -54,7 +54,14 @@
                     <mat-error *ngIf ="createCandidate.get('email').errors?.email">
                       Enter a valid email address
                     </mat-error>
-                  </mat-form-field>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Organization Name</mat-label>
+                  <input  matInput formControlName="organizationName"  type="text"   class="br-btm input-w" autoComplete='off' required>
+                  <mat-error *ngIf ="createCandidate.get('organizationName').errors?.required">
+                    Required organizationName
+                  </mat-error>
+                </mat-form-field>
                 <mat-form-field>
                     <mat-label>Role</mat-label>
                     <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
@@ -116,15 +123,12 @@
               </mat-form-field>
               <mat-form-field>
                 <mat-label>Awards</mat-label>
-                <mat-select  class="br-btm input-w" formControlName="awards" required>
+                <mat-select  class="br-btm input-w" formControlName="awards">
                   <mat-option [value]=1>Performer & Awarded</mat-option>
                   <mat-option [value]=2>Non-Performer & Awarded</mat-option>
                   <mat-option [value]=3>Performer & Not Awarded</mat-option>
                   <mat-option [value]=4>Non-Performer & Not Awarded</mat-option>
                 </mat-select>
-                <mat-error *ngIf ="createCandidate.get('awards').errors?.required">
-                  please select Awards
-              </mat-error>
             </mat-form-field>
             <h1 class="hd-add">Conduct</h1>
               <mat-form-field>
