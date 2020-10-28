@@ -6,6 +6,9 @@
   background-image: url('../../../../assets//images/logo1.png');
   background-size: cover;
 }
+.example-card{
+  box-shadow: none;
+}
 .mat-card-avatar{
   width: 100px;
   height: 100px;

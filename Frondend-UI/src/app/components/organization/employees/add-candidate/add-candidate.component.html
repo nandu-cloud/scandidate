@@ -240,11 +240,12 @@
                     </mat-form-field>
                     <h1 class="hd-add">Performance</h1>
                     <mat-form-field>
-                        <mat-label>Volume</mat-label>
+                        <mat-label>Productivity</mat-label>
                         <mat-select  class="br-btm input-w" formControlName="volume" required>
-                          <mat-option [value]=1>Scandidate</mat-option>
-                          <mat-option [value]=2>Organization</mat-option>
-                          <mat-option [value]=3>Institution</mat-option>
+                          <mat-option [value]=1>Unsatisfactory</mat-option>
+                          <mat-option [value]=2>Needs Improvement</mat-option>
+                          <mat-option [value]=3>Meets Expectations</mat-option>
+                          <mat-option [value]=4>Exceeds Expectations</mat-option>
                         </mat-select>
                         <mat-error *ngIf ="createCandidate.get('volume').errors?.required">
                           please select Performance
