@@ -10,29 +10,29 @@
             <div class="w-full md:w-1/5 sm:w-full">
                 <mat-form-field>
                     <mat-label>Student Name</mat-label>
-                    <input  matInput formControlName="organizationName"  type="text"  class="br-btm input-w" autoComplete='off' >
+                    <input  matInput formControlName="firstName"  type="text"  class="br-btm input-w" autoComplete='off' >
                 </mat-form-field>
             </div>
             <div class="w-full md:w-1/5 sm:w-full">
                 <mat-form-field>
                     <mat-label>Year of passing</mat-label>
-                    <input  matInput formControlName="organizationName"  type="text"  class="br-btm input-w" autoComplete='off' >
+                    <input  matInput formControlName="yearOfPassout"  type="text"  class="br-btm input-w" autoComplete='off'  pattern="^[0-9]{4}$">
                 </mat-form-field>
             </div>
             <div class="w-full md:w-1/5 sm:w-full">
                 <mat-form-field>
                     <mat-label>Phone Number</mat-label>
-                    <input  matInput formControlName="organizationName"  type="text"  class="br-btm input-w" autoComplete='off' >
+                    <input  matInput formControlName="phoneNumber"  type="text"  class="br-btm input-w" autoComplete='off' >
                 </mat-form-field>
             </div>
             <div class="w-full md:w-1/5 sm:w-full">
                 <mat-form-field>
                     <mat-label>Inistution Name</mat-label>
-                    <input  matInput formControlName="organizationName"  type="text"  class="br-btm input-w" autoComplete='off' >
+                    <input  matInput formControlName="intitutionName"  type="text"  class="br-btm input-w" autoComplete='off' >
                 </mat-form-field>
             </div>
             <div class="w-full md:w-1/6 sm:w-full">
-                <button mat-raised-button class="bg-black text-white rounded inline-flex items-center"><mat-icon>search</mat-icon></button> 
+                <button mat-raised-button class="bg-black text-white rounded inline-flex items-center" (click)="search()"><mat-icon>search</mat-icon></button> 
             </div>
         </div>
       </form>
@@ -43,43 +43,43 @@
         <!-- Name Column -->
         <ng-container matColumnDef="name">
           <mat-header-cell *matHeaderCellDef >Student Name</mat-header-cell>
-          <!-- <mat-cell *matCellDef="let row">{{row.firstName}}</mat-cell> -->
+          <mat-cell *matCellDef="let row">{{row.firstName}}</mat-cell>
         </ng-container>
     
         <!-- Email -->
         <ng-container matColumnDef="roll">
           <mat-header-cell *matHeaderCellDef >Roll Number</mat-header-cell>
-          <!-- <mat-cell *matCellDef="let row">{{row.roll}}</mat-cell> -->
+          <mat-cell *matCellDef="let row">{{row.roll}}</mat-cell>
         </ng-container>
     
         <ng-container matColumnDef="email">
           <mat-header-cell *matHeaderCellDef >Email</mat-header-cell>
-          <!-- <mat-cell *matCellDef="let row">{{row.email}}</mat-cell> -->
+          <mat-cell *matCellDef="let row">{{row.email}}</mat-cell>
         </ng-container>
     
         <ng-container matColumnDef="phoneNumber">
           <mat-header-cell *matHeaderCellDef >phone Number</mat-header-cell>
-          <!-- <mat-cell *matCellDef="let row">{{row.phoneNumber}}</mat-cell> -->
+          <mat-cell *matCellDef="let row">{{row.phoneNumber}}</mat-cell>
         </ng-container>
   
         <ng-container matColumnDef="nameOfCourse">
           <mat-header-cell *matHeaderCellDef >Name Of Course</mat-header-cell>
-          <!-- <mat-cell *matCellDef="let row">{{row.nameOfCourse}}</mat-cell> -->
+          <mat-cell *matCellDef="let row">{{row.nameOfCourse}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="address">
             <mat-header-cell *matHeaderCellDef >Address</mat-header-cell>
-            <!-- <mat-cell *matCellDef="let row">{{row.nameOfCourse}}</mat-cell> -->
+            <mat-cell *matCellDef="let row">{{row.nameOfCourse}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="yoj">
             <mat-header-cell *matHeaderCellDef >Year of Joining</mat-header-cell>
-            <!-- <mat-cell *matCellDef="let row">{{row.nameOfCourse}}</mat-cell> -->
+            <mat-cell *matCellDef="let row">{{row.nameOfCourse}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="yop">
             <mat-header-cell *matHeaderCellDef >Year of Passing</mat-header-cell>
-            <!-- <mat-cell *matCellDef="let row">{{row.nameOfCourse}}</mat-cell> -->
+            <mat-cell *matCellDef="let row">{{row.nameOfCourse}}</mat-cell>
         </ng-container>
         
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -90,7 +90,7 @@
         </div>
        
       </table>
-      <!-- <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator> -->
+      <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator>
     </div>
     </div>
     

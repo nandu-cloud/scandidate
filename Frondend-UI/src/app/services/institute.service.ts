@@ -118,4 +118,12 @@ export class instituteService  {
       }
     );
   }
+
+  //Get student list
+  public getAllStudentData(searchParams) : Observable<any>{
+    var searchData: { 'firstName':string,'yearOfPassout': string, 'phoneNumber': string ,'intitutionName': string } =
+                    { 'firstName':searchParams.firstName,'yearOfPassout': searchParams.yearOfPassout,'phoneNumber': searchParams.phoneNumber,'intitutionName':searchParams.intitutionName};
+    return this.http.post(this.baseUrl + '/api/scandidate/institute/student/search' ,searchData
+    );
+  }
 }
