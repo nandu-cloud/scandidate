@@ -5,8 +5,7 @@ const short = require("short-uuid");
 const mime = require("mime");
 const path = require("path");
 const addStudentController = require("./studentController");
-const authJWT = require("./../../../../middlewares/authJWT"); 
-
+const authJWT = require("./../../../../middlewares/authJWT");
 
 // organization logo images Storage Path
 const uploadPath = path.join(__dirname, "../../../../uploads/student_doc");
@@ -26,10 +25,20 @@ let storage = multer.diskStorage({
 //Document Filter
 function fileFilter(req, file, cb) {
   let ext = mime.getExtension(file.mimetype);
-  if (ext === "png" || ext === "jpeg" || ext === "doc" || ext === "pdf" || ext === "docx") {
+  if (
+    ext === "png" ||
+    ext === "jpeg" ||
+    ext === "doc" ||
+    ext === "pdf" ||
+    ext === "docx"
+  ) {
     cb(null, true);
   } else {
-    cb(new Error("The file extension is invalid! only png/jpeg/pdf/doc are accepted."));
+    cb(
+      new Error(
+        "The file extension is invalid! only png/jpeg/pdf/doc are accepted."
+      )
+    );
     // cb(null, false);
   }
 }
@@ -44,8 +53,8 @@ function csvFileFilter(req, file, cb) {
   }
 }
 let upload = multer({ storage: storage, fileFilter: fileFilter });
-let multiUpload = multer({ storage : storage,fileFilter: fileFilter });
-let csvUpload=multer({ storage : storage, csvFileFilter:csvFileFilter});
+let multiUpload = multer({ storage: storage, fileFilter: fileFilter });
+let csvUpload = multer({ storage: storage, csvFileFilter: csvFileFilter });
 
 router
   .route("/uploadExtraActivityDoc")
@@ -59,30 +68,26 @@ router
   .route("/uploadFiles")
   .post(
     authJWT.verifyJWTToken,
-    multiUpload.array('files', 12),
+    multiUpload.array("files", 12),
     addStudentController.fileUpload
   );
 
-  router
+router
   .route("/uploadCsv")
   .post(
     authJWT.verifyJWTToken,
-    csvUpload.single('csv'),
+    csvUpload.single("csv"),
     addStudentController.uploadCsv
   );
 
 router
   .route("/")
-  .post(authJWT.verifyJWTToken, addStudentController.addStudentMethod);
-  //.get(authJWT.verifyJWTToken, addStudentController.getAllMethod);
+  .post(authJWT.verifyJWTToken, addStudentController.addStudentMethod)
+  .get(authJWT.verifyJWTToken, addStudentController.getAllMethod);
 
 router
   .route("/:studentId")
   .get(authJWT.verifyJWTToken, addStudentController.getStudentByIdMethod)
   .put(authJWT.verifyJWTToken, addStudentController.updateMethod);
-
-  router
-  .route("/getAllStudent/:instituteId")
-  .get(authJWT.verifyJWTToken, addStudentController.getAllMethod);
 
 module.exports = router;

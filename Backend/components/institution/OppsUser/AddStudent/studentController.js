@@ -5,9 +5,8 @@ const colors = require("./../../../../helpers/colors");
 const studentDataValidator = require("./studentValidator");
 const fs = require("fs");
 const path = require("path");
-const csv         = require('csvtojson');  
-const bodyParser  = require('body-parser');  
-
+const csv = require("csvtojson");
+const bodyParser = require("body-parser");
 
 // Add Student
 module.exports.addStudentMethod = async function (req, res, next) {
@@ -24,10 +23,10 @@ module.exports.addStudentMethod = async function (req, res, next) {
 // Upload CSV
 module.exports.uploadCsv = async function (req, res, next) {
   let path = req.file.path;
-  let id=req.body._id;
-  let instituteId=req.body.instituteId;
+  let id = req.body._id;
+  let instituteId = req.body.instituteId;
   try {
-    let studentData = await studentDAL.addStudentCsv(path,id,instituteId);
+    let studentData = await studentDAL.addStudentCsv(path, id, instituteId);
     return res
       .status(200)
       .json({ status: "SUCCESS", message: null, data: studentData });
@@ -37,10 +36,8 @@ module.exports.uploadCsv = async function (req, res, next) {
   }
 };
 
-
 module.exports.getAllMethod = async function (req, res, next) {
-  const data = { instituteId: mongoose.Types.ObjectId(req.params.instituteId) };
- 
+  const data = {};
   try {
     let studentData = await studentDAL.getAllUsers(data);
     return res
@@ -65,7 +62,6 @@ module.exports.getStudentByIdMethod = async function (req, res, next) {
       data: studentData,
     });
   } catch (err) {
-
     return next(new AppError(err, 400));
   }
 };
@@ -117,7 +113,6 @@ module.exports.fileUpload = async function (req, res, next) {
   return res.status(200).json({
     status: "SUCCESS",
     message: "File uploaded successfully!",
-    data: { eductionalDocumentNames: filesname,fileCount:arraylength },
-
+    data: { eductionalDocumentNames: filesname, fileCount: arraylength },
   });
 };

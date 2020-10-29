@@ -53,6 +53,14 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  aadharNo: {
+    type: Number,
+    required: true,
+  },
+  intitutionName: {
+    type: String,
+    required: true,
+  },
   addedById: {
     type: String,
     required: false,

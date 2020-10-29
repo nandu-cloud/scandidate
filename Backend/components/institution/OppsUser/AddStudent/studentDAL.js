@@ -1,8 +1,8 @@
 // import mongoose models
 const studentModel = require("./studentModel");
-const csv = require('csvtojson');
+const csv = require("csvtojson");
 const studentDataValidator = require("./studentValidator");
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 
 // Add Organisation
 async function addStudent(data) {
@@ -21,6 +21,8 @@ async function addStudent(data) {
   studentData.email = data.email;
   studentData.phoneNumber = data.phoneNumber;
   studentData.address = data.address;
+  studentData.aadharNo = data.aadharNo;
+  studentData.intitutionName = data.intitutionName;
   studentData.addedById = data.addedById;
   studentData.instituteId = data.instituteId;
   studentData.createdAt = new Date();
@@ -44,8 +46,8 @@ async function addStudentCsv(path, id, instituteId1) {
       .fromFile(path)
       .then((jsonObj) => {
         for (var x = 0; x < jsonObj.length; x++) {
-          console.log(jsonObj[x].yearOfJoining)
-          yearOfJoining = parseInt(jsonObj[x].yearOfJoining)
+          console.log(jsonObj[x].yearOfJoining);
+          yearOfJoining = parseInt(jsonObj[x].yearOfJoining);
           jsonObj[x].yearOfJoining = yearOfJoining;
 
           yearOfPassout = parseInt(jsonObj[x].yearOfPassout);
@@ -56,7 +58,7 @@ async function addStudentCsv(path, id, instituteId1) {
 
           jsonObj[x].addedById = id;
           jsonObj[x].instituteId = instituteId1;
-        };
+        }
         try {
           let result = studentModel.insertMany(jsonObj);
           return result;
@@ -71,7 +73,7 @@ async function addStudentCsv(path, id, instituteId1) {
 
 async function getAllUsers(data) {
   try {
-    let result = await studentModel.find({ instituteId: data.instituteId }).sort({ instituteId: -1 }).lean();
+    let result = await studentModel.find({}).sort({ _id: -1 }).lean();
     return result;
   } catch (err) {
     throw err;
@@ -90,13 +92,53 @@ async function getStudentById(data) {
 //Update Student Details
 async function updateStudent(data) {
   try {
-    let result = await studentModel.findOneAndUpdate(
-      { _id: data._id },
-      data,
-      {
-        new: true,
-      }
-    );
+    let result = await studentModel.findOneAndUpdate({ _id: data._id }, data, {
+      new: true,
+    });
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
+// Search Student By name
+
+async function search(name) {
+  try {
+    let result = await studentModel.find({ firstName: name });
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
+// Search Student By Passout
+
+async function searchByPassout(passOut) {
+  try {
+    let result = await studentModel.find({ yearOfPassout: passOut });
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
+// Search Student By PhoneNumber
+
+async function searchByPhoneNumber(phoneNumber) {
+  try {
+    let result = await studentModel.find({ phoneNumber: phoneNumber });
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
+// Search Student By InstituteName
+
+async function searchByInstituteName(institute_Name) {
+  try {
+    let result = await studentModel.find({ intitutionName: institute_Name });
     return result;
   } catch (err) {
     throw err;
@@ -109,5 +151,9 @@ module.exports = {
   getAllUsers: getAllUsers,
   getStudentById: getStudentById,
   updateStudent: updateStudent,
+  search: search,
+  searchByPassout: searchByPassout,
+  searchByPhoneNumber: searchByPhoneNumber,
+  searchByInstituteName: searchByInstituteName,
   addStudentCsv: addStudentCsv,
 };

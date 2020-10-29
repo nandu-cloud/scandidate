@@ -6,16 +6,12 @@ const authJWT = require("./../../../../middlewares/authJWT");
 
 router
   .route("/")
-  .post(authJWT.verifyJWTToken, addEmployeeController.addEmployeeMethod);
-  //
+  .post(authJWT.verifyJWTToken, addEmployeeController.addEmployeeMethod)
+  .get(authJWT.verifyJWTToken, addEmployeeController.getAllMethod);
 
 router
 .route("/:employeeId")
 .get(authJWT.verifyJWTToken, addEmployeeController.getEmployeeByIdMethod)
 .put(authJWT.verifyJWTToken, addEmployeeController.updateMethod);
-
-router
-.route("/getEmployee/:organisationId")
-.get(authJWT.verifyJWTToken, addEmployeeController.getAllMethod);
 
 module.exports = router;

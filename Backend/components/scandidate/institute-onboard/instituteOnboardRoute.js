@@ -63,4 +63,9 @@ router
     authJWT.verifyJWTToken,
     instituteOnboardController.instLogoDeleteMethod
   );
+
+router
+  .route("/student/search")
+  .get(authJWT.verifyJWTToken, instituteOnboardController.searchStudent);
+
 module.exports = router;

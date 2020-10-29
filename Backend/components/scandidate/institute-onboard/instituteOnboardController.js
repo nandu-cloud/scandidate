@@ -5,6 +5,7 @@ const AppError = require("./../../../helpers/appError");
 const colors = require("./../../../helpers/colors");
 const instituteDAL = require("./instituteOnboardDAL");
 const instituteValidator = require("./instituteOnboardValidator");
+const studentDAL = require("../../institution/OppsUser/AddStudent/studentDAL");
 
 // Add Institute
 module.exports.onboardInstituteMethod = async function (req, res, next) {
@@ -60,7 +61,7 @@ module.exports.updateInstituteMethod = async function (req, res, next) {
     if (!instituteExsits)
       return next(new AppError("user does not exists!", 404));
     result._id = mongoose.Types.ObjectId(req.params.instituteId);
-    result.updatedAt=new Date();
+    result.updatedAt = new Date();
     let instituteData = await instituteDAL.updateInstitute(result);
     return res.status(200).json({
       status: "SUCCESS",
@@ -118,4 +119,56 @@ module.exports.instLogoDeleteMethod = async function (req, res, next) {
       data: null,
     });
   });
+};
+
+module.exports.searchStudent = async (req, res, next) => {
+  const { firstName, yearOfPassout, phoneNumber, intitutionName } = req.body;
+  if (firstName != null) {
+    try {
+      const data = await studentDAL.search(firstName);
+      return res.status(200).json({
+        status: 200,
+        message: "success",
+        data: data,
+      });
+    } catch (err) {
+      return next(new AppError(err, 400));
+    }
+  }
+  if (yearOfPassout != null) {
+    try {
+      const data = await studentDAL.searchByPassout(yearOfPassout);
+      return res.status(200).json({
+        status: 200,
+        message: "success",
+        data: data,
+      });
+    } catch (err) {
+      return next(new AppError(err, 400));
+    }
+  }
+  if (phoneNumber != null) {
+    try {
+      const data = await studentDAL.searchByPhoneNumber(phoneNumber);
+      return res.status(200).json({
+        status: 200,
+        message: "success",
+        data: data,
+      });
+    } catch (err) {
+      return next(new AppError(err, 400));
+    }
+  }
+  if (intitutionName != null) {
+    try {
+      const data = await studentDAL.searchByInstituteName(intitutionName);
+      return res.status(200).json({
+        status: 200,
+        message: "success",
+        data: data,
+      });
+    } catch (err) {
+      return next(new AppError(err, 400));
+    }
+  }
 };
