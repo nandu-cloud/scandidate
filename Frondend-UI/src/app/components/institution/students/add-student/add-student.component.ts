@@ -56,7 +56,7 @@ export class AddStudentComponent implements OnInit {
       extraActivity : new FormControl(''),
       extraActivityDocumentName : new FormControl(),
       eductionalDocumentNames : new FormControl(),
-      // extraActivityNameOfDocument : new FormControl(),
+      InistutionName : new FormControl('',[Validators.required]),
       eductionalDocumentLinks: new FormControl(),
       extraActivityDocumentLink : new FormControl()
     })

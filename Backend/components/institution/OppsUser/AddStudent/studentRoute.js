@@ -73,12 +73,16 @@ router
 
 router
   .route("/")
-  .post(authJWT.verifyJWTToken, addStudentController.addStudentMethod)
-  .get(authJWT.verifyJWTToken, addStudentController.getAllMethod);
+  .post(authJWT.verifyJWTToken, addStudentController.addStudentMethod);
+  //.get(authJWT.verifyJWTToken, addStudentController.getAllMethod);
 
 router
   .route("/:studentId")
   .get(authJWT.verifyJWTToken, addStudentController.getStudentByIdMethod)
   .put(authJWT.verifyJWTToken, addStudentController.updateMethod);
+
+  router
+  .route("/getAllStudent/:instituteId")
+  .get(authJWT.verifyJWTToken, addStudentController.getAllMethod);
 
 module.exports = router;

@@ -14,18 +14,23 @@
       <a mat-list-item routerLink="/organization-list"><mat-icon class="space">domain</mat-icon>Onboard Organization</a>
       <a mat-list-item routerLink="/inistution-list"><mat-icon class="space">school</mat-icon>Onboard Institution</a>
       <a mat-list-item routerLink="/users-list"><mat-icon class="space">people</mat-icon> Onboard User</a>
+      <a mat-list-item routerLink="/BGV"><mat-icon class="space">search</mat-icon> BGV</a>
+      <a mat-list-item routerLink="/students"><mat-icon class="space">group_work</mat-icon>Students List</a>
+      <a mat-list-item routerLink="/employee"><mat-icon class="space">supervised_user_circle</mat-icon>Employee List</a>
       <a mat-list-item routerLink="/settings"><mat-icon class="space">settings</mat-icon> Settings</a>
     </mat-nav-list>
     <mat-nav-list *ngIf="insitutionadmin">
       <a mat-list-item routerLink="/institutionDashboard"><mat-icon class="space">dvr</mat-icon>Dashbord</a>
       <a mat-list-item routerLink="/insitution-users-list"><mat-icon class="space">casino</mat-icon>Operational user</a>
       <a mat-list-item routerLink="/student-list"><mat-icon class="space">people</mat-icon>Student List</a>
+      <a mat-list-item routerLink="/BGV"><mat-icon class="space">search</mat-icon> BGV</a>
       <a mat-list-item routerLink="/settings"><mat-icon class="space">settings</mat-icon> Settings</a>
     </mat-nav-list>
     <mat-nav-list *ngIf="organizationadmin">
       <a mat-list-item routerLink="/organizationDashboard"><mat-icon class="space">dvr</mat-icon>Dashbord</a>
       <a mat-list-item routerLink="/orgnization-users-list"><mat-icon class="space">casino</mat-icon>Organization user</a>
       <a mat-list-item routerLink="/candidate-list"><mat-icon class="space">people</mat-icon>Employee List</a>
+      <a mat-list-item routerLink="/BGV"><mat-icon class="space">search</mat-icon> BGV</a>
       <a mat-list-item routerLink="/settings"><mat-icon class="space">settings</mat-icon> Settings</a>
     </mat-nav-list>
   </mat-sidenav>
@@ -39,17 +44,21 @@
         <mat-icon>menu</mat-icon>
       </button>
       <!-- <span>Scandidate</span> -->
-      <img  src="../../../assets/images/logo1.png" width="50" height="50" alt="" class="pl-2"  *ngIf="adminLogo">
-      <img  src={{imageUrl}} width="50" height="50" alt="" class="pl-2"  *ngIf="Logo">
+      <!-- <img  src="../../../assets/images/logo1.png" width="50" height="50" alt="" class="pl-2"  *ngIf="adminLogo">
+      <img  src={{imageUrl}} width="50" height="50" alt="" class="pl-2"  *ngIf="Logo"> -->
       <span class="spacer"></span>
         <!-- <mat-icon matBadge="30" class="lg:ml-7 flex items-center justify-start lg:mb-0 mb-0 cursor-pointer">
           notifications
  </mat-icon> -->
       <!-- <mat-icon class="lg:ml-4 h-15 w-15 flex items-center justify-start lg:mb-0 mb-4 cursor-pointer">account_circle</mat-icon> -->
+{{institueName}}
+      <img  src="../../../assets/images/logo1.png" width="50" height="50" alt="" class="pl-2 ml-4" *ngIf="adminLogo">
+      <img  src={{imageUrl}} width="50" height="50" alt="" class="pl-2 ml-4" *ngIf="Logo">
+    
       <a routerLink="/user-profile" class="lg:ml-4 flex items-center justify-start lg:md-0 mb-0 cursor-pointer" *ngIf="profileImg">
         <img src="https://s3.amazonaws.com/f6s-public/profiles/1545337_th1.jpg" class="rounded-full w-8 h-8 border-2 border-transparent hover:border-indigo-400" alt="Andy Leverenz">
       </a>
-      <mat-icon [matMenuTriggerFor]="afterMenu">keyboard_arrow_down</mat-icon>
+      <mat-icon class="arrow-down cursor-pointer" [matMenuTriggerFor]="afterMenu">keyboard_arrow_down</mat-icon>
       <mat-menu #afterMenu="matMenu">
         <!-- <span mat-menu-item class="block px-4 py-2 text-gray-800 hover:text-green-700"><mat-icon>restore</mat-icon>Reset password</span> -->
         <a routerLink="/login"> <span mat-menu-item class="block px-4 py-2 text-gray-800 hover:text-green-700"><mat-icon>exit_to_app</mat-icon>Logout</span></a>

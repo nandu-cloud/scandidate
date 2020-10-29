@@ -41,7 +41,14 @@
                     <mat-error *ngIf="!studentForm.get('phoneNumber').errors?.required && studentForm.get('phoneNumber').errors?.pattern">
                         Please enter valid mumber
                     </mat-error>
-                </mat-form-field>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Inistution Name</mat-label>
+                    <input  matInput   type="text"  formControlName="InistutionName"  required  class="br-btm input-w" autoComplete='off'>
+                    <mat-error *ngIf ="studentForm.get('InistutionName').errors?.required">
+                        Required InistutionName.
+                    </mat-error>
+                  </mat-form-field>
                   
                   <mat-form-field>
                     <mat-label>Extra activities</mat-label>

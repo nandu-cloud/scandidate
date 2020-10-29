@@ -38,8 +38,10 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 
 import {InstitutionDashboardComponent} from './components/instituteDashboard/institutionDashboard.component';
 import {OrganizationDashboardComponent} from './components/organizationDashboard/organizationDashboard.component';
-
 import { ScandidateSettingsComponent } from './components/scandidate/scandidate-settings/scandidate-settings.component';
+import { BGVSearchComponent } from './components/bgv-search/bgv-search.component';
+import { AllStudentsComponent } from './components/scandidate/institute-onboard/all-students/all-students.component';
+import { AllEmployeesComponent } from './components/scandidate/organization-onboard/all-employees/all-employees.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,8 +67,11 @@ import { ScandidateSettingsComponent } from './components/scandidate/scandidate-
     ResetPasswordComponent,
     InstitutionDashboardComponent,
     OrganizationDashboardComponent,
+    ScandidateSettingsComponent,
+    BGVSearchComponent,
+    AllStudentsComponent,
     
-    ScandidateSettingsComponent
+    AllEmployeesComponent
   ],
   imports: [
     BrowserModule,

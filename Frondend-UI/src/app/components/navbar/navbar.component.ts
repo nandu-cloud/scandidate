@@ -5,6 +5,8 @@ import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { environment } from '../../../environments/environment';
+import { instituteService } from 'src/app/services/institute.service';
+import { addOrganizationService } from 'src/app/services/organization.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -27,7 +29,8 @@ export class NavbarComponent implements OnInit {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver,private lService:LoginService,public router:Router) {}
+  constructor(private breakpointObserver: BreakpointObserver,private lService:LoginService,public router:Router,
+    private appuserService:instituteService, private organizationService:addOrganizationService) {}
   ngOnInit(){
     let role = window.sessionStorage.getItem('role');
     let subrole = window.sessionStorage.getItem('subRole');
@@ -46,6 +49,7 @@ export class NavbarComponent implements OnInit {
       this.Logo = true;
       this.imageUrl=`${this.baseUrl}/public/user_avatar/${logo}`;
       console.log(this.imageUrl);
+      this.getInstution()
     } else {
       this.insitutionadmin = false;
       this.appAdmin = false;
@@ -61,5 +65,17 @@ export class NavbarComponent implements OnInit {
     }
     
   }
-  
+
+  institueName:any
+  getInstution(){
+    this.appuserService.editInstitute( localStorage.getItem('instutuinId')).subscribe(respObj => {
+      this.institueName =respObj.data.instituteName
+    })
+  }
+  // editOrganization:any;
+  // getOrganization(){
+  //   this.organizationService.editOrganization().subscribe(respObj => {
+       
+  //   })
+  // }
   }
