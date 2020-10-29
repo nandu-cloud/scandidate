@@ -57,6 +57,7 @@ export class NavbarComponent implements OnInit {
       this.Logo = true;
       this.imageUrl=`${this.baseUrl}/public/user_avatar/${logo}`;
       this.adminLogo = false;
+      this.getOrganization()
     }
     if((role == 'SCANDIDATE') && (subrole == 'ADMIN')) {
       this.profileImg = false;
@@ -66,16 +67,18 @@ export class NavbarComponent implements OnInit {
     
   }
 
-  institueName:any
+  institueName:any;
+  institutionLogo: any
   getInstution(){
     this.appuserService.editInstitute( localStorage.getItem('instutuinId')).subscribe(respObj => {
       this.institueName =respObj.data.instituteName
+      this.institutionLogo = respObj.data.instituteLogo
     })
   }
-  // editOrganization:any;
-  // getOrganization(){
-  //   this.organizationService.editOrganization().subscribe(respObj => {
-       
-  //   })
-  // }
+  getOrganization(){
+    this.organizationService.editOrganization(localStorage.getItem('organizationId')).subscribe(respObj => {
+      this.institueName = respObj.data.organizationName
+      this.institutionLogo = respObj.data.organisationLogo
+    })
+  }
   }

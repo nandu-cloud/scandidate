@@ -43,7 +43,7 @@ export class AddStudentComponent implements OnInit {
     });
     this.studentForm = new FormGroup({
       lastName : new FormControl(''),
-      firstName : new FormControl('',[Validators.required,Validators.minLength(5)]),
+      firstName : new FormControl('',[Validators.required,Validators.minLength(3)]),
       roll : new FormControl(),
       email : new FormControl('', [Validators.email,Validators.required]),
       address : new FormControl(''),
@@ -51,12 +51,13 @@ export class AddStudentComponent implements OnInit {
       nameOfCourse: new FormControl('', [Validators.required]),
       yearOfJoining: new FormControl('',[Validators.required,this.validateJoining()]),
       phoneNumber : new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
+      aadharNo : new FormControl('',[Validators.required,Validators.minLength(12),Validators.maxLength(12)]),
       yearOfPassout: new FormControl('',[Validators.required,this.validatePassout()]),
       studentType : new FormControl(''),
       extraActivity : new FormControl(''),
       extraActivityDocumentName : new FormControl(),
       eductionalDocumentNames : new FormControl(),
-      InistutionName : new FormControl('',[Validators.required]),
+      intitutionName : new FormControl('',[Validators.required]),
       eductionalDocumentLinks: new FormControl(),
       extraActivityDocumentLink : new FormControl()
     })

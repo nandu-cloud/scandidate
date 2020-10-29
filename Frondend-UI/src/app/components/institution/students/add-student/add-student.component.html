@@ -44,11 +44,21 @@
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Inistution Name</mat-label>
-                    <input  matInput   type="text"  formControlName="InistutionName"  required  class="br-btm input-w" autoComplete='off'>
-                    <mat-error *ngIf ="studentForm.get('InistutionName').errors?.required">
-                        Required InistutionName.
+                    <input  matInput   type="text"  formControlName="intitutionName"  required  class="br-btm input-w" autoComplete='off'>
+                    <mat-error *ngIf ="studentForm.get('intitutionName').errors?.required">
+                        Required IntitutionName.
                     </mat-error>
                   </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Aadhar Number</mat-label>
+                  <input  matInput   type="text"  formControlName="aadharNo"  required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{12}$">
+                  <mat-error *ngIf ="studentForm.get('aadharNo').errors?.required">
+                      Required Aadhar number.
+                  </mat-error>
+                  <mat-error *ngIf="!studentForm.get('aadharNo').errors?.required && studentForm.get('aadharNo').errors?.pattern">
+                      Please enter valid mumber
+                  </mat-error>
+              </mat-form-field>
                   
                   <mat-form-field>
                     <mat-label>Extra activities</mat-label>
