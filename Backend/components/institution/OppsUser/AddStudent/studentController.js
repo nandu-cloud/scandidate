@@ -37,7 +37,7 @@ module.exports.uploadCsv = async function (req, res, next) {
 };
 
 module.exports.getAllMethod = async function (req, res, next) {
-  const data = {};
+  const data = { instituteId: mongoose.Types.ObjectId(req.params.instituteId) };
   try {
     let studentData = await studentDAL.getAllUsers(data);
     return res
