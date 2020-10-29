@@ -41,7 +41,9 @@ module.exports.createOppsUserMethod = async function (req, res, next) {
 
 module.exports.getAllMethod = async function (req, res, next) {
   try {
-    const data = { institutionId: mongoose.Types.ObjectId(req.params.instituteId) };
+    const data = {
+      institutionId: mongoose.Types.ObjectId(req.params.instituteId),
+    };
     let userData = await userDAL.getAllUsers(data);
     if (!userData) return next(new AppError("user does not exists!", 404));
     return res.status(200).json({

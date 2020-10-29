@@ -41,7 +41,6 @@ app.use(
   require("./components/scandidate/dashboard/dashboardRoute")
 );
 
-
 app.use(
   "/api/institute/addUser",
   require("./components/institution/Admin/AddOppsUser/oppsUserRoute")
@@ -54,7 +53,6 @@ app.use(
   "/api/institute/dashboard",
   require("./components/institution/dashboard/dashboardRoute")
 );
-
 
 app.use(
   "/api/organisation/admin",
