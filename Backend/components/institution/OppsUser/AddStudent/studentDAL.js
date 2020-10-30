@@ -101,44 +101,11 @@ async function updateStudent(data) {
   }
 }
 
-// Search Student By name
+//Seacrh Student
 
-async function search(name) {
+async function search_student_new(data) {
   try {
-    let result = await studentModel.find({ firstName: name });
-    return result;
-  } catch (err) {
-    throw err;
-  }
-}
-
-// Search Student By Passout
-
-async function searchByPassout(passOut) {
-  try {
-    let result = await studentModel.find({ yearOfPassout: passOut });
-    return result;
-  } catch (err) {
-    throw err;
-  }
-}
-
-// Search Student By PhoneNumber
-
-async function searchByPhoneNumber(phoneNumber) {
-  try {
-    let result = await studentModel.find({ phoneNumber: phoneNumber });
-    return result;
-  } catch (err) {
-    throw err;
-  }
-}
-
-// Search Student By InstituteName
-
-async function searchByInstituteName(institute_Name) {
-  try {
-    let result = await studentModel.find({ intitutionName: institute_Name });
+    let result = await studentModel.find(data);
     return result;
   } catch (err) {
     throw err;
@@ -151,9 +118,6 @@ module.exports = {
   getAllUsers: getAllUsers,
   getStudentById: getStudentById,
   updateStudent: updateStudent,
-  search: search,
-  searchByPassout: searchByPassout,
-  searchByPhoneNumber: searchByPhoneNumber,
-  searchByInstituteName: searchByInstituteName,
+  search_student_new: search_student_new,
   addStudentCsv: addStudentCsv,
 };

@@ -66,6 +66,6 @@ router
 
 router
   .route("/student/search")
-  .post(authJWT.verifyJWTToken, instituteOnboardController.searchStudent);
+  .post(authJWT.verifyJWTToken, instituteOnboardController.search_student);
 
 module.exports = router;

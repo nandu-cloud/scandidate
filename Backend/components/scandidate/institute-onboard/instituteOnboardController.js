@@ -121,54 +121,16 @@ module.exports.instLogoDeleteMethod = async function (req, res, next) {
   });
 };
 
-module.exports.searchStudent = async (req, res, next) => {
-  const { firstName, yearOfPassout, phoneNumber, intitutionName } = req.body;
-  if (firstName != null) {
-    try {
-      const data = await studentDAL.search(firstName);
-      return res.status(200).json({
-        status: 200,
-        message: "success",
-        data: data,
-      });
-    } catch (err) {
-      return next(new AppError(err, 400));
-    }
-  }
-  if (yearOfPassout != null) {
-    try {
-      const data = await studentDAL.searchByPassout(yearOfPassout);
-      return res.status(200).json({
-        status: 200,
-        message: "success",
-        data: data,
-      });
-    } catch (err) {
-      return next(new AppError(err, 400));
-    }
-  }
-  if (phoneNumber != null) {
-    try {
-      const data = await studentDAL.searchByPhoneNumber(phoneNumber);
-      return res.status(200).json({
-        status: 200,
-        message: "success",
-        data: data,
-      });
-    } catch (err) {
-      return next(new AppError(err, 400));
-    }
-  }
-  if (intitutionName != null) {
-    try {
-      const data = await studentDAL.searchByInstituteName(intitutionName);
-      return res.status(200).json({
-        status: 200,
-        message: "success",
-        data: data,
-      });
-    } catch (err) {
-      return next(new AppError(err, 400));
-    }
+module.exports.search_student = async (req, res, next) => {
+  let user_input = req.body;
+  try {
+    const data = await studentDAL.search_student_new(user_input);
+    return res.status(200).json({
+      status: 200,
+      message: "success",
+      data: data,
+    });
+  } catch (err) {
+    return next(new AppError(err, 400));
   }
 };

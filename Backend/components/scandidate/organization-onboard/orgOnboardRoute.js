@@ -55,4 +55,9 @@ router
   .route("/deletelogo/:orgLogo")
   .delete(authJWT.verifyJWTToken, orgOnboardController.orgLogoDeleteMethod);
 
+
+router
+  .route("/search/employee")
+  .post(authJWT.verifyJWTToken, orgOnboardController.search_employee);
+
 module.exports = router;

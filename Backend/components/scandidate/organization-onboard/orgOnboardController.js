@@ -5,6 +5,7 @@ const AppError = require("./../../../helpers/appError");
 const colors = require("./../../../helpers/colors");
 const orgnisationDAL = require("./orgOnboardDAL");
 const orgnisationValidator = require("./orgOnboardValidator");
+const empDAL = require("../../organization/OppsUser/AddEmployee/employeeDAL");
 
 // Add Organisation
 module.exports.onboardOrganisationMethod = async function (req, res, next) {
@@ -60,7 +61,7 @@ module.exports.updateOrganisationMethod = async function (req, res, next) {
     if (!organisationExsits)
       return next(new AppError("user does not exists!", 404));
     result._id = mongoose.Types.ObjectId(req.params.organisationId);
-    result.updatedAt=new Date();
+    result.updatedAt = new Date();
     let organisationData = await orgnisationDAL.updateOrganisation(result);
     return res.status(200).json({
       status: "SUCCESS",
@@ -119,3 +120,17 @@ module.exports.orgLogoDeleteMethod = async function (req, res, next) {
     });
   });
 };
+
+module.exports.search_employee = async (req, res, next) => {
+  let user_input = req.body;
+  try {
+    const data = await empDAL.search_employee_list(user_input);
+    return res.status(200).json({
+      status: 200,
+      message: "success",
+      data: data,
+    });
+  } catch (err) {
+    return next(new AppError(err, 400));
+  }
+}

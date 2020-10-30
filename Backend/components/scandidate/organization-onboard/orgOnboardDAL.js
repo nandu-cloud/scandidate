@@ -19,13 +19,13 @@ async function onboardOrganisation(data) {
   orgDtata.status = data.status;
   orgDtata.createdAt = new Date();
   orgDtata.updatedAt = new Date();
-  orgDtata.legalEntityName=data.legalEntityName;
-  orgDtata.organizationLocation=data.organizationLocation;
-  orgDtata.state=data.state;
-  orgDtata.headQuaterLocation=data.headQuaterLocation;
-  orgDtata.organizationGstn=data.organizationGstn;
-  orgDtata.organizationCin=data.organizationCin;
-  
+  orgDtata.legalEntityName = data.legalEntityName;
+  orgDtata.organizationLocation = data.organizationLocation;
+  orgDtata.state = data.state;
+  orgDtata.headQuaterLocation = data.headQuaterLocation;
+  orgDtata.organizationGstn = data.organizationGstn;
+  orgDtata.organizationCin = data.organizationCin;
+
   try {
     let result = await orgDtata.save();
     return result;
@@ -78,6 +78,8 @@ async function updateOrganisation(data) {
     throw err;
   }
 }
+
+
 
 // export functions
 module.exports = {
