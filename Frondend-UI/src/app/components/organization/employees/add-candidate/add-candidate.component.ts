@@ -30,6 +30,8 @@ export class AddCandidateComponent implements OnInit {
   discrepancy: string;
   compliance : string;
   warning : string;
+  organizationName: any = window.sessionStorage.getItem('orgName');
+ 
   constructor(
     public fb: FormBuilder,
     private cd: ChangeDetectorRef,public dialog: MatDialog,public route:ActivatedRoute,public empService : EmployeeService
@@ -42,7 +44,7 @@ export class AddCandidateComponent implements OnInit {
       firstName: new FormControl('', [Validators.required,Validators.minLength(5)]),
       lastName: new FormControl('', [Validators.required,Validators.minLength(3)]),
       employeeId : new FormControl(''),
-      organizationName : new FormControl('',[Validators.required]),
+      organizationName : new FormControl(this.organizationName),
       phoneNumber : new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
       email: new FormControl('', [Validators.required,Validators.email]),
       role: new FormControl(''),
@@ -80,6 +82,7 @@ export class AddCandidateComponent implements OnInit {
 
     });
   }
+ 
   validateExitDate(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       if (this.createCandidate !== undefined) {

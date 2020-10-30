@@ -57,10 +57,7 @@
                 </mat-form-field>
                 <mat-form-field>
                   <mat-label>Organization Name</mat-label>
-                  <input  matInput formControlName="organizationName"  type="text"   class="br-btm input-w" autoComplete='off' required>
-                  <mat-error *ngIf ="createCandidate.get('organizationName').errors?.required">
-                    Required organizationName
-                  </mat-error>
+                  <input  matInput formControlName="organizationName"  type="text"   class="br-btm input-w" autoComplete='off' readonly disabled>
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Role</mat-label>

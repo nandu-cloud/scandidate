@@ -27,33 +27,27 @@ export class AllEmployeesComponent implements OnInit {
   stuIdedit:number;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private formBuilder: FormBuilder,private _storage: StorageService,private stuService: StudentService,private router:Router
+  constructor(private formBuilder: FormBuilder,private _storage: StorageService,private orgnization: addOrganizationService,private router:Router
     ) { 
       this.searchForm = new FormGroup({
         organizationName: new FormControl(''),
+        firstName: new FormControl(''),
+        email: new FormControl(''),
+        phoneNumber: new FormControl(''),
       })
     }
  
      ngOnInit() {
-       this.displayedColumns = ['name', 'roll', 'email', 'phoneNumber', 'nameOfCourse' , 'address' ,'yoj','yop'];
-       this.studentListSubscription = this.stuService.getStudentData().subscribe(respObj => {
-         this.dataSource = new MatTableDataSource(respObj.data);
-         this.dataSource.paginator = this.paginator;
-         var dataRecords = respObj.data;
-         this.dataSource.filterPredicate = 
-          (data: typeof dataRecords, filtersJson: string) => {
-            const matchFilter = [];
-            const filters = JSON.parse(filtersJson);
-
-            filters.forEach(filter => {
-              const val = data[filter.id] === null ? '' : data[filter.id];
-              matchFilter.push(val.toLowerCase().includes(filter.value.toLowerCase()));
-            });
-              return matchFilter.every(Boolean);
-          };
-       }, err => {
-         this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
-       })
+       this.displayedColumns = ['name', 'roll', 'orgName','email', 'phoneNumber', 'department'  ,'exp'];
      }
-
+     search(){
+      
+      this.studentListSubscription = this.orgnization.getAllEmployeeData(this.searchForm.value).subscribe(respObj => {
+       console.log(respObj.data); 
+       this.dataSource = new MatTableDataSource(respObj.data);
+        this.dataSource.paginator = this.paginator;
+      }, err => {
+        this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
+      })
+    }
 }

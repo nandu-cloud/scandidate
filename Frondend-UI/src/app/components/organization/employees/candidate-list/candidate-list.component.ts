@@ -47,7 +47,7 @@ export class CandidateListComponent implements OnInit {
   applyFilter(filterValue: string) {
     const tableFilters = [];
     tableFilters.push({
-      id: 'name',
+      id: 'firstName',
       value: filterValue
     });
     this.dataSource.filter = JSON.stringify(tableFilters);

@@ -7,6 +7,7 @@ import { LoginService } from '../../services/login.service';
 import { environment } from '../../../environments/environment';
 import { instituteService } from 'src/app/services/institute.service';
 import { addOrganizationService } from 'src/app/services/organization.service';
+import { StorageService } from 'src/app/services/storage.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -30,7 +31,7 @@ export class NavbarComponent implements OnInit {
     );
 
   constructor(private breakpointObserver: BreakpointObserver,private lService:LoginService,public router:Router,
-    private appuserService:instituteService, private organizationService:addOrganizationService) {}
+    private appuserService:instituteService, private organizationService:addOrganizationService,public _sessionStorage: StorageService) {}
   ngOnInit(){
     let role = window.sessionStorage.getItem('role');
     let subrole = window.sessionStorage.getItem('subRole');
@@ -68,7 +69,8 @@ export class NavbarComponent implements OnInit {
   }
 
   institueName:any;
-  institutionLogo: any
+  institutionLogo: any;
+  orgName:any;
   getInstution(){
     this.appuserService.editInstitute( localStorage.getItem('instutuinId')).subscribe(respObj => {
       this.institueName =respObj.data.instituteName
@@ -77,7 +79,8 @@ export class NavbarComponent implements OnInit {
   }
   getOrganization(){
     this.organizationService.editOrganization(localStorage.getItem('organizationId')).subscribe(respObj => {
-      this.institueName = respObj.data.organizationName
+      this.orgName = respObj.data.organizationName;
+      this._sessionStorage.setSession('orgName',this.orgName);
       this.institutionLogo = respObj.data.organisationLogo
     })
   }

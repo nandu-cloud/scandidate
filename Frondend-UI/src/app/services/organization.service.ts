@@ -73,4 +73,12 @@ export class addOrganizationService {
   deleteFile(fileDelete: string): Observable<any> {
     return this.http.delete(this.baseUrl + '/api/scandidate/organisation/deletelogo/'+fileDelete);
   }
+
+  //Get Employee list
+  public getAllEmployeeData(searchParams) : Observable<any>{
+    var searchData: { 'firstName':string,'email': string, 'phoneNumber': string,'organizationName':string } =
+                    { 'firstName':searchParams.firstName == ""? undefined : searchParams.firstName,'email': searchParams.email == ""?undefined : searchParams.email,'phoneNumber': searchParams.phoneNumber == ""? undefined : searchParams.phoneNumber,'organizationName': searchParams.organizationName == ""? undefined : searchParams.organizationName};
+    return this.http.post(this.baseUrl + '/api/scandidate/organisation/search/employee' ,searchData
+    );
+  }
 }

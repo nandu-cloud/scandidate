@@ -46,7 +46,7 @@
         <!-- Name Column -->
         <ng-container matColumnDef="name">
           <mat-header-cell *matHeaderCellDef >Student Name</mat-header-cell>
-          <mat-cell *matCellDef="let row">{{row.firstName}}</mat-cell>
+          <mat-cell *matCellDef="let row">{{row.firstName | titlecase}}</mat-cell>
         </ng-container>
     
         <!-- Email -->
