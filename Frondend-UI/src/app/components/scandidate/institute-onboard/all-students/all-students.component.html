@@ -17,6 +17,9 @@
                 <mat-form-field>
                     <mat-label>Year of passing</mat-label>
                     <input  matInput formControlName="yearOfPassout"  type="text"  class="br-btm input-w" autoComplete='off'  pattern="^[0-9]{4}$">
+                    <mat-error *ngIf="searchForm.get('yearOfPassout').errors?.pattern">
+                      Please enter valid year
+                    </mat-error>
                 </mat-form-field>
             </div>
             <div class="w-full md:w-1/5 sm:w-full">
@@ -51,6 +54,11 @@
           <mat-header-cell *matHeaderCellDef >Roll Number</mat-header-cell>
           <mat-cell *matCellDef="let row">{{row.roll}}</mat-cell>
         </ng-container>
+
+        <ng-container matColumnDef="insName">
+          <mat-header-cell *matHeaderCellDef >Inistution Name</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.intitutionName}}</mat-cell>
+        </ng-container>
     
         <ng-container matColumnDef="email">
           <mat-header-cell *matHeaderCellDef >Email</mat-header-cell>
@@ -67,19 +75,16 @@
           <mat-cell *matCellDef="let row">{{row.nameOfCourse}}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="address">
-            <mat-header-cell *matHeaderCellDef >Address</mat-header-cell>
-            <mat-cell *matCellDef="let row">{{row.nameOfCourse}}</mat-cell>
-        </ng-container>
+       
 
         <ng-container matColumnDef="yoj">
             <mat-header-cell *matHeaderCellDef >Year of Joining</mat-header-cell>
-            <mat-cell *matCellDef="let row">{{row.nameOfCourse}}</mat-cell>
+            <mat-cell *matCellDef="let row">{{row.yearOfJoining}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="yop">
             <mat-header-cell *matHeaderCellDef >Year of Passing</mat-header-cell>
-            <mat-cell *matCellDef="let row">{{row.nameOfCourse}}</mat-cell>
+            <mat-cell *matCellDef="let row">{{row.yearOfPassout}}</mat-cell>
         </ng-container>
         
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

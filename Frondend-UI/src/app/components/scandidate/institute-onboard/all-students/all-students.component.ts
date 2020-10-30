@@ -38,7 +38,7 @@ export class AllStudentsComponent implements OnInit {
     }
  
      ngOnInit() {
-      this.displayedColumns = ['name', 'roll', 'email', 'phoneNumber', 'nameOfCourse' , 'address' ,'yoj','yop'];
+      this.displayedColumns = ['name', 'roll', 'insName','email', 'phoneNumber', 'nameOfCourse'  ,'yoj','yop'];
      }
      search(){
       
