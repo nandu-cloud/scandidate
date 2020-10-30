@@ -6,6 +6,7 @@ import { StudentService } from '../../../../services/student.service';
 import { StorageService } from '../../../../services/storage.service'
 import { from, Subscription } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
+import { instituteService } from 'src/app/services/institute.service';
 @Component({
   selector: 'app-add-student',
   templateUrl: './add-student.component.html',
@@ -34,9 +35,12 @@ export class AddStudentComponent implements OnInit {
   documentCount: any;
   imagePreview = false;
   files:File  []  =  [];
+  instituteName: any = window.sessionStorage.getItem('instName');
+
   constructor(
     public fb: FormBuilder,
-    private cd: ChangeDetectorRef, public dialog: MatDialog,public route:ActivatedRoute, public stuService:StudentService
+    private cd: ChangeDetectorRef, public dialog: MatDialog,public route:ActivatedRoute, public stuService:StudentService,
+    private appuserService:instituteService
   ) {
     this.route.params.subscribe(params => {
       this.studentIdedit = params.id;
@@ -57,7 +61,7 @@ export class AddStudentComponent implements OnInit {
       extraActivity : new FormControl(''),
       extraActivityDocumentName : new FormControl(),
       eductionalDocumentNames : new FormControl(),
-      intitutionName : new FormControl('',[Validators.required]),
+      instituteName : new FormControl(this.instituteName, [Validators.required]),
       eductionalDocumentLinks: new FormControl(),
       extraActivityDocumentLink : new FormControl()
     })

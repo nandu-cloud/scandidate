@@ -12,7 +12,7 @@ import { StorageService } from 'src/app/services/storage.service';
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
-  providers: [LoginService]
+  providers: [LoginService, instituteService, addOrganizationService, StorageService]
 })
 export class NavbarComponent implements OnInit {
   openNav: void;
@@ -71,17 +71,22 @@ export class NavbarComponent implements OnInit {
   institueName:any;
   institutionLogo: any;
   orgName:any;
+  instName:any;
   getInstution(){
     this.appuserService.editInstitute( localStorage.getItem('instutuinId')).subscribe(respObj => {
       this.institueName =respObj.data.instituteName
-      this.institutionLogo = respObj.data.instituteLogo
-    })
+      this.institutionLogo = `${this.baseUrl}/public/institute_logo/${respObj.data.instituteLogo}`
+      this.instName = respObj.data.instituteName;
+      this._sessionStorage.setSession('instName',this.instName);
+       })
   }
   getOrganization(){
     this.organizationService.editOrganization(localStorage.getItem('organizationId')).subscribe(respObj => {
       this.orgName = respObj.data.organizationName;
       this._sessionStorage.setSession('orgName',this.orgName);
-      this.institutionLogo = respObj.data.organisationLogo
+      // this.institutionLogo = respObj.data.organisationLogo
+      this.institueName = respObj.data.organizationName
+      this.institutionLogo = `${this.baseUrl}/public/organization_logo/${respObj.data.organisationLogo}`
     })
   }
   }
