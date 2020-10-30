@@ -49,6 +49,10 @@ const employeeSchema = new mongoose.Schema({
         type: String,
         required: false,
     },
+    organizationName: {
+        type: String,
+        required: true
+    },
     dateOfJoining: {
         type: Date,
         required: [true, "Date Of Joining cannot be empty"],
@@ -104,6 +108,10 @@ const employeeSchema = new mongoose.Schema({
     consistency: {
         type: Number,
         required: false,
+    },
+    awards: {
+        type: String,
+        required: true
     },
 
     //Conduct

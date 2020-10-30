@@ -15,6 +15,8 @@ async function addEmployee(data) {
   employeeData.phoneNumber = data.phoneNumber;
   employeeData.adharNumber = data.adharNumber;
   employeeData.panNumber = data.panNumber;
+  employeeData.awards = data.awards;
+  employeeData.organizationName = data.organizationName;
   employeeData.dateOfJoining = data.dateOfJoining;
   employeeData.exitDate = data.exitDate;
   employeeData.professionalExperience = data.professionalExperience;
