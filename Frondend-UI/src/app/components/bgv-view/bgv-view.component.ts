@@ -6,8 +6,8 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { EmployeeService } from  '../../services/employee.service';
 import { StorageService } from '../../services/storage.service';
 import { from, Subscription } from 'rxjs';
-import { jsPDF } from 'jspdf';
-import html2canvas from 'html2canvas';
+// import { jsPDF } from 'jspdf';
+// import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'bgv-view',
@@ -18,23 +18,23 @@ import html2canvas from 'html2canvas';
 export class BGVViewComponent implements OnInit {
 
 
-  public convetToPDF()
-{
-var data = document.getElementById('contentToConvert');
-html2canvas(data).then(canvas => {
-// Few necessary setting options
-var imgWidth = 208;
-var pageHeight = 295;
-var imgHeight = canvas.height * imgWidth / canvas.width;
-var heightLeft = imgHeight;
+//   public convetToPDF()
+// {
+// var data = document.getElementById('contentToConvert');
+// html2canvas(data).then(canvas => {
+// // Few necessary setting options
+// var imgWidth = 208;
+// var pageHeight = 295;
+// var imgHeight = canvas.height * imgWidth / canvas.width;
+// var heightLeft = imgHeight;
  
-const contentDataURL = canvas.toDataURL('image/png')
-let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
-var position = 0;
-pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
-pdf.save('new-file.pdf'); // Generated PDF
-});
-}
+// const contentDataURL = canvas.toDataURL('image/png')
+// let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
+// var position = 0;
+// pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+// pdf.save('new-file.pdf'); // Generated PDF
+// });
+// }
 
 
 
