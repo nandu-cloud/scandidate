@@ -1,0 +1,51 @@
+th {
+    background-color: rgb(108, 180, 59);
+    color: black;
+    font-size: 14px;
+  }
+  .hd{
+    padding-left: 130px;
+  }
+  @media (min-width: 768px) {
+    .full-width-table {
+      width: 100%;
+      margin: 1px auto;
+      margin-top: -30px;
+    }
+    .data-table {
+      width: 80%;
+      margin: 49px auto;
+    }
+  }
+  .add{
+    border-left: 2px solid black !important;
+    border-radius: inherit !important;
+  }
+  .btn{
+      padding-left: 40%;
+  }
+  
+  .data-table {
+    width: 80%;
+    margin: 56px auto;
+    }
+  .org{
+    padding-left:0px;font-weight:bold;padding-top:11px;font-size: 15px;
+  }
+  .mat-header-cell{
+    background-color: rgb(108, 180, 59);
+    color: black;
+  }
+  .mat-raised-button{
+    box-shadow: none !important;
+    padding: 3px 16px !important;
+    margin-left: -27px;
+    margin-top: 23px;
+  }
+  .mat-icon{
+    cursor: pointer !important;
+  }
+  .input-w{
+      width: 170px;
+  }
+  

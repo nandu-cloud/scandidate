@@ -26,7 +26,9 @@ import { OrganizationDashboardComponent } from './components/organizationDashboa
 import { ScandidateSettingsComponent } from './components/scandidate/scandidate-settings/scandidate-settings.component';
 import { BGVSearchComponent } from './components/bgv-search/bgv-search.component';
 import { AllStudentsComponent } from './components/scandidate/institute-onboard/all-students/all-students.component';
-import { AllEmployeesComponent } from './components/scandidate/organization-onboard/all-employees/all-employees.component'
+import { AllEmployeesComponent } from './components/scandidate/organization-onboard/all-employees/all-employees.component';
+import {BGVViewComponent} from './components/bgv-view/bgv-view.component';
+
 const routes: Routes = [  {path: 'login' , component: LoginComponent},
 { path: '',  redirectTo: '/login', pathMatch: 'full' },
 {path: 'add-organization' , component:AddOrganizationComponent  },
@@ -60,7 +62,9 @@ const routes: Routes = [  {path: 'login' , component: LoginComponent},
 {path: 'settings', component: ScandidateSettingsComponent},
 {path: 'BGV',component:BGVSearchComponent},
 {path: 'students', component: AllStudentsComponent},
-{path: 'employee', component: AllEmployeesComponent }
+{path: 'employee', component: AllEmployeesComponent },
+{path: 'bgv-view',component:BGVViewComponent}
+
 ];
 
 @NgModule({
