@@ -20,15 +20,15 @@ export class DashboardService {
   
 
   public getinstituteCount() : Observable<any> {
-    var id = window.sessionStorage.getItem('ID');
+    var id = window.sessionStorage.getItem('InistutionId');
     console.log(id);
-    return this.http.get(this.baseUrl + '/api/institute/dashboard/count/id');
+    return this.http.get(this.baseUrl + '/api/institute/dashboard/count/' +id);
   }
 
   public getorganizationCount() : Observable<any> {
-    var id = window.sessionStorage.getItem('ID');
+    var id = window.sessionStorage.getItem('organizationId');
     console.log(id);
-    return this.http.get(this.baseUrl + '/api/organisation/dashboard/count/id');
+    return this.http.get(this.baseUrl + '/api/organisation/dashboard/count/'+id);
   }
 
   organizationGraph(updateOrgData) : Observable<any>{
