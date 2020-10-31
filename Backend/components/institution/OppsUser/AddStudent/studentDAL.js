@@ -105,7 +105,7 @@ async function updateStudent(data) {
 
 async function search_student_new(data) {
   try {
-    let result = await studentModel.find(data);
+    let result = await studentModel.find(data).collation({ locale: 'en', strength: 1 });;
     return result;
   } catch (err) {
     throw err;

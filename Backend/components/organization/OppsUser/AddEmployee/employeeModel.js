@@ -159,6 +159,9 @@ const employeeSchema = new mongoose.Schema({
         type: Date,
         default: new Date(),
     },
+
+    // Issues
+
 });
 // compile schema to model
 module.exports = mongoose.model("employees", employeeSchema, "employees");

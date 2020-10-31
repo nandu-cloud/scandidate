@@ -90,7 +90,7 @@ async function updateEmployee(data) {
 
 async function search_employee_list(data) {
   try {
-    let result = await employeeModel.find(data);
+    let result = await employeeModel.find(data).collation({ locale: 'en', strength: 1 });
     return result;
   } catch (err) {
     throw err;
