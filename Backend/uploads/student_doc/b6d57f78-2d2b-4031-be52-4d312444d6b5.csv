@@ -1,0 +1,4 @@
+firstName,lastName,roll,nameOfCourse,studentType,yearOfJoining,yearOfPassout,phoneNumber,email,address
+,raj,77,BE,Regular,2013,2017,9876543210,xyz@gmail.com,Bangalore
+Mehul,raj,73,BE,Regular,2013,2017,8876543210,abc@gmail.com,Bangalore
+Ankit,raj,75,BE,Regular,2013,2017,6876543210,def@gmail.com,Bangalore

@@ -45,19 +45,37 @@ async function addStudentCsv(path, id, instituteId1) {
     csv()
       .fromFile(path)
       .then((jsonObj) => {
+        console.log("----Length of the CSV is-----", jsonObj.length);
         for (var x = 0; x < jsonObj.length; x++) {
           console.log(jsonObj[x].yearOfJoining);
+          if (jsonObj[x].yearOfJoining === null) {
+            return new Error("Year of joining cann't be empty");
+          }
           yearOfJoining = parseInt(jsonObj[x].yearOfJoining);
           jsonObj[x].yearOfJoining = yearOfJoining;
+
+          if (jsonObj[x].yearOfPassout === null) {
+            return new Error("Year of graduation cann't be empty");
+          }
+
 
           yearOfPassout = parseInt(jsonObj[x].yearOfPassout);
           jsonObj[x].yearOfPassout = yearOfPassout;
 
+          if (jsonObj[x].phoneNumber === null) {
+            return new Error("Phone number cannt be empty");
+          }
           phoneNumber = parseInt(jsonObj[x].phoneNumber);
           jsonObj[x].phoneNumber = phoneNumber;
 
+          if (jsonObj[x].instituteId === null) {
+            return new Error("Institute Id cann't be empty");
+          }
+
           jsonObj[x].addedById = id;
           jsonObj[x].instituteId = instituteId1;
+
+
         }
         try {
           let result = studentModel.insertMany(jsonObj);
