@@ -42,14 +42,45 @@ module.exports.uploadCsv = async function (req, res, next) {
 module.exports.saveStudentCSV = async (req, res, next) => {
   const path = req.file.path;
   const id = req.body._id;
-  // const instituteId = req.body.instituteId;
-
+  // const instituteId = req.body.instituteId
   const { instituteId } = req.body;
+
+  fs.readFile(path, 'utf8', function (err, data) {
+    var dataArray = data.split(/\r?\n/);
+    var result = dataArray[0].split(',');
+    if (result[0] != 'firstName') {
+      return res.status(404).json({ status: 404, message: 'Failed', error: 'FirstName header is missing' });
+    }
+    if (result[1] != 'lastName') {
+      return res.status(404).json({ status: 404, message: 'Failed', error: 'LastName header is missing' });
+    }
+    if (result[2] != 'roll') {
+      return res.status(404).json({ status: 404, message: 'Failed', error: 'RollNumber header is missing' });
+    } if (result[3] != 'nameOfCourse') {
+      return res.status(404).status(404).json({ status: 404, message: 'Failed', error: 'NameOfCourse header is missing' });
+    } if (result[4] != 'studentType') {
+      return res.status(404).json({ status: 404, message: 'Failed', error: 'StudentType header is missing' });
+    } if (result[5] != 'yearOfJoining') {
+      return res.status(404).json({ status: 404, message: 'Failed', error: 'YearOfJoining header is missing' });
+    }
+    if (result[6] != 'yearOfPassout') {
+      return res.status(404).json({ status: 404, message: 'Failed', error: 'YearOfPassout header is missing' });
+    }
+    if (result[7] != 'phoneNumber') {
+      return res.status(404).json({ status: 404, message: 'Failed', error: 'PhoneNumber header is missing' });
+    }
+    if (result[8] != 'email') {
+      return res.status(404).json({ status: 404, message: 'Failed', error: 'Email header is missing' });
+    }
+    if (result[9] != 'address') {
+      return res.status(404).json({ status: 404, message: 'Failed', error: 'Address header is missing' });
+    }
+  });
 
   const headers = {
     firstName: /^[a-zA-Z]*$/,
     lastName: /^[a-zA-Z]*$/,
-    roll: /[0-9]*$/,
+    roll: /^[a-zA-Z0-9]*$/,
     nameOfCourse: /^[a-zA-Z]*$/,
     studentType: /^[a-zA-Z]*$/,
     yearOfJoining: /^\d{4}$/,
@@ -57,6 +88,7 @@ module.exports.saveStudentCSV = async (req, res, next) => {
     phoneNumber: /^[0-9]{10}$/,
     email: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
     address: /^[a-zA-Z]*$/
+
   }
 
   try {
@@ -73,9 +105,9 @@ module.exports.saveStudentCSV = async (req, res, next) => {
       })
       .catch(err => {
         let errorIndex = err[0].indexOf("in");
-        let result = err[0].substring(0, errorIndex);
+        let resultNew = err[0].substring(0, errorIndex);
         if (errorIndex > 0) {
-          return res.status(422).json({ status: 422, message: 'Failed', error: result + "in valid Format" })
+          return res.status(422).json({ status: 422, message: 'Failed', error: resultNew + "in valid Format" })
         }
         return res.status(422).json({ status: 422, message: 'Failed', error: err[0] })
       });
