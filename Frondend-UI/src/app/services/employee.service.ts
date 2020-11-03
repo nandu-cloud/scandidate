@@ -26,7 +26,7 @@ export class EmployeeService {
                   'creativity': number,'informalOrganizationSenseOfBelonging': number,'initiative': number,'workIndependenty' : number,'teamWork': number,
                   'dealConstructivelyWithPressure': number,'volume': number,'quality': number,'consistency': number,'punctuality': number,
                   'discipline': number,'academicKnowledge':number,'productKnowledge','industryKnowledge': number,'communicationSkills': number,
-                  'addedById' : string, 'organisationId': string,'organizationName': string
+                  'addedById' : string, 'organisationId': string,'organizationName': string,'awards': string
                 } =
                 { 'firstName' : empData.firstName,'lastName' : empData.lastName,'email' : empData.email,'phoneNumber': empData.phoneNumber,'dateOfJoining':empData.dateOfJoining,
                   'exitDate': empData.exitDate,'professionalExperience':empData.professionalExperience, 'employeeId':empData.employeeId,'role':empData.role,'department':empData.department,
@@ -34,7 +34,7 @@ export class EmployeeService {
                   'creativity': empData.creativity,'informalOrganizationSenseOfBelonging': empData.informalOrganizationSenseOfBelonging,'initiative':empData.initiative,'workIndependenty':empData.workIndependenty,'teamWork': empData.teamWork,
                   'dealConstructivelyWithPressure': empData.dealConstructivelyWithPressure,'volume': empData.volume , 'quality': empData.quality, 'consistency': empData.consistency,'punctuality': empData.punctuality,'organizationName':empData.organizationName,
                   'discipline' : empData.discipline,'academicKnowledge':empData.academicKnowledge, 'productKnowledge': empData.productKnowledge, 'industryKnowledge': empData.industryKnowledge,'communicationSkills': empData.communicationSkills,
-                  'organisationId': organizationId,'addedById': id
+                  'organisationId': organizationId,'addedById': id,'awards': empData.awards
                   
                 };
     return this.http.post(this.baseUrl + '/api/organisation/operational', EmployeeData
@@ -65,7 +65,7 @@ export class EmployeeService {
                   'creativity': number,'informalOrganizationSenseOfBelonging': number,'initiative': number,'workIndependenty' : number,'teamWork': number,
                   'dealConstructivelyWithPressure': number,'volume': number,'quality': number,'consistency': number,'punctuality': number,
                   'discipline': number,'academicKnowledge':number,'productKnowledge','industryKnowledge': number,'communicationSkills': number,
-                  'addedById' : string, 'organisationId': string,'organizationName':string
+                  'addedById' : string, 'organisationId': string,'organizationName':string,'awards':string
                 } =
                 { 'firstName' : empupdateData.firstName,'lastName' : empupdateData.lastName,'email' : empupdateData.email,'phoneNumber': empupdateData.phoneNumber,'dateOfJoining':empupdateData.dateOfJoining,
                   'exitDate': empupdateData.exitDate,'professionalExperience':empupdateData.professionalExperience, 'employeeId':empupdateData.employeeId,'role':empupdateData.role,'department':empupdateData.department,
@@ -73,7 +73,7 @@ export class EmployeeService {
                   'creativity': empupdateData.creativity,'informalOrganizationSenseOfBelonging': empupdateData.informalOrganizationSenseOfBelonging,'initiative':empupdateData.initiative,'workIndependenty':empupdateData.workIndependenty,'teamWork': empupdateData.teamWork,
                   'dealConstructivelyWithPressure': empupdateData.dealConstructivelyWithPressure,'volume': empupdateData.volume , 'quality': empupdateData.quality, 'consistency': empupdateData.consistency,'punctuality': empupdateData.punctuality,
                   'discipline' : empupdateData.discipline,'academicKnowledge':empupdateData.academicKnowledge, 'productKnowledge': empupdateData.productKnowledge, 'industryKnowledge': empupdateData.industryKnowledge,'communicationSkills': empupdateData.communicationSkills,'organizationName': empupdateData.organizationName,
-                  'organisationId': organizationId,'addedById': id
+                  'organisationId': organizationId,'addedById': id,'awards' : empupdateData.awards
                   
                 };
     return this.http.put(this.baseUrl + '/api/organisation/operational/' +this.empIdupdate, EmployeeData
