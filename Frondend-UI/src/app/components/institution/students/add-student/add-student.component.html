@@ -16,11 +16,17 @@
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Last Name</mat-label>
-                    <input  matInput formControlName="lastName"  type="text"  class="br-btm input-w" autoComplete='off' >
+                    <input  matInput formControlName="lastName"  type="text"  class="br-btm input-w" autoComplete='off' required>
+                    <mat-error *ngIf ="studentForm.get('lastName').errors?.required">
+                      Required last Name.
+                  </mat-error>
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Roll No</mat-label>
-                    <input  matInput formControlName="roll"  type="text"  class="br-btm input-w" autoComplete='off' >
+                    <input  matInput formControlName="roll"  type="text"  class="br-btm input-w" autoComplete='off' required >
+                    <mat-error *ngIf ="studentForm.get('roll').errors?.required">
+                      Required Roll Number.
+                  </mat-error>
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Email</mat-label>
