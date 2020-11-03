@@ -1,6 +1,6 @@
 const AppError = require("./../../../helpers/appError");
 const colors = require("./../../../helpers/colors");
-const bgvDAL = require("./bgvDAL.js");
+const bgvDAL = require("./bgvDAL");
 
 module.exports.searchbgv = async (req, res, next) => {
     let data = req.body;
