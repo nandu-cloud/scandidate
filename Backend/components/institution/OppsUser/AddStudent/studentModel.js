@@ -55,11 +55,11 @@ const studentSchema = new mongoose.Schema({
   },
   aadharNo: {
     type: Number,
-    required: true,
+    required: false,
   },
   intitutionName: {
     type: String,
-    required: true,
+    required: false,
   },
   addedById: {
     type: String,

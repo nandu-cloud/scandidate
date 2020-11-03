@@ -7,6 +7,7 @@ const fs = require("fs");
 const path = require("path");
 const csv = require("csvtojson");
 const bodyParser = require("body-parser");
+const csvValidator = require('csv-validator');
 
 // Add Student
 module.exports.addStudentMethod = async function (req, res, next) {
@@ -29,12 +30,61 @@ module.exports.uploadCsv = async function (req, res, next) {
     let studentData = await studentDAL.addStudentCsv(path, id, instituteId);
     return res
       .status(200)
-      .json({ status: "SUCCESS", message: null, data: studentData });
+      .json({ status: "SUCCESS", message: null, data: studentData }); sss
   } catch (err) {
     console.log(colors.red, `uploadCsv err ${err}`);
     return next(new AppError(err, 400));
   }
 };
+
+// Save CSV Test
+
+module.exports.saveStudentCSV = async (req, res, next) => {
+  const path = req.file.path;
+  const id = req.body._id;
+  // const instituteId = req.body.instituteId;
+
+  const { instituteId } = req.body;
+
+  const headers = {
+    firstName: /^[a-zA-Z]*$/,
+    lastName: /^[a-zA-Z]*$/,
+    roll: /[0-9]*$/,
+    nameOfCourse: /^[a-zA-Z]*$/,
+    studentType: /^[a-zA-Z]*$/,
+    yearOfJoining: /^\d{4}$/,
+    yearOfPassout: /^\d{4}$/,
+    phoneNumber: /^[0-9]{10}$/,
+    email: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+    address: /^[a-zA-Z]*$/
+  }
+
+  try {
+    csvValidator(path, headers)
+      .then(json => {
+        json.map(student => {
+          let data = student;
+          data.addedById = id;
+          data.instituteId = instituteId;
+          studentDAL.addStudent(data);
+        })
+      }).then(() => {
+        return res.status(200).json({ status: 200, message: 'Student data saved' });
+      })
+      .catch(err => {
+        let errorIndex = err[0].indexOf("in");
+        let result = err[0].substring(0, errorIndex);
+        if (errorIndex > 0) {
+          return res.status(422).json({ status: 422, message: 'Failed', error: result + "in valid Format" })
+        }
+        return res.status(422).json({ status: 422, message: 'Failed', error: err[0] })
+      });
+
+  } catch (err) {
+    return next(new AppError(err, 400));
+  }
+}
+
 
 module.exports.getAllMethod = async function (req, res, next) {
   const data = { instituteId: mongoose.Types.ObjectId(req.params.instituteId) };

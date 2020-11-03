@@ -36,6 +36,9 @@ async function addStudent(data) {
   }
 }
 
+
+
+
 //Add Student From CSV
 async function addStudentCsv(path, id, instituteId1) {
   var yearOfJoining;
@@ -45,41 +48,34 @@ async function addStudentCsv(path, id, instituteId1) {
     csv()
       .fromFile(path)
       .then((jsonObj) => {
-        console.log("----Length of the CSV is-----", jsonObj.length);
-        for (var x = 0; x < jsonObj.length; x++) {
-          console.log(jsonObj[x].yearOfJoining);
-          if (jsonObj[x].yearOfJoining === null) {
-            return new Error("Year of joining cann't be empty");
-          }
-          yearOfJoining = parseInt(jsonObj[x].yearOfJoining);
-          jsonObj[x].yearOfJoining = yearOfJoining;
+        // for (var x = 0; x < jsonObj.length; x++) {
 
-          if (jsonObj[x].yearOfPassout === null) {
-            return new Error("Year of graduation cann't be empty");
-          }
+        //   yearOfJoining = parseInt(jsonObj[x].yearOfJoining);
+        //   jsonObj[x].yearOfJoining = yearOfJoining;
 
 
-          yearOfPassout = parseInt(jsonObj[x].yearOfPassout);
-          jsonObj[x].yearOfPassout = yearOfPassout;
+        //   yearOfPassout = parseInt(jsonObj[x].yearOfPassout);
+        //   jsonObj[x].yearOfPassout = yearOfPassout;
 
-          if (jsonObj[x].phoneNumber === null) {
-            return new Error("Phone number cannt be empty");
-          }
-          phoneNumber = parseInt(jsonObj[x].phoneNumber);
-          jsonObj[x].phoneNumber = phoneNumber;
-
-          if (jsonObj[x].instituteId === null) {
-            return new Error("Institute Id cann't be empty");
-          }
-
-          jsonObj[x].addedById = id;
-          jsonObj[x].instituteId = instituteId1;
+        //   phoneNumber = parseInt(jsonObj[x].phoneNumber);
+        //   jsonObj[x].phoneNumber = phoneNumber;
 
 
-        }
+        //   jsonObj[x].addedById = id;
+        //   jsonObj[x].instituteId = instituteId1;
+
+        // }
         try {
+          // console.log("-------I am here 1------");
+          // studentDataValidator.addStudentSchema.validateAsync(jsonObj);
+          // console.log("-------I am here 2------");
+          // let result = studentModel.insertMany(jsonObj);
+          // console.log("-------I am here 3------");
+          // console.log(result);
+          // return result;
           let result = studentModel.insertMany(jsonObj);
           return result;
+
         } catch (err) {
           throw err;
         }

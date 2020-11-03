@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 const addStudentSchema = Joi.object({
-  firstName: Joi.string().required(),
+  firstName: Joi.string().required().min(4),
   lastName: Joi.string().required(),
   roll: Joi.string().required(),
   yearOfJoining: Joi.number().required(),
@@ -9,8 +9,8 @@ const addStudentSchema = Joi.object({
   studentType: Joi.string().required(),
   addedById: Joi.string().required().min(24).max(24).empty(""),
   instituteId: Joi.string().required().min(24).max(24).empty(""),
-  aadharNo: Joi.number().required(),
-  intitutionName: Joi.string().required(),
+  aadharNo: Joi.number(),
+  intitutionName: Joi.string(),
 
   email: Joi.string().email().allow("").allow(null),
   phoneNumber: Joi.number().allow("").allow(null),
@@ -21,6 +21,8 @@ const addStudentSchema = Joi.object({
   noOfEductionalDocuments: Joi.number().allow("").allow(null),
   eductionalDocumentNames: Joi.array().allow("").allow(null),
 });
+
+
 
 const updateStudentSchema = Joi.object({
   firstName: Joi.string().required(),
@@ -47,4 +49,5 @@ const updateStudentSchema = Joi.object({
 module.exports = {
   addStudentSchema: addStudentSchema,
   updateStudentSchema: updateStudentSchema,
+
 };
