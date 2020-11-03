@@ -45,7 +45,7 @@
                   <mat-form-field>
                     <mat-label>Institution Name</mat-label>
                     <input  matInput   type="text"  formControlName="intitutionName"  required  class="br-btm input-w" autoComplete='off'>
-                    <mat-error *ngIf ="studentForm.get('instituteName').errors?.required">
+                    <mat-error *ngIf ="studentForm.get('intitutionName').errors?.required">
                         Required IntitutionName.
                     </mat-error>
                   </mat-form-field>
@@ -97,11 +97,14 @@
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Student Type</mat-label>
-                    <input matInput placeholder="Input" style="display: none" >
+                    <input matInput placeholder="Input" style="display: none" required>
                     <mat-radio-group formControlName="studentType" required>
                       <mat-radio-button value="regular">Regular</mat-radio-button>
                       <mat-radio-button value="correspondance">Correspondance</mat-radio-button>
                     </mat-radio-group>
+                    <mat-error *ngIf ="studentForm.get('studentType').errors?.required">
+                      Required Student Type
+                    </mat-error>
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Year of Joining</mat-label>

@@ -57,7 +57,7 @@ export class AddStudentComponent implements OnInit {
       phoneNumber : new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
       aadharNo : new FormControl('',[Validators.required,Validators.minLength(12),Validators.maxLength(12)]),
       yearOfPassout: new FormControl('',[Validators.required,this.validatePassout()]),
-      studentType : new FormControl(''),
+      studentType : new FormControl('',[Validators.required]),
       extraActivity : new FormControl(''),
       extraActivityDocumentName : new FormControl(),
       eductionalDocumentNames : new FormControl(),
