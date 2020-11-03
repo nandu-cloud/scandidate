@@ -21,11 +21,11 @@ addStudent(studentData): Observable<any> {
   var id = window.sessionStorage.getItem('ID');
   var inistutionId = window.sessionStorage.getItem('InistutionId');
   var studentData1: { 'nameOfCourse': string, 'yearOfJoining': number ,'yearOfPassout': number ,'studentType': string, 'extraActivity': string ,
-               'firstName':string , 'lastName' : string , 'roll' : string, 'email': string , 'phoneNumber' : number , 'aadharNo': number, 'address' : number , 'addedById': string,'instituteId':string,'extraActivityDocumentName':string,'eductionalDocumentNames':string,'noOfEductionalDocuments': number,'intitutionName': string} =
+               'firstName':string , 'lastName' : string , 'roll' : string, 'email': string , 'phoneNumber' : number , 'adharNumber': number, 'address' : number , 'addedById': string,'instituteId':string,'extraActivityDocumentName':string,'eductionalDocumentNames':string,'noOfEductionalDocuments': number,'intitutionName': string} =
               { 'nameOfCourse': studentData.nameOfCourse, 'yearOfJoining': studentData.yearOfJoining ,'yearOfPassout': studentData.yearOfPassout, 'studentType' : studentData.studentType,
-                'extraActivity': studentData.extraActivity,'firstName':studentData.firstName,'lastName':studentData.lastName,'roll':studentData.roll,'email': studentData.email,'phoneNumber':studentData.phoneNumber,'address':studentData.address , 
+                'extraActivity': studentData.extraActivity,'firstName':studentData.firstName,'lastName':studentData.lastName,'roll':studentData.roll == ''?undefined:studentData.roll,'email': studentData.email,'phoneNumber':studentData.phoneNumber,'address':studentData.address , 
                 'eductionalDocumentNames':studentData.eductionalDocumentNames,'noOfEductionalDocuments': studentData.noOfEductionalDocuments,'extraActivityDocumentName': studentData.extraActivityDocumentName == ""? undefined : studentData.extraActivityDocumentName ,'addedById':id ,'instituteId': inistutionId,
-                'intitutionName': studentData.intitutionName, 'aadharNo': studentData.aadharNo
+                'intitutionName': studentData.intitutionName, 'adharNumber': studentData.adharNumber
               };
   return this.http.post(this.baseUrl + '/api/institute/operational/student', studentData1
     , {
@@ -50,11 +50,11 @@ updateStudent(updateStudentData) : Observable<any>{
   var inistutionId = window.sessionStorage.getItem('InistutionId');
   var updatestudent: { 'nameOfCourse': string, 'yearOfJoining': number ,'yearOfPassout': number ,'studentType': string, 'extraActivity': string ,
   'firstName':string , 'lastName' : string , 'roll' : string, 'email': string , 'phoneNumber' : number , 'address' : number , 'addedById': string ,
-   'instituteId': string, 'extraActivityDocumentName':string,'eductionalDocumentNames':string,'noOfEductionalDocuments': number,'intitutionName':string, 'aadharNo': number} =
+   'instituteId': string, 'extraActivityDocumentName':string,'eductionalDocumentNames':string,'noOfEductionalDocuments': number,'intitutionName':string, 'adharNumber': number} =
  { 'nameOfCourse': updateStudentData.nameOfCourse, 'yearOfJoining': updateStudentData.yearOfJoining ,'yearOfPassout': updateStudentData.yearOfPassout, 'studentType' : updateStudentData.studentType,
-   'extraActivity': updateStudentData.extraActivity,'firstName':updateStudentData.firstName,'lastName':updateStudentData.lastName,'roll':updateStudentData.roll,'email': updateStudentData.email,'phoneNumber':updateStudentData.phoneNumber,'address':updateStudentData.address , 
+   'extraActivity': updateStudentData.extraActivity,'firstName':updateStudentData.firstName,'lastName':updateStudentData.lastName,'roll':updateStudentData.roll == ""?undefined: updateStudentData.roll,'email': updateStudentData.email,'phoneNumber':updateStudentData.phoneNumber,'address':updateStudentData.address , 
    'addedById':id,'instituteId' : inistutionId,'eductionalDocumentNames':updateStudentData.eductionalDocumentNames,'noOfEductionalDocuments': updateStudentData.noOfEductionalDocuments,'extraActivityDocumentName': updateStudentData.extraActivityDocumentName == ""? undefined : updateStudentData.extraActivityDocumentName,
-   'intitutionName':updateStudentData.intitutionName, 'aadharNo': updateStudentData.aadharNo
+   'intitutionName':updateStudentData.intitutionName, 'adharNumber': updateStudentData.adharNumber
  };
   return this.http.put(this.baseUrl + '/api/institute/operational/student/' +this.stdIdupdate, updatestudent,
   {
