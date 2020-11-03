@@ -21,7 +21,7 @@ async function addStudent(data) {
   studentData.email = data.email;
   studentData.phoneNumber = data.phoneNumber;
   studentData.address = data.address;
-  studentData.aadharNo = data.aadharNo;
+  studentData.adharNumber = data.adharNumber;
   studentData.intitutionName = data.intitutionName;
   studentData.addedById = data.addedById;
   studentData.instituteId = data.instituteId;

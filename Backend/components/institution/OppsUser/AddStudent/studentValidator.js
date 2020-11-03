@@ -9,7 +9,7 @@ const addStudentSchema = Joi.object({
   studentType: Joi.string().required(),
   addedById: Joi.string().required().min(24).max(24).empty(""),
   instituteId: Joi.string().required().min(24).max(24).empty(""),
-  aadharNo: Joi.number(),
+  adharNumber: Joi.number(),
   intitutionName: Joi.string(),
 
   email: Joi.string().email().allow("").allow(null),
@@ -33,7 +33,7 @@ const updateStudentSchema = Joi.object({
   studentType: Joi.string().required(),
   addedById: Joi.string().required().min(24).max(24),
   instituteId: Joi.string().required().min(24).max(24).empty(""),
-  aadharNo: Joi.number().required(),
+  adharNumber: Joi.number().required(),
   intitutionName: Joi.string().required(),
 
   email: Joi.string().email().allow("").allow(null),

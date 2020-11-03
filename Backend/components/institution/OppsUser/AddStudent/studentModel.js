@@ -53,7 +53,7 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  aadharNo: {
+  adharNumber: {
     type: Number,
     required: false,
   },
