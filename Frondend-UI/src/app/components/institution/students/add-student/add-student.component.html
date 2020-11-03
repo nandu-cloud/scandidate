@@ -51,12 +51,12 @@
                   </mat-form-field>
                 <mat-form-field>
                   <mat-label>Aadhar Number</mat-label>
-                  <input  matInput   type="text"  formControlName="aadharNo"  required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{12}$">
-                  <mat-error *ngIf ="studentForm.get('aadharNo').errors?.required">
+                  <input  matInput   type="text"  formControlName="adharNumber"  required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{12}$">
+                  <mat-error *ngIf ="studentForm.get('adharNumber').errors?.required">
                       Required Aadhar number.
                   </mat-error>
-                  <mat-error *ngIf="!studentForm.get('aadharNo').errors?.required && studentForm.get('aadharNo').errors?.pattern">
-                      Please enter valid mumber
+                  <mat-error *ngIf="!studentForm.get('adharNumber').errors?.required && studentForm.get('adharNumber').errors?.pattern">
+                      Please enter valid number
                   </mat-error>
               </mat-form-field>
                   
