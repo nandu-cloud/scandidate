@@ -8,6 +8,7 @@ const errorHandler = require("./middlewares/errorHandler");
 const path = require("path");
 
 const morgan = require("morgan");
+const { required } = require("joi");
 
 const app = express();
 
@@ -40,6 +41,12 @@ app.use(
   "/api/scandidate/dashboard",
   require("./components/scandidate/dashboard/dashboardRoute")
 );
+
+app.use(
+  "/api/scandidate/bgvsearch",
+  require("./components/scandidate/BGVSearch/bgvSearchRoute")
+);
+
 
 app.use(
   "/api/institute/addUser",

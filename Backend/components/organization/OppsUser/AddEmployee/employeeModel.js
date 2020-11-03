@@ -111,7 +111,7 @@ const employeeSchema = new mongoose.Schema({
     },
     awards: {
         type: String,
-        required: true
+        required: false
     },
 
     //Conduct
