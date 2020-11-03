@@ -16,8 +16,12 @@ export class BgvSearchService {
     
  }
 
- public getUserData() : Observable<any> {
-  return this.http.get('https://jsonplaceholder.typicode.com/users');
+ //Get bgv list
+ public getAllBGVData(searchParams) : Observable<any>{
+  var searchData: { 'firstName':string,'dateOfBirth': string, 'phoneNumber': string ,'email': string ,'adharNumber':string} =
+                  { 'firstName':searchParams.firstName == ""? undefined : searchParams.firstName,'dateOfBirth': searchParams.dateOfBirth == ""? undefined : searchParams.dateOfBirth,'phoneNumber': searchParams.phoneNumber == ""? undefined : searchParams.phoneNumber,'email':searchParams.email == ""?undefined : searchParams.email,'adharNumber':searchParams.adharNumber == ""?undefined : searchParams.adharNumber};
+  return this.http.post(this.baseUrl + '/api/scandidate/bgvsearch' ,searchData
+  );
 }
 }
 
