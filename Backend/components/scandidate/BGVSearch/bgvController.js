@@ -7,14 +7,12 @@ module.exports.searchbgv = async (req, res, next) => {
     console.log(data);
     try {
         let empData = await bgvDAL.searchBgvDataEmployee(data);
-        console.log("Employee data: ", empData);
         if (empData.length > 0) {
             return res
                 .status(200)
                 .json({ status: 200, message: "Success", data: empData });
         }
         let stdData = await bgvDAL.searchBgvDataStudent(data);
-        console.log("Student Data: ", stdData);
         if (stdData.length > 0) {
             return res
                 .status(200)
