@@ -61,6 +61,7 @@ const updateEmployeeSchema = Joi.object({
   organisationId: Joi.string().required(),
   organizationName: Joi.string().required(),
 
+  awards: Joi.string().allow("").allow(null),
   employeeId: Joi.string().allow("").allow(null),
   role: Joi.string().allow("").allow(null),
   department: Joi.string().allow("").allow(null),
