@@ -86,10 +86,10 @@ module.exports.saveStudentCSV = async (req, res, next) => {
   //       });
   //     }
   //     if (result[5] != "yearOfJoining") {
-  //       return res.status(404).json({
+  //       return res.status(404).json({ 
   //         status: 404,
   //         message: "Failed",
-  //         error: "YearOfJoining header is missing",
+  //         error: "YearOfJoining header is missing", 
   //       });
   //     }
   //     if (result[6] != "yearOfPassout") {
