@@ -16,6 +16,11 @@ th {
       width: 80%;
       margin: 49px auto;
     }
+    .example-form-field {
+      width: 200px;
+      padding-right: 40px;
+      padding-right: 40px;
+    }
   }
   .add{
     border-left: 2px solid black !important;
