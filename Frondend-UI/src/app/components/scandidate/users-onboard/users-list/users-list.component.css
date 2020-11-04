@@ -46,3 +46,6 @@ th {
 .mat-row:nth-child(1){
   background-color: #0000001a;
 }
+.phone{
+  justify-content: flex-end !important;
+}

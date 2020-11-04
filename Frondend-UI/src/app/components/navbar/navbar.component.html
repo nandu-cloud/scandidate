@@ -57,7 +57,7 @@
       <img  src={{institutionLogo}} width="50" height="50" alt="" class="pl-2 ml-4" *ngIf="Logo">
     
       <a routerLink="/user-profile" class="lg:ml-4 flex items-center justify-start lg:md-0 mb-0 cursor-pointer" *ngIf="profileImg">
-        <img src={{imageUrl}} class="rounded-full w-8 h-8 border-2 border-transparent hover:border-indigo-400" alt="Andy Leverenz">
+        <img src={{imageUrl}} class="rounded-full w-8 h-8 border-2 border-transparent hover:border-indigo-400" >
       </a>
       <mat-icon class="arrow-down cursor-pointer" [matMenuTriggerFor]="afterMenu">keyboard_arrow_down</mat-icon>
       <mat-menu #afterMenu="matMenu">

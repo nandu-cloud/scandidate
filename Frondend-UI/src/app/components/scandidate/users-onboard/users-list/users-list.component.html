@@ -50,38 +50,20 @@
     </ng-container> -->
 
     <ng-container matColumnDef="phoneNumber">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>User Contact</mat-header-cell>>
-      <mat-cell *matCellDef="let row">{{row.phoneNumber}}</mat-cell>>
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="flex justify-center">User Contact</mat-header-cell>>
+      <mat-cell *matCellDef="let row"  class="flex justify-center">{{row.phoneNumber}}</mat-cell>>
     </ng-container>
 
-    <!-- <ng-container matColumnDef="code">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>User code</th>
-      <td mat-cell *matCellDef="let row">{{row.code}}</td>
-    </ng-container> -->
-
-    <!-- <ng-container matColumnDef="userOrg">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>User org</th>
-      <td mat-cell *matCellDef="let row">{{row.userOrg}}</td>
-    </ng-container> -->
-
-    <!-- <ng-container matColumnDef="userInst">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>User Inst</th>
-      <td mat-cell *matCellDef="let row">{{row.userInst}}</td>
-    </ng-container> -->
-
-    <!-- <ng-container matColumnDef="linkedUsers">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Linked users</th>
-      <td mat-cell *matCellDef="let row">{{row.linkedUsers}}</td>
-    </ng-container> -->
+   
 
     <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>>
-      <mat-cell *matCellDef="let row"><span class="bg-green-500 text-white pt-2 pb-2 pl-4 pr-4 w-24 text-center text-bold capitalize" [ngStyle]="{'background-color':row.status == true ? 'green' : 'blue' }">{{(row.status)?"Active":"Inactive"}}</span></mat-cell>>
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="flex justify-center">Status</mat-header-cell>>
+      <mat-cell *matCellDef="let row"  class="flex justify-center"><span class="bg-green-500 text-white pt-2 pb-2 pl-4 pr-4 w-24 text-center text-bold capitalize" [ngStyle]="{'background-color':row.status == true ? 'green' : 'blue' }">{{(row.status)?"Active":"Inactive"}}</span></mat-cell>>
     </ng-container>
 
-    <ng-container matColumnDef="action">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Action</mat-header-cell>>
-      <mat-cell *matCellDef="let row"><a [routerLink]="['/add-appuser',row._id]"><mat-icon class="action" (click)=edit(row._id)><span class="bg-black text-white pt-2 pb-2 pl-2 pr-2 mr-10">edit</span></mat-icon>{{row.action}}</a></mat-cell>>
+    <ng-container matColumnDef="action" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="flex justify-center">Action</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="flex justify-center"><a [routerLink]="['/add-appuser',row._id]"><mat-icon class="action" (click)=edit(row._id)><span class="bg-black text-white pt-2 pb-2 pl-2 pr-2 mr-10">edit</span></mat-icon>{{row.action}}</a></mat-cell>>
     </ng-container>
 
 

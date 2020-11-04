@@ -16,6 +16,9 @@
                 <input  matInput type="text"    name="firstName" formControlName="firstName"  required  class="br-btm input-w" autoComplete='off'>
                 <mat-error *ngIf ="createUserData.get('firstName').errors?.required">
                     Required first Name.
+                </mat-error>
+                <mat-error *ngIf ="createUserData.get('firstName').errors?.minlength">
+                    First name must be at least 3 characters long.
                    </mat-error>
             </mat-form-field>
             <mat-form-field>
@@ -23,6 +26,9 @@
                 <input  matInput   type="text"  name="lastName"  formControlName="lastName" required  class="br-btm input-w" autoComplete='off'>
                 <mat-error *ngIf ="createUserData.get('lastName').errors?.required">
                     Required last Name.
+                   </mat-error>
+                   <mat-error *ngIf ="createUserData.get('firstName').errors?.minlength">
+                    Last name must be at least 3 characters long.
                    </mat-error>
             </mat-form-field>
             <mat-form-field>

@@ -48,8 +48,8 @@ export class AddAppuserComponent implements OnInit {
       });
       this.createUserData = new FormGroup({
         _id: new FormControl(), 
-        firstName: new FormControl('', [Validators.required, Validators.minLength(5)]),
-        lastName: new FormControl('', [Validators.required, Validators.minLength(5)]),
+        firstName: new FormControl('', [Validators.required, Validators.minLength(3)]),
+        lastName: new FormControl('', [Validators.required, Validators.minLength(3)]),
         role: new FormControl('', [Validators.required]),
         subRole: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required, Validators.email,
