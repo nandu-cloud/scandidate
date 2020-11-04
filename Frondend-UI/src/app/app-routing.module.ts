@@ -63,7 +63,7 @@ const routes: Routes = [  {path: 'login' , component: LoginComponent},
 {path: 'BGV',component:BGVSearchComponent},
 {path: 'students', component: AllStudentsComponent},
 {path: 'employee', component: AllEmployeesComponent },
-{path: 'bgv-view',component:BGVViewComponent}
+{path: 'bgv-view/:id',component:BGVViewComponent}
 
 ];
 

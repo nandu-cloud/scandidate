@@ -132,12 +132,12 @@
   
       <ng-container matColumnDef="action">
         <mat-header-cell *matHeaderCellDef >Action</mat-header-cell>
-        <mat-cell *matCellDef="let row" >	<a [routerLink]="['/add-organization/',row._id]"><span class="action" (click)=edit(row._id) ><span class="bg-black text-white pt-2 pb-2 pl-2 pr-2 mr-10">View</span></span>{{row.action}}</a></mat-cell>
+        <mat-cell *matCellDef="let row" >	<a [routerLink]="['/bgv-view/',row._id]"><span class="action" ><span class="bg-black text-white pt-2 pb-2 pl-2 pr-2 mr-10">View</span></span>{{row.action}}</a></mat-cell>
       </ng-container>
       
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"> 
-      </mat-row>>
+      </mat-row>
       <div class="p-4" *matNoDataRow>
         <p>No data matching the filter.</p>
       </div>
