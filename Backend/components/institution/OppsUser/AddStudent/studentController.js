@@ -7,7 +7,7 @@ const fs = require("fs");
 const path = require("path");
 const csv = require("csvtojson");
 const bodyParser = require("body-parser");
-const csvValidator = require('csv-validator');
+const csvValidator = require("csv-validator");
 
 // Add Student
 module.exports.addStudentMethod = async function (req, res, next) {
@@ -30,7 +30,8 @@ module.exports.uploadCsv = async function (req, res, next) {
     let studentData = await studentDAL.addStudentCsv(path, id, instituteId);
     return res
       .status(200)
-      .json({ status: "SUCCESS", message: null, data: studentData }); sss
+      .json({ status: "SUCCESS", message: null, data: studentData });
+    sss;
   } catch (err) {
     console.log(colors.red, `uploadCsv err ${err}`);
     return next(new AppError(err, 400));
@@ -45,37 +46,86 @@ module.exports.saveStudentCSV = async (req, res, next) => {
   // const instituteId = req.body.instituteId
   const { instituteId } = req.body;
 
-  fs.readFile(path, 'utf8', function (err, data) {
-    var dataArray = data.split(/\r?\n/);
-    var result = dataArray[0].split(',');
-    if (result[0] != 'firstName') {
-      return res.status(404).json({ status: 404, message: 'Failed', error: 'FirstName header is missing' });
-    }
-    if (result[1] != 'lastName') {
-      return res.status(404).json({ status: 404, message: 'Failed', error: 'LastName header is missing' });
-    }
-    if (result[2] != 'roll') {
-      return res.status(404).json({ status: 404, message: 'Failed', error: 'RollNumber header is missing' });
-    } if (result[3] != 'nameOfCourse') {
-      return res.status(404).status(404).json({ status: 404, message: 'Failed', error: 'NameOfCourse header is missing' });
-    } if (result[4] != 'studentType') {
-      return res.status(404).json({ status: 404, message: 'Failed', error: 'StudentType header is missing' });
-    } if (result[5] != 'yearOfJoining') {
-      return res.status(404).json({ status: 404, message: 'Failed', error: 'YearOfJoining header is missing' });
-    }
-    if (result[6] != 'yearOfPassout') {
-      return res.status(404).json({ status: 404, message: 'Failed', error: 'YearOfPassout header is missing' });
-    }
-    if (result[7] != 'phoneNumber') {
-      return res.status(404).json({ status: 404, message: 'Failed', error: 'PhoneNumber header is missing' });
-    }
-    if (result[8] != 'email') {
-      return res.status(404).json({ status: 404, message: 'Failed', error: 'Email header is missing' });
-    }
-    if (result[9] != 'address') {
-      return res.status(404).json({ status: 404, message: 'Failed', error: 'Address header is missing' });
-    }
-  });
+  // try {
+  //   fs.readFile(path, "utf8", function (err, data) {
+  //     var dataArray = data.split(/\r?\n/);
+  //     var result = dataArray[0].split(",");
+  //     if (result[0] != "firstName") {
+  //       return res.status(404).json({
+  //         status: 404,
+  //         message: "Failed",
+  //         error: "FirstName header is missing",
+  //       });
+  //     }
+  //     if (result[1] != "lastName") {
+  //       return res.status(404).json({
+  //         status: 404,
+  //         message: "Failed",
+  //         error: "LastName header is missing",
+  //       });
+  //     }
+  //     if (result[2] != "roll") {
+  //       return res.status(404).json({
+  //         status: 404,
+  //         message: "Failed",
+  //         error: "RollNumber header is missing",
+  //       });
+  //     }
+  //     if (result[3] != "nameOfCourse") {
+  //       return res.status(404).status(404).json({
+  //         status: 404,
+  //         message: "Failed",
+  //         error: "NameOfCourse header is missing",
+  //       });
+  //     }
+  //     if (result[4] != "studentType") {
+  //       return res.status(404).json({
+  //         status: 404,
+  //         message: "Failed",
+  //         error: "StudentType header is missing",
+  //       });
+  //     }
+  //     if (result[5] != "yearOfJoining") {
+  //       return res.status(404).json({
+  //         status: 404,
+  //         message: "Failed",
+  //         error: "YearOfJoining header is missing",
+  //       });
+  //     }
+  //     if (result[6] != "yearOfPassout") {
+  //       return res.status(404).json({
+  //         status: 404,
+  //         message: "Failed",
+  //         error: "YearOfPassout header is missing",
+  //       });
+  //     }
+  //     if (result[7] != "phoneNumber") {
+  //       return res.status(404).json({
+  //         status: 404,
+  //         message: "Failed",
+  //         error: "PhoneNumber header is missing",
+  //       });
+  //     }
+  //     if (result[8] != "email") {
+  //       return res.status(404).json({
+  //         status: 404,
+  //         message: "Failed",
+  //         error: "Email header is missing",
+  //       });
+  //     }
+  //     if (result[9] != "address") {
+  //       return res.status(404).json({
+  //         status: 404,
+  //         message: "Failed",
+  //         error: "Address header is missing",
+  //       });
+  //     }
+  //   });
+  // } catch (err) {
+  //   return next(new AppError(err, 400));
+  // }
+
+  // console.log("-------------------I am here---------------");
 
   const headers = {
     firstName: /^[a-zA-Z]*$/,
@@ -87,36 +137,46 @@ module.exports.saveStudentCSV = async (req, res, next) => {
     yearOfPassout: /^\d{4}$/,
     phoneNumber: /^[0-9]{10}$/,
     email: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-    address: /^[a-zA-Z]*$/
-
-  }
+    address: /^[a-zA-Z]*$/,
+  };
 
   try {
     csvValidator(path, headers)
-      .then(json => {
-        json.map(student => {
+      .then((json) => {
+        json.map((student) => {
           let data = student;
           data.addedById = id;
           data.instituteId = instituteId;
           studentDAL.addStudent(data);
-        })
-      }).then(() => {
-        return res.status(200).json({ status: 200, message: 'Student data saved' });
+        });
       })
-      .catch(err => {
+      .then((response) => {
+        if (response) {
+          return res
+            .status(200)
+            .json({ status: 200, message: "Student data saved" });
+        }
+        return res.status(422).json({ status: 200, message: "Failed" });
+      })
+      .catch((err) => {
+        console.log(colors.red, `${err}`);
         let errorIndex = err[0].indexOf("in");
         let resultNew = err[0].substring(0, errorIndex);
         if (errorIndex > 0) {
-          return res.status(422).json({ status: 422, message: 'Failed', error: resultNew + "in valid Format" })
+          return res.status(422).json({
+            status: 422,
+            message: "Failed",
+            error: resultNew + "in valid Format",
+          });
         }
-        return res.status(422).json({ status: 422, message: 'Failed', error: err[0] })
+        return res
+          .status(422)
+          .json({ status: 422, message: "Failed", error: err[0] });
       });
-
   } catch (err) {
     return next(new AppError(err, 400));
   }
-}
-
+};
 
 module.exports.getAllMethod = async function (req, res, next) {
   const data = { instituteId: mongoose.Types.ObjectId(req.params.instituteId) };
