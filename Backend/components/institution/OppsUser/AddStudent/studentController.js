@@ -145,13 +145,10 @@ module.exports.saveStudentCSV = async (req, res, next) => {
             studentDAL.addStudent(data);
           });
         })
-        .then((response) => {
-          if (response) {
-            return res
-              .status(200)
-              .json({ status: 200, message: "Student data saved" });
-          }
-          return res.status(422).json({ status: 200, message: "Failed" });
+        .then(() => {
+          return res
+            .status(200)
+            .json({ status: 200, message: "Student data saved" });
         })
         .catch((err) => {
           console.log(colors.red, `${err}`);
