@@ -52,70 +52,70 @@ module.exports.saveStudentCSV = async (req, res, next) => {
     }
     var dataArray = data.split(/\r?\n/);
     var result = dataArray[0].split(",");
-    if (result[0] != "firstName") {
+    if (result[0].toLowerCase() != "firstname") {
       return res.status(404).json({
         status: 404,
         message: "Failed",
         error: "FirstName header is missing",
       });
     }
-    if (result[1] != "lastName") {
+    if (result[1].toLowerCase() != "lastname") {
       return res.status(404).json({
         status: 404,
         message: "Failed",
         error: "LastName header is missing",
       });
     }
-    if (result[2] != "roll") {
+    if (result[2].toLowerCase() != "roll") {
       return res.status(404).json({
         status: 404,
         message: "Failed",
         error: "RollNumber header is missing",
       });
     }
-    if (result[3] != "nameOfCourse") {
+    if (result[3].toLowerCase() != "nameofcourse") {
       return res.status(404).status(404).json({
         status: 404,
         message: "Failed",
         error: "NameOfCourse header is missing",
       });
     }
-    if (result[4] != "studentType") {
+    if (result[4].toLowerCase() != "studenttype") {
       return res.status(404).json({
         status: 404,
         message: "Failed",
         error: "StudentType header is missing",
       });
     }
-    if (result[5] != "yearOfJoining") {
+    if (result[5].toLowerCase() != "yearofjoining") {
       return res.status(404).json({
         status: 404,
         message: "Failed",
         error: "YearOfJoining header is missing",
       });
     }
-    if (result[6] != "yearOfPassout") {
+    if (result[6].toLowerCase() != "yearofpassout") {
       return res.status(404).json({
         status: 404,
         message: "Failed",
         error: "YearOfPassout header is missing",
       });
     }
-    if (result[7] != "phoneNumber") {
+    if (result[7].toLowerCase() != "phonenumber") {
       return res.status(404).json({
         status: 404,
         message: "Failed",
         error: "PhoneNumber header is missing",
       });
     }
-    if (result[8] != "email") {
+    if (result[8].toLowerCase() != "email") {
       return res.status(404).json({
         status: 404,
         message: "Failed",
         error: "Email header is missing",
       });
     }
-    if (result[9] != "address") {
+    if (result[9].toLowerCase() != "address") {
       return res.status(404).json({
         status: 404,
         message: "Failed",
