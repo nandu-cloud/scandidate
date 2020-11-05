@@ -22,8 +22,6 @@ const addStudentSchema = Joi.object({
   eductionalDocumentNames: Joi.array().allow("").allow(null),
 });
 
-
-
 const updateStudentSchema = Joi.object({
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
@@ -49,5 +47,4 @@ const updateStudentSchema = Joi.object({
 module.exports = {
   addStudentSchema: addStudentSchema,
   updateStudentSchema: updateStudentSchema,
-
 };

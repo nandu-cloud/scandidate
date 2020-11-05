@@ -6,25 +6,8 @@ const bodyParser = require("body-parser");
 
 // Add Organisation
 async function addStudent(data) {
-  const studentData = new studentModel();
-  studentData.nameOfCourse = data.nameOfCourse;
-  studentData.yearOfJoining = data.yearOfJoining;
-  studentData.yearOfPassout = data.yearOfPassout;
-  studentData.studentType = data.studentType;
-  studentData.extraActivity = data.extraActivity;
-  studentData.extraActivityDocumentName = data.extraActivityDocumentName;
-  studentData.eductionalDocumentNames = data.eductionalDocumentNames;
-  studentData.noOfEductionalDocuments = data.noOfEductionalDocuments;
-  studentData.firstName = data.firstName;
-  studentData.lastName = data.lastName;
-  studentData.roll = data.roll;
-  studentData.email = data.email;
-  studentData.phoneNumber = data.phoneNumber;
-  studentData.address = data.address;
-  studentData.adharNumber = data.adharNumber;
-  studentData.intitutionName = data.intitutionName;
-  studentData.addedById = data.addedById;
-  studentData.instituteId = data.instituteId;
+  const studentData = new studentModel(data);
+
   studentData.createdAt = new Date();
   studentData.updatedAt = new Date();
 
@@ -35,9 +18,6 @@ async function addStudent(data) {
     throw err;
   }
 }
-
-
-
 
 //Add Student From CSV
 async function addStudentCsv(path, id, instituteId1) {
@@ -53,13 +33,11 @@ async function addStudentCsv(path, id, instituteId1) {
         //   yearOfJoining = parseInt(jsonObj[x].yearOfJoining);
         //   jsonObj[x].yearOfJoining = yearOfJoining;
 
-
         //   yearOfPassout = parseInt(jsonObj[x].yearOfPassout);
         //   jsonObj[x].yearOfPassout = yearOfPassout;
 
         //   phoneNumber = parseInt(jsonObj[x].phoneNumber);
         //   jsonObj[x].phoneNumber = phoneNumber;
-
 
         //   jsonObj[x].addedById = id;
         //   jsonObj[x].instituteId = instituteId1;
@@ -75,7 +53,6 @@ async function addStudentCsv(path, id, instituteId1) {
           // return result;
           let result = studentModel.insertMany(jsonObj);
           return result;
-
         } catch (err) {
           throw err;
         }
@@ -87,7 +64,10 @@ async function addStudentCsv(path, id, instituteId1) {
 
 async function getAllUsers(data) {
   try {
-    let result = await studentModel.find({ instituteId: data.instituteId }).sort({ _id: -1 }).lean();
+    let result = await studentModel
+      .find({ instituteId: data.instituteId })
+      .sort({ _id: -1 })
+      .lean();
     return result;
   } catch (err) {
     throw err;
@@ -119,7 +99,9 @@ async function updateStudent(data) {
 
 async function search_student_new(data) {
   try {
-    let result = await studentModel.find(data).collation({ locale: 'en', strength: 1 });;
+    let result = await studentModel
+      .find(data)
+      .collation({ locale: "en", strength: 1 });
     return result;
   } catch (err) {
     throw err;

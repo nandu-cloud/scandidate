@@ -3,41 +3,7 @@ const employeeModel = require("./employeeModel");
 
 // Add Employee
 async function addEmployee(data) {
-  const employeeData = new employeeModel();
-  employeeData.firstName = data.firstName;
-  employeeData.lastName = data.lastName;
-  employeeData.employeeId = data.employeeId;
-  employeeData.email = data.email;
-  employeeData.role = data.role;
-  employeeData.department = data.department;
-  employeeData.address = data.address;
-  employeeData.dateOfBirth = data.dateOfBirth;
-  employeeData.phoneNumber = data.phoneNumber;
-  employeeData.adharNumber = data.adharNumber;
-  employeeData.panNumber = data.panNumber;
-  employeeData.awards = data.awards;
-  employeeData.organizationName = data.organizationName;
-  employeeData.dateOfJoining = data.dateOfJoining;
-  employeeData.exitDate = data.exitDate;
-  employeeData.professionalExperience = data.professionalExperience;
-  employeeData.selfDriven = data.selfDriven;
-  employeeData.creativity = data.creativity;
-  employeeData.informalOrganizationSenseOfBelonging = data.informalOrganizationSenseOfBelonging;
-  employeeData.initiative = data.initiative;
-  employeeData.workIndependenty = data.workIndependenty;
-  employeeData.teamWork = data.teamWork;
-  employeeData.dealConstructivelyWithPressure = data.dealConstructivelyWithPressure;
-  employeeData.volume = data.volume;
-  employeeData.quality = data.quality;
-  employeeData.consistency = data.consistency;
-  employeeData.punctuality = data.punctuality;
-  employeeData.discipline = data.discipline;
-  employeeData.academicKnowledge = data.academicKnowledge;
-  employeeData.productKnowledge = data.productKnowledge;
-  employeeData.industryKnowledge = data.industryKnowledge;
-  employeeData.communicationSkills = data.communicationSkills;
-  employeeData.addedById = data.addedById;
-  employeeData.organisationId = data.organisationId;
+  const employeeData = new employeeModel(data);
 
   employeeData.createdAt = new Date();
   employeeData.updatedAt = new Date();
@@ -53,7 +19,10 @@ async function addEmployee(data) {
 //Get All
 async function getAllUsers(data) {
   try {
-    let result = await employeeModel.find({ organisationId: data.organisationId }).sort({ _id: -1 }).lean();
+    let result = await employeeModel
+      .find({ organisationId: data.organisationId })
+      .sort({ _id: -1 })
+      .lean();
     return result;
   } catch (err) {
     throw err;
@@ -73,13 +42,9 @@ async function getEmplyeeById(data) {
 // Update Employee Details
 async function updateEmployee(data) {
   try {
-    let result = await employeeModel.findOneAndUpdate(
-      { _id: data._id },
-      data,
-      {
-        new: true,
-      }
-    );
+    let result = await employeeModel.findOneAndUpdate({ _id: data._id }, data, {
+      new: true,
+    });
     return result;
   } catch (err) {
     throw err;
@@ -90,7 +55,10 @@ async function updateEmployee(data) {
 
 async function search_employee_list(data) {
   try {
-    let result = await employeeModel.find(data).collation({ locale: 'en', strength: 1 });
+    let result = await employeeModel
+      .find(data)
+      .collation({ locale: "en", strength: 1 });
+    console.log(result);
     return result;
   } catch (err) {
     throw err;
@@ -103,5 +71,5 @@ module.exports = {
   getAllUsers: getAllUsers,
   search_employee_list: search_employee_list,
   getEmplyeeById: getEmplyeeById,
-  updateEmployee: updateEmployee
+  updateEmployee: updateEmployee,
 };

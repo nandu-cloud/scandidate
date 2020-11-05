@@ -133,4 +133,4 @@ module.exports.search_employee = async (req, res, next) => {
   } catch (err) {
     return next(new AppError(err, 400));
   }
-}
+};

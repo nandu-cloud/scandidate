@@ -13,24 +13,10 @@ async function getAllInstitute(data) {
 
 // Add Institute
 async function onboardInstitute(data) {
-  const instituteData = new instituteModel();
-  instituteData.instituteName = data.instituteName;
-  instituteData.contactPersonName = data.contactPersonName;
-  instituteData.instituteAddress = data.instituteAddress;
-  instituteData.instituteType = data.instituteType;
-  instituteData.instituteEmail = data.instituteEmail;
-  instituteData.instituteStudentSize = data.instituteStudentSize;
-  instituteData.instituteActiveFrom = data.instituteActiveFrom;
-  instituteData.instituteZIP = data.instituteZIP;
-  instituteData.instituteDescription = data.instituteDescription;
-  instituteData.instituteLogo = data.instituteLogo;
-  instituteData.status = data.status;
-  instituteData.contact = data.contact;
-  instituteData.code = data.code;
+  const instituteData = new instituteModel(data);
+
   instituteData.createdAt = new Date();
   instituteData.updatedAt = new Date();
-  instituteData.instituteLocation=data.instituteLocation;
-  instituteData.state=data.state;
 
   try {
     let result = await instituteData.save();

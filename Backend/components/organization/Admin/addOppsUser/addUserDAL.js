@@ -1,25 +1,9 @@
 const userModel = require("./../../../scandidate/user/userModel");
 
 async function createUser(data) {
-  console.log("T2")
-  const details = new userModel();
-  details.organizationId = data.organizationId;
-  details.firstName = data.firstName;
-  details.lastName = data.lastName;
-  details.role = data.role;
-  details.subRole = data.subRole;
-  details.email = data.email;
-  details.password = data.password;
-  details.phoneNumber = data.phoneNumber;
-  details.dateOfBirth = data.dateOfBirth;
-  details.employeeId = data.employeeId;
-  details.currentAddress = data.currentAddress;
-  details.permanentAddress = data.permanentAddress;
-  details.aboutMe = data.aboutMe;
-  details.avatarLink = data.avatarLink;
-  details.noOfAssociatedUsers = data.noOfAssociatedUsers;
-  details.onboardedById = data.onboardedById;
-  details.status = data.status;
+  console.log("T2");
+  const details = new userModel(data);
+
   details.createdAt = new Date();
   details.updatedAt = new Date();
 
@@ -38,7 +22,10 @@ async function createUser(data) {
 //Get All User Of Current Organisation
 async function getAllUsers(data) {
   try {
-    let result = await userModel.find({ organizationId: data.organizationId }).sort({ _id: -1 }).lean();
+    let result = await userModel
+      .find({ organizationId: data.organizationId })
+      .sort({ _id: -1 })
+      .lean();
     return result;
   } catch (err) {
     throw err;
@@ -68,8 +55,8 @@ async function updateUser(data) {
 }
 
 module.exports = {
-    createUser: createUser,
-    getAllUsers:getAllUsers,
-    getUserById:getUserById,
-    updateUser:updateUser,
-  };
+  createUser: createUser,
+  getAllUsers: getAllUsers,
+  getUserById: getUserById,
+  updateUser: updateUser,
+};

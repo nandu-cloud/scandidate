@@ -42,16 +42,26 @@ module.exports.searchById = async (req, res, next) => {
     var adharNumber;
     var phoneNumber;
     var email;
+    var firstName;
+    var lastName;
 
-    if (empData != null) {
+    if (empData.length > 0) {
+      console.log("------------ I am here Organization----------");
+      console.log(colors.green, empData[0]);
       adharNumber = empData[0].adharNumber;
       phoneNumber = empData[0].phoneNumber;
       email = empData[0].email;
+      firstName = empData[0].firstName;
+      lastName = empData[0].lastName;
     } else {
       let stuData = await bgvDAL.searchBgvDataStudent({ _id: _id });
+      console.log("------------ I am here Institute----------");
+      console.log(colors.green, stuData[0]);
       adharNumber = stuData[0].adharNumber;
       phoneNumber = stuData[0].phoneNumber;
       email = stuData[0].email;
+      firstName = stuData[0].firstName;
+      lastName = stuData[0].lastName;
     }
 
     if (adharNumber != null) {
@@ -74,10 +84,14 @@ module.exports.searchById = async (req, res, next) => {
     if (phoneNumber > 0) {
       try {
         let empPhoneData = await bgvDAL.searchByPhoneNumberEmployee(
-          phoneNumber
+          phoneNumber,
+          firstName,
+          lastName
         );
         let studentPhoneData = await bgvDAL.searchByPhoneNumberInstitute(
-          phoneNumber
+          phoneNumber,
+          firstName,
+          lastName
         );
         let resultData = empPhoneData.concat(studentPhoneData);
         return res

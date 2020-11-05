@@ -43,18 +43,26 @@ async function searchByAdharNumberInstitute(data) {
   }
 }
 
-async function searchByPhoneNumberEmployee(data) {
+async function searchByPhoneNumberEmployee(phoneNumber, firstName, lastName) {
   try {
-    let adhSearch = await employeeModel.find({ phoneNumber: data });
+    let adhSearch = await employeeModel.find({
+      phoneNumber: phoneNumber,
+      firstName: firstName,
+      lastName: lastName,
+    });
     return adhSearch;
   } catch (err) {
     throw err;
   }
 }
 
-async function searchByPhoneNumberInstitute(data) {
+async function searchByPhoneNumberInstitute(phoneNumber, firstName, lastName) {
   try {
-    let adhSearch = await studentModel.find({ phoneNumber: data });
+    let adhSearch = await studentModel.find({
+      phoneNumber: phoneNumber,
+      firstName: firstName,
+      lastName: lastName,
+    });
     return adhSearch;
   } catch (err) {
     throw err;
