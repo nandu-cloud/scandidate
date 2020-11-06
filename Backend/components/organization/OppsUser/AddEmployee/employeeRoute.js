@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
-
+const path = require("path");
 const addEmployeeController = require("./employeeController");
 const authJWT = require("./../../../../middlewares/authJWT");
 
@@ -20,24 +20,15 @@ let storage = multer.diskStorage({
 //Document Filter
 function fileFilter(req, file, cb) {
   let ext = mime.getExtension(file.mimetype);
-  if (
-    ext === "doc" ||
-    ext === "pdf" ||
-    ext === "docx"
-  ) {
+  if (ext === "doc" || ext === "pdf" || ext === "docx") {
     cb(null, true);
   } else {
-    cb(
-      new Error(
-        "The file extension is invalid! only pdf/doc are accepted."
-      )
-    );
+    cb(new Error("The file extension is invalid! only pdf/doc are accepted."));
     // cb(null, false);
   }
 }
 
 let upload = multer({ storage: storage, fileFilter: fileFilter });
-
 
 router
   .route("/discrepancyDocuments")
@@ -45,7 +36,7 @@ router
     authJWT.verifyJWTToken,
     upload.single("document"),
     addEmployeeController.discrepencyDocumentUpload
-  )
+  );
 
 router
   .route("/compliencyDiscrepancy")
@@ -53,8 +44,7 @@ router
     authJWT.verifyJWTToken,
     upload.single("document"),
     addEmployeeController.compliencyDiscrepancyDocumentUpload
-  )
-
+  );
 
 router
   .route("/warning")
@@ -62,7 +52,7 @@ router
     authJWT.verifyJWTToken,
     upload.single("document"),
     addEmployeeController.warningDocumentUpload
-  )
+  );
 
 router
   .route("/showCausedIssue")
@@ -70,7 +60,7 @@ router
     authJWT.verifyJWTToken,
     upload.single("document"),
     addEmployeeController.showCausedIssueDocumentUpload
-  )
+  );
 
 router
   .route("/suspension")
@@ -78,7 +68,7 @@ router
     authJWT.verifyJWTToken,
     upload.single("document"),
     addEmployeeController.suspensionDocumentUpload
-  )
+  );
 
 router
   .route("/termination")
@@ -86,13 +76,11 @@ router
     authJWT.verifyJWTToken,
     upload.single("document"),
     addEmployeeController.terminationDocumentUpload
-  )
-
-
+  );
 
 router
   .route("/")
-  .post(authJWT.verifyJWTToken, addEmployeeController.addEmployeeMethod)
+  .post(authJWT.verifyJWTToken, addEmployeeController.addEmployeeMethod);
 //.get(authJWT.verifyJWTToken, addEmployeeController.getAllMethod);
 
 router
