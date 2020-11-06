@@ -44,24 +44,27 @@ module.exports.searchById = async (req, res, next) => {
     var email;
     var firstName;
     var lastName;
+    var dob;
 
     if (empData.length > 0) {
-      console.log("------------ I am here Organization----------");
-      console.log(colors.green, empData[0]);
       adharNumber = empData[0].adharNumber;
       phoneNumber = empData[0].phoneNumber;
       email = empData[0].email;
       firstName = empData[0].firstName;
       lastName = empData[0].lastName;
+      dob = empData[0].dateOfBirth;
     } else {
       let stuData = await bgvDAL.searchBgvDataStudent({ _id: _id });
-      console.log("------------ I am here Institute----------");
-      console.log(colors.green, stuData[0]);
-      adharNumber = stuData[0].adharNumber;
-      phoneNumber = stuData[0].phoneNumber;
-      email = stuData[0].email;
-      firstName = stuData[0].firstName;
-      lastName = stuData[0].lastName;
+      if (stuData.length > 0) {
+        adharNumber = stuData[0].adharNumber;
+        phoneNumber = stuData[0].phoneNumber;
+        email = stuData[0].email;
+        firstName = stuData[0].firstName;
+        lastName = stuData[0].lastName;
+        dob = stuData[0].dateOfBirth;
+      } else {
+        return res.status(404).json({ status: 404, message: "No data found" });
+      }
     }
 
     if (adharNumber != null) {
@@ -73,6 +76,22 @@ module.exports.searchById = async (req, res, next) => {
           adharNumber
         );
         let resultData = empAdharData.concat(studentAdharData);
+
+        return res.status(200).json({
+          status: 200,
+          message: "SUCCESS",
+          data: resultData,
+        });
+      } catch (err) {
+        return next(new AppError(err, 400));
+      }
+    }
+
+    if (email != null) {
+      try {
+        let empEmailData = await bgvDAL.searchByEmailEmployee(email);
+        let studentEmailData = await bgvDAL.searchByEmailInstitute(email);
+        let resultData = empEmailData.concat(studentEmailData);
         return res
           .status(200)
           .json({ status: 200, message: "SUCCESS", data: resultData });
@@ -94,22 +113,32 @@ module.exports.searchById = async (req, res, next) => {
           lastName
         );
         let resultData = empPhoneData.concat(studentPhoneData);
-        return res
-          .status(200)
-          .json({ status: 200, message: "SUCCESS", data: resultData });
+        return res.status(200).json({
+          status: 200,
+          message: "SUCCESS",
+          data: resultData,
+        });
       } catch (err) {
         return next(new AppError(err, 400));
       }
-    }
-
-    if (email != null) {
+    } else {
       try {
-        let empEmailData = await bgvDAL.searchByEmailEmployee(email);
-        let studentEmailData = await bgvDAL.searchByEmailInstitute(email);
-        let resultData = empEmailData.concat(studentEmailData);
-        return res
-          .status(200)
-          .json({ status: 200, message: "SUCCESS", data: resultData });
+        let findByNameEmp = await bgvDAL.searchByNameEmployee(
+          firstName,
+          lastName,
+          dob
+        );
+        let findByNameStudent = await bgvDAL.searchByNameInstittute(
+          firstName,
+          lastName,
+          dob
+        );
+        let resultData = findByNameEmp.concat(findByNameStudent);
+        return res.status(200).json({
+          status: 200,
+          message: "SUCCESS",
+          data: resultData,
+        });
       } catch (err) {
         return next(new AppError(err, 400));
       }

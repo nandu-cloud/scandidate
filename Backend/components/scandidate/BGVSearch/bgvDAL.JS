@@ -87,6 +87,24 @@ async function searchByEmailInstitute(data) {
   }
 }
 
+async function searchByNameEmployee(firstName, lastName, dob) {
+  try {
+    let adhSearch = await employeeModel.find({ firstName: firstName, lastName: lastName, dateOfBirth: dob });
+    return adhSearch;
+  } catch (err) {
+    throw err;
+  }
+}
+
+async function searchByNameInstittute(firstName, lastName, dob) {
+  try {
+    let adhSearch = await studentModel.find({ firstName: firstName, lastName: lastName, dateOfBirth: dob });
+    return adhSearch;
+  } catch (err) {
+    throw err;
+  }
+}
+
 module.exports = {
   searchBgvDataEmployee: searchBgvDataEmployee,
   searchBgvDataStudent: searchBgvDataStudent,
@@ -96,4 +114,6 @@ module.exports = {
   searchByPhoneNumberInstitute: searchByPhoneNumberInstitute,
   searchByEmailEmployee: searchByEmailEmployee,
   searchByEmailInstitute: searchByEmailInstitute,
+  searchByNameEmployee: searchByNameEmployee,
+  searchByNameInstittute: searchByNameInstittute
 };

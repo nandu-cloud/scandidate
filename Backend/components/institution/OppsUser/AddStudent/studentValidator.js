@@ -11,6 +11,7 @@ const addStudentSchema = Joi.object({
   instituteId: Joi.string().required().min(24).max(24).empty(""),
   adharNumber: Joi.number(),
   intitutionName: Joi.string(),
+  dateOfBirth: Joi.date().required(),
 
   email: Joi.string().email().allow("").allow(null),
   phoneNumber: Joi.number().allow("").allow(null),
@@ -31,8 +32,9 @@ const updateStudentSchema = Joi.object({
   studentType: Joi.string().required(),
   addedById: Joi.string().required().min(24).max(24),
   instituteId: Joi.string().required().min(24).max(24).empty(""),
-  adharNumber: Joi.number().required(),
+  adharNumber: Joi.number(),
   intitutionName: Joi.string().required(),
+  dateOfBirth: Joi.date().required(),
 
   email: Joi.string().email().allow("").allow(null),
   phoneNumber: Joi.number().allow("").allow(null),

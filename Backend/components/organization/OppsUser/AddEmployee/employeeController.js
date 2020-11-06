@@ -4,6 +4,64 @@ const employeeDAL = require("./employeeDAL");
 const employeeDataValidator = require("./employeeValidator");
 const colors = require("./../../../../helpers/colors");
 
+
+module.exports.discrepencyDocumentUpload = async function (req, res, next) {
+  if (!req.file) return next(new AppError("No file uploaded!", 400));
+  return res.status(200).json({
+    status: "SUCCESS",
+    message: "Document Uploaded SuccessFully!",
+    data: { documentLink: `${req.file.filename}` },
+  });
+};
+
+module.exports.compliencyDiscrepancyDocumentUpload = async function (req, res, next) {
+  if (!req.file) return next(new AppError("No file uploaded!", 400));
+  return res.status(200).json({
+    status: "SUCCESS",
+    message: "Document Uploaded SuccessFully!",
+    data: { documentLink: `${req.file.filename}` },
+  });
+};
+
+module.exports.warningDocumentUpload = async function (req, res, next) {
+  if (!req.file) return next(new AppError("No file uploaded!", 400));
+  return res.status(200).json({
+    status: "SUCCESS",
+    message: "Document Uploaded SuccessFully!",
+    data: { documentLink: `${req.file.filename}` },
+  });
+};
+
+module.exports.showCausedIssueDocumentUpload = async function (req, res, next) {
+  if (!req.file) return next(new AppError("No file uploaded!", 400));
+  return res.status(200).json({
+    status: "SUCCESS",
+    message: "Document Uploaded SuccessFully!",
+    data: { documentLink: `${req.file.filename}` },
+  });
+};
+
+module.exports.suspensionDocumentUpload = async function (req, res, next) {
+  if (!req.file) return next(new AppError("No file uploaded!", 400));
+  return res.status(200).json({
+    status: "SUCCESS",
+    message: "Document Uploaded SuccessFully!",
+    data: { documentLink: `${req.file.filename}` },
+  });
+};
+
+module.exports.terminationDocumentUpload = async function (req, res, next) {
+  if (!req.file) return next(new AppError("No file uploaded!", 400));
+  return res.status(200).json({
+    status: "SUCCESS",
+    message: "Document Uploaded SuccessFully!",
+    data: { documentLink: `${req.file.filename}` },
+  });
+};
+
+
+
+
 // Add Employee
 module.exports.addEmployeeMethod = async function (req, res, next) {
   const data = req.body;

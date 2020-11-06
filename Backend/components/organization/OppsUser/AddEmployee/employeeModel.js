@@ -182,6 +182,121 @@ const employeeSchema = new mongoose.Schema({
       required: false,
     },
   },
+
+  compliencyDiscrepancy: {
+    IsSelect: {
+      type: Boolean,
+      required: true,
+    },
+    period: {
+      type: Date,
+      required: false,
+    },
+    cause: {
+      type: String,
+      required: false,
+    },
+    actionTaken: {
+      type: String,
+      required: false,
+    },
+    uploadDocument: {
+      type: String,
+      required: false,
+    },
+  },
+
+  warning: {
+    IsSelect: {
+      type: Boolean,
+      required: true,
+    },
+    period: {
+      type: Date,
+      required: false,
+    },
+    cause: {
+      type: String,
+      required: false,
+    },
+    actionTaken: {
+      type: String,
+      required: false,
+    },
+    uploadDocument: {
+      type: String,
+      required: false,
+    },
+  },
+
+  showCausedIssue: {
+    IsSelect: {
+      type: Boolean,
+      required: true,
+    },
+    period: {
+      type: Date,
+      required: false,
+    },
+    cause: {
+      type: String,
+      required: false,
+    },
+    actionTaken: {
+      type: String,
+      required: false,
+    },
+    uploadDocument: {
+      type: String,
+      required: false,
+    },
+  },
+  suspension: {
+    IsSelect: {
+      type: Boolean,
+      required: true,
+    },
+    period: {
+      type: Date,
+      required: false,
+    },
+    cause: {
+      type: String,
+      required: false,
+    },
+    actionTaken: {
+      type: String,
+      required: false,
+    },
+    uploadDocument: {
+      type: String,
+      required: false,
+    },
+  },
+  termination: {
+    IsSelect: {
+      type: Boolean,
+      required: true,
+    },
+    period: {
+      type: Date,
+      required: false,
+    },
+    cause: {
+      type: String,
+      required: false,
+    },
+    actionTaken: {
+      type: String,
+      required: false,
+    },
+    uploadDocument: {
+      type: String,
+      required: false,
+    },
+  }
+
+
 });
 // compile schema to model
 module.exports = mongoose.model("employees", employeeSchema, "employees");

@@ -7,7 +7,6 @@ const path = require("path");
 const addStudentController = require("./studentController");
 const authJWT = require("./../../../../middlewares/authJWT");
 
-
 // organization logo images Storage Path
 const uploadPath = path.join(__dirname, "../../../../uploads/student_doc");
 const csvUploadPath = path.join(__dirname, "../../../../uploads/student_csv");
@@ -83,7 +82,7 @@ router
 
 router
   .route("/")
-  .post(authJWT.verifyJWTToken, addStudentController.addStudentMethod)
+  .post(authJWT.verifyJWTToken, addStudentController.addStudentMethod);
 //.get(authJWT.verifyJWTToken, addStudentController.getAllMethod);
 
 router

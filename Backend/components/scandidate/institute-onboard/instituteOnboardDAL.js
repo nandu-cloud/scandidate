@@ -36,6 +36,16 @@ async function getInstituteById(data) {
   }
 }
 
+// Find Institute By Id
+async function getInstituteByIdNew(data) {
+  try {
+    let result = await instituteModel.findById({ _id: data }).lean();
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
 // Delete Institute
 async function deleteInstitute(data) {
   try {
@@ -68,4 +78,5 @@ module.exports = {
   getInstituteById: getInstituteById,
   deleteInstitute: deleteInstitute,
   updateInstitute: updateInstitute,
+  getInstituteByIdNew: getInstituteByIdNew,
 };
