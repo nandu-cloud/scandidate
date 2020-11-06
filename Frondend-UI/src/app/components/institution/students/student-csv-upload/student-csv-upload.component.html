@@ -9,7 +9,7 @@
                         <mat-list-item role="listitem">Name</mat-list-item>
                         <mat-list-item role="listitem">Roll No</mat-list-item>
                         <mat-list-item role="listitem">Name of course</mat-list-item>
-                        <mat-list-item role="listitem">ExtraActivities Certificates</mat-list-item>
+                        <!-- <mat-list-item role="listitem">ExtraActivities Certificates</mat-list-item> -->
                       </mat-list>
                 </div>
                 <div class="lg:w-1/3 sm:w-full md:w-1/3 pl-10 pb-6">
@@ -57,7 +57,7 @@
                             </thead>
                             <tbody class="lg:w-full text-center">
                                 <tr *ngFor="let item of uploader.queue">
-                                    <td>
+                                    <td [ngClass]="{'my-class':teee == 'right', 'my-class2':teee == 'wrong'}">
                                         {{ item?.file?.name }}
                                     </td>
                                    
@@ -75,14 +75,14 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="flex justify-end lg:pb-6 lg:pr-48 mt-10">
+                        <!-- <div class="flex justify-end lg:pb-6 lg:pr-48 mt-10">
                             <a routerLink="/organization-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button">
                               Cancel
                             </button></a>
                             <button class="lg-button focus:outline-none focus:shadow-outline" type="button" >
                               Upload
                             </button>
-                        </div>
+                        </div> -->
                        
                     </div>
                 </div>

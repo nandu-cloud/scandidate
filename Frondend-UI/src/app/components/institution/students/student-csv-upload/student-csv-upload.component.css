@@ -14,3 +14,11 @@ th{
     border-top:2px  solid gray;
     padding: 10px;
 }
+
+.my-class{
+    color: green !important;
+}
+
+.my-class2{
+    color: red !important;
+}
