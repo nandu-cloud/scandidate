@@ -2,11 +2,16 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const path = require("path");
+const short = require("short-uuid");
+const mime = require("mime");
 const addEmployeeController = require("./employeeController");
 const authJWT = require("./../../../../middlewares/authJWT");
 
-// user images Storage Path
-const uploadPath = path.join(__dirname, "../../../uploads/organizationIssues");
+// user Storage Path
+const uploadPath = path.join(
+  __dirname,
+  "../../../../uploads/organizationIssues"
+);
 let storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, uploadPath);
