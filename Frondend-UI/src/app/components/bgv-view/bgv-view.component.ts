@@ -3,9 +3,10 @@ import { Component, ChangeDetectorRef, ElementRef, ViewChild ,OnInit} from '@ang
 import { FormBuilder, FormArray, Validators, FormGroup, FormControl, ValidatorFn, AbstractControl } from "@angular/forms";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router,ActivatedRoute } from '@angular/router';
-import { EmployeeService } from  '../../services/employee.service';
+import { BgvSearchService } from  '../../services/bgv-search.service' ;
 import { StorageService } from '../../services/storage.service';
 import { from, Subscription } from 'rxjs';
+import { environment } from 'src/environments/environment';
 // import { jsPDF } from 'jspdf';
 // import html2canvas from 'html2canvas';
 
@@ -13,7 +14,7 @@ import { from, Subscription } from 'rxjs';
   selector: 'bgv-view',
   templateUrl: './bgv-view.component.html',
   styleUrls: ['./bgv-view.component.css'],
-  providers: [EmployeeService,StorageService]
+  providers: [BgvSearchService,StorageService]
 })
 export class BGVViewComponent implements OnInit {
 
@@ -49,6 +50,7 @@ export class BGVViewComponent implements OnInit {
   error = '';
   empIdedit: any;
   id;
+  data;
   empIdupdate: number;
   termination: string;
   showCase : string;
@@ -56,158 +58,58 @@ export class BGVViewComponent implements OnInit {
   discrepancy: string;
   compliance : string;
   warning : string;
+  FirstName: any;
+  lastName: any;
+  email: any;
+  dob: any;
+  aadhar: any;
+  phone: any;
+  imageUrl: string;
+  baseUrl = environment.baseUrl;
+  OrgData: any;
   constructor(
     public fb: FormBuilder,
-    private cd: ChangeDetectorRef,public dialog: MatDialog,public route:ActivatedRoute,public empService : EmployeeService
+    private cd: ChangeDetectorRef,public dialog: MatDialog,public route:ActivatedRoute,public empService : BgvSearchService
   ) {
     this.route.params.subscribe(params => {
       this.empIdedit = params.id;
   });
-    this.createCandidate = new FormGroup({
-      _id: new FormControl(), 
-      firstName: new FormControl('', [Validators.required,Validators.minLength(5)]),
-      lastName: new FormControl('', [Validators.required,Validators.minLength(3)]),
-      employeeId : new FormControl(''),
-      phoneNumber : new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
-      email: new FormControl('', [Validators.required,Validators.email]),
-      role: new FormControl(''),
-      department: new FormControl(''),
-      address : new FormControl(''),
-      dateOfJoining : new FormControl('',[Validators.required,this.validateJoiningDate()]),
-      exitDate : new FormControl('',[Validators.required,this.validateExitDate()]),
-      punctuality: new FormControl('', [Validators.required]),
-      discipline: new FormControl('', [Validators.required]),
-      dateOfBirth : new FormControl(''),
-      academicKnowledge : new FormControl('',[Validators.required]),
-      productKnowledge : new FormControl('',[Validators.required]),
-      industryKnowledge : new FormControl('',[Validators.required]),
-      communicationSkills : new FormControl('',[Validators.required]),
-      adharNumber : new FormControl(''),
-      panNumber : new FormControl(''),
-      professionalExperience : new FormControl('',[Validators.required,Validators.maxLength(2)]),
-      selfDriven : new FormControl('',[Validators.required]),
-      creativity : new FormControl('',[Validators.required]),
-      informalOrganizationSenseOfBelonging : new FormControl('',[Validators.required]),
-      initiative : new FormControl('',[Validators.required]),
-      workIndependenty : new FormControl('',[Validators.required]),
-      teamWork: new FormControl('', [Validators.required]),
-      dealConstructivelyWithPressure: new FormControl('', [Validators.required]),
-      volume: new FormControl('', [Validators.required]),
-      quality: new FormControl('', [Validators.required]),
-      consistency: new FormControl('', [Validators.required]),
-      awards: new FormControl('', [Validators.required]),
-      discrepancy: new FormControl(''),
-      compliance: new FormControl(''),
-      warning : new FormControl(''),
-      showcaseissued : new FormControl(''),
-      suspention : new FormControl(''),
-      termination : new FormControl('')
-
-    });
-  }
-  validateExitDate(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      if (this.createCandidate !== undefined) {
-        //const arrivalDate = control.value;
-        const exitDate = this.createCandidate.controls['exitDate'].value;
-        const joiningDate = this.createCandidate.controls['dateOfJoining'].value
-        if (exitDate <= joiningDate) return { requiredToDate: true };
-      }
-    };
+   
   }
 
-  validateJoiningDate(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      if (this.createCandidate !== undefined) {
-        const exitDate = this.createCandidate.controls['exitDate'].value;
-        const fexitDate = new Date(exitDate);
-        const joiningDate = this.createCandidate.controls['dateOfJoining'].value;
-        if (fexitDate <= joiningDate) return { requiredFromDate: true };
-      }
-    };
-  }
-  close(){
-    setTimeout(() => {
-      this.error='';
-     }, 100);
-    //  this.loginForm.reset();
-  }
-  registrationForm = this.fb.group({
-    file: [null]
-  })  
-  methodtype;
-  openDialog() {
-    const dialogRef = this.dialog.open(DialogElementsExampleDialog,{
-  });
-    dialogRef.componentInstance.methodType = this.methodtype;
-  }
+
+
+
 
   ngOnInit(): void {
     if(this.empIdedit){
-      this.editEmployeeSubscription = this.empService.editEmployee(this.empIdedit).subscribe(respObj => {
+      this.editEmployeeSubscription = this.empService.ViewCandidate(this.empIdedit).subscribe(respObj => {
         console.log(respObj.data);
+        let logo = window.sessionStorage.getItem('logo');
+        this.imageUrl=`${this.baseUrl}/public/user_avatar/${logo}`;
+        this.data = respObj.data
+        console.log(this.data);
+        this.FirstName = this.data[0].firstName;
+        this.lastName = this.data[0].lastName;
+        this.email = this.data[0].email;
+        this.dob = this.data[0].dateOfBirth;
+        this.aadhar = this.data[0].adharNumber;
+        this.phone = this.data[0].phoneNumber
+
         this.id = respObj.data._id;
-        this.createCandidate.patchValue(respObj.data);
-        // this.imageUrl=`${this.baseUrl}/public/organization_logo/${respObj.data.organisationLogo}`;
-        // this.imageFilename=respObj.data.organisationLogo;
+        
+
+
+        //this.OrgData = 
+        //this.createCandidate.patchValue(respObj.data);
       }, err => {
         this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
       })
     }
+    
   }
-  submit(){
-    if(!this.empIdedit){
-    this.employeeSubscription = this.empService.addEmployee(this.createCandidate.value).subscribe(resp =>{
-      console.log(this.createCandidate.value);
-      this.openDialog();
-    }, err =>{
-      this.setMessage = { message: err.error.message, error: true };
-      this.error = this.setMessage.message;
-      throw this.setMessage.message;
-    })
-  }
-}
-uploadFile(){
+  
+
 
 }
-update(id:number){
-  this.empIdupdate = id;
-  this.employeeUpdateSubscription = this.empService.updateEmployee(this.createCandidate.value).subscribe(resp =>{
-    this.methodtype="update";
-    this.openDialog();
-  }, err =>{
-    this.setMessage = { message: err.error.message, error: true };
-    this.error = this.setMessage.message;
-    throw this.setMessage.message;
-  })
-}
-}
 
-@Component({
-  selector: 'dialog-elements-example-dialog',
-  templateUrl: 'dialog-elements-example.html',
-})
-export class DialogElementsExampleDialog {
-  @Input() methodType: any
-  Message: any;
-  constructor(public dialogRef: MatDialogRef<DialogElementsExampleDialog>,private router:Router
-    ) {
-      console.log(this.methodType)
-    }
-
-    ngOnInit(){
-      console.log(this.methodType)
-      if(this.methodType == 'update'){
-        this.Message="Employee  Updated successfully"
-      }else{
-        this.Message="Employee Onboarded successfully"
-
-      }
-    }
-
-  close(){
-    this.dialogRef.close(true);
-    this.router.navigate(['/candidate-list']);
- }
- 
-}

@@ -81,7 +81,7 @@
           </div>
           <div class="w-full md:w-1/6 sm:w-full">
               <mat-form-field class="example-form-field">
-                  <mat-label>Adhar Card No.</mat-label>
+                  <mat-label>Aadhar Card No.</mat-label>
                   <input  matInput formControlName="adharNumber"  type="text"  class="br-btm input-w" autoComplete='off' >
               </mat-form-field>
           </div>
@@ -110,7 +110,7 @@
       <!-- Email -->
       <ng-container matColumnDef="dob">
         <mat-header-cell *matHeaderCellDef >Date Of Birth</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{row.dateOfBirth}}</mat-cell>
+        <mat-cell *matCellDef="let row">{{row.dateOfBirth | date :'dd/MM/yyyy'}}</mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="contact">
@@ -124,7 +124,7 @@
       </ng-container>
 
       <ng-container matColumnDef="adharno">
-        <mat-header-cell *matHeaderCellDef >Adhar Number</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef >Aadhar Card Number</mat-header-cell>
         <mat-cell *matCellDef="let row">{{row.adharNumber}}</mat-cell>
       </ng-container>
   
