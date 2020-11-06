@@ -134,7 +134,7 @@
       </div>
       <div class="text-center" *ngIf="list.instituteId != '' && list.instituteId != undefined ">
         <h2>{{list.intitutionName}}</h2>
-        <span>Year Of Joing - {{list.yearOfJoining | date: 'yyyy'}} - Year Of Passout - {{list.yearOfPassout | date: 'yyyy'}}</span><br>
+        <span>{{list.yearOfJoining | date: 'yyyy'}} - {{list.yearOfPassout | date: 'yyyy'}}</span><br>
         <h4>{{list.nameOfCourse}}</h4>
       </div>
       <hr>
