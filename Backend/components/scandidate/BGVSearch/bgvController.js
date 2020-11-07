@@ -39,7 +39,7 @@ module.exports.searchById = async (req, res, next) => {
   let _id = req.params.searchbyid;
   try {
     let empData = await bgvDAL.searchBgvDataEmployee({ _id: _id });
-    var adharNumber;
+    var aadharNumber;
     var phoneNumber;
     var email;
     var firstName;
@@ -47,7 +47,7 @@ module.exports.searchById = async (req, res, next) => {
     var dob;
 
     if (empData.length > 0) {
-      adharNumber = empData[0].adharNumber;
+      aadharNumber = empData[0].adharNumber;
       phoneNumber = empData[0].phoneNumber;
       email = empData[0].email;
       firstName = empData[0].firstName;
@@ -56,7 +56,7 @@ module.exports.searchById = async (req, res, next) => {
     } else {
       let stuData = await bgvDAL.searchBgvDataStudent({ _id: _id });
       if (stuData.length > 0) {
-        adharNumber = stuData[0].adharNumber;
+        aadharNumber = stuData[0].adharNumber;
         phoneNumber = stuData[0].phoneNumber;
         email = stuData[0].email;
         firstName = stuData[0].firstName;
@@ -67,13 +67,13 @@ module.exports.searchById = async (req, res, next) => {
       }
     }
 
-    if (adharNumber != null) {
+    if (aadharNumber != null) {
       try {
         let empAdharData = await bgvDAL.searchByAdharNumberEmployee(
-          adharNumber
+          aadharNumber
         );
         let studentAdharData = await bgvDAL.searchByAdharNumberInstitute(
-          adharNumber
+          aadharNumber
         );
         let resultData = empAdharData.concat(studentAdharData);
 
