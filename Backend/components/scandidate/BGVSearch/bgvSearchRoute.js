@@ -7,6 +7,6 @@ router.route("/").post(authJWT.verifyJWTToken, bgvController.searchbgv);
 
 router
   .route("/:searchbyid")
-  .get(authJWT.verifyJWTToken, bgvController.searchById);
+  .get(authJWT.verifyJWTToken, bgvController.searchByIdBGV);
 
 module.exports = router;

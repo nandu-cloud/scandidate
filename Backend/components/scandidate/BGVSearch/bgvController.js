@@ -35,7 +35,7 @@ module.exports.searchbgv = async (req, res, next) => {
   }
 };
 
-module.exports.searchById = async (req, res, next) => {
+module.exports.searchByIdBGV = async (req, res, next) => {
   let _id = req.params.searchbyid;
   try {
     let empData = await bgvDAL.searchBgvDataEmployee({ _id: _id });
