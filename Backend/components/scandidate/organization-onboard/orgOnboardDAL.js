@@ -54,6 +54,16 @@ async function getOrganisationById(data) {
   }
 }
 
+// Find Organisation By Id New
+async function getOrganisationByIdNew(data) {
+  try {
+    let result = await organizationModel.findById({ _id: data }).lean();
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
 // Delete Organisation
 async function deleteOrganisation(data) {
   try {
@@ -79,8 +89,6 @@ async function updateOrganisation(data) {
   }
 }
 
-
-
 // export functions
 module.exports = {
   getAllOrganisation: getAllOrganisation,
@@ -88,4 +96,5 @@ module.exports = {
   getOrganisationById: getOrganisationById,
   updateOrganisation: updateOrganisation,
   deleteOrganisation: deleteOrganisation,
+  getOrganisationByIdNew: getOrganisationByIdNew,
 };

@@ -1,6 +1,8 @@
 const AppError = require("./../../../helpers/appError");
 const colors = require("./../../../helpers/colors");
 const bgvDAL = require("./bgvDAL");
+const instituionDAL = require("../institute-onboard/instituteOnboardDAL");
+const organizationDAL = require("../organization-onboard/orgOnboardDAL");
 
 module.exports.searchbgv = async (req, res, next) => {
   let data = req.body;
@@ -147,4 +149,40 @@ module.exports.searchByIdBGV = async (req, res, next) => {
     console.log(colors.red, `${err}`);
     return next(new AppError(err, 400));
   }
+};
+
+module.exports.searchIconOrganizationInstitute = async (req, res, next) => {
+  var orgReq = req.body.organisationId;
+  var instReq = req.body.instituteId;
+  var orgJson = [];
+  var instJson = [];
+
+  if (orgReq.length > 0) {
+    try {
+      for (var i = 0; i < orgReq.length; i++) {
+        let result = await organizationDAL.getOrganisationByIdNew(orgReq[i]);
+        orgJson.push(result);
+      }
+    } catch (err) {
+      return next(new AppError(err, 400));
+    }
+  }
+
+  if (instReq.length > 0) {
+    try {
+      for (var i = 0; i < instReq.length; i++) {
+        let result = await instituionDAL.getInstituteByIdNew(instReq[i]);
+        instJson.push(result);
+      }
+    } catch (err) {
+      return next(new AppError(err, 400));
+    }
+  }
+
+  let result = orgJson.concat(instJson);
+  return res.status(200).json({
+    status: 200,
+    message: "SUCCESS",
+    data: result,
+  });
 };

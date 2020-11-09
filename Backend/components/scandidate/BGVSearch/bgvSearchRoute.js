@@ -9,4 +9,8 @@ router
   .route("/:searchbyid")
   .get(authJWT.verifyJWTToken, bgvController.searchByIdBGV);
 
+router
+  .route("/icon/show")
+  .post(authJWT.verifyJWTToken, bgvController.searchIconOrganizationInstitute);
+
 module.exports = router;
