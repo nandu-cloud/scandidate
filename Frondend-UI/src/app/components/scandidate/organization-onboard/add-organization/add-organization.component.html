@@ -14,7 +14,7 @@
         <div class="w-full md:w-1/2 sm:w-full">
             <mat-form-field>
                 <mat-label>Company Name</mat-label>
-                <input  matInput formControlName="organizationName"  type="text"  required  class="br-btm input-w" autoComplete='off' >
+                <input  matInput formControlName="organizationName"  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="1" >
                 <mat-error *ngIf ="organizationForm.get('organizationName').errors?.required">
                     Required company Name.
                    </mat-error>
@@ -23,8 +23,66 @@
                     </mat-error>
             </mat-form-field>
             <mat-form-field>
+                <mat-label>Code</mat-label>
+                <input  matInput type="text"  formControlName="code"    class="br-btm input-w" autoComplete='off' tabindex="3">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input  matInput type="text"  formControlName="organisationEmail"  class="br-btm input-w" autoComplete='off' tabindex="5">
+                <mat-error *ngIf ="organizationForm.get('organisationEmail').errors?.required">
+                    Required Email Name.
+                   </mat-error>
+                   <mat-error *ngIf ="organizationForm.get('organisationEmail').errors?.email">
+                     Enter correct email
+                    </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field>
+                <mat-label>Company Size</mat-label>
+                <input  matInput   type="text"  formControlName="organisationEmployeeSize"    class="br-btm input-w" autoComplete='off' tabindex="7">
+            </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Active From</mat-label>
+                    <!-- <input  matInput  type="text"  formControlName="activeform"  required  class="br-btm input-w" autoComplete='off'> -->
+                    <input matInput [matDatepicker]="picker2" [min]="minDate" 
+                    [max]="maxDate" formControlName="organisationActiveFrom"  class="br-btm input-w" tabindex="9">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2 color="primary"></mat-datepicker>
+                    <mat-error *ngIf ="organizationForm.get('organisationActiveFrom').errors?.required">
+                        Choose date.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Address</mat-label>
+                    <input matInput type="text"  formControlName="organisationAddress"  required  class="br-btm input-w" autoComplete='off' tabindex="11">
+                    <mat-error *ngIf ="organizationForm.get('organisationAddress').errors?.required">
+                        Required organization address.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>City</mat-label>
+                    <input matInput formControlName="organizationLocation"  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="13" >
+                    <mat-error *ngIf ="organizationForm.get('organizationLocation').errors?.required">
+                        Required location.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>GSTN (optional)</mat-label>
+                    <input  matInput   type="text"  formControlName="organizationGstn" class="br-btm input-w" autoComplete='off' tabindex="15">
+                </mat-form-field>
+            <mat-form-field>
+                <mat-label>CIN (optional)</mat-label>
+                <input  matInput   type="text"  formControlName="organizationCin" class="br-btm input-w" autoComplete='off' tabindex="17">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <textarea  matInput formControlName="organisationDescription" class="br-btm input-w" autoComplete='off' tabindex="19"></textarea>
+            </mat-form-field>
+        </div>
+        <div class="w-full md:w-1/2 sm:w-full">
+            <mat-form-field>
                 <mat-label>Legal Entity Name</mat-label>
-                <input  matInput formControlName="legalEntityName"  type="text"  required  class="br-btm input-w" autoComplete='off' >
+                <input  matInput formControlName="legalEntityName"  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="2">
                 <mat-error *ngIf ="organizationForm.get('legalEntityName').errors?.required">
                     Required legal entity name.
                    </mat-error>
@@ -34,7 +92,7 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Contact Person Name</mat-label>
-                <input matInput  formControlName="contactPersonName"  type="text"    required  class="br-btm input-w" autoComplete='off'>
+                <input matInput  formControlName="contactPersonName"  type="text"    required  class="br-btm input-w" autoComplete='off' tabindex="4">
                 <mat-error *ngIf ="organizationForm.get('contactPersonName').errors?.required">
                     Required contact person name.
                    </mat-error>
@@ -43,33 +101,41 @@
                    </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Location(City/Town)</mat-label>
-                <input matInput formControlName="organizationLocation"  type="text"  required  class="br-btm input-w" autoComplete='off' >
-                <mat-error *ngIf ="organizationForm.get('organizationLocation').errors?.required">
-                    Required location.
+                <mat-label>Phone Number</mat-label>
+                <input  matInput   type="text"  formControlName="contact"  required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{10}$" tabindex="6">
+                <mat-error *ngIf ="organizationForm.get('contact').errors?.required">
+                    Required phone number.
+                </mat-error>
+                <mat-error *ngIf="!organizationForm.get('contact').errors?.required && organizationForm.get('contact').errors?.pattern">
+                    Please enter valid number
+                   </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field>
+                <mat-label>Industry Type</mat-label>
+                <input  matInput   type="text"  formControlName="organisationType"    class="br-btm input-w" autoComplete='off' required tabindex="8">
+                <mat-error *ngIf ="organizationForm.get('organisationType').errors?.required">
+                    Required industry type.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Head Quarter Location</mat-label>
+                <input  matInput   type="text"  formControlName="headQuaterLocation"  required  class="br-btm input-w" autoComplete='off' tabindex="10">
+                <mat-error *ngIf ="organizationForm.get('headQuaterLocation').errors?.required">
+                    Required head quater location.
                 </mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>State</mat-label>
-                <input matInput formControlName="state"  type="text"  required  class="br-btm input-w" autoComplete='off' >
+                <input matInput formControlName="state"  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="14">
                 <mat-error *ngIf ="organizationForm.get('state').errors?.required">
                     Required state.
                 </mat-error>
             </mat-form-field>
+            
             <mat-form-field>
-                <mat-label>Address</mat-label>
-                <input matInput type="text"  formControlName="organisationAddress"  required  class="br-btm input-w" autoComplete='off'>
-                <mat-error *ngIf ="organizationForm.get('organisationAddress').errors?.required">
-                    Required organization address.
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Email</mat-label>
-                <input  matInput type="text"  formControlName="organisationEmail"  class="br-btm input-w" autoComplete='off'>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Postal Code</mat-label>
-                <input  matInput type="text"  formControlName="organisationZIP"  required  class="br-btm input-w" autoComplete='off'>
+                <mat-label>Zip Code</mat-label>
+                <input  matInput type="text"  formControlName="organisationZIP"  required  class="br-btm input-w" autoComplete='off' tabindex="16">
                 <mat-error *ngIf="organizationForm.controls['organisationZIP'].hasError('required')">
                     Please enter
                     <strong>valid zipcode</strong>
@@ -80,13 +146,13 @@
                 </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Description</mat-label>
-                <textarea  matInput formControlName="organisationDescription" class="br-btm input-w" autoComplete='off'></textarea>
+                <mat-label>PAN (optional)</mat-label>
+                <input  matInput   type="text"  formControlName="organizationPan" class="br-btm input-w" autoComplete='off' tabindex="18">
             </mat-form-field>
             <div class="group-gap">
                 <div class="avatar-upload">
                     <div class="avatar-edit">
-                        <input type='file'  required id="imageUpload" accept=".png,.jpeg"   #logoLink (change)="uploadFile($event.target.files)" />
+                        <input type='file'  required id="imageUpload" accept=".png,.jpeg"   #logoLink (change)="uploadFile($event.target.files)" tabindex="20"/>
                     </div>
                     <div class="avatar-preview">
                         <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'"></div>
@@ -97,73 +163,16 @@
                      Upload Logo
                 </button>
             </div>
-        </div>
-        <div class="w-full md:w-1/2 sm:w-full">
-            <mat-form-field>
-                <mat-label>Code</mat-label>
-                <input  matInput type="text"  formControlName="code"    class="br-btm input-w" autoComplete='off'>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Phone Number</mat-label>
-                <input  matInput   type="text"  formControlName="contact"  required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{10}$">
-                <mat-error *ngIf ="organizationForm.get('contact').errors?.required">
-                    Required phone number.
-                </mat-error>
-                <mat-error *ngIf="!organizationForm.get('contact').errors?.required && organizationForm.get('contact').errors?.pattern">
-                    Please enter valid number
-                   </mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Industry Type</mat-label>
-                <input  matInput   type="text"  formControlName="organisationType"    class="br-btm input-w" autoComplete='off' required>
-                <mat-error *ngIf ="organizationForm.get('organisationType').errors?.required">
-                    Required industry type.
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Company Size</mat-label>
-                <input  matInput   type="text"  formControlName="organisationEmployeeSize"    class="br-btm input-w" autoComplete='off'>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Head Quarter Location</mat-label>
-                <input  matInput   type="text"  formControlName="headQuaterLocation"  required  class="br-btm input-w" autoComplete='off'>
-                <mat-error *ngIf ="organizationForm.get('headQuaterLocation').errors?.required">
-                    Required head quater location.
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>GSTN (optional)</mat-label>
-                <input  matInput   type="text"  formControlName="organizationGstn" class="br-btm input-w" autoComplete='off'>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>CIN (optional)</mat-label>
-                <input  matInput   type="text"  formControlName="organizationCin" class="br-btm input-w" autoComplete='off'>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>PAN (optional)</mat-label>
-                <input  matInput   type="text"  formControlName="organizationPan" class="br-btm input-w" autoComplete='off'>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Active From</mat-label>
-                <!-- <input  matInput  type="text"  formControlName="activeform"  required  class="br-btm input-w" autoComplete='off'> -->
-                <input matInput [matDatepicker]="picker2" [min]="minDate" 
-                [max]="maxDate" formControlName="organisationActiveFrom"  class="br-btm input-w">
-                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                <mat-datepicker #picker2 color="primary"></mat-datepicker>
-                <mat-error *ngIf ="organizationForm.get('organisationActiveFrom').errors?.required">
-                    Choose date.
-                </mat-error>
-            </mat-form-field>
             <mat-form-field *ngIf ="id">
                 <mat-label>Status</mat-label>
-                <mat-select class="br-btm input-w" formControlName="status">
+                <mat-select class="br-btm input-w" formControlName="status" tabindex="21">
                   <mat-option  [value]= true>Active</mat-option>
                   <mat-option  [value]= false>Inactive</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
     </div>
-    <div class="flex justify-end lg:pb-6 lg:pr-48">
+    <div class="flex justify-end lg:pb-6 lg:pr-48 mt-10 ">
         <a routerLink="/organization-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button">
           Cancel
         </button></a>

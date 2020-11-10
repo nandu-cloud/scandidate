@@ -54,7 +54,8 @@ export class AddInitutionComponent implements OnInit {
       instituteActiveFrom : new FormControl('',[Validators.required]),
       instituteLogo : new FormControl(),
       instituteLocation : new FormControl('',[Validators.required]),
-      state : new FormControl('',[Validators.required])
+      state : new FormControl('',[Validators.required]),
+      LandMark : new FormControl()
     })
   }
   close(){

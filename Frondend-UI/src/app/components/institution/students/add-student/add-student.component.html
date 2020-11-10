@@ -6,7 +6,7 @@
                 <div class="w-full md:w-1/2 sm:w-full">
                   <mat-form-field>
                     <mat-label>First Name</mat-label>
-                    <input  matInput formControlName="firstName"  type="text"  required  class="br-btm input-w" autoComplete='off' >
+                    <input  matInput formControlName="firstName"  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="1">
                     <mat-error *ngIf ="studentForm.get('firstName').errors?.required">
                         Required first Name.
                     </mat-error>
@@ -15,32 +15,24 @@
                     </mat-error>
                   </mat-form-field>
                   <mat-form-field>
-                    <mat-label>Last Name</mat-label>
-                    <input  matInput formControlName="lastName"  type="text"  class="br-btm input-w" autoComplete='off' required>
-                    <mat-error *ngIf ="studentForm.get('lastName').errors?.required">
-                      Required last Name.
-                  </mat-error>
-                  </mat-form-field>
-                  <mat-form-field>
                     <mat-label>Roll No</mat-label>
-                    <input  matInput formControlName="roll"  type="text"  class="br-btm input-w" autoComplete='off' required >
+                    <input  matInput formControlName="roll"  type="text"  class="br-btm input-w" autoComplete='off' required tabindex="3">
                     <mat-error *ngIf ="studentForm.get('roll').errors?.required">
                       Required Roll Number.
                   </mat-error>
                   </mat-form-field>
                   <mat-form-field>
-                    <mat-label>Email</mat-label>
-                    <input  matInput formControlName="email"  type="text"  required  class="br-btm input-w" autoComplete='off' >
-                    <mat-error *ngIf ="studentForm.get('email').errors?.required">
-                      Required email address
-                    </mat-error>
-                    <mat-error *ngIf ="studentForm.get('email').errors?.email">
-                      Enter a valid email address
-                    </mat-error>
+                    <mat-label>DOB</mat-label>
+                    <input matInput [matDatepicker]="picker2" formControlName="dateOfBirth" class="br-btm input-w" required tabindex="5">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2 color="primary"></mat-datepicker>
+                    <mat-error *ngIf ="studentForm.get('dateOfBirth').errors?.required">
+                        Required date of birth.
+                       </mat-error>
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Phone Number</mat-label>
-                    <input  matInput   type="text"  formControlName="phoneNumber"  required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{10}$">
+                    <input  matInput   type="text"  formControlName="phoneNumber"  required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{10}$" tabindex="7">
                     <mat-error *ngIf ="studentForm.get('phoneNumber').errors?.required">
                         Required phone number.
                     </mat-error>
@@ -49,27 +41,39 @@
                     </mat-error>
                   </mat-form-field>
                   <mat-form-field>
+                    <mat-label>Year of Joining</mat-label>
+                    <input  matInput formControlName="yearOfJoining" required type="text"  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{4}$" tabindex="9">
+                    <mat-error *ngIf ="studentForm.get('yearOfJoining').errors?.required">
+                      Required Year of joining  
+                    </mat-error>
+                    <mat-error *ngIf="studentForm.get('yearOfJoining').hasError('requiredFromDate')">Joining year should be less than Passout year</mat-error>   
+                    <mat-error *ngIf="!studentForm.get('yearOfJoining').errors?.required && studentForm.get('yearOfJoining').errors?.pattern">
+                      Please enter valid year
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field>
                     <mat-label>Institution Name</mat-label>
-                    <input  matInput   type="text"  formControlName="intitutionName"  required  class="br-btm input-w" autoComplete='off'>
+                    <input  matInput   type="text"  formControlName="intitutionName"  required  class="br-btm input-w" autoComplete='off' tabindex="11">
                     <mat-error *ngIf ="studentForm.get('intitutionName').errors?.required">
                         Required IntitutionName.
                     </mat-error>
                   </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Address</mat-label>
+                    <input  matInput formControlName="address"  type="text"   class="br-btm input-w" autoComplete='off' tabindex="13">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>City</mat-label>
+                    <input  matInput   type="text"  formControlName="city"  class="br-btm input-w" autoComplete='off' tabindex="15">
+                </mat-form-field>
                 <mat-form-field>
-                  <mat-label>Aadhar Number</mat-label>
-                  <input  matInput   type="text"  formControlName="adharNumber"  required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{12}$">
-                  <mat-error *ngIf ="studentForm.get('adharNumber').errors?.required">
-                      Required Aadhar number.
-                  </mat-error>
-                  <mat-error *ngIf="!studentForm.get('adharNumber').errors?.required && studentForm.get('adharNumber').errors?.pattern">
-                      Please enter valid number
-                  </mat-error>
+                  <mat-label>Zip Code</mat-label>
+                  <input  matInput  formControlName="zipcode"   minLength="5" maxLength="7" class="br-btm input-w" pattern="^[0-9]{5,7}$" autoComplete='off' tabindex="17">
               </mat-form-field>
-                  
                   <mat-form-field>
                     <mat-label>Extra activities</mat-label>
                     <input matInput placeholder="Input" style="display: none" >
-                    <mat-radio-group aria-label="Select an option" formControlName="extraActivity" (change)="activities($event)">
+                    <mat-radio-group aria-label="Select an option" formControlName="extraActivity" (change)="activities($event)" tabindex="19">
                       <mat-radio-button value="1">Yes</mat-radio-button>
                       <mat-radio-button value="2">No</mat-radio-button>
                     </mat-radio-group>
@@ -78,12 +82,11 @@
                     <mat-label> Document Name</mat-label>
                     <input  matInput formControlName="extraActivityDocumentName"  type="text" class="br-btm input-w" autoComplete='off' >
                   </mat-form-field>
-                  
                     <div class="group-gap" *ngIf="extraActivities">
                       <div class="avatar-upload">
                           <div class="avatar-edit">
                             <label class="image-text">Documents Upload</label>
-                              <input type='file' placeholder="Upload Document" id="imageUpload" accept=".pdf"  #extraActivityDocumentLink (change)="uploadFile($event.target.files)" />
+                              <input type='file' placeholder="Upload Document" id="imageUpload" accept=".pdf"  #extraActivityDocumentLink (change)="uploadFile($event.target.files)" tabindex="21"/>
                               <div id="imagePreview">{{this.documentName}}</div>
                             </div>
                       </div>
@@ -94,47 +97,43 @@
                 </div>
                 <div class="w-full md:w-1/2 sm:w-full">
                   <mat-form-field>
-                    <mat-label>DOB</mat-label>
-                    <input matInput [matDatepicker]="picker2" formControlName="dateOfBirth" class="br-btm input-w" required>
-                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-datepicker #picker2 color="primary"></mat-datepicker>
-                    <mat-error *ngIf ="studentForm.get('dateOfBirth').errors?.required">
-                        Required date of birth.
-                       </mat-error>
+                    <mat-label>Last Name</mat-label>
+                    <input  matInput formControlName="lastName"  type="text"  class="br-btm input-w" autoComplete='off' required tabindex="2">
+                    <mat-error *ngIf ="studentForm.get('lastName').errors?.required">
+                      Required last Name.
+                  </mat-error>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Aadhar Number</mat-label>
+                    <input  matInput   type="text"  formControlName="adharNumber"  required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{12}$" tabindex="4">
+                    <mat-error *ngIf ="studentForm.get('adharNumber').errors?.required">
+                        Required Aadhar number.
+                    </mat-error>
+                    <mat-error *ngIf="!studentForm.get('adharNumber').errors?.required && studentForm.get('adharNumber').errors?.pattern">
+                        Please enter valid number
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Email</mat-label>
+                  <input  matInput formControlName="email"  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="6">
+                  <mat-error *ngIf ="studentForm.get('email').errors?.required">
+                    Required email address
+                  </mat-error>
+                  <mat-error *ngIf ="studentForm.get('email').errors?.email">
+                    Enter a valid email address
+                  </mat-error>
                 </mat-form-field>
                   <mat-form-field>
                     <mat-label>Name of course</mat-label>
-                    <input  matInput formControlName="nameOfCourse"  type="text"  required  class="br-btm input-w" autoComplete='off' >
+                    <input  matInput formControlName="nameOfCourse"  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="8">
                     <mat-error *ngIf ="studentForm.get('nameOfCourse').errors?.required">
                       Required course Name 
                     </mat-error>
                     
                   </mat-form-field>
                   <mat-form-field>
-                    <mat-label>Student Type</mat-label>
-                    <input matInput placeholder="Input" style="display: none" required>
-                    <mat-radio-group formControlName="studentType" required>
-                      <mat-radio-button value="regular">Regular</mat-radio-button>
-                      <mat-radio-button value="correspondance">Correspondance</mat-radio-button>
-                    </mat-radio-group>
-                    <mat-error *ngIf ="studentForm.get('studentType').errors?.required">
-                      Required Student Type
-                    </mat-error>
-                  </mat-form-field>
-                  <mat-form-field>
-                    <mat-label>Year of Joining</mat-label>
-                    <input  matInput formControlName="yearOfJoining" required type="text"  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{4}$">
-                    <mat-error *ngIf ="studentForm.get('yearOfJoining').errors?.required">
-                      Required Year of joining  
-                    </mat-error>
-                    <mat-error *ngIf="studentForm.get('yearOfJoining').hasError('requiredFromDate')">Joining year should be less than Passout year</mat-error>   
-                    <mat-error *ngIf="!studentForm.get('yearOfJoining').errors?.required && studentForm.get('yearOfJoining').errors?.pattern">
-                      Please enter valid year
-                    </mat-error>
-                  </mat-form-field>
-                  <mat-form-field>
                     <mat-label>Year of Passing</mat-label>
-                    <input  matInput formControlName="yearOfPassout" required  type="text"   class="br-btm input-w" autoComplete='off' pattern="^[0-9]{4}$">
+                    <input  matInput formControlName="yearOfPassout" required  type="text"   class="br-btm input-w" autoComplete='off' pattern="^[0-9]{4}$" tabindex="10">
                     <mat-error *ngIf ="studentForm.get('yearOfPassout').errors?.required">
                       Required Year of passedout 
                     </mat-error>
@@ -144,21 +143,39 @@
                     </mat-error>
                   </mat-form-field>
                   <mat-form-field>
-                    <mat-label>Address</mat-label>
-                    <input  matInput formControlName="address"  type="text"   class="br-btm input-w" autoComplete='off' >
-                  </mat-form-field>
-                  <mat-form-field>
-                    <mat-label>No of Education Documents</mat-label>
-                    <input  matInput formControlName="noOfEductionalDocuments"  type="text"  class="br-btm input-w" autoComplete='off' pattern="^[0-9]$">
-                    <mat-error *ngIf="studentForm.get('noOfEductionalDocuments').errors?.pattern">
-                      Please enter valid number
+                    <mat-label>Student Type</mat-label>
+                    <input matInput placeholder="Input" style="display: none" required>
+                    <mat-radio-group formControlName="studentType" required tabindex="12">
+                      <mat-radio-button value="regular">Regular</mat-radio-button>
+                      <mat-radio-button value="correspondance">Correspondance</mat-radio-button>
+                    </mat-radio-group>
+                    <mat-error *ngIf ="studentForm.get('studentType').errors?.required">
+                      Required Student Type
                     </mat-error>
                   </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>LandMark</mat-label>
+                    <input matInput type="text"  formControlName="LandMark"   class="br-btm input-w" autoComplete='off' tabindex="14">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>State</mat-label>
+                  <input  matInput   type="text"  formControlName="state"  class="br-btm input-w" autoComplete='off' tabindex="16">
+                  <mat-error *ngIf ="studentForm.get('state').errors?.required">
+                      Required state.
+                  </mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>No of Education Documents</mat-label>
+                <input  matInput formControlName="noOfEductionalDocuments"  type="text"  class="br-btm input-w" autoComplete='off' pattern="^[0-9]$" tabindex="18">
+                <mat-error *ngIf="studentForm.get('noOfEductionalDocuments').errors?.pattern">
+                  Please enter valid number
+                </mat-error>
+              </mat-form-field>
                   <div class="group-gap">
                     <div class="avatar-upload">
                         <div class="avatar-edit">
                           <label class="image-text">Documents Upload</label>
-                            <input type='file' accept=".pdf"   #EducationDocument (change)="uploadEducationFile($event)" multiple/>
+                            <input type='file' accept=".pdf"   #EducationDocument (change)="uploadEducationFile($event)" multiple tabindex="20"/>
                             <div id="imagePreview" *ngIf="imagePreview">{{this.documentCount}} files uploaded</div>
                           </div>
                     </div>

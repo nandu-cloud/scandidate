@@ -30,6 +30,11 @@ export class AddCandidateComponent implements OnInit {
   discrepancy: string;
   compliance : string;
   warning : string;
+  volume : string;
+  quality : string;
+  stakeholder : string;
+  building: string;
+  consistency : string;
   organizationName: any = window.sessionStorage.getItem('orgName');
  
   constructor(
@@ -78,8 +83,14 @@ export class AddCandidateComponent implements OnInit {
       warning : new FormControl(''),
       showcaseissued : new FormControl(''),
       suspention : new FormControl(''),
-      termination : new FormControl('')
-
+      termination : new FormControl(''),
+      LandMark : new FormControl(),
+      city : new FormControl(),
+      state : new FormControl(),
+      zipcode : new FormControl(),
+      building: new FormControl(),
+      stakeholder : new FormControl(),
+      description : new FormControl()
     });
   }
  

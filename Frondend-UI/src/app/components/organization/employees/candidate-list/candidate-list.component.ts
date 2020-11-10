@@ -28,32 +28,17 @@ export class CandidateListComponent implements OnInit {
     this.EmployeeSubscription = this.empService.getEmployeeData().subscribe(respObj => {
       this.dataSource = new MatTableDataSource(respObj.data);
       this.dataSource.paginator = this.paginator;
-      var dataRecords = respObj.data;
-      this.dataSource.filterPredicate = 
-      (data: typeof dataRecords, filtersJson: string) => {
-        const matchFilter = [];
-        const filters = JSON.parse(filtersJson);
-
-        filters.forEach(filter => {
-          const val = data[filter.id] === null ? '' : data[filter.id];
-          matchFilter.push(val.toLowerCase().includes(filter.value.toLowerCase()));
-        });
-          return matchFilter.every(Boolean);
+      this.dataSource.filterPredicate = function(data, filter: string): boolean {
+        return data.firstName.toLowerCase().includes(filter);
       };
     }, err => {
       this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
     })
   }
   applyFilter(filterValue: string) {
-    const tableFilters = [];
-    tableFilters.push({
-      id: 'firstName',
-      value: filterValue
-    });
-    this.dataSource.filter = JSON.stringify(tableFilters);
-      if (this.dataSource.paginator) {
-        this.dataSource.paginator.firstPage();
-      }
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
   edit(id:number){
     this.empIdedit = id;

@@ -53,7 +53,7 @@
 
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header >Action</th>
-        <td mat-cell *matCellDef="let row"><a [routerLink]="['/add-candidate/',row._id]"><mat-icon class="action" (click)=edit(row._id) ><span class="bg-black text-white pt-2 pb-2 pl-2 pr-2 mr-10">edit</span></mat-icon>{{row.action}}</a></td>
+        <td mat-cell *matCellDef="let row"><a [routerLink]="['/add-candidate/',row._id]"><mat-icon class="action" (click)=edit(row._id) ><span class="bg-black text-white p-1 cursor-pointer mr-10">edit</span></mat-icon>{{row.action}}</a></td>
       </ng-container>
       
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

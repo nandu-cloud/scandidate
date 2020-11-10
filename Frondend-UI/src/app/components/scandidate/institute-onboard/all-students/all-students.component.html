@@ -14,6 +14,18 @@
                 </mat-form-field>
             </div>
             <div class="w-full md:w-1/5 sm:w-full">
+              <mat-form-field >
+                  <mat-label>Inistution Name</mat-label>
+                  <input  matInput formControlName="intitutionName"  type="text"  class="br-btm input-w" autoComplete='off' >
+              </mat-form-field>
+          </div>
+          <div class="w-full md:w-1/5 sm:w-full">
+            <mat-form-field class="example-form-field">
+                <mat-label>Phone Number</mat-label>
+                <input  matInput formControlName="phoneNumber"  type="text"  class="br-btm input-w" autoComplete='off' >
+            </mat-form-field>
+          </div>
+            <div class="w-full md:w-1/5 sm:w-full">
                 <mat-form-field class="example-form-field">
                     <mat-label>Year of passing</mat-label>
                     <input  matInput formControlName="yearOfPassout"  type="text"  class="br-btm input-w" autoComplete='off'  pattern="^[0-9]{4}$">
@@ -22,18 +34,8 @@
                     </mat-error>
                 </mat-form-field>
             </div>
-            <div class="w-full md:w-1/5 sm:w-full">
-                <mat-form-field class="example-form-field">
-                    <mat-label>Phone Number</mat-label>
-                    <input  matInput formControlName="phoneNumber"  type="text"  class="br-btm input-w" autoComplete='off' >
-                </mat-form-field>
-            </div>
-            <div class="w-full md:w-1/5 sm:w-full">
-                <mat-form-field >
-                    <mat-label>Inistution Name</mat-label>
-                    <input  matInput formControlName="intitutionName"  type="text"  class="br-btm input-w" autoComplete='off' >
-                </mat-form-field>
-            </div>
+            
+           
             <div class="w-full md:w-1/6 sm:w-full">
                 <button mat-raised-button class="bg-black text-white rounded inline-flex items-center" (click)="search()"><mat-icon>search</mat-icon></button> 
             </div>

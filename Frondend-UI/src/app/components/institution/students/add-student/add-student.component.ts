@@ -64,7 +64,11 @@ export class AddStudentComponent implements OnInit {
       eductionalDocumentNames : new FormControl(),
       intitutionName : new FormControl(this.instituteName, [Validators.required]),
       eductionalDocumentLinks: new FormControl(),
-      extraActivityDocumentLink : new FormControl()
+      extraActivityDocumentLink : new FormControl(),
+      LandMark : new FormControl(),
+      city : new FormControl(),
+      state : new FormControl(),
+      zipcode : new FormControl()
     })
    }
    validatePassout(): ValidatorFn {

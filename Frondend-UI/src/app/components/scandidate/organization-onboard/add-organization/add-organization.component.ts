@@ -59,7 +59,8 @@ export class AddOrganizationComponent implements OnInit {
       headQuaterLocation : new FormControl('',[Validators.required]),
       organizationGstn: new FormControl(''),
       organizationCin : new FormControl(''),
-      organizationPan: new FormControl('')
+      organizationPan: new FormControl(''),
+      LandMark : new FormControl('')
     })
   }
   close(){

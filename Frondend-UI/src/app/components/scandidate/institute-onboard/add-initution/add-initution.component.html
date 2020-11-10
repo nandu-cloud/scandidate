@@ -13,7 +13,7 @@
         <div class="w-full md:w-1/2 sm:w-full">
             <mat-form-field>
                 <mat-label>Institute Name</mat-label>
-                <input  matInput type="text" formControlName="instituteName"  required  class="br-btm input-w" autoComplete='off'>
+                <input  matInput type="text" formControlName="instituteName"  required  class="br-btm input-w" autoComplete='off' tabindex="1">
                 <mat-error *ngIf ="instituteForm.get('instituteName').errors?.required">
                    Required Institution Name.
                   </mat-error>
@@ -21,10 +21,9 @@
                     Institution name must be at least 3 characters long.
                    </mat-error>
             </mat-form-field>
-
             <mat-form-field>
                 <mat-label>Contact Person Name</mat-label>
-                <input  matInput   type="text"  formControlName="contactPersonName"  required  class="br-btm input-w" autoComplete='off'>
+                <input  matInput   type="text"  formControlName="contactPersonName"  required  class="br-btm input-w" autoComplete='off' tabindex="3">
                 <mat-error *ngIf ="instituteForm.get('contactPersonName').errors?.required">
                     Required contact person name.
                    </mat-error>
@@ -33,29 +32,40 @@
                    </mat-error>
             </mat-form-field>
             <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input  matInput  type="text"  formControlName="instituteEmail"  required  class="br-btm input-w" autoComplete='off' tabindex="5">
+                <mat-error *ngIf ="instituteForm.get('instituteEmail').errors?.required">
+                    Required email address.
+                </mat-error>
+                <mat-error *ngIf ="instituteForm.get('instituteEmail').errors?.email">
+                    Enter a valid email address.
+                </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field>
+                <mat-label>Institution type</mat-label>
+                <input  matInput   type="text"  formControlName="instituteType" required   class="br-btm input-w" autoComplete='off' tabindex="7">
+                <mat-error *ngIf ="instituteForm.get('instituteType').errors?.required">
+                    Required institute type.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
                 <mat-label>Address</mat-label>
-                <input  matInput   type="text"  formControlName="instituteAddress" required  class="br-btm input-w" autoComplete='off'>
+                <input  matInput   type="text"  formControlName="instituteAddress" required  class="br-btm input-w" autoComplete='off' tabindex="9">
                 <mat-error *ngIf ="instituteForm.get('instituteAddress').errors?.required">
                     Required institute address.
                 </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Location(City/Town)</mat-label>
-                <input  matInput   type="text"  formControlName="instituteLocation"  required  class="br-btm input-w" autoComplete='off'>
+                <mat-label>City</mat-label>
+                <input  matInput   type="text"  formControlName="instituteLocation"  required  class="br-btm input-w" autoComplete='off' tabindex="11">
                 <mat-error *ngIf ="instituteForm.get('instituteLocation').errors?.required">
                     Required institute location.
                 </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>State</mat-label>
-                <input  matInput   type="text"  formControlName="state"  required  class="br-btm input-w" autoComplete='off'>
-                <mat-error *ngIf ="instituteForm.get('state').errors?.required">
-                    Required state.
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Postal Code</mat-label>
-                <input  matInput  formControlName="instituteZIP"  required  minLength="5" maxLength="7" class="br-btm input-w" pattern="^[0-9]{5,7}$" autoComplete='off'>
+                <mat-label>Zip Code</mat-label>
+                <input  matInput  formControlName="instituteZIP"  required  minLength="5" maxLength="7" class="br-btm input-w" pattern="^[0-9]{5,7}$" autoComplete='off' tabindex="13">
                 <mat-error *ngIf="instituteForm.controls['instituteZIP'].hasError('required')">
                     Please enter
                     <strong>valid zipcode</strong>
@@ -65,15 +75,10 @@
                     <strong>minimum length is 5 and maximum length is 7.</strong>
                 </mat-error>
             </mat-form-field>
-            <mat-form-field>
-                <mat-label>Description</mat-label>
-                <textarea  matInput formControlName="instituteDescription" class="br-btm input-w" autoComplete='off'></textarea>
-            </mat-form-field>
-
             <div class="group-gap">
               <div class="avatar-upload">
                   <div class="avatar-edit">
-                      <input type='file'  required id="imageUpload" accept=".png,.jpeg"   #logoLink (change)="uploadFile($event.target.files)" />
+                      <input type='file'  required id="imageUpload" accept=".png,.jpeg"   #logoLink (change)="uploadFile($event.target.files)" tabindex="15" />
                   </div>
                   <div class="avatar-preview">
                       <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'"></div>
@@ -88,11 +93,11 @@
         <div class="w-full md:w-1/2 sm:w-full">
             <mat-form-field>
                 <mat-label>Code</mat-label>
-                <input  matInput type="text" formControlName="code"    class="br-btm input-w" autoComplete='off'>
+                <input  matInput type="text" formControlName="code"    class="br-btm input-w" autoComplete='off' tabindex="2">
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Phone Number</mat-label>
-                <input  matInput   type="text"  formControlName="contact"  required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{10}$" >
+                <input  matInput   type="text"  formControlName="contact"  required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{10}$" tabindex="4" >
                 <mat-error *ngIf ="instituteForm.get('contact').errors?.required">
                     Required phone number.
                 </mat-error>
@@ -101,46 +106,38 @@
                    </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Email</mat-label>
-                <input  matInput  type="text"  formControlName="instituteEmail"  required  class="br-btm input-w" autoComplete='off'>
-                <mat-error *ngIf ="instituteForm.get('instituteEmail').errors?.required">
-                    Required email address.
-                </mat-error>
-                <mat-error *ngIf ="instituteForm.get('instituteEmail').errors?.email">
-                    Enter a valid email address.
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Institution type</mat-label>
-                <input  matInput   type="text"  formControlName="instituteType" required   class="br-btm input-w" autoComplete='off'>
-                <mat-error *ngIf ="instituteForm.get('instituteType').errors?.required">
-                    Required institute type.
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field>
                 <mat-label>Student size</mat-label>
-                <input  matInput   type="text"  formControlName="instituteStudentSize"    class="br-btm input-w" autoComplete='off'>
+                <input  matInput   type="text"  formControlName="instituteStudentSize"    class="br-btm input-w" autoComplete='off' tabindex="6">
             </mat-form-field>
             <mat-form-field>
               <mat-label>Active From</mat-label>
               <!-- <input  matInput  type="text"  formControlName="activeform"  required  class="br-btm input-w" autoComplete='off'> -->
               <input matInput [matDatepicker]="picker2" [min]="minDate"
-              [max]="maxDate" formControlName="instituteActiveFrom"  class="br-btm input-w" required>
+              [max]="maxDate" formControlName="instituteActiveFrom"  class="br-btm input-w" required tabindex="8">
               <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
               <mat-datepicker #picker2 color="primary"></mat-datepicker>
               <mat-error *ngIf ="instituteForm.get('instituteActiveFrom').errors?.required">
                 Choose date.
             </mat-error>
           </mat-form-field>
-            <!--<mat-form-field>
-                <mat-label>Course Offered</mat-label>
-                <mat-select [formControl]="toppings" multiple class="br-btm input-w">
-                  <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
-                </mat-select>
-            </mat-form-field>-->
+          <mat-form-field>
+            <mat-label>LandMark</mat-label>
+            <input matInput type="text"  formControlName="LandMark"   class="br-btm input-w" autoComplete='off' tabindex="10">
+        </mat-form-field>
+          <mat-form-field>
+            <mat-label>State</mat-label>
+            <input  matInput   type="text"  formControlName="state"  required  class="br-btm input-w" autoComplete='off' tabindex="12">
+            <mat-error *ngIf ="instituteForm.get('state').errors?.required">
+                Required state.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <textarea  matInput formControlName="instituteDescription" class="br-btm input-w" autoComplete='off' tabindex="14"></textarea>
+        </mat-form-field>
             <mat-form-field *ngIf ="id">
               <mat-label>Status</mat-label>
-              <mat-select class="br-btm input-w" formControlName="status">
+              <mat-select class="br-btm input-w" formControlName="status" tabindex="16">
                 <mat-option  [value]= true>Active</mat-option>
                 <mat-option  [value]= false>Inactive</mat-option>
               </mat-select>

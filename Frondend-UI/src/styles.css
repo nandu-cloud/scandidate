@@ -161,10 +161,10 @@ button{
     cursor: pointer !important;
 }
 .mat-icon {
-    cursor: default !important;
+    cursor: pointer !important;
 }
 .material-icons{
-    cursor: default !important;
+    cursor: pointer !important;
 }
 .mat-cell{
     font-size: 12px !important;
@@ -174,4 +174,18 @@ mat-header-cell:last-of-type {
 }
 mat-cell:last-of-type{
     padding-right: 0px !important;
+}
+mat-row{
+    min-height: 38px !important;
+}
+tr.mat-row{
+    height: 38px !important;   
+}
+.mat-tab-label-active {
+    background-color: #6CB43B;
+    color: white !important;
+    border: 2px solid white !important
+}
+.mat-tab-label {
+    opacity: 1.5 !important;
 }
