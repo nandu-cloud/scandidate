@@ -36,6 +36,10 @@ let onboardInstituteSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
+  landMark: {
+    type: String,
+    required: false,
+  },
   instituteDescription: {
     type: String,
     required: false,
@@ -59,14 +63,13 @@ let onboardInstituteSchema = mongoose.Schema({
   updatedAt: {
     type: Date,
   },
-  instituteLocation:{
-    type: String
+  instituteLocation: {
+    type: String,
   },
-  state:{
-    type: String
-  }
+  state: {
+    type: String,
+  },
 });
-
 
 module.exports = mongoose.model(
   "institutes",

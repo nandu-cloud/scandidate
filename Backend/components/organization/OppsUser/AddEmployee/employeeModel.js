@@ -33,6 +33,22 @@ const employeeSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  zipCode: {
+    type: Number,
+    required: false,
+  },
+  city: {
+    type: String,
+    required: false,
+  },
+  state: {
+    type: String,
+    required: false,
+  },
+  landMark: {
+    type: String,
+    required: false,
+  },
   dateOfBirth: {
     type: Date,
     required: false,
@@ -294,9 +310,7 @@ const employeeSchema = new mongoose.Schema({
       type: String,
       required: false,
     },
-  }
-
-
+  },
 });
 // compile schema to model
 module.exports = mongoose.model("employees", employeeSchema, "employees");

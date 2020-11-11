@@ -57,6 +57,22 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  zipCode: {
+    type: Number,
+    required: false,
+  },
+  city: {
+    type: String,
+    required: false,
+  },
+  state: {
+    type: String,
+    required: false,
+  },
+  landMark: {
+    type: String,
+    required: false,
+  },
   adharNumber: {
     type: Number,
     required: false,

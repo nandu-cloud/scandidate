@@ -14,6 +14,10 @@ const addEmployeeSchema = Joi.object({
   organizationName: Joi.string().required(),
   discrepancyDocuments: Joi.object().required(),
 
+  state: Joi.string().allow("").allow(null),
+  landMark: Joi.string().allow("").allow(null),
+  city: Joi.string().allow("").allow(null),
+  zipCode: Joi.string().allow("").allow(null),
   awards: Joi.string().allow("").allow(null),
   employeeId: Joi.string().allow("").allow(null),
   role: Joi.string().allow("").allow(null),
@@ -62,6 +66,10 @@ const updateEmployeeSchema = Joi.object({
   organisationId: Joi.string().required(),
   organizationName: Joi.string().required(),
 
+  state: Joi.string().allow("").allow(null),
+  landMark: Joi.string().allow("").allow(null),
+  city: Joi.string().allow("").allow(null),
+  zipCode: Joi.string().allow("").allow(null),
   awards: Joi.string().allow("").allow(null),
   employeeId: Joi.string().allow("").allow(null),
   role: Joi.string().allow("").allow(null),

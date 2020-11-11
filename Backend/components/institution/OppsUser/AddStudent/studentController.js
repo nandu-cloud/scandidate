@@ -251,3 +251,42 @@ module.exports.fileUpload = async function (req, res, next) {
     data: { eductionalDocumentNames: filesname, fileCount: arraylength },
   });
 };
+
+module.exports.deleteDocument = async (req, res, next) => {
+  const data = req.params.studentDocumentLink;
+  const studentId = req.params.id;
+  const filePath = path.join(
+    __dirname,
+    `../../../../uploads/student_doc/${data}`
+  );
+  try {
+    let { eductionalDocumentNames } = await studentDAL.getStudentById({
+      _id: studentId,
+    });
+    let index = eductionalDocumentNames.indexOf(data);
+    eductionalDocumentNames.splice(index, 1);
+    let resultJson = {
+      _id: studentId,
+      eductionalDocumentNames: eductionalDocumentNames,
+    };
+    if (index >= 0) {
+      studentDAL.updateStudent(resultJson);
+    } else {
+      return next(new AppError("Document not found in database", 400));
+    }
+  } catch (err) {
+    return next(new AppError(err, 400));
+  }
+  fs.unlink(filePath, (err) => {
+    if (err) {
+      console.log(colors.red, "inside err...");
+      if (err.code == "ENOENT")
+        return next(new AppError("user document not found", 404));
+      return next(new AppError("Unable to delete the file", 400));
+    }
+    return res.status(200).json({
+      status: "SUCCESS",
+      message: "User document removed successfully",
+    });
+  });
+};

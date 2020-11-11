@@ -45,11 +45,10 @@ let onboardOrganizationSchema = mongoose.Schema({
   },
   status: {
     type: Boolean,
-    required:true,
+    required: true,
   },
   contact: {
     type: Number,
-    
   },
   code: {
     type: String,
@@ -60,24 +59,28 @@ let onboardOrganizationSchema = mongoose.Schema({
   updatedAt: {
     type: Date,
   },
-  legalEntityName:{
-    type:String,
+  legalEntityName: {
+    type: String,
   },
-  organizationLocation:{
-    type:String,
+  organizationLocation: {
+    type: String,
   },
-  state:{
-    type:String,
+  state: {
+    type: String,
   },
-  headQuaterLocation:{
-    type:String
+  landMark: {
+    type: String,
+    required: false,
   },
-  organizationGstn:{
-    type:String
+  headQuaterLocation: {
+    type: String,
   },
-  organizationCin:{
-    type:String
-  }
+  organizationGstn: {
+    type: String,
+  },
+  organizationCin: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model(

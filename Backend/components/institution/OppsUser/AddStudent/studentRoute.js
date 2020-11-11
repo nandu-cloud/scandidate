@@ -18,7 +18,8 @@ let storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     let ext = mime.getExtension(file.mimetype);
-    cb(null, short.uuid() + "." + ext);
+    // cb(null, short.uuid() + "." + ext);
+    cb(null, Date.now() + file.originalname);
   },
 });
 
@@ -93,5 +94,9 @@ router
 router
   .route("/getAllStudent/:instituteId")
   .get(authJWT.verifyJWTToken, addStudentController.getAllMethod);
+
+router
+  .route("/delete/:studentDocumentLink/:id")
+  .delete(authJWT.verifyJWTToken, addStudentController.deleteDocument);
 
 module.exports = router;
