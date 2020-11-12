@@ -13,7 +13,7 @@
                 <div class="w-full md:w-1/2 sm:w-full">
                   <mat-form-field>
                     <mat-label>First Name</mat-label>
-                    <input  matInput formControlName="firstName"  type="text" class="br-btm input-w" autoComplete='off' required>
+                    <input  matInput formControlName="firstName"  type="text" class="br-btm input-w" autoComplete='off' required tabindex="1">
                     <mat-error *ngIf ="organizationUserForm.get('firstName').errors?.required">
                         Required company Name.
                     </mat-error>
@@ -23,7 +23,7 @@
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Last Name</mat-label>
-                    <input  matInput formControlName="lastName"  type="text" class="br-btm input-w" autoComplete='off' required>
+                    <input  matInput formControlName="lastName"  type="text" class="br-btm input-w" autoComplete='off' required tabindex="3">
                     <mat-error *ngIf = "organizationUserForm.get('lastName').errors?.required">
                         Required company Name.
                     </mat-error>
@@ -33,7 +33,7 @@
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Phone Number</mat-label>
-                    <input  matInput   type="text"  formControlName="phoneNumber" class="br-btm input-w" autoComplete='off' required pattern="^[0-9]{10}$">
+                    <input  matInput   type="text"  formControlName="phoneNumber" class="br-btm input-w" autoComplete='off' required pattern="^[0-9]{10}$" tabindex="5">
                     <mat-error *ngIf ="organizationUserForm.get('phoneNumber').errors?.required">
                       Required phone number.
                   </mat-error>
@@ -43,7 +43,7 @@
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Email</mat-label>
-                    <input  matInput   type="email"  formControlName="email"  class="br-btm input-w" autoComplete='off' required>
+                    <input  matInput   type="email"  formControlName="email"  class="br-btm input-w" autoComplete='off' required tabindex="7">
                     <mat-error *ngIf ="organizationUserForm.get('email').errors?.required">
                       Required email address
                     </mat-error>
@@ -53,7 +53,7 @@
                   </mat-form-field>
                   <mat-form-field *ngIf ="id">
                     <mat-label>Status</mat-label>
-                    <mat-select class="br-btm input-w" formControlName="status">
+                    <mat-select class="br-btm input-w" formControlName="status" tabindex="9">
                       <mat-option  [value]= true>Active</mat-option>
                       <mat-option  [value]= false>Inactive</mat-option>
                     </mat-select>
@@ -62,17 +62,17 @@
                 <div class="w-full md:w-1/2 sm:w-full">
                   <mat-form-field>
                     <mat-label>Role</mat-label>
-                    <input  matInput formControlName="role"  type="text" class="br-btm input-w" autoComplete='off' required>
+                    <input  matInput formControlName="role"  type="text" class="br-btm input-w" autoComplete='off' required tabindex="2">
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Sub Role</mat-label>
-                    <input  matInput formControlName="subRole"  type="text"  class="br-btm input-w" autoComplete='off' required>
+                    <input  matInput formControlName="subRole"  type="text"  class="br-btm input-w" autoComplete='off' required tabindex="4">
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Date of Birth</mat-label>
                     <!-- <input  matInput  type="text"  formControlName="activeform"  required  class="br-btm input-w" autoComplete='off'> -->
                     <input matInput [matDatepicker]="picker2" [min]="minDate" 
-                    [max]="maxDate" formControlName="dateOfBirth"  class="br-btm input-w">
+                    [max]="maxDate" formControlName="dateOfBirth"  class="br-btm input-w" tabindex="6">
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2 color="primary"></mat-datepicker>
                     <mat-error *ngIf ="organizationUserForm.get('dateOfBirth').errors?.required">
@@ -81,7 +81,7 @@
                   </mat-form-field>
                 <mat-form-field>
                   <mat-label>Address</mat-label>
-                  <input  matInput   type="text"  formControlName="address"  class="br-btm input-w" autoComplete='off'>
+                  <input  matInput   type="text"  formControlName="address"  class="br-btm input-w" autoComplete='off' tabindex="8">
                 </mat-form-field>
                 </div>
               </div>

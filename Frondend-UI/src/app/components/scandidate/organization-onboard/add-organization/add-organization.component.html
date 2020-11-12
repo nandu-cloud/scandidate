@@ -152,7 +152,7 @@
             <div class="group-gap">
                 <div class="avatar-upload">
                     <div class="avatar-edit">
-                        <input type='file'  required id="imageUpload" accept=".png,.jpeg"   #logoLink (change)="uploadFile($event.target.files)" tabindex="20"/>
+                        <input type='file'  required id="imageUpload" accept=".png,.jpeg,.jpg"   #logoLink (change)="uploadFile($event.target.files)" tabindex="20"/>
                     </div>
                     <div class="avatar-preview">
                         <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'"></div>

@@ -285,7 +285,7 @@
             <div class="w-full md:w-1/2 sm:w-full">
                         <mat-form-field>
                             <mat-label>Performance</mat-label>
-                            <mat-select  class="br-btm input-w" formControlName="volume" required [(ngModel)]="volume">
+                            <mat-select  class="br-btm input-w" formControlName="volume"  [(ngModel)]="volume" tabindex="1">
                               <mat-option [value]=1>Unsatisfactory</mat-option>
                               <mat-option [value]=2>Needs Improvement</mat-option>
                               <mat-option [value]=3>Meets Expectations</mat-option>
@@ -295,13 +295,9 @@
                               please select Performance
                           </mat-error>
                         </mat-form-field>
-                        <mat-form-field *ngIf="volume == '1'">
-                          <mat-label>Description</mat-label>
-                          <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off'></textarea>
-                        </mat-form-field>
                         <mat-form-field>
                             <mat-label>Strategic Thinking </mat-label>
-                            <mat-select  class="br-btm input-w" formControlName="quality" required>
+                            <mat-select  class="br-btm input-w" formControlName="quality"  [(ngModel)]="quality" tabindex="3">
                               <mat-option [value]=1>Unsatisfactory</mat-option>
                               <mat-option [value]=2>Needs Improvement</mat-option>
                               <mat-option [value]=3>Meets Expectations</mat-option>
@@ -311,13 +307,9 @@
                               please select Quality
                           </mat-error>
                         </mat-form-field>
-                        <mat-form-field *ngIf="quality == '1'">
-                          <mat-label>Description</mat-label>
-                          <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off'></textarea>
-                        </mat-form-field>
                         <mat-form-field>
                             <mat-label>Problem Solving</mat-label>
-                            <mat-select  class="br-btm input-w" formControlName="consistency">
+                            <mat-select  class="br-btm input-w" formControlName="consistency" [(ngModel)]="consistency" tabindex="5">
                               <mat-option [value]=1>Needs Improvement</mat-option>
                               <mat-option [value]=2>Meets Expectations</mat-option>
                             </mat-select>
@@ -325,13 +317,9 @@
                               please select Consistency
                           </mat-error>
                         </mat-form-field>
-                        <mat-form-field *ngIf="consistency == '1'">
-                          <mat-label>Description</mat-label>
-                          <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off'></textarea>
-                        </mat-form-field>
                         <mat-form-field>
                           <mat-label>Building High Performance Team</mat-label>
-                          <mat-select  class="br-btm input-w" formControlName="building">
+                          <mat-select  class="br-btm input-w" formControlName="building" [(ngModel)]="building" tabindex="7">
                             <mat-option [value]=1>Unsatisfactory</mat-option>
                             <mat-option [value]=2>Needs Improvement</mat-option>
                             <mat-option [value]=3>Meets Expectations</mat-option>
@@ -341,13 +329,9 @@
                             please select Quality
                         </mat-error>
                       </mat-form-field>
-                      <mat-form-field *ngIf="building == '1'">
-                        <mat-label>Description</mat-label>
-                        <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off'></textarea>
-                      </mat-form-field>
                       <mat-form-field>
                           <mat-label>Stakeholder Management</mat-label>
-                          <mat-select  class="br-btm input-w" formControlName="stakeholder">
+                          <mat-select  class="br-btm input-w" formControlName="stakeholder" [(ngModel)]="stakeholder" tabindex="9">
                             <mat-option [value]=1>Needs Improvement</mat-option>
                             <mat-option [value]=2>Meets Expectations</mat-option>
                           </mat-select>
@@ -355,10 +339,28 @@
                             please select Consistency
                         </mat-error>
                       </mat-form-field>
-                      <mat-form-field *ngIf="stakeholder == '1'">
-                        <mat-label>Description</mat-label>
-                        <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off'></textarea>
-                      </mat-form-field>
+                      </div>
+                      <div class="w-full md:w-1/2 sm:w-full">
+                        <mat-form-field *ngIf="volume == '1' || volume == '2' || volume == '3' || volume == '4'">
+                          <mat-label>Description</mat-label>
+                          <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="2"></textarea>
+                        </mat-form-field>
+                        <mat-form-field *ngIf="quality == '1' || quality == '2' || quality == '3' || quality =='4' ">
+                          <mat-label>Description</mat-label>
+                          <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="4"></textarea>
+                        </mat-form-field>
+                        <mat-form-field *ngIf="consistency == '1' || consistency == '2' || consistency == '3' || consistency == '4'">
+                          <mat-label>Description</mat-label>
+                          <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="6"></textarea>
+                        </mat-form-field>
+                        <mat-form-field *ngIf="building == '1' || building == '2' || building == '3' || building == '4' ">
+                          <mat-label>Description</mat-label>
+                          <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="8"></textarea>
+                        </mat-form-field>
+                        <mat-form-field *ngIf="stakeholder == '1' || stakeholder =='2'">
+                          <mat-label>Description</mat-label>
+                          <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="10"></textarea>
+                        </mat-form-field>
                       </div>
                     </div>
         </mat-tab>

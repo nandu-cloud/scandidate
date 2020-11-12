@@ -13,7 +13,7 @@
                                <div class="avatar-upload">
                                 <div class="avatar-edit">
                                     <!-- <mat-label>Upload User Image</mat-label> -->
-                                    <input type='file' id="imageUpload" accept=".png, .jpeg" #avatar (change)="uploadFile($event.target.files)" />
+                                    <input type='file' id="imageUpload" accept=".png, .jpeg,.jpg" #avatar (change)="uploadFile($event.target.files)" />
                                 </div>
                                 <div class="avatar-preview w-32 h-32 lg:ml-32 lg:mt-4 -ml-8 mt-2 border-2 border-transparent">
                                     <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'" >
