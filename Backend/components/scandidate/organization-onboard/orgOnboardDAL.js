@@ -3,28 +3,10 @@ const organizationModel = require("./orgOnboardModel");
 
 // Add Organisation
 async function onboardOrganisation(data) {
-  const orgDtata = new organizationModel();
-  orgDtata.organizationName = data.organizationName;
-  orgDtata.contactPersonName = data.contactPersonName;
-  orgDtata.organisationAddress = data.organisationAddress;
-  orgDtata.organisationType = data.organisationType;
-  orgDtata.organisationEmail = data.organisationEmail;
-  orgDtata.organisationEmployeeSize = data.organisationEmployeeSize;
-  orgDtata.organisationActiveFrom = data.organisationActiveFrom;
-  orgDtata.organisationZIP = data.organisationZIP;
-  orgDtata.organisationDescription = data.organisationDescription;
-  orgDtata.organisationLogo = data.organisationLogo;
-  orgDtata.contact = data.contact;
-  orgDtata.code = data.code;
-  orgDtata.status = data.status;
+  const orgDtata = new organizationModel(data);
+
   orgDtata.createdAt = new Date();
   orgDtata.updatedAt = new Date();
-  orgDtata.legalEntityName = data.legalEntityName;
-  orgDtata.organizationLocation = data.organizationLocation;
-  orgDtata.state = data.state;
-  orgDtata.headQuaterLocation = data.headQuaterLocation;
-  orgDtata.organizationGstn = data.organizationGstn;
-  orgDtata.organizationCin = data.organizationCin;
 
   try {
     let result = await orgDtata.save();
