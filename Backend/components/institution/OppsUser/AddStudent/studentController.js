@@ -298,10 +298,6 @@ module.exports.downloaddocuments = async (req, res, next) => {
     __dirname,
     `../../../../uploads/student_doc/${data}`
   );
-  if (!filePath) {
-
-    return next(new AppError("User document not found"), 404);
-  }
   return res.download(filePath, data, function (err) {
     if (err) {
       console.log(colors.red, "inside err...");
