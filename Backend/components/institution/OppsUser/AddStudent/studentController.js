@@ -290,3 +290,24 @@ module.exports.deleteDocument = async (req, res, next) => {
     });
   });
 };
+
+
+module.exports.downloaddocuments = async (req, res, next) => {
+  const data = req.params.studentDocumentLink;
+  const filePath = path.join(
+    __dirname,
+    `../../../../uploads/student_doc/${data}`
+  );
+  if (!filePath) {
+
+    return next(new AppError("User document not found"), 404);
+  }
+  return res.download(filePath, data, function (err) {
+    if (err) {
+      console.log(colors.red, "inside err...");
+      if (err.code == "ENOENT")
+        return next(new AppError("user document not found", 404));
+    }
+  })
+
+}

@@ -99,4 +99,9 @@ router
   .route("/delete/:studentDocumentLink/:id")
   .delete(authJWT.verifyJWTToken, addStudentController.deleteDocument);
 
+router
+  .route("/downloadfile/:studentDocumentLink")
+  .get(authJWT.verifyJWTToken, addStudentController.downloaddocuments);
+
+
 module.exports = router;
