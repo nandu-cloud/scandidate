@@ -255,6 +255,7 @@ module.exports.fileUpload = async function (req, res, next) {
 module.exports.deleteDocument = async (req, res, next) => {
   const data = req.params.studentDocumentLink;
   const studentId = req.params.id;
+  var fileCount;
   const filePath = path.join(
     __dirname,
     `../../../../uploads/student_doc/${data}`
@@ -277,6 +278,20 @@ module.exports.deleteDocument = async (req, res, next) => {
   } catch (err) {
     return next(new AppError(err, 400));
   }
+  try {
+
+    let findStudent = await studentDAL.getStudentById({ _id: studentId });
+    if (findStudent.noOfEductionalDocuments > 0) {
+      fileCount = findStudent.noOfEductionalDocuments - 1;
+    }
+    let resultJson = {
+      _id: studentId,
+      noOfEductionalDocuments: fileCount,
+    };
+    studentDAL.updateStudent(resultJson);
+  } catch (err) {
+    return next(new AppError(err, 400));
+  }
   fs.unlink(filePath, (err) => {
     if (err) {
       console.log(colors.red, "inside err...");
@@ -287,10 +302,10 @@ module.exports.deleteDocument = async (req, res, next) => {
     return res.status(200).json({
       status: "SUCCESS",
       message: "User document removed successfully",
+      fileCount: fileCount
     });
   });
 };
-
 
 module.exports.downloaddocuments = async (req, res, next) => {
   const data = req.params.studentDocumentLink;

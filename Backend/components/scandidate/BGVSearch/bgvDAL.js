@@ -6,6 +6,10 @@ async function searchBgvDataEmployee(data) {
   try {
     let employeeSearch = await employeeModel
       .find(data)
+      // .and([
+      //   { firstName: { $regex: data.firstName, $options: "i" } }
+
+      // ])
       .collation({ locale: "en", strength: 1 });
     return employeeSearch;
   } catch (err) {
@@ -17,6 +21,10 @@ async function searchBgvDataStudent(data) {
   try {
     let studentSearch = await studentModel
       .find(data)
+      // .and([
+      //   { firstName: { $regex: data.firstName, $options: "i" } },
+
+      // ])
       .collation({ locale: "en", strength: 1 });
     return studentSearch;
   } catch (err) {

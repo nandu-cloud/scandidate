@@ -3,6 +3,7 @@ const studentModel = require("./studentModel");
 const csv = require("csvtojson");
 const studentDataValidator = require("./studentValidator");
 const bodyParser = require("body-parser");
+const { $where } = require("./studentModel");
 
 // Add Organisation
 async function addStudent(data) {
@@ -98,15 +99,39 @@ async function updateStudent(data) {
 //Seacrh Student
 
 async function search_student_new(data) {
+  console.log(data);
+
+  var phnNumber;
+  var yop;
+
+  if (data.phoneNumber) {
+    phnNumber = parseInt(data.phoneNumber);
+  }
+  if (data.yearOfPassout) {
+    yop = parseInt(data.yearOfPassout);
+  }
+
+
+
   try {
     let result = await studentModel
       .find(data)
+      // .and([
+      //   { firstName: { $regex: data.firstName || "", $options: "i" } },
+      //   { intitutionName: { $regex: data.intitutionName || "", $options: "i" } }
+      // ])
       .collation({ locale: "en", strength: 1 });
     return result;
   } catch (err) {
     throw err;
   }
 }
+
+// File Count
+
+
+
+
 
 // export functions
 module.exports = {
