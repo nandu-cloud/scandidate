@@ -1,64 +1,48 @@
-import { ChangeDetectorRef, Component, OnInit,Input } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, Input } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Router,ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { StudentService } from '../../../../services/student.service';
 import { StorageService } from '../../../../services/storage.service'
 import { from, Subscription } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
 import { instituteService } from 'src/app/services/institute.service';
+import { FileUploader } from 'ng2-file-upload';
 @Component({
   selector: 'app-add-student',
   templateUrl: './add-student.component.html',
   styleUrls: ['./add-student.component.css'],
-  providers: [ StudentService,StorageService ]
+  providers: [ StudentService, StorageService ]
 })
 export class AddStudentComponent implements OnInit {
-  studentForm: FormGroup;
-  extraActivities: boolean = false;
-  fileToUpload: File;
-  fileToUpload1: File;
-  studentSubscription: Subscription;
-  editStudentSubscription : Subscription;
-  stuupdateSubscription : Subscription;
-  studentDocSubscription : Subscription;
-  baseUrl = environment.baseUrl;
-  documentName: any;
-  studentIdedit:number;
-  public setMessage: any = {};
-  error = '';
-  extraActivity : string;
-  id;
-  stdIdupdate : number ;
-  myFiles:File[] = [];
-  edudocumentName: string;
-  documentCount: any;
-  imagePreview = false;
-  files:File  []  =  [];
-  instituteName: any = window.sessionStorage.getItem('instName');
+  selectedFiles: FileList
+  fileName: string = '';
+  educdoc: any;
+  eductionalDoc: any = [];
+  displaySelectedFiles:any=[];
 
   constructor(
     public fb: FormBuilder,
-    private cd: ChangeDetectorRef, public dialog: MatDialog,public route:ActivatedRoute, public stuService:StudentService,
-    private appuserService:instituteService
+    private cd: ChangeDetectorRef, public dialog: MatDialog, public route: ActivatedRoute, public stuService: StudentService,
+    private appuserService: instituteService
   ) {
     this.route.params.subscribe(params => {
       this.studentIdedit = params.id;
     });
     this.studentForm = new FormGroup({
-      lastName : new FormControl('',[Validators.required]),
-      firstName : new FormControl('',[Validators.required,Validators.minLength(3)]),
-      roll : new FormControl('',[Validators.required]),
-      email : new FormControl('', [Validators.email,Validators.required]),
+      lastName : new FormControl('', [Validators.required]),
+      firstName : new FormControl('', [Validators.required, Validators.minLength(3)]),
+      roll : new FormControl('', [Validators.required]),
+      email : new FormControl('', [Validators.email, Validators.required]),
       address : new FormControl(''),
-      noOfEductionalDocuments : new FormControl('',[Validators.maxLength(1)]),
+      noOfEductionalDocuments : new FormControl(0, [Validators.maxLength(1)]),
       dateOfBirth: new FormControl('', [Validators.required]),
       nameOfCourse: new FormControl('', [Validators.required]),
-      yearOfJoining: new FormControl('',[Validators.required,this.validateJoining()]),
-      phoneNumber : new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
-      adharNumber : new FormControl('',[Validators.required,Validators.minLength(12),Validators.maxLength(12)]),
-      yearOfPassout: new FormControl('',[Validators.required,this.validatePassout()]),
-      studentType : new FormControl('',[Validators.required]),
+      yearOfJoining: new FormControl('', [Validators.required, this.validateJoining()]),
+      phoneNumber : new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+      adharNumber : new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(12)]),
+      yearOfPassout: new FormControl('', [Validators.required, this.validatePassout()]),
+      studentType : new FormControl('', [Validators.required]),
       extraActivity : new FormControl(''),
       extraActivityDocumentName : new FormControl(),
       eductionalDocumentNames : new FormControl(),
@@ -71,6 +55,46 @@ export class AddStudentComponent implements OnInit {
       zipcode : new FormControl()
     })
    }
+  studentForm: FormGroup;
+  extraActivities: boolean = false;
+  fileToUpload: File;
+  fileToUpload1: File;
+  studentSubscription: Subscription;
+  editStudentSubscription : Subscription;
+  stuupdateSubscription : Subscription;
+  studentDocSubscription : Subscription;
+  deleteStudentSubscription : Subscription;
+  baseUrl = environment.baseUrl;
+  documentName: any;
+  studentIdedit: number;
+  public setMessage: any = {};
+  error = '';
+  extraActivity : string;
+  id;
+  stdIdupdate : number ;
+  myFiles: File[] = [];
+  edudocumentName: string;
+  documentCount: any;
+  imagePreview = false;
+  files: File  [] = [];
+  educdocumentName:any;
+
+  instituteName: any = window.sessionStorage.getItem('instName');
+  registrationForm = this.fb.group({
+    file: [null]
+  })
+  methodtype;
+  public uploader: FileUploader = new FileUploader({
+
+    disableMultipart : false,
+    autoUpload: true,
+    method: 'post',
+    itemAlias: 'attachment',
+    allowedFileType: ['xls']
+
+
+    });
+
    validatePassout(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       if (this.studentForm !== undefined) {
@@ -93,23 +117,19 @@ export class AddStudentComponent implements OnInit {
     };
   }
    activities(event) {
-    if(event.value == "1"){
+    if (event.value == "1"){
       this.extraActivities = true;
     } else {
       this.extraActivities = false;
     }
   }
-  registrationForm = this.fb.group({
-    file: [null]
-  })
-  methodtype;
   openDialog() {
-    const dialogRef = this.dialog.open(DialogElementsExampleDialog,{
+    const dialogRef = this.dialog.open(DialogElementsExampleDialog, {
 
     });
     dialogRef.componentInstance.methodType = this.methodtype;
   }
-  
+
   uploadFile(file: FileList) {
     this.fileToUpload = file[0];
     this.documentName = this.fileToUpload.name;
@@ -118,75 +138,137 @@ export class AddStudentComponent implements OnInit {
         this.studentForm.patchValue({extraActivityDocumentName: data.data.extraActivityDocumentName});
         console.log(data.data.extraActivityDocumentName);
 
-        this.documentName=`${this.baseUrl}/public/student_doc/${data.data.extraActivityDocumentName}`;
+        this.documentName = `${this.baseUrl}/public/student_doc/${data.data.extraActivityDocumentName}`;
         // this.studentDocSubscription = this.stuService.deleteFile(this.imageFilename).subscribe();
       }
     )
   }
   uploadEducationFile(event) {
-    for  (var i =  0; i <  event.target.files.length; i++)  {  
+    this.selectedFiles = event.target.files;
+    
+    console.log('filename' + this.fileName);
+    // tslint:disable-next-line: prefer-for-of
+  
+    for (let i = 0; i < event.target.files.length; i++)
+    {
+ 
       this.files.push(event.target.files[i]);
-  }
-    this.studentDocSubscription = this.stuService.postEducationFile(this.files).subscribe(
-      data => {
-        this.studentForm.patchValue({eductionalDocumentNames: data.data.eductionalDocumentNames});
-        console.log(data.data.eductionalDocumentNames);
+ }
 
-        this.edudocumentName=`${this.baseUrl}/public/student_doc/${data.data.eductionalDocumentNames}`;
-        this.imagePreview = true;
-        this.documentCount = data.data.fileCount;
-      }
-    )
+  console.log("fileeeeeeee" + this.studentForm.value.noOfEductionalDocuments);
+    if ( this.studentForm.value.noOfEductionalDocuments <= this.files.length && this.studentForm.value.noOfEductionalDocuments >= this.files.length  ){
+      // alert("Match count with No Of Do");
+      this.displaySelectedFiles=this.files;
+      this.studentDocSubscription = this.stuService.postEducationFile(this.files).subscribe(
+         data => {
+           this.studentForm.patchValue({eductionalDocumentNames: data.data.eductionalDocumentNames});
+           console.log(data.data.eductionalDocumentNames);
+   
+           this.edudocumentName = `${this.baseUrl}/public/student_doc/${data.data.eductionalDocumentNames}`;
+           this.imagePreview = true;
+           this.documentCount = this.displaySelectedFiles.length;
+           // this.displaySelectedFiles= [];
+           // this.files= [];
+           // this.fileName = data.data.name;
+         }
+       )
+    }else{
+       return false;
+    }
+ 
+    // const files: File = event[0];
+    // this.docName = this.files.Files.name;
+
+    // var reader = new FileReader();
+    // reader.readAsDataURL(event.target.files[0]);
+   
   }
 
   close(){
     setTimeout(() => {
-      this.error='';
+      this.error = '';
      }, 100);
     //  this.loginForm.reset();
   }
   
  
   submit(){
-    if(!this.studentIdedit){
-    this.studentSubscription = this.stuService.addStudent(this.studentForm.value).subscribe(resp =>{
+    if (!this.studentIdedit){
+    this.studentSubscription = this.stuService.addStudent(this.studentForm.value).subscribe(resp => {
       console.log(this.studentForm.value);
 
       this.openDialog();
-    }, err =>{
+    }, err => {
       this.setMessage = { message: err.error.message, error: true };
       this.error = this.setMessage.message;
       throw this.setMessage.message;
     })
     
   }
+  
 }
 ngOnInit(){
-  if(this.studentIdedit){
+  if (this.studentIdedit){
   this.editStudentSubscription = this.stuService.editStudent(this.studentIdedit).subscribe(respObj => {
     console.log(respObj.data);
     this.id = respObj.data._id;
-    if(respObj.data.extraActivity == "1"){
+    if (respObj.data.extraActivity == "1"){
       this.extraActivities = true;
     } else {
       this.extraActivities = false;
     }
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < respObj.data.eductionalDocumentNames.length; i++)
+     {
+       const data = respObj.data.eductionalDocumentNames[i]
+       this.eductionalDoc.push(data);
+       console.log(this.eductionalDoc);
+     }
+    this.educdoc = respObj.data;
     this.studentForm.patchValue(respObj.data);
     this.imagePreview = true;
-    this.documentName=`${this.baseUrl}/public/student_doc/${respObj.data.extraActivityDocumentName}`;
-    this.documentCount = respObj.data.noOfEductionalDocuments;
+    this.documentName = `${this.baseUrl}/public/student_doc/${respObj.data.extraActivityDocumentName}`;
+    this.educdocumentName = `${this.baseUrl}/public/student_doc/${respObj.data.eductionalDocumentNames}`;
+     this.documentCount = respObj.data.noOfEductionalDocuments;
+
   }, err => {
     this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
   })
 }
 }
-update(id:number){
+openDoc(educdocumentName: string){
+  window.open(educdocumentName)
+}
+onDelete(item, studentIdedit) {
+  console.log("hello" + item, studentIdedit);
+  // if (confirm('Are you sure want to delete this file?') == true) {
+  //   this.stuService.deleteFile(+id).subscribe(data => {
+  //     console.log(data);
+  //   }
+      // res => {
+      //   console.log(res);
+      //   this.ngOnInit();
+      // },
+      // error => this.error = error
+  //   );
+  // }
+
+  this.deleteStudentSubscription = this.stuService.deleteFile(item, studentIdedit).subscribe(respObj=> {
+    console.log(respObj.data);
+    this.documentCount--;
+    // location.reload();
+    this.methodtype = "delete";
+    this.openDialog();
+  })
+  
+}
+update(id: number){
   this.stdIdupdate = id;
-  this.stuupdateSubscription = this.stuService.updateStudent(this.studentForm.value).subscribe(resp =>{
-    this.methodtype="update";
+  this.stuupdateSubscription = this.stuService.updateStudent(this.studentForm.value).subscribe(resp => {
+    this.methodtype = "update";
     this.openDialog();
 
-  }, err =>{
+  }, err => {
     this.setMessage = { message: err.error.message, error: true };
     this.error = this.setMessage.message;
     throw this.setMessage.message;
@@ -196,26 +278,31 @@ update(id:number){
 @Component({
   selector: 'dialog-elements-example-dialog',
   templateUrl: 'dialog-elements-example.html',
-})
+}) 
 export class DialogElementsExampleDialog {
   @Input() methodType: any
   Message: any;
-  constructor(public dialogRef: MatDialogRef<DialogElementsExampleDialog>,private router:Router
+  constructor(public dialogRef: MatDialogRef<DialogElementsExampleDialog>, private router: Router
     ) {
       console.log(this.methodType)
     }
 
     ngOnInit(){
       console.log(this.methodType)
-      if(this.methodType == 'update'){
-        this.Message="Student Updated successfully"
-      }else{
-        this.Message="Student Onboarded successfully"
-
+      if (this.methodType == 'update'){
+        this.Message = "Student Updated successfully"
       }
+      if (this.methodType == 'delete') {
+        this.Message = "Delete successfully"
+      }
+      else{
+        this.Message = "Student Onboarded successfully"
+      }
+
     }
   close(){
     this.dialogRef.close(true);
     this.router.navigate(['/student-list']);
+    this.dialogRef.close(false);
  }
 }

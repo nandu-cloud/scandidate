@@ -86,4 +86,8 @@ postEducationFile(fileToUpload: File[]) :Observable<any>{
 
  );
 }
+
+deleteFile(studentDocumentLink, id): Observable<any> {
+  return this.http.delete(this.baseUrl + '/api/institute/operational/student/delete/' + studentDocumentLink + '/' + id);
+}
 }

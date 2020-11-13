@@ -74,7 +74,7 @@
                     <mat-label>Extra activities</mat-label>
                     <input matInput placeholder="Input" style="display: none" >
                     <mat-radio-group aria-label="Select an option" formControlName="extraActivity" (change)="activities($event)" tabindex="19">
-                      <mat-radio-button value="1">Yes</mat-radio-button>
+                      <mat-radio-button value="1">Yes</mat-radio-button>&nbsp;
                       <mat-radio-button value="2">No</mat-radio-button>
                     </mat-radio-group>
                   </mat-form-field>
@@ -146,7 +146,7 @@
                     <mat-label>Student Type</mat-label>
                     <input matInput placeholder="Input" style="display: none" required>
                     <mat-radio-group formControlName="studentType" required tabindex="12">
-                      <mat-radio-button value="regular">Regular</mat-radio-button>
+                      <mat-radio-button value="regular">Regular</mat-radio-button>&nbsp;
                       <mat-radio-button value="correspondance">Correspondance</mat-radio-button>
                     </mat-radio-group>
                     <mat-error *ngIf ="studentForm.get('studentType').errors?.required">
@@ -166,7 +166,7 @@
               </mat-form-field>
               <mat-form-field>
                 <mat-label>No of Education Documents</mat-label>
-                <input  matInput formControlName="noOfEductionalDocuments"  type="text"  class="br-btm input-w" autoComplete='off' pattern="^[0-9]$" tabindex="18">
+                <input  matInput formControlName="noOfEductionalDocuments" ng2FileSelect  [uploader]="uploader" type="text"  class="br-btm input-w" autoComplete='off' pattern="^[0-9]$" tabindex="18">
                 <mat-error *ngIf="studentForm.get('noOfEductionalDocuments').errors?.pattern">
                   Please enter valid number
                 </mat-error>
@@ -175,27 +175,74 @@
                     <div class="avatar-upload">
                         <div class="avatar-edit">
                           <label class="image-text">Documents Upload</label>
-                            <input type='file' accept=".pdf"   #EducationDocument (change)="uploadEducationFile($event)" multiple tabindex="20"/>
-                            <div id="imagePreview" *ngIf="imagePreview">{{this.documentCount}} files uploaded</div>
+                            <input type='file' accept=".pdf" #eduDocs    (change)="uploadEducationFile($event)" multiple tabindex="20"/>
+                            <div id="imagePreview" >{{ documentCount}} files uploaded</div>
                           </div>
                     </div>
-                    <button mat-button  (click)="EducationDocument.click()">
+                    <button mat-button (click)="eduDocs.click()">
                         <mat-icon>file_upload</mat-icon>
                     </button>
-                </div>
+                    <div class=" mt-5">
+                      <h2>Upload Status</h2>
+                  
+                      <table class="table border-collapse border-2 border-gray-500 lg:w-3/5" >
+                          <thead>
+                              <tr>
+                                  <th>File Name</th>
+                                  <!-- <th>Description</th> -->
+                                  <th class="border border-gray-400 px-4 py-2 text-gray-800" *ngIf="!studentIdedit">Type</th>
+                                  <th class="border border-gray-400 px-4 py-2 text-gray-800" *ngIf="!studentIdedit">Size</th>
+                                  <th class="border border-gray-400 px-4 py-2 text-gray-800" *ngIf="studentIdedit">Actions</th>
+                              </tr>
+                          </thead>
+                          <tbody class="lg:w-full text-center">
+                              <tr *ngFor="let item of displaySelectedFiles">
+                                  <td *ngIf="item.name">
+                                      {{ item.name }}
+                                  </td>  
+                                  <td>
+                                    {{item.type}}
+                                  </td>      
+                                  <td>
+                                      {{ item.size/1024/1024 | number:'.2' }} MB
+                                  </td>
+                                  <!-- <td> -->
+                                      <!-- {{item?.file?.type}} -->
+                                  <!-- </td> -->
+                                  <!-- <td>
+                                      <button mat-button  click="remove()">
+                                          <mat-icon class="text-red-600">delete</mat-icon>
+                                      </button>
+                                  </td> -->
+                              </tr>
+                              <!-- <td class="date"><a href="{{ action.Url }}" target="_blank">{{ action.Name }}</a> -->
+                              <tr *ngFor="let item of eductionalDoc">
+                                <td *ngIf="item">
+                                    {{ item }}
+                                </td>
+                                <td>
+                                  <button mat-button>
+                                      <mat-icon (click)="onDelete(item, studentIdedit)" (change)="uploadEducationFile($event)" class="text-red-600">delete</mat-icon>
+                                  </button>
+                              </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                      </div>
                 </div>
               </div>
-              <div class="flex justify-end lg:pb-6 lg:mt-20 lg:pr-48">
-                <a routerLink="/student-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button">
-                  Cancle
-                </button></a>
-                <button class="lg-button focus:outline-none focus:shadow-outline" type="submit" (click)=submit() *ngIf="!id" >
-                  Submit
+            </div>
+            <div class="flex justify-end lg:pb-8 lg:mt-20 lg:pr-48">
+              <a routerLink="/student-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button">
+                Cancle
+              </button></a>
+              <button class="lg-button focus:outline-none focus:shadow-outline" type="submit" (click)=submit() *ngIf="!id" >
+                Submit
+              </button>
+              <button class="lg-button focus:outline-none focus:shadow-outline" (click)=update(id)  *ngIf="id" >
+                  update
                 </button>
-                <button class="lg-button focus:outline-none focus:shadow-outline" (click)=update(id)  *ngIf="id" >
-                    update
-                  </button>
-              </div>
-            </form>
-    </div>
-    </app-navbar>
+            </div>
+          </form>
+  </div>
+  </app-navbar>
