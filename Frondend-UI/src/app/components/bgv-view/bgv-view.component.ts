@@ -6,7 +6,7 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { BgvSearchService } from  '../../services/bgv-search.service' ;
 import { StorageService } from '../../services/storage.service';
 import { from, Subscription } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 // import { jsPDF } from 'jspdf';
 // import html2canvas from 'html2canvas';
 
@@ -43,6 +43,7 @@ export class BGVViewComponent implements OnInit {
   createCandidate: FormGroup;
   employeeSubscription : Subscription;
   editEmployeeSubscription : Subscription;
+  viewLogoSubscription : Subscription;
   employeeUpdateSubscription: Subscription;
   minDate = new Date(1990, 0, 1);
   maxDate = new Date;
@@ -67,8 +68,16 @@ export class BGVViewComponent implements OnInit {
   imageUrl: string;
   baseUrl = environment.baseUrl;
   OrgData: any;
+  orgId=[];
+  instId =[];
+  data1=[];
+  orgId1=[];
+  instId1=[];
+  orgLogo: string;
+  instLogo: string;
+  myDate: Date;
   constructor(
-    public fb: FormBuilder,
+    public fb: FormBuilder,private _storage: StorageService,
     private cd: ChangeDetectorRef,public dialog: MatDialog,public route:ActivatedRoute,public empService : BgvSearchService
   ) {
     this.route.params.subscribe(params => {
@@ -76,10 +85,6 @@ export class BGVViewComponent implements OnInit {
   });
    
   }
-
-
-
-
 
   ngOnInit(): void {
     if(this.empIdedit){
@@ -94,18 +99,50 @@ export class BGVViewComponent implements OnInit {
         this.email = this.data[0].email;
         this.dob = this.data[0].dateOfBirth;
         this.aadhar = this.data[0].adharNumber;
-        this.phone = this.data[0].phoneNumber
-
+        this.phone = this.data[0].phoneNumber;
         this.id = respObj.data._id;
+        this.myDate = new Date();
+
+        //let instLogo =`${this.baseUrl}/public/institute_logo/`;
+        //let orgLogo =`${this.baseUrl}/public/organization_logo/`;
+            //para for org logo
+            for (let i = 0; i < this.data.length; i++) {
+              if(this.data[i].organisationId)
+              {
+              const data = this.data[i].organisationId
+              this.orgId.push(data);
+              }
+            }
+            console.log(this.orgId);
         
+            //para for inst logo
+          for (let i = 0; i < this.data.length; i++) {
+            if(this.data[i].instituteId)
+           {
+            const data = this.data[i].instituteId
+            this.instId.push(data);
+             }
+           }
+           console.log(this.instId);
+
+           this.viewLogoSubscription = this.empService.ViewLogo(this.orgId,this.instId).subscribe(respObj => {
+            this.data1 = respObj.data;
+            console.log("logo details");
+            console.log(this.data1); 
+            this.orgLogo = `${this.baseUrl}/public/organization_logo/`;
+            console.log(this.orgLogo);
+            this.instLogo = `${this.baseUrl}/public/institute_logo/`;
 
 
-        //this.OrgData = 
-        //this.createCandidate.patchValue(respObj.data);
+           }, err => {
+            this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
+          })  
+        
       }, err => {
         this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
       })
     }
+  
     
   }
   

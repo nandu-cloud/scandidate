@@ -1,106 +1,38 @@
 <app-navbar>
-  <!-- <div id="contentToConvert" class="max-w-screen-md bg-white rounded  mx-auto border border-gray-400 text-center py-5  mt-4">
-    <h2 class="text-3xl leading-8 font-bold tracking-tight text-black sm:text-4xl sm:leading-8">
-        Candidate Details
-    </h2>
-    <div class="md:flex bg-white rounded-lg p-6">
-         <img class="h-20 w-20 md:h-24 md:w-24 rounded-full mx-auto md:mx-0 md:mr-6 md:ml-10" src="avatar.jpg">
-         <div class="text-center md:text-left">
-           <h2 class="text-lg">Candidate Name</h2>
-           <div class="text-green-500"> Engineer</div>
-           <div class="text-gray-600">xyz@example.com</div>
-           <div class="text-gray-600">23/04/1989</div>
-           <div class="text-gray-600">Adhaar No:-499118665246-1707630</div>
-           <div class="text-gray-600">(555) 765-4321</div>
-         </div>
-    </div>
-    <hr>
-    <div class="md:flex bg-white rounded-lg p-6">
-      <div class="text-center md:text-left md:ml-20">
-        <h2 class="text-lg">Educational Details</h2>
-        <div class="text-green-500">Institution Name:</div>
-        <div class="text-gray-600">Name Of Course:</div>
-        <div class="text-gray-600">Student Type:</div>
-        <div class="text-gray-600">Year Of Joining</div>
-        <div class="text-gray-600">Year Of Passing</div>
-      </div>
-   </div>
-   <hr>
-    <div class="md:flex bg-white rounded-lg p-6">
-      <div class="text-center md:text-left md:ml-20">
-        <h2 class="text-lg">Organizational Details</h2>
-        <div class="text-green-500">Organization Name:</div>
-        <div class="text-gray-600">Name Of Course:</div>
-        <div class="text-gray-600">Student Type:</div>
-        <div class="text-gray-600">Year Of Joining</div>
-        <div class="text-gray-600">Year Of Passing</div>
-      </div>
-   </div>
-    
-</div>
-<div class="mt-8 flex justify-center text-center">
-  <div class="inline-flex rounded-md bg-white shadow">
-      <button class="text-green-500 font-bold py-2 px-6">
-         Download Pdf
-      </button>
-  </div>
-</div>
-<div class="lg:w-full sm:w-full pl-40 pr-40 pb-6">
-  <div class="br-about lg:p-2">
-    <div class="flex justify-between border-btm">
-      <div class="-mt-8 ml-3">
-        <mat-icon class="p-4 pl-6 ins-icon">domain</mat-icon>
-        <p class="text-xl pt-4">Total Organizations</p>
-      </div>
-      <div>
-        <p class="mt-6 text-4xl">{{ organizationsCount }} </p> 
-      </div>
-    </div>
-  </div>
-</div>
-
-<hr> -->
-
-<div class="lg:w-full sm:w-full pl-40 pr-40 pb-6">
+<div class="md:w-full sm:w-full pl-40 pr-40 pb-6">
 <div class="overflow-hidden shadow max-w-full my-3">
   <div class="w-full h-40 header text-black mx-auto my-auto"></div>
   <div class="flex justify-center -mt-8">
-      <img src="https://i.imgur.com/8Km9tLL.jpg" class="rounded-full border-solid border-white border-2 -mt-3">		
+      <img src="../../../assets/images/logo1.png" width="65" height="65" class="rounded-full border-solid border-white border-1 -mt-3">		
   </div>
-<div class="text-center px-3 pb-6 pt-2">
+  <div class="flex justify-end pr-5 font-bold">{{myDate | date}}</div>
+<div class="text-center px-3 pb-1">
   <h1 class="text-black text-sm bold font-sans">{{FirstName}} {{lastName}}</h1>
-  <p class="mt-2 font-sans font-light text-black">{{email}}</p>
-  <p class="mt-2 font-sans font-light text-grey-dark">Phone Number - <span class="text-black">{{phone}}</span></p>
-  <p class="mt-2 font-sans font-light text-grey-dark">Aadhar Card Number - {{aadhar}}</p>
+  <p class=" font-sans font-light text-black">{{email}}</p>
+  <p class=" font-sans font-light text-grey-dark">Phone Number - <span class="text-black">{{phone}}</span></p>
+  <p class=" font-sans font-light text-grey-dark">Aadhar Card Number - {{aadhar}}</p>
 </div>
-<!-- <div class="flex justify-center pb-3 text-grey-dark">
-    <div class="text-center mr-3 border-r pr-3">
-      <h2>34</h2>
-      <span>Photos</span>
-    </div>
-    <div class="text-center">
-      <h2>42</h2>
-      <span>Friends</span>
-    </div>
-</div> -->
 </div>
 <!--highlights-->
-<div class="overflow-hidden shadow max-w-full my-3">
-  <div class="text-left px-20 pb-6 pt-2">
-    <h1 class="text-black text-sm bold font-sans">About</h1>
-    <!-- <p class="mt-2 font-sans font-light text-grey-dark">nadmane@gmail.com</p>
-    <p class="mt-2 font-sans font-light text-grey-dark">94546747747</p>
-    <p class="mt-2 font-sans font-light text-grey-dark">Aadhar Card Number</p> -->
-  </div>
-</div>
 
-<!--Experiance-->
 <div class="overflow-hidden shadow max-w-full my-3">
   <div class="text-left px-20 pb-6 pt-2">
     <h1 class="text-black text-sm bold font-sans">Highlights</h1>
-    <!-- <p class="mt-2 font-sans font-light text-grey-dark">nadmane@gmail.com</p>
-    <p class="mt-2 font-sans font-light text-grey-dark">94546747747</p>
-    <p class="mt-2 font-sans font-light text-grey-dark">Aadhar Card Number</p> -->
+    <div class="flex justify-start pb-3 text-grey-dark">
+      <div class="text-center mr-3 border-r pr-3">
+        <h3>Awards</h3>
+        <div *ngFor="let list of data">
+            <p * ngIf="list.awards">{{list.awards}}</p>
+        </div>
+      </div>
+      <div class="text-center">
+        <h3>Communication Skills</h3>
+        <div *ngFor="let list of data">
+          <p * ngIf="list.communicationSkills">{{list.communicationSkills}}</p>
+      </div>
+      </div>
+      <hr>
+  </div>
   </div>
 </div>
 
@@ -110,12 +42,14 @@
     <h1 class="text-black text-sm bold font-sans">Experiance</h1>
     <div class="flex justify-start pb-3 text-grey-dark" *ngFor="let list of data">
       <div class="text-center mr-3 border-r pr-3" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
-        <h2>Org Logo</h2>
-        <span>{{list.organisationId}}</span>
+        <div *ngFor="let list1 of data1">
+          <img class="w-20 h-20" *ngIf="list.organisationId === list1._id" src="{{orgLogo + list1.organisationLogo }}">
+        </div>
       </div>
-      <div class="text-center" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
+      <div class="justify-start pl-10" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
         <h2>{{list.organizationName}}</h2>
         <span>{{list.dateOfJoining | date: 'dd yyyy'}} - {{list.exitDate | date: 'dd yyyy'}}</span><br>
+        <h4>Experience - {{list.professionalExperience}}</h4>
         <h4>{{list.address}}</h4>
       </div>
       <hr>
@@ -129,13 +63,37 @@
     <h1 class="text-black text-sm bold font-sans">Education</h1>
     <div class="flex justify-start pb-3 text-grey-dark" *ngFor="let list of data">
       <div class="text-center mr-3 border-r pr-3" *ngIf="list.instituteId != '' && list.instituteId != undefined ">
-        <h2>Inst Logo</h2>
-        <span>{{list.instituteId}}</span>
+        <div *ngFor="let list1 of data1">
+          <img  class="w-20 h-20" *ngIf="list.instituteId === list1._id" src="{{instLogo + list1.instituteLogo}}">
+        </div>
       </div>
-      <div class="text-center" *ngIf="list.instituteId != '' && list.instituteId != undefined ">
+      <div class="justify-start pl-10" *ngIf="list.instituteId != '' && list.instituteId != undefined ">
         <h2>{{list.intitutionName}}</h2>
-        <span>{{list.yearOfJoining }} - {{list.yearOfPassout }}</span><br>
-        <h4>{{list.nameOfCourse}}</h4>
+        <span>{{list.yearOfJoining }} - {{list.yearOfPassout}}</span><br>
+        <span>{{list.nameOfCourse}}</span><br>
+        <h4>{{list.studentType}} Student</h4>
+        <span>{{list.address}}</span>
+      </div>
+      <hr>
+  </div>
+  </div>
+</div>
+
+<!--Documents-->
+
+<div class="overflow-hidden shadow max-w-full my-3">
+  <div class="text-left px-20 pb-6 pt-2">
+    <h1 class="text-black text-sm bold font-sans">Documents
+
+
+
+    </h1>
+    <div class="flex justify-start pb-3 text-grey-dark">
+      <div class="text-center mr-3 border-r pr-3">
+        <h3>Organisation Document</h3>
+      </div>
+      <div class="text-center">
+        <h3>Institute Document</h3>
       </div>
       <hr>
   </div>

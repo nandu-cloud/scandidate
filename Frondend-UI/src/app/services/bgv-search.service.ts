@@ -34,5 +34,18 @@ public ViewCandidate(viewData) : Observable<any> {
   return this.http.get(this.baseUrl + '/api/scandidate/bgvsearch/'+viewData );
 }
 
+public ViewLogo(org,inst) : Observable<any> {
+  var logo :{
+    "organisationId":[string],
+    "instituteId":[string]
+  } = 
+  {
+    'organisationId':org,
+    "instituteId":inst
+  }
+
+  return this.http.post(this.baseUrl + '/api/scandidate/bgvsearch/icon/show',logo );
+}
+
 }
 
