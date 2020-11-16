@@ -240,11 +240,13 @@ ngOnInit(){
 
 view(item){
   console.log("Hello" + item);
-  this.educdocumentName = `${this.baseUrl}/public/student_doc/${item}`;
+  // this.educdocumentName = `${this.baseUrl}/public/student_doc/${item}`;
+  window.location.href = `${this.baseUrl}/public/student_doc/${item}`;
   this.viewStudentSubscription = this.stuService.viewFile(item).subscribe(respObj => {
     console.log(respObj.data);
   })
 }
+
 openDoc(educdocumentName: string){
   window.open(educdocumentName)
 }
