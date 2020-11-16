@@ -179,7 +179,7 @@ const employeeSchema = new mongoose.Schema({
   discrepancyDocuments: {
     IsSelect: {
       type: Boolean,
-      required: true,
+      required: false,
     },
     period: {
       type: Date,
@@ -202,7 +202,7 @@ const employeeSchema = new mongoose.Schema({
   compliencyDiscrepancy: {
     IsSelect: {
       type: Boolean,
-      required: true,
+      required: false,
     },
     period: {
       type: Date,
@@ -225,7 +225,7 @@ const employeeSchema = new mongoose.Schema({
   warning: {
     IsSelect: {
       type: Boolean,
-      required: true,
+      required: false,
     },
     period: {
       type: Date,
@@ -248,7 +248,7 @@ const employeeSchema = new mongoose.Schema({
   showCausedIssue: {
     IsSelect: {
       type: Boolean,
-      required: true,
+      required: false,
     },
     period: {
       type: Date,
@@ -270,7 +270,7 @@ const employeeSchema = new mongoose.Schema({
   suspension: {
     IsSelect: {
       type: Boolean,
-      required: true,
+      required: false,
     },
     period: {
       type: Date,
@@ -292,7 +292,7 @@ const employeeSchema = new mongoose.Schema({
   termination: {
     IsSelect: {
       type: Boolean,
-      required: true,
+      required: false,
     },
     period: {
       type: Date,

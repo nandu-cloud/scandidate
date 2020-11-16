@@ -12,7 +12,14 @@ const addEmployeeSchema = Joi.object({
   addedById: Joi.string().required(),
   organisationId: Joi.string().required(),
   organizationName: Joi.string().required(),
-  discrepancyDocuments: Joi.object().required(),
+
+  discrepancyDocuments: Joi.object().allow('').allow(null),
+  compliencyDiscrepancy: Joi.object().allow('').allow(null),
+  warning: Joi.object().allow('').allow(null),
+  showCausedIssue: Joi.object().allow('').allow(null),
+  suspension: Joi.object().allow('').allow(null),
+  termination: Joi.object().allow('').allow(null),
+
 
   state: Joi.string().allow("").allow(null),
   landMark: Joi.string().allow("").allow(null),
