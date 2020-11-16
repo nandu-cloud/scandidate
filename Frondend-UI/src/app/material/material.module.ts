@@ -23,6 +23,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatRadioModule } from '@angular/material/radio';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTabsModule} from '@angular/material/tabs';
+import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
   declarations: [],
   imports: [
@@ -47,7 +48,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatNativeDateModule,
     MatSortModule,
     MatSnackBarModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTooltipModule
   ],
   exports: [
     CommonModule,
@@ -71,7 +73,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatNativeDateModule,
     MatSortModule,
     MatRadioModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTooltipModule
   ]
 })
 export class MaterialModule { }

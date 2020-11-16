@@ -64,6 +64,7 @@ export class AddStudentComponent implements OnInit {
   stuupdateSubscription : Subscription;
   studentDocSubscription : Subscription;
   deleteStudentSubscription : Subscription;
+  viewStudentSubscription : Subscription;
   baseUrl = environment.baseUrl;
   documentName: any;
   studentIdedit: number;
@@ -236,23 +237,19 @@ ngOnInit(){
   })
 }
 }
+
+view(item){
+  console.log("Hello" + item);
+  this.educdocumentName = `${this.baseUrl}/public/student_doc/${item}`;
+  this.viewStudentSubscription = this.stuService.viewFile(item).subscribe(respObj => {
+    console.log(respObj.data);
+  })
+}
 openDoc(educdocumentName: string){
   window.open(educdocumentName)
 }
 onDelete(item, studentIdedit) {
   console.log("hello" + item, studentIdedit);
-  // if (confirm('Are you sure want to delete this file?') == true) {
-  //   this.stuService.deleteFile(+id).subscribe(data => {
-  //     console.log(data);
-  //   }
-      // res => {
-      //   console.log(res);
-      //   this.ngOnInit();
-      // },
-      // error => this.error = error
-  //   );
-  // }
-
   this.deleteStudentSubscription = this.stuService.deleteFile(item, studentIdedit).subscribe(respObj=> {
     console.log(respObj.data);
     this.documentCount--;

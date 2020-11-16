@@ -90,4 +90,8 @@ postEducationFile(fileToUpload: File[]) :Observable<any>{
 deleteFile(studentDocumentLink, id): Observable<any> {
   return this.http.delete(this.baseUrl + '/api/institute/operational/student/delete/' + studentDocumentLink + '/' + id);
 }
+
+viewFile(studentDocumentLink): Observable<any> {
+  return this.http.get(this.baseUrl + '/api/institute/operational/student/downloadfile/' + studentDocumentLink);
+}
 }
