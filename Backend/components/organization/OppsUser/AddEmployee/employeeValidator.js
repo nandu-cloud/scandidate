@@ -21,6 +21,7 @@ const addEmployeeSchema = Joi.object({
   termination: Joi.object().allow('').allow(null),
 
 
+  building: Joi.string().allow('').allow(null),
   state: Joi.string().allow("").allow(null),
   landMark: Joi.string().allow("").allow(null),
   city: Joi.string().allow("").allow(null),
@@ -59,6 +60,7 @@ const addEmployeeSchema = Joi.object({
   communicationSkills: Joi.number().allow("").allow(null),
 
   //Other Variables
+  stakeholder: Joi.number().allow('').allow(null),
 });
 const updateEmployeeSchema = Joi.object({
   //Required Fields

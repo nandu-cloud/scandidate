@@ -49,6 +49,10 @@ const employeeSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  building: {
+    type: String,
+    required: false,
+  },
   dateOfBirth: {
     type: Date,
     required: false,
@@ -110,6 +114,10 @@ const employeeSchema = new mongoose.Schema({
     type: Number,
     required: false,
   },
+  stakeholder: {
+    type: Number,
+    required: false
+  },
 
   //performance
   volume: {
@@ -125,7 +133,7 @@ const employeeSchema = new mongoose.Schema({
     required: false,
   },
   awards: {
-    type: String,
+    type: Number,
     required: false,
   },
 

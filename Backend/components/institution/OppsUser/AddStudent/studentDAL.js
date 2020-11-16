@@ -118,7 +118,8 @@ async function search_student_new(data) {
       .find(data)
       // .and([
       //   { firstName: { $regex: data.firstName || "", $options: "i" } },
-      //   { intitutionName: { $regex: data.intitutionName || "", $options: "i" } }
+      //   { intitutionName: { $regex: data.intitutionName || "", $options: "i" } },
+      //   { $or: [{ $where: `/^${phnNumber}.*/.test(this.phoneNumber)` }, { $where: `/^.*/.test(this.phoneNumber)` }] },
       // ])
       .collation({ locale: "en", strength: 1 });
     return result;
