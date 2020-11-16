@@ -1,7 +1,6 @@
 <app-navbar>
-    <div class="pt-12 lg:pl-64 pl-12 md:pl-48 bg-white">
-      <div class="bg-red-100 border border-red-400 text-red-700 py-3 mb-4 rounded relative" role="alert" *ngIf="error">
-        <strong class="font-bold mr-4">Error ::</strong>
+    <div class="pt-12 lg:pl-32 md:pl-40 bg-white">
+      <div class="bg-red-100 w-1/2 text-red-700 py-3 mb-4 rounded relative" role="alert" *ngIf="error">
         <span class="block sm:inline">{{error}}</span>
         <span class="absolute top-0 bottom-0 right-0 px-4 py-3" (click)="close()">
           <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
@@ -151,31 +150,7 @@
               <mat-label>Zip Code</mat-label>
               <input  matInput  formControlName="zipcode"   minLength="5" maxLength="7" class="br-btm input-w" pattern="^[0-9]{5,7}$" autoComplete='off' tabindex="17">
           </mat-form-field>
-            <h1 class="hd-add">Conduct</h1>
-              <mat-form-field>
-                  <mat-label>Punctuality</mat-label>
-                  <mat-select  class="br-btm input-w" formControlName="punctuality" required tabindex="21">
-                    <mat-option [value]=1>Unsatisfactory</mat-option>
-                    <mat-option [value]=2>Needs Improvement</mat-option>
-                    <mat-option [value]=3>Meets Expectations</mat-option>
-                    <mat-option [value]=4>Exceeds Expectations</mat-option>
-                  </mat-select>
-                  <mat-error *ngIf ="createCandidate.get('punctuality').errors?.required">
-                    Please select Punctuality
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field>
-                  <mat-label>Discipline</mat-label>
-                  <mat-select  class="br-btm input-w" formControlName="discipline" required tabindex="22">
-                    <mat-option [value]=1>Unsatisfactory</mat-option>
-                    <mat-option [value]=2>Needs Improvement</mat-option>
-                    <mat-option [value]=3>Meets Expectations</mat-option>
-                    <mat-option [value]=4>Exceeds Expectations</mat-option>
-                  </mat-select>
-                  <mat-error *ngIf ="createCandidate.get('discipline').errors?.required">
-                    Please select Discipline
-                </mat-error>
-              </mat-form-field>
+           
             </div>
           </div>
         </mat-tab>
@@ -272,6 +247,31 @@
                           please select Deals Constructively With Pressure
                       </mat-error>
                     </mat-form-field>
+                    <h1 class="hd-add">Conduct</h1>
+                    <mat-form-field>
+                        <mat-label>Punctuality</mat-label>
+                        <mat-select  class="br-btm input-w" formControlName="punctuality" required tabindex="21">
+                          <mat-option [value]=1>Unsatisfactory</mat-option>
+                          <mat-option [value]=2>Needs Improvement</mat-option>
+                          <mat-option [value]=3>Meets Expectations</mat-option>
+                          <mat-option [value]=4>Exceeds Expectations</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf ="createCandidate.get('punctuality').errors?.required">
+                          Please select Punctuality
+                      </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Discipline</mat-label>
+                        <mat-select  class="br-btm input-w" formControlName="discipline" required tabindex="22">
+                          <mat-option [value]=1>Unsatisfactory</mat-option>
+                          <mat-option [value]=2>Needs Improvement</mat-option>
+                          <mat-option [value]=3>Meets Expectations</mat-option>
+                          <mat-option [value]=4>Exceeds Expectations</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf ="createCandidate.get('discipline').errors?.required">
+                          Please select Discipline
+                      </mat-error>
+                    </mat-form-field>
                   </div>
                 </div>
         </mat-tab>
@@ -342,23 +342,23 @@
                       </div>
                       <div class="w-full md:w-1/2 sm:w-full">
                         <mat-form-field *ngIf="volume == '1' || volume == '2' || volume == '3' || volume == '4'">
-                          <mat-label>Description</mat-label>
+                          <!-- <mat-label>Description</mat-label> -->
                           <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="2"></textarea>
                         </mat-form-field>
                         <mat-form-field *ngIf="quality == '1' || quality == '2' || quality == '3' || quality =='4' ">
-                          <mat-label>Description</mat-label>
+                          <!-- <mat-label>Description</mat-label> -->
                           <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="4"></textarea>
                         </mat-form-field>
                         <mat-form-field *ngIf="consistency == '1' || consistency == '2' || consistency == '3' || consistency == '4'">
-                          <mat-label>Description</mat-label>
+                          <!-- <mat-label>Description</mat-label> -->
                           <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="6"></textarea>
                         </mat-form-field>
                         <mat-form-field *ngIf="building == '1' || building == '2' || building == '3' || building == '4' ">
-                          <mat-label>Description</mat-label>
+                          <!-- <mat-label>Description</mat-label> -->
                           <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="8"></textarea>
                         </mat-form-field>
                         <mat-form-field *ngIf="stakeholder == '1' || stakeholder =='2'">
-                          <mat-label>Description</mat-label>
+                          <!-- <mat-label>Description</mat-label> -->
                           <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="10"></textarea>
                         </mat-form-field>
                       </div>
