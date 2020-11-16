@@ -13,6 +13,7 @@ const addEmployeeSchema = Joi.object({
   organisationId: Joi.string().required(),
   organizationName: Joi.string().required(),
 
+  //Issues
   discrepancyDocuments: Joi.object().allow('').allow(null),
   compliencyDiscrepancy: Joi.object().allow('').allow(null),
   warning: Joi.object().allow('').allow(null),
@@ -111,6 +112,14 @@ const updateEmployeeSchema = Joi.object({
   productKnowledge: Joi.number().allow("").allow(null),
   industryKnowledge: Joi.number().allow("").allow(null),
   communicationSkills: Joi.number().allow("").allow(null),
+
+  //Issues
+  discrepancyDocuments: Joi.object().allow('').allow(null),
+  compliencyDiscrepancy: Joi.object().allow('').allow(null),
+  warning: Joi.object().allow('').allow(null),
+  showCausedIssue: Joi.object().allow('').allow(null),
+  suspension: Joi.object().allow('').allow(null),
+  termination: Joi.object().allow('').allow(null),
 });
 
 module.exports = {
