@@ -6,7 +6,9 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { EmployeeService } from  '../../../../services/employee.service';
 import { StorageService } from '../../../../services/storage.service';
 import { from, Subscription } from 'rxjs';
-import { MatTabChangeEvent } from '@angular/material/tabs/public-api';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+import { fromEvent } from "rxjs";
+import { debounceTime, take } from "rxjs/operators";
 @Component({
   selector: 'app-add-candidate',
   templateUrl: './add-candidate.component.html',
@@ -15,6 +17,12 @@ import { MatTabChangeEvent } from '@angular/material/tabs/public-api';
 })
 export class AddCandidateComponent implements OnInit {
   createCandidate: FormGroup;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
+  fourthFormGroup: FormGroup;
+  fifthFormGroup: FormGroup;
+  
   employeeSubscription : Subscription;
   editEmployeeSubscription : Subscription;
   employeeUpdateSubscription: Subscription;
@@ -38,37 +46,41 @@ export class AddCandidateComponent implements OnInit {
   consistency : string;
   organizationName: any = window.sessionStorage.getItem('orgName');
   selectedIndex: number = 0;
+  tabChangeEvent: any;
  
   constructor(
     public fb: FormBuilder,
-    private cd: ChangeDetectorRef,public dialog: MatDialog,public route:ActivatedRoute,public empService : EmployeeService
+    private cd: ChangeDetectorRef,public dialog: MatDialog,public route:ActivatedRoute,public empService : EmployeeService,
+     private el: ElementRef
   ) {
     this.route.params.subscribe(params => {
       this.empIdedit = params.id;
   });
-    this.createCandidate = new FormGroup({
-      _id: new FormControl(), 
+
+    this.firstFormGroup = new FormGroup({
+      _id: new FormControl(),
       firstName: new FormControl('', [Validators.required,Validators.minLength(5)]),
       lastName: new FormControl('', [Validators.required,Validators.minLength(3)]),
       employeeId : new FormControl(''),
-      organizationName : new FormControl(this.organizationName),
+      adharNumber : new FormControl(''),
+      panNumber : new FormControl(''),
       phoneNumber : new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
       email: new FormControl('', [Validators.required,Validators.email]),
+      dateOfBirth : new FormControl(''),
+      dateOfJoining : new FormControl('',[Validators.required,this.validateJoiningDate()]),
+      exitDate : new FormControl('',[Validators.required,this.validateExitDate()]),
+      organizationName : new FormControl(this.organizationName),
+      professionalExperience : new FormControl('',[Validators.required,Validators.maxLength(2)]),
       role: new FormControl(''),
       department: new FormControl(''),
       address : new FormControl(''),
-      dateOfJoining : new FormControl('',[Validators.required,this.validateJoiningDate()]),
-      exitDate : new FormControl('',[Validators.required,this.validateExitDate()]),
-      punctuality: new FormControl('', [Validators.required]),
-      discipline: new FormControl('', [Validators.required]),
-      dateOfBirth : new FormControl(''),
-      academicKnowledge : new FormControl('',[Validators.required]),
-      productKnowledge : new FormControl('',[Validators.required]),
-      industryKnowledge : new FormControl('',[Validators.required]),
-      communicationSkills : new FormControl('',[Validators.required]),
-      adharNumber : new FormControl(''),
-      panNumber : new FormControl(''),
-      professionalExperience : new FormControl('',[Validators.required,Validators.maxLength(2)]),
+      LandMark : new FormControl(),
+      city : new FormControl(),
+      state : new FormControl(),
+      zipcode : new FormControl(),
+      awards: new FormControl('')
+    });
+    this.secondFormGroup = new FormGroup({
       selfDriven : new FormControl('',[Validators.required]),
       creativity : new FormControl('',[Validators.required]),
       informalOrganizationSenseOfBelonging : new FormControl('',[Validators.required]),
@@ -76,32 +88,39 @@ export class AddCandidateComponent implements OnInit {
       workIndependenty : new FormControl('',[Validators.required]),
       teamWork: new FormControl('', [Validators.required]),
       dealConstructivelyWithPressure: new FormControl('', [Validators.required]),
+      punctuality: new FormControl('', [Validators.required]),
+      discipline: new FormControl('', [Validators.required])
+    });
+    this.thirdFormGroup = new FormGroup({
       volume: new FormControl('', [Validators.required]),
       quality: new FormControl('', [Validators.required]),
       consistency: new FormControl('', [Validators.required]),
-      awards: new FormControl(''),
+      building: new FormControl(),
+      stakeholder : new FormControl()
+    });
+    this.fourthFormGroup = new FormGroup({
+      academicKnowledge : new FormControl('',[Validators.required]),
+      productKnowledge : new FormControl('',[Validators.required]),
+      industryKnowledge : new FormControl('',[Validators.required]),
+      communicationSkills : new FormControl('',[Validators.required])
+    });
+    this.fifthFormGroup = new FormGroup({
       discrepancy: new FormControl(''),
       compliance: new FormControl(''),
       warning : new FormControl(''),
       showcaseissued : new FormControl(''),
       suspention : new FormControl(''),
       termination : new FormControl(''),
-      LandMark : new FormControl(),
-      city : new FormControl(),
-      state : new FormControl(),
-      zipcode : new FormControl(),
-      building: new FormControl(),
-      stakeholder : new FormControl(),
       description : new FormControl()
     });
   }
  
   validateExitDate(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
-      if (this.createCandidate !== undefined) {
+      if (this.firstFormGroup !== undefined) {
         //const arrivalDate = control.value;
-        const exitDate = this.createCandidate.controls['exitDate'].value;
-        const joiningDate = this.createCandidate.controls['dateOfJoining'].value
+        const exitDate = this.firstFormGroup.controls['exitDate'].value;
+        const joiningDate = this.firstFormGroup.controls['dateOfJoining'].value
         if (exitDate <= joiningDate) return { requiredToDate: true };
       }
     };
@@ -109,14 +128,73 @@ export class AddCandidateComponent implements OnInit {
 
   validateJoiningDate(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
-      if (this.createCandidate !== undefined) {
-        const exitDate = this.createCandidate.controls['exitDate'].value;
+      if (this.firstFormGroup !== undefined) {
+        const exitDate = this.firstFormGroup.controls['exitDate'].value;
         const fexitDate = new Date(exitDate);
-        const joiningDate = this.createCandidate.controls['dateOfJoining'].value;
+        const joiningDate = this.firstFormGroup.controls['dateOfJoining'].value;
         if (fexitDate <= joiningDate) return { requiredFromDate: true };
       }
     };
   }
+  maxNumberOfTabs: number;
+  
+  public tabChanged(tabChangedEvent: MatTabChangeEvent): void {
+    this.selectedIndex = this.tabChangeEvent.index;
+  }
+  public nextStep() {
+    if (this.firstFormGroup.valid){
+      if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = 1
+      }
+    }
+    if (this.secondFormGroup.valid){
+      if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = 2
+      }
+    }
+    if (this.thirdFormGroup.valid){
+      if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = 3
+      }
+    }
+    if (this.fourthFormGroup.valid){
+      if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = 4
+      }
+    }
+    console.log(this.selectedIndex);
+  }
+
+  private scrollToFirstInvalidControl() {
+    const firstInvalidControl: HTMLElement = this.el.nativeElement.querySelector(
+      "form .ng-invalid"
+    );
+    window.scroll({
+      top: this.getTopOffset(firstInvalidControl),
+      left: 0,
+      behavior: "smooth"
+    });
+
+    fromEvent(window, "scroll")
+      .pipe(
+        debounceTime(100),
+        take(1)
+      )
+      .subscribe(() => firstInvalidControl.focus());
+  }
+
+  private getTopOffset(controlEl: HTMLElement): number {
+    const labelOffset = 50;
+    return controlEl.getBoundingClientRect().top + window.scrollY - labelOffset;
+  }
+
+  public cancel() {
+    if (this.selectedIndex != 0) {
+      this.selectedIndex = this.selectedIndex - 1;
+    }
+    console.log(this.selectedIndex);
+  }
+
   close(){
     setTimeout(() => {
       this.error='';
@@ -138,7 +216,11 @@ export class AddCandidateComponent implements OnInit {
       this.editEmployeeSubscription = this.empService.editEmployee(this.empIdedit).subscribe(respObj => {
         console.log(respObj.data);
         this.id = respObj.data._id;
-        this.createCandidate.patchValue(respObj.data);
+        this.firstFormGroup.patchValue(respObj.data);
+        this.secondFormGroup.patchValue(respObj.data);
+        this.thirdFormGroup.patchValue(respObj.data);
+        this.fourthFormGroup.patchValue(respObj.data);
+        this.fifthFormGroup.patchValue(respObj.data);
         // this.imageUrl=`${this.baseUrl}/public/organization_logo/${respObj.data.organisationLogo}`;
         // this.imageFilename=respObj.data.organisationLogo;
       }, err => {
@@ -148,8 +230,10 @@ export class AddCandidateComponent implements OnInit {
   }
   submit(){
     if(!this.empIdedit){
-    this.employeeSubscription = this.empService.addEmployee(this.createCandidate.value).subscribe(resp =>{
-      console.log(this.createCandidate.value);
+    this.employeeSubscription = this.empService.addEmployee({...this.firstFormGroup.value, ...this.secondFormGroup.value,
+      ...this.thirdFormGroup.value, ...this.fourthFormGroup.value, ...this.fifthFormGroup.value})
+    .subscribe(resp =>{
+     // console.log(this.createCandidate.value);
       this.openDialog();
     }, err =>{
       this.setMessage = { message: err.error.message, error: true };
@@ -172,21 +256,6 @@ update(id:number){
     throw this.setMessage.message;
   })
 }
-maxNumberOfTabs:number;
-
-public tabChanged(tabChangeEvent: MatTabChangeEvent): void {
- this.selectedIndex = tabChangeEvent.index;
-}
-
-public nextStep() {
- if(this.selectedIndex!=this.maxNumberOfTabs)
- this.selectedIndex += 1;
- console.log(this.selectedIndex);
-}
-
-public previousStep() {
- this.selectedIndex -= 1;
-}
 }
 
 @Component({
@@ -196,7 +265,6 @@ public previousStep() {
 export class DialogElementsExampleDialog {
   @Input() methodType: any
   Message: any;
- 
   constructor(public dialogRef: MatDialogRef<DialogElementsExampleDialog>,private router:Router
     ) {
       console.log(this.methodType)
@@ -216,7 +284,4 @@ export class DialogElementsExampleDialog {
     this.dialogRef.close(true);
     this.router.navigate(['/candidate-list']);
  }
-
-
-
 }

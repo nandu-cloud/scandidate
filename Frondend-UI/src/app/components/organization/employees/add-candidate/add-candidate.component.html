@@ -1,787 +1,798 @@
 <app-navbar>
-    <div class="pt-12 lg:pl-32 md:pl-40 bg-white">
-      <div class="bg-red-100 w-1/2 text-red-700 py-3 mb-4 rounded relative" role="alert" *ngIf="error">
-        <span class="block sm:inline">{{error}}</span>
-        <span class="absolute top-0 bottom-0 right-0 px-4 py-3" (click)="close()">
-          <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
-        </span>
-      </div> 
-    <form  class="login-form" [formGroup]="createCandidate"  novalidate>
-      <h1 class="hd-add">Add Candidate</h1>
-      <mat-tab-group [selectedIndex]="selectedIndex" (selectedTabChange)="tabChanged($event)">
-        <mat-tab *ngFor="let number of [0]; let i = index;">
-          <ng-template mat-tab-label>
-            <mat-icon class="example-tab-icon">face</mat-icon>
-            Presonal Information
-          </ng-template>
-          <div class="flex flex-wrap">
-            <div class="w-full md:w-1/2 sm:w-full">
-                <mat-form-field>
-                    <mat-label>First Name</mat-label>
-                    <input  matInput formControlName="firstName"  type="text" class="br-btm input-w" autoComplete='off' required tabindex="1">
-                    <mat-error *ngIf ="createCandidate.get('firstName').errors?.required">
-                        Required Employee Name.
-                    </mat-error>
-                    <mat-error *ngIf ="createCandidate.get('firstName').errors?.minlength">
-                      Employee name must be at least 5 characters long.
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field>
-                  <mat-label>Employee ID</mat-label>
-                  <input  matInput formControlName="employeeId"  type="text"  class="br-btm input-w" autoComplete='off' tabindex="3">
-              </mat-form-field>
-              <mat-form-field>
-                <mat-label>Pan Number</mat-label>
-                <input  matInput formControlName="panNumber"   type="text"  class="br-btm input-w" autoComplete='off' tabindex="5">
-              </mat-form-field>
-                <mat-form-field>
-                  <mat-label>Phone Number</mat-label>
-                  <input  matInput formControlName="phoneNumber"  type="text"  class="br-btm input-w" autoComplete='off' required pattern="^[0-9]{10}$" tabindex="7">
-                  <mat-error *ngIf ="createCandidate.get('phoneNumber').errors?.required">
-                    Required phone number.
-                </mat-error>
-                <mat-error *ngIf="!createCandidate.get('phoneNumber').errors?.required && createCandidate.get('phoneNumber').errors?.pattern">
-                    Please enter valid mumber
-                </mat-error>
-                </mat-form-field>
-                <mat-form-field>
-                  <mat-label>DateOfJoining</mat-label>
-                  <input matInput formControlName="dateOfJoining" [matDatepicker]="picker2" class="br-btm input-w" required [min]="minDate" [max]="maxDate" tabindex="9">
-                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                  <mat-datepicker #picker2 color="primary"></mat-datepicker>
-                  <mat-error *ngIf ="createCandidate.get('dateOfJoining').errors?.required">
-                    Please enter  dateOfJoining
-                  </mat-error>
-                  <mat-error *ngIf="createCandidate.get('dateOfJoining').hasError('requiredFromDate')">Joining date should be less than exit date</mat-error>   
-                </mat-form-field>
-                <mat-form-field>
-                  <mat-label>Organization Name</mat-label>
-                  <input  matInput formControlName="organizationName"  type="text"   class="br-btm input-w" autoComplete='off' readonly disabled>
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Role</mat-label>
-                    <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off' tabindex="12">
-                </mat-form-field>
-              <mat-form-field>
-                  <mat-label>Address</mat-label>
-                  <input  matInput formControlName="address" type="text"  class="br-btm input-w" autoComplete='off' tabindex="14">
-              </mat-form-field>
-              <mat-form-field>
-                <mat-label>LandMark</mat-label>
-                <input matInput type="text"  formControlName="LandMark"   class="br-btm input-w" autoComplete='off' tabindex="16">
-            </mat-form-field>
-            <mat-form-field>
-              <mat-label>State</mat-label>
-              <input  matInput   type="text"  formControlName="state"  class="br-btm input-w" autoComplete='off' tabindex="18">
-          </mat-form-field>
-              <mat-form-field>
-                <mat-label>Awards</mat-label>
-                <mat-select  class="br-btm input-w" formControlName="awards" tabindex="20">
-                  <mat-option [value]=1>Performer & Awarded</mat-option>
-                  <mat-option [value]=2>Non-Performer & Awarded</mat-option>
-                  <mat-option [value]=3>Performer & Not Awarded</mat-option>
-                  <mat-option [value]=4>Non-Performer & Not Awarded</mat-option>
-                </mat-select>
-            </mat-form-field>
-              </div>
-                <div class="w-full md:w-1/2 sm:w-full">
-                  <mat-form-field>
-                    <mat-label>Last Name</mat-label>
-                    <input  matInput formControlName="lastName"  type="text" class="br-btm input-w" autoComplete='off' required tabindex="2">
-                    <mat-error *ngIf ="createCandidate.get('lastName').errors?.required">
-                      Required Employee Last Name.
-                  </mat-error>
-                  <mat-error *ngIf ="createCandidate.get('lastName').errors?.minlength">
-                    Employee last name must be at least 3 characters long.
-                  </mat-error>
-                </mat-form-field>
-                <mat-form-field>
-                  <mat-label>Adhar Number</mat-label>
-                  <input  matInput formControlName="adharNumber"   type="text" class="br-btm input-w" autoComplete='off' tabindex="4">
-                </mat-form-field>
-                <mat-form-field>
-                  <mat-label>Email</mat-label>
-                  <input  matInput formControlName="email"  type="text"   class="br-btm input-w" autoComplete='off' required tabindex="6">
-                  <mat-error *ngIf ="createCandidate.get('email').errors?.required">
-                    Required email address
-                  </mat-error>
-                  <mat-error *ngIf ="createCandidate.get('email').errors?.email">
-                    Enter a valid email address
-                  </mat-error>
-              </mat-form-field>
-                <mat-form-field>
-                  <mat-label>DOB</mat-label>
-                  <input matInput formControlName="dateOfBirth" [matDatepicker]="picker1" class="br-btm input-w" [min]="minDate" [max]="maxDate" tabindex="8">
-                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                  <mat-datepicker #picker1 color="primary"></mat-datepicker>
-                </mat-form-field>
-                <mat-form-field>
-                  <mat-label>Releving Date</mat-label>
-                  <input matInput formControlName="exitDate" [matDatepicker]="picker" class="br-btm input-w" required [min]="minDate" [max]="maxDate" tabindex="10">
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker color="primary"></mat-datepicker>
-                  <mat-error *ngIf ="createCandidate.get('exitDate').errors?.required">
-                    please enter exit date
-                  </mat-error>
-                  <mat-error *ngIf="createCandidate.get('exitDate').hasError('requiredToDate')"> Exit date should be grater than joining date</mat-error>
-                </mat-form-field>               
-                <mat-form-field>
-                  <mat-label>Professional Experience</mat-label>
-                  <input  matInput formControlName="professionalExperience" type="text"  class="br-btm input-w" autoComplete='off'  required pattern="^[0-9]$" tabindex="11">
-                  <mat-error *ngIf ="createCandidate.get('professionalExperience').errors?.required">
-                    please enter number.
-                </mat-error>
-                <mat-error *ngIf ="createCandidate.get('professionalExperience').errors?.maxlength">
-                  Please enter Number 
-                </mat-error>
-                <mat-error *ngIf= "createCandidate.get('professionalExperience').errors?.pattern">
-                please enter valid number
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field>
-                <mat-label>Department</mat-label>
-                <input  matInput formControlName="department"  type="text" class="br-btm input-w" autoComplete='off' tabindex="13">
-            </mat-form-field>
-            <mat-form-field>
-              <mat-label>City</mat-label>
-              <input  matInput   type="text"  formControlName="city"  class="br-btm input-w" autoComplete='off' tabindex="15">
-            </mat-form-field>
-            <mat-form-field>
-              <mat-label>Zip Code</mat-label>
-              <input  matInput  formControlName="zipcode"   minLength="5" maxLength="7" class="br-btm input-w" pattern="^[0-9]{5,7}$" autoComplete='off' tabindex="17">
-          </mat-form-field>
-           
-            </div>
-          </div>
+  <div class="pt-12 lg:pl-32 md:pl-40 bg-white">
+     <div class="bg-red-100 border border-red-400 text-red-700 py-3 mb-4 rounded relative" role="alert" *ngIf="error">
+       <strong class="font-bold mr-4">Error ::</strong>
+       <span class="block sm:inline">{{error}}</span>
+       <span class="absolute top-0 bottom-0 right-0 px-4 py-3" (click)="close()">
+         <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+       </span>
+     </div> 
+     <h1 class="hd-add">Add Candidate</h1>
+     <mat-tab-group [selectedIndex]="selectedIndex" (selectedTabChange)="tabChanged($event)" class="mat-tab-group mat-primary">
+       
+       <mat-tab *ngFor="let number of [0];let i=index;">
+         <form [formGroup]="firstFormGroup">
+         <ng-template mat-tab-label>
+           <mat-icon class="example-tab-icon">face</mat-icon>
+           Presonal Information
+         </ng-template>
+         <div class="flex flex-wrap">
+           <div class="w-full md:w-1/2 sm:w-full">
+               <mat-form-field>
+                   <mat-label>First Name</mat-label>
+                   <input  matInput formControlName="firstName"  type="text" class="br-btm input-w" autoComplete='off' required tabindex="1">
+                   <mat-error *ngIf ="firstFormGroup.get('firstName').errors?.required">
+                       Required Employee Name.
+                   </mat-error>
+                   <mat-error *ngIf ="firstFormGroup.get('firstName').errors?.minlength">
+                     Employee name must be at least 5 characters long.
+                   </mat-error>
+               </mat-form-field>
+               <mat-form-field>
+                 <mat-label>Employee ID</mat-label>
+                 <input  matInput formControlName="employeeId"  type="text"  class="br-btm input-w" autoComplete='off' tabindex="3">
+             </mat-form-field>
+             <mat-form-field>
+               <mat-label>Pan Number</mat-label>
+               <input  matInput formControlName="panNumber"   type="text"  class="br-btm input-w" autoComplete='off' tabindex="5">
+             </mat-form-field>
+               <mat-form-field>
+                 <mat-label>Phone Number</mat-label>
+                 <input  matInput formControlName="phoneNumber"  type="text"  class="br-btm input-w" autoComplete='off' required pattern="^[0-9]{10}$" tabindex="7">
+                 <mat-error *ngIf ="firstFormGroup.get('phoneNumber').errors?.required">
+                   Required phone number.
+               </mat-error>
+               <mat-error *ngIf="!firstFormGroup.get('phoneNumber').errors?.required && firstFormGroup.get('phoneNumber').errors?.pattern">
+                   Please enter valid mumber
+               </mat-error>
+               </mat-form-field>
+               <mat-form-field>
+                 <mat-label>DateOfJoining</mat-label>
+                 <input matInput formControlName="dateOfJoining" [matDatepicker]="picker2" class="br-btm input-w" required [min]="minDate" [max]="maxDate" tabindex="9">
+                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                 <mat-datepicker #picker2 color="primary"></mat-datepicker>
+                 <mat-error *ngIf ="firstFormGroup.get('dateOfJoining').errors?.required">
+                   Please enter  dateOfJoining
+                 </mat-error>
+                 <mat-error *ngIf="firstFormGroup.get('dateOfJoining').hasError('requiredFromDate')">Joining date should be less than exit date</mat-error>   
+               </mat-form-field>
+               <mat-form-field>
+                 <mat-label>Organization Name</mat-label>
+                 <input  matInput formControlName="organizationName"  type="text"   class="br-btm input-w" autoComplete='off' readonly disabled>
+               </mat-form-field>
+               <mat-form-field>
+                   <mat-label>Role</mat-label>
+                   <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off' tabindex="12">
+               </mat-form-field>
+             <mat-form-field>
+                 <mat-label>Address</mat-label>
+                 <input  matInput formControlName="address" type="text"  class="br-btm input-w" autoComplete='off' tabindex="14">
+             </mat-form-field>
+             <mat-form-field>
+               <mat-label>LandMark</mat-label>
+               <input matInput type="text"  formControlName="LandMark"   class="br-btm input-w" autoComplete='off' tabindex="16">
+           </mat-form-field>
+           <mat-form-field>
+             <mat-label>State</mat-label>
+             <input  matInput   type="text"  formControlName="state"  class="br-btm input-w" autoComplete='off' tabindex="18">
+         </mat-form-field>
+             <mat-form-field>
+               <mat-label>Awards</mat-label>
+               <mat-select  class="br-btm input-w" formControlName="awards" tabindex="20">
+                 <mat-option [value]=1>Performer & Awarded</mat-option>
+                 <mat-option [value]=2>Non-Performer & Awarded</mat-option>
+                 <mat-option [value]=3>Performer & Not Awarded</mat-option>
+                 <mat-option [value]=4>Non-Performer & Not Awarded</mat-option>
+               </mat-select>
+           </mat-form-field>
+             </div>
+               <div class="w-full md:w-1/2 sm:w-full">
+                 <mat-form-field>
+                   <mat-label>Last Name</mat-label>
+                   <input  matInput formControlName="lastName"  type="text" class="br-btm input-w" autoComplete='off' required tabindex="2">
+                   <mat-error *ngIf ="firstFormGroup.get('lastName').errors?.required">
+                     Required Employee Last Name.
+                 </mat-error>
+                 <mat-error *ngIf ="firstFormGroup.get('lastName').errors?.minlength">
+                   Employee last name must be at least 3 characters long.
+                 </mat-error>
+               </mat-form-field>
+               <mat-form-field>
+                 <mat-label>Adhar Number</mat-label>
+                 <input  matInput formControlName="adharNumber"   type="text" class="br-btm input-w" autoComplete='off' tabindex="4">
+               </mat-form-field>
+               <mat-form-field>
+                 <mat-label>Email</mat-label>
+                 <input  matInput formControlName="email"  type="text"   class="br-btm input-w" autoComplete='off' required tabindex="6">
+                 <mat-error *ngIf ="firstFormGroup.get('email').errors?.required">
+                   Required email address
+                 </mat-error>
+                 <mat-error *ngIf ="firstFormGroup.get('email').errors?.email">
+                   Enter a valid email address
+                 </mat-error>
+             </mat-form-field>
+               <mat-form-field>
+                 <mat-label>DOB</mat-label>
+                 <input matInput formControlName="dateOfBirth" [matDatepicker]="picker1" class="br-btm input-w" [min]="minDate" [max]="maxDate" tabindex="8">
+                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                 <mat-datepicker #picker1 color="primary"></mat-datepicker>
+               </mat-form-field>
+               <mat-form-field>
+                 <mat-label>Releving Date</mat-label>
+                 <input matInput formControlName="exitDate" [matDatepicker]="picker" class="br-btm input-w" required [min]="minDate" [max]="maxDate" tabindex="10">
+                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                 <mat-datepicker #picker color="primary"></mat-datepicker>
+                 <mat-error *ngIf ="firstFormGroup.get('exitDate').errors?.required">
+                   please enter exit date
+                 </mat-error>
+                 <mat-error *ngIf="firstFormGroup.get('exitDate').hasError('requiredToDate')"> Exit date should be grater than joining date</mat-error>
+               </mat-form-field>               
+               <mat-form-field>
+                 <mat-label>Professional Experience</mat-label>
+                 <input  matInput formControlName="professionalExperience" type="text"  class="br-btm input-w" autoComplete='off'  required pattern="^[0-9]$" tabindex="11">
+                 <mat-error *ngIf ="firstFormGroup.get('professionalExperience').errors?.required">
+                   please enter number.
+               </mat-error>
+               <mat-error *ngIf ="firstFormGroup.get('professionalExperience').errors?.maxlength">
+                 Please enter Number 
+               </mat-error>
+               <mat-error *ngIf= "firstFormGroup.get('professionalExperience').errors?.pattern">
+               please enter valid number
+               </mat-error>
+             </mat-form-field>
+             <mat-form-field>
+               <mat-label>Department</mat-label>
+               <input  matInput formControlName="department"  type="text" class="br-btm input-w" autoComplete='off' tabindex="13">
+           </mat-form-field>
+           <mat-form-field>
+             <mat-label>City</mat-label>
+             <input  matInput   type="text"  formControlName="city"  class="br-btm input-w" autoComplete='off' tabindex="15">
+           </mat-form-field>
+           <mat-form-field>
+             <mat-label>Zip Code</mat-label>
+             <input  matInput  formControlName="zipcode"   minLength="5" maxLength="7" class="br-btm input-w" pattern="^[0-9]{5,7}$" autoComplete='off' tabindex="17">
+         </mat-form-field>
+           </div>
+         </div>
           <div class="flex justify-end lg:pb-6 lg:pr-48">
-            <button class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">
-                Next
+             <button class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">
+                 Next
+             </button>
+         </div> 
+         </form>
+       </mat-tab>
+       <mat-tab>
+         <form [formGroup]="secondFormGroup">
+         <ng-template mat-tab-label>
+           <mat-icon class="example-tab-icon">card_travel</mat-icon>
+           Work Ethic
+         </ng-template>
+         <div class="flex flex-wrap">
+           <div class="w-full md:w-1/2 sm:w-full">
+                   <mat-form-field>
+                       <mat-label>Self Driven</mat-label>
+                       <mat-select  class="br-btm input-w" formControlName="selfDriven" required tabindex="1">
+                         <mat-option [value]=1>Unsatisfactory</mat-option>
+                         <mat-option [value]=2>Needs Improvement</mat-option>
+                         <mat-option [value]=3>Meets Expectations</mat-option>
+                         <mat-option [value]=4>Exceeds Expectations</mat-option>
+                       </mat-select>
+                       <mat-error *ngIf ="secondFormGroup.get('selfDriven').errors?.required">
+                         please select Self Driven value
+                     </mat-error>
+                   </mat-form-field>
+                   <mat-form-field>
+                       <mat-label>Creativity</mat-label>
+                       <mat-select  class="br-btm input-w" formControlName="creativity" required tabindex="3">
+                         <mat-option [value]=1>Unsatisfactory</mat-option>
+                         <mat-option [value]=2>Needs Improvement</mat-option>
+                         <mat-option [value]=3>Meets Expectations</mat-option>
+                         <mat-option [value]=4>Exceeds Expectations</mat-option>
+                       </mat-select>
+                       <mat-error *ngIf ="secondFormGroup.get('creativity').errors?.required">
+                         please select Creativity
+                     </mat-error>
+                   </mat-form-field>
+                   <mat-form-field>
+                       <mat-label>Informal organization-sense of belonging</mat-label>
+                       <mat-select  class="br-btm input-w" formControlName="informalOrganizationSenseOfBelonging" required tabindex="5">
+                         <mat-option [value]=1>Unsatisfactory</mat-option>
+                         <mat-option [value]=2>Needs Improvement</mat-option>
+                         <mat-option [value]=3>Meets Expectations</mat-option>
+                         <mat-option [value]=4>Exceeds Expectations</mat-option>
+                       </mat-select>
+                       <mat-error *ngIf ="secondFormGroup.get('informalOrganizationSenseOfBelonging').errors?.required">
+                         please select Informal organization-sense of belonging
+                     </mat-error>
+                   </mat-form-field>
+                   <mat-form-field>
+                       <mat-label>Initiative</mat-label>
+                       <mat-select  class="br-btm input-w" formControlName="initiative" required tabindex="7">
+                         <mat-option [value]=1>Unsatisfactory</mat-option>
+                         <mat-option [value]=2>Needs Improvement</mat-option>
+                         <mat-option [value]=3>Meets Expectations</mat-option>
+                         <mat-option [value]=4>Exceeds Expectations</mat-option>
+                       </mat-select>
+                       <mat-error *ngIf ="secondFormGroup.get('initiative').errors?.required">
+                         please select Initiative
+                     </mat-error>
+                   </mat-form-field>
+                 </div>
+                 <div class="w-full md:w-1/2 sm:w-full">
+                   <mat-form-field>
+                       <mat-label>Work Independently</mat-label>
+                       <mat-select  class="br-btm input-w" formControlName="workIndependenty" required tabindex="2">
+                         <mat-option [value]=1>Unsatisfactory</mat-option>
+                         <mat-option [value]=2>Needs Improvement</mat-option>
+                         <mat-option [value]=3>Meets Expectations</mat-option>
+                         <mat-option [value]=4>Exceeds Expectations</mat-option>
+                       </mat-select>
+                       <mat-error *ngIf ="secondFormGroup.get('workIndependenty').errors?.required">
+                         please select Work Independently
+                     </mat-error>
+                   </mat-form-field>
+                   <mat-form-field>
+                       <mat-label>Team Work</mat-label>
+                       <mat-select  class="br-btm input-w" formControlName="teamWork" required tabindex="4">
+                         <mat-option [value]=1>Unsatisfactory</mat-option>
+                         <mat-option [value]=2>Needs Improvement</mat-option>
+                         <mat-option [value]=3>Meets Expectations</mat-option>
+                         <mat-option [value]=4>Exceeds Expectations</mat-option>
+                       </mat-select>
+                       <mat-error *ngIf ="secondFormGroup.get('teamWork').errors?.required">
+                         please select Team Work
+                     </mat-error>
+                   </mat-form-field>
+                   <mat-form-field>
+                       <mat-label>Deals Constructively With Pressure</mat-label>
+                       <mat-select  class="br-btm input-w" formControlName="dealConstructivelyWithPressure" required tabindex="6">
+                         <mat-option [value]=1>Unsatisfactory</mat-option>
+                         <mat-option [value]=2>Needs Improvement</mat-option>
+                         <mat-option [value]=3>Meets Expectations</mat-option>
+                         <mat-option [value]=4>Exceeds Expectations</mat-option>
+                       </mat-select>
+                       <mat-error *ngIf ="secondFormGroup.get('dealConstructivelyWithPressure').errors?.required">
+                         please select Deals Constructively With Pressure
+                     </mat-error>
+                   </mat-form-field>
+                   <h1 class="hd-add">Conduct</h1>
+                   <mat-form-field>
+                       <mat-label>Punctuality</mat-label>
+                       <mat-select  class="br-btm input-w" formControlName="punctuality" required tabindex="21">
+                         <mat-option [value]=1>Unsatisfactory</mat-option>
+                         <mat-option [value]=2>Needs Improvement</mat-option>
+                         <mat-option [value]=3>Meets Expectations</mat-option>
+                         <mat-option [value]=4>Exceeds Expectations</mat-option>
+                       </mat-select>
+                       <mat-error *ngIf ="secondFormGroup.get('punctuality').errors?.required">
+                         Please select Punctuality
+                     </mat-error>
+                   </mat-form-field>
+                   <mat-form-field>
+                       <mat-label>Discipline</mat-label>
+                       <mat-select  class="br-btm input-w" formControlName="discipline" required tabindex="22">
+                         <mat-option [value]=1>Unsatisfactory</mat-option>
+                         <mat-option [value]=2>Needs Improvement</mat-option>
+                         <mat-option [value]=3>Meets Expectations</mat-option>
+                         <mat-option [value]=4>Exceeds Expectations</mat-option>
+                       </mat-select>
+                       <mat-error *ngIf ="secondFormGroup.get('discipline').errors?.required">
+                         Please select Discipline
+                     </mat-error>
+                   </mat-form-field>
+                 </div>
+               </div>
+             <div class="flex justify-end lg:pb-6 lg:pr-48">
+                 <button class="lg-button focus:outline-none focus:shadow-outline" (click)="cancel()">Back</button>
+                 <button class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">Next</button>
+             </div> 
+         </form>
+       </mat-tab>
+     
+       <mat-tab>
+         <form [formGroup]="thirdFormGroup">
+         <ng-template mat-tab-label>
+           <mat-icon class="example-tab-icon">work</mat-icon>
+           Leadership
+         </ng-template>
+         <div class="flex flex-wrap">
+           <div class="w-full md:w-1/2 sm:w-full">
+                       <mat-form-field>
+                           <mat-label>Performance</mat-label>
+                           <mat-select  class="br-btm input-w" formControlName="volume"  [(ngModel)]="volume" tabindex="1">
+                             <mat-option [value]=1>Unsatisfactory</mat-option>
+                             <mat-option [value]=2>Needs Improvement</mat-option>
+                             <mat-option [value]=3>Meets Expectations</mat-option>
+                             <mat-option [value]=4>Exceeds Expectations</mat-option>
+                           </mat-select>
+                           <mat-error *ngIf ="thirdFormGroup.get('volume').errors?.required">
+                             please select Performance
+                         </mat-error>
+                       </mat-form-field>
+                       <mat-form-field>
+                           <mat-label>Strategic Thinking </mat-label>
+                           <mat-select  class="br-btm input-w" formControlName="quality"  [(ngModel)]="quality" tabindex="3">
+                             <mat-option [value]=1>Unsatisfactory</mat-option>
+                             <mat-option [value]=2>Needs Improvement</mat-option>
+                             <mat-option [value]=3>Meets Expectations</mat-option>
+                             <mat-option [value]=4>Exceeds Expectations</mat-option>
+                           </mat-select>
+                           <mat-error *ngIf ="thirdFormGroup.get('quality').errors?.required">
+                             please select Quality
+                         </mat-error>
+                       </mat-form-field>
+                       <mat-form-field>
+                           <mat-label>Problem Solving</mat-label>
+                           <mat-select  class="br-btm input-w" formControlName="consistency" [(ngModel)]="consistency" tabindex="5">
+                             <mat-option [value]=1>Needs Improvement</mat-option>
+                             <mat-option [value]=2>Meets Expectations</mat-option>
+                           </mat-select>
+                           <mat-error *ngIf ="thirdFormGroup.get('consistency').errors?.required">
+                             please select Consistency
+                         </mat-error>
+                       </mat-form-field>
+                       <mat-form-field>
+                         <mat-label>Building High Performance Team</mat-label>
+                         <mat-select  class="br-btm input-w" formControlName="building" [(ngModel)]="building" tabindex="7">
+                           <mat-option [value]=1>Unsatisfactory</mat-option>
+                           <mat-option [value]=2>Needs Improvement</mat-option>
+                           <mat-option [value]=3>Meets Expectations</mat-option>
+                           <mat-option [value]=4>Exceeds Expectations</mat-option>
+                         </mat-select>
+                         <mat-error *ngIf ="thirdFormGroup.get('building').errors?.required">
+                           please select Quality
+                       </mat-error>
+                     </mat-form-field>
+                     <mat-form-field>
+                         <mat-label>Stakeholder Management</mat-label>
+                         <mat-select  class="br-btm input-w" formControlName="stakeholder" [(ngModel)]="stakeholder" tabindex="9">
+                           <mat-option [value]=1>Needs Improvement</mat-option>
+                           <mat-option [value]=2>Meets Expectations</mat-option>
+                         </mat-select>
+                         <mat-error *ngIf ="thirdFormGroup.get('stakeholder').errors?.required">
+                           please select Consistency
+                       </mat-error>
+                     </mat-form-field>
+                     </div>
+                     <div class="w-full md:w-1/2 sm:w-full">
+                       <mat-form-field *ngIf="volume == '1' || volume == '2' || volume == '3' || volume == '4'">
+                         <mat-label>Description</mat-label>
+                         <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="2"></textarea>
+                       </mat-form-field>
+                       <mat-form-field *ngIf="quality == '1' || quality == '2' || quality == '3' || quality =='4' ">
+                         <mat-label>Description</mat-label>
+                         <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="4"></textarea>
+                       </mat-form-field>
+                       <mat-form-field *ngIf="consistency == '1' || consistency == '2' || consistency == '3' || consistency == '4'">
+                         <mat-label>Description</mat-label>
+                         <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="6"></textarea>
+                       </mat-form-field>
+                       <mat-form-field *ngIf="building == '1' || building == '2' || building == '3' || building == '4' ">
+                         <mat-label>Description</mat-label>
+                         <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="8"></textarea>
+                       </mat-form-field>
+                       <mat-form-field *ngIf="stakeholder == '1' || stakeholder =='2'">
+                         <mat-label>Description</mat-label>
+                         <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="10"></textarea>
+                       </mat-form-field>
+                     </div>
+                   </div>
+                  <div class="flex justify-end lg:pb-6 lg:pr-48">
+                     <button class="lg-button focus:outline-none focus:shadow-outline" (click)="cancel()">Back</button>
+                     <button class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">Next</button>
+                 </div>
+         </form>         
+       </mat-tab>
+       <mat-tab>
+         <form [formGroup]="fourthFormGroup">
+         <ng-template mat-tab-label>
+           <mat-icon class="example-tab-icon">redeem</mat-icon>
+           Merit - Quality
+         </ng-template>
+         <div class="flex flex-wrap">
+           <div class="w-full md:w-1/2 sm:w-full">
+                       <mat-form-field>
+                       <mat-label>Academic Knowledge</mat-label>
+                       <mat-select  class="br-btm input-w" formControlName="academicKnowledge" required>
+                         <mat-option [value]=1>Unsatisfactory</mat-option>
+                         <mat-option [value]=2>Needs Improvement</mat-option>
+                         <mat-option [value]=3>Meets Expectations</mat-option>
+                         <mat-option [value]=4>Exceeds Expectations</mat-option>
+                       </mat-select>
+                       <mat-error *ngIf ="fourthFormGroup.get('academicKnowledge').errors?.required">
+                         please select Academic Knowledge
+                     </mat-error>
+                   </mat-form-field>
+                   <mat-form-field>
+                       <mat-label>Product Knowledge</mat-label>
+                       <mat-select  class="br-btm input-w" formControlName="productKnowledge" required>
+                         <mat-option [value]=1>Unsatisfactory</mat-option>
+                         <mat-option [value]=2>Needs Improvement</mat-option>
+                         <mat-option [value]=3>Meets Expectations</mat-option>
+                         <mat-option [value]=4>Exceeds Expectations</mat-option>
+                       </mat-select>
+                       <mat-error *ngIf ="fourthFormGroup.get('productKnowledge').errors?.required">
+                         please select Product Knowledge
+                     </mat-error>
+                   </mat-form-field>
+                   <mat-form-field>
+                       <mat-label>Industry Knowledge</mat-label>
+                       <mat-select  class="br-btm input-w" formControlName="industryKnowledge" required>
+                         <mat-option [value]=1>Unsatisfactory</mat-option>
+                         <mat-option [value]=2>Needs Improvement</mat-option>
+                         <mat-option [value]=3>Meets Expectations</mat-option>
+                         <mat-option [value]=4>Exceeds Expectations</mat-option>
+                       </mat-select>
+                       <mat-error *ngIf ="fourthFormGroup.get('industryKnowledge').errors?.required">
+                         please select Industry Knowledge
+                     </mat-error>
+                   </mat-form-field>
+                   <mat-form-field>
+                       <mat-label>Communication Skills</mat-label>
+                       <mat-select  class="br-btm input-w" formControlName="communicationSkills" required>
+                         <mat-option [value]=1>Needs Improvement</mat-option>
+                         <mat-option [value]=2>Meets Expectations</mat-option>
+                       </mat-select>
+                       <mat-error *ngIf ="fourthFormGroup.get('communicationSkills').errors?.required">
+                         please select Communication Skills
+                     </mat-error>
+                   </mat-form-field>
+                 </div>
+               </div>
+               <div class="flex justify-end lg:pb-6 lg:pr-48">
+                 <button class="lg-button focus:outline-none focus:shadow-outline" (click)="cancel()">Back</button>
+                 <button class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">Next</button>
+             </div>     
+         </form>      
+       </mat-tab>
+       <mat-tab>
+         <form [formGroup]="fifthFormGroup">
+         <ng-template mat-tab-label>
+           <mat-icon class="example-tab-icon">report_problem</mat-icon>
+           Issues
+         </ng-template>
+         <div class="flex flex-wrap">
+           <div class="w-full md:w-1/2 sm:w-full">
+                   <mat-form-field>
+                     <mat-label>Discrepancy in documents & Declarations</mat-label>
+                     <mat-select  class="br-btm input-w" formControlName="discrepancy" [(ngModel)]="discrepancy" tabindex="1">
+                       <mat-option value="yes">Yes</mat-option>
+                       <mat-option value="no">No</mat-option>
+                     </mat-select>
+                     <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
+                       Please select Discrepancy in documents & Declarations
+                     </mat-error> -->
+                   </mat-form-field>
+                   <div *ngIf="discrepancy == 'yes'">
+                     <table class="border-collapse border-2 border-gray-500">
+                       <thead>
+                       <tr>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Period(Duration)</th>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Cause</th>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Action Taken</th>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Upload Document</th>
+                       </tr>
+                       </thead>
+                       <tbody>
+                         <tr>
+                           <td style="display: flex;" class="border border-gray-400 px-4 py-2 text-gray-800">
+                               <input matInput formControlName="dateOfBirth" [matDatepicker]="picker1" class="br-btm input-w" [min]="minDate" [max]="maxDate">
+                               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                               <mat-datepicker #picker1 color="primary" class="datepicker"></mat-datepicker>
+                            
+                           </td>
+                           <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                               <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
+                           </td>
+                           <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                               <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
+                           
+                           </td>
+                           <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                             <div class="group-gap">
+                               <div class="avatar-upload">
+                                   <div class="avatar-edit">
+                                     <!-- <label class="image-text">Documents Upload</label> -->
+                                       <input type='file' placeholder="Upload Document" id="imageUpload" accept=".pdf"  #extraActivityDocumentLink (change)="uploadFile($event.target.files)" />
+                                       <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
+                                     </div>
+                               </div>
+                               <button mat-button  (click)="extraActivityDocumentLink.click()">
+                                   <mat-icon>file_upload</mat-icon>
+                               </button>
+                             </div>
+                           </td>
+                         </tr>
+                       </tbody>
+                     </table>
+                   </div>
+                   <mat-form-field>
+                     <mat-label>Compliance and Discrepancy</mat-label>
+                     <mat-select  class="br-btm input-w" formControlName="compliance" [(ngModel)]="compliance" tabindex="3">
+                       <mat-option value="yes">Yes</mat-option>
+                       <mat-option value="no">No</mat-option>
+                     </mat-select>
+                     <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
+                       Please select Compliance and Discrepancy
+                     </mat-error> -->
+                   </mat-form-field>
+                   <div *ngIf="compliance == 'yes'">
+                     <table class="border-collapse border-2 border-gray-500">
+                       <thead>
+                       <tr>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Period(Duration)</th>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Cause</th>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Action Taken</th>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Upload Document</th>
+                       </tr>
+                       </thead>
+                       <tbody>
+                         <tr>
+                           <td style="display: flex;" class="border border-gray-400 px-4 py-2 text-gray-800">
+                               <input matInput formControlName="dateOfBirth" [matDatepicker]="picker1" class="br-btm input-w" [min]="minDate" [max]="maxDate">
+                               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                               <mat-datepicker #picker1 color="primary" class="datepicker"></mat-datepicker>
+                            
+                           </td>
+                           <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                               <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
+                           </td>
+                           <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                               <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
+                           
+                           </td>
+                           <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                             <div class="group-gap">
+                               <div class="avatar-upload">
+                                   <div class="avatar-edit">
+                                     <!-- <label class="image-text">Documents Upload</label> -->
+                                       <input type='file' placeholder="Upload Document" id="imageUpload" accept=".pdf"  #extraActivityDocumentLink (change)="uploadFile($event.target.files)" />
+                                       <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
+                                     </div>
+                               </div>
+                               <button mat-button  (click)="extraActivityDocumentLink.click()">
+                                   <mat-icon>file_upload</mat-icon>
+                               </button>
+                             </div>
+                           </td>
+                         </tr>
+                       </tbody>
+                     </table>
+                   </div>
+                   <mat-form-field>
+                     <mat-label>Warning</mat-label>
+                     <mat-select  class="br-btm input-w" formControlName="warning" [(ngModel)]="warning" tabindex="5">
+                       <mat-option value="yes">Yes</mat-option>
+                       <mat-option value="no">No</mat-option>
+                     </mat-select>
+                     <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
+                       Please select warning
+                     </mat-error> -->
+                   </mat-form-field>
+                   <div *ngIf="warning == 'yes'">
+                     <table class="border-collapse border-2 border-gray-500">
+                       <thead>
+                       <tr>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Period(Duration)</th>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Cause</th>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Action Taken</th>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Upload Document</th>
+                       </tr>
+                       </thead>
+                       <tbody>
+                         <tr>
+                           <td style="display: flex;" class="border border-gray-400 px-4 py-2 text-gray-800">
+                               <input matInput formControlName="dateOfBirth" [matDatepicker]="picker1" class="br-btm input-w" [min]="minDate" [max]="maxDate">
+                               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                               <mat-datepicker #picker1 color="primary" class="datepicker"></mat-datepicker>
+                            
+                           </td>
+                           <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                               <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
+                           </td>
+                           <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                               <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
+                           
+                           </td>
+                           <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                             <div class="group-gap">
+                               <div class="avatar-upload">
+                                   <div class="avatar-edit">
+                                     <!-- <label class="image-text">Documents Upload</label> -->
+                                       <input type='file' placeholder="Upload Document" id="imageUpload" accept=".pdf"  #extraActivityDocumentLink (change)="uploadFile($event.target.files)" />
+                                       <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
+                                     </div>
+                               </div>
+                               <button mat-button  (click)="extraActivityDocumentLink.click()">
+                                   <mat-icon>file_upload</mat-icon>
+                               </button>
+                             </div>
+                           </td>
+                         </tr>
+                       </tbody>
+                     </table>
+                   </div>
+                 </div>
+                 <div class="w-full md:w-1/2 sm:w-full">
+                   <mat-form-field>
+                     <mat-label>Show cause issued</mat-label>
+                     <mat-select  class="br-btm input-w" formControlName="showcaseissued" [(ngModel)]="showCase" tabindex="2">
+                       <mat-option value="yes">Yes</mat-option>
+                       <mat-option value="no">No</mat-option>
+                     </mat-select>
+                     <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
+                       Please select Show cause issued
+                     </mat-error> -->
+                   </mat-form-field>
+                   <div *ngIf="showCase == 'yes'">
+                     <table class="border-collapse border-2 border-gray-500">
+                       <thead>
+                       <tr>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Period(Duration)</th>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Cause</th>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Action Taken</th>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Upload Document</th>
+                       </tr>
+                       </thead>
+                       <tbody>
+                         <tr>
+                           <td style="display: flex;" class="border border-gray-400 px-4 py-2 text-gray-800">
+                               <input matInput formControlName="dateOfBirth" [matDatepicker]="picker1" class="br-btm input-w" [min]="minDate" [max]="maxDate">
+                               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                               <mat-datepicker #picker1 color="primary" class="datepicker"></mat-datepicker>
+                            
+                           </td>
+                           <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                               <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
+                           </td>
+                           <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                               <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
+                           
+                           </td>
+                           <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                             <div class="group-gap">
+                               <div class="avatar-upload">
+                                   <div class="avatar-edit">
+                                     <!-- <label class="image-text">Documents Upload</label> -->
+                                       <input type='file' placeholder="Upload Document" id="imageUpload" accept=".pdf"  #extraActivityDocumentLink (change)="uploadFile($event.target.files)" />
+                                       <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
+                                     </div>
+                               </div>
+                               <button mat-button  (click)="extraActivityDocumentLink.click()">
+                                   <mat-icon>file_upload</mat-icon>
+                               </button>
+                             </div>
+                           </td>
+                         </tr>
+                       </tbody>
+                     </table>
+                   </div>
+                   <mat-form-field>
+                     <mat-label>Suspention</mat-label>
+                     <mat-select  class="br-btm input-w" formControlName="suspention" [(ngModel)]="suspention" tabindex="4">
+                       <mat-option value="yes">Yes</mat-option>
+                       <mat-option value="no">No</mat-option>
+                     </mat-select>
+                     <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
+                       Please select Suspention
+                     </mat-error> -->
+                   </mat-form-field>
+                   <div *ngIf="suspention == 'yes'">
+                     <table class="border-collapse border-2 border-gray-500">
+                       <thead>
+                       <tr>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Period(Duration)</th>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Cause</th>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Action Taken</th>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Upload Document</th>
+                       </tr>
+                       </thead>
+                       <tbody>
+                         <tr>
+                           <td style="display: flex;" class="border border-gray-400 px-4 py-2 text-gray-800">
+                               <input matInput formControlName="dateOfBirth" [matDatepicker]="picker1" class="br-btm input-w" [min]="minDate" [max]="maxDate">
+                               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                               <mat-datepicker #picker1 color="primary" class="datepicker"></mat-datepicker>
+                            
+                           </td>
+                           <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                               <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
+                           </td>
+                           <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                               <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
+                           
+                           </td>
+                           <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                             <div class="group-gap">
+                               <div class="avatar-upload">
+                                   <div class="avatar-edit">
+                                     <!-- <label class="image-text">Documents Upload</label> -->
+                                       <input type='file' placeholder="Upload Document" id="imageUpload" accept=".pdf"  #extraActivityDocumentLink (change)="uploadFile($event.target.files)" />
+                                       <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
+                                     </div>
+                               </div>
+                               <button mat-button  (click)="extraActivityDocumentLink.click()">
+                                   <mat-icon>file_upload</mat-icon>
+                               </button>
+                             </div>
+                           </td>
+                         </tr>
+                       </tbody>
+                     </table>
+                   </div>
+                   <mat-form-field>
+                     <mat-label>Termination</mat-label>
+                     <mat-select  class="br-btm input-w" formControlName="termination" [(ngModel)]="termination" tabindex="6">
+                       <mat-option value="yes">Yes</mat-option>
+                       <mat-option value="no">No</mat-option>
+                     </mat-select>
+                     <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
+                       Please select Termination
+                     </mat-error> -->
+                   </mat-form-field>
+                   <div *ngIf="termination == 'yes'">
+                     <table class="border-collapse border-2 border-gray-500">
+                       <thead>
+                       <tr>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Period(Duration)</th>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Cause</th>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Action Taken</th>
+                         <th class="border border-gray-400 px-4 py-2 text-gray-800">Upload Document</th>
+                       </tr>
+                       </thead>
+                       <tbody>
+                         <tr>
+                           <td style="display: flex;" class="border border-gray-400 px-4 py-2 text-gray-800">
+                               <input matInput formControlName="dateOfBirth" [matDatepicker]="picker1" class="br-btm input-w" [min]="minDate" [max]="maxDate">
+                               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                               <mat-datepicker #picker1 color="primary" class="datepicker"></mat-datepicker>
+                            
+                           </td>
+                           <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                               <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
+                           </td>
+                           <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                               <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
+                           
+                           </td>
+                           <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                             <div class="group-gap">
+                               <div class="avatar-upload">
+                                   <div class="avatar-edit">
+                                     <!-- <label class="image-text">Documents Upload</label> -->
+                                       <input type='file' placeholder="Upload Document" id="imageUpload" accept=".pdf"  #extraActivityDocumentLink (change)="uploadFile($event.target.files)" />
+                                       <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
+                                     </div>
+                               </div>
+                               <button mat-button  (click)="extraActivityDocumentLink.click()">
+                                   <mat-icon>file_upload</mat-icon>
+                               </button>
+                             </div>
+                           </td>
+                         </tr>
+                       </tbody>
+                     </table>
+                   </div>
+               </div>
+           </div>
+           <div class="flex justify-end lg:pb-6 lg:pr-48">
+             <!-- <a routerLink="/candidate-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button">
+               Cancel
+             </button></a> -->
+             <button class="lg-button focus:outline-none focus:shadow-outline" type="button" (click)=cancel() *ngIf="!id" >
+              Back
+             </button>
+             <button class="lg-button focus:outline-none focus:shadow-outline" type="button" (click)=submit() *ngIf="!id" >
+              Submit
             </button>
-        </div>        
-      </mat-tab>
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <mat-icon class="example-tab-icon">card_travel</mat-icon>
-            Work Ethic
-          </ng-template>
-          <div class="flex flex-wrap">
-            <div class="w-full md:w-1/2 sm:w-full">
-                    <mat-form-field>
-                        <mat-label>Self Driven</mat-label>
-                        <mat-select  class="br-btm input-w" formControlName="selfDriven" required tabindex="1">
-                          <mat-option [value]=1>Unsatisfactory</mat-option>
-                          <mat-option [value]=2>Needs Improvement</mat-option>
-                          <mat-option [value]=3>Meets Expectations</mat-option>
-                          <mat-option [value]=4>Exceeds Expectations</mat-option>
-                        </mat-select>
-                        <mat-error *ngIf ="createCandidate.get('selfDriven').errors?.required">
-                          please select Self Driven value
-                      </mat-error>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Creativity</mat-label>
-                        <mat-select  class="br-btm input-w" formControlName="creativity" required tabindex="3">
-                          <mat-option [value]=1>Unsatisfactory</mat-option>
-                          <mat-option [value]=2>Needs Improvement</mat-option>
-                          <mat-option [value]=3>Meets Expectations</mat-option>
-                          <mat-option [value]=4>Exceeds Expectations</mat-option>
-                        </mat-select>
-                        <mat-error *ngIf ="createCandidate.get('creativity').errors?.required">
-                          please select Creativity
-                      </mat-error>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Informal organization-sense of belonging</mat-label>
-                        <mat-select  class="br-btm input-w" formControlName="informalOrganizationSenseOfBelonging" required tabindex="5">
-                          <mat-option [value]=1>Unsatisfactory</mat-option>
-                          <mat-option [value]=2>Needs Improvement</mat-option>
-                          <mat-option [value]=3>Meets Expectations</mat-option>
-                          <mat-option [value]=4>Exceeds Expectations</mat-option>
-                        </mat-select>
-                        <mat-error *ngIf ="createCandidate.get('informalOrganizationSenseOfBelonging').errors?.required">
-                          please select Informal organization-sense of belonging
-                      </mat-error>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Initiative</mat-label>
-                        <mat-select  class="br-btm input-w" formControlName="initiative" required tabindex="7">
-                          <mat-option [value]=1>Unsatisfactory</mat-option>
-                          <mat-option [value]=2>Needs Improvement</mat-option>
-                          <mat-option [value]=3>Meets Expectations</mat-option>
-                          <mat-option [value]=4>Exceeds Expectations</mat-option>
-                        </mat-select>
-                        <mat-error *ngIf ="createCandidate.get('initiative').errors?.required">
-                          please select Initiative
-                      </mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="w-full md:w-1/2 sm:w-full">
-                    <mat-form-field>
-                        <mat-label>Work Independently</mat-label>
-                        <mat-select  class="br-btm input-w" formControlName="workIndependenty" required tabindex="2">
-                          <mat-option [value]=1>Unsatisfactory</mat-option>
-                          <mat-option [value]=2>Needs Improvement</mat-option>
-                          <mat-option [value]=3>Meets Expectations</mat-option>
-                          <mat-option [value]=4>Exceeds Expectations</mat-option>
-                        </mat-select>
-                        <mat-error *ngIf ="createCandidate.get('workIndependenty').errors?.required">
-                          please select Work Independently
-                      </mat-error>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Team Work</mat-label>
-                        <mat-select  class="br-btm input-w" formControlName="teamWork" required tabindex="4">
-                          <mat-option [value]=1>Unsatisfactory</mat-option>
-                          <mat-option [value]=2>Needs Improvement</mat-option>
-                          <mat-option [value]=3>Meets Expectations</mat-option>
-                          <mat-option [value]=4>Exceeds Expectations</mat-option>
-                        </mat-select>
-                        <mat-error *ngIf ="createCandidate.get('teamWork').errors?.required">
-                          please select Team Work
-                      </mat-error>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Deals Constructively With Pressure</mat-label>
-                        <mat-select  class="br-btm input-w" formControlName="dealConstructivelyWithPressure" required tabindex="6">
-                          <mat-option [value]=1>Unsatisfactory</mat-option>
-                          <mat-option [value]=2>Needs Improvement</mat-option>
-                          <mat-option [value]=3>Meets Expectations</mat-option>
-                          <mat-option [value]=4>Exceeds Expectations</mat-option>
-                        </mat-select>
-                        <mat-error *ngIf ="createCandidate.get('dealConstructivelyWithPressure').errors?.required">
-                          please select Deals Constructively With Pressure
-                      </mat-error>
-                    </mat-form-field>
-                    <h1 class="hd-add">Conduct</h1>
-                    <mat-form-field>
-                        <mat-label>Punctuality</mat-label>
-                        <mat-select  class="br-btm input-w" formControlName="punctuality" required tabindex="21">
-                          <mat-option [value]=1>Unsatisfactory</mat-option>
-                          <mat-option [value]=2>Needs Improvement</mat-option>
-                          <mat-option [value]=3>Meets Expectations</mat-option>
-                          <mat-option [value]=4>Exceeds Expectations</mat-option>
-                        </mat-select>
-                        <mat-error *ngIf ="createCandidate.get('punctuality').errors?.required">
-                          Please select Punctuality
-                      </mat-error>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Discipline</mat-label>
-                        <mat-select  class="br-btm input-w" formControlName="discipline" required tabindex="22">
-                          <mat-option [value]=1>Unsatisfactory</mat-option>
-                          <mat-option [value]=2>Needs Improvement</mat-option>
-                          <mat-option [value]=3>Meets Expectations</mat-option>
-                          <mat-option [value]=4>Exceeds Expectations</mat-option>
-                        </mat-select>
-                        <mat-error *ngIf ="createCandidate.get('discipline').errors?.required">
-                          Please select Discipline
-                      </mat-error>
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="flex justify-end lg:pb-6 lg:pr-48">
-                  <button class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">
-                      Next
-                  </button>
-              </div>       
-             </mat-tab>
-      
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <mat-icon class="example-tab-icon">work</mat-icon>
-            Leadership
-          </ng-template>
-          <div class="flex flex-wrap">
-            <div class="w-full md:w-1/2 sm:w-full">
-                        <mat-form-field>
-                            <mat-label>Performance</mat-label>
-                            <mat-select  class="br-btm input-w" formControlName="volume"  [(ngModel)]="volume" tabindex="1">
-                              <mat-option [value]=1>Unsatisfactory</mat-option>
-                              <mat-option [value]=2>Needs Improvement</mat-option>
-                              <mat-option [value]=3>Meets Expectations</mat-option>
-                              <mat-option [value]=4>Exceeds Expectations</mat-option>
-                            </mat-select>
-                            <mat-error *ngIf ="createCandidate.get('volume').errors?.required">
-                              please select Performance
-                          </mat-error>
-                        </mat-form-field>
-                        <mat-form-field>
-                            <mat-label>Strategic Thinking </mat-label>
-                            <mat-select  class="br-btm input-w" formControlName="quality"  [(ngModel)]="quality" tabindex="3">
-                              <mat-option [value]=1>Unsatisfactory</mat-option>
-                              <mat-option [value]=2>Needs Improvement</mat-option>
-                              <mat-option [value]=3>Meets Expectations</mat-option>
-                              <mat-option [value]=4>Exceeds Expectations</mat-option>
-                            </mat-select>
-                            <mat-error *ngIf ="createCandidate.get('quality').errors?.required">
-                              please select Quality
-                          </mat-error>
-                        </mat-form-field>
-                        <mat-form-field>
-                            <mat-label>Problem Solving</mat-label>
-                            <mat-select  class="br-btm input-w" formControlName="consistency" [(ngModel)]="consistency" tabindex="5">
-                              <mat-option [value]=1>Needs Improvement</mat-option>
-                              <mat-option [value]=2>Meets Expectations</mat-option>
-                            </mat-select>
-                            <mat-error *ngIf ="createCandidate.get('consistency').errors?.required">
-                              please select Consistency
-                          </mat-error>
-                        </mat-form-field>
-                        <mat-form-field>
-                          <mat-label>Building High Performance Team</mat-label>
-                          <mat-select  class="br-btm input-w" formControlName="building" [(ngModel)]="building" tabindex="7">
-                            <mat-option [value]=1>Unsatisfactory</mat-option>
-                            <mat-option [value]=2>Needs Improvement</mat-option>
-                            <mat-option [value]=3>Meets Expectations</mat-option>
-                            <mat-option [value]=4>Exceeds Expectations</mat-option>
-                          </mat-select>
-                          <mat-error *ngIf ="createCandidate.get('building').errors?.required">
-                            please select Quality
-                        </mat-error>
-                      </mat-form-field>
-                      <mat-form-field>
-                          <mat-label>Stakeholder Management</mat-label>
-                          <mat-select  class="br-btm input-w" formControlName="stakeholder" [(ngModel)]="stakeholder" tabindex="9">
-                            <mat-option [value]=1>Needs Improvement</mat-option>
-                            <mat-option [value]=2>Meets Expectations</mat-option>
-                          </mat-select>
-                          <mat-error *ngIf ="createCandidate.get('stakeholder').errors?.required">
-                            please select Consistency
-                        </mat-error>
-                      </mat-form-field>
-                      </div>
-                      <div class="w-full md:w-1/2 sm:w-full">
-                        <mat-form-field *ngIf="volume == '1' || volume == '2' || volume == '3' || volume == '4'">
-                          <!-- <mat-label>Description</mat-label> -->
-                          <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="2"></textarea>
-                        </mat-form-field>
-                        <mat-form-field *ngIf="quality == '1' || quality == '2' || quality == '3' || quality =='4' ">
-                          <!-- <mat-label>Description</mat-label> -->
-                          <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="4"></textarea>
-                        </mat-form-field>
-                        <mat-form-field *ngIf="consistency == '1' || consistency == '2' || consistency == '3' || consistency == '4'">
-                          <!-- <mat-label>Description</mat-label> -->
-                          <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="6"></textarea>
-                        </mat-form-field>
-                        <mat-form-field *ngIf="building == '1' || building == '2' || building == '3' || building == '4' ">
-                          <!-- <mat-label>Description</mat-label> -->
-                          <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="8"></textarea>
-                        </mat-form-field>
-                        <mat-form-field *ngIf="stakeholder == '1' || stakeholder =='2'">
-                          <!-- <mat-label>Description</mat-label> -->
-                          <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="10"></textarea>
-                        </mat-form-field>
-                      </div>
-                    </div>
-                    <div class="flex justify-end lg:pb-6 lg:pr-48">
-                      <button class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">
-                          Next
-                      </button>
-                  </div>
-        </mat-tab>
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <mat-icon class="example-tab-icon">redeem</mat-icon>
-            Merit - Quality
-          </ng-template>
-          <div class="flex flex-wrap">
-            <div class="w-full md:w-1/2 sm:w-full">
-                        <mat-form-field>
-                        <mat-label>Academic Knowledge</mat-label>
-                        <mat-select  class="br-btm input-w" formControlName="academicKnowledge" required>
-                          <mat-option [value]=1>Unsatisfactory</mat-option>
-                          <mat-option [value]=2>Needs Improvement</mat-option>
-                          <mat-option [value]=3>Meets Expectations</mat-option>
-                          <mat-option [value]=4>Exceeds Expectations</mat-option>
-                        </mat-select>
-                        <mat-error *ngIf ="createCandidate.get('academicKnowledge').errors?.required">
-                          please select Academic Knowledge
-                      </mat-error>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Product Knowledge</mat-label>
-                        <mat-select  class="br-btm input-w" formControlName="productKnowledge" required>
-                          <mat-option [value]=1>Unsatisfactory</mat-option>
-                          <mat-option [value]=2>Needs Improvement</mat-option>
-                          <mat-option [value]=3>Meets Expectations</mat-option>
-                          <mat-option [value]=4>Exceeds Expectations</mat-option>
-                        </mat-select>
-                        <mat-error *ngIf ="createCandidate.get('productKnowledge').errors?.required">
-                          please select Product Knowledge
-                      </mat-error>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Industry Knowledge</mat-label>
-                        <mat-select  class="br-btm input-w" formControlName="industryKnowledge" required>
-                          <mat-option [value]=1>Unsatisfactory</mat-option>
-                          <mat-option [value]=2>Needs Improvement</mat-option>
-                          <mat-option [value]=3>Meets Expectations</mat-option>
-                          <mat-option [value]=4>Exceeds Expectations</mat-option>
-                        </mat-select>
-                        <mat-error *ngIf ="createCandidate.get('industryKnowledge').errors?.required">
-                          please select Industry Knowledge
-                      </mat-error>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Communication Skills</mat-label>
-                        <mat-select  class="br-btm input-w" formControlName="communicationSkills" required>
-                          <mat-option [value]=1>Needs Improvement</mat-option>
-                          <mat-option [value]=2>Meets Expectations</mat-option>
-                        </mat-select>
-                        <mat-error *ngIf ="createCandidate.get('communicationSkills').errors?.required">
-                          please select Communication Skills
-                      </mat-error>
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="flex justify-end lg:pb-6 lg:pr-48">
-                  <button class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">
-                      Next
-                  </button>
-              </div>        </mat-tab>
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <mat-icon class="example-tab-icon">report_problem</mat-icon>
-            Issues
-          </ng-template>
-          <div class="flex flex-wrap">
-            <div class="w-full md:w-1/2 sm:w-full">
-                    <mat-form-field>
-                      <mat-label>Discrepancy in documents & Declarations</mat-label>
-                      <mat-select  class="br-btm input-w" formControlName="discrepancy" [(ngModel)]="discrepancy" tabindex="1">
-                        <mat-option value="yes">Yes</mat-option>
-                        <mat-option value="no">No</mat-option>
-                      </mat-select>
-                      <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
-                        Please select Discrepancy in documents & Declarations
-                      </mat-error> -->
-                    </mat-form-field>
-                    <div *ngIf="discrepancy == 'yes'">
-                      <table class="border-collapse border-2 border-gray-500">
-                        <thead>
-                        <tr>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Period(Duration)</th>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Cause</th>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Action Taken</th>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Upload Document</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td style="display: flex;" class="border border-gray-400 px-4 py-2 text-gray-800">
-                                <input matInput formControlName="dateOfBirth" [matDatepicker]="picker1" class="br-btm input-w" [min]="minDate" [max]="maxDate">
-                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                                <mat-datepicker #picker1 color="primary" class="datepicker"></mat-datepicker>
-                             
-                            </td>
-                            <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                                <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
-                            </td>
-                            <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                                <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
-                            
-                            </td>
-                            <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                              <div class="group-gap">
-                                <div class="avatar-upload">
-                                    <div class="avatar-edit">
-                                      <!-- <label class="image-text">Documents Upload</label> -->
-                                        <input type='file' placeholder="Upload Document" id="imageUpload" accept=".pdf"  #extraActivityDocumentLink (change)="uploadFile($event.target.files)" />
-                                        <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
-                                      </div>
-                                </div>
-                                <button mat-button  (click)="extraActivityDocumentLink.click()">
-                                    <mat-icon>file_upload</mat-icon>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <mat-form-field>
-                      <mat-label>Compliance and Discrepancy</mat-label>
-                      <mat-select  class="br-btm input-w" formControlName="compliance" [(ngModel)]="compliance" tabindex="3">
-                        <mat-option value="yes">Yes</mat-option>
-                        <mat-option value="no">No</mat-option>
-                      </mat-select>
-                      <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
-                        Please select Compliance and Discrepancy
-                      </mat-error> -->
-                    </mat-form-field>
-                    <div *ngIf="compliance == 'yes'">
-                      <table class="border-collapse border-2 border-gray-500">
-                        <thead>
-                        <tr>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Period(Duration)</th>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Cause</th>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Action Taken</th>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Upload Document</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td style="display: flex;" class="border border-gray-400 px-4 py-2 text-gray-800">
-                                <input matInput formControlName="dateOfBirth" [matDatepicker]="picker1" class="br-btm input-w" [min]="minDate" [max]="maxDate">
-                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                                <mat-datepicker #picker1 color="primary" class="datepicker"></mat-datepicker>
-                             
-                            </td>
-                            <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                                <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
-                            </td>
-                            <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                                <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
-                            
-                            </td>
-                            <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                              <div class="group-gap">
-                                <div class="avatar-upload">
-                                    <div class="avatar-edit">
-                                      <!-- <label class="image-text">Documents Upload</label> -->
-                                        <input type='file' placeholder="Upload Document" id="imageUpload" accept=".pdf"  #extraActivityDocumentLink (change)="uploadFile($event.target.files)" />
-                                        <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
-                                      </div>
-                                </div>
-                                <button mat-button  (click)="extraActivityDocumentLink.click()">
-                                    <mat-icon>file_upload</mat-icon>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <mat-form-field>
-                      <mat-label>Warning</mat-label>
-                      <mat-select  class="br-btm input-w" formControlName="warning" [(ngModel)]="warning" tabindex="5">
-                        <mat-option value="yes">Yes</mat-option>
-                        <mat-option value="no">No</mat-option>
-                      </mat-select>
-                      <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
-                        Please select warning
-                      </mat-error> -->
-                    </mat-form-field>
-                    <div *ngIf="warning == 'yes'">
-                      <table class="border-collapse border-2 border-gray-500">
-                        <thead>
-                        <tr>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Period(Duration)</th>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Cause</th>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Action Taken</th>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Upload Document</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td style="display: flex;" class="border border-gray-400 px-4 py-2 text-gray-800">
-                                <input matInput formControlName="dateOfBirth" [matDatepicker]="picker1" class="br-btm input-w" [min]="minDate" [max]="maxDate">
-                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                                <mat-datepicker #picker1 color="primary" class="datepicker"></mat-datepicker>
-                             
-                            </td>
-                            <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                                <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
-                            </td>
-                            <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                                <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
-                            
-                            </td>
-                            <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                              <div class="group-gap">
-                                <div class="avatar-upload">
-                                    <div class="avatar-edit">
-                                      <!-- <label class="image-text">Documents Upload</label> -->
-                                        <input type='file' placeholder="Upload Document" id="imageUpload" accept=".pdf"  #extraActivityDocumentLink (change)="uploadFile($event.target.files)" />
-                                        <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
-                                      </div>
-                                </div>
-                                <button mat-button  (click)="extraActivityDocumentLink.click()">
-                                    <mat-icon>file_upload</mat-icon>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                  <div class="w-full md:w-1/2 sm:w-full">
-                    <mat-form-field>
-                      <mat-label>Show cause issued</mat-label>
-                      <mat-select  class="br-btm input-w" formControlName="showcaseissued" [(ngModel)]="showCase" tabindex="2">
-                        <mat-option value="yes">Yes</mat-option>
-                        <mat-option value="no">No</mat-option>
-                      </mat-select>
-                      <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
-                        Please select Show cause issued
-                      </mat-error> -->
-                    </mat-form-field>
-                    <div *ngIf="showCase == 'yes'">
-                      <table class="border-collapse border-2 border-gray-500">
-                        <thead>
-                        <tr>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Period(Duration)</th>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Cause</th>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Action Taken</th>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Upload Document</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td style="display: flex;" class="border border-gray-400 px-4 py-2 text-gray-800">
-                                <input matInput formControlName="dateOfBirth" [matDatepicker]="picker1" class="br-btm input-w" [min]="minDate" [max]="maxDate">
-                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                                <mat-datepicker #picker1 color="primary" class="datepicker"></mat-datepicker>
-                             
-                            </td>
-                            <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                                <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
-                            </td>
-                            <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                                <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
-                            
-                            </td>
-                            <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                              <div class="group-gap">
-                                <div class="avatar-upload">
-                                    <div class="avatar-edit">
-                                      <!-- <label class="image-text">Documents Upload</label> -->
-                                        <input type='file' placeholder="Upload Document" id="imageUpload" accept=".pdf"  #extraActivityDocumentLink (change)="uploadFile($event.target.files)" />
-                                        <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
-                                      </div>
-                                </div>
-                                <button mat-button  (click)="extraActivityDocumentLink.click()">
-                                    <mat-icon>file_upload</mat-icon>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <mat-form-field>
-                      <mat-label>Suspention</mat-label>
-                      <mat-select  class="br-btm input-w" formControlName="suspention" [(ngModel)]="suspention" tabindex="4">
-                        <mat-option value="yes">Yes</mat-option>
-                        <mat-option value="no">No</mat-option>
-                      </mat-select>
-                      <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
-                        Please select Suspention
-                      </mat-error> -->
-                    </mat-form-field>
-                    <div *ngIf="suspention == 'yes'">
-                      <table class="border-collapse border-2 border-gray-500">
-                        <thead>
-                        <tr>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Period(Duration)</th>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Cause</th>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Action Taken</th>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Upload Document</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td style="display: flex;" class="border border-gray-400 px-4 py-2 text-gray-800">
-                                <input matInput formControlName="dateOfBirth" [matDatepicker]="picker1" class="br-btm input-w" [min]="minDate" [max]="maxDate">
-                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                                <mat-datepicker #picker1 color="primary" class="datepicker"></mat-datepicker>
-                             
-                            </td>
-                            <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                                <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
-                            </td>
-                            <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                                <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
-                            
-                            </td>
-                            <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                              <div class="group-gap">
-                                <div class="avatar-upload">
-                                    <div class="avatar-edit">
-                                      <!-- <label class="image-text">Documents Upload</label> -->
-                                        <input type='file' placeholder="Upload Document" id="imageUpload" accept=".pdf"  #extraActivityDocumentLink (change)="uploadFile($event.target.files)" />
-                                        <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
-                                      </div>
-                                </div>
-                                <button mat-button  (click)="extraActivityDocumentLink.click()">
-                                    <mat-icon>file_upload</mat-icon>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <mat-form-field>
-                      <mat-label>Termination</mat-label>
-                      <mat-select  class="br-btm input-w" formControlName="termination" [(ngModel)]="termination" tabindex="6">
-                        <mat-option value="yes">Yes</mat-option>
-                        <mat-option value="no">No</mat-option>
-                      </mat-select>
-                      <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
-                        Please select Termination
-                      </mat-error> -->
-                    </mat-form-field>
-                    <div *ngIf="termination == 'yes'">
-                      <table class="border-collapse border-2 border-gray-500">
-                        <thead>
-                        <tr>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Period(Duration)</th>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Cause</th>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Action Taken</th>
-                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Upload Document</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td style="display: flex;" class="border border-gray-400 px-4 py-2 text-gray-800">
-                                <input matInput formControlName="dateOfBirth" [matDatepicker]="picker1" class="br-btm input-w" [min]="minDate" [max]="maxDate">
-                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                                <mat-datepicker #picker1 color="primary" class="datepicker"></mat-datepicker>
-                             
-                            </td>
-                            <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                                <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
-                            </td>
-                            <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                                <input  matInput formControlName="role"  type="text"    class="br-btm input-w" autoComplete='off'>
-                            
-                            </td>
-                            <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                              <div class="group-gap">
-                                <div class="avatar-upload">
-                                    <div class="avatar-edit">
-                                      <!-- <label class="image-text">Documents Upload</label> -->
-                                        <input type='file' placeholder="Upload Document" id="imageUpload" accept=".pdf"  #extraActivityDocumentLink (change)="uploadFile($event.target.files)" />
-                                        <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
-                                      </div>
-                                </div>
-                                <button mat-button  (click)="extraActivityDocumentLink.click()">
-                                    <mat-icon>file_upload</mat-icon>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                </div>
-            </div>
-            <div class="flex justify-end lg:pb-6 lg:pr-48">
-              <a routerLink="/candidate-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button">
-                Cancel
-              </button></a>
-              <button class="lg-button focus:outline-none focus:shadow-outline" type="submit" (click)=submit() *ngIf="!id" >
-                Submit
-              </button>
-              <button class="lg-button focus:outline-none focus:shadow-outline" (click)=update(id) *ngIf="id" >
-                  update
-                </button>
-          </div>
-        </mat-tab>
-      </mat-tab-group>
-      
-    </form>
-    </div>
-    </app-navbar>
+             <button class="lg-button focus:outline-none focus:shadow-outline" (click)=update(id) *ngIf="id" >
+                 update
+               </button>
+         </div>
+         </form>
+       </mat-tab>
+     </mat-tab-group>
+     
+  
+   </div>
+   </app-navbar>
