@@ -133,7 +133,7 @@ const employeeSchema = new mongoose.Schema({
     required: false,
   },
   awards: {
-    type: Number,
+    type: String,
     required: false,
   },
 
