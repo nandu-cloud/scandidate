@@ -6,6 +6,7 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { EmployeeService } from  '../../../../services/employee.service';
 import { StorageService } from '../../../../services/storage.service';
 import { from, Subscription } from 'rxjs';
+import { MatTabChangeEvent } from '@angular/material/tabs/public-api';
 @Component({
   selector: 'app-add-candidate',
   templateUrl: './add-candidate.component.html',
@@ -36,6 +37,7 @@ export class AddCandidateComponent implements OnInit {
   building: string;
   consistency : string;
   organizationName: any = window.sessionStorage.getItem('orgName');
+  selectedIndex: number = 0;
  
   constructor(
     public fb: FormBuilder,
@@ -170,6 +172,21 @@ update(id:number){
     throw this.setMessage.message;
   })
 }
+maxNumberOfTabs:number;
+
+public tabChanged(tabChangeEvent: MatTabChangeEvent): void {
+ this.selectedIndex = tabChangeEvent.index;
+}
+
+public nextStep() {
+ if(this.selectedIndex!=this.maxNumberOfTabs)
+ this.selectedIndex += 1;
+ console.log(this.selectedIndex);
+}
+
+public previousStep() {
+ this.selectedIndex -= 1;
+}
 }
 
 @Component({
@@ -179,6 +196,7 @@ update(id:number){
 export class DialogElementsExampleDialog {
   @Input() methodType: any
   Message: any;
+ 
   constructor(public dialogRef: MatDialogRef<DialogElementsExampleDialog>,private router:Router
     ) {
       console.log(this.methodType)
@@ -198,4 +216,7 @@ export class DialogElementsExampleDialog {
     this.dialogRef.close(true);
     this.router.navigate(['/candidate-list']);
  }
+
+
+
 }

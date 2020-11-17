@@ -8,8 +8,8 @@
       </div> 
     <form  class="login-form" [formGroup]="createCandidate"  novalidate>
       <h1 class="hd-add">Add Candidate</h1>
-      <mat-tab-group>
-        <mat-tab>
+      <mat-tab-group [selectedIndex]="selectedIndex" (selectedTabChange)="tabChanged($event)">
+        <mat-tab *ngFor="let number of [0]; let i = index;">
           <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon">face</mat-icon>
             Presonal Information
@@ -153,7 +153,12 @@
            
             </div>
           </div>
-        </mat-tab>
+          <div class="flex justify-end lg:pb-6 lg:pr-48">
+            <button class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">
+                Next
+            </button>
+        </div>        
+      </mat-tab>
         <mat-tab>
           <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon">card_travel</mat-icon>
@@ -274,7 +279,12 @@
                     </mat-form-field>
                   </div>
                 </div>
-        </mat-tab>
+                <div class="flex justify-end lg:pb-6 lg:pr-48">
+                  <button class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">
+                      Next
+                  </button>
+              </div>       
+             </mat-tab>
       
         <mat-tab>
           <ng-template mat-tab-label>
@@ -363,6 +373,11 @@
                         </mat-form-field>
                       </div>
                     </div>
+                    <div class="flex justify-end lg:pb-6 lg:pr-48">
+                      <button class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">
+                          Next
+                      </button>
+                  </div>
         </mat-tab>
         <mat-tab>
           <ng-template mat-tab-label>
@@ -419,7 +434,11 @@
                     </mat-form-field>
                   </div>
                 </div>
-        </mat-tab>
+                <div class="flex justify-end lg:pb-6 lg:pr-48">
+                  <button class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">
+                      Next
+                  </button>
+              </div>        </mat-tab>
         <mat-tab>
           <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon">report_problem</mat-icon>
