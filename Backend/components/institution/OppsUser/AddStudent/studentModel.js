@@ -28,6 +28,9 @@ const studentSchema = new mongoose.Schema({
   eductionalDocumentNames: {
     type: Array,
   },
+  purposeOfFile: {
+    type: Array
+  },
   firstName: {
     type: String,
     required: [true, "first name cannot be empty"],

@@ -261,14 +261,19 @@ module.exports.deleteDocument = async (req, res, next) => {
     `../../../../uploads/student_doc/${data}`
   );
   try {
-    let { eductionalDocumentNames } = await studentDAL.getStudentById({
+    let { eductionalDocumentNames, purposeOfFile } = await studentDAL.getStudentById({
       _id: studentId,
     });
     let index = eductionalDocumentNames.indexOf(data);
     eductionalDocumentNames.splice(index, 1);
+
+    // Delete Purpose Of File
+    purposeOfFile.splice(index, 1);
+
     let resultJson = {
       _id: studentId,
       eductionalDocumentNames: eductionalDocumentNames,
+      purposeOfFile: purposeOfFile
     };
     if (index >= 0) {
       studentDAL.updateStudent(resultJson);

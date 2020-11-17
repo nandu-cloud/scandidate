@@ -120,6 +120,7 @@ const updateEmployeeSchema = Joi.object({
   showCausedIssue: Joi.object().allow('').allow(null),
   suspension: Joi.object().allow('').allow(null),
   termination: Joi.object().allow('').allow(null),
+
 });
 
 module.exports = {

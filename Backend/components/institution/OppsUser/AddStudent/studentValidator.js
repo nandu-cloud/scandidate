@@ -25,6 +25,7 @@ const addStudentSchema = Joi.object({
   extraActivityDocumentName: Joi.string().allow("").allow(null),
   noOfEductionalDocuments: Joi.number().allow("").allow(null),
   eductionalDocumentNames: Joi.array().allow("").allow(null),
+  purposeOfFile: Joi.array().allow('').allow(null)
 });
 
 const updateStudentSchema = Joi.object({
@@ -52,6 +53,7 @@ const updateStudentSchema = Joi.object({
   extraActivityDocumentName: Joi.string().allow("").allow(null),
   noOfEductionalDocuments: Joi.number().allow("").allow(null),
   eductionalDocumentNames: Joi.array().allow("").allow(null),
+  purposeOfFile: Joi.array().allow('').allow(null)
 });
 
 module.exports = {
