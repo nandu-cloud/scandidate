@@ -8,10 +8,10 @@ const studentSchema = new mongoose.Schema({
     type: String,
   },
   yearOfJoining: {
-    type: Number,
+    type: String,
   },
   yearOfPassout: {
-    type: Number,
+    type: String,
   },
   studentType: {
     type: String,
@@ -49,11 +49,11 @@ const studentSchema = new mongoose.Schema({
     trim: true,
   },
   phoneNumber: {
-    type: Number,
+    type: String,
     required: false,
   },
   dateOfBirth: {
-    type: Date,
+    type: String,
     required: false,
   },
   address: {
@@ -77,7 +77,7 @@ const studentSchema = new mongoose.Schema({
     required: false,
   },
   adharNumber: {
-    type: Number,
+    type: String,
     required: false,
   },
 

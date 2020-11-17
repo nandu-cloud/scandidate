@@ -1,4 +1,4 @@
-const { boolean } = require("joi");
+const { boolean, string } = require("joi");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 // schema
@@ -49,20 +49,17 @@ const employeeSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  building: {
+
+  dateOfBirth: {
     type: String,
     required: false,
   },
-  dateOfBirth: {
-    type: Date,
-    required: false,
-  },
   phoneNumber: {
-    type: Number,
+    type: String,
     required: [true, "Phone Number cannot be empty"],
   },
   adharNumber: {
-    type: Number,
+    type: String,
     required: false,
   },
   panNumber: {
@@ -114,27 +111,53 @@ const employeeSchema = new mongoose.Schema({
     type: Number,
     required: false,
   },
-  stakeholder: {
-    type: Number,
-    required: false
-  },
+
 
   //performance
   volume: {
-    type: Number,
-    required: false,
+    IsSelect: {
+      type: Number,
+      required: false
+    },
+    description: {
+      type: String
+    },
   },
   quality: {
-    type: Number,
-    required: false,
+    IsSelect: {
+      type: Number,
+      required: false
+    },
+    description: {
+      type: String
+    },
   },
   consistency: {
-    type: Number,
-    required: false,
+    IsSelect: {
+      type: Number,
+      required: false
+    },
+    description: {
+      type: String
+    },
   },
-  awards: {
-    type: String,
-    required: false,
+  building: {
+    IsSelect: {
+      type: Number,
+      required: false
+    },
+    description: {
+      type: String
+    },
+  },
+  stakeholder: {
+    IsSelect: {
+      type: Number,
+      required: false
+    },
+    description: {
+      type: String
+    },
   },
 
   //Conduct
@@ -162,6 +185,10 @@ const employeeSchema = new mongoose.Schema({
   },
   communicationSkills: {
     type: Number,
+    required: false,
+  },
+  awards: {
+    type: String,
     required: false,
   },
 

@@ -5,7 +5,7 @@ const addEmployeeSchema = Joi.object({
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   email: Joi.string().email().required(),
-  phoneNumber: Joi.number().required(),
+  phoneNumber: Joi.string().required(),
   dateOfJoining: Joi.date().required(),
   exitDate: Joi.date().required(),
   professionalExperience: Joi.number().required(),
@@ -22,7 +22,7 @@ const addEmployeeSchema = Joi.object({
   termination: Joi.object().allow('').allow(null),
 
 
-  building: Joi.string().allow('').allow(null),
+
   state: Joi.string().allow("").allow(null),
   landMark: Joi.string().allow("").allow(null),
   city: Joi.string().allow("").allow(null),
@@ -32,8 +32,8 @@ const addEmployeeSchema = Joi.object({
   role: Joi.string().allow("").allow(null),
   department: Joi.string().allow("").allow(null),
   address: Joi.string().allow("").allow(null),
-  dateOfBirth: Joi.date().allow("").allow(null),
-  adharNumber: Joi.number().allow("").allow(null),
+  dateOfBirth: Joi.string().allow("").allow(null),
+  adharNumber: Joi.string().allow("").allow(null),
   panNumber: Joi.string().allow("").allow(null),
 
   //Work Ethic
@@ -46,9 +46,11 @@ const addEmployeeSchema = Joi.object({
   dealConstructivelyWithPressure: Joi.number().allow("").allow(null),
 
   //performance
-  volume: Joi.number().allow("").allow(null),
-  quality: Joi.number().allow("").allow(null),
-  consistency: Joi.number().allow("").allow(null),
+  volume: Joi.object().allow("").allow(null),
+  quality: Joi.object().allow("").allow(null),
+  consistency: Joi.object().allow("").allow(null),
+  building: Joi.object().allow('').allow(null),
+  stakeholder: Joi.object().allow('').allow(null),
 
   //Conduct
   punctuality: Joi.number().allow("").allow(null),
@@ -61,14 +63,14 @@ const addEmployeeSchema = Joi.object({
   communicationSkills: Joi.number().allow("").allow(null),
 
   //Other Variables
-  stakeholder: Joi.number().allow('').allow(null),
+
 });
 const updateEmployeeSchema = Joi.object({
   //Required Fields
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   email: Joi.string().email().required(),
-  phoneNumber: Joi.number().required(),
+  phoneNumber: Joi.string().required(),
   dateOfJoining: Joi.date().required(),
   exitDate: Joi.date().required(),
   professionalExperience: Joi.number().required(),
@@ -85,8 +87,8 @@ const updateEmployeeSchema = Joi.object({
   role: Joi.string().allow("").allow(null),
   department: Joi.string().allow("").allow(null),
   address: Joi.string().allow("").allow(null),
-  dateOfBirth: Joi.date().allow("").allow(null),
-  adharNumber: Joi.number().allow("").allow(null),
+  dateOfBirth: Joi.string().allow("").allow(null),
+  adharNumber: Joi.string().allow("").allow(null),
   panNumber: Joi.string().allow("").allow(null),
 
   //Work Ethic
@@ -99,9 +101,11 @@ const updateEmployeeSchema = Joi.object({
   dealConstructivelyWithPressure: Joi.number().allow("").allow(null),
 
   //performance
-  volume: Joi.number().allow("").allow(null),
-  quality: Joi.number().allow("").allow(null),
-  consistency: Joi.number().allow("").allow(null),
+  volume: Joi.object().allow("").allow(null),
+  quality: Joi.object().allow("").allow(null),
+  consistency: Joi.object().allow("").allow(null),
+  building: Joi.object().allow('').allow(null),
+  stakeholder: Joi.object().allow('').allow(null),
 
   //Conduct
   punctuality: Joi.number().allow("").allow(null),

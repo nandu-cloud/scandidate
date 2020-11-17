@@ -5,12 +5,16 @@ const colors = require("../../../helpers/colors");
 async function searchBgvDataEmployee(data) {
   try {
     let employeeSearch = await employeeModel
-      .find(data)
-      // .and([
-      //   { firstName: { $regex: data.firstName, $options: "i" } }
+      .find()
+      .and([
+        { firstName: { $regex: data.firstName || "", $options: "i" } },
+        { dateOfBirth: { $regex: data.dateOfBirth || "" } },
+        { phoneNumber: { $regex: data.phoneNumber || "" } },
+        { email: { $regex: data.email || "", $options: "i" } },
+        { adharNumber: { $regex: data.adharNumber || "" } }
 
-      // ])
-      .collation({ locale: "en", strength: 1 });
+      ])
+    // .collation({ locale: "en", strength: 1 });
     return employeeSearch;
   } catch (err) {
     throw err;
@@ -20,12 +24,16 @@ async function searchBgvDataEmployee(data) {
 async function searchBgvDataStudent(data) {
   try {
     let studentSearch = await studentModel
-      .find(data)
-      // .and([
-      //   { firstName: { $regex: data.firstName, $options: "i" } },
+      .find()
+      .and([
+        { firstName: { $regex: data.firstName || "", $options: "i" } },
+        { dateOfBirth: { $regex: data.dateOfBirth || "" } },
+        { phoneNumber: { $regex: data.phoneNumber || "" } },
+        { email: { $regex: data.email || "", $options: "i" } },
+        { adharNumber: { $regex: data.adharNumber || "" } }
 
-      // ])
-      .collation({ locale: "en", strength: 1 });
+      ])
+    // .collation({ locale: "en", strength: 1 });
     return studentSearch;
   } catch (err) {
     throw err;

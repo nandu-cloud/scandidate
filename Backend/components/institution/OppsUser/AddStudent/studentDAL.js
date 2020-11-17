@@ -101,27 +101,16 @@ async function updateStudent(data) {
 async function search_student_new(data) {
   console.log(data);
 
-  var phnNumber;
-  var yop;
-
-  if (data.phoneNumber) {
-    phnNumber = parseInt(data.phoneNumber);
-  }
-  if (data.yearOfPassout) {
-    yop = parseInt(data.yearOfPassout);
-  }
-
-
-
   try {
     let result = await studentModel
-      .find(data)
-      // .and([
-      //   { firstName: { $regex: data.firstName || "", $options: "i" } },
-      //   { intitutionName: { $regex: data.intitutionName || "", $options: "i" } },
-      //   { $or: [{ $where: `/^${phnNumber}.*/.test(this.phoneNumber)` }, { $where: `/^.*/.test(this.phoneNumber)` }] },
-      // ])
-      .collation({ locale: "en", strength: 1 });
+      .find()
+      .and([
+        { firstName: { $regex: data.firstName || "", $options: "i" } },
+        { intitutionName: { $regex: data.intitutionName || "", $options: "i" } },
+        { phoneNumber: { $regex: data.phoneNumber || "" } },
+        { yearOfPassout: { $regex: data.yearOfPassout || "" } }
+      ])
+    // .collation({ locale: "en", strength: 1 });
     return result;
   } catch (err) {
     throw err;
