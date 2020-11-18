@@ -9,7 +9,9 @@ module.exports.searchbgv = async (req, res, next) => {
   try {
     let empData = await bgvDAL.searchBgvDataEmployee(data);
 
+
     let stdData = await bgvDAL.searchBgvDataStudent(data);
+
 
     if (empData.length > 0 && stdData.length > 0) {
       let result = empData.concat(stdData);

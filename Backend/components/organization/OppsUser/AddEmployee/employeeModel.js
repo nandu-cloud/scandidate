@@ -114,50 +114,71 @@ const employeeSchema = new mongoose.Schema({
 
 
   //performance
+  // volume: {
+  //   IsSelect: {
+  //     type: Number,
+  //     required: false
+  //   },
+  //   description: {
+  //     type: String
+  //   },
+  // },
+  // quality: {
+  //   IsSelect: {
+  //     type: Number,
+  //     required: false
+  //   },
+  //   description: {
+  //     type: String
+  //   },
+  // },
+  // consistency: {
+  //   IsSelect: {
+  //     type: Number,
+  //     required: false
+  //   },
+  //   description: {
+  //     type: String
+  //   },
+  // },
+  // building: {
+  //   IsSelect: {
+  //     type: Number,
+  //     required: false
+  //   },
+  //   description: {
+  //     type: String
+  //   },
+  // },
+  // stakeholder: {
+  //   IsSelect: {
+  //     type: Number,
+  //     required: false
+  //   },
+  //   description: {
+  //     type: String
+  //   },
+  // },
+
   volume: {
-    IsSelect: {
-      type: Number,
-      required: false
-    },
-    description: {
-      type: String
-    },
+    type: Number,
+    required: false
   },
   quality: {
-    IsSelect: {
-      type: Number,
-      required: false
-    },
-    description: {
-      type: String
-    },
+    type: Number,
+    required: false
   },
   consistency: {
-    IsSelect: {
-      type: Number,
-      required: false
-    },
-    description: {
-      type: String
-    },
+    type: Number,
+    required: false
   },
   building: {
-    IsSelect: {
-      type: Number,
-      required: false
-    },
-    description: {
-      type: String
-    },
+    type: Number,
+    required: false
   },
   stakeholder: {
-    IsSelect: {
-      type: Number,
-      required: false
-    },
-    description: {
-      type: String
-    },
+    type: Number,
+    required: false
   },
 
   //Conduct
