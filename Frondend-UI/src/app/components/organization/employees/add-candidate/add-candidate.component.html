@@ -48,7 +48,7 @@
                </mat-form-field>
                <mat-form-field>
                  <mat-label>DateOfJoining</mat-label>
-                 <input matInput formControlName="dateOfJoining" [matDatepicker]="picker2" class="br-btm input-w" required [min]="minDate" [max]="maxDate" tabindex="9">
+                 <input matInput formControlName="dateOfJoining" [matDatepicker]="picker2" class="br-btm input-w" required tabindex="9">
                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                  <mat-datepicker #picker2 color="primary"></mat-datepicker>
                  <mat-error *ngIf ="firstFormGroup.get('dateOfJoining').errors?.required">
@@ -76,15 +76,7 @@
              <mat-label>State</mat-label>
              <input  matInput   type="text"  formControlName="state"  class="br-btm input-w" autoComplete='off' tabindex="18">
          </mat-form-field>
-             <mat-form-field>
-               <mat-label>Awards</mat-label>
-               <mat-select  class="br-btm input-w" formControlName="awards" tabindex="20">
-                 <mat-option [value]=1>Performer & Awarded</mat-option>
-                 <mat-option [value]=2>Non-Performer & Awarded</mat-option>
-                 <mat-option [value]=3>Performer & Not Awarded</mat-option>
-                 <mat-option [value]=4>Non-Performer & Not Awarded</mat-option>
-               </mat-select>
-           </mat-form-field>
+             
              </div>
                <div class="w-full md:w-1/2 sm:w-full">
                  <mat-form-field>
@@ -113,13 +105,13 @@
              </mat-form-field>
                <mat-form-field>
                  <mat-label>DOB</mat-label>
-                 <input matInput formControlName="dateOfBirth" [matDatepicker]="picker1" class="br-btm input-w" [min]="minDate" [max]="maxDate" tabindex="8">
+                 <input matInput formControlName="dateOfBirth" [matDatepicker]="picker1" class="br-btm input-w" tabindex="8">
                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                  <mat-datepicker #picker1 color="primary"></mat-datepicker>
                </mat-form-field>
                <mat-form-field>
                  <mat-label>Releving Date</mat-label>
-                 <input matInput formControlName="exitDate" [matDatepicker]="picker" class="br-btm input-w" required [min]="minDate" [max]="maxDate" tabindex="10">
+                 <input matInput formControlName="exitDate" [matDatepicker]="picker" class="br-btm input-w" required  tabindex="10">
                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                  <mat-datepicker #picker color="primary"></mat-datepicker>
                  <mat-error *ngIf ="firstFormGroup.get('exitDate').errors?.required">
@@ -217,6 +209,16 @@
                          please select Initiative
                      </mat-error>
                    </mat-form-field>
+                   <mat-form-field>
+                    <mat-label>Awards</mat-label>
+                    <mat-select  class="br-btm input-w" formControlName="awards" tabindex="20">
+                      <mat-option>Select</mat-option>
+                      <mat-option [value]=1>Performer & Awarded</mat-option>
+                      <mat-option [value]=2>Non-Performer & Awarded</mat-option>
+                      <mat-option [value]=3>Performer & Not Awarded</mat-option>
+                      <mat-option [value]=4>Non-Performer & Not Awarded</mat-option>
+                    </mat-select>
+                </mat-form-field>
                  </div>
                  <div class="w-full md:w-1/2 sm:w-full">
                    <mat-form-field>
@@ -255,7 +257,6 @@
                          please select Deals Constructively With Pressure
                      </mat-error>
                    </mat-form-field>
-                   <h1 class="hd-add">Conduct</h1>
                    <mat-form-field>
                        <mat-label>Punctuality</mat-label>
                        <mat-select  class="br-btm input-w" formControlName="punctuality" required tabindex="21">
@@ -356,25 +357,25 @@
                      </div>
                      <div class="w-full md:w-1/2 sm:w-full">
                        <mat-form-field *ngIf="volume == '1' || volume == '2' || volume == '3' || volume == '4'">
-                         <mat-label>Description</mat-label>
-                         <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="2"></textarea>
+                         <!-- <mat-label>Description</mat-label> -->
+                         <textarea  matInput formControlName="description" matTextareaAutosize class="br-btm input-w" autoComplete='off' placeholder="Description" style="resize: none;"></textarea>
                        </mat-form-field>
                        <mat-form-field *ngIf="quality == '1' || quality == '2' || quality == '3' || quality =='4' ">
-                         <mat-label>Description</mat-label>
-                         <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="4"></textarea>
+                         <!-- <mat-label>Description</mat-label> -->
+                         <textarea  matInput formControlName="description" matTextareaAutosize class="br-btm input-w" autoComplete='off' placeholder="Description" style="resize: none;"></textarea>
                        </mat-form-field>
                        <mat-form-field *ngIf="consistency == '1' || consistency == '2' || consistency == '3' || consistency == '4'">
-                         <mat-label>Description</mat-label>
-                         <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="6"></textarea>
+                         <!-- <mat-label>Description</mat-label> -->
+                         <textarea  matInput formControlName="description" matTextareaAutosize class="br-btm input-w" autoComplete='off' placeholder="Description" style="resize: none;"></textarea>
                        </mat-form-field>
                        <mat-form-field *ngIf="building == '1' || building == '2' || building == '3' || building == '4' ">
-                         <mat-label>Description</mat-label>
-                         <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="8"></textarea>
+                         <!-- <mat-label>Description</mat-label> -->
+                         <textarea  matInput formControlName="description" matTextareaAutosize class="br-btm input-w" autoComplete='off' placeholder="Description" style="resize: none;"></textarea>
                        </mat-form-field>
                        <mat-form-field *ngIf="stakeholder == '1' || stakeholder =='2'">
-                         <mat-label>Description</mat-label>
-                         <textarea  matInput formControlName="description" class="br-btm input-w" autoComplete='off' tabindex="10"></textarea>
-                       </mat-form-field>
+                        <!-- <mat-label>Description</mat-label> -->
+                        <textarea  matInput formControlName="description" matTextareaAutosize class="br-btm input-w" autoComplete='off' placeholder="Description" style="resize: none;"></textarea>
+                      </mat-form-field>
                      </div>
                    </div>
                   <div class="flex justify-end lg:pb-6 lg:pr-48">

@@ -26,8 +26,6 @@ export class AddCandidateComponent implements OnInit {
   employeeSubscription : Subscription;
   editEmployeeSubscription : Subscription;
   employeeUpdateSubscription: Subscription;
-  minDate = new Date(1990, 0, 1);
-  maxDate = new Date;
   public setMessage: any = {};
   error = '';
   empIdedit: any;
@@ -66,7 +64,7 @@ export class AddCandidateComponent implements OnInit {
       panNumber : new FormControl(''),
       phoneNumber : new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
       email: new FormControl('', [Validators.required,Validators.email]),
-      dateOfBirth : new FormControl(''),
+      dateOfBirth : new FormControl('',[]),
       dateOfJoining : new FormControl('',[Validators.required,this.validateJoiningDate()]),
       exitDate : new FormControl('',[Validators.required,this.validateExitDate()]),
       organizationName : new FormControl(this.organizationName),
@@ -247,7 +245,8 @@ uploadFile(){
 }
 update(id:number){
   this.empIdupdate = id;
-  this.employeeUpdateSubscription = this.empService.updateEmployee(this.createCandidate.value).subscribe(resp =>{
+  this.employeeUpdateSubscription = this.empService.updateEmployee({...this.firstFormGroup.value, ...this.secondFormGroup.value,
+    ...this.thirdFormGroup.value, ...this.fourthFormGroup.value, ...this.fifthFormGroup.value}).subscribe(resp =>{
     this.methodtype="update";
     this.openDialog();
   }, err =>{
