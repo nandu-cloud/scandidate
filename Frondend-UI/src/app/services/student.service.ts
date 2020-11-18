@@ -20,8 +20,8 @@ export class StudentService {
 addStudent(studentData): Observable<any> {
   var id = window.sessionStorage.getItem('ID');
   var inistutionId = window.sessionStorage.getItem('InistutionId');
-  var studentData1: { 'nameOfCourse': string, 'yearOfJoining': number ,'yearOfPassout': number ,'studentType': string, 'extraActivity': string ,
-               'firstName':string , 'lastName' : string , 'roll' : string, 'email': string , 'phoneNumber' : number , 'adharNumber': number,
+  var studentData1: { 'nameOfCourse': string, 'yearOfJoining': string ,'yearOfPassout': string ,'studentType': string, 'extraActivity': string ,
+               'firstName':string , 'lastName' : string , 'roll' : string, 'email': string , 'phoneNumber' : string , 'adharNumber': string,
                 'address' : number , 'addedById': string,'instituteId':string,'extraActivityDocumentName':string,'eductionalDocumentNames':string,
                 'noOfEductionalDocuments': number,'intitutionName': string, 'dateOfBirth': string} =
               { 'nameOfCourse': studentData.nameOfCourse, 'yearOfJoining': studentData.yearOfJoining ,'yearOfPassout': studentData.yearOfPassout, 'studentType' : studentData.studentType,
@@ -50,10 +50,10 @@ editStudent(editStuData) : Observable<any> {
 updateStudent(updateStudentData) : Observable<any>{
   var id = window.sessionStorage.getItem('ID');
   var inistutionId = window.sessionStorage.getItem('InistutionId');
-  var updatestudent: { 'nameOfCourse': string, 'yearOfJoining': number ,'yearOfPassout': number ,'studentType': string, 'extraActivity': string ,
-  'firstName':string , 'lastName' : string , 'roll' : string, 'email': string , 'phoneNumber' : number , 'address' : number , 'addedById': string ,
+  var updatestudent: { 'nameOfCourse': string, 'yearOfJoining': string, 'yearOfPassout': string,'studentType': string, 'extraActivity': string ,
+  'firstName':string , 'lastName' : string , 'roll' : string, 'email': string , 'phoneNumber' : string , 'address' : number , 'addedById': string ,
    'instituteId': string, 'extraActivityDocumentName':string,'eductionalDocumentNames':string,'noOfEductionalDocuments': number,
-   'intitutionName':string, 'adharNumber': number, 'dateOfBirth': string} =
+   'intitutionName':string, 'adharNumber': string, 'dateOfBirth': string} =
  { 'nameOfCourse': updateStudentData.nameOfCourse, 'yearOfJoining': updateStudentData.yearOfJoining ,'yearOfPassout': updateStudentData.yearOfPassout, 'studentType' : updateStudentData.studentType,
    'extraActivity': updateStudentData.extraActivity,'firstName':updateStudentData.firstName,'lastName':updateStudentData.lastName,'roll':updateStudentData.roll == ""?undefined: updateStudentData.roll,'email': updateStudentData.email,'phoneNumber':updateStudentData.phoneNumber,'address':updateStudentData.address , 
    'addedById':id,'instituteId' : inistutionId,'eductionalDocumentNames':updateStudentData.eductionalDocumentNames,'noOfEductionalDocuments': updateStudentData.noOfEductionalDocuments,'extraActivityDocumentName': updateStudentData.extraActivityDocumentName == ""? undefined : updateStudentData.extraActivityDocumentName,

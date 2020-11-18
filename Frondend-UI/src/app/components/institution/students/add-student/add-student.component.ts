@@ -23,7 +23,8 @@ export class AddStudentComponent implements OnInit {
 
   constructor(
     public fb: FormBuilder,
-    private cd: ChangeDetectorRef, public dialog: MatDialog, public route: ActivatedRoute, public stuService: StudentService,
+    private cd: ChangeDetectorRef, public dialog: MatDialog, public route: ActivatedRoute,
+     public stuService: StudentService,
     private appuserService: instituteService
   ) {
     this.route.params.subscribe(params => {
@@ -208,6 +209,7 @@ export class AddStudentComponent implements OnInit {
   }
   
 }
+
 ngOnInit(){
   if (this.studentIdedit){
   this.editStudentSubscription = this.stuService.editStudent(this.studentIdedit).subscribe(respObj => {
@@ -218,6 +220,7 @@ ngOnInit(){
     } else {
       this.extraActivities = false;
     }
+    if(respObj.data.eductionalDocumentNames){
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < respObj.data.eductionalDocumentNames.length; i++)
      {
@@ -226,6 +229,7 @@ ngOnInit(){
        console.log(this.eductionalDoc);
      }
     this.educdoc = respObj.data;
+    }
     this.studentForm.patchValue(respObj.data);
     this.imagePreview = true;
     this.documentName = `${this.baseUrl}/public/student_doc/${respObj.data.extraActivityDocumentName}`;
@@ -237,6 +241,28 @@ ngOnInit(){
   })
 }
 }
+
+
+
+// ngOnInit(){
+//   if(this.studentIdedit){
+//   this.editStudentSubscription = this.stuService.editStudent(this.studentIdedit).subscribe(respObj => {
+//     console.log(respObj.data);
+//     this.id = respObj.data._id;
+//     if(respObj.data.extraActivity == "1"){
+//       this.extraActivities = true;
+//     } else {
+//       this.extraActivities = false;
+//     }
+//     this.studentForm.patchValue(respObj.data);
+//     this.imagePreview = true;
+//     this.documentName=`${this.baseUrl}/public/student_doc/${respObj.data.extraActivityDocumentName}`;
+//     this.documentCount = respObj.data.noOfEductionalDocuments;
+//   }, err => {
+//     this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
+//   })
+// }
+// }
 
 view(item){
   console.log("Hello" + item);

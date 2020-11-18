@@ -163,28 +163,6 @@ export class AddCandidateComponent implements OnInit {
     console.log(this.selectedIndex);
   }
 
-  private scrollToFirstInvalidControl() {
-    const firstInvalidControl: HTMLElement = this.el.nativeElement.querySelector(
-      "form .ng-invalid"
-    );
-    window.scroll({
-      top: this.getTopOffset(firstInvalidControl),
-      left: 0,
-      behavior: "smooth"
-    });
-
-    fromEvent(window, "scroll")
-      .pipe(
-        debounceTime(100),
-        take(1)
-      )
-      .subscribe(() => firstInvalidControl.focus());
-  }
-
-  private getTopOffset(controlEl: HTMLElement): number {
-    const labelOffset = 50;
-    return controlEl.getBoundingClientRect().top + window.scrollY - labelOffset;
-  }
 
   public cancel() {
     if (this.selectedIndex != 0) {
