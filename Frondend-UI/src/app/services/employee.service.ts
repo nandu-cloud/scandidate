@@ -20,7 +20,7 @@ export class EmployeeService {
    addEmployee(empData): Observable<any> {
     var id = window.sessionStorage.getItem('ID');
     var organizationId = window.sessionStorage.getItem('organizationId');
-    var EmployeeData: {'firstName': string, 'lastName' : string,'email' : string,'phoneNumber' : number,'dateOfJoining':string,
+    var EmployeeData: {'firstName': string, 'lastName' : string,'email' : string,'phoneNumber' : string,'dateOfJoining':string,
                   'exitDate':string, 'professionalExperience': number,'employeeId':string,'role':string,'department':string,
                   'address':string, 'dateOfBirth': string,'adharNumber': string,'panNumber': string,'selfDriven': number,
                   'creativity': number,'informalOrganizationSenseOfBelonging': number,'initiative': number,'workIndependenty' : number,'teamWork': number,
@@ -59,7 +59,7 @@ export class EmployeeService {
   updateEmployee(empupdateData): Observable<any> {
     var id = window.sessionStorage.getItem('ID');
     var organizationId = window.sessionStorage.getItem('organizationId');
-    var EmployeeData: {'firstName': string, 'lastName' : string,'email' : string,'phoneNumber' : number,'dateOfJoining':string,
+    var EmployeeData: {'firstName': string, 'lastName' : string,'email' : string,'phoneNumber' : string,'dateOfJoining':string,
                   'exitDate':string, 'professionalExperience': number,'employeeId':string,'role':string,'department':string,
                   'address':string, 'dateOfBirth': string,'adharNumber': string,'panNumber': string,'selfDriven': number,
                   'creativity': number,'informalOrganizationSenseOfBelonging': number,'initiative': number,'workIndependenty' : number,'teamWork': number,
