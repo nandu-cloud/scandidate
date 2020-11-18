@@ -185,14 +185,14 @@
                     <div class=" mt-5">
                       <h2>Upload Status</h2>
                   
-                      <table class="table border-collapse border-2 border-gray-500 lg:w-3/5" >
+                      <table class="table border-collapse border-2 border-gray-500 lg:w-2/4" *ngIf="!studentIdedit">
                           <thead>
                               <tr>
                                   <th class="border border-gray-400 px-4 py-2 text-gray-800">File Name</th>
                                   <th class="border border-gray-400 px-4 py-2 text-gray-800">Purpose of file</th>
                                   <th class="border border-gray-400 px-4 py-2 text-gray-800" *ngIf="!studentIdedit">Type</th>
                                   <th class="border border-gray-400 px-4 py-2 text-gray-800" *ngIf="!studentIdedit">Size</th>
-                                  <th class="border border-gray-400 px-4 py-2 text-gray-800" *ngIf="studentIdedit">Actions</th>
+                                  <!-- <th class="border border-gray-400 px-4 py-2 text-gray-800" *ngIf="studentIdedit">Actions</th> -->
                               </tr>
                           </thead>
                           <tbody class="lg:w-full text-center">
@@ -202,13 +202,13 @@
                                   </td>  
                                   <mat-form-field *ngIf="!studentIdedit">
                                     <!-- <mat-label>LandMark</mat-label> -->
-                                    <input matInput type="text" class="br-btm input-w" autoComplete='off' tabindex="14">
+                                    <input matInput type="text" class="br-btm input" autoComplete='off' tabindex="14">
                                   </mat-form-field>
-                                  <td class="border border-gray-400 px-4 py-2 text-gray-800" *ngIf="studentIdedit">
+                                  <!-- <td class="border border-gray-400 px-4 py-2 text-gray-800">
                                     
-                                  </td>
+                                  </td> -->
                                   <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                                    {{item.type}}
+                                   {{item.type}}
                                   </td>      
                                   <td class="border border-gray-400 px-4 py-2 text-gray-800">
                                       {{ item.size/1024/1024 | number:'.2' }} MB
@@ -223,9 +223,56 @@
                                   </td> -->
                               </tr>
                               <!-- <td class="date"><a href="{{ action.Url }}" target="_blank">{{ action.Name }}</a> -->
+                           
+                                <!-- <td>
+                                  <button mat-button>
+                                      <mat-icon (click)="onDelete(item, studentIdedit)" (change)="uploadEducationFile($event)" class="text-red-600">delete</mat-icon>
+                                  </button>
+                              </td> -->
+                          </tbody>
+                      </table>
+                       <table class="table border-collapse border-2 border-gray-500 lg:w-3/5" *ngIf="studentIdedit">
+                          <thead>
+                              <tr>
+                                  <th class="border border-gray-400 px-4 py-2 text-gray-800">File Name</th>
+                                  <th class="border border-gray-400 px-4 py-2 text-gray-800">Purpose of file</th>
+                                  <th class="border border-gray-400 px-4 py-2 text-gray-800">Actions</th>
+                              </tr>
+                          </thead>
+                          <tbody class="lg:w-full text-center">
+                              <tr *ngFor="let item of displaySelectedFiles">
+                                  <td class="border border-gray-400 px-4 py-2 text-gray-800" *ngIf="item.name">
+                                      {{ item.name }}
+                                  </td>  
+                                  <!-- <mat-form-field *ngIf="!studentIdedit"> -->
+                                    <!-- <mat-label>LandMark</mat-label> -->
+                                    <!-- <input matInput type="text" class="br-btm input-w" autoComplete='off' tabindex="14">
+                                  </mat-form-field> -->
+                                  <!-- <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                                    
+                                  </td> -->
+                                  <!-- <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                                   {{item.type}}
+                                  </td>      
+                                  <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                                      {{ item.size/1024/1024 | number:'.2' }} MB
+                                  </td> -->
+                                  <!-- <td> -->
+                                      <!-- {{item?.file?.type}} -->
+                                  <!-- </td> -->
+                                  <!-- <td>
+                                      <button mat-button  click="remove()">
+                                          <mat-icon class="text-red-600">delete</mat-icon>
+                                      </button>
+                                  </td> -->
+                              </tr>
+                              <!-- <td class="date"><a href="{{ action.Url }}" target="_blank">{{ action.Name }}</a> -->
                               <tr *ngFor="let item of eductionalDoc">
                                 <td *ngIf="item">
                                     {{ item }}
+                                </td>
+                                <td>
+
                                 </td>
                                 <td>
                                   <button mat-button>
