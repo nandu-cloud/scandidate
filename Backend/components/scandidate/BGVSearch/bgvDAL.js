@@ -21,6 +21,16 @@ async function searchBgvDataEmployee(data) {
   }
 }
 
+async function searchBgvDataEmployeeId(data) {
+  try {
+    let employeeSearch = await employeeModel
+      .find(data)
+    return employeeSearch;
+  } catch (err) {
+    throw err;
+  }
+}
+
 async function searchBgvDataStudent(data) {
   try {
     let studentSearch = await studentModel
@@ -39,6 +49,17 @@ async function searchBgvDataStudent(data) {
     throw err;
   }
 }
+
+async function searchBgvDataStudentId(data) {
+  try {
+    let studentSearch = await studentModel
+      .find(data)
+    return studentSearch;
+  } catch (err) {
+    throw err;
+  }
+}
+
 
 async function searchByAdharNumberEmployee(data) {
   try {
@@ -139,4 +160,6 @@ module.exports = {
   searchByEmailInstitute: searchByEmailInstitute,
   searchByNameEmployee: searchByNameEmployee,
   searchByNameInstittute: searchByNameInstittute,
+  searchBgvDataEmployeeId: searchBgvDataEmployeeId,
+  searchBgvDataStudentId: searchBgvDataStudentId
 };

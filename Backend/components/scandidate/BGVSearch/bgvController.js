@@ -9,7 +9,6 @@ module.exports.searchbgv = async (req, res, next) => {
   try {
     let empData = await bgvDAL.searchBgvDataEmployee(data);
 
-
     let stdData = await bgvDAL.searchBgvDataStudent(data);
 
 
@@ -42,7 +41,7 @@ module.exports.searchbgv = async (req, res, next) => {
 module.exports.searchByIdBGV = async (req, res, next) => {
   let _id = req.params.searchbyid;
   try {
-    let empData = await bgvDAL.searchBgvDataEmployee({ _id: _id });
+    let empData = await bgvDAL.searchBgvDataEmployeeId({ _id: _id });
     var aadharNumber;
     var phoneNumber;
     var email;
@@ -58,7 +57,7 @@ module.exports.searchByIdBGV = async (req, res, next) => {
       lastName = empData[0].lastName;
       dob = empData[0].dateOfBirth;
     } else {
-      let stuData = await bgvDAL.searchBgvDataStudent({ _id: _id });
+      let stuData = await bgvDAL.searchBgvDataStudentId({ _id: _id });
       if (stuData.length > 0) {
         aadharNumber = stuData[0].adharNumber;
         phoneNumber = stuData[0].phoneNumber;
@@ -71,7 +70,7 @@ module.exports.searchByIdBGV = async (req, res, next) => {
       }
     }
 
-    if (aadharNumber != null) {
+    if (aadharNumber.length > 0) {
       try {
         let empAdharData = await bgvDAL.searchByAdharNumberEmployee(
           aadharNumber
@@ -91,7 +90,7 @@ module.exports.searchByIdBGV = async (req, res, next) => {
       }
     }
 
-    if (email != null) {
+    if (email.length > 0) {
       try {
         let empEmailData = await bgvDAL.searchByEmailEmployee(email);
         let studentEmailData = await bgvDAL.searchByEmailInstitute(email);
@@ -104,7 +103,7 @@ module.exports.searchByIdBGV = async (req, res, next) => {
       }
     }
 
-    if (phoneNumber != null) {
+    if (phoneNumber.length > 0) {
       try {
         let empPhoneData = await bgvDAL.searchByPhoneNumberEmployee(
           phoneNumber,
