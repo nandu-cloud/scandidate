@@ -104,7 +104,7 @@ module.exports.searchByIdBGV = async (req, res, next) => {
       }
     }
 
-    if (phoneNumber > 0) {
+    if (phoneNumber != null) {
       try {
         let empPhoneData = await bgvDAL.searchByPhoneNumberEmployee(
           phoneNumber,
