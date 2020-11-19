@@ -297,6 +297,7 @@ module.exports.deleteDocument = async (req, res, next) => {
   } catch (err) {
     return next(new AppError(err, 400));
   }
+  console.log(colors.green, "-----------------File Path----------", filePath);
   fs.unlink(filePath, (err) => {
     if (err) {
       console.log(colors.red, "inside err...");

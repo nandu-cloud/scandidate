@@ -78,15 +78,6 @@ async function getAllUsers(data) {
 async function getStudentById(data) {
   try {
     let result = await studentModel.findById({ _id: data._id }).lean();
-    // let r = result;
-    // let { eductionalDocumentNames } = r;
-    // if (eductionalDocumentNames) {
-    //   for (var i = 0; i < eductionalDocumentNames.length; i++) {
-    //     var r1 = eductionalDocumentNames[i].match(/[^\d]+|\d+/g);
-    //     eductionalDocumentNames[i] = r1[1];
-    //   }
-    // }
-
     return result;
   } catch (err) {
     throw err;
