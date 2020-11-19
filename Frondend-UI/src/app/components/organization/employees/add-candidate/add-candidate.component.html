@@ -7,7 +7,7 @@
          <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
        </span>
      </div> 
-     <h1 class="hd-add">Add Candidate</h1>
+     <h1 class="hd-add">Add Candidate</h1><span class="right-text">(your ex employee)</span>
      <mat-tab-group [selectedIndex]="selectedIndex" (selectedTabChange)="tabChanged($event)" class="mat-tab-group mat-primary">
        
        <mat-tab *ngFor="let number of [0];let i=index;">
@@ -141,7 +141,7 @@
              <input  matInput   type="text"  formControlName="city"  class="br-btm input-w" autoComplete='off' tabindex="15">
            </mat-form-field>
            <mat-form-field>
-             <mat-label>Zip Code</mat-label>
+             <mat-label>Pin Code</mat-label>
              <input  matInput  formControlName="zipcode"   minLength="5" maxLength="7" class="br-btm input-w" pattern="^[0-9]{5,7}$" autoComplete='off' tabindex="17">
          </mat-form-field>
            </div>

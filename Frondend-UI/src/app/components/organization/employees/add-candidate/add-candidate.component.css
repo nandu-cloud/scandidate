@@ -20,3 +20,10 @@
 .example-tab-icon {
     margin-right: 8px;
   }
+.hd-add, .right-text {
+    display:inline;
+}
+.right-text {
+    color: #6CB43B;
+    font-size: 15px;
+}

@@ -63,11 +63,14 @@
                     <input  matInput formControlName="address"  type="text"   class="br-btm input-w" autoComplete='off' tabindex="13">
                   </mat-form-field>
                   <mat-form-field>
-                    <mat-label>City</mat-label>
-                    <input  matInput   type="text"  formControlName="city"  class="br-btm input-w" autoComplete='off' tabindex="15">
+                    <mat-label>State</mat-label>
+                    <input  matInput   type="text"  formControlName="state"  class="br-btm input-w" autoComplete='off' tabindex="15">
+                    <mat-error *ngIf ="studentForm.get('state').errors?.required">
+                        Required state.
+                    </mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                  <mat-label>Zip Code</mat-label>
+                  <mat-label>Pin Code</mat-label>
                   <input  matInput  formControlName="zipcode"   minLength="5" maxLength="7" class="br-btm input-w" pattern="^[0-9]{5,7}$" autoComplete='off' tabindex="17">
               </mat-form-field>
                   <mat-form-field>
@@ -105,7 +108,7 @@
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Aadhar Number</mat-label>
-                    <input  matInput   type="text"  formControlName="adharNumber"  required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{12}$" tabindex="4">
+                    <input  matInput   type="text"  formControlName="adharNumber" class="br-btm input-w" autoComplete='off' pattern="^[0-9]{12}$" tabindex="4">
                     <mat-error *ngIf ="studentForm.get('adharNumber').errors?.required">
                         Required Aadhar number.
                     </mat-error>
@@ -144,7 +147,7 @@
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Student Type</mat-label>
-                    <input matInput placeholder="Input" style="display: none" required>
+                    <input matInput style="display: none" required>
                     <mat-radio-group formControlName="studentType" required tabindex="12">
                       <mat-radio-button value="regular">Regular</mat-radio-button>&nbsp;
                       <mat-radio-button value="correspondance">Correspondance</mat-radio-button>
@@ -153,16 +156,19 @@
                       Required Student Type
                     </mat-error>
                   </mat-form-field>
+                  <!-- <mat-form-field>
+                    <mat-radio-group matInput formControlName="studentType" aria-label="Select an option">
+                      <mat-radio-button value="1">Option 1</mat-radio-button>
+                      <mat-radio-button value="2">Option 2</mat-radio-button>
+                    </mat-radio-group>
+                  </mat-form-field> -->
                   <mat-form-field>
                     <mat-label>LandMark</mat-label>
                     <input matInput type="text"  formControlName="LandMark"   class="br-btm input-w" autoComplete='off' tabindex="14">
                 </mat-form-field>
                 <mat-form-field>
-                  <mat-label>State</mat-label>
-                  <input  matInput   type="text"  formControlName="state"  class="br-btm input-w" autoComplete='off' tabindex="16">
-                  <mat-error *ngIf ="studentForm.get('state').errors?.required">
-                      Required state.
-                  </mat-error>
+                  <mat-label>City</mat-label>
+                  <input  matInput   type="text"  formControlName="city"  class="br-btm input-w" autoComplete='off' tabindex="16">
               </mat-form-field>
               <mat-form-field>
                 <mat-label>No of Education Documents</mat-label>

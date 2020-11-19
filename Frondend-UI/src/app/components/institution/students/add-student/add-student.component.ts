@@ -41,12 +41,13 @@ export class AddStudentComponent implements OnInit {
       nameOfCourse: new FormControl('', [Validators.required]),
       yearOfJoining: new FormControl('', [Validators.required, this.validateJoining()]),
       phoneNumber : new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
-      adharNumber : new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(12)]),
+      adharNumber : new FormControl('', [Validators.minLength(12), Validators.maxLength(12)]),
       yearOfPassout: new FormControl('', [Validators.required, this.validatePassout()]),
       studentType : new FormControl('', [Validators.required]),
       extraActivity : new FormControl(''),
       extraActivityDocumentName : new FormControl(),
       eductionalDocumentNames : new FormControl(),
+      purposeOfFile: new FormControl([]),
       intitutionName : new FormControl(this.instituteName, [Validators.required]),
       eductionalDocumentLinks: new FormControl(),
       extraActivityDocumentLink : new FormControl(),
@@ -195,6 +196,7 @@ export class AddStudentComponent implements OnInit {
   
  
   submit(){
+    console.log(this.studentForm.value)
     if (!this.studentIdedit){
     this.studentSubscription = this.stuService.addStudent(this.studentForm.value).subscribe(resp => {
       console.log(this.studentForm.value);
@@ -313,15 +315,15 @@ export class DialogElementsExampleDialog {
     }
 
     ngOnInit(){
+      if (this.methodType == 'delete') {
+        this.Message = "Delete successfully"
+      }
       console.log(this.methodType)
       if (this.methodType == 'update'){
         this.Message = "Student Updated successfully"
       }
-      if (this.methodType == 'delete') {
-        this.Message = "Delete successfully"
-      }
       else{
-        this.Message = "Student Onboarded successfully"
+        this.Message = "Student added successfully"
       }
 
     }
