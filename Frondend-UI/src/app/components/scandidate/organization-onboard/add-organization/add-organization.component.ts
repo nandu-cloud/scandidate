@@ -48,7 +48,7 @@ export class AddOrganizationComponent implements OnInit {
       status : new FormControl('',[Validators.required]),
       organisationDescription : new FormControl(''),
       code : new FormControl(''),
-      contact : new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]),
+      contact : new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(10), Validators.pattern('^[1-9][0-9]{9}$')]),
       organisationType : new FormControl(''),
       organisationEmployeeSize : new FormControl(''),
       organisationActiveFrom : new FormControl('',[Validators.required]),

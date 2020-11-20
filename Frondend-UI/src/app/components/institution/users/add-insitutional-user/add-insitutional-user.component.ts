@@ -40,7 +40,7 @@ export class AddInsitutionalUserComponent implements OnInit {
       email: new FormControl('',[Validators.required, Validators.email,
         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
       dateOfBirth: new FormControl(''),
-      phoneNumber: new FormControl('',[Validators.required, Validators.pattern("^[0-9]{10}$")]),
+      phoneNumber: new FormControl('',[Validators.required, Validators.pattern('^[1-9][0-9]{9}$')]),
       status: new FormControl('')
     })
   }

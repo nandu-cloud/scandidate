@@ -40,7 +40,7 @@ export class AddStudentComponent implements OnInit {
       dateOfBirth: new FormControl('', [Validators.required]),
       nameOfCourse: new FormControl('', [Validators.required]),
       yearOfJoining: new FormControl('', [Validators.required, this.validateJoining()]),
-      phoneNumber : new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+      phoneNumber : new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[1-9][0-9]{9}$')]),
       adharNumber : new FormControl('', [Validators.minLength(12), Validators.maxLength(12)]),
       yearOfPassout: new FormControl('', [Validators.required, this.validatePassout()]),
       studentType : new FormControl('', [Validators.required]),

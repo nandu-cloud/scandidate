@@ -36,7 +36,7 @@ export class AddOppuserComponent implements OnInit {
       _id: new FormControl(), 
       firstName : new FormControl('',[Validators.required]),
       lastName : new FormControl('',[Validators.required]),
-      phoneNumber : new FormControl('',[Validators.required]),
+      phoneNumber : new FormControl('',[Validators.required, Validators.pattern('^[1-9][0-9]{9}$')]),
       email : new FormControl('',[Validators.required]),
       role: new FormControl('INSTITUTION',[Validators.required]),
       subRole: new FormControl('OPERATIONAL_USER',[Validators.required]),

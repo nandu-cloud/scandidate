@@ -48,7 +48,7 @@ export class AddInitutionComponent implements OnInit {
       status : new FormControl('',[Validators.required]),
       instituteDescription : new FormControl(''),
       code : new FormControl(''),
-      contact : new FormControl('',[Validators.required,Validators.pattern(/^[0-9]{10}$/)]),
+      contact : new FormControl('',[Validators.required, Validators.pattern('^[1-9][0-9]{9}$')]),
       instituteType : new FormControl('',[Validators.required]),
       instituteStudentSize : new FormControl(''),
       instituteActiveFrom : new FormControl('',[Validators.required]),

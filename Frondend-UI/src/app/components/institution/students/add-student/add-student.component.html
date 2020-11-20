@@ -62,13 +62,44 @@
                     <mat-label>Address</mat-label>
                     <input  matInput formControlName="address"  type="text"   class="br-btm input-w" autoComplete='off' tabindex="13">
                   </mat-form-field>
-                  <mat-form-field>
-                    <mat-label>State</mat-label>
-                    <input  matInput   type="text"  formControlName="state"  class="br-btm input-w" autoComplete='off' tabindex="15">
-                    <mat-error *ngIf ="studentForm.get('state').errors?.required">
-                        Required state.
-                    </mat-error>
-                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>State</mat-label>
+                  <mat-select  class="br-btm input-w pb-5" formControlName="state" tabindex="15">
+                    <mat-option [value]=0>Select</mat-option>
+                    <mat-option [value]=1>Andra Pradesh</mat-option>
+                    <mat-option [value]=2>Arunachal Pradesh</mat-option>
+                    <mat-option [value]=3>Assam</mat-option>
+                    <mat-option [value]=4>Bihar</mat-option>
+                    <mat-option [value]=5>Chhattisgarh</mat-option>
+                    <mat-option [value]=6>Goa</mat-option>
+                    <mat-option [value]=7>Gujarat</mat-option>
+                    <mat-option [value]=8>Haryana</mat-option>
+                    <mat-option [value]=9>Himachal Pradesh</mat-option>
+                    <mat-option [value]=10>Jammu and Kashmir</mat-option>
+                    <mat-option [value]=11>Jharkhand</mat-option>
+                    <mat-option [value]=12>Karnataka</mat-option>
+                    <mat-option [value]=13>Kerala</mat-option>
+                    <mat-option [value]=14>Madya Pradesh</mat-option>
+                    <mat-option [value]=15>Maharashtra</mat-option>
+                    <mat-option [value]=16>Manipur</mat-option>
+                    <mat-option [value]=17>Meghalaya</mat-option>
+                    <mat-option [value]=18>Mizoram</mat-option>
+                    <mat-option [value]=19>Nagaland</mat-option>
+                    <mat-option [value]=20>Orissa</mat-option>
+                    <mat-option [value]=21>Punjab</mat-option>
+                    <mat-option [value]=22>Rajasthan</mat-option>
+                    <mat-option [value]=23>Sikkim</mat-option>
+                    <mat-option [value]=24>Tamil Nadu</mat-option>
+                    <mat-option [value]=25>Telagana</mat-option>
+                    <mat-option [value]=26>Tripura</mat-option>
+                    <mat-option [value]=27>Uttaranchal</mat-option>
+                    <mat-option [value]=28>Uttar Pradesh</mat-option>
+                    <mat-option [value]=29>West Bengal</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf ="studentForm.get('state').errors?.required">
+                    Required state.
+                </mat-error>
+              </mat-form-field>
                 <mat-form-field>
                   <mat-label>Pin Code</mat-label>
                   <input  matInput  formControlName="zipcode"   minLength="5" maxLength="7" class="br-btm input-w" pattern="^[0-9]{5,7}$" autoComplete='off' tabindex="17">
@@ -156,6 +187,19 @@
                       Required Student Type
                     </mat-error>
                   </mat-form-field>
+                  <!-- <div class="mt-4">
+                    <span class="text-gray-700 font-black">Student Type</span>
+                    <div class="mt-2" formControlName="studentType" required tabindex="12">
+                      <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="studentType" value="regular">
+                        <span class="ml-2">Regular</span>
+                      </label>
+                      <label class="inline-flex items-center ml-6">
+                        <input type="radio" class="form-radio" name="studentType" value="correspondance">
+                        <span class="ml-2">Correspondance</span>
+                      </label>
+                    </div>
+                  </div> -->
                   <!-- <mat-form-field>
                     <mat-radio-group matInput formControlName="studentType" aria-label="Select an option">
                       <mat-radio-button value="1">Option 1</mat-radio-button>
@@ -180,7 +224,7 @@
                   <div class="group-gap">
                     <div class="avatar-upload">
                         <div class="avatar-edit">
-                          <label class="image-text">Documents Upload</label>
+                          <label class="image-text">Education Documents Upload</label>
                             <input type='file' accept=".pdf,.png,.jpeg,.doc,.docx" #eduDocs    (change)="uploadEducationFile($event)" multiple tabindex="20"/>
                             <div id="imagePreview" >{{ documentCount}} files uploaded</div>
                           </div>

@@ -91,7 +91,7 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Contact Person Name</mat-label>
-                <input matInput  formControlName="contactPersonName"  type="text"    required  class="br-btm input-w" autoComplete='off' tabindex="4">
+                <input matInput  formControlName="contactPersonName" placeholder="Enter full name"  type="text"    required  class="br-btm input-w" autoComplete='off' tabindex="4">
                 <mat-error *ngIf ="organizationForm.get('contactPersonName').errors?.required">
                     Required contact person name.
                    </mat-error>
@@ -124,14 +124,51 @@
                     Required head quater location.
                 </mat-error>
             </mat-form-field>
-            <mat-form-field>
+            <!-- <mat-form-field>
                 <mat-label>State</mat-label>
                 <input matInput formControlName="state"  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="14">
                 <mat-error *ngIf ="organizationForm.get('state').errors?.required">
                     Required state.
                 </mat-error>
+            </mat-form-field> -->
+            <mat-form-field>
+                <mat-label>State</mat-label>
+                <mat-select  class="br-btm input-w pb-5" formControlName="state" required tabindex="14">
+                  <mat-option [value]=0>Select</mat-option>
+                  <mat-option [value]=1>Andra Pradesh</mat-option>
+                  <mat-option [value]=2>Arunachal Pradesh</mat-option>
+                  <mat-option [value]=3>Assam</mat-option>
+                  <mat-option [value]=4>Bihar</mat-option>
+                  <mat-option [value]=5>Chhattisgarh</mat-option>
+                  <mat-option [value]=6>Goa</mat-option>
+                  <mat-option [value]=7>Gujarat</mat-option>
+                  <mat-option [value]=8>Haryana</mat-option>
+                  <mat-option [value]=9>Himachal Pradesh</mat-option>
+                  <mat-option [value]=10>Jammu and Kashmir</mat-option>
+                  <mat-option [value]=11>Jharkhand</mat-option>
+                  <mat-option [value]=12>Karnataka</mat-option>
+                  <mat-option [value]=13>Kerala</mat-option>
+                  <mat-option [value]=14>Madya Pradesh</mat-option>
+                  <mat-option [value]=15>Maharashtra</mat-option>
+                  <mat-option [value]=16>Manipur</mat-option>
+                  <mat-option [value]=17>Meghalaya</mat-option>
+                  <mat-option [value]=18>Mizoram</mat-option>
+                  <mat-option [value]=19>Nagaland</mat-option>
+                  <mat-option [value]=20>Orissa</mat-option>
+                  <mat-option [value]=21>Punjab</mat-option>
+                  <mat-option [value]=22>Rajasthan</mat-option>
+                  <mat-option [value]=23>Sikkim</mat-option>
+                  <mat-option [value]=24>Tamil Nadu</mat-option>
+                  <mat-option [value]=25>Telagana</mat-option>
+                  <mat-option [value]=26>Tripura</mat-option>
+                  <mat-option [value]=27>Uttaranchal</mat-option>
+                  <mat-option [value]=28>Uttar Pradesh</mat-option>
+                  <mat-option [value]=29>West Bengal</mat-option>
+                </mat-select>
+                <mat-error *ngIf ="organizationForm.get('state').errors?.required">
+                  Required state.
+              </mat-error>
             </mat-form-field>
-            
             <mat-form-field>
                 <mat-label>Pin Code</mat-label>
                 <input  matInput type="text"  formControlName="organisationZIP"  required  class="br-btm input-w" autoComplete='off' tabindex="16">
