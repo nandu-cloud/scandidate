@@ -51,7 +51,7 @@ export class AddOrganizationComponent implements OnInit {
       contact : new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(10), Validators.pattern('^[1-9][0-9]{9}$')]),
       organisationType : new FormControl(''),
       organisationEmployeeSize : new FormControl(''),
-      organisationActiveFrom : new FormControl('',[Validators.required]),
+      organisationActiveFrom : new FormControl(''),
       organisationLogo : new FormControl(''),
       legalEntityName: new FormControl('',[Validators.required]),
       organizationLocation : new FormControl('',[Validators.required]),
@@ -59,7 +59,7 @@ export class AddOrganizationComponent implements OnInit {
       headQuaterLocation : new FormControl('',[Validators.required]),
       organizationGstn: new FormControl(''),
       organizationCin : new FormControl(''),
-      organizationPan: new FormControl(''),
+      panNumber: new FormControl(''),
       LandMark : new FormControl('')
     })
   }

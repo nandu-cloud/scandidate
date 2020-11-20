@@ -28,7 +28,7 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Email</mat-label>
-                <input  matInput type="text"  formControlName="organisationEmail"  class="br-btm input-w" autoComplete='off' tabindex="5">
+                <input  matInput type="text"  formControlName="organisationEmail" required class="br-btm input-w" autoComplete='off' tabindex="5">
                 <mat-error *ngIf ="organizationForm.get('organisationEmail').errors?.required">
                     Required Email Name.
                    </mat-error>
@@ -134,43 +134,43 @@
             <mat-form-field>
                 <mat-label>State</mat-label>
                 <mat-select  class="br-btm input-w pb-5" formControlName="state" required tabindex="14">
-                    <mat-option [value]=0>Select</mat-option>
-                    <mat-option [value]=1>Andaman & Nicobar</mat-option>
-                    <mat-option [value]=2>Andra Pradesh</mat-option>
-                    <mat-option [value]=3>Arunachal Pradesh</mat-option>
-                    <mat-option [value]=4>Assam</mat-option>
-                    <mat-option [value]=5>Bihar</mat-option>
-                    <mat-option [value]=6>Chandigarh</mat-option>
-                    <mat-option [value]=7>Chhattisgarh</mat-option>
-                    <mat-option [value]=8>Dadra & Nagar Haveli</mat-option>
-                    <mat-option [value]=9>Daman & Diu</mat-option>
-                    <mat-option [value]=10>Delhi</mat-option>
-                    <mat-option [value]=11>Goa</mat-option>
-                    <mat-option [value]=12>Gujarat</mat-option>
-                    <mat-option [value]=13>Haryana</mat-option>
-                    <mat-option [value]=14>Himachal Pradesh</mat-option>
-                    <mat-option [value]=15>Jammu and Kashmir</mat-option>
-                    <mat-option [value]=16>Jharkhand</mat-option>
-                    <mat-option [value]=17>Karnataka</mat-option>
-                    <mat-option [value]=18>Kerala</mat-option>
-                    <mat-option [value]=19>Lakshadweep</mat-option>
-                    <mat-option [value]=20>Madya Pradesh</mat-option>
-                    <mat-option [value]=21>Maharashtra</mat-option>
-                    <mat-option [value]=22>Manipur</mat-option>
-                    <mat-option [value]=23>Meghalaya</mat-option>
-                    <mat-option [value]=24>Mizoram</mat-option>
-                    <mat-option [value]=25>Nagaland</mat-option>
-                    <mat-option [value]=26>Orissa</mat-option>
-                    <mat-option [value]=27>Pondicherry</mat-option>
-                    <mat-option [value]=28>Punjab</mat-option>
-                    <mat-option [value]=29>Rajasthan</mat-option>
-                    <mat-option [value]=30>Sikkim</mat-option>
-                    <mat-option [value]=31>Tamil Nadu</mat-option>
-                    <mat-option [value]=32>Telagana</mat-option>
-                    <mat-option [value]=33>Tripura</mat-option>
-                    <mat-option [value]=34>Uttar Pradesh</mat-option>
-                    <mat-option [value]=35>Uttaranchal</mat-option>
-                    <mat-option [value]=36>West Bengal</mat-option>
+                    <mat-option value="select">Select</mat-option>
+                    <mat-option value="andaman">Andaman & Nicobar</mat-option>
+                    <mat-option value="andrapradesh">Andra Pradesh</mat-option>
+                    <mat-option value="arunachal">Arunachal Pradesh</mat-option>
+                    <mat-option value="assam">Assam</mat-option>
+                    <mat-option value="bihar">Bihar</mat-option>
+                    <mat-option value="chandigarh">Chandigarh</mat-option>
+                    <mat-option value="chhattisgarh">Chhattisgarh</mat-option>
+                    <mat-option value="dadra">Dadra & Nagar Haveli</mat-option>
+                    <mat-option value="daman">Daman & Diu</mat-option>
+                    <mat-option value="delhi">Delhi</mat-option>
+                    <mat-option value="goa">Goa</mat-option>
+                    <mat-option value="gujarat">Gujarat</mat-option>
+                    <mat-option value="haryana">Haryana</mat-option>
+                    <mat-option value="himachal">Himachal Pradesh</mat-option>
+                    <mat-option value="jammu">Jammu and Kashmir</mat-option>
+                    <mat-option value="jharkhand">Jharkhand</mat-option>
+                    <mat-option value="karnataka">Karnataka</mat-option>
+                    <mat-option value="kerala">Kerala</mat-option>
+                    <mat-option value="lakshadweep">Lakshadweep</mat-option>
+                    <mat-option value="madyapradesh">Madya Pradesh</mat-option>
+                    <mat-option value="maharastra">Maharashtra</mat-option>
+                    <mat-option value="manipur">Manipur</mat-option>
+                    <mat-option value="meghalaya">Meghalaya</mat-option>
+                    <mat-option value="mizoram">Mizoram</mat-option>
+                    <mat-option value="nagaland">Nagaland</mat-option>
+                    <mat-option value="orissa">Orissa</mat-option>
+                    <mat-option value="pondicherry">Pondicherry</mat-option>
+                    <mat-option value="punjab">Punjab</mat-option>
+                    <mat-option value="rajasthan">Rajasthan</mat-option>
+                    <mat-option value="sikkim">Sikkim</mat-option>
+                    <mat-option value="tamil">Tamil Nadu</mat-option>
+                    <mat-option value="telangana">Telangana</mat-option>
+                    <mat-option value="tripura">Tripura</mat-option>
+                    <mat-option value="uttarpradesh">Uttar Pradesh</mat-option>
+                    <mat-option value="uttaranchal">Uttaranchal</mat-option>
+                    <mat-option value="westbengal">West Bengal</mat-option>
                 </mat-select>
                 <mat-error *ngIf ="organizationForm.get('state').errors?.required">
                   Required state.
@@ -190,7 +190,7 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>PAN (optional)</mat-label>
-                <input  matInput   type="text"  formControlName="organizationPan" class="br-btm input-w" autoComplete='off' tabindex="18">
+                <input  matInput   type="text"  formControlName="panNumber" class="br-btm input-w" autoComplete='off' tabindex="18">
             </mat-form-field>
             <div class="group-gap">
                 <div class="avatar-upload">
