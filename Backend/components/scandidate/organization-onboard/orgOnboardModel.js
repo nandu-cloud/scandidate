@@ -29,7 +29,7 @@ let onboardOrganizationSchema = mongoose.Schema({
     required: false,
   },
   organisationActiveFrom: {
-    type: Date,
+    type: String,
   },
   organisationZIP: {
     type: Number,
@@ -81,6 +81,10 @@ let onboardOrganizationSchema = mongoose.Schema({
   organizationCin: {
     type: String,
   },
+  panNumber: {
+    type: String,
+    required: false,
+  }
 });
 
 module.exports = mongoose.model(

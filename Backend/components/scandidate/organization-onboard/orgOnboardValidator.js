@@ -11,7 +11,7 @@ const organisationCreationSchema = Joi.object({
   contactPersonName: Joi.string().allow("").allow(null),
   organisationAddress: Joi.string().allow("").allow(null),
   organisationEmployeeSize: Joi.string().allow("").allow(null),
-  organisationActiveFrom: Joi.date().allow("").allow(null),
+  organisationActiveFrom: Joi.string().allow("").allow(null),
   organisationDescription: Joi.string().allow("").allow(null),
   contact: Joi.number().allow("").allow(null),
   code: Joi.string().allow("").allow(null),
@@ -22,6 +22,7 @@ const organisationCreationSchema = Joi.object({
   headQuaterLocation: Joi.string().allow("").allow(null),
   organizationGstn: Joi.string().allow("").allow(null),
   organizationCin: Joi.string().allow("").allow(null),
+  panNumber: Joi.string().allow("").allow(null),
 });
 
 const organisationUpdationSchema = Joi.object({
@@ -35,7 +36,7 @@ const organisationUpdationSchema = Joi.object({
   contactPersonName: Joi.string().allow("").allow(null),
   organisationAddress: Joi.string().allow("").allow(null),
   organisationEmployeeSize: Joi.string().allow("").allow(null),
-  organisationActiveFrom: Joi.date().allow("").allow(null),
+  organisationActiveFrom: Joi.string().allow("").allow(null),
   organisationDescription: Joi.string().allow("").allow(null),
   contact: Joi.number().allow("").allow(null),
   code: Joi.string().allow("").allow(null),
@@ -46,6 +47,7 @@ const organisationUpdationSchema = Joi.object({
   headQuaterLocation: Joi.string().allow("").allow(null),
   organizationGstn: Joi.string().allow("").allow(null),
   organizationCin: Joi.string().allow("").allow(null),
+  panNumber: Joi.string().allow("").allow(null),
 });
 
 module.exports = {

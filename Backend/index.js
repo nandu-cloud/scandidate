@@ -74,6 +74,11 @@ app.use(
   require("./components/organization/Dashboard/dashboardRoute")
 );
 
+app.use(
+  "/api/country",
+  require("./components/city/statecityroute")
+)
+
 app.all("*", (req, res, next) => {
   next(new AppError(`Cannot find ${req.originalUrl} on the server`, 404));
 });
