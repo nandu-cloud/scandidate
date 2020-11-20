@@ -13,8 +13,10 @@ module.exports.saveStateCityDistrict = async (req, res, next) => {
 
 
 module.exports.showState = async (req, res, next) => {
+    let userInput = req.body.stateName;
+    let id = req.params.id;
     try {
-        let allStates = await stateDAL.showAllState();
+        let allStates = await stateDAL.showAllState(userInput, id);
         return res.status(200).json({
             status: 200,
             message: 'SUCCESS',

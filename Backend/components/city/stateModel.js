@@ -7,9 +7,6 @@ const statecitySchema = new Schema({
     },
     city: {
         type: Array,
-    },
-    district: {
-        type: Array,
     }
 });
 

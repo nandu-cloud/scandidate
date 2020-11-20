@@ -10,7 +10,7 @@ router
 
 
 router
-    .route("/getstates")
+    .route("/getstates/:id")
     .get(authJWT.verifyJWTToken, stateController.showState);
 
 

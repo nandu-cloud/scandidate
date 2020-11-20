@@ -13,10 +13,11 @@ async function saveAlllData(data) {
 
 
 
-async function showAllState() {
+async function showAllState(userInput, id) {
     try {
-        let result = await stateModelDemo.find().lean();
-        return result;
+        let { stateName, city } = await stateModelDemo.findById({ _id: id }).lean();
+        var index = stateName.indexOf(userInput);
+        return city[index];
     } catch (err) {
         throw err;
     }
