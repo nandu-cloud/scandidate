@@ -4,7 +4,7 @@ const stateModelDemo = require('./stateModel');
 async function saveAlllData(data) {
     const stateData = new stateModelDemo(data);
     try {
-        let result = stateData.save(data);
+        let result = stateData.save();
         return result;
     } catch (err) {
         throw err;

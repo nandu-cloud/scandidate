@@ -42,19 +42,21 @@ module.exports.searchByIdBGV = async (req, res, next) => {
   let _id = req.params.searchbyid;
   try {
     let empData = await bgvDAL.searchBgvDataEmployeeId({ _id: _id });
-    var aadharNumber;
-    var phoneNumber;
-    var email;
-    var firstName;
-    var lastName;
-    var dob;
+    var aadharNumber = '';
+    var phoneNumber = '';
+    var email = '';
+    var firstName = '';
+    var lastName = '';
+    var dob = '';
 
     if (empData.length > 0) {
+
       aadharNumber = empData[0].adharNumber;
       phoneNumber = empData[0].phoneNumber;
       email = empData[0].email;
       firstName = empData[0].firstName;
       lastName = empData[0].lastName;
+
       dob = empData[0].dateOfBirth;
     } else {
       let stuData = await bgvDAL.searchBgvDataStudentId({ _id: _id });
@@ -78,6 +80,7 @@ module.exports.searchByIdBGV = async (req, res, next) => {
         let studentAdharData = await bgvDAL.searchByAdharNumberInstitute(
           aadharNumber
         );
+
         let resultData = empAdharData.concat(studentAdharData);
 
         return res.status(200).json({

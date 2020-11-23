@@ -25,8 +25,14 @@ module.exports.createUserMethod = async function (req, res, next) {
     let hash = bcrypt.hashSync(data.password, saltRounds);
     data.password = hash;
 
+
     try {
       let userData = await userDAL.createUser(data);
+
+      //Email sending
+
+
+
       return res.status(201).json({ status: "SUCCESS", data: userData });
     } catch (err) {
       console.log(colors.red, `createUserMethod err ${err}`);
