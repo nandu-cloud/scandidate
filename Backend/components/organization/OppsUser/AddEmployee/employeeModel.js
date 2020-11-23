@@ -114,72 +114,72 @@ const employeeSchema = new mongoose.Schema({
 
 
   // performance
-  volume: {
-    IsSelect: {
-      type: Number,
-      required: false
-    },
-    description: {
-      type: String
-    },
-  },
-  quality: {
-    IsSelect: {
-      type: Number,
-      required: false
-    },
-    description: {
-      type: String
-    },
-  },
-  consistency: {
-    IsSelect: {
-      type: Number,
-      required: false
-    },
-    description: {
-      type: String
-    },
-  },
-  building: {
-    IsSelect: {
-      type: Number,
-      required: false
-    },
-    description: {
-      type: String
-    },
-  },
-  stakeholder: {
-    IsSelect: {
-      type: Number,
-      required: false
-    },
-    description: {
-      type: String
-    },
-  },
-
   // volume: {
-  //   type: Number,
-  //   required: false
+  //   IsSelect: {
+  //     type: Number,
+  //     required: false
+  //   },
+  //   description: {
+  //     type: String
+  //   },
   // },
   // quality: {
-  //   type: Number,
-  //   required: false
+  //   IsSelect: {
+  //     type: Number,
+  //     required: false
+  //   },
+  //   description: {
+  //     type: String
+  //   },
   // },
   // consistency: {
-  //   type: Number,
-  //   required: false
+  //   IsSelect: {
+  //     type: Number,
+  //     required: false
+  //   },
+  //   description: {
+  //     type: String
+  //   },
   // },
   // building: {
-  //   type: Number,
-  //   required: false
+  //   IsSelect: {
+  //     type: Number,
+  //     required: false
+  //   },
+  //   description: {
+  //     type: String
+  //   },
   // },
   // stakeholder: {
-  //   type: Number,
-  //   required: false
+  //   IsSelect: {
+  //     type: Number,
+  //     required: false
+  //   },
+  //   description: {
+  //     type: String
+  //   },
   // },
+
+  volume: {
+    type: Number,
+    required: false
+  },
+  quality: {
+    type: Number,
+    required: false
+  },
+  consistency: {
+    type: Number,
+    required: false
+  },
+  building: {
+    type: Number,
+    required: false
+  },
+  stakeholder: {
+    type: Number,
+    required: false
+  },
 
   //Conduct
   punctuality: {
