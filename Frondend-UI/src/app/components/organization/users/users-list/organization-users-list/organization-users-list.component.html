@@ -51,7 +51,7 @@
           </ng-container>
     
         <ng-container matColumnDef="status">
-          <mat-header-cell *matHeaderCellDef>status</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
           <mat-cell *matCellDef="let row" ><span class="pt-2 pb-2 pl-4 pr-4 w-24 text-center text-white text-bold capitalize" [ngStyle]="{'background-color':row.status == true ? 'green' : 'blue' }">{{(row.status)?"Active":"Inactive"}}</span></mat-cell>
         </ng-container>
     
