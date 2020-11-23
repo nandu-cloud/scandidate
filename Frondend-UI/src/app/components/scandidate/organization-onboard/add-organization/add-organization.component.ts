@@ -15,6 +15,9 @@ import { StorageService } from '../../../../services/storage.service';
 })
 export class AddOrganizationComponent implements OnInit {
   [x: string]: any;
+
+  companyName:string='';
+  companyName_code;
   baseUrl = environment.baseUrl;
   organizationForm: FormGroup;
   orgSubscription: Subscription;
@@ -27,8 +30,8 @@ export class AddOrganizationComponent implements OnInit {
   editOrgData: FormGroup;
   orgIdedit:number;
   id;
-  minDate = new Date(1990, 0, 1);
-  maxDate = new Date;
+  minDate = new Date(); 
+  maxDate = (new Date()).getFullYear();
   orgIdupdate : number ;
   imageUrl: any = '';
   imageFilename:string='';
@@ -36,6 +39,10 @@ export class AddOrganizationComponent implements OnInit {
     public fb: FormBuilder,
     private cd: ChangeDetectorRef,public dialog: MatDialog,public orgService: addOrganizationService,public route:ActivatedRoute
   ) {
+    console.log(this.maxDate);
+    console.log(this.companyName);
+    this.companyName_code=this.companyName.substr(0,4).toUpperCase;
+    console.log(this.companyName_code);
     this.route.params.subscribe(params => {
           this.orgIdedit = params.id;
     });
@@ -51,7 +58,7 @@ export class AddOrganizationComponent implements OnInit {
       contact : new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(10), Validators.pattern('^[1-9][0-9]{9}$')]),
       organisationType : new FormControl(''),
       organisationEmployeeSize : new FormControl(''),
-      organisationActiveFrom : new FormControl(''),
+      organisationActiveFrom : new FormControl('',[Validators.max(new Date().getFullYear())]),
       organisationLogo : new FormControl(''),
       legalEntityName: new FormControl('',[Validators.required]),
       organizationLocation : new FormControl('',[Validators.required]),
@@ -110,11 +117,16 @@ ngOnInit(){
       this.organizationForm.patchValue(respObj.data);
       this.imageUrl=`${this.baseUrl}/public/organization_logo/${respObj.data.organisationLogo}`;
       this.imageFilename=respObj.data.organisationLogo;
+      
+
     }, err => {
       this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
     })
   }
 }
+ 
+// {if(this.data.length>0)
+//   {this.organizationForm.patchValue({code:data.slice(0,5)})}}
 
   submit(){
     if(!this.orgIdedit){

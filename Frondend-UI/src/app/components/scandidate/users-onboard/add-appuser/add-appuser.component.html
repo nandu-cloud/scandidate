@@ -22,23 +22,9 @@
                    </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Last Name</mat-label>
-                <input  matInput   type="text"  name="lastName"  formControlName="lastName" required  class="br-btm input-w" autoComplete='off'>
-                <mat-error *ngIf ="createUserData.get('lastName').errors?.required">
-                    Required last Name.
-                   </mat-error>
-                   <mat-error *ngIf ="createUserData.get('firstName').errors?.minlength">
-                    Last name must be at least 3 characters long.
-                   </mat-error>
-            </mat-form-field>
-            <mat-form-field>
                 <mat-label>Employee ID</mat-label>
                 <input  matInput   type="text"  name="employeeId" formControlName="employeeId" class="br-btm input-w" autoComplete='off'>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Parament Address</mat-label>
-                <textarea  matInput name="permanentAddress" formControlName="permanentAddress" class="br-txtarea input-w" rows="6" autoComplete='off'></textarea>
-            </mat-form-field>
+            </mat-form-field>           
             <mat-form-field>
                 <mat-label>Role</mat-label>
                 <mat-select  class="br-btm input-w" formControlName="role" required (selectionChange)="selectedTpe($event)">
@@ -51,6 +37,26 @@
                     Required role.
                 </mat-error>
             </mat-form-field>
+            <mat-form-field>
+                <mat-label>DOB</mat-label>
+                <input matInput [matDatepicker]="picker2" formControlName="dateOfBirth" class="br-btm input-w">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2 color="primary"></mat-datepicker>
+                <mat-error *ngIf ="createUserData.get('dateOfBirth').errors?.required">
+                    Required date of birth.
+                   </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Current Location</mat-label>
+                <input  matInput  type="text" name="currentAddress" formControlName="currentAddress" class="br-btm input-w" autoComplete='off'>
+            </mat-form-field>
+            
+            <!-- <mat-form-field>
+                <mat-label>Parament Address</mat-label>
+                <textarea  matInput name="permanentAddress" formControlName="permanentAddress" class="br-txtarea input-w" rows="6" autoComplete='off'></textarea>
+            </mat-form-field> -->
+           
            
             <mat-form-field *ngIf="subroleTypeee == 'ORGANIZATION'">
                 <mat-label>Organization</mat-label>
@@ -100,12 +106,13 @@
         </div>
         <div class="w-full md:w-1/2 sm:w-full">
             <mat-form-field>
-                <mat-label>DOB</mat-label>
-                <input matInput [matDatepicker]="picker2" formControlName="dateOfBirth" class="br-btm input-w" required>
-                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                <mat-datepicker #picker2 color="primary"></mat-datepicker>
-                <mat-error *ngIf ="createUserData.get('dateOfBirth').errors?.required">
-                    Required date of birth.
+                <mat-label>Last Name</mat-label>
+                <input  matInput   type="text"  name="lastName"  formControlName="lastName" required  class="br-btm input-w" autoComplete='off'>
+                <mat-error *ngIf ="createUserData.get('lastName').errors?.required">
+                    Required last Name.
+                   </mat-error>
+                   <mat-error *ngIf ="createUserData.get('firstName').errors?.minlength">
+                    Last name must be at least 3 characters long.
                    </mat-error>
             </mat-form-field>
             <mat-form-field>
@@ -119,20 +126,6 @@
                 </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Contact</mat-label>
-                <input  matInput   type="text"  name="contact"  formControlName="phoneNumber" required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{10}$">
-            <mat-error *ngIf ="createUserData.get('phoneNumber').errors?.required">
-                Required phone number.
-            </mat-error>
-            <mat-error *ngIf="!createUserData.get('phoneNumber').errors?.required && createUserData.get('phoneNumber').errors?.pattern">
-                Please enter valid mumber
-               </mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Current Address</mat-label>
-                <textarea  matInput name="currentAddress" formControlName="currentAddress" class="br-txtarea input-w" rows="6" autoComplete='off'></textarea>
-            </mat-form-field>
-            <mat-form-field>
                 <mat-label>Sub Role</mat-label>
                 <mat-select  class="br-btm input-w" formControlName="subRole" required>
                   <!-- <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option> -->
@@ -143,6 +136,20 @@
                     Required sub role.
                 </mat-error>
             </mat-form-field>
+            
+           
+            <mat-form-field>
+                <mat-label>Contact</mat-label>
+                <input  matInput   type="text"  name="contact"  formControlName="phoneNumber" required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{10}$">
+            <mat-error *ngIf ="createUserData.get('phoneNumber').errors?.required">
+                Required phone number.
+            </mat-error>
+            <mat-error *ngIf="!createUserData.get('phoneNumber').errors?.required && createUserData.get('phoneNumber').errors?.pattern">
+                Please enter valid mumber
+               </mat-error>
+            </mat-form-field>
+        
+          
             <mat-form-field *ngIf="id">
                 <mat-label>Status</mat-label>
                 <mat-select   class="br-btm input-w" formControlName="status" required>

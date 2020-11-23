@@ -14,7 +14,7 @@
         <div class="w-full md:w-1/2 sm:w-full">
             <mat-form-field>
                 <mat-label>Company Name</mat-label>
-                <input  matInput formControlName="organizationName"  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="1" >
+                <input  matInput formControlName="organizationName" [(ngModel)]="companyName"  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="1" >
                 <mat-error *ngIf ="organizationForm.get('organizationName').errors?.required">
                     Required company Name.
                    </mat-error>
@@ -24,7 +24,7 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Code</mat-label>
-                <input  matInput type="text"  formControlName="code"    class="br-btm input-w" autoComplete='off' tabindex="3">
+                <input  matInput type="text"  value="{{companyName | slice :0:4 | uppercase}}" formControlName="code"    class="br-btm input-w" autoComplete='off' tabindex="3">
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Email</mat-label>
@@ -44,11 +44,11 @@
                 <mat-form-field>
                     <mat-label>Active From</mat-label>
                     <!-- <input  matInput  type="text"  formControlName="activeform"  required  class="br-btm input-w" autoComplete='off'> -->
-                    <input matInput formControlName="organisationActiveFrom" placeholder="YYYY" class="br-btm input-w" tabindex="9">
+                    <input matInput formControlName="organisationActiveFrom" max="maxDate"  placeholder="YYYY" class="br-btm input-w" tabindex="9">
                     <!-- <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2 color="primary"></mat-datepicker> -->
-                    <mat-error *ngIf ="organizationForm.get('organisationActiveFrom').errors?.required">
-                        Choose date.
+                    <mat-error *ngIf ="organizationForm.get('organisationActiveFrom').errors?.max">
+                        Enter a Valid Year.
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field>
@@ -59,12 +59,51 @@
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-label>City</mat-label>
-                    <input matInput formControlName="organizationLocation"  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="13" >
-                    <mat-error *ngIf ="organizationForm.get('organizationLocation').errors?.required">
-                        Required location.
-                    </mat-error>
+                    <mat-label>State</mat-label>
+                    <mat-select  class="br-btm input-w pb-5" formControlName="state" required tabindex="14">
+                        <mat-option value="select">Select</mat-option>
+                        <mat-option value="andaman">Andaman & Nicobar</mat-option>
+                        <mat-option value="andrapradesh">Andra Pradesh</mat-option>
+                        <mat-option value="arunachal">Arunachal Pradesh</mat-option>
+                        <mat-option value="assam">Assam</mat-option>
+                        <mat-option value="bihar">Bihar</mat-option>
+                        <mat-option value="chandigarh">Chandigarh</mat-option>
+                        <mat-option value="chhattisgarh">Chhattisgarh</mat-option>
+                        <mat-option value="dadra">Dadra & Nagar Haveli</mat-option>
+                        <mat-option value="daman">Daman & Diu</mat-option>
+                        <mat-option value="delhi">Delhi</mat-option>
+                        <mat-option value="goa">Goa</mat-option>
+                        <mat-option value="gujarat">Gujarat</mat-option>
+                        <mat-option value="haryana">Haryana</mat-option>
+                        <mat-option value="himachal">Himachal Pradesh</mat-option>
+                        <mat-option value="jammu">Jammu and Kashmir</mat-option>
+                        <mat-option value="jharkhand">Jharkhand</mat-option>
+                        <mat-option value="karnataka">Karnataka</mat-option>
+                        <mat-option value="kerala">Kerala</mat-option>
+                        <mat-option value="lakshadweep">Lakshadweep</mat-option>
+                        <mat-option value="madyapradesh">Madya Pradesh</mat-option>
+                        <mat-option value="maharastra">Maharashtra</mat-option>
+                        <mat-option value="manipur">Manipur</mat-option>
+                        <mat-option value="meghalaya">Meghalaya</mat-option>
+                        <mat-option value="mizoram">Mizoram</mat-option>
+                        <mat-option value="nagaland">Nagaland</mat-option>
+                        <mat-option value="orissa">Orissa</mat-option>
+                        <mat-option value="pondicherry">Pondicherry</mat-option>
+                        <mat-option value="punjab">Punjab</mat-option>
+                        <mat-option value="rajasthan">Rajasthan</mat-option>
+                        <mat-option value="sikkim">Sikkim</mat-option>
+                        <mat-option value="tamil">Tamil Nadu</mat-option>
+                        <mat-option value="telangana">Telangana</mat-option>
+                        <mat-option value="tripura">Tripura</mat-option>
+                        <mat-option value="uttarpradesh">Uttar Pradesh</mat-option>
+                        <mat-option value="uttaranchal">Uttaranchal</mat-option>
+                        <mat-option value="westbengal">West Bengal</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf ="organizationForm.get('state').errors?.required">
+                      Required state.
+                  </mat-error>
                 </mat-form-field>
+                
                 <mat-form-field>
                     <mat-label>GSTN (optional)</mat-label>
                     <input  matInput   type="text"  formControlName="organizationGstn" class="br-btm input-w" autoComplete='off' tabindex="15">
@@ -131,51 +170,13 @@
                     Required state.
                 </mat-error>
             </mat-form-field> -->
-            <mat-form-field>
-                <mat-label>State</mat-label>
-                <mat-select  class="br-btm input-w pb-5" formControlName="state" required tabindex="14">
-                    <mat-option value="select">Select</mat-option>
-                    <mat-option value="andaman">Andaman & Nicobar</mat-option>
-                    <mat-option value="andrapradesh">Andra Pradesh</mat-option>
-                    <mat-option value="arunachal">Arunachal Pradesh</mat-option>
-                    <mat-option value="assam">Assam</mat-option>
-                    <mat-option value="bihar">Bihar</mat-option>
-                    <mat-option value="chandigarh">Chandigarh</mat-option>
-                    <mat-option value="chhattisgarh">Chhattisgarh</mat-option>
-                    <mat-option value="dadra">Dadra & Nagar Haveli</mat-option>
-                    <mat-option value="daman">Daman & Diu</mat-option>
-                    <mat-option value="delhi">Delhi</mat-option>
-                    <mat-option value="goa">Goa</mat-option>
-                    <mat-option value="gujarat">Gujarat</mat-option>
-                    <mat-option value="haryana">Haryana</mat-option>
-                    <mat-option value="himachal">Himachal Pradesh</mat-option>
-                    <mat-option value="jammu">Jammu and Kashmir</mat-option>
-                    <mat-option value="jharkhand">Jharkhand</mat-option>
-                    <mat-option value="karnataka">Karnataka</mat-option>
-                    <mat-option value="kerala">Kerala</mat-option>
-                    <mat-option value="lakshadweep">Lakshadweep</mat-option>
-                    <mat-option value="madyapradesh">Madya Pradesh</mat-option>
-                    <mat-option value="maharastra">Maharashtra</mat-option>
-                    <mat-option value="manipur">Manipur</mat-option>
-                    <mat-option value="meghalaya">Meghalaya</mat-option>
-                    <mat-option value="mizoram">Mizoram</mat-option>
-                    <mat-option value="nagaland">Nagaland</mat-option>
-                    <mat-option value="orissa">Orissa</mat-option>
-                    <mat-option value="pondicherry">Pondicherry</mat-option>
-                    <mat-option value="punjab">Punjab</mat-option>
-                    <mat-option value="rajasthan">Rajasthan</mat-option>
-                    <mat-option value="sikkim">Sikkim</mat-option>
-                    <mat-option value="tamil">Tamil Nadu</mat-option>
-                    <mat-option value="telangana">Telangana</mat-option>
-                    <mat-option value="tripura">Tripura</mat-option>
-                    <mat-option value="uttarpradesh">Uttar Pradesh</mat-option>
-                    <mat-option value="uttaranchal">Uttaranchal</mat-option>
-                    <mat-option value="westbengal">West Bengal</mat-option>
-                </mat-select>
-                <mat-error *ngIf ="organizationForm.get('state').errors?.required">
-                  Required state.
-              </mat-error>
-            </mat-form-field>
+           <mat-form-field>
+                    <mat-label>City</mat-label>
+                    <input matInput formControlName="organizationLocation"  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="13" >
+                    <mat-error *ngIf ="organizationForm.get('organizationLocation').errors?.required">
+                        Required location.
+                    </mat-error>
+                </mat-form-field>
             <mat-form-field>
                 <mat-label>Pin Code</mat-label>
                 <input  matInput type="text"  formControlName="organisationZIP"  required  class="br-btm input-w" autoComplete='off' tabindex="16">

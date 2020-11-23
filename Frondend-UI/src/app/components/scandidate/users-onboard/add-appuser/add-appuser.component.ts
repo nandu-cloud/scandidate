@@ -54,7 +54,7 @@ export class AddAppuserComponent implements OnInit {
         subRole: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required, Validators.email,
                             Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
-        dateOfBirth: new FormControl('', [Validators.required]),
+        dateOfBirth: new FormControl(),
         status: new FormControl(true, [Validators.required]),
         phoneNumber: new FormControl('', [Validators.required, Validators.pattern('^[1-9][0-9]{9}$')]),
         organizationId: new FormControl(),
