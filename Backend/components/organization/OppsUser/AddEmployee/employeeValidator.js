@@ -46,11 +46,11 @@ const addEmployeeSchema = Joi.object({
   dealConstructivelyWithPressure: Joi.number().allow("").allow(null),
 
   //performance
-  volume: Joi.number().allow("").allow(null),
-  quality: Joi.number().allow("").allow(null),
-  consistency: Joi.number().allow("").allow(null),
-  building: Joi.number().allow('').allow(null),
-  stakeholder: Joi.number().allow('').allow(null),
+  volume: Joi.object().allow("").allow(null),
+  quality: Joi.object().allow("").allow(null),
+  consistency: Joi.object().allow("").allow(null),
+  building: Joi.object().allow('').allow(null),
+  stakeholder: Joi.object().allow('').allow(null),
 
   //Conduct
   punctuality: Joi.number().allow("").allow(null),
@@ -101,11 +101,11 @@ const updateEmployeeSchema = Joi.object({
   dealConstructivelyWithPressure: Joi.number().allow("").allow(null),
 
   //performance
-  volume: Joi.number().allow("").allow(null),
-  quality: Joi.number().allow("").allow(null),
-  consistency: Joi.number().allow("").allow(null),
-  building: Joi.number().allow('').allow(null),
-  stakeholder: Joi.number().allow('').allow(null),
+  volume: Joi.object().allow("").allow(null),
+  quality: Joi.object().allow("").allow(null),
+  consistency: Joi.object().allow("").allow(null),
+  building: Joi.object().allow('').allow(null),
+  stakeholder: Joi.object().allow('').allow(null),
 
   //Conduct
   punctuality: Joi.number().allow("").allow(null),
