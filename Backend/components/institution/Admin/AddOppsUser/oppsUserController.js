@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const fs = require("fs");
 const path = require("path");
+const ejs = require("ejs");
 const AppError = require("./../../../../helpers/appError");
 const colors = require("./../../../../helpers/colors");
 const userDAL = require("./oppsUserDAL");
@@ -25,6 +26,24 @@ module.exports.createOppsUserMethod = async function (req, res, next) {
     data.password = hash;
     try {
       let userData = await userDAL.createUser(data);
+      let template = userData;
+      template.logo = `${process.env.FRONT_END_URL}/logo1.png`;
+      template.password = data.phoneNumber.toString();
+      template.url = `${process.env.FRONT_END_URL}`;
+      template.subject = "Welcome to Scandidate!";
+      try {
+        template.html = await ejs.renderFile(
+          path.join(
+            __dirname,
+            "../../../../helpers/email-templates/user-creation.ejs"
+          ),
+          template
+        );
+        // Email sending
+        email.sendEmail(template);
+      } catch (err) {
+        console.log("user-creation.ejs template render error");
+      }
       return res.status(201).json({ status: "SUCCESS", data: userData });
     } catch (err) {
       console.log(colors.red, `createUserMethod err ${err}`);

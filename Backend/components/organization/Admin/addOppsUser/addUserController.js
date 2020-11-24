@@ -1,5 +1,7 @@
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
+const path = require("path");
+const ejs = require("ejs");
 const AppError = require("./../../../../helpers/appError");
 const colors = require("./../../../../helpers/colors");
 const userDAL = require("./addUserDAL");
@@ -9,7 +11,6 @@ const saltRounds = 10;
 
 module.exports.createOppsUserMethod = async function (req, res, next) {
   const data = req.body;
-  console.log("T1")
   try {
     await userValidator.userCreationSchema.validateAsync(data);
     let emailExists = await authDAL.authUser(data);
@@ -24,6 +25,24 @@ module.exports.createOppsUserMethod = async function (req, res, next) {
     data.password = hash;
     try {
       let userData = await userDAL.createUser(data);
+      let template = userData;
+      template.logo = `${process.env.FRONT_END_URL}/logo1.png`;
+      template.password = data.phoneNumber.toString();
+      template.url = `${process.env.FRONT_END_URL}`;
+      template.subject = "Welcome to Scandidate!";
+      try {
+        template.html = await ejs.renderFile(
+          path.join(
+            __dirname,
+            "../../../../helpers/email-templates/user-creation.ejs"
+          ),
+          template
+        );
+        // Email sending
+        email.sendEmail(template);
+      } catch (err) {
+        console.log("user-creation.ejs template render error");
+      }
       return res.status(201).json({ status: "SUCCESS", data: userData });
     } catch (err) {
       console.log(colors.red, `createUserMethod err ${err}`);
@@ -40,7 +59,9 @@ module.exports.createOppsUserMethod = async function (req, res, next) {
 
 module.exports.getAllMethod = async function (req, res, next) {
   try {
-    const data = { organizationId: mongoose.Types.ObjectId(req.params.organizationId) };
+    const data = {
+      organizationId: mongoose.Types.ObjectId(req.params.organizationId),
+    };
     let userData = await userDAL.getAllUsers(data);
     if (!userData) return next(new AppError("user does not exists!", 404));
     return res.status(200).json({
