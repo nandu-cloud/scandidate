@@ -15,10 +15,10 @@
                     <mat-label>First Name</mat-label>
                     <input  matInput formControlName="firstName"  type="text" class="br-btm input-w" autoComplete='off' required tabindex="1">
                     <mat-error *ngIf ="organizationUserForm.get('firstName').errors?.required">
-                        Required company Name.
+                        Required First Name.
                     </mat-error>
                     <mat-error *ngIf ="organizationUserForm.get('firstName').errors?.minlength">
-                      company name must be at least 5 characters long.
+                      First name must be at least 5 characters long.
                     </mat-error>
                   </mat-form-field>
                   <mat-form-field>
@@ -59,10 +59,10 @@
                     <mat-label>Last Name</mat-label>
                     <input  matInput formControlName="lastName"  type="text" class="br-btm input-w" autoComplete='off' required tabindex="3">
                     <mat-error *ngIf = "organizationUserForm.get('lastName').errors?.required">
-                        Required company Name.
+                        Required Last Name.
                     </mat-error>
                     <mat-error *ngIf = "organizationUserForm.get('lastName').errors?.minlength">
-                      company name must be at least 5 characters long.
+                      Last name must be at least 5 characters long.
                     </mat-error>
                   </mat-form-field>
                   
