@@ -9,9 +9,9 @@ const addStudentSchema = Joi.object({
   studentType: Joi.string().required(),
   addedById: Joi.string().required().min(24).max(24).empty(""),
   instituteId: Joi.string().required().min(24).max(24).empty(""),
-  adharNumber: Joi.string(),
   intitutionName: Joi.string(),
 
+  adharNumber: Joi.string().allow("").allow(null),
   state: Joi.string().allow("").allow(null),
   landMark: Joi.string().allow("").allow(null),
   city: Joi.string().allow("").allow(null),
@@ -25,7 +25,7 @@ const addStudentSchema = Joi.object({
   extraActivityDocumentName: Joi.string().allow("").allow(null),
   noOfEductionalDocuments: Joi.number().allow("").allow(null),
   eductionalDocumentNames: Joi.array().allow("").allow(null),
-  purposeOfFile: Joi.array().allow('').allow(null)
+  purposeOfFile: Joi.array().allow("").allow(null),
 });
 
 const updateStudentSchema = Joi.object({
@@ -53,7 +53,7 @@ const updateStudentSchema = Joi.object({
   extraActivityDocumentName: Joi.string().allow("").allow(null),
   noOfEductionalDocuments: Joi.number().allow("").allow(null),
   eductionalDocumentNames: Joi.array().allow("").allow(null),
-  purposeOfFile: Joi.array().allow('').allow(null)
+  purposeOfFile: Joi.array().allow("").allow(null),
 });
 
 module.exports = {
