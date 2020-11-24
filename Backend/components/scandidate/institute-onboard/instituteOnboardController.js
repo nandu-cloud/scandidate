@@ -1,11 +1,13 @@
 const mongoose = require("mongoose");
 const fs = require("fs");
 const path = require("path");
+const ejs = require("ejs");
 const AppError = require("./../../../helpers/appError");
 const colors = require("./../../../helpers/colors");
 const instituteDAL = require("./instituteOnboardDAL");
 const instituteValidator = require("./instituteOnboardValidator");
 const studentDAL = require("../../institution/OppsUser/AddStudent/studentDAL");
+const email = require("../../../helpers/email");
 
 // Add Institute
 module.exports.onboardInstituteMethod = async function (req, res, next) {
@@ -13,6 +15,23 @@ module.exports.onboardInstituteMethod = async function (req, res, next) {
   try {
     await instituteValidator.instituteCreationSchema.validateAsync(data);
     let instituteData = await instituteDAL.onboardInstitute(data);
+    let template = instituteData;
+    template.logo = `${process.env.FRONT_END_URL}/logo1.png`;
+    template.email = instituteData.instituteEmail;
+    template.subject = `Welcome to scandidate.`;
+    try {
+      template.html = await ejs.renderFile(
+        path.join(
+          __dirname,
+          "../../../helpers/email-templates/institute-onboard.ejs"
+        ),
+        template
+      );
+    } catch (err) {
+      template.html = `Welcome ${template.instituteName}, to scandidate platform`;
+      console.log("institute-onboard.ejs template render error");
+    }
+    email.sendEmail(template);
     return res.status(200).json({ status: "SUCCESS", data: instituteData });
   } catch (err) {
     return next(new AppError(err, 400));

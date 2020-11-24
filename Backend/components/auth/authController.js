@@ -1,6 +1,8 @@
 const bcrypt = require("bcrypt");
 const AWS = require("aws-sdk");
 require("dotenv").config();
+const ejs = require("ejs");
+const path = require("path");
 const authDAL = require("./authDAL");
 const userDAL = require("./../scandidate/user/userDAL");
 const authJWT = require("./../../middlewares/authJWT");
@@ -69,26 +71,37 @@ module.exports.sendOTPEmail = async function (req, res, next) {
     let userData = await authDAL.authUser(result);
     if (!userData)
       return next(new AppError("The user email does not exists !", 404));
-    let otp = Math.floor(1000 + Math.random() * 9000);
-    result.otp = otp;
+
+    userData.otp = Math.floor(1000 + Math.random() * 9000);
+    userData.logo = `${process.env.FRONT_END_URL}/logo1.png`;
+    userData.url = `${process.env.FRONT_END_URL}`;
+    let html = `Please find the OTP below to reset your password:\nOTP : ${userData.otp}\nThanks & Regards\nScandidate.in`;
+    try {
+      html = await ejs.renderFile(
+        path.join(
+          __dirname,
+          "./../../helpers/email-templates/password-reset-otp.ejs"
+        ),
+        userData
+      );
+    } catch (err) {
+      console.log("password-reset-otp.ejs template render error");
+    }
+
     // Create sendEmail params
     var params = {
       Destination: {
-        ToAddresses: [result.email],
+        ToAddresses: [userData.email],
       },
       Message: {
         Body: {
           Html: {
             Charset: "UTF-8",
-            Data: `<html><body><p>Please find the OTP below to reset your password:</p>
-                        <p><Strong>OTP : ${otp}<Strong></p>
-                        <p></p>
-                        <p>Thanks & Regards</p>
-                        <p>Scandidate.in</p>`,
+            Data: html,
           },
           Text: {
             Charset: "UTF-8",
-            Data: "Scandidate...",
+            Data: `Please find the OTP below to reset your password:\nOTP : ${userData.otp}\nThanks & Regards\nScandidate.in`,
           },
         },
         Subject: {
@@ -107,10 +120,10 @@ module.exports.sendOTPEmail = async function (req, res, next) {
     sendPromise
       .then(async (data) => {
         try {
-          await authDAL.updateOTP(result);
+          await authDAL.updateOTP(userData);
           return res.status(200).json({
             status: "SUCCESS",
-            message: `OTP sent to your email ${result.email}. Please verify OTP for password reset`,
+            message: `OTP sent to your email ${userData.email}. Please verify OTP for password reset`,
           });
         } catch (err) {
           next(new AppError("Failed to update the OTP !!!", 400));

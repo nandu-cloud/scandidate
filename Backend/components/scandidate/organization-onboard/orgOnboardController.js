@@ -1,11 +1,13 @@
 const mongoose = require("mongoose");
 const fs = require("fs");
 const path = require("path");
+const ejs = require("ejs");
 const AppError = require("./../../../helpers/appError");
 const colors = require("./../../../helpers/colors");
 const orgnisationDAL = require("./orgOnboardDAL");
 const orgnisationValidator = require("./orgOnboardValidator");
 const empDAL = require("../../organization/OppsUser/AddEmployee/employeeDAL");
+const email = require("../../../helpers/email");
 
 // Add Organisation
 module.exports.onboardOrganisationMethod = async function (req, res, next) {
@@ -13,6 +15,23 @@ module.exports.onboardOrganisationMethod = async function (req, res, next) {
   try {
     await orgnisationValidator.organisationCreationSchema.validateAsync(data);
     let organisationData = await orgnisationDAL.onboardOrganisation(data);
+    let template = organisationData;
+    template.logo = `${process.env.FRONT_END_URL}/logo1.png`;
+    template.email = organisationData.organisationEmail;
+    template.subject = `Welcome to scandidate.`;
+    try {
+      template.html = await ejs.renderFile(
+        path.join(
+          __dirname,
+          "../../../helpers/email-templates/organization-onboard.ejs"
+        ),
+        template
+      );
+    } catch (err) {
+      template.html = `Welcome ${template.organizationName}, to scandidate platform`;
+      console.log("organization-onboard.ejs template render error");
+    }
+    email.sendEmail(template);
     return res.status(200).json({ status: "SUCCESS", data: organisationData });
   } catch (err) {
     return next(new AppError(err, 400));

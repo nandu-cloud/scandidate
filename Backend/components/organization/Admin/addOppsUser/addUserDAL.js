@@ -1,7 +1,6 @@
 const userModel = require("./../../../scandidate/user/userModel");
 
 async function createUser(data) {
-  console.log("T2");
   const details = new userModel(data);
 
   details.createdAt = new Date();

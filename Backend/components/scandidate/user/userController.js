@@ -2,11 +2,13 @@ const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const fs = require("fs");
 const path = require("path");
+const ejs = require("ejs");
 const AppError = require("./../../../helpers/appError");
 const colors = require("./../../../helpers/colors");
 const userDAL = require("./userDAL");
 const authDAL = require("./../../auth/authDAL");
 const userValidator = require("./userValidator");
+const email = require("../../../helpers/email");
 const saltRounds = 10;
 
 module.exports.createUserMethod = async function (req, res, next) {
@@ -16,7 +18,7 @@ module.exports.createUserMethod = async function (req, res, next) {
 
     let emailExists = await authDAL.authUser(data);
     if (emailExists != null)
-      return next(new AppError("User email already exsits!", 404));
+      return next(new AppError("User email already exsits!", 403));
 
     if (!data.password) {
       data.password = data.phoneNumber.toString();
@@ -25,13 +27,27 @@ module.exports.createUserMethod = async function (req, res, next) {
     let hash = bcrypt.hashSync(data.password, saltRounds);
     data.password = hash;
 
-
     try {
       let userData = await userDAL.createUser(data);
+      let template = userData;
+      template.logo = `${process.env.FRONT_END_URL}/logo1.png`;
+      template.password = data.phoneNumber.toString();
+      template.url = `${process.env.FRONT_END_URL}`;
+      template.subject = "Welcome to Scandidate!";
 
-      //Email sending
-
-
+      try {
+        template.html = await ejs.renderFile(
+          path.join(
+            __dirname,
+            "../../../helpers/email-templates/user-creation.ejs"
+          ),
+          template
+        );
+        // Email sending
+        email.sendEmail(template);
+      } catch (err) {
+        console.log("user-creation.ejs template render error");
+      }
 
       return res.status(201).json({ status: "SUCCESS", data: userData });
     } catch (err) {
