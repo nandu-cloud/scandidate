@@ -34,13 +34,13 @@ export class AddOppuserComponent implements OnInit {
   });
     this.organizationUserForm = new FormGroup({
       _id: new FormControl(), 
-      firstName : new FormControl('',[Validators.required]),
-      lastName : new FormControl('',[Validators.required]),
-      phoneNumber : new FormControl('',[Validators.required, Validators.pattern('^[1-9][0-9]{9}$')]),
-      email : new FormControl('',[Validators.required]),
-      role: new FormControl('INSTITUTION',[Validators.required]),
-      subRole: new FormControl('OPERATIONAL_USER',[Validators.required]),
-      dateOfBirth : new FormControl('',[Validators.required]),
+      firstName : new FormControl('', [Validators.required]),
+      lastName : new FormControl('', [Validators.required]),
+      phoneNumber : new FormControl('', [Validators.required, Validators.pattern('^[1-9][0-9]{9}$')]),
+      email : new FormControl('', [Validators.required]),
+      role: new FormControl('ORGANIZATION', [Validators.required]),
+      subRole: new FormControl('OPERATIONAL_USER', [Validators.required]),
+      dateOfBirth : new FormControl('', [Validators.required]),
       address : new FormControl(''),
       status : new FormControl('')
     });

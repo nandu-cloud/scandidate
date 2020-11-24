@@ -13,6 +13,8 @@ export class InstitutionDashboardComponent implements OnInit {
   studentCount = '';
   candidateCount = '';
   bgvCount = '';
+  institutionsCount = '';
+  organizationsCount = '';
   constructor(private dService: DashboardService) {}
   ngOnInit() {
     this.dashboardCount = this.dService.getinstituteCount().subscribe(respObj => {
@@ -20,6 +22,11 @@ export class InstitutionDashboardComponent implements OnInit {
       this.studentCount = respObj.data.totalStudent;
       this.candidateCount = respObj.data.totalCandidate;
       this.bgvCount = respObj.data.totalBGV;
+    });
+    this.dashboardCount = this.dService.gettotalCount().subscribe(respObj => {
+      console.log(respObj.data);
+      this.institutionsCount = respObj.data.institutionsCount;
+      this.organizationsCount = respObj.data.organizationsCount;
     });
   }
 }
