@@ -323,7 +323,79 @@
              </div> 
          </form>
        </mat-tab>
-     
+       <mat-tab>
+        <form [formGroup]="fourthFormGroup">
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon">redeem</mat-icon>
+          Merit - Quality
+        </ng-template>
+        <div class="flex flex-wrap">
+          <div class="w-full md:w-1/2 sm:w-full">
+            <mat-form-field>
+              <mat-label>Communication Skills</mat-label>
+              <mat-select  class="br-btm input-w" formControlName="communicationSkills" required>
+                <mat-option [value]=1>Intermediate</mat-option>
+                <mat-option [value]=2>Proficient</mat-option>
+              </mat-select>
+              <mat-error *ngIf ="fourthFormGroup.get('communicationSkills').errors?.required">
+                please select Communication Skills
+            </mat-error>
+          </mat-form-field>
+                      <mat-form-field>
+                      <mat-label>Subject Matter Expertise (SME)</mat-label>
+                      <mat-select  class="br-btm input-w" formControlName="academicKnowledge" required>
+                        <mat-option [value]=1>Basic</mat-option>
+                        <mat-option [value]=2>Intermediate</mat-option>
+                        <mat-option [value]=3>Proficient</mat-option>
+                        <mat-option [value]=4>Expert</mat-option>
+                      </mat-select>
+                      <mat-error *ngIf ="fourthFormGroup.get('academicKnowledge').errors?.required">
+                        please select Subject Matter Expertise (SME)
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field>
+                      <mat-label>Product Understanding</mat-label>
+                      <mat-select  class="br-btm input-w" formControlName="productKnowledge" required>
+                        <mat-option [value]=1>Basic</mat-option>
+                        <mat-option [value]=2>Intermediate</mat-option>
+                        <mat-option [value]=3>Proficient</mat-option>
+                        <mat-option [value]=4>Expert</mat-option>
+                      </mat-select>
+                      <mat-error *ngIf ="fourthFormGroup.get('productKnowledge').errors?.required">
+                        please select Product Understanding
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field>
+                      <mat-label>Industry / Domain Knowledge</mat-label>
+                      <mat-select  class="br-btm input-w" formControlName="industryKnowledge" required>
+                        <mat-option [value]=1>Basic</mat-option>
+                        <mat-option [value]=2>Intermediate</mat-option>
+                        <mat-option [value]=3>Proficient</mat-option>
+                        <mat-option [value]=4>Expert</mat-option>
+                      </mat-select>
+                      <mat-error *ngIf ="fourthFormGroup.get('industryKnowledge').errors?.required">
+                        please select Industry / Domain Knowledge
+                    </mat-error>
+                  </mat-form-field>
+                  
+                  <mat-form-field>
+                   <mat-label>Awards</mat-label>
+                   <mat-select  class="br-btm input-w" formControlName="awards" tabindex="20">
+                     <mat-option>Select</mat-option>
+                     <mat-option [value]="'Performer & Awarded'">Performer & Awarded</mat-option>
+                     <mat-option [value]="'Non-Performer & Awarded'">Non-Performer & Awarded</mat-option>
+                     <mat-option [value]="'Performer & Not Awarded'">Performer & Not Awarded</mat-option>
+                     <mat-option [value]="'Non-Performer & Not Awarded'">Non-Performer & Not Awarded</mat-option>
+                   </mat-select>
+               </mat-form-field>
+                </div>
+              </div>
+              <div class="flex justify-end lg:pb-6 lg:pr-48">
+                <button class="lg-button focus:outline-none focus:shadow-outline" (click)="cancel()">Back</button>
+                <button class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">Next</button>
+            </div>     
+        </form>      
+      </mat-tab>
        <mat-tab>
          <form [formGroup]="thirdFormGroup">
          <ng-template mat-tab-label>
@@ -422,78 +494,6 @@
                      <button class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">Next</button>
                  </div>
          </form>         
-       </mat-tab>
-       <mat-tab>
-         <form [formGroup]="fourthFormGroup">
-         <ng-template mat-tab-label>
-           <mat-icon class="example-tab-icon">redeem</mat-icon>
-           Merit - Quality
-         </ng-template>
-         <div class="flex flex-wrap">
-           <div class="w-full md:w-1/2 sm:w-full">
-                       <mat-form-field>
-                       <mat-label>Academic Knowledge</mat-label>
-                       <mat-select  class="br-btm input-w" formControlName="academicKnowledge" required>
-                         <mat-option [value]=1>Unsatisfactory</mat-option>
-                         <mat-option [value]=2>Needs Improvement</mat-option>
-                         <mat-option [value]=3>Meets Expectations</mat-option>
-                         <mat-option [value]=4>Exceeds Expectations</mat-option>
-                       </mat-select>
-                       <mat-error *ngIf ="fourthFormGroup.get('academicKnowledge').errors?.required">
-                         please select Academic Knowledge
-                     </mat-error>
-                   </mat-form-field>
-                   <mat-form-field>
-                       <mat-label>Product Knowledge</mat-label>
-                       <mat-select  class="br-btm input-w" formControlName="productKnowledge" required>
-                         <mat-option [value]=1>Unsatisfactory</mat-option>
-                         <mat-option [value]=2>Needs Improvement</mat-option>
-                         <mat-option [value]=3>Meets Expectations</mat-option>
-                         <mat-option [value]=4>Exceeds Expectations</mat-option>
-                       </mat-select>
-                       <mat-error *ngIf ="fourthFormGroup.get('productKnowledge').errors?.required">
-                         please select Product Knowledge
-                     </mat-error>
-                   </mat-form-field>
-                   <mat-form-field>
-                       <mat-label>Industry Knowledge</mat-label>
-                       <mat-select  class="br-btm input-w" formControlName="industryKnowledge" required>
-                         <mat-option [value]=1>Unsatisfactory</mat-option>
-                         <mat-option [value]=2>Needs Improvement</mat-option>
-                         <mat-option [value]=3>Meets Expectations</mat-option>
-                         <mat-option [value]=4>Exceeds Expectations</mat-option>
-                       </mat-select>
-                       <mat-error *ngIf ="fourthFormGroup.get('industryKnowledge').errors?.required">
-                         please select Industry Knowledge
-                     </mat-error>
-                   </mat-form-field>
-                   <mat-form-field>
-                       <mat-label>Communication Skills</mat-label>
-                       <mat-select  class="br-btm input-w" formControlName="communicationSkills" required>
-                         <mat-option [value]=1>Needs Improvement</mat-option>
-                         <mat-option [value]=2>Meets Expectations</mat-option>
-                       </mat-select>
-                       <mat-error *ngIf ="fourthFormGroup.get('communicationSkills').errors?.required">
-                         please select Communication Skills
-                     </mat-error>
-                   </mat-form-field>
-                   <mat-form-field>
-                    <mat-label>Awards</mat-label>
-                    <mat-select  class="br-btm input-w" formControlName="awards" tabindex="20">
-                      <mat-option>Select</mat-option>
-                      <mat-option [value]="'Performer & Awarded'">Performer & Awarded</mat-option>
-                      <mat-option [value]="'Non-Performer & Awarded'">Non-Performer & Awarded</mat-option>
-                      <mat-option [value]="'Performer & Not Awarded'">Performer & Not Awarded</mat-option>
-                      <mat-option [value]="'Non-Performer & Not Awarded'">Non-Performer & Not Awarded</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                 </div>
-               </div>
-               <div class="flex justify-end lg:pb-6 lg:pr-48">
-                 <button class="lg-button focus:outline-none focus:shadow-outline" (click)="cancel()">Back</button>
-                 <button class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">Next</button>
-             </div>     
-         </form>      
        </mat-tab>
        <mat-tab>
          <form [formGroup]="fifthFormGroup">
