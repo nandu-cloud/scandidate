@@ -37,11 +37,6 @@ export class AddCandidateComponent implements OnInit {
   discrepancy: string;
   compliance : string;
   warning : string;
-  volume : string;
-  quality : string;
-  stakeholder : string;
-  building: string;
-  consistency : string;
   organizationName: any = window.sessionStorage.getItem('orgName');
   selectedIndex: number = 0;
   tabChangeEvent: any;
@@ -89,14 +84,14 @@ export class AddCandidateComponent implements OnInit {
       punctuality: new FormControl('', [Validators.required]),
       discipline: new FormControl('', [Validators.required])
     });
-    this.thirdFormGroup = new FormGroup({
+    this.fourthFormGroup = new FormGroup({
       volume: new FormControl('', [Validators.required]),
       quality: new FormControl('', [Validators.required]),
       consistency: new FormControl('', [Validators.required]),
       building: new FormControl(),
       stakeholder : new FormControl()
     });
-    this.fourthFormGroup = new FormGroup({
+    this.thirdFormGroup = new FormGroup({
       academicKnowledge : new FormControl('',[Validators.required]),
       productKnowledge : new FormControl('',[Validators.required]),
       industryKnowledge : new FormControl('',[Validators.required]),
