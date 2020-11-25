@@ -36,51 +36,11 @@ function fileFilter(req, file, cb) {
 let upload = multer({ storage: storage, fileFilter: fileFilter });
 
 router
-  .route("/discrepancyDocuments")
+  .route("/uploads")
   .post(
     authJWT.verifyJWTToken,
     upload.single("document"),
-    addEmployeeController.discrepencyDocumentUpload
-  );
-
-router
-  .route("/compliencyDiscrepancy")
-  .post(
-    authJWT.verifyJWTToken,
-    upload.single("document"),
-    addEmployeeController.compliencyDiscrepancyDocumentUpload
-  );
-
-router
-  .route("/warning")
-  .post(
-    authJWT.verifyJWTToken,
-    upload.single("document"),
-    addEmployeeController.warningDocumentUpload
-  );
-
-router
-  .route("/showCausedIssue")
-  .post(
-    authJWT.verifyJWTToken,
-    upload.single("document"),
-    addEmployeeController.showCausedIssueDocumentUpload
-  );
-
-router
-  .route("/suspension")
-  .post(
-    authJWT.verifyJWTToken,
-    upload.single("document"),
-    addEmployeeController.suspensionDocumentUpload
-  );
-
-router
-  .route("/termination")
-  .post(
-    authJWT.verifyJWTToken,
-    upload.single("document"),
-    addEmployeeController.terminationDocumentUpload
+    addEmployeeController.fileUpload
   );
 
 router

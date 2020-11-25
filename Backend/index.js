@@ -47,7 +47,6 @@ app.use(
   require("./components/scandidate/BGVSearch/bgvSearchRoute")
 );
 
-
 app.use(
   "/api/institute/addUser",
   require("./components/institution/Admin/AddOppsUser/oppsUserRoute")
@@ -74,10 +73,7 @@ app.use(
   require("./components/organization/Dashboard/dashboardRoute")
 );
 
-app.use(
-  "/api/country",
-  require("./components/city/statecityroute")
-)
+app.use("/api/country", require("./components/city/statecityroute"));
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Cannot find ${req.originalUrl} on the server`, 404));

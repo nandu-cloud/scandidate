@@ -261,7 +261,10 @@ module.exports.deleteDocument = async (req, res, next) => {
     `../../../../uploads/student_doc/${data}`
   );
   try {
-    let { eductionalDocumentNames, purposeOfFile } = await studentDAL.getStudentById({
+    let {
+      eductionalDocumentNames,
+      purposeOfFile,
+    } = await studentDAL.getStudentById({
       _id: studentId,
     });
     let index = eductionalDocumentNames.indexOf(data);
@@ -273,7 +276,7 @@ module.exports.deleteDocument = async (req, res, next) => {
     let resultJson = {
       _id: studentId,
       eductionalDocumentNames: eductionalDocumentNames,
-      purposeOfFile: purposeOfFile
+      purposeOfFile: purposeOfFile,
     };
     if (index >= 0) {
       studentDAL.updateStudent(resultJson);
@@ -284,7 +287,6 @@ module.exports.deleteDocument = async (req, res, next) => {
     return next(new AppError(err, 400));
   }
   try {
-
     let findStudent = await studentDAL.getStudentById({ _id: studentId });
     if (findStudent.noOfEductionalDocuments > 0) {
       fileCount = findStudent.noOfEductionalDocuments - 1;
@@ -297,7 +299,6 @@ module.exports.deleteDocument = async (req, res, next) => {
   } catch (err) {
     return next(new AppError(err, 400));
   }
-  console.log(colors.green, "-----------------File Path----------", filePath);
   fs.unlink(filePath, (err) => {
     if (err) {
       console.log(colors.red, "inside err...");
@@ -308,7 +309,7 @@ module.exports.deleteDocument = async (req, res, next) => {
     return res.status(200).json({
       status: "SUCCESS",
       message: "User document removed successfully",
-      fileCount: fileCount
+      fileCount: fileCount,
     });
   });
 };
@@ -325,6 +326,5 @@ module.exports.downloaddocuments = async (req, res, next) => {
       if (err.code == "ENOENT")
         return next(new AppError("user document not found", 404));
     }
-  })
-
-}
+  });
+};
