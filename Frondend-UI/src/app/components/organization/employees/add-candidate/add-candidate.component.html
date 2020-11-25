@@ -204,7 +204,7 @@
          <div class="flex flex-wrap">
            <div class="w-full md:w-1/2 sm:w-full">
                    <mat-form-field>
-                       <mat-label>Self Driven</mat-label>
+                       <mat-label>Self Driven / Initiative</mat-label>
                        <mat-select  class="br-btm input-w" formControlName="selfDriven" required tabindex="1">
                          <mat-option [value]=1>Unsatisfactory</mat-option>
                          <mat-option [value]=2>Needs Improvement</mat-option>
@@ -228,6 +228,18 @@
                      </mat-error>
                    </mat-form-field>
                    <mat-form-field>
+                    <mat-label>Deals Constructively With Pressure</mat-label>
+                    <mat-select  class="br-btm input-w" formControlName="dealConstructivelyWithPressure" required tabindex="5">
+                      <mat-option [value]=1>Unsatisfactory</mat-option>
+                      <mat-option [value]=2>Needs Improvement</mat-option>
+                      <mat-option [value]=3>Meets Expectations</mat-option>
+                      <mat-option [value]=4>Exceeds Expectations</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf ="secondFormGroup.get('dealConstructivelyWithPressure').errors?.required">
+                      please select Deals Constructively With Pressure
+                  </mat-error>
+                </mat-form-field>
+                   <!-- <mat-form-field>
                        <mat-label>Informal organization-sense of belonging</mat-label>
                        <mat-select  class="br-btm input-w" formControlName="informalOrganizationSenseOfBelonging" required tabindex="5">
                          <mat-option [value]=1>Unsatisfactory</mat-option>
@@ -238,8 +250,8 @@
                        <mat-error *ngIf ="secondFormGroup.get('informalOrganizationSenseOfBelonging').errors?.required">
                          please select Informal organization-sense of belonging
                      </mat-error>
-                   </mat-form-field>
-                   <mat-form-field>
+                   </mat-form-field> -->
+                   <!-- <mat-form-field>
                        <mat-label>Initiative</mat-label>
                        <mat-select  class="br-btm input-w" formControlName="initiative" required tabindex="7">
                          <mat-option [value]=1>Unsatisfactory</mat-option>
@@ -250,17 +262,8 @@
                        <mat-error *ngIf ="secondFormGroup.get('initiative').errors?.required">
                          please select Initiative
                      </mat-error>
-                   </mat-form-field>
-                   <mat-form-field>
-                    <mat-label>Awards</mat-label>
-                    <mat-select  class="br-btm input-w" formControlName="awards" tabindex="20">
-                      <mat-option>Select</mat-option>
-                      <mat-option [value]="'Performer & Awarded'">Performer & Awarded</mat-option>
-                      <mat-option [value]="'Non-Performer & Awarded'">Non-Performer & Awarded</mat-option>
-                      <mat-option [value]="'Performer & Not Awarded'">Performer & Not Awarded</mat-option>
-                      <mat-option [value]="'Non-Performer & Not Awarded'">Non-Performer & Not Awarded</mat-option>
-                    </mat-select>
-                </mat-form-field>
+                   </mat-form-field> -->
+                 
                  </div>
                  <div class="w-full md:w-1/2 sm:w-full">
                    <mat-form-field>
@@ -287,19 +290,8 @@
                          please select Team Work
                      </mat-error>
                    </mat-form-field>
-                   <mat-form-field>
-                       <mat-label>Deals Constructively With Pressure</mat-label>
-                       <mat-select  class="br-btm input-w" formControlName="dealConstructivelyWithPressure" required tabindex="6">
-                         <mat-option [value]=1>Unsatisfactory</mat-option>
-                         <mat-option [value]=2>Needs Improvement</mat-option>
-                         <mat-option [value]=3>Meets Expectations</mat-option>
-                         <mat-option [value]=4>Exceeds Expectations</mat-option>
-                       </mat-select>
-                       <mat-error *ngIf ="secondFormGroup.get('dealConstructivelyWithPressure').errors?.required">
-                         please select Deals Constructively With Pressure
-                     </mat-error>
-                   </mat-form-field>
-                   <mat-form-field>
+                  
+                   <!-- <mat-form-field>
                        <mat-label>Punctuality</mat-label>
                        <mat-select  class="br-btm input-w" formControlName="punctuality" required tabindex="21">
                          <mat-option [value]=1>Unsatisfactory</mat-option>
@@ -310,10 +302,10 @@
                        <mat-error *ngIf ="secondFormGroup.get('punctuality').errors?.required">
                          Please select Punctuality
                      </mat-error>
-                   </mat-form-field>
+                   </mat-form-field> -->
                    <mat-form-field>
-                       <mat-label>Discipline</mat-label>
-                       <mat-select  class="br-btm input-w" formControlName="discipline" required tabindex="22">
+                       <mat-label>Time Management</mat-label>
+                       <mat-select  class="br-btm input-w" formControlName="discipline" required tabindex="6">
                          <mat-option [value]=1>Unsatisfactory</mat-option>
                          <mat-option [value]=2>Needs Improvement</mat-option>
                          <mat-option [value]=3>Meets Expectations</mat-option>
@@ -340,7 +332,7 @@
          </ng-template>
          <div class="flex flex-wrap">
            <div class="w-full md:w-1/2 sm:w-full">
-                       <mat-form-field>
+                       <!-- <mat-form-field>
                            <mat-label>Performance</mat-label>
                            <mat-select  class="br-btm input-w" formControlName="volume"  [(ngModel)]="volume" tabindex="1">
                              <mat-option [value]=0>Select</mat-option>
@@ -352,7 +344,7 @@
                            <mat-error *ngIf ="thirdFormGroup.get('volume').errors?.required">
                              please select Performance
                          </mat-error>
-                       </mat-form-field>
+                       </mat-form-field> -->
                        <mat-form-field class="pt-3">
                            <mat-label>Strategic Thinking </mat-label>
                            <mat-select  class="br-btm input-w" formControlName="quality"  [(ngModel)]="quality" tabindex="3">
@@ -403,25 +395,25 @@
                      </mat-form-field>
                      </div>
                      <div class="w-full md:w-1/2 sm:w-full">
-                       <mat-form-field  *ngIf="volume == '1' || volume == '2' || volume == '3' || volume == '4'">
-                         <!-- <mat-label>Description</mat-label> -->
+                       <!-- <mat-form-field  *ngIf="volume == '1' || volume == '2' || volume == '3' || volume == '4'">
+                         <mat-label>Description</mat-label>
                          <textarea  matInput formControlName="description" style="line-height:2px; font-size: smaller;" maxlength="150" matTextareaAutosize class="br-btm input-w" autoComplete='off' placeholder="Performance Description" style="resize: none;"></textarea>
-                       </mat-form-field>
+                       </mat-form-field> -->
                        <mat-form-field *ngIf="quality == '1' || quality == '2' || quality == '3' || quality =='4' ">
                          <!-- <mat-label>Description</mat-label> -->
-                         <textarea  matInput formControlName="description" style="line-height:2px; font-size: smaller;" maxlength="150" matTextareaAutosize class="br-btm input-w" autoComplete='off' placeholder="Strategic Thinking Description" style="resize: none;"></textarea>
+                         <textarea  matInput formControlName="description" style="line-height:2px; font-size: smaller;" maxlength="150" matTextareaAutosize class="br-btm input-w" autoComplete='off' placeholder="Strategic Thinking Remarks" style="resize: none;"></textarea>
                        </mat-form-field>
                        <mat-form-field *ngIf="consistency == '1' || consistency == '2' || consistency == '3' || consistency == '4'">
                          <!-- <mat-label>Description</mat-label> -->
-                         <textarea  matInput formControlName="description" style="line-height:2px; font-size: smaller;" maxlength="150" matTextareaAutosize class="br-btm input-w" autoComplete='off' placeholder="Problem Solving Description" style="resize: none;"></textarea>
+                         <textarea  matInput formControlName="description" style="line-height:2px; font-size: smaller;" maxlength="150" matTextareaAutosize class="br-btm input-w" autoComplete='off' placeholder="Problem Solving Remarks" style="resize: none;"></textarea>
                        </mat-form-field>
                        <mat-form-field *ngIf="building == '1' || building == '2' || building == '3' || building == '4' ">
                          <!-- <mat-label>Description</mat-label> -->
-                         <textarea  matInput formControlName="description" style="line-height:2px; font-size: smaller;" maxlength="150" matTextareaAutosize class="br-btm input-w" autoComplete='off' placeholder="Building High Performance Team Description" style="resize: none;"></textarea>
+                         <textarea  matInput formControlName="description" style="line-height:2px; font-size: smaller;" maxlength="150" matTextareaAutosize class="br-btm input-w" autoComplete='off' placeholder="Building High Performance Team Remarks" style="resize: none;"></textarea>
                        </mat-form-field>
                        <mat-form-field *ngIf="stakeholder == '1' || stakeholder =='2'">
                         <!-- <mat-label>Description</mat-label> -->
-                        <textarea  matInput formControlName="description" style="line-height:2px; font-size: smaller;" maxlength="150" matTextareaAutosize class="br-btm input-w" autoComplete='off' placeholder=" StakeHolder Management Description" style="resize: none;"></textarea>
+                        <textarea  matInput formControlName="description" style="line-height:2px; font-size: smaller;" maxlength="150" matTextareaAutosize class="br-btm input-w" autoComplete='off' placeholder=" StakeHolder Management Remarks" style="resize: none;"></textarea>
                       </mat-form-field>
                      </div>
                    </div>
@@ -485,6 +477,16 @@
                          please select Communication Skills
                      </mat-error>
                    </mat-form-field>
+                   <mat-form-field>
+                    <mat-label>Awards</mat-label>
+                    <mat-select  class="br-btm input-w" formControlName="awards" tabindex="20">
+                      <mat-option>Select</mat-option>
+                      <mat-option [value]="'Performer & Awarded'">Performer & Awarded</mat-option>
+                      <mat-option [value]="'Non-Performer & Awarded'">Non-Performer & Awarded</mat-option>
+                      <mat-option [value]="'Performer & Not Awarded'">Performer & Not Awarded</mat-option>
+                      <mat-option [value]="'Non-Performer & Not Awarded'">Non-Performer & Not Awarded</mat-option>
+                    </mat-select>
+                </mat-form-field>
                  </div>
                </div>
                <div class="flex justify-end lg:pb-6 lg:pr-48">
