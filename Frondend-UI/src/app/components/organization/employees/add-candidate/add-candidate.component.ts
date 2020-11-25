@@ -72,10 +72,10 @@ export class AddCandidateComponent implements OnInit {
       role: new FormControl(''),
       department: new FormControl(''),
       address : new FormControl(''),
-      LandMark : new FormControl(),
+      landMark : new FormControl(),
       city : new FormControl(),
       state : new FormControl(),
-      zipcode : new FormControl(),
+      zipCode : new FormControl(),
       awards: new FormControl('')
     });
     this.secondFormGroup = new FormGroup({
