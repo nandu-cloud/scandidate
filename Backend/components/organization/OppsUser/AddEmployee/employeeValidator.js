@@ -8,21 +8,19 @@ const addEmployeeSchema = Joi.object({
   phoneNumber: Joi.string().required(),
   dateOfJoining: Joi.date().required(),
   exitDate: Joi.date().required(),
-  professionalExperience: Joi.number().required(),
   addedById: Joi.string().required(),
   organisationId: Joi.string().required(),
   organizationName: Joi.string().required(),
 
   //Issues
-  discrepancyDocuments: Joi.object().allow('').allow(null),
-  compliencyDiscrepancy: Joi.object().allow('').allow(null),
-  warning: Joi.object().allow('').allow(null),
-  showCausedIssue: Joi.object().allow('').allow(null),
-  suspension: Joi.object().allow('').allow(null),
-  termination: Joi.object().allow('').allow(null),
+  discrepancyDocuments: Joi.object().allow("").allow(null),
+  compliencyDiscrepancy: Joi.object().allow("").allow(null),
+  warning: Joi.object().allow("").allow(null),
+  showCausedIssue: Joi.object().allow("").allow(null),
+  suspension: Joi.object().allow("").allow(null),
+  termination: Joi.object().allow("").allow(null),
 
-
-
+  professionalExperience: Joi.string().allow("").allow(null),
   state: Joi.string().allow("").allow(null),
   landMark: Joi.string().allow("").allow(null),
   city: Joi.string().allow("").allow(null),
@@ -49,8 +47,8 @@ const addEmployeeSchema = Joi.object({
   volume: Joi.object().allow("").allow(null),
   quality: Joi.object().allow("").allow(null),
   consistency: Joi.object().allow("").allow(null),
-  building: Joi.object().allow('').allow(null),
-  stakeholder: Joi.object().allow('').allow(null),
+  building: Joi.object().allow("").allow(null),
+  stakeholder: Joi.object().allow("").allow(null),
 
   //Conduct
   punctuality: Joi.number().allow("").allow(null),
@@ -63,7 +61,6 @@ const addEmployeeSchema = Joi.object({
   communicationSkills: Joi.number().allow("").allow(null),
 
   //Other Variables
-
 });
 const updateEmployeeSchema = Joi.object({
   //Required Fields
@@ -73,11 +70,11 @@ const updateEmployeeSchema = Joi.object({
   phoneNumber: Joi.string().required(),
   dateOfJoining: Joi.date().required(),
   exitDate: Joi.date().required(),
-  professionalExperience: Joi.number().required(),
   addedById: Joi.string().required(),
   organisationId: Joi.string().required(),
   organizationName: Joi.string().required(),
 
+  professionalExperience: Joi.string().allow("").allow(null),
   state: Joi.string().allow("").allow(null),
   landMark: Joi.string().allow("").allow(null),
   city: Joi.string().allow("").allow(null),
@@ -104,8 +101,8 @@ const updateEmployeeSchema = Joi.object({
   volume: Joi.object().allow("").allow(null),
   quality: Joi.object().allow("").allow(null),
   consistency: Joi.object().allow("").allow(null),
-  building: Joi.object().allow('').allow(null),
-  stakeholder: Joi.object().allow('').allow(null),
+  building: Joi.object().allow("").allow(null),
+  stakeholder: Joi.object().allow("").allow(null),
 
   //Conduct
   punctuality: Joi.number().allow("").allow(null),
@@ -118,13 +115,12 @@ const updateEmployeeSchema = Joi.object({
   communicationSkills: Joi.number().allow("").allow(null),
 
   //Issues
-  discrepancyDocuments: Joi.object().allow('').allow(null),
-  compliencyDiscrepancy: Joi.object().allow('').allow(null),
-  warning: Joi.object().allow('').allow(null),
-  showCausedIssue: Joi.object().allow('').allow(null),
-  suspension: Joi.object().allow('').allow(null),
-  termination: Joi.object().allow('').allow(null),
-
+  discrepancyDocuments: Joi.object().allow("").allow(null),
+  compliencyDiscrepancy: Joi.object().allow("").allow(null),
+  warning: Joi.object().allow("").allow(null),
+  showCausedIssue: Joi.object().allow("").allow(null),
+  suspension: Joi.object().allow("").allow(null),
+  termination: Joi.object().allow("").allow(null),
 });
 
 module.exports = {

@@ -79,8 +79,9 @@ const employeeSchema = new mongoose.Schema({
     required: [true, "Date Of Exit cannot be empty"],
   },
   professionalExperience: {
-    type: Number,
-    required: [true, "Professional Experience Cannot Be Empty"],
+    type: String,
+    // required: [true, "Professional Experience Cannot Be Empty"],
+    required: false,
   },
   //Work Ethic
   selfDriven: {
@@ -112,51 +113,50 @@ const employeeSchema = new mongoose.Schema({
     required: false,
   },
 
-
   // performance
   volume: {
     IsSelect: {
       type: Number,
-      required: false
+      required: false,
     },
     description: {
-      type: String
+      type: String,
     },
   },
   quality: {
     IsSelect: {
       type: Number,
-      required: false
+      required: false,
     },
     description: {
-      type: String
+      type: String,
     },
   },
   consistency: {
     IsSelect: {
       type: Number,
-      required: false
+      required: false,
     },
     description: {
-      type: String
+      type: String,
     },
   },
   building: {
     IsSelect: {
       type: Number,
-      required: false
+      required: false,
     },
     description: {
-      type: String
+      type: String,
     },
   },
   stakeholder: {
     IsSelect: {
       type: Number,
-      required: false
+      required: false,
     },
     description: {
-      type: String
+      type: String,
     },
   },
 
