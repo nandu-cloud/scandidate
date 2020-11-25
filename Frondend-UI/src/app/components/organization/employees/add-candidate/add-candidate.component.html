@@ -7,14 +7,14 @@
          <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
        </span>
      </div> 
-     <h1 class="hd-add">Add Candidate</h1><span class="right-text">(your ex employee)</span>
+     <h1 class="hd-add">Add Candidate </h1><span class="right-text"> (your ex employee) </span>
      <mat-tab-group [selectedIndex]="selectedIndex" (selectedTabChange)="tabChanged($event)" class="mat-tab-group mat-primary">
        
        <mat-tab *ngFor="let number of [0];let i=index;">
          <form [formGroup]="firstFormGroup">
          <ng-template mat-tab-label>
            <mat-icon class="example-tab-icon">face</mat-icon>
-           Presonal Information
+           Personal Information
          </ng-template>
          <div class="flex flex-wrap">
            <div class="w-full md:w-1/2 sm:w-full">
@@ -33,7 +33,7 @@
                  <input  matInput formControlName="employeeId"  type="text"  class="br-btm input-w" autoComplete='off' tabindex="3">
              </mat-form-field>
              <mat-form-field>
-               <mat-label>Pan Number</mat-label>
+               <mat-label>PAN Number</mat-label>
                <input  matInput formControlName="panNumber"   type="text"  class="br-btm input-w" autoComplete='off' tabindex="5">
              </mat-form-field>
                <mat-form-field>
@@ -47,7 +47,7 @@
                </mat-error>
                </mat-form-field>
                <mat-form-field>
-                 <mat-label>DateOfJoining</mat-label>
+                 <mat-label>Date Of Joining</mat-label>
                  <input matInput formControlName="dateOfJoining" [matDatepicker]="picker2" class="br-btm input-w" required placeholder="MM/DD/YYYY" tabindex="9">
                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                  <mat-datepicker #picker2 color="primary"></mat-datepicker>
@@ -94,7 +94,7 @@
                  </mat-error>
                </mat-form-field>
                <mat-form-field>
-                 <mat-label>Adhar Number</mat-label>
+                 <mat-label>Aadhaar Number</mat-label>
                  <input  matInput formControlName="adharNumber"   type="text" class="br-btm input-w" autoComplete='off' tabindex="4">
                </mat-form-field>
                <mat-form-field>
@@ -115,7 +115,7 @@
                </mat-form-field>
                <mat-form-field>
                  <mat-label>Releving Date</mat-label>
-                 <input matInput formControlName="exitDate" [matDatepicker]="picker" class="br-btm input-w" placeholder="MM/DD/YYYY" required  tabindex="10">
+                 <input matInput formControlName="exitDate" [matDatepicker]="picker" (dateChange)="calculateExperience()" class="br-btm input-w" placeholder="MM/DD/YYYY" required  tabindex="10">
                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                  <mat-datepicker #picker color="primary"></mat-datepicker>
                  <mat-error *ngIf ="firstFormGroup.get('exitDate').errors?.required">
@@ -125,8 +125,8 @@
                </mat-form-field>               
                <mat-form-field>
                  <mat-label>Professional Experience</mat-label>
-                 <input  matInput formControlName="professionalExperience" type="text"  class="br-btm input-w" autoComplete='off'  required pattern="^[0-9]$" tabindex="11">
-                 <mat-error *ngIf ="firstFormGroup.get('professionalExperience').errors?.required">
+                 <input  matInput formControlName="professionalExperience" type="text"  class="br-btm input-w" autoComplete='off' readonly tabindex="11">
+                 <!-- <mat-error *ngIf ="firstFormGroup.get('professionalExperience').errors?.required">
                    please enter number.
                </mat-error>
                <mat-error *ngIf ="firstFormGroup.get('professionalExperience').errors?.maxlength">
@@ -134,15 +134,19 @@
                </mat-error>
                <mat-error *ngIf= "firstFormGroup.get('professionalExperience').errors?.pattern">
                please enter valid number
-               </mat-error>
+               </mat-error> -->
              </mat-form-field>
              <mat-form-field>
                <mat-label>Department</mat-label>
                <input  matInput formControlName="department"  type="text" class="br-btm input-w" autoComplete='off' tabindex="13">
            </mat-form-field>
            <mat-form-field>
+            <mat-label>LandMark</mat-label>
+            <input matInput type="text"  formControlName="landMark"   class="br-btm input-w" autoComplete='off' tabindex="15">
+        </mat-form-field>
+           <mat-form-field>
             <mat-label>State</mat-label>
-            <mat-select  class="br-btm input-w pt-5" formControlName="state" tabindex="15">
+            <mat-select  class="br-btm input-w pt-5" formControlName="state" tabindex="17">
               <mat-option value="select">Select</mat-option>
                     <mat-option value="andaman">Andaman & Nicobar</mat-option>
                     <mat-option value="andrapradesh">Andra Pradesh</mat-option>
@@ -181,10 +185,7 @@
                     <mat-option value="uttaranchal">Uttaranchal</mat-option>
                     <mat-option value="westbengal">West Bengal</mat-option>            </mat-select>
         </mat-form-field>
-        <mat-form-field>
-          <mat-label>LandMark</mat-label>
-          <input matInput type="text"  formControlName="landMark"   class="br-btm input-w" autoComplete='off' tabindex="17">
-      </mat-form-field>
+        
            </div>
          </div>
           <div class="flex justify-end lg:pb-6 lg:pr-48">

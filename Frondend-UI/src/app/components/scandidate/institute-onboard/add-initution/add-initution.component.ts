@@ -110,6 +110,15 @@ export class AddInitutionComponent implements OnInit {
   }
 }
 
+changeCode() {
+  {
+    if (this.instituteForm.value.instituteName.length > 0) {
+      this.instituteForm.patchValue({ code: this.instituteForm.value.instituteName.slice(0, 5).toUpperCase() })
+    }
+  }
+}
+
+
   submit(){
     if(!this.instituteIdedit){
     this.instituteSubscription = this.instituteService.checkAddInstitute(this.instituteForm.value).subscribe(resp =>{

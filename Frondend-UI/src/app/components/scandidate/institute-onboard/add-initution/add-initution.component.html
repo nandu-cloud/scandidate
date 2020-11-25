@@ -13,7 +13,7 @@
         <div class="w-full md:w-1/2 sm:w-full">
             <mat-form-field>
                 <mat-label>Institute Name</mat-label>
-                <input  matInput type="text" formControlName="instituteName"  required  class="br-btm input-w" autoComplete='off' tabindex="1">
+                <input  matInput type="text" formControlName="instituteName" (change)="changeCode()"  required  class="br-btm input-w" autoComplete='off' tabindex="1">
                 <mat-error *ngIf ="instituteForm.get('instituteName').errors?.required">
                    Required Institution Name.
                   </mat-error>
