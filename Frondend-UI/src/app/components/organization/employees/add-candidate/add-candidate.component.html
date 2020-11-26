@@ -114,7 +114,7 @@
                  <mat-datepicker #picker1 color="primary"></mat-datepicker>
                </mat-form-field>
                <mat-form-field>
-                 <mat-label>Releving Date</mat-label>
+                 <mat-label>Relieving Date</mat-label>
                  <input matInput formControlName="exitDate" [matDatepicker]="picker" (dateChange)="calculateExperience()" class="br-btm input-w" placeholder="MM/DD/YYYY" required  tabindex="10">
                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                  <mat-datepicker #picker color="primary"></mat-datepicker>
@@ -122,11 +122,21 @@
                    please enter exit date
                  </mat-error>
                  <mat-error *ngIf="firstFormGroup.get('exitDate').hasError('requiredToDate')"> Exit date should be grater than joining date</mat-error>
-               </mat-form-field>               
+               </mat-form-field>  
                <mat-form-field>
+                <mat-label> Reason for Separation</mat-label>
+                <mat-select  class="br-btm input-w pt-5" formControlName="reasonForSeperation" tabindex="11">
+                        <mat-option value="">Select</mat-option>
+                        <mat-option value="1">1</mat-option>
+                        <mat-option value="1">2</mat-option>
+                        <mat-option value="1">3</mat-option>
+                  </mat-select>
+            </mat-form-field>
+                         
+               <!-- <mat-form-field>
                  <mat-label>Professional Experience</mat-label>
                  <input  matInput formControlName="professionalExperience" type="text"  class="br-btm input-w" autoComplete='off' readonly tabindex="11">
-                 <!-- <mat-error *ngIf ="firstFormGroup.get('professionalExperience').errors?.required">
+                 <mat-error *ngIf ="firstFormGroup.get('professionalExperience').errors?.required">
                    please enter number.
                </mat-error>
                <mat-error *ngIf ="firstFormGroup.get('professionalExperience').errors?.maxlength">
@@ -134,8 +144,8 @@
                </mat-error>
                <mat-error *ngIf= "firstFormGroup.get('professionalExperience').errors?.pattern">
                please enter valid number
-               </mat-error> -->
-             </mat-form-field>
+               </mat-error> 
+             </mat-form-field> -->
              <mat-form-field>
                <mat-label>Department</mat-label>
                <input  matInput formControlName="department"  type="text" class="br-btm input-w" autoComplete='off' tabindex="13">
@@ -304,7 +314,7 @@
                      </mat-error>
                    </mat-form-field> -->
                    <mat-form-field>
-                       <mat-label>Time Management</mat-label>
+                       <mat-label>Discipline (Time Management)</mat-label>
                        <mat-select  class="br-btm input-w" formControlName="discipline" required tabindex="6">
                          <mat-option [value]=1>Unsatisfactory</mat-option>
                          <mat-option [value]=2>Needs Improvement</mat-option>
@@ -333,7 +343,7 @@
           <div class="w-full md:w-1/2 sm:w-full">
             <mat-form-field>
               <mat-label>Communication Skills</mat-label>
-              <mat-select  class="br-btm input-w" formControlName="communicationSkills" required>
+              <mat-select  class="br-btm input-w" formControlName="communicationSkills" required tabindex="1">
                 <mat-option [value]=1>Intermediate</mat-option>
                 <mat-option [value]=2>Proficient</mat-option>
               </mat-select>
@@ -341,21 +351,10 @@
                 please select Communication Skills
             </mat-error>
           </mat-form-field>
-                      <mat-form-field>
-                      <mat-label>Subject Matter Expertise (SME)</mat-label>
-                      <mat-select  class="br-btm input-w" formControlName="academicKnowledge" required>
-                        <mat-option [value]=1>Basic</mat-option>
-                        <mat-option [value]=2>Intermediate</mat-option>
-                        <mat-option [value]=3>Proficient</mat-option>
-                        <mat-option [value]=4>Expert</mat-option>
-                      </mat-select>
-                      <mat-error *ngIf ="thirdFormGroup.get('academicKnowledge').errors?.required">
-                        please select Subject Matter Expertise (SME)
-                    </mat-error>
-                  </mat-form-field>
+          
                   <mat-form-field>
                       <mat-label>Product Understanding</mat-label>
-                      <mat-select  class="br-btm input-w" formControlName="productKnowledge" required>
+                      <mat-select  class="br-btm input-w" formControlName="productKnowledge" required tabindex="2">
                         <mat-option [value]=1>Basic</mat-option>
                         <mat-option [value]=2>Intermediate</mat-option>
                         <mat-option [value]=3>Proficient</mat-option>
@@ -367,7 +366,7 @@
                   </mat-form-field>
                   <mat-form-field>
                       <mat-label>Industry / Domain Knowledge</mat-label>
-                      <mat-select  class="br-btm input-w" formControlName="industryKnowledge" required>
+                      <mat-select  class="br-btm input-w" formControlName="industryKnowledge" required tabindex="3">
                         <mat-option [value]=1>Basic</mat-option>
                         <mat-option [value]=2>Intermediate</mat-option>
                         <mat-option [value]=3>Proficient</mat-option>
@@ -377,6 +376,18 @@
                         please select Industry / Domain Knowledge
                     </mat-error>
                   </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Subject Matter Expertise (SME)</mat-label>
+                    <mat-select  class="br-btm input-w" formControlName="academicKnowledge" required tabindex="4">
+                      <mat-option [value]=1>Basic</mat-option>
+                      <mat-option [value]=2>Intermediate</mat-option>
+                      <mat-option [value]=3>Proficient</mat-option>
+                      <mat-option [value]=4>Expert</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf ="thirdFormGroup.get('academicKnowledge').errors?.required">
+                      please select Subject Matter Expertise (SME)
+                  </mat-error>
+                </mat-form-field>
                   
                   <mat-form-field>
                    <mat-label>Awards</mat-label>
@@ -389,11 +400,11 @@
                    </mat-select>
                </mat-form-field>
                 </div>
-                <div class="flex justify-end lg:pb-6 lg:pr-48">
-                </div>
-                <button class="lg-button focus:outline-none focus:shadow-outline" (click)="cancel()">Back</button>
-                <button class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">Next</button>
-            </div>     
+        </div>
+        <div class="flex justify-end lg:pb-6 lg:pr-48">
+            <button class="lg-button focus:outline-none focus:shadow-outline" (click)="cancel()">Back</button>
+            <button class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">Next</button>
+        </div>     
         </form>      
       </mat-tab>
        <mat-tab>
@@ -424,7 +435,7 @@
                            <mat-label>Strategic Thinking </mat-label>
                            <mat-select  class="br-btm input-w" formControlName="quality" tabindex="3">
                             <mat-option [value]=0>Select</mat-option>
-                             <mat-option [value]=1>Unsatisfactory</mat-option>
+                             <mat-option [value]=1>Not satisfactory</mat-option>
                              <mat-option [value]=2>Needs Improvement</mat-option>
                              <mat-option [value]=3>Meets Expectations</mat-option>
                              <mat-option [value]=4>Exceeds Expectations</mat-option>
@@ -450,8 +461,10 @@
                            <mat-label>Problem Solving</mat-label>
                            <mat-select  class="br-btm input-w" formControlName="consistency" tabindex="5">
                             <mat-option [value]=0>Select</mat-option>
-                             <mat-option [value]=1>Needs Improvement</mat-option>
-                             <mat-option [value]=2>Meets Expectations</mat-option>
+                            <mat-option [value]=1>Not satisfactory</mat-option>
+                            <mat-option [value]=2>Needs Improvement</mat-option>
+                            <mat-option [value]=3>Meets Expectations</mat-option>
+                            <mat-option [value]=4>Exceeds Expectations</mat-option>
                            </mat-select>
                            <mat-error *ngIf ="fourthFormGroup.get('consistency').errors?.required">
                              please select Consistency
@@ -473,7 +486,7 @@
                          <mat-label>Building High Performance Team</mat-label>
                          <mat-select  class="br-btm input-w" formControlName="building" tabindex="7">
                           <mat-option [value]=0>Select</mat-option>
-                           <mat-option [value]=1>Unsatisfactory</mat-option>
+                           <mat-option [value]=1>Not satisfactory</mat-option>
                            <mat-option [value]=2>Needs Improvement</mat-option>
                            <mat-option [value]=3>Meets Expectations</mat-option>
                            <mat-option [value]=4>Exceeds Expectations</mat-option>
@@ -498,8 +511,10 @@
                          <mat-label>Stakeholder Management</mat-label>
                          <mat-select  class="br-btm input-w" formControlName="stakeholder"  tabindex="9">
                           <mat-option [value]=0>Select</mat-option>
-                           <mat-option [value]=1>Needs Improvement</mat-option>
-                           <mat-option [value]=2>Meets Expectations</mat-option>
+                          <mat-option [value]=1>Not satisfactory</mat-option>
+                          <mat-option [value]=2>Needs Improvement</mat-option>
+                          <mat-option [value]=3>Meets Expectations</mat-option>
+                          <mat-option [value]=4>Exceeds Expectations</mat-option>
                          </mat-select>
                          <mat-error *ngIf ="fourthFormGroup.get('stakeholder').errors?.required">
                            please select Consistency
@@ -536,7 +551,7 @@
          <div class="flex flex-wrap">
            <div class="w-full md:w-1/2 sm:w-full">
                    <mat-form-field>
-                     <mat-label>Discrepancy in documents & Declarations</mat-label>
+                     <mat-label>Discrepancy in Joining Documents and Declarations</mat-label>
                      <mat-select  class="br-btm input-w" formControlName="discrepancy" [(ngModel)]="discrepancy" tabindex="1">
                        <mat-option value="yes">Yes</mat-option>
                        <mat-option value="no">No</mat-option>
@@ -694,8 +709,7 @@
                        </tbody>
                      </table>
                    </div>
-                 </div>
-                 <div class="w-full md:w-1/2 sm:w-full">
+         
                    <mat-form-field>
                      <mat-label>Show cause issued</mat-label>
                      <mat-select  class="br-btm input-w" formControlName="showcaseissued" [(ngModel)]="showCase" tabindex="2">
@@ -750,7 +764,7 @@
                      </table>
                    </div>
                    <mat-form-field>
-                     <mat-label>Suspention</mat-label>
+                     <mat-label>Performance Improvement Plan (PIP)</mat-label>
                      <mat-select  class="br-btm input-w" formControlName="suspention" [(ngModel)]="suspention" tabindex="4">
                        <mat-option value="yes">Yes</mat-option>
                        <mat-option value="no">No</mat-option>
