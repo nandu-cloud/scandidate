@@ -1,6 +1,6 @@
 import { Input } from '@angular/core';
 import { Component, ChangeDetectorRef, ElementRef, ViewChild ,OnInit} from '@angular/core';
-import { FormBuilder, FormArray, Validators, FormGroup, FormControl, ValidatorFn, AbstractControl } from "@angular/forms";
+import { FormBuilder, FormArray, Validators, FormGroup, FormControl, ValidatorFn, AbstractControl, Form } from "@angular/forms";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router,ActivatedRoute } from '@angular/router';
 import { EmployeeService } from  '../../../../services/employee.service';
@@ -22,7 +22,8 @@ export class AddCandidateComponent implements OnInit {
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
   fifthFormGroup: FormGroup;
-  
+  sixthFormGroup: FormGroup;
+
   employeeSubscription : Subscription;
   editEmployeeSubscription : Subscription;
   employeeUpdateSubscription: Subscription;
@@ -70,8 +71,7 @@ export class AddCandidateComponent implements OnInit {
       landMark : new FormControl(),
       city : new FormControl(),
       state : new FormControl(),
-      zipCode : new FormControl(),
-      awards: new FormControl('')
+      zipCode : new FormControl()
     });
     this.secondFormGroup = new FormGroup({
       selfDriven : new FormControl('',[Validators.required]),
@@ -84,20 +84,23 @@ export class AddCandidateComponent implements OnInit {
       punctuality: new FormControl('', [Validators.required]),
       discipline: new FormControl('', [Validators.required])
     });
-    this.fourthFormGroup = new FormGroup({
-      volume: new FormControl('', [Validators.required]),
-      quality: new FormControl('', [Validators.required]),
-      consistency: new FormControl('', [Validators.required]),
-      building: new FormControl(),
-      stakeholder : new FormControl()
-    });
     this.thirdFormGroup = new FormGroup({
       academicKnowledge : new FormControl('',[Validators.required]),
       productKnowledge : new FormControl('',[Validators.required]),
       industryKnowledge : new FormControl('',[Validators.required]),
       communicationSkills : new FormControl('',[Validators.required])
     });
+    this.fourthFormGroup = new FormGroup({
+      awards: new FormControl('')
+    });
     this.fifthFormGroup = new FormGroup({
+      volume: new FormControl('', [Validators.required]),
+      quality: new FormControl({IsSelect: new FormControl('', [Validators.required]), description: new FormControl('')}),
+      consistency: new FormControl({IsSelect: new FormControl('', [Validators.required]), description: new FormControl('')}),
+      building: new FormControl({IsSelect: new FormControl('', [Validators.required]), description: new FormControl('')}),
+      stakeholder : new FormControl({IsSelect: new FormControl('', [Validators.required]), description: new FormControl('')})
+    });
+    this.sixthFormGroup = new FormGroup({
       discrepancy: new FormControl(''),
       compliance: new FormControl(''),
       warning : new FormControl(''),
@@ -155,6 +158,11 @@ export class AddCandidateComponent implements OnInit {
         this.selectedIndex = 4
       }
     }
+    if (this.fifthFormGroup.valid){
+      if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = 5
+      }
+    }
     console.log(this.selectedIndex);
   }
 
@@ -204,10 +212,10 @@ export class AddCandidateComponent implements OnInit {
     var fromDate = this.firstFormGroup.value.dateOfJoining;
     console.log(fromDate)
     var toDate = this.firstFormGroup.value.exitDate;
-    console.log(toDate);
-  
+    
     try {
       console.log("try block")
+    console.log(toDate);
       var result = this.getDateDifference(new Date(fromDate), new Date(toDate));
   
       if (result && !isNaN(result.years)) {
