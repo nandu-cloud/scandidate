@@ -91,9 +91,9 @@ export class AddCandidateComponent implements OnInit {
       communicationSkills : new FormControl('',[Validators.required])
     });
     this.fourthFormGroup = new FormGroup({
-      awards: new FormControl(''),
-      award_rewards: new FormControl(''),
-      award_file: new FormControl('')
+      awards: new FormControl('',[Validators.required]),
+      award_rewards: new FormControl('',[Validators.required]),
+      award_file: new FormControl('',[Validators.required])
     });
     this.fifthFormGroup = new FormGroup({
       volume: new FormControl('', [Validators.required]),

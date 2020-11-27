@@ -429,11 +429,11 @@
               <div class="avatar-upload">
                   <div class="avatar-edit">
                     <label class="image-text">Documents Upload</label>
-                      <input type='file' placeholder="Upload Document" id="imageUpload" accept=".pdf" tabindex="21"/>
+                      <input type='file' placeholder="Upload Document" id="imageUpload" accept=".pdf" #extraActivityDocumentLink  tabindex="21"/>
                       <div id="imagePreview"></div>
                     </div>
               </div>
-              <button mat-button>
+              <button mat-button (click)="extraActivityDocumentLink.click()">
                   <mat-icon>file_upload</mat-icon>
               </button>
           </div>
