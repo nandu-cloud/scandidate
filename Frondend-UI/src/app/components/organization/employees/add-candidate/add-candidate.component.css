@@ -30,15 +30,21 @@
 
 .example-radio-group {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin: 15px 0;
   }
   
   .example-radio-button {
     margin: 5px;
   }
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
   .example-radio-group-label{
       font-weight: bold;
       padding-top: 5px;
       font-size: larger;
+  }
+  .example-full-width {
+    width: 50%;
   }

@@ -7,7 +7,7 @@
          <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
        </span>
      </div> 
-     <h1 class="hd-add">Add Candidate </h1><span class="right-text"> (your ex employee) </span>
+     <h1 class="hd-add">Add Candidate </h1><span class="right-text"> (your ex employee){{ displayName()}} </span>
      <mat-tab-group [selectedIndex]="selectedIndex" (selectedTabChange)="tabChanged($event)" class="mat-tab-group mat-primary">
        
        <mat-tab *ngFor="let number of [0];let i=index;">
@@ -20,7 +20,7 @@
            <div class="w-full md:w-1/2 sm:w-full">
                <mat-form-field>
                    <mat-label>First Name</mat-label>
-                   <input  matInput formControlName="firstName"  type="text" class="br-btm input-w" autoComplete='off' required tabindex="1">
+                   <input  matInput formControlName="firstName" (change)="displayName()" type="text" class="br-btm input-w" autoComplete='off' required tabindex="1">
                    <mat-error *ngIf ="firstFormGroup.get('firstName').errors?.required">
                        Required Employee Name.
                    </mat-error>
@@ -211,8 +211,8 @@
            <mat-icon class="example-tab-icon">card_travel</mat-icon>
            Work Ethic
          </ng-template>
-         <div class="flex flex-wrap">
-           <div class="w-full md:w-1/2 sm:w-full">
+              <div class="flex flex-wrap">
+                <div class="w-full md:w-1/2 sm:w-full">
                    <mat-form-field>
                        <mat-label>Self Driven / Initiative</mat-label>
                        <mat-select  class="br-btm input-w" formControlName="selfDriven" required tabindex="1">
@@ -350,11 +350,11 @@
               <mat-error *ngIf ="thirdFormGroup.get('communicationSkills').errors?.required">
                 please select Communication Skills
             </mat-error>
-          </mat-form-field>
+           </mat-form-field>
           
-                  <mat-form-field>
+            <mat-form-field>
                       <mat-label>Product Understanding</mat-label>
-                      <mat-select  class="br-btm input-w" formControlName="productKnowledge" required tabindex="2">
+                      <mat-select  class="br-btm input-w" formControlName="productKnowledge" required tabindex="3">
                         <mat-option [value]=1>Basic</mat-option>
                         <mat-option [value]=2>Intermediate</mat-option>
                         <mat-option [value]=3>Proficient</mat-option>
@@ -363,32 +363,35 @@
                       <mat-error *ngIf ="thirdFormGroup.get('productKnowledge').errors?.required">
                         please select Product Understanding
                     </mat-error>
-                  </mat-form-field>
-                  <mat-form-field>
-                      <mat-label>Industry / Domain Knowledge</mat-label>
-                      <mat-select  class="br-btm input-w" formControlName="industryKnowledge" required tabindex="3">
-                        <mat-option [value]=1>Basic</mat-option>
-                        <mat-option [value]=2>Intermediate</mat-option>
-                        <mat-option [value]=3>Proficient</mat-option>
-                        <mat-option [value]=4>Expert</mat-option>
-                      </mat-select>
-                      <mat-error *ngIf ="thirdFormGroup.get('industryKnowledge').errors?.required">
-                        please select Industry / Domain Knowledge
-                    </mat-error>
-                  </mat-form-field>
-                  <mat-form-field>
-                    <mat-label>Subject Matter Expertise (SME)</mat-label>
-                    <mat-select  class="br-btm input-w" formControlName="academicKnowledge" required tabindex="4">
-                      <mat-option [value]=1>Basic</mat-option>
-                      <mat-option [value]=2>Intermediate</mat-option>
-                      <mat-option [value]=3>Proficient</mat-option>
-                      <mat-option [value]=4>Expert</mat-option>
-                    </mat-select>
-                    <mat-error *ngIf ="thirdFormGroup.get('academicKnowledge').errors?.required">
-                      please select Subject Matter Expertise (SME)
-                  </mat-error>
-                </mat-form-field>
-                </div>
+            </mat-form-field>
+                  
+          </div>
+          <div class="w-full md:w-1/2 sm:w-full">
+            <mat-form-field>
+              <mat-label>Industry / Domain Knowledge</mat-label>
+              <mat-select  class="br-btm input-w" formControlName="industryKnowledge" required tabindex="2">
+                <mat-option [value]=1>Basic</mat-option>
+                <mat-option [value]=2>Intermediate</mat-option>
+                <mat-option [value]=3>Proficient</mat-option>
+                <mat-option [value]=4>Expert</mat-option>
+              </mat-select>
+              <mat-error *ngIf ="thirdFormGroup.get('industryKnowledge').errors?.required">
+                please select Industry / Domain Knowledge
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Subject Matter Expertise (SME)</mat-label>
+            <mat-select  class="br-btm input-w" formControlName="academicKnowledge" required tabindex="4">
+              <mat-option [value]=1>Basic</mat-option>
+              <mat-option [value]=2>Intermediate</mat-option>
+              <mat-option [value]=3>Proficient</mat-option>
+              <mat-option [value]=4>Expert</mat-option>
+            </mat-select>
+            <mat-error *ngIf ="thirdFormGroup.get('academicKnowledge').errors?.required">
+              please select Subject Matter Expertise (SME)
+          </mat-error>
+        </mat-form-field>
+          </div>
         </div>
         <div class="flex justify-end lg:pb-6 lg:pr-48">
             <button class="lg-button focus:outline-none focus:shadow-outline" (click)="cancel()">Back</button>
@@ -415,29 +418,33 @@
               <mat-radio-button [value]="'Performer & Not Awarded'">Performer & Not Awarded</mat-radio-button><br>
               <mat-radio-button [value]="'Non-Performer & Not Awarded'">Non-Performer & Not Awarded</mat-radio-button>
             </mat-radio-group>   
-            <mat-form-field>
-              <mat-label>Remarks</mat-label>
-              <textarea matInput  formControlName="award_rewards"
-                        cdkTextareaAutosize
-                        #autosize="cdkTextareaAutosize"
-                        cdkAutosizeMinRows="1"
-                        cdkAutosizeMaxRows="10"
-                        ></textarea>
-            </mat-form-field>
-
-            <div class="group-gap">
-              <div class="avatar-upload">
-                  <div class="avatar-edit">
-                    <label class="image-text">Documents Upload</label>
-                      <input type='file' placeholder="Upload Document" id="imageUpload" accept=".pdf" #extraActivityDocumentLink  tabindex="21"/>
-                      <div id="imagePreview"></div>
-                    </div>
+            <div class="flex flex-wrap">
+              <div class="w-full md:w-1/2 sm:w-full">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Remark</mat-label>
+                  <textarea matInput placeholder=""></textarea>
+                </mat-form-field>
               </div>
-              <button mat-button (click)="extraActivityDocumentLink.click()">
-                  <mat-icon>file_upload</mat-icon>
-              </button>
-          </div>
-          
+              <div class="w-full md:w-1/2 sm:w-full">
+                  <mat-form-field>
+                    <mat-label> Document Name</mat-label>
+                    <input  matInput formControlName="extraActivityDocumentName"  type="text" class="br-btm input-w" autoComplete='off' >
+                  </mat-form-field>
+                  <div class="group-gap" >
+                      <div class="avatar-upload">
+                          <div class="avatar-edit">
+                            <label class="image-text">Documents Upload</label>
+                              <input type='file' placeholder="Upload Document" id="imageUpload" accept=".pdf"  #extraActivityDocumentLink (change)="uploadFile($event.target.files)" tabindex="21"/>
+                              <div id="imagePreview">{{this.documentName}}</div>
+                            </div>
+                      </div>
+                      <button mat-button  (click)="extraActivityDocumentLink.click()">
+                          <mat-icon>file_upload</mat-icon>
+                      </button>
+                  </div>
+                </div>
+            </div>
+            
           </div>
         </div>
         <div class="flex justify-end lg:pb-6 lg:pr-48">

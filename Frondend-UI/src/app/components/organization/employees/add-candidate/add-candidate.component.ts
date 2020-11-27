@@ -41,6 +41,12 @@ export class AddCandidateComponent implements OnInit {
   organizationName: any = window.sessionStorage.getItem('orgName');
   selectedIndex: number = 0;
   tabChangeEvent: any;
+  fileToUpload: File;
+  documentName: any;
+  studentDocSubscription: any;
+  stuService: any;
+  studentForm: any;
+  baseUrl: any;
  
   constructor(
     public fb: FormBuilder,
@@ -192,6 +198,21 @@ export class AddCandidateComponent implements OnInit {
     dialogRef.componentInstance.methodType = this.methodtype;
   }
 
+  
+  uploadFile(file: FileList) {
+    this.fileToUpload = file[0];
+    this.documentName = this.fileToUpload.name;
+    this.studentDocSubscription = this.stuService.postFile(this.fileToUpload).subscribe(
+      data => {
+        this.studentForm.patchValue({extraActivityDocumentName: data.data.extraActivityDocumentName});
+        console.log(data.data.extraActivityDocumentName);
+
+        this.documentName = `${this.baseUrl}/public/student_doc/${data.data.extraActivityDocumentName}`;
+        // this.studentDocSubscription = this.stuService.deleteFile(this.imageFilename).subscribe();
+      }
+    )
+  }
+
   ngOnInit(): void {
     if(this.empIdedit){
       this.editEmployeeSubscription = this.empService.editEmployee(this.empIdedit).subscribe(respObj => {
@@ -209,6 +230,7 @@ export class AddCandidateComponent implements OnInit {
       })
     }
   }
+
 
   calculateExperience() {
     var fromDate = this.firstFormGroup.value.dateOfJoining;
@@ -230,6 +252,16 @@ export class AddCandidateComponent implements OnInit {
       console.error(e);
     }
   }
+
+  displayName()
+  {
+    if(this.firstFormGroup.value.firstName)
+    {
+     return ' " - "+this.firstFormGroup.value.firstName + " Information"';
+    }
+  }
+  
+
 
    getDateDifference(startDate, endDate) {
     if (startDate > endDate) {
@@ -277,9 +309,7 @@ export class AddCandidateComponent implements OnInit {
     })
   }
 }
-uploadFile(){
 
-}
 update(id:number){
   this.empIdupdate = id;
   this.employeeUpdateSubscription = this.empService.updateEmployee({...this.firstFormGroup.value, ...this.secondFormGroup.value,
