@@ -47,6 +47,7 @@ export class AddCandidateComponent implements OnInit {
   stuService: any;
   studentForm: any;
   baseUrl: any;
+  awardActivities: boolean = false;
  
   constructor(
     public fb: FormBuilder,
@@ -97,9 +98,10 @@ export class AddCandidateComponent implements OnInit {
       communicationSkills : new FormControl('',[Validators.required])
     });
     this.fourthFormGroup = new FormGroup({
-      awards: new FormControl('',[Validators.required]),
-      award_rewards: new FormControl('',[Validators.required]),
-      award_file: new FormControl('',[Validators.required])
+      awards: new FormControl('',[]),
+      award_rewards: new FormControl('',[]),
+      award_file: new FormControl('',[])
+      
     });
     this.fifthFormGroup = new FormGroup({
       volume: new FormControl('', [Validators.required]),
@@ -196,6 +198,19 @@ export class AddCandidateComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogElementsExampleDialog,{
   });
     dialogRef.componentInstance.methodType = this.methodtype;
+  }
+
+  award_activities(event) {
+    if (event.value == "Performer & Awarded" 
+        || event.value == "Non-Performer & Awarded" 
+        || event.value == "Performer & Not Awarded" 
+        || event.value == "Non-Performer & Not Awarded")
+    {
+      this.awardActivities = true;
+    } 
+    else {
+      this.awardActivities = false;
+    }
   }
 
   
@@ -323,6 +338,8 @@ update(id:number){
   })
 }
 }
+
+
 
 @Component({
   selector: 'dialog-elements-example-dialog',

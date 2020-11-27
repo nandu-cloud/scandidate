@@ -410,6 +410,7 @@
           <div class="w-full md:w-1/2 sm:w-full">           
             <label class="font-bold">Awards</label>
             <mat-radio-group
+             (change)="award_activities($event)"
               aria-labelledby="example-radio-group-label"
               class="example-radio-group"
               formControlName="awards">
@@ -418,17 +419,17 @@
               <mat-radio-button [value]="'Performer & Not Awarded'">Performer & Not Awarded</mat-radio-button><br>
               <mat-radio-button [value]="'Non-Performer & Not Awarded'">Non-Performer & Not Awarded</mat-radio-button>
             </mat-radio-group>   
-            <div class="flex flex-wrap">
+            <div class="flex flex-wrap" *ngIf="awardActivities">
               <div class="w-full md:w-1/2 sm:w-full">
                 <mat-form-field class="example-full-width">
                   <mat-label>Remark</mat-label>
-                  <textarea matInput placeholder=""></textarea>
+                  <textarea  matInput formControlName="award_rewards" style="line-height:2px; font-size: smaller;" matTextareaAutosize class="br-btm input-w" placeholder="Remarks"></textarea>
                 </mat-form-field>
               </div>
               <div class="w-full md:w-1/2 sm:w-full">
                   <mat-form-field>
                     <mat-label> Document Name</mat-label>
-                    <input  matInput formControlName="extraActivityDocumentName"  type="text" class="br-btm input-w" autoComplete='off' >
+                    <input  matInput formControlName="award_file"  type="text" class="br-btm input-w" >
                   </mat-form-field>
                   <div class="group-gap" >
                       <div class="avatar-upload">
