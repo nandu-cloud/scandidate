@@ -1,363 +1,408 @@
 <app-navbar>
     <div class="pt-16 lg:pl-40 pl-12 md:pl-48 bg-white">
-            <form class="login-form" [formGroup]="studentForm"  novalidate>
+            <!-- <form class="login-form" [formGroup]="studentForm"  novalidate> -->
               <h1 class="hd-add pb-6">Add Student</h1>
-              <div class="flex flex-wrap">
-                <div class="w-full md:w-1/2 sm:w-full">
-                  <mat-form-field>
-                    <mat-label>First Name</mat-label>
-                    <input  matInput formControlName="firstName"  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="1">
-                    <mat-error *ngIf ="studentForm.get('firstName').errors?.required">
-                        Required first Name.
-                    </mat-error>
-                    <mat-error *ngIf ="studentForm.get('firstName').errors?.minlength">
-                         Name must be at least 5 characters long.
-                    </mat-error>
-                  </mat-form-field>
-                  <mat-form-field>
-                    <mat-label>Roll No</mat-label>
-                    <input  matInput formControlName="roll"  type="text"  class="br-btm input-w" autoComplete='off' required tabindex="3">
-                    <mat-error *ngIf ="studentForm.get('roll').errors?.required">
-                      Required Roll Number.
-                  </mat-error>
-                  </mat-form-field>
-                  <mat-form-field>
-                    <mat-label>DOB</mat-label>
-                    <input matInput [matDatepicker]="picker2" formControlName="dateOfBirth" class="br-btm input-w" required tabindex="5">
-                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-datepicker #picker2 color="primary"></mat-datepicker>
-                    <mat-error *ngIf ="studentForm.get('dateOfBirth').errors?.required">
-                        Required date of birth.
-                       </mat-error>
-                  </mat-form-field>
-                  <mat-form-field>
-                    <mat-label>Phone Number</mat-label>
-                    <input  matInput   type="text"  formControlName="phoneNumber"  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{10}$" tabindex="7">
-                    <!-- <mat-error *ngIf ="studentForm.get('phoneNumber').errors?.required">
-                        Required phone number.
-                    </mat-error> -->
-                    <mat-error *ngIf="!studentForm.get('phoneNumber').errors?.required && studentForm.get('phoneNumber').errors?.pattern">
-                        Please enter valid mumber
-                    </mat-error>
-                  </mat-form-field>
-                  <mat-form-field>
-                    <mat-label>Year of Joining</mat-label>
-                    <input  matInput formControlName="yearOfJoining" required type="text"  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{4}$" tabindex="9">
-                    <mat-error *ngIf ="studentForm.get('yearOfJoining').errors?.required">
-                      Required Year of joining  
-                    </mat-error>
-                    <mat-error *ngIf="studentForm.get('yearOfJoining').hasError('requiredFromDate')">Joining year should be less than Passout year</mat-error>   
-                    <mat-error *ngIf="!studentForm.get('yearOfJoining').errors?.required && studentForm.get('yearOfJoining').errors?.pattern">
-                      Please enter valid year
-                    </mat-error>
-                  </mat-form-field>
-                  <mat-form-field>
-                    <mat-label>Institution Name</mat-label>
-                    <input  matInput   type="text"  formControlName="intitutionName"  required readonly class="br-btm input-w" autoComplete='off' tabindex="11">
-                    <mat-error *ngIf ="studentForm.get('intitutionName').errors?.required">
-                        Required IntitutionName.
-                    </mat-error>
-                  </mat-form-field>
-                  <mat-form-field>
-                    <mat-label>Address</mat-label>
-                    <input  matInput formControlName="address"  type="text"   class="br-btm input-w" autoComplete='off' tabindex="13">
-                  </mat-form-field>
-                  <mat-form-field>
-                    <mat-label>City</mat-label>
-                    <input  matInput   type="text"  formControlName="city"  class="br-btm input-w" autoComplete='off' tabindex="15">
-                </mat-form-field>
-                
-                <mat-form-field>
-                  <mat-label>Pin Code</mat-label>
-                  <input  matInput  formControlName="zipcode"   minLength="5" maxLength="7" class="br-btm input-w" pattern="^[0-9]{5,7}$" autoComplete='off' tabindex="17">
-              </mat-form-field>
-                  <mat-form-field>
-                    <mat-label>Extra activities</mat-label>
-                    <input matInput placeholder="Input" style="display: none" >
-                    <mat-radio-group aria-label="Select an option" formControlName="extraActivity" (change)="activities($event)" tabindex="19">
-                      <mat-radio-button value="1">Yes</mat-radio-button>&nbsp;
-                      <mat-radio-button value="2">No</mat-radio-button>
-                    </mat-radio-group>
-                  </mat-form-field>
-                  <mat-form-field *ngIf="extraActivities">
-                    <mat-label> Document Name</mat-label>
-                    <input  matInput formControlName="extraActivityDocumentName"  type="text" class="br-btm input-w" autoComplete='off' >
-                  </mat-form-field>
-                    <div class="group-gap" *ngIf="extraActivities">
-                      <div class="avatar-upload">
-                          <div class="avatar-edit">
-                            <label class="image-text">Documents Upload</label>
-                              <input type='file' placeholder="Upload Document" id="imageUpload" accept=".pdf"  #extraActivityDocumentLink (change)="uploadFile($event.target.files)" tabindex="21"/>
-                              <div id="imagePreview">{{this.documentName}}</div>
-                            </div>
-                      </div>
-                      <button mat-button  (click)="extraActivityDocumentLink.click()">
-                          <mat-icon>file_upload</mat-icon>
-                      </button>
-                  </div>
-                </div>
-                <div class="w-full md:w-1/2 sm:w-full">
-                  <mat-form-field>
-                    <mat-label>Last Name</mat-label>
-                    <input  matInput formControlName="lastName"  type="text"  class="br-btm input-w" autoComplete='off' required tabindex="2">
-                    <mat-error *ngIf ="studentForm.get('lastName').errors?.required">
-                      Required last Name.
-                  </mat-error>
-                  </mat-form-field>
-                  <mat-form-field>
-                    <mat-label>Aadhaar Number</mat-label>
-                    <input  matInput   type="text"  formControlName="adharNumber" class="br-btm input-w" autoComplete='off' pattern="^[0-9]{12}$" tabindex="4">
-                    <mat-error *ngIf ="studentForm.get('adharNumber').errors?.required">
-                        Required Aadhar number.
-                    </mat-error>
-                    <mat-error *ngIf="!studentForm.get('adharNumber').errors?.required && studentForm.get('adharNumber').errors?.pattern">
-                        Please enter valid number
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field>
-                  <mat-label>Email</mat-label>
-                  <input  matInput formControlName="email"  type="text"  class="br-btm input-w" autoComplete='off' tabindex="6">
-                  <!-- <mat-error *ngIf ="studentForm.get('email').errors?.required">
-                    Required email address
-                  </mat-error> -->
-                  <mat-error *ngIf ="studentForm.get('email').errors?.email">
-                    Enter a valid email address
-                  </mat-error>
-                </mat-form-field>
-                  <mat-form-field>
-                    <mat-label>Name of course</mat-label>
-                    <input  matInput formControlName="nameOfCourse"  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="8">
-                    <mat-error *ngIf ="studentForm.get('nameOfCourse').errors?.required">
-                      Required course Name 
-                    </mat-error>
-                    
-                  </mat-form-field>
-                  <mat-form-field>
-                    <mat-label>Year of Passing</mat-label>
-                    <input  matInput formControlName="yearOfPassout" required  type="text"   class="br-btm input-w" autoComplete='off' pattern="^[0-9]{4}$" tabindex="10">
-                    <mat-error *ngIf ="studentForm.get('yearOfPassout').errors?.required">
-                      Required Year of passedout 
-                    </mat-error>
-                    <mat-error *ngIf="studentForm.get('yearOfPassout').hasError('requiredToDate')"> Passout Year should be grater than joining Year</mat-error>
-                    <mat-error *ngIf="!studentForm.get('yearOfPassout').errors?.required && studentForm.get('yearOfPassout').errors?.pattern">
-                      Please enter valid year
-                    </mat-error>
-                  </mat-form-field>
-                  <mat-form-field>
-                    <mat-label>Enrollment Type</mat-label>
-                    <input matInput style="display: none" required>
-                    <mat-radio-group formControlName="studentType" required tabindex="12">
-                      <mat-radio-button value="regular">Regular</mat-radio-button>&nbsp;
-                      <mat-radio-button value="correspondance">Correspondance</mat-radio-button>
-                    </mat-radio-group>
-                    <mat-error *ngIf ="studentForm.get('studentType').errors?.required">
-                      Required Enrollment Type
-                    </mat-error>
-                  </mat-form-field>
-                  <!-- <div class="mt-4">
-                    <span class="text-gray-700 font-black">Student Type</span>
-                    <div class="mt-2" formControlName="studentType" required tabindex="12">
-                      <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio" name="studentType" value="regular">
-                        <span class="ml-2">Regular</span>
-                      </label>
-                      <label class="inline-flex items-center ml-6">
-                        <input type="radio" class="form-radio" name="studentType" value="correspondance">
-                        <span class="ml-2">Correspondance</span>
-                      </label>
-                    </div>
-                  </div> -->
-                  <!-- <mat-form-field>
-                    <mat-radio-group matInput formControlName="studentType" aria-label="Select an option">
-                      <mat-radio-button value="1">Option 1</mat-radio-button>
-                      <mat-radio-button value="2">Option 2</mat-radio-button>
-                    </mat-radio-group>
-                  </mat-form-field> -->
-                  <mat-form-field>
-                    <mat-label>LandMark</mat-label>
-                    <input matInput type="text"  formControlName="LandMark"   class="br-btm input-w" autoComplete='off' tabindex="14">
-                </mat-form-field>
-                <mat-form-field>
-                  <mat-label>State</mat-label>
-                  <mat-select  class="br-btm input-w pb-5" formControlName="state" tabindex="16">
-                    <mat-option value="select">Select</mat-option>
-                    <mat-option value="andaman">Andaman & Nicobar</mat-option>
-                    <mat-option value="andrapradesh">Andra Pradesh</mat-option>
-                    <mat-option value="arunachal">Arunachal Pradesh</mat-option>
-                    <mat-option value="assam">Assam</mat-option>
-                    <mat-option value="bihar">Bihar</mat-option>
-                    <mat-option value="chandigarh">Chandigarh</mat-option>
-                    <mat-option value="chhattisgarh">Chhattisgarh</mat-option>
-                    <mat-option value="dadra">Dadra & Nagar Haveli</mat-option>
-                    <mat-option value="daman">Daman & Diu</mat-option>
-                    <mat-option value="delhi">Delhi</mat-option>
-                    <mat-option value="goa">Goa</mat-option>
-                    <mat-option value="gujarat">Gujarat</mat-option>
-                    <mat-option value="haryana">Haryana</mat-option>
-                    <mat-option value="himachal">Himachal Pradesh</mat-option>
-                    <mat-option value="jammu">Jammu and Kashmir</mat-option>
-                    <mat-option value="jharkhand">Jharkhand</mat-option>
-                    <mat-option value="karnataka">Karnataka</mat-option>
-                    <mat-option value="kerala">Kerala</mat-option>
-                    <mat-option value="lakshadweep">Lakshadweep</mat-option>
-                    <mat-option value="madyapradesh">Madya Pradesh</mat-option>
-                    <mat-option value="maharastra">Maharashtra</mat-option>
-                    <mat-option value="manipur">Manipur</mat-option>
-                    <mat-option value="meghalaya">Meghalaya</mat-option>
-                    <mat-option value="mizoram">Mizoram</mat-option>
-                    <mat-option value="nagaland">Nagaland</mat-option>
-                    <mat-option value="orissa">Orissa</mat-option>
-                    <mat-option value="pondicherry">Pondicherry</mat-option>
-                    <mat-option value="punjab">Punjab</mat-option>
-                    <mat-option value="rajasthan">Rajasthan</mat-option>
-                    <mat-option value="sikkim">Sikkim</mat-option>
-                    <mat-option value="tamil">Tamil Nadu</mat-option>
-                    <mat-option value="telangana">Telangana</mat-option>
-                    <mat-option value="tripura">Tripura</mat-option>
-                    <mat-option value="uttarpradesh">Uttar Pradesh</mat-option>
-                    <mat-option value="uttaranchal">Uttaranchal</mat-option>
-                    <mat-option value="westbengal">West Bengal</mat-option>
-                  </mat-select>
-                  <mat-error *ngIf ="studentForm.get('state').errors?.required">
-                    Required state.
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field>
-                <mat-label>No of Education Documents</mat-label>
-                <input  matInput formControlName="noOfEductionalDocuments" ng2FileSelect  [uploader]="uploader" type="text"  class="br-btm input-w" autoComplete='off' pattern="^[0-9]$" tabindex="18">
-                <mat-error *ngIf="studentForm.get('noOfEductionalDocuments').errors?.pattern">
-                  Please enter valid number
-                </mat-error>
-              </mat-form-field>
-                  <div class="group-gap">
-                    <div class="avatar-upload">
-                        <div class="avatar-edit">
-                          <label class="image-text">Education Documents Upload</label>
-                            <input type='file' accept=".pdf,.png,.jpeg,.doc,.docx" #eduDocs    (change)="uploadEducationFile($event)" multiple tabindex="20"/>
-                            <div id="imagePreview" >{{ documentCount}} files uploaded</div>
-                          </div>
-                    </div>
-                    <button mat-button (click)="eduDocs.click()">
-                        <mat-icon>file_upload</mat-icon>
-                    </button>
-                    <div class=" mt-5">
-                      <h2>Upload Status</h2>
-                  
-                      <table class="table border-collapse border-2 border-gray-500 lg:w-2/4" *ngIf="!studentIdedit">
-                          <thead>
-                              <tr>
-                                  <th class="border border-gray-400 px-4 py-2 text-gray-800">File Name</th>
-                                  <th class="border border-gray-400 px-4 py-2 text-gray-800">Purpose of file</th>
-                                  <th class="border border-gray-400 px-4 py-2 text-gray-800" *ngIf="!studentIdedit">Type</th>
-                                  <th class="border border-gray-400 px-4 py-2 text-gray-800" *ngIf="!studentIdedit">Size</th>
-                                  <!-- <th class="border border-gray-400 px-4 py-2 text-gray-800" *ngIf="studentIdedit">Actions</th> -->
-                              </tr>
-                          </thead>
-                          <tbody class="lg:w-full text-center">
-                              <tr *ngFor="let item of displaySelectedFiles">
-                                  <td class="border border-gray-400 px-4 py-2 text-gray-800" *ngIf="item.name">
-                                      {{ item.name }}
-                                  </td>  
-                                  <mat-form-field *ngIf="!studentIdedit">
-                                    <!-- <mat-label>LandMark</mat-label> -->
-                                    <input matInput type="text" class="br-btm input" autoComplete='off' tabindex="14">
-                                  </mat-form-field>
-                                  <!-- <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                                    
-                                  </td> -->
-                                  <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                                   {{item.type}}
-                                  </td>      
-                                  <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                                      {{ item.size/1024/1024 | number:'.2' }} MB
-                                  </td>
-                                  <!-- <td> -->
-                                      <!-- {{item?.file?.type}} -->
-                                  <!-- </td> -->
-                                  <!-- <td>
-                                      <button mat-button  click="remove()">
-                                          <mat-icon class="text-red-600">delete</mat-icon>
-                                      </button>
-                                  </td> -->
-                              </tr>
-                              <!-- <td class="date"><a href="{{ action.Url }}" target="_blank">{{ action.Name }}</a> -->
-                           
-                                <!-- <td>
-                                  <button mat-button>
-                                      <mat-icon (click)="onDelete(item, studentIdedit)" (change)="uploadEducationFile($event)" class="text-red-600">delete</mat-icon>
-                                  </button>
-                              </td> -->
-                          </tbody>
-                      </table>
-                       <table class="table border-collapse border-2 border-gray-500 lg:w-3/5" *ngIf="studentIdedit">
-                          <thead>
-                              <tr>
-                                  <th class="border border-gray-400 px-4 py-2 text-gray-800">File Name</th>
-                                  <th class="border border-gray-400 px-4 py-2 text-gray-800">Purpose of file</th>
-                                  <th class="border border-gray-400 px-4 py-2 text-gray-800">Actions</th>
-                              </tr>
-                          </thead>
-                          <tbody class="lg:w-full text-center">
-                              <tr *ngFor="let item of displaySelectedFiles">
-                                  <td class="border border-gray-400 px-4 py-2 text-gray-800" *ngIf="item.name">
-                                      {{ item.name }}
-                                  </td>  
-                                  <!-- <mat-form-field *ngIf="!studentIdedit"> -->
-                                    <!-- <mat-label>LandMark</mat-label> -->
-                                    <!-- <input matInput type="text" class="br-btm input-w" autoComplete='off' tabindex="14">
-                                  </mat-form-field> -->
-                                  <!-- <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                                    
-                                  </td> -->
-                                  <!-- <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                                   {{item.type}}
-                                  </td>      
-                                  <td class="border border-gray-400 px-4 py-2 text-gray-800">
-                                      {{ item.size/1024/1024 | number:'.2' }} MB
-                                  </td> -->
-                                  <!-- <td> -->
-                                      <!-- {{item?.file?.type}} -->
-                                  <!-- </td> -->
-                                  <!-- <td>
-                                      <button mat-button  click="remove()">
-                                          <mat-icon class="text-red-600">delete</mat-icon>
-                                      </button>
-                                  </td> -->
-                              </tr>
-                              <!-- <td class="date"><a href="{{ action.Url }}" target="_blank">{{ action.Name }}</a> -->
-                              <tr *ngFor="let item of eductionalDoc">
-                                <td *ngIf="item">
-                                    {{ item }}
-                                </td>
-                                <td>
-
-                                </td>
-                                <td>
-                                  <button mat-button>
-                                      <mat-icon (click)="onDelete(item, studentIdedit)" (change)="uploadEducationFile($event)" class="text-red-600">delete</mat-icon>
-                                  </button>
-                                  <button mat-button>
-                                    <mat-icon class="text-red-600" (click)=view(item)>arrow_downward</mat-icon>
-                                  </button> 
-                              </td>
-                              </tr>
-                          </tbody>
-                      </table>
+     <mat-tab-group [selectedIndex]="selectedIndex" (selectedTabChange)="tabChanged($event)" class="mat-tab-group mat-primary">
+      <mat-tab *ngFor="let number of [0];let i=index;">
+        <form [formGroup]="firstFormGroup">
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon">face</mat-icon>
+          Personal Information
+        </ng-template>
+        <div class="flex flex-wrap">
+          <div class="w-full md:w-1/2 sm:w-full">
+            <mat-form-field>
+              <mat-label>First Name</mat-label>
+              <input  matInput formControlName="firstName"  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="1">
+              <mat-error *ngIf ="firstFormGroup.get('firstName').errors?.required">
+                  Required first Name.
+              </mat-error>
+              <mat-error *ngIf ="firstFormGroup.get('firstName').errors?.minlength">
+                   Name must be at least 5 characters long.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Roll No</mat-label>
+              <input  matInput formControlName="roll"  type="text"  class="br-btm input-w" autoComplete='off' required tabindex="3">
+              <mat-error *ngIf ="firstFormGroup.get('roll').errors?.required">
+                Required Roll Number.
+            </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>DOB</mat-label>
+              <input matInput [matDatepicker]="picker2" formControlName="dateOfBirth" class="br-btm input-w" tabindex="5">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2 color="primary"></mat-datepicker>
+              <mat-error *ngIf ="firstFormGroup.get('dateOfBirth').errors?.required">
+                  Required date of birth.
+                 </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Phone Number</mat-label>
+              <input  matInput   type="text"  formControlName="phoneNumber"  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{10}$" tabindex="7">
+              <!-- <mat-error *ngIf ="studentForm.get('phoneNumber').errors?.required">
+                  Required phone number.
+              </mat-error> -->
+              <mat-error *ngIf="!firstFormGroup.get('phoneNumber').errors?.required && firstFormGroup.get('phoneNumber').errors?.pattern">
+                  Please enter valid mumber
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Year of Joining</mat-label>
+              <input  matInput formControlName="yearOfJoining" required type="text"  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{4}$" tabindex="9">
+              <mat-error *ngIf ="firstFormGroup.get('yearOfJoining').errors?.required">
+                Required Year of joining  
+              </mat-error>
+              <mat-error *ngIf="firstFormGroup.get('yearOfJoining').hasError('requiredFromDate')">Joining year should be less than Passout year</mat-error>   
+              <mat-error *ngIf="!firstFormGroup.get('yearOfJoining').errors?.required && firstFormGroup.get('yearOfJoining').errors?.pattern">
+                Please enter valid year
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Institution Name</mat-label>
+              <input  matInput   type="text"  formControlName="intitutionName"  required readonly class="br-btm input-w" autoComplete='off' tabindex="11">
+              <mat-error *ngIf ="firstFormGroup.get('intitutionName').errors?.required">
+                  Required IntitutionName.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Address</mat-label>
+              <input  matInput formControlName="address"  type="text"   class="br-btm input-w" autoComplete='off' tabindex="13">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>City</mat-label>
+              <input  matInput   type="text"  formControlName="city"  class="br-btm input-w" autoComplete='off' tabindex="15">
+          </mat-form-field>
+        <mat-form-field>
+          <mat-label>Pin Code</mat-label>
+          <input  matInput  formControlName="zipCode"   minLength="5" maxLength="7" class="br-btm input-w" pattern="^[0-9]{5,7}$" autoComplete='off' tabindex="17">
+         </mat-form-field>
+        </div>
+        <div class="w-full md:w-1/2 sm:w-full">
+          <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input  matInput formControlName="lastName"  type="text"  class="br-btm input-w" autoComplete='off' required tabindex="2">
+            <mat-error *ngIf ="firstFormGroup.get('lastName').errors?.required">
+              Required last Name.
+          </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Aadhaar Number</mat-label>
+            <input  matInput   type="text"  formControlName="adharNumber" class="br-btm input-w" autoComplete='off' pattern="^[0-9]{12}$" tabindex="4">
+            <mat-error *ngIf ="firstFormGroup.get('adharNumber').errors?.required">
+                Required Aadhaar number.
+            </mat-error>
+            <mat-error *ngIf="!firstFormGroup.get('adharNumber').errors?.required && firstFormGroup.get('adharNumber').errors?.pattern">
+                Please enter valid number
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input  matInput formControlName="email"  type="text" class="br-btm input-w" autoComplete='off' tabindex="6">
+          <mat-error *ngIf ="firstFormGroup.get('email').errors?.required">
+            Required email address
+          </mat-error>
+          <mat-error *ngIf ="firstFormGroup.get('email').errors?.email">
+            Enter a valid email address
+          </mat-error>
+        </mat-form-field>
+          <mat-form-field>
+            <mat-label>Name of course</mat-label>
+            <input  matInput formControlName="nameOfCourse"  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="8">
+            <mat-error *ngIf ="firstFormGroup.get('nameOfCourse').errors?.required">
+              Required course Name 
+            </mat-error>
+            
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Year of Passing</mat-label>
+            <input  matInput formControlName="yearOfPassout" required  type="text"   class="br-btm input-w" autoComplete='off' pattern="^[0-9]{4}$" tabindex="10">
+            <mat-error *ngIf ="firstFormGroup.get('yearOfPassout').errors?.required">
+              Required Year of passedout 
+            </mat-error>
+            <mat-error *ngIf="firstFormGroup.get('yearOfPassout').hasError('requiredToDate')"> Passout Year should be grater than joining Year</mat-error>
+            <mat-error *ngIf="!firstFormGroup.get('yearOfPassout').errors?.required && firstFormGroup.get('yearOfPassout').errors?.pattern">
+              Please enter valid year
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Enrollment type</mat-label>
+            <input matInput placeholder="Input" style="display: none" required>
+            <mat-radio-group formControlName="studentType" required tabindex="12">
+              <mat-radio-button value="regular">Regular</mat-radio-button>&nbsp;
+              <mat-radio-button value="correspondance">Correspondance</mat-radio-button>
+            </mat-radio-group>
+            <mat-error *ngIf ="firstFormGroup.get('studentType').errors?.required">
+              Required Student Type
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>LandMark</mat-label>
+            <input matInput type="text"  formControlName="landMark"   class="br-btm input-w" autoComplete='off' tabindex="14">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>State</mat-label>
+          <mat-select  class="br-btm input-w pb-5" formControlName="state" tabindex="16">
+            <mat-option value="select">Select</mat-option>
+            <mat-option value="andaman">Andaman & Nicobar</mat-option>
+            <mat-option value="andrapradesh">Andra Pradesh</mat-option>
+            <mat-option value="arunachal">Arunachal Pradesh</mat-option>
+            <mat-option value="assam">Assam</mat-option>
+            <mat-option value="bihar">Bihar</mat-option>
+            <mat-option value="chandigarh">Chandigarh</mat-option>
+            <mat-option value="chhattisgarh">Chhattisgarh</mat-option>
+            <mat-option value="dadra">Dadra & Nagar Haveli</mat-option>
+            <mat-option value="daman">Daman & Diu</mat-option>
+            <mat-option value="delhi">Delhi</mat-option>
+            <mat-option value="goa">Goa</mat-option>
+            <mat-option value="gujarat">Gujarat</mat-option>
+            <mat-option value="haryana">Haryana</mat-option>
+            <mat-option value="himachal">Himachal Pradesh</mat-option>
+            <mat-option value="jammu">Jammu and Kashmir</mat-option>
+            <mat-option value="jharkhand">Jharkhand</mat-option>
+            <mat-option value="karnataka">Karnataka</mat-option>
+            <mat-option value="kerala">Kerala</mat-option>
+            <mat-option value="lakshadweep">Lakshadweep</mat-option>
+            <mat-option value="madyapradesh">Madya Pradesh</mat-option>
+            <mat-option value="maharastra">Maharashtra</mat-option>
+            <mat-option value="manipur">Manipur</mat-option>
+            <mat-option value="meghalaya">Meghalaya</mat-option>
+            <mat-option value="mizoram">Mizoram</mat-option>
+            <mat-option value="nagaland">Nagaland</mat-option>
+            <mat-option value="orissa">Orissa</mat-option>
+            <mat-option value="pondicherry">Pondicherry</mat-option>
+            <mat-option value="punjab">Punjab</mat-option>
+            <mat-option value="rajasthan">Rajasthan</mat-option>
+            <mat-option value="sikkim">Sikkim</mat-option>
+            <mat-option value="tamil">Tamil Nadu</mat-option>
+            <mat-option value="telangana">Telangana</mat-option>
+            <mat-option value="tripura">Tripura</mat-option>
+            <mat-option value="uttarpradesh">Uttar Pradesh</mat-option>
+            <mat-option value="uttaranchal">Uttaranchal</mat-option>
+            <mat-option value="westbengal">West Bengal</mat-option>
+          </mat-select>
+          <mat-error *ngIf ="firstFormGroup.get('state').errors?.required">
+            Required state.
+        </mat-error>
+      </mat-form-field>
+      </div>
+        </div>
+        <div class="flex justify-end lg:pb-6 lg:pr-48">
+          <button class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">
+              Next
+          </button>
+        </div> 
+       </form>
+       </mat-tab>
+        <mat-tab>
+          <form [formGroup]="secondFormGroup">
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">card_travel</mat-icon>
+            Certificates
+          </ng-template>
+          <div class="flex flex-wrap">
+            <div class="w-full md:w-1/2 sm:w-full">
+              
+            <mat-form-field>
+              <mat-label>Extra activities</mat-label>
+              <input matInput placeholder="Input" style="display: none" >
+              <mat-radio-group aria-label="Select an option" formControlName="extraActivity" (change)="activities($event)" tabindex="19">
+                <mat-radio-button value="1">Yes</mat-radio-button>&nbsp;
+                <mat-radio-button value="2">No</mat-radio-button>
+              </mat-radio-group>
+            </mat-form-field>
+            <mat-form-field *ngIf="extraActivities">
+              <mat-label> Document Name</mat-label>
+              <input  matInput formControlName="extraActivityDocumentName"  type="text" class="br-btm input-w" autoComplete='off' >
+            </mat-form-field>
+              <div class="group-gap" *ngIf="extraActivities">
+                <div class="avatar-upload">
+                    <div class="avatar-edit">
+                      <label class="image-text">Documents Upload</label>
+                        <input type='file' placeholder="Upload Document" id="imageUpload" accept=".pdf"  #extraActivityDocumentLink (change)="uploadFile($event.target.files)" tabindex="21"/>
+                        <div id="imagePreview">{{this.documentName}}</div>
                       </div>
                 </div>
-              </div>
-            </div>
-            <div class="flex justify-end lg:pb-8 lg:mt-20 lg:pr-48">
-              <a routerLink="/student-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button">
-                Cancle
-              </button></a>
-              <button class="lg-button focus:outline-none focus:shadow-outline" type="submit" (click)=submit() *ngIf="!id" >
-                Submit
-              </button>
-              <button class="lg-button focus:outline-none focus:shadow-outline" (click)=update(id)  *ngIf="id" >
-                  update
+                <button mat-button  (click)="extraActivityDocumentLink.click()">
+                    <mat-icon>file_upload</mat-icon>
                 </button>
             </div>
-          </form>
-  </div>
-  </app-navbar>
+            </div>
+          <div class="w-full md:w-1/2 sm:w-full">
+            <br>
+        <mat-form-field>
+          <mat-label>No of Education Documents</mat-label>
+          <input  matInput formControlName="noOfEductionalDocuments" ng2FileSelect  [uploader]="uploader" type="text"  class="br-btm input-w" autoComplete='off' pattern="^[0-9]$" tabindex="18">
+          <mat-error *ngIf="secondFormGroup.get('noOfEductionalDocuments').errors?.pattern">
+            Please enter valid number
+          </mat-error>
+        </mat-form-field>
+            <div class="group-gap">
+              <div class="avatar-upload">
+                  <div class="avatar-edit">
+                    <label class="image-text">Documents Upload</label>
+                      <input type='file' accept=".pdf,.png,.jpeg,.doc,.docx" #eduDocs    (change)="uploadEducationFile($event)" multiple tabindex="20"/>
+                      <div id="imagePreview" >{{ documentCount}} files uploaded</div>
+                    </div>
+              </div>
+              <button mat-button (click)="eduDocs.click()">
+                  <mat-icon>file_upload</mat-icon>
+              </button>
+              <div class=" mt-5">
+                <h2>Upload Status</h2>
+            
+                <table class="table border-collapse border-2 border-gray-500 lg:w-2/4" *ngIf="!studentIdedit">
+                    <thead>
+                        <tr>
+                          <th class="border border-gray-400 px-4 py-2 text-gray-800">Purpose of file</th>
+                            <th class="border border-gray-400 px-4 py-2 w-1/2 text-gray-800"> File Name</th>
+                            <th class="border border-gray-400 px-4 py-2 text-gray-800" *ngIf="!studentIdedit" >Type</th>
+                            <th class="border border-gray-400 px-4 py-2 text-gray-800" *ngIf="!studentIdedit" >Size</th>
+                            <!-- <th class="border border-gray-400 px-4 py-2 text-gray-800" *ngIf="studentIdedit">Actions</th> -->
+                        </tr>
+                    </thead>
+                    <tbody class="lg:w-full text-center">
+                        <!-- <tr *ngFor="let item of displaySelectedFiles">
+                            <td class="border border-gray-400 px-4 py-2 text-gray-800" *ngIf="item.name">
+                                {{ item.name }}
+                            </td>  
+                            <mat-form-field *ngIf="!studentIdedit">
+                              <input matInput formControlName="purposeOfFile" type="text" class="br-btm input" autoComplete='off' tabindex="14">
+                            </mat-form-field>
+                              
+                            <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                             {{item.type}}
+                            </td>      
+                            <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                                {{ item.size/1024/1024 | number:'.2' }} MB
+                            </td>
+                            
+                        </tr> -->
+                        <!-- <select formControlName="numberOfTickets" class="form-control" (change)="onChangeTickets($event)" [ngClass]="{ 'is-invalid': submitted && f.numberOfTickets.errors }">
+                          <option value=""></option>
+                          <option *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]">{{i}}</option>
+                      </select> -->
+                      <!-- <tr *ngFor="let item of displaySelectedFiles">
+                        <td class="border border-gray-400 px-4 py-2 text-gray-800" *ngIf="item.name">
+                            {{ item.name }}
+                        </td>
+                      </tr> -->
+                      
+                      <tr>
+                        <td>
+                          <form [formGroup]="dynamicForm">
+                          <div *ngFor="let ticket of t.controls;" class="list-group list-group-flush"> 
+                          <div class="list-group-item">
+                              <!-- <h5 class="card-title">Ticket {{i + 1}}</h5> -->
+                              <div [formGroup]="ticket" class="form-row">
+                                
+                                  <div class="form-group border border-gray-400 px-4 py-2 text-gray-800">
+                                      <!-- <label>Purpose For</label> -->
+                                      <input matInput formControlName="name" type="text" class="br-btm input" autoComplete='off' tabindex="14">
+                                      <!-- <input type="text" formControlName="name" class="form-control"  /> -->
+                                  </div>
+                              </div>
+                          </div>
+                        
+                          </div>
+                          </form>
+                       </td>
+                       <tbody *ngFor="let item of displaySelectedFiles">
+                       <td class="border border-gray-400 px-4 py-2 text-gray-800" *ngIf="item.name">
+                        {{ item.name }}
+                       </td>
+                        <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                          {{item.type}}
+                         </td>      
+                         <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                             {{ item.size/1024/1024 | number:'.2' }} MB
+                         </td>
+                        </tbody>
+                      </tr>	
+  
+                        <!-- <td class="date"><a href="{{ action.Url }}" target="_blank">{{ action.Name }}</a> -->
+                     
+                          <!-- <td>
+                            <button mat-button>
+                                <mat-icon (click)="onDelete(item, studentIdedit)" (change)="uploadEducationFile($event)" class="text-red-600">delete</mat-icon>
+                            </button>
+                        </td> -->
+                    </tbody>
+                </table>
+                 <table class="table border-collapse border-2 border-gray-500 lg:w-3/5" *ngIf="studentIdedit">
+                    <thead>
+                        <tr>
+                            <th class="border border-gray-400 px-4 py-2 text-gray-800">File Name</th>
+                            <th class="border border-gray-400 px-4 py-2 text-gray-800">Purpose of file</th>
+                            <th class="border border-gray-400 px-4 py-2 text-gray-800">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="lg:w-full text-center">
+                        <tr *ngFor="let item of displaySelectedFiles">
+                            <td class="border border-gray-400 px-4 py-2 text-gray-800" *ngIf="item.name">
+                                {{ item.name }}
+                            </td>  
+                            <!-- <mat-form-field *ngIf="!studentIdedit"> -->
+                              <!-- <mat-label>LandMark</mat-label> -->
+                              <!-- <input matInput type="text" class="br-btm input-w" autoComplete='off' tabindex="14">
+                            </mat-form-field> -->
+                            <!-- <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                              
+                            </td> -->
+                            <!-- <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                             {{item.type}}
+                            </td>      
+                            <td class="border border-gray-400 px-4 py-2 text-gray-800">
+                                {{ item.size/1024/1024 | number:'.2' }} MB
+                            </td> -->
+                            <!-- <td> -->
+                                <!-- {{item?.file?.type}} -->
+                            <!-- </td> -->
+                            <!-- <td>
+                                <button mat-button  click="remove()">
+                                    <mat-icon class="text-red-600">delete</mat-icon>
+                                </button>
+                            </td> -->
+                        </tr>
+                        <!-- <td class="date"><a href="{{ action.Url }}" target="_blank">{{ action.Name }}</a> -->
+                        <tr *ngFor="let item of eductionalDoc">
+                          <td *ngIf="item">
+                              {{ item }}
+                          </td>
+                          <td>
+  
+                          </td>
+                          <td>
+                            <button mat-button>
+                                <mat-icon (click)="onDelete(item, studentIdedit)" (change)="uploadEducationFile($event)" class="text-red-600">delete</mat-icon>
+                            </button>
+                            <button mat-button>
+                              <mat-icon class="text-red-600" (click)=view(item)>arrow_downward</mat-icon>
+                            </button> 
+                        </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+          </div>
+        </div>
+          </div>
+          <div class="flex justify-end lg:pb-8 lg:mt-20 lg:pr-48">
+            <a routerLink="/student-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button">
+              Cancle
+            </button></a>
+            <button class="lg-button focus:outline-none focus:shadow-outline" type="submit" (click)=submit() *ngIf="!id" >
+              Submit
+            </button>
+            <button class="lg-button focus:outline-none focus:shadow-outline" (click)=update(id)  *ngIf="id" >
+                update
+              </button>
+          </div>
+        </form>
+        </mat-tab>
+     </mat-tab-group>
+             
+         
+        <!-- </form> -->
+</div>
+</app-navbar>

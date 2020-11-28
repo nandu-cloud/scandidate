@@ -17,18 +17,18 @@ export class StudentService {
 });
 }
 
-addStudent(studentData): Observable<any> {
+addStudent(val,studentData,k): Observable<any> {
   var id = window.sessionStorage.getItem('ID');
   var inistutionId = window.sessionStorage.getItem('InistutionId');
   var studentData1: { 'nameOfCourse': string, 'yearOfJoining': string ,'yearOfPassout': string ,'studentType': string, 'extraActivity': string ,
                'firstName':string , 'lastName' : string , 'roll' : string, 'email': string , 'phoneNumber' : string , 'adharNumber': string,
                 'address' : number , 'addedById': string,'instituteId':string,'extraActivityDocumentName':string,'eductionalDocumentNames':string,
-                'noOfEductionalDocuments': number,'intitutionName': string, 'dateOfBirth': string, 'purposeOfFile': string, 'landMark': string,
+                'noOfEductionalDocuments': number,'intitutionName': string, 'dateOfBirth': string, 'purposeOfFile': [], 'landMark': string,
                  'city': string, 'state': string, 'zipCode': string} =
               { 'nameOfCourse': studentData.nameOfCourse, 'yearOfJoining': studentData.yearOfJoining ,'yearOfPassout': studentData.yearOfPassout, 'studentType' : studentData.studentType,
                 'extraActivity': studentData.extraActivity,'firstName':studentData.firstName,'lastName':studentData.lastName,'roll':studentData.roll == ''?undefined:studentData.roll,'email': studentData.email,'phoneNumber':studentData.phoneNumber,'address':studentData.address , 
                 'eductionalDocumentNames':studentData.eductionalDocumentNames,'noOfEductionalDocuments': studentData.noOfEductionalDocuments,'extraActivityDocumentName': studentData.extraActivityDocumentName == ""? undefined : studentData.extraActivityDocumentName ,'addedById':id ,'instituteId': inistutionId,
-                'intitutionName': studentData.intitutionName, 'adharNumber': studentData.adharNumber, 'dateOfBirth': studentData.dateOfBirth, 'purposeOfFile': studentData.purposeOfFile, 'landMark': studentData.landMark,
+                'intitutionName': studentData.intitutionName, 'adharNumber': studentData.adharNumber, 'dateOfBirth': studentData.dateOfBirth, 'purposeOfFile': k, 'landMark': studentData.landMark,
                 'city': studentData.city, 'state': studentData.state, 'zipCode': studentData.zipCode
               };
   return this.http.post(this.baseUrl + '/api/institute/operational/student', studentData1

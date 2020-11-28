@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit, Input } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { StudentService } from '../../../../services/student.service';
@@ -8,6 +8,7 @@ import { from, Subscription } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
 import { instituteService } from 'src/app/services/institute.service';
 import { FileUploader } from 'ng2-file-upload';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 @Component({
   selector: 'app-add-student',
   templateUrl: './add-student.component.html',
@@ -20,24 +21,27 @@ export class AddStudentComponent implements OnInit {
   educdoc: any;
   eductionalDoc: any = [];
   displaySelectedFiles:any=[];
+  selectedIndex: number = 0;
+  tabChangeEvent: any;
+  firstFormGroup: any;
+  secondFormGroup: any;
 
   constructor(
     public fb: FormBuilder,
     private cd: ChangeDetectorRef, public dialog: MatDialog, public route: ActivatedRoute,
-     public stuService: StudentService,
+     public stuService: StudentService,public formBuilder:FormBuilder,
     private appuserService: instituteService
   ) {
     this.route.params.subscribe(params => {
       this.studentIdedit = params.id;
     });
-    this.studentForm = new FormGroup({
+    this.firstFormGroup = new FormGroup({
       lastName : new FormControl('', [Validators.required]),
       firstName : new FormControl('', [Validators.required, Validators.minLength(3)]),
       roll : new FormControl('', [Validators.required]),
       email : new FormControl('', [Validators.email]),
       address : new FormControl(''),
-      noOfEductionalDocuments : new FormControl(0, [Validators.maxLength(1)]),
-      dateOfBirth: new FormControl('', [Validators.required]),
+      dateOfBirth: new FormControl(''),
       nameOfCourse: new FormControl('', [Validators.required]),
       yearOfJoining: new FormControl('', [Validators.required, this.validateJoining()]),
       phoneNumber : new FormControl('', [ Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[1-9][0-9]{9}$')]),
@@ -45,18 +49,69 @@ export class AddStudentComponent implements OnInit {
       yearOfPassout: new FormControl('', [Validators.required, this.validatePassout()]),
       studentType : new FormControl('', [Validators.required]),
       extraActivity : new FormControl(''),
-      extraActivityDocumentName : new FormControl(),
-      eductionalDocumentNames : new FormControl(),
-      purposeOfFile: new FormControl([]),
       intitutionName : new FormControl(this.instituteName, [Validators.required]),
-      eductionalDocumentLinks: new FormControl(),
-      extraActivityDocumentLink : new FormControl(),
-      LandMark : new FormControl(),
+      landMark : new FormControl(),
       city : new FormControl(),
       state : new FormControl(),
-      zipcode : new FormControl()
-    })
+      zipCode : new FormControl()
+    });
+    this.secondFormGroup = new FormGroup({
+      extraActivityDocumentName : new FormControl(),
+      eductionalDocumentNames : new FormControl(),
+      purposeOfFile: new FormControl(''),
+      purposeofoffer: new FormArray([]),
+      eductionalDocumentLinks: new FormControl(),
+      extraActivity: new FormControl(),
+      extraActivityDocumentLink : new FormControl(),
+      noOfEductionalDocuments : new FormControl(0, [Validators.maxLength(1)])
+    });
+
+    this.dynamicForm = this.formBuilder.group({
+      // numberOfTickets: ['', Validators.required],
+      purposeofoffer: new FormArray([])
+  });
    }
+
+   get f() { return this.dynamicForm.controls; }
+   get t() { return this.f.purposeofoffer as FormArray; }
+
+   maxNumberOfTabs: number;
+
+   public tabChanged(tabChangedEvent: MatTabChangeEvent): void {
+    this.selectedIndex = this.tabChangeEvent.index;
+  }
+
+  public nextStep(){
+    if (this.firstFormGroup.valid){
+      if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = 1
+      }
+    }
+    // if (this.secondFormGroup.valid){
+    //   if (this.selectedIndex != this.maxNumberOfTabs) {
+    //     this.selectedIndex = 2
+    //   }
+    // }
+  }
+
+   onChangeTickets(e) {
+    const numberOfTickets = e.target.value || 0;
+    if (this.t.length < numberOfTickets) {
+        for (let i = this.t.length; i < numberOfTickets; i++) {
+            this.t.push(this.formBuilder.group({
+                name: ['', Validators.required],
+                // email: ['', [Validators.required, Validators.email]]
+            }));
+        }
+    } else {
+        for (let i = this.t.length; i >= numberOfTickets; i--) {
+            this.t.removeAt(i);
+        }
+    }
+}
+
+   dynamicForm:FormGroup
+   FormArray
   studentForm: FormGroup;
   extraActivities: boolean = false;
   fileToUpload: File;
@@ -100,10 +155,10 @@ export class AddStudentComponent implements OnInit {
 
    validatePassout(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
-      if (this.studentForm !== undefined) {
+      if (this.firstFormGroup !== undefined) {
         //const arrivalDate = control.value;
-        const exitDate = this.studentForm.controls['yearOfPassout'].value;
-        const joiningDate = this.studentForm.controls['yearOfJoining'].value
+        const exitDate = this.firstFormGroup.controls['yearOfPassout'].value;
+        const joiningDate = this.firstFormGroup.controls['yearOfJoining'].value
         if (exitDate <= joiningDate) return { requiredToDate: true };
       }
     };
@@ -111,10 +166,10 @@ export class AddStudentComponent implements OnInit {
 
   validateJoining(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
-      if (this.studentForm !== undefined) {
-        const exitDate = this.studentForm.controls['yearOfPassout'].value;
+      if (this.firstFormGroup !== undefined) {
+        const exitDate = this.firstFormGroup.controls['yearOfPassout'].value;
         const fexitDate = new Date(exitDate);
-        const joiningDate = this.studentForm.controls['yearOfJoining'].value;
+        const joiningDate = this.firstFormGroup.controls['yearOfJoining'].value;
         if (fexitDate <= joiningDate) return { requiredFromDate: true };
       }
     };
@@ -138,7 +193,7 @@ export class AddStudentComponent implements OnInit {
     this.documentName = this.fileToUpload.name;
     this.studentDocSubscription = this.stuService.postFile(this.fileToUpload).subscribe(
       data => {
-        this.studentForm.patchValue({extraActivityDocumentName: data.data.extraActivityDocumentName});
+        this.secondFormGroup.patchValue({extraActivityDocumentName: data.data.extraActivityDocumentName});
         console.log(data.data.extraActivityDocumentName);
 
         this.documentName = `${this.baseUrl}/public/student_doc/${data.data.extraActivityDocumentName}`;
@@ -154,17 +209,34 @@ export class AddStudentComponent implements OnInit {
   
     for (let i = 0; i < event.target.files.length; i++)
     {
- 
+      
       this.files.push(event.target.files[i]);
  }
 
-  console.log("fileeeeeeee" + this.studentForm.value.noOfEductionalDocuments);
-    if ( this.studentForm.value.noOfEductionalDocuments <= this.files.length && this.studentForm.value.noOfEductionalDocuments >= this.files.length  ){
+ const numberOfTickets = this.files.length || 0;
+    if (this.t.length < numberOfTickets) {
+        for (let i = this.t.length; i < numberOfTickets; i++) {
+            this.t.push(this.formBuilder.group({
+                name: ['', Validators.required],
+                // email: ['', [Validators.required, Validators.email]]
+            }));
+        }
+    } else {
+        for (let i = this.t.length; i >= numberOfTickets; i--) {
+            this.t.removeAt(i);
+        }
+    }
+
+
+
+  console.log("fileeeeeeee" + this.secondFormGroup.value.noOfEductionalDocuments);
+    if ( this.secondFormGroup.value.noOfEductionalDocuments <= this.files.length && this.secondFormGroup.value.noOfEductionalDocuments >= this.files.length  ){
       // alert("Match count with No Of Do");
       this.displaySelectedFiles=this.files;
+      console.log(this.selectedFiles)
       this.studentDocSubscription = this.stuService.postEducationFile(this.files).subscribe(
          data => {
-           this.studentForm.patchValue({eductionalDocumentNames: data.data.eductionalDocumentNames});
+           this.secondFormGroup.patchValue({eductionalDocumentNames: data.data.eductionalDocumentNames});
            console.log(data.data.eductionalDocumentNames);
    
            this.edudocumentName = `${this.baseUrl}/public/student_doc/${data.data.eductionalDocumentNames}`;
@@ -196,10 +268,18 @@ export class AddStudentComponent implements OnInit {
   
  
   submit(){
-    console.log(this.studentForm.value)
+    console.log(this.firstFormGroup.value, this.secondFormGroup.value);
+    console.log(this.dynamicForm.value)
+let k=[]
+    this.dynamicForm.value.purposeofoffer. forEach(element => {
+  k.push(element.name)
+});
+console.log(k)
     if (!this.studentIdedit){
-    this.studentSubscription = this.stuService.addStudent(this.studentForm.value).subscribe(resp => {
-      console.log(this.studentForm.value);
+    // tslint:disable-next-line: max-line-length
+    this.studentSubscription = this.stuService.addStudent(this.firstFormGroup.value, 
+      this.secondFormGroup.value, k).subscribe(resp => {
+      console.log(this.firstFormGroup.value, this.secondFormGroup.value);
 
       this.openDialog();
     }, err => {
@@ -232,7 +312,33 @@ ngOnInit(){
      }
     this.educdoc = respObj.data;
     }
-    this.studentForm.patchValue(respObj.data);
+    // this.onChangeTickets(2)
+    
+    // console.log(this.dynamicForm.value.purposeofoffer)
+  //   .push(this.formBuilder.group({
+  //     name: ['', Validators.required],
+  //     // email: ['', [Validators.required, Validators.email]]
+  // }));
+    
+    this.dynamicForm = this.formBuilder.group({
+      // numberOfTickets: ['', Validators.required],
+      purposeofoffer: new FormArray([
+// this.createItem()
+        
+      ])
+  });
+
+//   this.dynamicForm.patchValue({
+//     purposeofoffer: [
+//              {
+//             name: 'New York',
+            
+//    }]
+// });
+
+
+    this.firstFormGroup.patchValue(respObj.data);
+    this.secondFormGroup.patchValue(respObj.data);
     this.imagePreview = true;
     this.documentName = `${this.baseUrl}/public/student_doc/${respObj.data.extraActivityDocumentName}`;
     this.educdocumentName = `${this.baseUrl}/public/student_doc/${respObj.data.eductionalDocumentNames}`;
@@ -243,6 +349,20 @@ ngOnInit(){
   })
 }
 }
+
+
+createItem() {
+  // return this.formBuilder.group({
+  //   name: 'sai',
+  
+  // });
+
+return  this.t.push(this.formBuilder.group({
+    name: ['ttttttt', Validators.required],
+    // email: ['', [Validators.required, Validators.email]]
+}));
+}
+
 
 
 
@@ -291,7 +411,8 @@ onDelete(item, studentIdedit) {
 }
 update(id: number){
   this.stdIdupdate = id;
-  this.stuupdateSubscription = this.stuService.updateStudent(this.studentForm.value).subscribe(resp => {
+  // tslint:disable-next-line: max-line-length
+  this.stuupdateSubscription = this.stuService.updateStudent({...this.firstFormGroup.value, ...this.secondFormGroup.value}).subscribe(resp => {
     this.methodtype = "update";
     this.openDialog();
 
@@ -315,15 +436,15 @@ export class DialogElementsExampleDialog {
     }
 
     ngOnInit(){
-      if (this.methodType == 'delete') {
-        this.Message = "Delete successfully"
-      }
       console.log(this.methodType)
       if (this.methodType == 'update'){
         this.Message = "Student Updated successfully"
       }
+      if (this.methodType == 'delete') {
+        this.Message = "Delete successfully"
+      }
       else{
-        this.Message = "Student added successfully"
+        this.Message = "Student Onboarded successfully"
       }
 
     }
