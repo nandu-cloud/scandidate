@@ -36,15 +36,17 @@ const sendErrorUAT = (err, res) => {
 };
 
 const sendErrorProd = (err, res) => {
-  if (err.isOperational) {
-    res
-      .status(err.statusCode)
-      .json({ status: err.status, message: err.message });
-  } else {
-    // programming error or unknow error occured, dont send it to client!
-    console.error(colors.red, "error", err);
-    res.status(500).json({ status: "ERROR", message: "Something went wrong!" });
-  }
+  // if (err.isOperational) {
+  //   res
+  //     .status(err.statusCode)
+  //     .json({ status: err.status, message: err.message });
+  // } else {
+  //   // programming error or unknow error occured, dont send it to client!
+  //   console.error(colors.red, "error", err);
+  //   res.status(500).json({ status: "ERROR", message: "Something went wrong!" });
+  // }
+  console.error(err);
+  res.status(err.statusCode).json({ status: err.status, message: err.message });
 };
 
 module.exports = (err, req, res, next) => {
@@ -57,11 +59,11 @@ module.exports = (err, req, res, next) => {
     sendErrorUAT(err, res);
   } else if (process.env.NODE_ENV === "production") {
     // eslint-disable-next-line node/no-unsupported-features/es-syntax
-    let error = { ...err };
-    if (error.name === "CastError") error = handleCastErrorDB(error);
-    if (error.code === 11000) error = handleDuplicateFieldDB(error);
-    if (error.name === "ValidationError")
-      error = handleValidationErrorDB(error);
-    sendErrorProd(error, res);
+    // let error = { ...err };
+    // if (error.name === "CastError") error = handleCastErrorDB(error);
+    // if (error.code === 11000) error = handleDuplicateFieldDB(error);
+    // if (error.name === "ValidationError")
+    //   error = handleValidationErrorDB(error);
+    sendErrorProd(err, res);
   }
 };

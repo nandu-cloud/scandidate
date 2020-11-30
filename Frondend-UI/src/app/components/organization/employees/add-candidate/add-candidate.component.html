@@ -1023,7 +1023,7 @@
           </ng-template>
           <div class="flex flex-wrap">
             <div class="w-full md:w-full sm:w-full">
-              <div class="flex flex-wrap">
+              <div class="flex flex-wrap" formGroupName="discrepancyDocuments">
                 <div class="w-full md:w-1/2 sm:w-full">
                   <mat-form-field>
                     <mat-label
@@ -1032,8 +1032,7 @@
                     >
                     <mat-select
                       class="br-btm input-w"
-                      formControlName="discrepancy"
-                      [(ngModel)]="discrepancy"
+                      formControlName="IsSelect"
                       tabindex="1"
                     >
                       <mat-option value="yes">Yes</mat-option>
@@ -1046,7 +1045,10 @@
                 </div>
                 <div
                   class="w-full md:w-1/2 sm:w-full"
-                  *ngIf="discrepancy == 'yes'"
+                  *ngIf="
+                    sixthFormGroup.get('discrepancyDocuments.IsSelect').value ==
+                    'yes'
+                  "
                 >
                   <table class="border-collapse border-2 border-gray-500">
                     <thead>
@@ -1077,7 +1079,7 @@
                         >
                           <input
                             matInput
-                            formControlName="dateOfBirth"
+                            formControlName="period"
                             [matDatepicker]="picker1"
                             class="br-btm input-w"
                             placeholder="MM/DD/YYYY"
@@ -1097,7 +1099,7 @@
                         >
                           <input
                             matInput
-                            formControlName="role"
+                            formControlName="causeActionTaken"
                             type="text"
                             class="br-btm input-w"
                             autoComplete="off"
@@ -1135,14 +1137,13 @@
                 </div>
               </div>
 
-              <div class="flex flex-wrap">
+              <div class="flex flex-wrap" formGroupName="compliencyDiscrepancy">
                 <div class="w-full md:w-1/2 sm:w-full">
                   <mat-form-field>
                     <mat-label>Compliance and Discrepancy</mat-label>
                     <mat-select
                       class="br-btm input-w"
-                      formControlName="compliance"
-                      [(ngModel)]="compliance"
+                      formControlName="IsSelect"
                       tabindex="3"
                     >
                       <mat-option value="yes">Yes</mat-option>
@@ -1155,7 +1156,10 @@
                 </div>
                 <div
                   class="w-full md:w-1/2 sm:w-full"
-                  *ngIf="compliance == 'yes'"
+                  *ngIf="
+                    sixthFormGroup.get('compliencyDiscrepancy.IsSelect')
+                      .value == 'yes'
+                  "
                 >
                   <table class="border-collapse border-2 border-gray-500">
                     <thead>
@@ -1186,7 +1190,7 @@
                         >
                           <input
                             matInput
-                            formControlName="dateOfBirth"
+                            formControlName="period"
                             [matDatepicker]="picker1"
                             class="br-btm input-w"
                             [min]="minDate"
@@ -1207,7 +1211,7 @@
                         >
                           <input
                             matInput
-                            formControlName="role"
+                            formControlName="causeActionTaken"
                             type="text"
                             class="br-btm input-w"
                             autoComplete="off"
@@ -1246,14 +1250,13 @@
                 </div>
               </div>
 
-              <div class="flex flex-wrap">
+              <div class="flex flex-wrap" formGroupName="warning">
                 <div class="w-full md:w-1/2 sm:w-full">
                   <mat-form-field>
                     <mat-label>Warning</mat-label>
                     <mat-select
                       class="br-btm input-w"
-                      formControlName="warning"
-                      [(ngModel)]="warning"
+                      formControlName="IsSelect"
                       tabindex="5"
                     >
                       <mat-option value="yes">Yes</mat-option>
@@ -1264,114 +1267,9 @@
                      </mat-error> -->
                   </mat-form-field>
                 </div>
-                <div class="w-full md:w-1/2 sm:w-full" *ngIf="warning == 'yes'">
-                  <table class="border-collapse border-2 border-gray-500">
-                    <thead>
-                      <tr>
-                        <th
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
-                        >
-                          Date
-                        </th>
-                        <th
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
-                        >
-                          Cause/Action Taken
-                        </th>
-                        <!-- <th class="border border-gray-400 px-4 py-2 text-gray-800">Action Taken</th> -->
-                        <th
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
-                        >
-                          Upload Document
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td
-                          style="display: flex"
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
-                        >
-                          <input
-                            matInput
-                            formControlName="dateOfBirth"
-                            [matDatepicker]="picker1"
-                            class="br-btm input-w"
-                            [min]="minDate"
-                            [max]="maxDate"
-                          />
-                          <mat-datepicker-toggle
-                            matSuffix
-                            [for]="picker1"
-                          ></mat-datepicker-toggle>
-                          <mat-datepicker
-                            #picker1
-                            color="primary"
-                            class="datepicker"
-                          ></mat-datepicker>
-                        </td>
-                        <td
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
-                        >
-                          <input
-                            matInput
-                            formControlName="role"
-                            type="text"
-                            class="br-btm input-w"
-                            autoComplete="off"
-                          />
-                        </td>
-
-                        <td
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
-                        >
-                          <div class="group-gap">
-                            <div class="avatar-upload">
-                              <div class="avatar-edit">
-                                <!-- <label class="image-text">Documents Upload</label> -->
-                                <input
-                                  type="file"
-                                  placeholder="Upload Document"
-                                  id="imageUpload"
-                                  accept=".pdf"
-                                  #extraActivityDocumentLink
-                                  (change)="uploadFile($event.target.files)"
-                                />
-                                <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
-                              </div>
-                            </div>
-                            <button
-                              mat-button
-                              (click)="extraActivityDocumentLink.click()"
-                            >
-                              <mat-icon>file_upload</mat-icon>
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              <div class="flex flex-wrap">
-                <div class="w-full md:w-1/2 sm:w-full">
-                  <mat-form-field>
-                    <mat-label>Show cause issued</mat-label>
-                    <mat-select
-                      class="br-btm input-w"
-                      formControlName="showcaseissued"
-                      [(ngModel)]="showCase"
-                      tabindex="2"
-                    >
-                      <mat-option value="yes">Yes</mat-option>
-                      <mat-option value="no">No</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
                 <div
                   class="w-full md:w-1/2 sm:w-full"
-                  *ngIf="showCase == 'yes'"
+                  *ngIf="sixthFormGroup.get('warning.IsSelect').value == 'yes'"
                 >
                   <table class="border-collapse border-2 border-gray-500">
                     <thead>
@@ -1402,7 +1300,7 @@
                         >
                           <input
                             matInput
-                            formControlName="dateOfBirth"
+                            formControlName="period"
                             [matDatepicker]="picker1"
                             class="br-btm input-w"
                             [min]="minDate"
@@ -1423,7 +1321,7 @@
                         >
                           <input
                             matInput
-                            formControlName="role"
+                            formControlName="causeActionTaken"
                             type="text"
                             class="br-btm input-w"
                             autoComplete="off"
@@ -1462,14 +1360,123 @@
                 </div>
               </div>
 
-              <div class="flex flex-wrap">
+              <div class="flex flex-wrap" formGroupName="showCausedIssue">
+                <div class="w-full md:w-1/2 sm:w-full">
+                  <mat-form-field>
+                    <mat-label>Show cause issued</mat-label>
+                    <mat-select
+                      class="br-btm input-w"
+                      formControlName="IsSelect"
+                      tabindex="2"
+                    >
+                      <mat-option value="yes">Yes</mat-option>
+                      <mat-option value="no">No</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div
+                  class="w-full md:w-1/2 sm:w-full"
+                  *ngIf="
+                    sixthFormGroup.get('showCausedIssue.IsSelect').value ==
+                    'yes'
+                  "
+                >
+                  <table class="border-collapse border-2 border-gray-500">
+                    <thead>
+                      <tr>
+                        <th
+                          class="border border-gray-400 px-4 py-2 text-gray-800"
+                        >
+                          Date
+                        </th>
+                        <th
+                          class="border border-gray-400 px-4 py-2 text-gray-800"
+                        >
+                          Cause/Action Taken
+                        </th>
+                        <!-- <th class="border border-gray-400 px-4 py-2 text-gray-800">Action Taken</th> -->
+                        <th
+                          class="border border-gray-400 px-4 py-2 text-gray-800"
+                        >
+                          Upload Document
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td
+                          style="display: flex"
+                          class="border border-gray-400 px-4 py-2 text-gray-800"
+                        >
+                          <input
+                            matInput
+                            formControlName="period"
+                            [matDatepicker]="picker1"
+                            class="br-btm input-w"
+                            [min]="minDate"
+                            [max]="maxDate"
+                          />
+                          <mat-datepicker-toggle
+                            matSuffix
+                            [for]="picker1"
+                          ></mat-datepicker-toggle>
+                          <mat-datepicker
+                            #picker1
+                            color="primary"
+                            class="datepicker"
+                          ></mat-datepicker>
+                        </td>
+                        <td
+                          class="border border-gray-400 px-4 py-2 text-gray-800"
+                        >
+                          <input
+                            matInput
+                            formControlName="causeActionTaken"
+                            type="text"
+                            class="br-btm input-w"
+                            autoComplete="off"
+                          />
+                        </td>
+
+                        <td
+                          class="border border-gray-400 px-4 py-2 text-gray-800"
+                        >
+                          <div class="group-gap">
+                            <div class="avatar-upload">
+                              <div class="avatar-edit">
+                                <!-- <label class="image-text">Documents Upload</label> -->
+                                <input
+                                  type="file"
+                                  placeholder="Upload Document"
+                                  id="imageUpload"
+                                  accept=".pdf"
+                                  #extraActivityDocumentLink
+                                  (change)="uploadFile($event.target.files)"
+                                />
+                                <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
+                              </div>
+                            </div>
+                            <button
+                              mat-button
+                              (click)="extraActivityDocumentLink.click()"
+                            >
+                              <mat-icon>file_upload</mat-icon>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap" formGroupName="suspension">
                 <div class="w-full md:w-1/2 sm:w-full">
                   <mat-form-field>
                     <mat-label>Performance Improvement Plan (PIP)</mat-label>
                     <mat-select
                       class="br-btm input-w"
-                      formControlName="suspention"
-                      [(ngModel)]="suspention"
+                      formControlName="IsSelect"
                       tabindex="4"
                     >
                       <mat-option value="yes">Yes</mat-option>
@@ -1482,7 +1489,9 @@
                 </div>
                 <div
                   class="w-full md:w-1/2 sm:w-full"
-                  *ngIf="suspention == 'yes'"
+                  *ngIf="
+                    sixthFormGroup.get('suspension.IsSelect').value == 'yes'
+                  "
                 >
                   <table class="border-collapse border-2 border-gray-500">
                     <thead>
@@ -1513,7 +1522,7 @@
                         >
                           <input
                             matInput
-                            formControlName="dateOfBirth"
+                            formControlName="period"
                             [matDatepicker]="picker1"
                             class="br-btm input-w"
                             [min]="minDate"
@@ -1534,7 +1543,7 @@
                         >
                           <input
                             matInput
-                            formControlName="role"
+                            formControlName="causeActionTaken"
                             type="text"
                             class="br-btm input-w"
                             autoComplete="off"
@@ -1573,14 +1582,14 @@
                 </div>
               </div>
 
-              <div class="flex flex-wrap">
+              <div class="flex flex-wrap" formGroupName="termination">
                 <div class="w-full md:w-1/2 sm:w-full">
                   <mat-form-field>
                     <mat-label>Termination</mat-label>
                     <mat-select
                       class="br-btm input-w"
-                      formControlName="termination"
-                      [(ngModel)]="termination"
+                      formControlName="IsSelect"
+
                       tabindex="6"
                     >
                       <mat-option value="yes">Yes</mat-option>
@@ -1593,7 +1602,7 @@
                 </div>
                 <div
                   class="w-full md:w-1/2 sm:w-full"
-                  *ngIf="termination == 'yes'"
+                  *ngIf=" sixthFormGroup.get('termination.IsSelect').value == 'yes'"
                 >
                   <table class="border-collapse border-2 border-gray-500">
                     <thead>
@@ -1624,7 +1633,7 @@
                         >
                           <input
                             matInput
-                            formControlName="dateOfBirth"
+                            formControlName="period"
                             [matDatepicker]="picker1"
                             class="br-btm input-w"
                             [min]="minDate"
@@ -1645,7 +1654,7 @@
                         >
                           <input
                             matInput
-                            formControlName="role"
+                            formControlName="causeActionTaken"
                             type="text"
                             class="br-btm input-w"
                             autoComplete="off"

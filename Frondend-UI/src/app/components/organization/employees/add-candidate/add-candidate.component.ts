@@ -111,13 +111,30 @@ export class AddCandidateComponent implements OnInit {
       stakeholder: new FormGroup({ IsSelect: new FormControl('', [Validators.required]), description: new FormControl('') })
     });
     this.sixthFormGroup = new FormGroup({
-      discrepancy: new FormControl(''),
-      compliance: new FormControl(''),
-      warning: new FormControl(''),
-      showcaseissued: new FormControl(''),
-      suspention: new FormControl(''),
-      termination: new FormControl(''),
-      description: new FormControl()
+      discrepancyDocuments: new FormGroup({
+        IsSelect: new FormControl('', [Validators.required]), period: new FormControl(''),
+        causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
+      }),
+      compliencyDiscrepancy: new FormGroup({
+        IsSelect: new FormControl('', [Validators.required]), period: new FormControl(''),
+        causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
+      }),
+      warning: new FormGroup({
+        IsSelect: new FormControl('', [Validators.required]), period: new FormControl(''),
+        causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
+      }),
+      showCausedIssue: new FormGroup({
+        IsSelect: new FormControl('', [Validators.required]), period: new FormControl(''),
+        causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
+      }),
+      suspension: new FormGroup({
+        IsSelect: new FormControl('', [Validators.required]), period: new FormControl(''),
+        causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
+      }),
+      termination: new FormGroup({
+        IsSelect: new FormControl('', [Validators.required]), period: new FormControl(''),
+        causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
+      }),
     });
   }
 
@@ -214,6 +231,20 @@ export class AddCandidateComponent implements OnInit {
 
 
   uploadFile(file: FileList) {
+    this.fileToUpload = file[0];
+    this.documentName = this.fileToUpload.name;
+    this.studentDocSubscription = this.stuService.postFile(this.fileToUpload).subscribe(
+      data => {
+        this.studentForm.patchValue({ extraActivityDocumentName: data.data.extraActivityDocumentName });
+        console.log(data.data.extraActivityDocumentName);
+
+        this.documentName = `${this.baseUrl}/public/student_doc/${data.data.extraActivityDocumentName}`;
+        // this.studentDocSubscription = this.stuService.deleteFile(this.imageFilename).subscribe();
+      }
+    )
+  }
+
+  uploadIssuesFile(file: FileList) {
     this.fileToUpload = file[0];
     this.documentName = this.fileToUpload.name;
     this.studentDocSubscription = this.stuService.postFile(this.fileToUpload).subscribe(
