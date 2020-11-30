@@ -18,6 +18,7 @@ export class StudentService {
 }
 
 addStudent(val,studentData,k): Observable<any> {
+  console.log(val)
   var id = window.sessionStorage.getItem('ID');
   var inistutionId = window.sessionStorage.getItem('InistutionId');
   var studentData1: { 'nameOfCourse': string, 'yearOfJoining': string ,'yearOfPassout': string ,'studentType': string, 'extraActivity': string ,
@@ -25,11 +26,11 @@ addStudent(val,studentData,k): Observable<any> {
                 'address' : number , 'addedById': string,'instituteId':string,'extraActivityDocumentName':string,'eductionalDocumentNames':string,
                 'noOfEductionalDocuments': number,'intitutionName': string, 'dateOfBirth': string, 'purposeOfFile': [], 'landMark': string,
                  'city': string, 'state': string, 'zipCode': string} =
-              { 'nameOfCourse': studentData.nameOfCourse, 'yearOfJoining': studentData.yearOfJoining ,'yearOfPassout': studentData.yearOfPassout, 'studentType' : studentData.studentType,
-                'extraActivity': studentData.extraActivity,'firstName':studentData.firstName,'lastName':studentData.lastName,'roll':studentData.roll == ''?undefined:studentData.roll,'email': studentData.email,'phoneNumber':studentData.phoneNumber,'address':studentData.address , 
+              { 'nameOfCourse': val.nameOfCourse, 'yearOfJoining': val.yearOfJoining ,'yearOfPassout': val.yearOfPassout, 'studentType' : val.studentType,
+                'extraActivity': studentData.extraActivity,'firstName':val.firstName,'lastName':val.lastName,'roll':val.roll == ''?undefined:val.roll,'email': val.email,'phoneNumber':val.phoneNumber,'address':val.address , 
                 'eductionalDocumentNames':studentData.eductionalDocumentNames,'noOfEductionalDocuments': studentData.noOfEductionalDocuments,'extraActivityDocumentName': studentData.extraActivityDocumentName == ""? undefined : studentData.extraActivityDocumentName ,'addedById':id ,'instituteId': inistutionId,
-                'intitutionName': studentData.intitutionName, 'adharNumber': studentData.adharNumber, 'dateOfBirth': studentData.dateOfBirth, 'purposeOfFile': k, 'landMark': studentData.landMark,
-                'city': studentData.city, 'state': studentData.state, 'zipCode': studentData.zipCode
+                'intitutionName': val.intitutionName, 'adharNumber': val.adharNumber, 'dateOfBirth': val.dateOfBirth, 'purposeOfFile': k, 'landMark': val.landMark,
+                'city': val.city, 'state': val.state, 'zipCode': val.zipCode
               };
   return this.http.post(this.baseUrl + '/api/institute/operational/student', studentData1
     , {

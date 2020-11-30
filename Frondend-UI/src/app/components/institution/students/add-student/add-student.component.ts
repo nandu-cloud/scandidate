@@ -356,12 +356,12 @@ createItem() {
   //   name: 'sai',
   
   // });
-
 return  this.t.push(this.formBuilder.group({
     name: ['ttttttt', Validators.required],
     // email: ['', [Validators.required, Validators.email]]
 }));
 }
+
 
 
 
@@ -444,7 +444,7 @@ export class DialogElementsExampleDialog {
         this.Message = "Delete successfully"
       }
       else{
-        this.Message = "Student Onboarded successfully"
+        this.Message = "Student added successfully"
       }
 
     }

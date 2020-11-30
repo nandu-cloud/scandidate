@@ -370,7 +370,7 @@
                               {{ item }}
                           </td>
                           <td>
-  
+                             {{purposeOfFile}}
                           </td>
                           <td>
                             <button mat-button>
@@ -391,7 +391,7 @@
             <a routerLink="/student-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button">
               Cancle
             </button></a>
-            <button class="lg-button focus:outline-none focus:shadow-outline" type="submit" (click)=submit() *ngIf="!id" >
+            <button class="lg-button focus:outline-none focus:shadow-outline" type="button" (click)=submit() *ngIf="!id" >
               Submit
             </button>
             <button class="lg-button focus:outline-none focus:shadow-outline" (click)=update(id)  *ngIf="id" >
