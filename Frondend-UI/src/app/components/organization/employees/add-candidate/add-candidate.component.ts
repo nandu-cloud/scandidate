@@ -271,7 +271,7 @@ export class AddCandidateComponent implements OnInit {
 
   displayName() {
     if (this.firstFormGroup.value.firstName) {
-      return ' " - "+this.firstFormGroup.value.firstName + " Information"';
+      return ' - '+ this.firstFormGroup.value.firstName + ' Information';
     }
   }
 
