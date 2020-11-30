@@ -93,4 +93,11 @@ export class EmployeeService {
       }
     );
   }
+
+  postIssuesFile(fileToUpload: File) :Observable<any>{
+    const formData: FormData = new FormData();
+    formData.append('document', fileToUpload);
+    return this.http.post(this.baseUrl + '/api/organisation/operational/uploads', formData
+   );
+  }
 }
