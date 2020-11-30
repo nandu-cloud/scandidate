@@ -21,3 +21,9 @@ input.mat-input-element {
     font-weight: 500 !important;
     text-align: left;
   }
+  .mat-tab-group {
+    position: sticky !important;
+  }
+.enrollment{
+    margin-top: -27px !important;
+}

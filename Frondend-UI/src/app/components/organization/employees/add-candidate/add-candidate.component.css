@@ -48,3 +48,6 @@
   .example-full-width {
     width: 80%;
   }
+  .mat-tab-group {
+    position: sticky !important;
+  }
