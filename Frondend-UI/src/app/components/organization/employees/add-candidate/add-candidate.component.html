@@ -1035,8 +1035,8 @@
                       formControlName="IsSelect"
                       tabindex="1"
                     >
-                      <mat-option value="yes">Yes</mat-option>
-                      <mat-option value="no">No</mat-option>
+                      <mat-option [value]="true">Yes</mat-option>
+                      <mat-option [value]="false">No</mat-option>
                     </mat-select>
                     <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
                         Please select Discrepancy in documents & Declarations
@@ -1047,7 +1047,7 @@
                   class="w-full md:w-1/2 sm:w-full"
                   *ngIf="
                     sixthFormGroup.get('discrepancyDocuments.IsSelect').value ==
-                    'yes'
+                    true
                   "
                 >
                   <table class="border-collapse border-2 border-gray-500">
@@ -1117,17 +1117,31 @@
                                   placeholder="Upload Document"
                                   id="imageUpload"
                                   accept=".pdf"
-                                  #extraActivityDocumentLink
-                                  (change)="uploadFile($event.target.files)"
+                                  #dd
+                                  (change)="
+                                    uploadIssuesFile(
+                                      $event.target.files,
+                                      'discrepancyDocuments'
+                                    )
+                                  "
                                 />
                                 <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
                               </div>
                             </div>
+                            <button mat-button (click)="dd.click()">
+                              <mat-icon>file_upload</mat-icon>
+                            </button>
                             <button
                               mat-button
-                              (click)="extraActivityDocumentLink.click()"
+                              (click)="
+                                downloadDoc(
+                                  sixthFormGroup.get(
+                                    'discrepancyDocuments.uploadDocument'
+                                  ).value
+                                )
+                              "
                             >
-                              <mat-icon>file_upload</mat-icon>
+                              <mat-icon>file_download</mat-icon>
                             </button>
                           </div>
                         </td>
@@ -1146,8 +1160,8 @@
                       formControlName="IsSelect"
                       tabindex="3"
                     >
-                      <mat-option value="yes">Yes</mat-option>
-                      <mat-option value="no">No</mat-option>
+                      <mat-option [value]="true">Yes</mat-option>
+                      <mat-option [value]="false">No</mat-option>
                     </mat-select>
                     <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
                        Please select Compliance and Discrepancy
@@ -1158,7 +1172,7 @@
                   class="w-full md:w-1/2 sm:w-full"
                   *ngIf="
                     sixthFormGroup.get('compliencyDiscrepancy.IsSelect')
-                      .value == 'yes'
+                      .value == true
                   "
                 >
                   <table class="border-collapse border-2 border-gray-500">
@@ -1230,17 +1244,31 @@
                                   placeholder="Upload Document"
                                   id="imageUpload"
                                   accept=".pdf"
-                                  #extraActivityDocumentLink
-                                  (change)="uploadFile($event.target.files)"
+                                  #cd
+                                  (change)="
+                                    uploadIssuesFile(
+                                      $event.target.files,
+                                      'compliencyDiscrepancy'
+                                    )
+                                  "
                                 />
                                 <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
                               </div>
                             </div>
+                            <button mat-button (click)="cd.click()">
+                              <mat-icon>file_upload</mat-icon>
+                            </button>
                             <button
                               mat-button
-                              (click)="extraActivityDocumentLink.click()"
+                              (click)="
+                                downloadDoc(
+                                  sixthFormGroup.get(
+                                    'compliencyDiscrepancy.uploadDocument'
+                                  ).value
+                                )
+                              "
                             >
-                              <mat-icon>file_upload</mat-icon>
+                              <mat-icon>file_download</mat-icon>
                             </button>
                           </div>
                         </td>
@@ -1259,8 +1287,8 @@
                       formControlName="IsSelect"
                       tabindex="5"
                     >
-                      <mat-option value="yes">Yes</mat-option>
-                      <mat-option value="no">No</mat-option>
+                      <mat-option [value]="true">Yes</mat-option>
+                      <mat-option [value]="false">No</mat-option>
                     </mat-select>
                     <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
                        Please select warning
@@ -1269,7 +1297,7 @@
                 </div>
                 <div
                   class="w-full md:w-1/2 sm:w-full"
-                  *ngIf="sixthFormGroup.get('warning.IsSelect').value == 'yes'"
+                  *ngIf="sixthFormGroup.get('warning.IsSelect').value == true"
                 >
                   <table class="border-collapse border-2 border-gray-500">
                     <thead>
@@ -1340,17 +1368,30 @@
                                   placeholder="Upload Document"
                                   id="imageUpload"
                                   accept=".pdf"
-                                  #extraActivityDocumentLink
-                                  (change)="uploadFile($event.target.files)"
+                                  #cat
+                                  (change)="
+                                    uploadIssuesFile(
+                                      $event.target.files,
+                                      'Warning'
+                                    )
+                                  "
                                 />
                                 <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
                               </div>
                             </div>
+                            <button mat-button (click)="cat.click()">
+                              <mat-icon>file_upload</mat-icon>
+                            </button>
                             <button
                               mat-button
-                              (click)="extraActivityDocumentLink.click()"
+                              (click)="
+                                downloadDoc(
+                                  sixthFormGroup.get('warning.uploadDocument')
+                                    .value
+                                )
+                              "
                             >
-                              <mat-icon>file_upload</mat-icon>
+                              <mat-icon>file_download</mat-icon>
                             </button>
                           </div>
                         </td>
@@ -1369,16 +1410,15 @@
                       formControlName="IsSelect"
                       tabindex="2"
                     >
-                      <mat-option value="yes">Yes</mat-option>
-                      <mat-option value="no">No</mat-option>
+                      <mat-option [value]="true">Yes</mat-option>
+                      <mat-option [value]="false">No</mat-option>
                     </mat-select>
                   </mat-form-field>
                 </div>
                 <div
                   class="w-full md:w-1/2 sm:w-full"
                   *ngIf="
-                    sixthFormGroup.get('showCausedIssue.IsSelect').value ==
-                    'yes'
+                    sixthFormGroup.get('showCausedIssue.IsSelect').value == true
                   "
                 >
                   <table class="border-collapse border-2 border-gray-500">
@@ -1450,17 +1490,31 @@
                                   placeholder="Upload Document"
                                   id="imageUpload"
                                   accept=".pdf"
-                                  #extraActivityDocumentLink
-                                  (change)="uploadFile($event.target.files)"
+                                  #sci
+                                  (change)="
+                                    uploadIssuesFile(
+                                      $event.target.files,
+                                      'showCausedIssue'
+                                    )
+                                  "
                                 />
                                 <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
                               </div>
                             </div>
+                            <button mat-button (click)="sci.click()">
+                              <mat-icon>file_upload</mat-icon>
+                            </button>
                             <button
                               mat-button
-                              (click)="extraActivityDocumentLink.click()"
+                              (click)="
+                                downloadDoc(
+                                  sixthFormGroup.get(
+                                    'showCausedIssue.uploadDocument'
+                                  ).value
+                                )
+                              "
                             >
-                              <mat-icon>file_upload</mat-icon>
+                              <mat-icon>file_download</mat-icon>
                             </button>
                           </div>
                         </td>
@@ -1479,8 +1533,8 @@
                       formControlName="IsSelect"
                       tabindex="4"
                     >
-                      <mat-option value="yes">Yes</mat-option>
-                      <mat-option value="no">No</mat-option>
+                      <mat-option [value]="true">Yes</mat-option>
+                      <mat-option [value]="false">No</mat-option>
                     </mat-select>
                     <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
                        Please select Suspention
@@ -1490,7 +1544,7 @@
                 <div
                   class="w-full md:w-1/2 sm:w-full"
                   *ngIf="
-                    sixthFormGroup.get('suspension.IsSelect').value == 'yes'
+                    sixthFormGroup.get('suspension.IsSelect').value == true
                   "
                 >
                   <table class="border-collapse border-2 border-gray-500">
@@ -1562,17 +1616,31 @@
                                   placeholder="Upload Document"
                                   id="imageUpload"
                                   accept=".pdf"
-                                  #extraActivityDocumentLink
-                                  (change)="uploadFile($event.target.files)"
+                                  #sus
+                                  (change)="
+                                    uploadIssuesFile(
+                                      $event.target.files,
+                                      'suspension'
+                                    )
+                                  "
                                 />
                                 <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
                               </div>
                             </div>
+                            <button mat-button (click)="sus.click()">
+                              <mat-icon>file_upload</mat-icon>
+                            </button>
                             <button
                               mat-button
-                              (click)="extraActivityDocumentLink.click()"
+                              (click)="
+                                downloadDoc(
+                                  sixthFormGroup.get(
+                                    'suspension.uploadDocument'
+                                  ).value
+                                )
+                              "
                             >
-                              <mat-icon>file_upload</mat-icon>
+                              <mat-icon>file_download</mat-icon>
                             </button>
                           </div>
                         </td>
@@ -1589,11 +1657,10 @@
                     <mat-select
                       class="br-btm input-w"
                       formControlName="IsSelect"
-
                       tabindex="6"
                     >
-                      <mat-option value="yes">Yes</mat-option>
-                      <mat-option value="no">No</mat-option>
+                      <mat-option [value]="true">Yes</mat-option>
+                      <mat-option [value]="false">No</mat-option>
                     </mat-select>
                     <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
                        Please select Termination
@@ -1602,7 +1669,9 @@
                 </div>
                 <div
                   class="w-full md:w-1/2 sm:w-full"
-                  *ngIf=" sixthFormGroup.get('termination.IsSelect').value == 'yes'"
+                  *ngIf="
+                    sixthFormGroup.get('termination.IsSelect').value == true
+                  "
                 >
                   <table class="border-collapse border-2 border-gray-500">
                     <thead>
@@ -1673,17 +1742,31 @@
                                   placeholder="Upload Document"
                                   id="imageUpload"
                                   accept=".pdf"
-                                  #extraActivityDocumentLink
-                                  (change)="uploadFile($event.target.files)"
+                                  #ter
+                                  (change)="
+                                    uploadIssuesFile(
+                                      $event.target.files,
+                                      'termination'
+                                    )
+                                  "
                                 />
                                 <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
                               </div>
                             </div>
+                            <button mat-button (click)="ter.click()">
+                              <mat-icon>file_upload</mat-icon>
+                            </button>
                             <button
                               mat-button
-                              (click)="extraActivityDocumentLink.click()"
+                              (click)="
+                                downloadDoc(
+                                  sixthFormGroup.get(
+                                    'termination.uploadDocument'
+                                  ).value
+                                )
+                              "
                             >
-                              <mat-icon>file_upload</mat-icon>
+                              <mat-icon>file_download</mat-icon>
                             </button>
                           </div>
                         </td>

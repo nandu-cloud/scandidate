@@ -7,6 +7,7 @@ import { EmployeeService } from '../../../../services/employee.service';
 import { StorageService } from '../../../../services/storage.service';
 import { from, Subscription } from 'rxjs';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { environment } from '../../../../../environments/environment';
 import { fromEvent } from "rxjs";
 import { debounceTime, take } from "rxjs/operators";
 @Component({
@@ -46,7 +47,7 @@ export class AddCandidateComponent implements OnInit {
   studentDocSubscription: any;
   stuService: any;
   studentForm: any;
-  baseUrl: any;
+  baseUrl: any = environment.baseUrl;
   awardActivities: boolean = false;
 
   constructor(
@@ -244,15 +245,30 @@ export class AddCandidateComponent implements OnInit {
     )
   }
 
-  uploadIssuesFile(file: FileList) {
+  uploadIssuesFile(file: FileList, type) {
     this.fileToUpload = file[0];
     this.documentName = this.fileToUpload.name;
-    this.studentDocSubscription = this.stuService.postFile(this.fileToUpload).subscribe(
+    this.studentDocSubscription = this.empService.postIssuesFile(this.fileToUpload).subscribe(
       data => {
-        this.studentForm.patchValue({ extraActivityDocumentName: data.data.extraActivityDocumentName });
-        console.log(data.data.extraActivityDocumentName);
-
-        this.documentName = `${this.baseUrl}/public/student_doc/${data.data.extraActivityDocumentName}`;
+        if (type == 'discrepancyDocuments') {
+          this.sixthFormGroup.patchValue({ discrepancyDocuments: { uploadDocument: data.data.documentLink } });
+        }
+        if (type == 'compliencyDiscrepancy') {
+          this.sixthFormGroup.patchValue({ compliencyDiscrepancy: { uploadDocument: data.data.documentLink } });
+        }
+        if (type == 'Warning') {
+          this.sixthFormGroup.patchValue({ warning: { uploadDocument: data.data.documentLink } });
+        }
+        if (type == 'showCausedIssue') {
+          this.sixthFormGroup.patchValue({ showCausedIssue: { uploadDocument: data.data.documentLink } });
+        }
+        if (type == 'suspension') {
+          this.sixthFormGroup.patchValue({ suspension: { uploadDocument: data.data.documentLink } });
+        }
+        if (type == 'termination') {
+          this.sixthFormGroup.patchValue({ termination: { uploadDocument: data.data.documentLink } });
+        }
+        this.documentName = `${this.baseUrl}/public/organizationIssues/${data.data.documentLink}`;
         // this.studentDocSubscription = this.stuService.deleteFile(this.imageFilename).subscribe();
       }
     )
@@ -302,7 +318,7 @@ export class AddCandidateComponent implements OnInit {
 
   displayName() {
     if (this.firstFormGroup.value.firstName) {
-      return ' - '+ this.firstFormGroup.value.firstName + ' Information';
+      return ' - ' + this.firstFormGroup.value.firstName + ' Information';
     }
   }
 
@@ -344,7 +360,8 @@ export class AddCandidateComponent implements OnInit {
     if (!this.empIdedit) {
       this.employeeSubscription = this.empService.addEmployee({
         ...this.firstFormGroup.value, ...this.secondFormGroup.value,
-        ...this.thirdFormGroup.value, ...this.fourthFormGroup.value, ...this.fifthFormGroup.value
+        ...this.thirdFormGroup.value, ...this.fourthFormGroup.value, ...this.fifthFormGroup.value,
+        ...this.sixthFormGroup.value
       })
         .subscribe(resp => {
           // console.log(this.createCandidate.value);
@@ -361,7 +378,8 @@ export class AddCandidateComponent implements OnInit {
     this.empIdupdate = id;
     this.employeeUpdateSubscription = this.empService.updateEmployee({
       ...this.firstFormGroup.value, ...this.secondFormGroup.value,
-      ...this.thirdFormGroup.value, ...this.fourthFormGroup.value, ...this.fifthFormGroup.value
+      ...this.thirdFormGroup.value, ...this.fourthFormGroup.value, ...this.fifthFormGroup.value,
+      ...this.sixthFormGroup.value
     }).subscribe(resp => {
       this.methodtype = "update";
       this.openDialog();
@@ -370,6 +388,13 @@ export class AddCandidateComponent implements OnInit {
       this.error = this.setMessage.message;
       throw this.setMessage.message;
     })
+  }
+
+  downloadDoc(docLink) {
+    if (docLink != '') {
+      const temp = `${this.baseUrl}/public/organizationIssues/${docLink}`;
+      window.open(temp, "_blank", "scrollbars=yes,resizable=yes,top=800,left=800,width=800,height=800");
+    }
   }
 }
 

@@ -28,7 +28,8 @@ export class EmployeeService {
       'dealConstructivelyWithPressure': number, 'volume': number, 'quality': number, 'consistency': number, 'punctuality': number,
       'discipline': number, 'academicKnowledge': number, 'productKnowledge', 'industryKnowledge': number, 'communicationSkills': number,
       'addedById': string, 'organisationId': string, 'organizationName': string, 'awards': string, 'city': string, 'state': string,
-      'zipCode': string, 'landMark': string, 'building': any, 'stakeholder': any
+      'zipCode': string, 'landMark': string, 'building': any, 'stakeholder': any, 'discrepancyDocuments': any,
+      'compliencyDiscrepancy': any, 'warning': any, 'showCausedIssue': any, 'suspension': any, 'termination': any
     } =
     {
       'firstName': empData.firstName, 'lastName': empData.lastName, 'email': empData.email, 'phoneNumber': empData.phoneNumber, 'dateOfJoining': empData.dateOfJoining,
@@ -38,7 +39,10 @@ export class EmployeeService {
       'dealConstructivelyWithPressure': empData.dealConstructivelyWithPressure, 'volume': empData.volume, 'quality': empData.quality, 'consistency': empData.consistency, 'building': empData.building, 'stakeholder': empData.stakeholder, 'punctuality': empData.punctuality, 'organizationName': empData.organizationName,
       'discipline': empData.discipline, 'academicKnowledge': empData.academicKnowledge, 'productKnowledge': empData.productKnowledge, 'industryKnowledge': empData.industryKnowledge, 'communicationSkills': empData.communicationSkills,
       'organisationId': organizationId, 'addedById': id, 'awards': empData.awards,
-      'city': empData.city, 'state': empData.state, 'zipCode': empData.zipCode, 'landMark': empData.landMark
+      'city': empData.city, 'state': empData.state, 'zipCode': empData.zipCode, 'landMark': empData.landMark,
+      'discrepancyDocuments': empData.discrepancyDocuments, 'compliencyDiscrepancy': empData.compliencyDiscrepancy,
+      'warning': empData.warning, 'showCausedIssue': empData.showCausedIssue, 'suspension': empData.suspension,
+      'termination': empData.termination
     };
     return this.http.post(this.baseUrl + '/api/organisation/operational', EmployeeData
       , {
@@ -71,7 +75,8 @@ export class EmployeeService {
       'discipline': number, 'academicKnowledge': number, 'productKnowledge', 'industryKnowledge': number, 'communicationSkills': number,
       'addedById': string, 'organisationId': string, 'organizationName': string, 'awards': string,
       'city': string, 'state': string,
-      'zipCode': string, 'landMark': string
+      'zipCode': string, 'landMark': string, 'discrepancyDocuments': any,
+      'compliencyDiscrepancy': any, 'warning': any, 'showCausedIssue': any, 'suspension': any, 'termination': any
     } =
     {
       'firstName': empupdateData.firstName, 'lastName': empupdateData.lastName, 'email': empupdateData.email, 'phoneNumber': empupdateData.phoneNumber, 'dateOfJoining': empupdateData.dateOfJoining,
@@ -81,7 +86,10 @@ export class EmployeeService {
       'dealConstructivelyWithPressure': empupdateData.dealConstructivelyWithPressure, 'volume': empupdateData.volume, 'quality': empupdateData.quality, 'consistency': empupdateData.consistency, 'punctuality': empupdateData.punctuality,
       'discipline': empupdateData.discipline, 'academicKnowledge': empupdateData.academicKnowledge, 'productKnowledge': empupdateData.productKnowledge, 'industryKnowledge': empupdateData.industryKnowledge, 'communicationSkills': empupdateData.communicationSkills, 'organizationName': empupdateData.organizationName,
       'organisationId': organizationId, 'addedById': id, 'awards': empupdateData.awards,
-      'city': empupdateData.city, 'state': empupdateData.state, 'landMark': empupdateData.landMark, 'zipCode': empupdateData.zipCode
+      'city': empupdateData.city, 'state': empupdateData.state, 'landMark': empupdateData.landMark, 'zipCode': empupdateData.zipCode,
+      'discrepancyDocuments': empupdateData.discrepancyDocuments, 'compliencyDiscrepancy': empupdateData.compliencyDiscrepancy,
+      'warning': empupdateData.warning, 'showCausedIssue': empupdateData.showCausedIssue, 'suspension': empupdateData.suspension,
+      'termination': empupdateData.termination
 
     };
     return this.http.put(this.baseUrl + '/api/organisation/operational/' + this.empIdupdate, EmployeeData
@@ -94,10 +102,10 @@ export class EmployeeService {
     );
   }
 
-  postIssuesFile(fileToUpload: File) :Observable<any>{
+  postIssuesFile(fileToUpload: File): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('document', fileToUpload);
     return this.http.post(this.baseUrl + '/api/organisation/operational/uploads', formData
-   );
+    );
   }
 }
