@@ -84,12 +84,12 @@ export class AddCandidateComponent implements OnInit {
     this.secondFormGroup = new FormGroup({
       selfDriven: new FormControl('', [Validators.required]),
       creativity: new FormControl('', [Validators.required]),
-      informalOrganizationSenseOfBelonging: new FormControl('', [Validators.required]),
-      initiative: new FormControl('', [Validators.required]),
+      // informalOrganizationSenseOfBelonging: new FormControl('', [Validators.required]),
+      // initiative: new FormControl('', [Validators.required]),
       workIndependenty: new FormControl('', [Validators.required]),
       teamWork: new FormControl('', [Validators.required]),
       dealConstructivelyWithPressure: new FormControl('', [Validators.required]),
-      punctuality: new FormControl('', [Validators.required]),
+      // punctuality: new FormControl('', [Validators.required]),
       discipline: new FormControl('', [Validators.required])
     });
     this.thirdFormGroup = new FormGroup({
@@ -99,9 +99,9 @@ export class AddCandidateComponent implements OnInit {
       communicationSkills: new FormControl('', [Validators.required])
     });
     this.fourthFormGroup = new FormGroup({
-      awards: new FormControl('', []),
-      award_rewards: new FormControl('', []),
-      award_file: new FormControl('', [])
+      awards: new FormControl('', [Validators.required]),
+      award_rewards: new FormControl('', [Validators.required]),
+      award_file: new FormControl('', [Validators.required])
 
     });
     this.fifthFormGroup = new FormGroup({
