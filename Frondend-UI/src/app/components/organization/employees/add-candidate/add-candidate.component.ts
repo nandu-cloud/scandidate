@@ -100,8 +100,8 @@ export class AddCandidateComponent implements OnInit {
     });
     this.fourthFormGroup = new FormGroup({
       awards: new FormControl('', [Validators.required]),
-      award_rewards: new FormControl('', [Validators.required]),
-      award_file: new FormControl('', [Validators.required])
+      award_rewards: new FormControl('' ),
+      award_file: new FormControl('')
 
     });
     this.fifthFormGroup = new FormGroup({

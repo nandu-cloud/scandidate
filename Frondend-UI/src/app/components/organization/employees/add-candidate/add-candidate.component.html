@@ -737,7 +737,7 @@
           </ng-template>
           <div class="flex flex-wrap mt-5">
             <div class="w-full md:w-1/2 sm:w-full">
-              <label class="font-bold">Awards</label>
+              <label class="font-bold">Awards(select one option)</label>
               <mat-radio-group
                 (change)="award_activities($event)"
                 aria-labelledby="example-radio-group-label"
@@ -757,7 +757,7 @@
                   >Non-Performer & Not Awarded</mat-radio-button
                 >
               </mat-radio-group>
-              <div class="flex flex-wrap" *ngIf="awardActivities">
+              <div class="flex flex-wrap" >
                 <div class="w-full md:w-1/2 sm:w-full">
                   <mat-form-field class="example-full-width">
                     <mat-label>Remark</mat-label>

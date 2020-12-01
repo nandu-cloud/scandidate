@@ -25,7 +25,7 @@ export class AddStudentComponent implements OnInit {
   tabChangeEvent: any;
   firstFormGroup: any;
   secondFormGroup: any;
-
+  purposeOfFile : any;
   constructor(
     public fb: FormBuilder,
     private cd: ChangeDetectorRef, public dialog: MatDialog, public route: ActivatedRoute,
