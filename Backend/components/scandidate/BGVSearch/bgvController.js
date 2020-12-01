@@ -11,7 +11,6 @@ module.exports.searchbgv = async (req, res, next) => {
 
     let stdData = await bgvDAL.searchBgvDataStudent(data);
 
-
     if (empData.length > 0 && stdData.length > 0) {
       let result = empData.concat(stdData);
       return res
@@ -42,15 +41,14 @@ module.exports.searchByIdBGV = async (req, res, next) => {
   let _id = req.params.searchbyid;
   try {
     let empData = await bgvDAL.searchBgvDataEmployeeId({ _id: _id });
-    var aadharNumber = '';
-    var phoneNumber = '';
-    var email = '';
-    var firstName = '';
-    var lastName = '';
-    var dob = '';
+    var aadharNumber = "";
+    var phoneNumber = "";
+    var email = "";
+    var firstName = "";
+    var lastName = "";
+    var dob = "";
 
     if (empData.length > 0) {
-
       aadharNumber = empData[0].adharNumber;
       phoneNumber = empData[0].phoneNumber;
       email = empData[0].email;

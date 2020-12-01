@@ -11,9 +11,8 @@ async function searchBgvDataEmployee(data) {
         { dateOfBirth: { $regex: data.dateOfBirth || "" } },
         { phoneNumber: { $regex: data.phoneNumber || "" } },
         { email: { $regex: data.email || "", $options: "i" } },
-        { adharNumber: { $regex: data.adharNumber || "" } }
-
-      ])
+        { adharNumber: { $regex: data.adharNumber || "" } },
+      ]);
     // .collation({ locale: "en", strength: 1 });
     return employeeSearch;
   } catch (err) {
@@ -23,8 +22,7 @@ async function searchBgvDataEmployee(data) {
 
 async function searchBgvDataEmployeeId(data) {
   try {
-    let employeeSearch = await employeeModel
-      .find(data)
+    let employeeSearch = await employeeModel.find(data);
     return employeeSearch;
   } catch (err) {
     throw err;
@@ -40,9 +38,8 @@ async function searchBgvDataStudent(data) {
         { dateOfBirth: { $regex: data.dateOfBirth || "" } },
         { phoneNumber: { $regex: data.phoneNumber || "" } },
         { email: { $regex: data.email || "", $options: "i" } },
-        { adharNumber: { $regex: data.adharNumber || "" } }
-
-      ])
+        { adharNumber: { $regex: data.adharNumber || "" } },
+      ]);
     // .collation({ locale: "en", strength: 1 });
     return studentSearch;
   } catch (err) {
@@ -52,18 +49,18 @@ async function searchBgvDataStudent(data) {
 
 async function searchBgvDataStudentId(data) {
   try {
-    let studentSearch = await studentModel
-      .find(data)
+    let studentSearch = await studentModel.find(data);
     return studentSearch;
   } catch (err) {
     throw err;
   }
 }
 
-
 async function searchByAdharNumberEmployee(data) {
   try {
-    let adhSearch = await employeeModel.find({ adharNumber: data });
+    let adhSearch = await employeeModel
+      .find({ adharNumber: data })
+      .sort({ createdAt: -1 });
     return adhSearch;
   } catch (err) {
     throw err;
@@ -72,7 +69,9 @@ async function searchByAdharNumberEmployee(data) {
 
 async function searchByAdharNumberInstitute(data) {
   try {
-    let adhSearch = await studentModel.find({ adharNumber: data });
+    let adhSearch = await studentModel
+      .find({ adharNumber: data })
+      .sort({ createdAt: -1 });
     return adhSearch;
   } catch (err) {
     throw err;
@@ -81,11 +80,13 @@ async function searchByAdharNumberInstitute(data) {
 
 async function searchByPhoneNumberEmployee(phoneNumber, firstName, lastName) {
   try {
-    let adhSearch = await employeeModel.find({
-      phoneNumber: phoneNumber,
-      firstName: firstName,
-      lastName: lastName,
-    });
+    let adhSearch = await employeeModel
+      .find({
+        phoneNumber: phoneNumber,
+        firstName: firstName,
+        lastName: lastName,
+      })
+      .sort({ createdAt: -1 });
     return adhSearch;
   } catch (err) {
     throw err;
@@ -94,11 +95,13 @@ async function searchByPhoneNumberEmployee(phoneNumber, firstName, lastName) {
 
 async function searchByPhoneNumberInstitute(phoneNumber, firstName, lastName) {
   try {
-    let adhSearch = await studentModel.find({
-      phoneNumber: phoneNumber,
-      firstName: firstName,
-      lastName: lastName,
-    });
+    let adhSearch = await studentModel
+      .find({
+        phoneNumber: phoneNumber,
+        firstName: firstName,
+        lastName: lastName,
+      })
+      .sort({ createdAt: -1 });
     return adhSearch;
   } catch (err) {
     throw err;
@@ -107,7 +110,9 @@ async function searchByPhoneNumberInstitute(phoneNumber, firstName, lastName) {
 
 async function searchByEmailEmployee(data) {
   try {
-    let adhSearch = await employeeModel.find({ email: data });
+    let adhSearch = await employeeModel
+      .find({ email: data })
+      .sort({ createdAt: -1 });
     return adhSearch;
   } catch (err) {
     throw err;
@@ -116,7 +121,9 @@ async function searchByEmailEmployee(data) {
 
 async function searchByEmailInstitute(data) {
   try {
-    let adhSearch = await studentModel.find({ email: data });
+    let adhSearch = await studentModel
+      .find({ email: data })
+      .sort({ createdAt: -1 });
     return adhSearch;
   } catch (err) {
     throw err;
@@ -125,11 +132,13 @@ async function searchByEmailInstitute(data) {
 
 async function searchByNameEmployee(firstName, lastName, dob) {
   try {
-    let adhSearch = await employeeModel.find({
-      firstName: firstName,
-      lastName: lastName,
-      dateOfBirth: dob,
-    });
+    let adhSearch = await employeeModel
+      .find({
+        firstName: firstName,
+        lastName: lastName,
+        dateOfBirth: dob,
+      })
+      .sort({ createdAt: -1 });
     return adhSearch;
   } catch (err) {
     throw err;
@@ -138,11 +147,13 @@ async function searchByNameEmployee(firstName, lastName, dob) {
 
 async function searchByNameInstittute(firstName, lastName, dob) {
   try {
-    let adhSearch = await studentModel.find({
-      firstName: firstName,
-      lastName: lastName,
-      dateOfBirth: dob,
-    });
+    let adhSearch = await studentModel
+      .find({
+        firstName: firstName,
+        lastName: lastName,
+        dateOfBirth: dob,
+      })
+      .sort({ createdAt: -1 });
     return adhSearch;
   } catch (err) {
     throw err;
@@ -161,5 +172,5 @@ module.exports = {
   searchByNameEmployee: searchByNameEmployee,
   searchByNameInstittute: searchByNameInstittute,
   searchBgvDataEmployeeId: searchBgvDataEmployeeId,
-  searchBgvDataStudentId: searchBgvDataStudentId
+  searchBgvDataStudentId: searchBgvDataStudentId,
 };
