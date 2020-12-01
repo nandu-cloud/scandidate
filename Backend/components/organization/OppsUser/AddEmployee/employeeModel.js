@@ -112,6 +112,10 @@ const employeeSchema = new mongoose.Schema({
     type: Number,
     required: false,
   },
+  reasonForSerperation: {
+    type: String,
+    required: false,
+  },
 
   // performance
   volume: {
@@ -208,9 +212,20 @@ const employeeSchema = new mongoose.Schema({
     type: Number,
     required: false,
   },
+
   awards: {
-    type: String,
-    required: false,
+    remarks: {
+      type: String,
+      required: false,
+    },
+    documentName: {
+      type: String,
+      required: false,
+    },
+    documentUpload: {
+      type: String,
+      required: false,
+    },
   },
 
   //Other Details
@@ -241,7 +256,11 @@ const employeeSchema = new mongoose.Schema({
       type: Date,
       required: false,
     },
-    causeActionTaken: {
+    cause: {
+      type: String,
+      required: false,
+    },
+    actionTaken: {
       type: String,
       required: false,
     },
@@ -260,7 +279,11 @@ const employeeSchema = new mongoose.Schema({
       type: Date,
       required: false,
     },
-    causeActionTaken: {
+    cause: {
+      type: String,
+      required: false,
+    },
+    actionTaken: {
       type: String,
       required: false,
     },
@@ -279,7 +302,11 @@ const employeeSchema = new mongoose.Schema({
       type: Date,
       required: false,
     },
-    causeActionTaken: {
+    cause: {
+      type: String,
+      required: false,
+    },
+    actionTaken: {
       type: String,
       required: false,
     },
@@ -298,7 +325,11 @@ const employeeSchema = new mongoose.Schema({
       type: Date,
       required: false,
     },
-    causeActionTaken: {
+    cause: {
+      type: String,
+      required: false,
+    },
+    actionTaken: {
       type: String,
       required: false,
     },
@@ -316,7 +347,11 @@ const employeeSchema = new mongoose.Schema({
       type: Date,
       required: false,
     },
-    causeActionTaken: {
+    cause: {
+      type: String,
+      required: false,
+    },
+    actionTaken: {
       type: String,
       required: false,
     },
@@ -334,7 +369,11 @@ const employeeSchema = new mongoose.Schema({
       type: Date,
       required: false,
     },
-    causeActionTaken: {
+    cause: {
+      type: String,
+      required: false,
+    },
+    actionTaken: {
       type: String,
       required: false,
     },

@@ -25,7 +25,7 @@ const addEmployeeSchema = Joi.object({
   landMark: Joi.string().allow("").allow(null),
   city: Joi.string().allow("").allow(null),
   zipCode: Joi.string().allow("").allow(null),
-  awards: Joi.string().allow("").allow(null),
+  awards: Joi.object().allow("").allow(null),
   employeeId: Joi.string().allow("").allow(null),
   role: Joi.string().allow("").allow(null),
   department: Joi.string().allow("").allow(null),
@@ -42,6 +42,7 @@ const addEmployeeSchema = Joi.object({
   workIndependenty: Joi.number().allow("").allow(null),
   teamWork: Joi.number().allow("").allow(null),
   dealConstructivelyWithPressure: Joi.number().allow("").allow(null),
+  reasonForSerperation: Joi.string().allow("").allow(null),
 
   //performance
   volume: Joi.object().allow("").allow(null),
@@ -79,7 +80,7 @@ const updateEmployeeSchema = Joi.object({
   landMark: Joi.string().allow("").allow(null),
   city: Joi.string().allow("").allow(null),
   zipCode: Joi.string().allow("").allow(null),
-  awards: Joi.string().allow("").allow(null),
+  awards: Joi.object().allow("").allow(null),
   employeeId: Joi.string().allow("").allow(null),
   role: Joi.string().allow("").allow(null),
   department: Joi.string().allow("").allow(null),
@@ -96,6 +97,7 @@ const updateEmployeeSchema = Joi.object({
   workIndependenty: Joi.number().allow("").allow(null),
   teamWork: Joi.number().allow("").allow(null),
   dealConstructivelyWithPressure: Joi.number().allow("").allow(null),
+  reasonForSerperation: Joi.string().allow("").allow(null),
 
   //performance
   volume: Joi.object().allow("").allow(null),
