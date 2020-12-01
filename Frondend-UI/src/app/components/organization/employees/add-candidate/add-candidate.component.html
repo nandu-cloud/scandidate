@@ -634,6 +634,22 @@
                   please select Product Understanding
                 </mat-error>
               </mat-form-field>
+
+              <mat-form-field
+                    class="ml-72"
+                   >
+                    <textarea
+                      matInput
+                      
+                      style="line-height: 2px; font-size: smaller"
+                      maxlength="200"
+                      matTextareaAutosize
+                      class="br-btm input-w"
+                      autoComplete="off"
+                      placeholder="Key Skills"
+                      style="resize: none"
+                    ></textarea>
+              </mat-form-field>
             </div>
             <div class="w-full md:w-1/2 sm:w-full">
               <mat-form-field>
@@ -677,7 +693,23 @@
                 >
                   please select Subject Matter Expertise (SME)
                 </mat-error>
-              </mat-form-field>
+              </mat-form-field><br>
+              <mat-form-field class="rehire">
+                <input matInput placeholder="Input" style="display: none">
+              <mat-label class="ex-employee">Would you rehire this ex-employee in the future?</mat-label>
+              <mat-radio-group
+                (change)="award_activities($event)"
+                aria-labelledby="example-radio-group-label"
+                class="example-radio-group"
+              >
+                <mat-radio-button [value]="'yes'"
+                  >Yes</mat-radio-button
+                ><br />
+                <mat-radio-button [value]="'No'"
+                  >No</mat-radio-button
+                >
+              </mat-radio-group>
+            </mat-form-field>
             </div>
           </div>
           <div class="flex justify-end lg:pb-6 lg:pr-48">
