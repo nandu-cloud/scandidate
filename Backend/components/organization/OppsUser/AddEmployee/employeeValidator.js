@@ -43,6 +43,8 @@ const addEmployeeSchema = Joi.object({
   teamWork: Joi.number().allow("").allow(null),
   dealConstructivelyWithPressure: Joi.number().allow("").allow(null),
   reasonForSerperation: Joi.string().allow("").allow(null),
+  keySkills: Joi.string().allow("").allow(null),
+  rehireAgain: Joi.string().allow("").allow(null),
 
   //performance
   volume: Joi.object().allow("").allow(null),
@@ -98,6 +100,8 @@ const updateEmployeeSchema = Joi.object({
   teamWork: Joi.number().allow("").allow(null),
   dealConstructivelyWithPressure: Joi.number().allow("").allow(null),
   reasonForSerperation: Joi.string().allow("").allow(null),
+  keySkills: Joi.string().allow("").allow(null),
+  rehireAgain: Joi.string().allow("").allow(null),
 
   //performance
   volume: Joi.object().allow("").allow(null),

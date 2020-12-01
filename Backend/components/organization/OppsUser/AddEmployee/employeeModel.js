@@ -213,6 +213,15 @@ const employeeSchema = new mongoose.Schema({
     required: false,
   },
 
+  keySkills: {
+    type: String,
+    required: false,
+  },
+
+  rehireAgain: {
+    type: String,
+    required: false,
+  },
   awards: {
     remarks: {
       type: String,
