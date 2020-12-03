@@ -42,7 +42,8 @@ import { ScandidateSettingsComponent } from './components/scandidate/scandidate-
 import { BGVSearchComponent } from './components/bgv-search/bgv-search.component';
 import { AllStudentsComponent } from './components/scandidate/institute-onboard/all-students/all-students.component';
 import { AllEmployeesComponent } from './components/scandidate/organization-onboard/all-employees/all-employees.component';
-import { BGVViewComponent } from './components/bgv-view/bgv-view.component'
+import { BGVViewComponent } from './components/bgv-view/bgv-view.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +73,8 @@ import { BGVViewComponent } from './components/bgv-view/bgv-view.component'
     BGVSearchComponent,
     AllStudentsComponent,
     BGVViewComponent,
-    AllEmployeesComponent
+    AllEmployeesComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
