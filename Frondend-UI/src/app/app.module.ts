@@ -44,6 +44,7 @@ import { AllStudentsComponent } from './components/scandidate/institute-onboard/
 import { AllEmployeesComponent } from './components/scandidate/organization-onboard/all-employees/all-employees.component';
 import { BGVViewComponent } from './components/bgv-view/bgv-view.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component'
+import { WorkEthicDialogComponent } from './components/work-ethic-dialog/work-ethic-dialog.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +75,8 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
     AllStudentsComponent,
     BGVViewComponent,
     AllEmployeesComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    WorkEthicDialogComponent
   ],
   imports: [
     BrowserModule,

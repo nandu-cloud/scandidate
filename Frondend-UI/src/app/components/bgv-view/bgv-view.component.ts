@@ -7,6 +7,8 @@ import { BgvSearchService } from  '../../services/bgv-search.service' ;
 import { StorageService } from '../../services/storage.service';
 import { from, Subscription } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { WorkEthicDialogComponent } from '../work-ethic-dialog/work-ethic-dialog.component';
+
 // import { jsPDF } from 'jspdf';
 // import html2canvas from 'html2canvas';
 
@@ -76,6 +78,7 @@ export class BGVViewComponent implements OnInit {
   orgLogo: string;
   instLogo: string;
   myDate: Date;
+  pan_card: any;
   constructor(
     public fb: FormBuilder,private _storage: StorageService,
     private cd: ChangeDetectorRef,public dialog: MatDialog,public route:ActivatedRoute,public empService : BgvSearchService
@@ -85,7 +88,6 @@ export class BGVViewComponent implements OnInit {
   });
    
   }
-
   ngOnInit(): void {
     if(this.empIdedit){
       this.editEmployeeSubscription = this.empService.ViewCandidate(this.empIdedit).subscribe(respObj => {
@@ -100,8 +102,10 @@ export class BGVViewComponent implements OnInit {
         this.dob = this.data[0].dateOfBirth;
         this.aadhar = this.data[0].adharNumber;
         this.phone = this.data[0].phoneNumber;
+        this.pan_card = this.data[0].panNumber;
         this.id = respObj.data._id;
         this.myDate = new Date();
+        
 
         //let instLogo =`${this.baseUrl}/public/institute_logo/`;
         //let orgLogo =`${this.baseUrl}/public/organization_logo/`;
@@ -146,6 +150,11 @@ export class BGVViewComponent implements OnInit {
     
   }
   
+  openDialog(): void {
+    const dialogRef = this.dialog.open(WorkEthicDialogComponent,{
+      width: '640px',disableClose: true 
+    });
+}
 
 
 }

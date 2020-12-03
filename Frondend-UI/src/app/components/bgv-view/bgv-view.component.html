@@ -1,16 +1,26 @@
 <app-navbar>
 <div class="md:w-full sm:w-full pl-40 pr-40 pb-6">
 <div class="overflow-hidden shadow max-w-full my-3">
-  <div class="w-full h-40 header text-black mx-auto my-auto"></div>
+  <div class="w-full h-20 header text-black mx-auto my-auto"></div>
   <div class="flex justify-center -mt-8">
       <img src="../../../assets/images/logo1.png" width="65" height="65" class="rounded-full border-solid border-white border-1 -mt-3">		
   </div>
   <div class="flex justify-end pr-5 font-bold">{{myDate | date}}</div>
 <div class="text-center px-3 pb-1">
   <h1 class="text-black text-sm bold font-sans">{{FirstName}} {{lastName}}</h1>
-  <p class=" font-sans font-light text-black">{{email}}</p>
+  <span class="text-black text-sm bold font-sans">M.Tech</span><br>
+  <span class="text-black text-sm bold font-sans">19 years 3 months</span>
+</div>
+<div class="flex justify-center pb-3 text-grey-dark">
+  <div class="text-center mr-3 border-r pr-3">
+    <p class=" font-sans font-light text-black">Email ID - {{email}}</p>
   <p class=" font-sans font-light text-grey-dark">Phone Number - <span class="text-black">{{phone}}</span></p>
-  <p class=" font-sans font-light text-grey-dark">Aadhar Card Number - {{aadhar}}</p>
+  </div>
+  <div class="text-center">
+    <p class=" font-sans font-light text-grey-dark" *ngIf="aadhar">Aadhaar Card Number - {{aadhar}}</p>
+    <p class=" font-sans font-light text-grey-dark" *ngIf="pan_card">Pan Card Number - {{pan_card}}</p>
+
+  </div>
 </div>
 </div>
 <!--highlights-->
@@ -19,20 +29,18 @@
   <div class="text-left px-20 pb-6 pt-2">
     <h1 class="text-black text-sm bold font-sans">Highlights</h1>
     <div class="flex justify-start pb-3 text-grey-dark">
-      <div class="text-center mr-3 border-r pr-3">
+      <div class="justify-start mr-3 border-r pr-3">
         <h3>Awards</h3>
         <div *ngFor="let list of data">
-            <p * ngIf="list.awards">{{list.awards}}</p>
+            <li *ngIf="list.awards">{{list.awards}}</li>
         </div>
       </div>
       <div class="text-center">
-        <h3>Communication Skills</h3>
-        <div *ngFor="let list of data">
-          <p * ngIf="list.communicationSkills">{{list.communicationSkills}}</p>
-      </div>
+        <h3>Issues</h3>
+          <p *ngIf="data.communicationSkills">hello</p>
       </div>
       <hr>
-  </div>
+   </div>
   </div>
 </div>
 
@@ -48,12 +56,17 @@
       </div>
       <div class="justify-start pl-10" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
         <h2>{{list.organizationName}}</h2>
-        <span>{{list.dateOfJoining | date: 'dd yyyy'}} - {{list.exitDate | date: 'dd yyyy'}}</span><br>
-        <h4>Experience - {{list.professionalExperience}}</h4>
+        <h4>{{list.role}}</h4>
+        <span>{{list.dateOfJoining | date: 'MM yyyy'}} - {{list.exitDate | date: 'MM yyyy'}}</span><br>
+        <h4>Professional Experience - {{list.professionalExperience}}</h4>
         <h4>{{list.address}}</h4>
       </div>
+      <div *ngIf="list.organisationId != '' && list.organisationId != undefined ">
+        <button mat-button (click)="openDialog()">Work Ethic</button>
+      </div>
       <hr>
-  </div>
+
+    </div>
   </div>
 </div>
 
