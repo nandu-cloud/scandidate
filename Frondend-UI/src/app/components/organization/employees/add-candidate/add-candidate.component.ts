@@ -100,7 +100,7 @@ export class AddCandidateComponent implements OnInit {
     });
     this.fourthFormGroup = new FormGroup({
       awards: new FormControl('', [Validators.required]),
-      award_rewards: new FormControl('' ),
+      award_rewards: new FormControl(''),
       award_file: new FormControl('')
 
     });
@@ -113,27 +113,27 @@ export class AddCandidateComponent implements OnInit {
     });
     this.sixthFormGroup = new FormGroup({
       discrepancyDocuments: new FormGroup({
-        IsSelect: new FormControl('', [Validators.required]), period: new FormControl(''),
+        IsSelect: new FormControl(false, [Validators.required]), period: new FormControl(''),
         causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
       }),
       compliencyDiscrepancy: new FormGroup({
-        IsSelect: new FormControl('', [Validators.required]), period: new FormControl(''),
+        IsSelect: new FormControl(false, [Validators.required]), period: new FormControl(''),
         causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
       }),
       warning: new FormGroup({
-        IsSelect: new FormControl('', [Validators.required]), period: new FormControl(''),
+        IsSelect: new FormControl(false, [Validators.required]), period: new FormControl(''),
         causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
       }),
       showCausedIssue: new FormGroup({
-        IsSelect: new FormControl('', [Validators.required]), period: new FormControl(''),
+        IsSelect: new FormControl(false, [Validators.required]), period: new FormControl(''),
         causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
       }),
       suspension: new FormGroup({
-        IsSelect: new FormControl('', [Validators.required]), period: new FormControl(''),
+        IsSelect: new FormControl(false, [Validators.required]), period: new FormControl(''),
         causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
       }),
       termination: new FormGroup({
-        IsSelect: new FormControl('', [Validators.required]), period: new FormControl(''),
+        IsSelect: new FormControl(false, [Validators.required]), period: new FormControl(''),
         causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
       }),
     });
