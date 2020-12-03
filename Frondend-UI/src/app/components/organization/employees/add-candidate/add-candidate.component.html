@@ -297,17 +297,76 @@
                 >
                   Exit date should be grater than joining date</mat-error
                 >
-              </mat-form-field>
-              <mat-form-field>
+              </mat-form-field><br>
+              <!-- <mat-form-field> -->
                 <mat-label> Reason for Separation</mat-label>
-                <mat-select class="br-btm input-w pt-5" tabindex="11">
-                  <mat-option value="">Select</mat-option>
-                  <mat-option value="1">1</mat-option>
-                  <mat-option value="1">2</mat-option>
-                  <mat-option value="1">3</mat-option>
-                </mat-select>
-              </mat-form-field>
-
+               
+                <mat-radio-group
+                (change)="award_activities($event)"
+                aria-labelledby="example-radi o-group-label"
+                class="example-radio-group"
+                >
+                <mat-radio-button #Voluntary [value]="'voluntary'" checked
+                  >Voluntary</mat-radio-button
+                ><br />
+                <mat-radio-button [value]="'inVoluntary'"
+                  >In-Voluntary</mat-radio-button
+                >
+              </mat-radio-group>
+              <mat-form-field class="-mt-4">
+              <mat-select class="br-btm input-w pt-5" tabindex="11">
+                <mat-option *ngIf="Voluntary" value="1">Select</mat-option>
+                <mat-option *ngIf="Voluntary" value="2">Work Life Balance</mat-option>
+                <mat-option *ngIf="Voluntary" value="3">Concerns With Manager</mat-option>
+                <mat-option *ngIf="Voluntary" value="4">Higher Education</mat-option>
+                <mat-option *ngIf="Voluntary" value="5">Relocation</mat-option>
+                <mat-option *ngIf="Voluntary" value="6">Personal Reason</mat-option>
+                <mat-option *ngIf="Voluntary" value="7">Maternity Break</mat-option>
+                <mat-option *ngIf="Voluntary" value="8">Compensation</mat-option>
+                <mat-option *ngIf="Voluntary" value="9">Shift Timing</mat-option>
+                <mat-option *ngIf="Voluntary" value="10">Health Reasons</mat-option>
+                <mat-option *ngIf="Voluntary" value="11">Moving To Group Company</mat-option>
+                <mat-option *ngIf="Voluntary" value="12">Better Role</mat-option>
+                <mat-option *ngIf="Voluntary" value="13">Promotion Issues</mat-option>
+                <mat-option *ngIf="Voluntary" value="14">Technology Issue</mat-option>
+                <mat-option *ngIf="Voluntary" value="15">Project Closed</mat-option>
+                <mat-option *ngIf="Voluntary" value="16">Appraisal Issues</mat-option>
+                <mat-option *ngIf="Voluntary" value="17">Job Role Mismatch</mat-option>
+              <!-- </mat-select>
+               <mat-select class="br-btm input-w pt-5" tabindex="11"> -->
+                <mat-option *ngIf="inVoluntary" value="18">Performance Issues</mat-option>
+                <mat-option *ngIf="inVoluntary" value="19">Management Decision</mat-option>
+                <mat-option *ngIf="inVoluntary" value="20">Death</mat-option>
+                <mat-option *ngIf="inVoluntary" value="21">BGV Failure</mat-option>
+                <mat-option *ngIf="inVoluntary" value="22">Value Transgression</mat-option>
+               </mat-select>
+            </mat-form-field>
+              <!-- </mat-form-field> -->
+             <!-- <mat-form-field>
+              <button mat-button [matMenuTriggerFor]="animals">Animal index</button>
+              <mat-menu #animals="matMenu">
+                <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
+                <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
+              </mat-menu>
+              
+              <mat-menu #vertebrates="matMenu">
+                <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
+                <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
+                <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
+                <button mat-menu-item>Birds</button>
+                <button mat-menu-item>Mammals</button>
+              </mat-menu>
+              
+              <mat-menu #invertebrates="matMenu">
+                <button mat-menu-item>Insects</button>
+                <button mat-menu-item>Molluscs</button>
+                <button mat-menu-item>Crustaceans</button>
+                <button mat-menu-item>Corals</button>
+                <button mat-menu-item>Arachnids</button>
+                <button mat-menu-item>Velvet worms</button>
+                <button mat-menu-item>Horseshoe crabs</button>
+              </mat-menu>
+            </mat-form-field> -->
               <!-- <mat-form-field>
                  <mat-label>Professional Experience</mat-label>
                  <input  matInput formControlName="professionalExperience" type="text"  class="br-btm input-w" autoComplete='off' readonly tabindex="11">
@@ -640,15 +699,14 @@
                    >
                     <textarea
                       matInput
-                      
+                      formControlName="keySkills"
                       style="line-height: 2px; font-size: smaller"
                       maxlength="200"
                       matTextareaAutosize
                       class="br-btm input-w"
                       autoComplete="off"
                       placeholder="Key Skills"
-                      style="resize: none"
-                    ></textarea>
+                      style="resize: none"></textarea>
               </mat-form-field>
             </div>
             <div class="w-full md:w-1/2 sm:w-full">
@@ -696,11 +754,12 @@
               </mat-form-field><br>
               <mat-form-field class="rehire">
                 <input matInput placeholder="Input" style="display: none">
-              <mat-label class="ex-employee">Would you rehire this ex-employee in the future?</mat-label>
+              <mat-label>Would you rehire this ex-employee in the future?</mat-label>
               <mat-radio-group
   
                 aria-labelledby="example-radio-group-label"
                 class="example-radio-group"
+                formControlName="rehireAgain"
               >
                 <mat-radio-button [value]="'yes'"
                   >Yes</mat-radio-button
@@ -758,19 +817,18 @@
               </mat-radio-group>
               <div class="flex flex-wrap" >
                 <div class="w-full md:w-1/2 sm:w-full">
-                  <mat-form-field class="example-full-width">
+                  <mat-form-field class="example-full-width ml-72">
                     <mat-label>Remark</mat-label>
                     <textarea
                       matInput
                       formControlName="award_rewards"
-                      matTextareaAutosize
                       class="br-btm input-w"
                       placeholder="Remarks"
                     ></textarea>
                   </mat-form-field>
                 </div>
-                <div class="w-full md:w-1/2 sm:w-full">
-                  <mat-form-field>
+                <div class="w-full md:w-1/2 sm:w-full" style="margin-left: 27rem; margin-top: -6rem;">
+                  <mat-form-field class="ml-52">
                     <mat-label> Document Name</mat-label>
                     <input
                       matInput
@@ -857,12 +915,7 @@
                 <div class="w-full md:w-1/2 sm:w-full">
                   <mat-form-field
                     class="ml-72"
-                    *ngIf="
-                      fifthFormGroup.get('quality.IsSelect').value == '1' ||
-                      fifthFormGroup.get('quality.IsSelect').value == '2' ||
-                      fifthFormGroup.get('quality.IsSelect').value == '3' ||
-                      fifthFormGroup.get('quality.IsSelect').value == '4'
-                    "
+                   
                   >
                     <textarea
                       matInput
@@ -905,14 +958,7 @@
                   </mat-form-field>
                 </div>
                 <div class="w-full md:w-1/2 sm:w-full">
-                  <mat-form-field
-                    *ngIf="
-                      fifthFormGroup.get('consistency.IsSelect').value == '1' ||
-                      fifthFormGroup.get('consistency.IsSelect').value == '2' ||
-                      fifthFormGroup.get('consistency.IsSelect').value == '3' ||
-                      fifthFormGroup.get('consistency.IsSelect').value == '4'
-                    "
-                  >
+                  <mat-form-field>
                     <!-- <mat-label>Description</mat-label> -->
                     <textarea
                       matInput
@@ -955,12 +1001,7 @@
                 </div>
                 <div class="w-full md:w-1/2 sm:w-full">
                   <mat-form-field
-                    *ngIf="
-                      fifthFormGroup.get('building.IsSelect').value == '1' ||
-                      fifthFormGroup.get('building.IsSelect').value == '2' ||
-                      fifthFormGroup.get('building.IsSelect').value == '3' ||
-                      fifthFormGroup.get('building.IsSelect').value == '4'
-                    "
+                   
                   >
                     <!-- <mat-label>Description</mat-label> -->
                     <textarea
@@ -1005,12 +1046,7 @@
                 </div>
                 <div class="w-full md:w-1/2 sm:w-full">
                   <mat-form-field
-                    *ngIf="
-                      fifthFormGroup.get('stakeholder.IsSelect').value == '1' ||
-                      fifthFormGroup.get('stakeholder.IsSelect').value == '2' ||
-                      fifthFormGroup.get('stakeholder.IsSelect').value == '3' ||
-                      fifthFormGroup.get('stakeholder.IsSelect').value == '4'
-                    "
+                   
                   >
                     <!-- <mat-label>Description</mat-label> -->
                     <textarea
@@ -1055,7 +1091,7 @@
             <div class="w-full md:w-full sm:w-full">
               <div class="flex flex-wrap" formGroupName="discrepancyDocuments">
                 <div class="w-full md:w-1/2 sm:w-full">
-                  <mat-form-field>
+                  <mat-form-field class="mt-8">
                     <mat-label
                       >Discrepancy in Joining Documents and
                       Declarations</mat-label
@@ -1074,13 +1110,10 @@
                   </mat-form-field>
                 </div>
                 <div
-                  class="w-full md:w-1/2 sm:w-full"
                   *ngIf="
-                    sixthFormGroup.get('discrepancyDocuments.IsSelect').value ==
-                    true
-                  "
+                    sixthFormGroup.get('discrepancyDocuments.IsSelect').value !== true || sixthFormGroup.get('discrepancyDocuments.IsSelect').value !== false"
                 >
-                  <table class="border-collapse border-2 border-gray-500">
+                  <table class="issues border-collapse border-1 border-gray-500">
                     <thead>
                       <tr>
                         <th
@@ -1202,30 +1235,11 @@
                   class="w-full md:w-1/2 sm:w-full"
                   *ngIf="
                     sixthFormGroup.get('compliencyDiscrepancy.IsSelect')
-                      .value == true
+                      .value !== true
                   "
                 >
-                  <table class="border-collapse border-2 border-gray-500">
-                    <thead>
-                      <tr>
-                        <th
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
-                        >
-                          Date
-                        </th>
-                        <th
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
-                        >
-                          Cause/Action Taken
-                        </th>
-                        <!-- <th class="border border-gray-400 px-4 py-2 text-gray-800">Action Taken</th> -->
-                        <th
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
-                        >
-                          Upload Document
-                        </th>
-                      </tr>
-                    </thead>
+                  <table class="issues border-collapse border-1 border-gray-500">
+                   
                     <tbody>
                       <tr>
                         <td
@@ -1239,6 +1253,7 @@
                             class="br-btm input-w"
                             [min]="minDate"
                             [max]="maxDate"
+                            placeholder="MM/DD/YYYY"
                           />
                           <mat-datepicker-toggle
                             matSuffix
@@ -1327,29 +1342,10 @@
                 </div>
                 <div
                   class="w-full md:w-1/2 sm:w-full"
-                  *ngIf="sixthFormGroup.get('warning.IsSelect').value == true"
+                  *ngIf="sixthFormGroup.get('warning.IsSelect').value !== true"
                 >
-                  <table class="border-collapse border-2 border-gray-500">
-                    <thead>
-                      <tr>
-                        <th
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
-                        >
-                          Date
-                        </th>
-                        <th
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
-                        >
-                          Cause/Action Taken
-                        </th>
-                        <!-- <th class="border border-gray-400 px-4 py-2 text-gray-800">Action Taken</th> -->
-                        <th
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
-                        >
-                          Upload Document
-                        </th>
-                      </tr>
-                    </thead>
+                  <table class="issues border-collapse border-1 border-gray-500">
+                    
                     <tbody>
                       <tr>
                         <td
@@ -1363,6 +1359,7 @@
                             class="br-btm input-w"
                             [min]="minDate"
                             [max]="maxDate"
+                            placeholder="MM/DD/YYYY"
                           />
                           <mat-datepicker-toggle
                             matSuffix
@@ -1448,30 +1445,11 @@
                 <div
                   class="w-full md:w-1/2 sm:w-full"
                   *ngIf="
-                    sixthFormGroup.get('showCausedIssue.IsSelect').value == true
+                    sixthFormGroup.get('showCausedIssue.IsSelect').value !== true
                   "
                 >
-                  <table class="border-collapse border-2 border-gray-500">
-                    <thead>
-                      <tr>
-                        <th
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
-                        >
-                          Date
-                        </th>
-                        <th
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
-                        >
-                          Cause/Action Taken
-                        </th>
-                        <!-- <th class="border border-gray-400 px-4 py-2 text-gray-800">Action Taken</th> -->
-                        <th
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
-                        >
-                          Upload Document
-                        </th>
-                      </tr>
-                    </thead>
+                  <table class="issues border-collapse border-1 border-gray-500">
+                  
                     <tbody>
                       <tr>
                         <td
@@ -1485,6 +1463,7 @@
                             class="br-btm input-w"
                             [min]="minDate"
                             [max]="maxDate"
+                            placeholder="MM/DD/YYYY"
                           />
                           <mat-datepicker-toggle
                             matSuffix
@@ -1574,30 +1553,11 @@
                 <div
                   class="w-full md:w-1/2 sm:w-full"
                   *ngIf="
-                    sixthFormGroup.get('suspension.IsSelect').value == true
+                    sixthFormGroup.get('suspension.IsSelect').value !== true
                   "
                 >
-                  <table class="border-collapse border-2 border-gray-500">
-                    <thead>
-                      <tr>
-                        <th
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
-                        >
-                          Date
-                        </th>
-                        <th
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
-                        >
-                          Cause/Action Taken
-                        </th>
-                        <!-- <th class="border border-gray-400 px-4 py-2 text-gray-800">Action Taken</th> -->
-                        <th
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
-                        >
-                          Upload Document
-                        </th>
-                      </tr>
-                    </thead>
+                  <table class="issues border-collapse border-1 border-gray-500">
+                   
                     <tbody>
                       <tr>
                         <td
@@ -1611,6 +1571,7 @@
                             class="br-btm input-w"
                             [min]="minDate"
                             [max]="maxDate"
+                            placeholder="MM/DD/YYYY"
                           />
                           <mat-datepicker-toggle
                             matSuffix
@@ -1700,30 +1661,11 @@
                 <div
                   class="w-full md:w-1/2 sm:w-full"
                   *ngIf="
-                    sixthFormGroup.get('termination.IsSelect').value == true
+                    sixthFormGroup.get('termination.IsSelect').value !== true
                   "
                 >
-                  <table class="border-collapse border-2 border-gray-500">
-                    <thead>
-                      <tr>
-                        <th
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
-                        >
-                          Date
-                        </th>
-                        <th
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
-                        >
-                          Cause/Action Taken
-                        </th>
-                        <!-- <th class="border border-gray-400 px-4 py-2 text-gray-800">Action Taken</th> -->
-                        <th
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
-                        >
-                          Upload Document
-                        </th>
-                      </tr>
-                    </thead>
+                  <table class="issues border-collapse border-1 border-gray-500">
+                    
                     <tbody>
                       <tr>
                         <td
@@ -1737,6 +1679,7 @@
                             class="br-btm input-w"
                             [min]="minDate"
                             [max]="maxDate"
+                            placeholder="MM/DD/YYYY"
                           />
                           <mat-datepicker-toggle
                             matSuffix

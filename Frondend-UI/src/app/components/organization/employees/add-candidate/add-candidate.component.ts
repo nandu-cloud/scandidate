@@ -49,6 +49,7 @@ export class AddCandidateComponent implements OnInit {
   studentForm: any;
   baseUrl: any = environment.baseUrl;
   awardActivities: boolean = false;
+  reasonsForSeparation: boolean = false;
 
   constructor(
     public fb: FormBuilder,
@@ -61,7 +62,7 @@ export class AddCandidateComponent implements OnInit {
 
     this.firstFormGroup = new FormGroup({
       _id: new FormControl(),
-      firstName: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      firstName: new FormControl('', [Validators.required, Validators.minLength(3)]),
       lastName: new FormControl('', [Validators.required, Validators.minLength(3)]),
       employeeId: new FormControl(''),
       adharNumber: new FormControl(''),
@@ -73,6 +74,7 @@ export class AddCandidateComponent implements OnInit {
       exitDate: new FormControl('', [Validators.required, this.validateExitDate()]),
       organizationName: new FormControl(this.organizationName),
       professionalExperience: new FormControl(''),
+      reasonsForSeparation: new FormControl(''),
       role: new FormControl(''),
       department: new FormControl(''),
       address: new FormControl(''),
@@ -96,7 +98,9 @@ export class AddCandidateComponent implements OnInit {
       academicKnowledge: new FormControl('', [Validators.required]),
       productKnowledge: new FormControl('', [Validators.required]),
       industryKnowledge: new FormControl('', [Validators.required]),
-      communicationSkills: new FormControl('', [Validators.required])
+      communicationSkills: new FormControl('', [Validators.required]),
+      rehireAgain: new FormControl(''),
+      keySkills: new FormControl('')
     });
     this.fourthFormGroup = new FormGroup({
       awards: new FormControl('', [Validators.required]),
@@ -229,7 +233,14 @@ export class AddCandidateComponent implements OnInit {
       this.awardActivities = false;
     }
   }
-
+ reasons(event) {
+   if (event.value == "voluntary") {
+     this.reasonsForSeparation = true;
+   }
+   else {
+     this.reasonsForSeparation = false;
+   }
+ }
 
   uploadFile(file: FileList) {
     this.fileToUpload = file[0];
