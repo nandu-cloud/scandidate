@@ -8,7 +8,6 @@ const errorHandler = require("./middlewares/errorHandler");
 const path = require("path");
 
 const morgan = require("morgan");
-const { required } = require("joi");
 
 const app = express();
 

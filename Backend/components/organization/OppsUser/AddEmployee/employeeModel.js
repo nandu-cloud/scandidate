@@ -112,10 +112,6 @@ const employeeSchema = new mongoose.Schema({
     type: Number,
     required: false,
   },
-  reasonForSerperation: {
-    type: String,
-    required: false,
-  },
 
   // performance
   volume: {
@@ -222,6 +218,7 @@ const employeeSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+
   awards: {
     remarks: {
       type: String,
@@ -235,6 +232,11 @@ const employeeSchema = new mongoose.Schema({
       type: String,
       required: false,
     },
+  },
+
+  reasonForSerperation: {
+    type: String,
+    required: false,
   },
 
   //Other Details
@@ -265,11 +267,7 @@ const employeeSchema = new mongoose.Schema({
       type: Date,
       required: false,
     },
-    cause: {
-      type: String,
-      required: false,
-    },
-    actionTaken: {
+    causeActionTaken: {
       type: String,
       required: false,
     },
@@ -288,11 +286,7 @@ const employeeSchema = new mongoose.Schema({
       type: Date,
       required: false,
     },
-    cause: {
-      type: String,
-      required: false,
-    },
-    actionTaken: {
+    causeActionTaken: {
       type: String,
       required: false,
     },
@@ -311,11 +305,7 @@ const employeeSchema = new mongoose.Schema({
       type: Date,
       required: false,
     },
-    cause: {
-      type: String,
-      required: false,
-    },
-    actionTaken: {
+    causeActionTaken: {
       type: String,
       required: false,
     },
@@ -334,11 +324,7 @@ const employeeSchema = new mongoose.Schema({
       type: Date,
       required: false,
     },
-    cause: {
-      type: String,
-      required: false,
-    },
-    actionTaken: {
+    causeActionTaken: {
       type: String,
       required: false,
     },
@@ -356,11 +342,7 @@ const employeeSchema = new mongoose.Schema({
       type: Date,
       required: false,
     },
-    cause: {
-      type: String,
-      required: false,
-    },
-    actionTaken: {
+    causeActionTaken: {
       type: String,
       required: false,
     },
@@ -378,11 +360,7 @@ const employeeSchema = new mongoose.Schema({
       type: Date,
       required: false,
     },
-    cause: {
-      type: String,
-      required: false,
-    },
-    actionTaken: {
+    causeActionTaken: {
       type: String,
       required: false,
     },
