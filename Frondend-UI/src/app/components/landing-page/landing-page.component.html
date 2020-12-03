@@ -8,40 +8,50 @@
   </button>
   <span>My App</span> -->
   <span class="spacer"></span>
-  <button
+  <!-- <button
     mat-icon-button
     class="example-icon favorite-icon"
     aria-label="Example icon-button with heart icon"
   >
     <mat-icon>favorite</mat-icon>
-  </button>
-  <button
+  </button> -->
+  <a
     mat-icon-button
     class="example-icon"
     aria-label="Example icon-button with share icon"
+    routerLink="/login"
   >
     login
-  </button>
+  </a>
 </mat-toolbar>
 <div style="margin-top: 15px"></div>
 
 <div class="container mx-auto">
-  <div class="flex flex-col sm:flex-row">
-    <div class=""></div>
-    <div class="text-center">
+  <section class="container mx-auto text-center py-6 mb-12">
+    <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center">
       <img
         class="object-center mx-auto"
         width="10%"
         src="../../../assets/images/logo1.png"
       />
-      <h1 class="tracking-tight font-extrabold">
-        With <span style="color: #6cb43b"><b>SCANDIDATE</b></span
-        >, you can increase confidence that your new hire is authentic, worthy
-        and risk-free.
-      </h1>
+    </h1>
+    <div class="w-full mb-4">
+      <div
+        class="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"
+      ></div>
     </div>
-    <div class=""></div>
-  </div>
+    <h3 class="my-2 text-5xl font-bold leading-tight">
+      With <span style="color: #6cb43b"><b>SCANDIDATE</b></span
+      >, you can increase confidence that your new hire is authentic, worthy and
+      risk-free.
+    </h3>
+    <button
+      routerLink="/login"
+      class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+    >
+      Login!
+    </button>
+  </section>
 
   <p>
     Well begun is half done. It is the guiding HR principle of almost all modern
@@ -52,59 +62,131 @@
     factual and guaranteed belief so that you "Know Your Hire"
   </p>
 
-  <h2>Why SCANDIDATE?</h2>
-  <div>
-    <div>
-      We are a Candid Scan on every Candidate you want to hire. We exist and
-      operate purely with the support, collaboration and partnership of Human
-      Resources professionals across different sectors. And, we therefore can
-      provide pure, unadulterated support, collaboration and partnership to
-      Human Resources professionals across different sectors. Yes, we are the
-      bridge of information, from one HRD to another, about each person leaving
-      one company and joining another. Scandidate is a candid career scan for
-      each experienced professional.
+  <div class="container max-w-5xl mx-auto m-8">
+    <h1
+      class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800"
+    >
+      Why SCANDIDATE?
+    </h1>
+    <div class="w-full mb-4">
+      <div
+        class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"
+      ></div>
     </div>
-    <div></div>
-  </div>
-
-  <h2>
-    How does SCANDIDATE help you reduce your time, cost and effort of
-    recruitment?
-  </h2>
-
-  <div class="grid lg:grid-cols-4 xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1">
-    <div>
-      1
-      <p>
-        Eliminates the need to conduct a post de-facto, lengthy, costlier
-        background verification
-      </p>
-    </div>
-    <div>
-      2
-      <p>
-        On-click, on-demand background report directly from the previous
-        companies and educational institutes
-      </p>
-    </div>
-    <div>
-      3
-      <p>
-        Get REAL insights from previous organizations, educational institutes,
-        fed into our system on a real-time basis
-      </p>
-    </div>
-    <div>
-      4
-      <p>
-        You will always know if your candidate has any "hidden" record which no
-        other process brings to the fore
-      </p>
+    <div class="flex flex-wrap">
+      <div class="w-5/6 sm:w-1/2 p-6">
+        <p class="text-gray-600 mb-8">
+          We do a Candid Scan on every Candidate you want to hire. We exist and
+          operate purely with the support, collaboration and partnership of
+          Human Resources professionals across different sectors. And, we
+          therefore can provide pure, unadulterated support, collaboration and
+          partnership to Human Resources professionals across different sectors.
+          Yes, we are the bridge of information, from one HRD to another, about
+          each person leaving one company and joining another. Scandidate is a
+          candid career scan for each experienced professional.
+          <br />
+          <br />
+        </p>
+      </div>
+      <div class="w-full sm:w-1/2 p-6">
+        <img src="./../../../assets//images/profiles.svg" />
+      </div>
     </div>
   </div>
 
+  <section>
+    <h2
+      class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800"
+    >
+      How does SCANDIDATE help you reduce your time, cost and effort of
+      recruitment?
+    </h2>
+    <div
+      class="grid lg:grid-cols-4 xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1"
+    >
+      <div>
+        1
+        <p>
+          Eliminates the need to conduct a post de-facto, lengthy, costlier
+          background verification
+        </p>
+      </div>
+      <div>
+        2
+        <p>
+          On-click, on-demand background report directly from the previous
+          companies and educational institutes
+        </p>
+      </div>
+      <div>
+        3
+        <p>
+          Get REAL insights from previous organizations, educational institutes,
+          fed into our system on a real-time basis
+        </p>
+      </div>
+      <div>
+        4
+        <p>
+          You will always know if your candidate has any "hidden" record which
+          no other process brings to the fore
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white border-b py-8">
+    <div class="container mx-auto flex flex-wrap pt-4 pb-12">
+      <h1
+        class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800"
+      >
+        What's in it for you?
+      </h1>
+      <div class="w-full mb-4">
+        <div
+          class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"
+        ></div>
+      </div>
+      <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+        <div
+          class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
+        >
+          <a class="flex flex-wrap no-underline hover:no-underline">
+            <p class="w-full text-gray-600 text-xs md:text-sm px-6">
+              xGETTING STARTED
+            </p>
+            <div class="w-full font-bold text-xl text-gray-800 px-6">
+              Lorem ipsum dolor sit amet.
+            </div>
+            <p class="text-gray-800 text-base px-6 mb-5">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+              at ipsum eu nunc commodo posuere et sit amet ligula.
+            </p>
+          </a>
+        </div>
+      </div>
+      <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+        <div
+          class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
+        >
+          <a class="flex flex-wrap no-underline hover:no-underline">
+            <p class="w-full text-gray-600 text-xs md:text-sm px-6">
+              xGETTING STARTED
+            </p>
+            <div class="w-full font-bold text-xl text-gray-800 px-6">
+              Lorem ipsum dolor sit amet.
+            </div>
+            <p class="text-gray-800 text-base px-6 mb-5">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+              at ipsum eu nunc commodo posuere et sit amet ligula.
+            </p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div>
-    What's in it for you?
     <div>As an Organization :</div>
     <div>
       De-mystify a candidate's work ethic, conduct and professionalism history ·
