@@ -1,0 +1,23 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.example-icon {
+  padding: 0 14px;
+}
+
+.green-polygon-left {
+  width: 545px;
+  height: 609.3px;
+  margin: 0 35.2px 155.7px 0;
+  border: solid 1px rgba(112, 112, 112, 0.02);
+  background-color: rgba(108, 180, 59, 0.65);
+}
+
+.green-polygon-right {
+  width: 443px;
+  height: 900.6px;
+  margin: 0 0 186.9px 3px;
+  border: solid 1px rgba(112, 112, 112, 0);
+  background-color: rgba(108, 180, 59, 0.65);
+}
