@@ -9,6 +9,8 @@ import { from, Subscription } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { WorkEthicDialogComponent } from '../work-ethic-dialog/work-ethic-dialog.component';
 
+import { DatePipe } from '@angular/common';
+import * as moment from 'moment';
 // import { jsPDF } from 'jspdf';
 // import html2canvas from 'html2canvas';
 
@@ -16,7 +18,7 @@ import { WorkEthicDialogComponent } from '../work-ethic-dialog/work-ethic-dialog
   selector: 'bgv-view',
   templateUrl: './bgv-view.component.html',
   styleUrls: ['./bgv-view.component.css'],
-  providers: [BgvSearchService,StorageService]
+  providers: [BgvSearchService,StorageService,DatePipe]
 })
 export class BGVViewComponent implements OnInit {
 
@@ -79,9 +81,23 @@ export class BGVViewComponent implements OnInit {
   instLogo: string;
   myDate: Date;
   pan_card: any;
+  proExp: any;
+  exYear: any;
+  joinYear: any;
+  exMonth: any;
+  joinMonth: any;
+  totMonths: any;
+  totYears: any;
+  months: any;
+  totalExp: any;
+  years: any;
+  proMonth: any;
+  proYear: any;
+  totalMonth: any = [];
+  totalYears: any = [];
   constructor(
     public fb: FormBuilder,private _storage: StorageService,
-    private cd: ChangeDetectorRef,public dialog: MatDialog,public route:ActivatedRoute,public empService : BgvSearchService
+    private cd: ChangeDetectorRef,public dialog: MatDialog,public route:ActivatedRoute,public empService : BgvSearchService,private datePipe: DatePipe
   ) {
     this.route.params.subscribe(params => {
       this.empIdedit = params.id;
@@ -115,7 +131,29 @@ export class BGVViewComponent implements OnInit {
               {
               const data = this.data[i].organisationId
               this.orgId.push(data);
+              var date = this.data[i].dateOfJoining;
+              var date1 = this.data[i].exitDate;
+              this.joinMonth = this.datePipe.transform(date,"MM");
+              this.exMonth = this.datePipe.transform(date1,'MM');
+              this.joinYear = this.datePipe.transform(date,"yyyy");
+              this.exYear = this.datePipe.transform(date1,'yyyy');
+              this.totMonths = this.joinMonth-this.exMonth;
+              this.totYears = this.joinYear-this.exYear;
+              console.log(this.totMonths);
+              console.log(this.totYears);
+              this.months = moment(this.joinMonth).diff(moment(this.exMonth), 'month', true);
+              this.totalMonth.push(this.months);
+              this.years = moment(this.exYear).diff(moment(this.joinYear), 'year', true);
+              this.totalYears.push(this.years);
+              this.proMonth = this.totalMonth.reduce(function(a, b){
+                return a + b;
+              }, 0);
+              this.proYear = this.totalYears.reduce(function(a, b){
+                return a + b;
+              }, 0);
               }
+              console.log(this.proMonth);
+              console.log(this.proYear);
             }
             console.log(this.orgId);
         
@@ -125,6 +163,7 @@ export class BGVViewComponent implements OnInit {
            {
             const data = this.data[i].instituteId
             this.instId.push(data);
+            this.proExp = this.data[i].dateOfJoining
              }
            }
            console.log(this.instId);

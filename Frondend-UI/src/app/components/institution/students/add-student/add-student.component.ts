@@ -26,6 +26,7 @@ export class AddStudentComponent implements OnInit {
   firstFormGroup: any;
   secondFormGroup: any;
   purposeOfFile : any;
+  documentNameData: string;
   constructor(
     public fb: FormBuilder,
     private cd: ChangeDetectorRef, public dialog: MatDialog, public route: ActivatedRoute,
@@ -196,7 +197,7 @@ export class AddStudentComponent implements OnInit {
         this.secondFormGroup.patchValue({extraActivityDocumentName: data.data.extraActivityDocumentName});
         console.log(data.data.extraActivityDocumentName);
 
-        this.documentName = `${this.baseUrl}/public/student_doc/${data.data.extraActivityDocumentName}`;
+        this.documentNameData = `${this.baseUrl}/public/student_doc/${data.data.extraActivityDocumentName}`;
         // this.studentDocSubscription = this.stuService.deleteFile(this.imageFilename).subscribe();
       }
     )
