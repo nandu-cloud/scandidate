@@ -21,3 +21,35 @@
   border: solid 1px rgba(112, 112, 112, 0);
   background-color: rgba(108, 180, 59, 0.65);
 }
+
+.pad {
+  padding-left: 35%;
+  padding-right: 35%;
+}
+
+.circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 4px solid #6cb43b;
+  font-size: 24px;
+  color: white;
+  line-height: 20px;
+  text-align: center;
+  background: #fff;
+  position: relative;
+  z-index: 1;
+  vertical-align: middle;
+  display: table-cell;
+}
+.circle:before {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  left: 4px;
+  bottom: 4px;
+  content: "";
+  background: #6cb43b;
+  border-radius: 50%;
+  z-index: -1;
+}
