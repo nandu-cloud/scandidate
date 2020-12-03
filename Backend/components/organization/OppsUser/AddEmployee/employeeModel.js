@@ -235,8 +235,14 @@ const employeeSchema = new mongoose.Schema({
   },
 
   reasonForSerperation: {
-    type: String,
-    required: false,
+    voluntary: {
+      type: boolean,
+      required: false,
+    },
+    reason: {
+      type: String,
+      required: false,
+    },
   },
 
   //Other Details
