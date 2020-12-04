@@ -1,4 +1,9 @@
-.mat-toolbar {
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  color: #6cb43b;
+  background-color: rgb(255, 255, 255);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
 }
 
@@ -50,4 +55,12 @@
   background: #6cb43b;
   border-radius: 50%;
   z-index: -1;
+}
+
+.button {
+  border-radius: 23px;
+  color: #6cb43b;
+  border: 1px solid #6cb43b;
+  font-size: 14px;
+  padding: 5px;
 }
