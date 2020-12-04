@@ -27,7 +27,7 @@ export class EmployeeService {
       'creativity': number, 'informalOrganizationSenseOfBelonging': number, 'initiative': number, 'workIndependenty': number, 'teamWork': number,
       'dealConstructivelyWithPressure': number, 'volume': number, 'quality': number, 'consistency': number, 'punctuality': number,
       'discipline': number, 'academicKnowledge': number, 'productKnowledge', 'industryKnowledge': number, 'communicationSkills': number,
-      'addedById': string, 'organisationId': string, 'organizationName': string, 'awards': string, 'city': string, 'state': string,
+      'addedById': string, 'organisationId': string, 'organizationName': string, 'awards': any, 'city': string, 'state': string,
       'zipCode': string, 'landMark': string, 'building': any, 'stakeholder': any, 'discrepancyDocuments': any,
       'compliencyDiscrepancy': any, 'warning': any, 'showCausedIssue': any, 'suspension': any, 'termination': any,
       'keySkills': string, 'rehireAgain': string, 'reasonForSerperation': any
@@ -74,7 +74,7 @@ export class EmployeeService {
       'creativity': number, 'informalOrganizationSenseOfBelonging': number, 'initiative': number, 'workIndependenty': number, 'teamWork': number,
       'dealConstructivelyWithPressure': number, 'volume': number, 'quality': number, 'consistency': number, 'punctuality': number,
       'discipline': number, 'academicKnowledge': number, 'productKnowledge', 'industryKnowledge': number, 'communicationSkills': number,
-      'addedById': string, 'organisationId': string, 'organizationName': string, 'awards': string,
+      'addedById': string, 'organisationId': string, 'organizationName': string, 'awards': any,
       'city': string, 'state': string, 'keySkills': string, 'rehireAgain': string,
       'zipCode': string, 'landMark': string, 'discrepancyDocuments': any,
       'compliencyDiscrepancy': any, 'warning': any, 'showCausedIssue': any, 'suspension': any, 'termination': any

@@ -8,14 +8,18 @@
   <div class="flex justify-end pr-5 font-bold">{{myDate | date}}</div>
 <div class="text-center px-3 pb-1">
   <h1 class="text-black text-sm bold font-sans">{{FirstName}} {{lastName}}</h1>
+  <p>Total Exp    - {{proYear}} years {{proMonth}} Months</p>
   <!-- <span class="text-black text-sm bold font-sans">M.Tech</span><br>
   <span class="text-black text-sm bold font-sans">19 years 3 months</span> -->
 </div>
 <div class="flex justify-center pb-3 text-grey-dark">
   <div class="text-center mr-3 border-r pr-3">
     <p class=" font-sans font-light text-black">Email ID - {{email}}</p>
+<<<<<<< Updated upstream
   <p class=" font-sans font-light text-black">{{email}}</p>
   <!-- <p>Total Exp:: {{proYear}} years {{proMonth}} Months</p> -->
+=======
+>>>>>>> Stashed changes
   <p class=" font-sans font-light text-grey-dark">Phone Number - <span class="text-black">{{phone}}</span></p>
   </div>
   <div class="text-center">
@@ -64,7 +68,13 @@
         <h4>{{list.address}}</h4>
       </div>
       <div *ngIf="list.organisationId != '' && list.organisationId != undefined ">
-        <button mat-button (click)="openDialog()">Work Ethic</button>
+        <button class="lg-button focus:outline-none focus:shadow-outline" (click)="openDialog()">Work Ethic</button>
+      </div>
+      <div *ngIf="list.organisationId != '' && list.organisationId != undefined ">
+        <button class="lg-button focus:outline-none focus:shadow-outline" (click)="openDialog()">Recognition</button>
+      </div>
+      <div *ngIf="list.organisationId != '' && list.organisationId != undefined ">
+        <button class="lg-button focus:outline-none focus:shadow-outline" (click)="openDialog()">Issues</button>
       </div>
       <hr>
 

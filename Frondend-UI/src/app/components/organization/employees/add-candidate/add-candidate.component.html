@@ -817,13 +817,13 @@
             <mat-icon class="example-tab-icon">bookmark</mat-icon>
             Recognition
           </ng-template>
-          <div class="flex flex-wrap mt-5">
+          <div class="flex flex-wrap mt-5" formGroupName="awards" >
             <div class="w-full md:w-1/2 sm:w-full">
               <label class="font-bold">Awards(select one option)</label>
               <mat-radio-group
                 aria-labelledby="example-radio-group-label"
                 class="example-radio-group"
-                formControlName="awards"
+                formControlName="IsSelect"
               >
                 <mat-radio-button [value]="'Performer & Awarded'"
                   >Performer & Awarded</mat-radio-button
@@ -844,8 +844,8 @@
                     <mat-label>Remark</mat-label>
                     <textarea
                       matInput
-                      formControlName="award_rewards"
-                      class="remarks br-btm input-w"
+                      formControlName="remarks"
+                      class="br-btm input-w"
                       placeholder="Remarks"
                     ></textarea>
                   </mat-form-field>
@@ -855,7 +855,7 @@
                     <mat-label> Document Name</mat-label>
                     <input
                       matInput
-                      formControlName="award_file"
+                      formControlName="documentName"
                       type="text"
                       class="br-btm input-w"
                     />
@@ -869,8 +869,8 @@
                           placeholder="Upload Document"
                           id="imageUpload"
                           accept=".pdf"
-                          #extraActivityDocumentLink
-                          (change)="uploadFile($event.target.files)"
+                          #awards
+                          (change)="uploadawardsFile($event.target.files,'awards')"
                           tabindex="21"
                         />
                         <div id="imagePreview">{{ this.documentName }}</div>
@@ -878,7 +878,7 @@
                     </div>
                     <button
                       mat-button
-                      (click)="extraActivityDocumentLink.click()"
+                      (click)="awards.click()"
                     >
                       <mat-icon>file_upload</mat-icon>
                     </button>

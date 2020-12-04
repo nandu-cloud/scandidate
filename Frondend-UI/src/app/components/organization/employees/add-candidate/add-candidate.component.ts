@@ -104,10 +104,10 @@ export class AddCandidateComponent implements OnInit {
       keySkills: new FormControl('')
     });
     this.fourthFormGroup = new FormGroup({
-      awards: new FormControl({IsSelect: new FormControl('', [Validators.required])}),
-      award_rewards: new FormControl(''),
-      award_file: new FormControl('')
-
+      awards: new FormGroup({
+        IsSelect: new FormControl(false, [Validators.required]), remark: new FormControl(''),
+        documentName: new FormControl(''), documentUpload: new FormControl('')
+      })
     });
     this.fifthFormGroup = new FormGroup({
       // volume: new FormControl('', [Validators.required]),
@@ -244,15 +244,15 @@ export class AddCandidateComponent implements OnInit {
    }
  }
 
-  uploadFile(file: FileList) {
+  uploadawardsFile(file: FileList,type) {
     this.fileToUpload = file[0];
     this.documentName = this.fileToUpload.name;
     this.studentDocSubscription = this.stuService.postFile(this.fileToUpload).subscribe(
       data => {
-        this.studentForm.patchValue({ extraActivityDocumentName: data.data.extraActivityDocumentName });
-        console.log(data.data.extraActivityDocumentName);
+        this.studentForm.patchValue({ awards: data.data.documentUpload });
+        console.log(data.data.documentUpload);
 
-        this.documentName = `${this.baseUrl}/public/student_doc/${data.data.extraActivityDocumentName}`;
+        this.documentName = `${this.baseUrl}/public/student_doc/${data.data.documentUpload}`;
         // this.studentDocSubscription = this.stuService.deleteFile(this.imageFilename).subscribe();
       }
     )
