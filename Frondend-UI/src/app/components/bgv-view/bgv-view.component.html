@@ -15,11 +15,6 @@
 <div class="flex justify-center pb-3 text-grey-dark">
   <div class="text-center mr-3 border-r pr-3">
     <p class=" font-sans font-light text-black">Email ID - {{email}}</p>
-<<<<<<< Updated upstream
-  <p class=" font-sans font-light text-black">{{email}}</p>
-  <!-- <p>Total Exp:: {{proYear}} years {{proMonth}} Months</p> -->
-=======
->>>>>>> Stashed changes
   <p class=" font-sans font-light text-grey-dark">Phone Number - <span class="text-black">{{phone}}</span></p>
   </div>
   <div class="text-center">
@@ -60,7 +55,7 @@
           <img class="w-20 h-20" *ngIf="list.organisationId === list1._id" src="{{orgLogo + list1.organisationLogo }}">
         </div>
       </div>
-      <div class="justify-start pl-10" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
+      <div class="justify-start pl-10"  *ngIf="list.organisationId != '' && list.organisationId != undefined ">
         <h2>{{list.organizationName}}</h2>
         <h4>{{list.role}}</h4>
         <span>{{list.dateOfJoining | date: 'MM yyyy'}} - {{list.exitDate | date: 'MM yyyy'}}</span><br>
@@ -68,13 +63,13 @@
         <h4>{{list.address}}</h4>
       </div>
       <div *ngIf="list.organisationId != '' && list.organisationId != undefined ">
-        <button class="lg-button focus:outline-none focus:shadow-outline" (click)="openDialog()">Work Ethic</button>
+        <button (click)=edit(list._id) class="lg-button focus:outline-none focus:shadow-outline" (click)="openDialog()">Work Ethic</button>
       </div>
       <div *ngIf="list.organisationId != '' && list.organisationId != undefined ">
-        <button class="lg-button focus:outline-none focus:shadow-outline" (click)="openDialog()">Recognition</button>
+        <button (click)=edit(list._id) class="lg-button focus:outline-none focus:shadow-outline" (click)="openDialog()">Recognition</button>
       </div>
       <div *ngIf="list.organisationId != '' && list.organisationId != undefined ">
-        <button class="lg-button focus:outline-none focus:shadow-outline" (click)="openDialog()">Issues</button>
+        <button (click)=edit(list._id) class="lg-button focus:outline-none focus:shadow-outline" (click)="openDialog()">Issues</button>
       </div>
       <hr>
 
