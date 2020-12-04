@@ -77,7 +77,7 @@ export class EmployeeService {
       'addedById': string, 'organisationId': string, 'organizationName': string, 'awards': any,
       'city': string, 'state': string, 'keySkills': string, 'rehireAgain': string,
       'zipCode': string, 'landMark': string, 'discrepancyDocuments': any,
-      'compliencyDiscrepancy': any, 'warning': any, 'showCausedIssue': any, 'suspension': any, 'termination': any
+      'compliencyDiscrepancy': any, 'warning': any, 'showCausedIssue': any, 'suspension': any, 'termination': any, 'reasonForSerperation': any
     } =
     {
       'firstName': empupdateData.firstName, 'lastName': empupdateData.lastName, 'email': empupdateData.email, 'phoneNumber': empupdateData.phoneNumber, 'dateOfJoining': empupdateData.dateOfJoining,
@@ -90,8 +90,8 @@ export class EmployeeService {
       'city': empupdateData.city, 'state': empupdateData.state, 'landMark': empupdateData.landMark, 'zipCode': empupdateData.zipCode,
       'discrepancyDocuments': empupdateData.discrepancyDocuments, 'compliencyDiscrepancy': empupdateData.compliencyDiscrepancy,
       'warning': empupdateData.warning, 'showCausedIssue': empupdateData.showCausedIssue, 'suspension': empupdateData.suspension,
-      'termination': empupdateData.termination, 'rehireAgain': empupdateData.rehireAgain, 'keySkills': empupdateData.keySkills
-
+      'termination': empupdateData.termination, 'rehireAgain': empupdateData.rehireAgain, 'keySkills': empupdateData.keySkills,
+      'reasonForSerperation': empupdateData.reasonForSerperation
     };
     return this.http.put(this.baseUrl + '/api/organisation/operational/' + this.empIdupdate, EmployeeData
       , {

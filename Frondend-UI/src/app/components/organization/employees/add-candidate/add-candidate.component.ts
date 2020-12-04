@@ -105,40 +105,41 @@ export class AddCandidateComponent implements OnInit {
     });
     this.fourthFormGroup = new FormGroup({
       awards: new FormGroup({
-        IsSelect: new FormControl(false, [Validators.required]), remark: new FormControl(''),
+        IsSelect: new FormControl(), remark: new FormControl(''),
         documentName: new FormControl(''), documentUpload: new FormControl('')
+        
       })
     });
     this.fifthFormGroup = new FormGroup({
       // volume: new FormControl('', [Validators.required]),
-      quality: new FormGroup({ IsSelect: new FormControl('', [Validators.required]), description: new FormControl('') }),
-      consistency: new FormGroup({ IsSelect: new FormControl('', [Validators.required]), description: new FormControl('') }),
-      building: new FormGroup({ IsSelect: new FormControl('', [Validators.required]), description: new FormControl('') }),
-      stakeholder: new FormGroup({ IsSelect: new FormControl('', [Validators.required]), description: new FormControl('') })
+      quality: new FormGroup({ IsSelect: new FormControl(''), description: new FormControl('') }),
+      consistency: new FormGroup({ IsSelect: new FormControl(''), description: new FormControl('') }),
+      building: new FormGroup({ IsSelect: new FormControl(''), description: new FormControl('') }),
+      stakeholder: new FormGroup({ IsSelect: new FormControl(''), description: new FormControl('') })
     });
     this.sixthFormGroup = new FormGroup({
       discrepancyDocuments: new FormGroup({
-        IsSelect: new FormControl(false, [Validators.required]), period: new FormControl(''),
+        IsSelect: new FormControl(false), period: new FormControl(''),
         causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
       }),
       compliencyDiscrepancy: new FormGroup({
-        IsSelect: new FormControl(false, [Validators.required]), period: new FormControl(''),
+        IsSelect: new FormControl(false), period: new FormControl(''),
         causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
       }),
       warning: new FormGroup({
-        IsSelect: new FormControl(false, [Validators.required]), period: new FormControl(''),
+        IsSelect: new FormControl(false), period: new FormControl(''),
         causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
       }),
       showCausedIssue: new FormGroup({
-        IsSelect: new FormControl(false, [Validators.required]), period: new FormControl(''),
+        IsSelect: new FormControl(false), period: new FormControl(''),
         causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
       }),
       suspension: new FormGroup({
-        IsSelect: new FormControl(false, [Validators.required]), period: new FormControl(''),
+        IsSelect: new FormControl(false), period: new FormControl(''),
         causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
       }),
       termination: new FormGroup({
-        IsSelect: new FormControl(false, [Validators.required]), period: new FormControl(''),
+        IsSelect: new FormControl(false), period: new FormControl(''),
         causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
       }),
     });
@@ -168,33 +169,11 @@ export class AddCandidateComponent implements OnInit {
   maxNumberOfTabs: number;
 
   public tabChanged(tabChangedEvent: MatTabChangeEvent): void {
-    this.selectedIndex = this.tabChangeEvent.index;
+    this.selectedIndex = tabChangedEvent.index;
   }
   public nextStep() {
-    if (this.firstFormGroup.valid) {
-      if (this.selectedIndex != this.maxNumberOfTabs) {
-        this.selectedIndex = 1
-      }
-    }
-    if (this.secondFormGroup.valid) {
-      if (this.selectedIndex != this.maxNumberOfTabs) {
-        this.selectedIndex = 2
-      }
-    }
-    if (this.thirdFormGroup.valid) {
-      if (this.selectedIndex != this.maxNumberOfTabs) {
-        this.selectedIndex = 3
-      }
-    }
-    if (this.fourthFormGroup.valid) {
-      if (this.selectedIndex != this.maxNumberOfTabs) {
-        this.selectedIndex = 4
-      }
-    }
-    if (this.fifthFormGroup.valid) {
-      if (this.selectedIndex != this.maxNumberOfTabs) {
-        this.selectedIndex = 5
-      }
+    if (this.selectedIndex != this.maxNumberOfTabs) {
+      this.selectedIndex ++;
     }
     console.log(this.selectedIndex);
   }
@@ -285,6 +264,7 @@ export class AddCandidateComponent implements OnInit {
         // this.studentDocSubscription = this.stuService.deleteFile(this.imageFilename).subscribe();
       }
     )
+    console.log('tesssting' + this.documentName)
   }
 
   ngOnInit(): void {
@@ -292,6 +272,9 @@ export class AddCandidateComponent implements OnInit {
       this.editEmployeeSubscription = this.empService.editEmployee(this.empIdedit).subscribe(respObj => {
         console.log(respObj.data);
         this.id = respObj.data._id;
+        // if (respObj.data.uploadDocument == "1") {
+          
+        // }
         this.firstFormGroup.patchValue(respObj.data);
         this.secondFormGroup.patchValue(respObj.data);
         this.thirdFormGroup.patchValue(respObj.data);
@@ -370,6 +353,48 @@ export class AddCandidateComponent implements OnInit {
   }
 
   submit() {
+    if (this.firstFormGroup.invalid) {
+      this.firstFormGroup.markAllAsTouched();
+      if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = 0;
+        return;
+      }
+    }
+    if (this.secondFormGroup.invalid) {
+      this.secondFormGroup.markAllAsTouched();
+      if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = 1;
+        return;
+      }
+    }
+    if (this.thirdFormGroup.invalid) {
+      this.thirdFormGroup.markAllAsTouched();
+      if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = 2;
+        return;
+      }
+    }
+    if (this.fourthFormGroup.invalid) {
+      this.fourthFormGroup.markAllAsTouched();
+      if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = 3;
+        return;
+      }
+    }
+    if (this.fifthFormGroup.invalid) {
+      this.fifthFormGroup.markAllAsTouched();
+      if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = 4;
+        return;
+      }
+    }
+    if (this.sixthFormGroup.invalid) {
+      this.sixthFormGroup.markAllAsTouched();
+      if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = 5;
+        return;
+      }
+    }
     if (!this.empIdedit) {
       this.employeeSubscription = this.empService.addEmployee({
         ...this.firstFormGroup.value, ...this.secondFormGroup.value,

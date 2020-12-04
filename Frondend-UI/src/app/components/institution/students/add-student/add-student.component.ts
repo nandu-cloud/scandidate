@@ -49,7 +49,6 @@ export class AddStudentComponent implements OnInit {
       adharNumber : new FormControl('', [Validators.minLength(12), Validators.maxLength(12)]),
       yearOfPassout: new FormControl('', [Validators.required, this.validatePassout()]),
       studentType : new FormControl('', [Validators.required]),
-      extraActivity : new FormControl(''),
       intitutionName : new FormControl(this.instituteName, [Validators.required]),
       landMark : new FormControl(),
       city : new FormControl(),

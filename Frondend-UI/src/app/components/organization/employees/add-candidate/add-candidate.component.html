@@ -28,7 +28,7 @@
       (selectedTabChange)="tabChanged($event)"
       class="mat-tab-group mat-primary"
     >
-      <mat-tab *ngFor="let number of [0]; let i = index">
+      <mat-tab >
         <form [formGroup]="firstFormGroup">
           <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon">face</mat-icon>
@@ -686,8 +686,10 @@
                   required
                   tabindex="1"
                 >
-                  <mat-option [value]="1">Intermediate</mat-option>
-                  <mat-option [value]="2">Proficient</mat-option>
+                <mat-option [value]="1">Basic</mat-option>
+                <mat-option [value]="2">Intermediate</mat-option>
+                <mat-option [value]="3">Proficient</mat-option>
+                <mat-option [value]="4">Expert</mat-option>
                 </mat-select>
                 <mat-error
                   *ngIf="
@@ -729,6 +731,7 @@
                       style="line-height: 2px; font-size: smaller"
                       class="remarks br-btm input-w"
                       placeholder="Key Skills"
+                      maxlength="200" style="resize: none"
                       ></textarea>
               </mat-form-field>
             </div>
@@ -945,9 +948,7 @@
                       formControlName="description"
                       style="line-height: 2px; font-size: smaller"
                       maxlength="150"
-                      matTextareaAutosize
                       class="br-btm input-w"
-                      autoComplete="off"
                       placeholder="Strategic Thinking Remarks"
                       style="resize: none"
                     ></textarea>
@@ -988,9 +989,7 @@
                       formControlName="description"
                       style="line-height: 2px; font-size: smaller"
                       maxlength="150"
-                      matTextareaAutosize
                       class="br-btm input-w"
-                      autoComplete="off"
                       placeholder="Problem Solving Remarks"
                       style="resize: none"
                     ></textarea>
@@ -1032,9 +1031,7 @@
                       formControlName="description"
                       style="line-height: 2px; font-size: smaller"
                       maxlength="150"
-                      matTextareaAutosize
                       class="br-btm input-w"
-                      autoComplete="off"
                       placeholder="Building High Performance Team Remarks"
                       style="resize: none"
                     ></textarea>
@@ -1077,9 +1074,7 @@
                       formControlName="description"
                       style="line-height: 2px; font-size: smaller"
                       maxlength="150"
-                      matTextareaAutosize
                       class="br-btm input-w"
-                      autoComplete="off"
                       placeholder=" StakeHolder Management Remarks"
                       style="resize: none"
                     ></textarea>
