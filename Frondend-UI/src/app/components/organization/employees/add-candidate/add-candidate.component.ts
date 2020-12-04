@@ -387,6 +387,9 @@ export class AddCandidateComponent implements OnInit {
     }
   }
 
+
+  
+
   update(id: number) {
     this.empIdupdate = id;
     this.employeeUpdateSubscription = this.empService.updateEmployee({
