@@ -30,7 +30,7 @@ export class EmployeeService {
       'addedById': string, 'organisationId': string, 'organizationName': string, 'awards': string, 'city': string, 'state': string,
       'zipCode': string, 'landMark': string, 'building': any, 'stakeholder': any, 'discrepancyDocuments': any,
       'compliencyDiscrepancy': any, 'warning': any, 'showCausedIssue': any, 'suspension': any, 'termination': any,
-      'keySkills': string, 'rehireAgain': string
+      'keySkills': string, 'rehireAgain': string, 'reasonForSerperation': any
     } =
     {
       'firstName': empData.firstName, 'lastName': empData.lastName, 'email': empData.email, 'phoneNumber': empData.phoneNumber, 'dateOfJoining': empData.dateOfJoining,
@@ -43,7 +43,7 @@ export class EmployeeService {
       'city': empData.city, 'state': empData.state, 'zipCode': empData.zipCode, 'landMark': empData.landMark,
       'discrepancyDocuments': empData.discrepancyDocuments, 'compliencyDiscrepancy': empData.compliencyDiscrepancy,
       'warning': empData.warning, 'showCausedIssue': empData.showCausedIssue, 'suspension': empData.suspension,
-      'termination': empData.termination, 'keySkills': empData.keySkills, 'rehireAgain': empData.rehireAgain
+      'termination': empData.termination, 'keySkills': empData.keySkills, 'rehireAgain': empData.rehireAgain, 'reasonForSerperation': empData.reasonForSerperation
     };
     return this.http.post(this.baseUrl + '/api/organisation/operational', EmployeeData
       , {

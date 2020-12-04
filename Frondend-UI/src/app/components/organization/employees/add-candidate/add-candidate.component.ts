@@ -1,6 +1,6 @@
 import { Input } from '@angular/core';
 import { Component, ChangeDetectorRef, ElementRef, ViewChild, OnInit } from '@angular/core';
-import { FormBuilder, FormArray, Validators, FormGroup, FormControl, ValidatorFn, AbstractControl, Form } from "@angular/forms";
+import { FormBuilder, FormArray, Validators, FormGroup, FormControl, ValidatorFn, AbstractControl, Form, FormGroupDirective } from "@angular/forms";
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EmployeeService } from '../../../../services/employee.service';
@@ -10,6 +10,7 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 import { environment } from '../../../../../environments/environment';
 import { fromEvent } from "rxjs";
 import { debounceTime, take } from "rxjs/operators";
+import { ConnectedPositionStrategy } from '@angular/cdk/overlay';
 @Component({
   selector: 'app-add-candidate',
   templateUrl: './add-candidate.component.html',
@@ -74,7 +75,7 @@ export class AddCandidateComponent implements OnInit {
       exitDate: new FormControl('', [Validators.required, this.validateExitDate()]),
       organizationName: new FormControl(this.organizationName),
       professionalExperience: new FormControl(''),
-      reasonsForSeparation: new FormControl(''),
+      reasonForSerperation: new FormGroup({ IsSelect: new FormControl('voluntary'), reason: new FormControl(), reasons: new FormControl()}),
       role: new FormControl(''),
       department: new FormControl(''),
       address: new FormControl(''),
@@ -103,7 +104,7 @@ export class AddCandidateComponent implements OnInit {
       keySkills: new FormControl('')
     });
     this.fourthFormGroup = new FormGroup({
-      awards: new FormControl('', [Validators.required]),
+      awards: new FormControl({IsSelect: new FormControl('', [Validators.required])}),
       award_rewards: new FormControl(''),
       award_file: new FormControl('')
 
@@ -233,8 +234,9 @@ export class AddCandidateComponent implements OnInit {
       this.awardActivities = false;
     }
   }
- reasons(event) {
-   if (event.value == "voluntary") {
+ 
+ reasons() {
+   if (this.firstFormGroup.value.reasonForSerperation == "voluntary") {
      this.reasonsForSeparation = true;
    }
    else {

@@ -52,5 +52,18 @@
     position: sticky !important;
   }
   .issues {
-    margin-left: -6rem;
+    margin-left: -12rem;
+  }
+  .action {
+    width: 15rem;
+  }
+  .date {
+    width: 8rem;
+
+  }
+  .remarks {
+    height: 5rem;
+  }
+  .reason {
+      margin-top: -27px !important;
   }
