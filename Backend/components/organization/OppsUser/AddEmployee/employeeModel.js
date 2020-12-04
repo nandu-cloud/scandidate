@@ -220,6 +220,10 @@ const employeeSchema = new mongoose.Schema({
   },
 
   awards: {
+    IsSelect: {
+      type: String,
+      required: false,
+    },
     remarks: {
       type: String,
       required: false,
