@@ -33,8 +33,8 @@ const employeeSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  zipCode: {
-    type: Number,
+  pinCode: {
+    type: String,
     required: false,
   },
   city: {
