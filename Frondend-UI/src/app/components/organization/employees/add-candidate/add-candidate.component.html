@@ -829,16 +829,16 @@
                 class="example-radio-group"
                 formControlName="IsSelect"
               >
-                <mat-radio-button [value]="'Performer & Awarded'"
+                <mat-radio-button value="Performer & Awarded"
                   >Performer & Awarded</mat-radio-button
                 ><br />
-                <mat-radio-button [value]="'Non-Performer & Awarded'"
+                <mat-radio-button value="Non-Performer & Awarded"
                   >Non-Performer & Awarded</mat-radio-button
                 ><br />
-                <mat-radio-button [value]="'Performer & Not Awarded'"
+                <mat-radio-button value="Performer & Not Awarded"
                   >Performer & Not Awarded</mat-radio-button
                 ><br />
-                <mat-radio-button [value]="'Non-Performer & Not Awarded'"
+                <mat-radio-button value="Non-Performer & Not Awarded"
                   >Non-Performer & Not Awarded</mat-radio-button
                 >
               </mat-radio-group>
@@ -870,6 +870,7 @@
                         <label class="image-text">Documents Upload</label>
                         <input
                           type="file"
+                          formControlName ="documentUpload"
                           placeholder="Upload Document"
                           id="imageUpload"
                           accept=".pdf"

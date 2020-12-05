@@ -105,8 +105,8 @@ export class AddCandidateComponent implements OnInit {
     });
     this.fourthFormGroup = new FormGroup({
       awards: new FormGroup({
-        IsSelect: new FormControl(), remark: new FormControl(''),
-        documentName: new FormControl(''), documentUpload: new FormControl('')
+        IsSelect: new FormControl(), remarks: new FormControl(),
+        documentName: new FormControl(),documentUpload: new FormControl()
         
       })
     });
