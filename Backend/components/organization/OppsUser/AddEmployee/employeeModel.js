@@ -243,7 +243,11 @@ const employeeSchema = new mongoose.Schema({
       type: String,
       required: false,
     },
-    reason: {
+    voluntaryReason: {
+      type: String,
+      required: false,
+    },
+    inVoluntaryReason: {
       type: String,
       required: false,
     },
