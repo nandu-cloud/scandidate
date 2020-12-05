@@ -277,15 +277,15 @@ const employeeSchema = new mongoose.Schema({
       type: Boolean,
       required: false,
     },
-    period: {
+    descrepencyPeriod: {
       type: Date,
       required: false,
     },
-    causeActionTaken: {
+    descrepencyCauseActionTaken: {
       type: String,
       required: false,
     },
-    uploadDocument: {
+    descrepencyUploadDocument: {
       type: String,
       required: false,
     },
@@ -296,15 +296,15 @@ const employeeSchema = new mongoose.Schema({
       type: Boolean,
       required: false,
     },
-    period: {
+    compliencyPeriod: {
       type: Date,
       required: false,
     },
-    causeActionTaken: {
+    compliencyCauseActionTaken: {
       type: String,
       required: false,
     },
-    uploadDocument: {
+    compliencyUploadDocument: {
       type: String,
       required: false,
     },
@@ -315,15 +315,15 @@ const employeeSchema = new mongoose.Schema({
       type: Boolean,
       required: false,
     },
-    period: {
+    warningPeriod: {
       type: Date,
       required: false,
     },
-    causeActionTaken: {
+    warningCauseActionTaken: {
       type: String,
       required: false,
     },
-    uploadDocument: {
+    warningUploadDocument: {
       type: String,
       required: false,
     },
@@ -334,15 +334,15 @@ const employeeSchema = new mongoose.Schema({
       type: Boolean,
       required: false,
     },
-    period: {
+    showCausedPeriod: {
       type: Date,
       required: false,
     },
-    causeActionTaken: {
+    showCausedCauseActionTaken: {
       type: String,
       required: false,
     },
-    uploadDocument: {
+    showCausedUploadDocument: {
       type: String,
       required: false,
     },
@@ -352,15 +352,15 @@ const employeeSchema = new mongoose.Schema({
       type: Boolean,
       required: false,
     },
-    period: {
+    suspensionPeriod: {
       type: Date,
       required: false,
     },
-    causeActionTaken: {
+    suspensionCauseActionTaken: {
       type: String,
       required: false,
     },
-    uploadDocument: {
+    suspensionUploadDocument: {
       type: String,
       required: false,
     },
@@ -370,15 +370,15 @@ const employeeSchema = new mongoose.Schema({
       type: Boolean,
       required: false,
     },
-    period: {
+    terminationPeriod: {
       type: Date,
       required: false,
     },
-    causeActionTaken: {
+    terminationCauseActionTaken: {
       type: String,
       required: false,
     },
-    uploadDocument: {
+    terminationUploadDocument: {
       type: String,
       required: false,
     },
