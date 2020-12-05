@@ -331,7 +331,7 @@
               
               <div *ngIf="firstFormGroup.get('reasonForSerperation.IsSelect').value == 'voluntary'">
                 <mat-form-field>
-                <mat-select class="br-btm input-w pt-4" tabindex="11" formControlName="reason">
+                <mat-select class="br-btm input-w pt-4" tabindex="11" formControlName="voluntaryReason">
                 <mat-option  value="1">Select</mat-option>
                 <mat-option  value="2">Work Life Balance</mat-option>
                 <mat-option  value="3">Concerns With Manager</mat-option>
@@ -356,13 +356,14 @@
               
               <div *ngIf="firstFormGroup.get('reasonForSerperation.IsSelect').value == 'inVoluntary'">
                 <mat-form-field>
-                <mat-select class="br-btm input-w pt-5" tabindex="11" formControlName="reasons"
+                <mat-select class="br-btm input-w pt-5" tabindex="11" formControlName="inVoluntaryReason"
                >
-                <mat-option value="18">Performance Issues</mat-option>
-                <mat-option value="19">Management Decision</mat-option>
-                <mat-option value="20">Death</mat-option>
-                <mat-option value="21">BGV Failure</mat-option>
-                <mat-option value="22">Value Transgression</mat-option>
+               <mat-option  value="18">Select</mat-option>
+                <mat-option value="19">Performance Issues</mat-option>
+                <mat-option value="20">Management Decision</mat-option>
+                <mat-option value="21">Death</mat-option>
+                <mat-option value="22">BGV Failure</mat-option>
+                <mat-option value="23">Value Transgression</mat-option>
                </mat-select>
               </mat-form-field>
               </div>

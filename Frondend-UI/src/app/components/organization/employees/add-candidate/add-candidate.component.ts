@@ -75,7 +75,7 @@ export class AddCandidateComponent implements OnInit {
       exitDate: new FormControl('', [Validators.required, this.validateExitDate()]),
       organizationName: new FormControl(this.organizationName),
       professionalExperience: new FormControl(''),
-      reasonForSerperation: new FormGroup({ IsSelect: new FormControl('voluntary'), reason: new FormControl(), reasons: new FormControl()}),
+      reasonForSerperation: new FormGroup({ IsSelect: new FormControl('voluntary'), voluntaryReason: new FormControl(), inVoluntaryReason: new FormControl()}),
       role: new FormControl(''),
       department: new FormControl(''),
       address: new FormControl(''),
