@@ -82,7 +82,7 @@ export class AddCandidateComponent implements OnInit {
       landMark: new FormControl(),
       city: new FormControl(),
       state: new FormControl(),
-      zipCode: new FormControl()
+      pinCode: new FormControl()
     });
     this.secondFormGroup = new FormGroup({
       selfDriven: new FormControl('', [Validators.required]),
@@ -226,12 +226,12 @@ export class AddCandidateComponent implements OnInit {
   uploadawardsFile(file: FileList,type) {
     this.fileToUpload = file[0];
     this.documentName = this.fileToUpload.name;
-    this.studentDocSubscription = this.stuService.postFile(this.fileToUpload).subscribe(
+    this.studentDocSubscription =  this.empService.postIssuesFile(this.fileToUpload).subscribe(
       data => {
-        this.studentForm.patchValue({ awards: data.data.documentUpload });
+        this.fourthFormGroup.patchValue({ awards: { documentUpload: data.data.documentLink } });
         console.log(data.data.documentUpload);
 
-        this.documentName = `${this.baseUrl}/public/student_doc/${data.data.documentUpload}`;
+        this.documentName = `${this.baseUrl}/public/organization_doc/${data.data.documentLink}`;
         // this.studentDocSubscription = this.stuService.deleteFile(this.imageFilename).subscribe();
       }
     )
@@ -260,7 +260,7 @@ export class AddCandidateComponent implements OnInit {
         if (type == 'termination') {
           this.sixthFormGroup.patchValue({ termination: { uploadDocument: data.data.documentLink } });
         }
-        this.documentName = `${this.baseUrl}/public/organizationIssues/${data.data.documentLink}`;
+        this.documentName = `${this.baseUrl}/public/organization_doc/${data.data.documentLink}`;
         // this.studentDocSubscription = this.stuService.deleteFile(this.imageFilename).subscribe();
       }
     )
@@ -433,7 +433,7 @@ export class AddCandidateComponent implements OnInit {
 
   downloadDoc(docLink) {
     if (docLink != '') {
-      const temp = `${this.baseUrl}/public/organizationIssues/${docLink}`;
+      const temp = `${this.baseUrl}/public/organization_doc/${docLink}`;
       window.open(temp, "_blank", "scrollbars=yes,resizable=yes,top=800,left=800,width=800,height=800");
     }
   }

@@ -28,7 +28,7 @@ export class EmployeeService {
       'dealConstructivelyWithPressure': number, 'volume': number, 'quality': number, 'consistency': number, 'punctuality': number,
       'discipline': number, 'academicKnowledge': number, 'productKnowledge', 'industryKnowledge': number, 'communicationSkills': number,
       'addedById': string, 'organisationId': string, 'organizationName': string, 'awards': any, 'city': string, 'state': string,
-      'zipCode': string, 'landMark': string, 'building': any, 'stakeholder': any, 'discrepancyDocuments': any,
+      'pinCode': string, 'landMark': string, 'building': any, 'stakeholder': any, 'discrepancyDocuments': any,
       'compliencyDiscrepancy': any, 'warning': any, 'showCausedIssue': any, 'suspension': any, 'termination': any,
       'keySkills': string, 'rehireAgain': string, 'reasonForSerperation': any
     } =
@@ -40,7 +40,7 @@ export class EmployeeService {
       'dealConstructivelyWithPressure': empData.dealConstructivelyWithPressure, 'volume': empData.volume, 'quality': empData.quality, 'consistency': empData.consistency, 'building': empData.building, 'stakeholder': empData.stakeholder, 'punctuality': empData.punctuality, 'organizationName': empData.organizationName,
       'discipline': empData.discipline, 'academicKnowledge': empData.academicKnowledge, 'productKnowledge': empData.productKnowledge, 'industryKnowledge': empData.industryKnowledge, 'communicationSkills': empData.communicationSkills,
       'organisationId': organizationId, 'addedById': id, 'awards': empData.awards,
-      'city': empData.city, 'state': empData.state, 'zipCode': empData.zipCode, 'landMark': empData.landMark,
+      'city': empData.city, 'state': empData.state, 'pinCode': empData.pinCode, 'landMark': empData.landMark,
       'discrepancyDocuments': empData.discrepancyDocuments, 'compliencyDiscrepancy': empData.compliencyDiscrepancy,
       'warning': empData.warning, 'showCausedIssue': empData.showCausedIssue, 'suspension': empData.suspension,
       'termination': empData.termination, 'keySkills': empData.keySkills, 'rehireAgain': empData.rehireAgain, 'reasonForSerperation': empData.reasonForSerperation
@@ -76,7 +76,7 @@ export class EmployeeService {
       'discipline': number, 'academicKnowledge': number, 'productKnowledge', 'industryKnowledge': number, 'communicationSkills': number,
       'addedById': string, 'organisationId': string, 'organizationName': string, 'awards': any,
       'city': string, 'state': string, 'keySkills': string, 'rehireAgain': string,
-      'zipCode': string, 'landMark': string, 'discrepancyDocuments': any,
+      'pinCode': string, 'landMark': string, 'discrepancyDocuments': any,
       'compliencyDiscrepancy': any, 'warning': any, 'showCausedIssue': any, 'suspension': any, 'termination': any, 'reasonForSerperation': any
     } =
     {
@@ -87,7 +87,7 @@ export class EmployeeService {
       'dealConstructivelyWithPressure': empupdateData.dealConstructivelyWithPressure, 'volume': empupdateData.volume, 'quality': empupdateData.quality, 'consistency': empupdateData.consistency, 'punctuality': empupdateData.punctuality,
       'discipline': empupdateData.discipline, 'academicKnowledge': empupdateData.academicKnowledge, 'productKnowledge': empupdateData.productKnowledge, 'industryKnowledge': empupdateData.industryKnowledge, 'communicationSkills': empupdateData.communicationSkills, 'organizationName': empupdateData.organizationName,
       'organisationId': organizationId, 'addedById': id, 'awards': empupdateData.awards,
-      'city': empupdateData.city, 'state': empupdateData.state, 'landMark': empupdateData.landMark, 'zipCode': empupdateData.zipCode,
+      'city': empupdateData.city, 'state': empupdateData.state, 'landMark': empupdateData.landMark, 'pinCode': empupdateData.pinCode,
       'discrepancyDocuments': empupdateData.discrepancyDocuments, 'compliencyDiscrepancy': empupdateData.compliencyDiscrepancy,
       'warning': empupdateData.warning, 'showCausedIssue': empupdateData.showCausedIssue, 'suspension': empupdateData.suspension,
       'termination': empupdateData.termination, 'rehireAgain': empupdateData.rehireAgain, 'keySkills': empupdateData.keySkills,
