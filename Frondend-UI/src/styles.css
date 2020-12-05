@@ -1,193 +1,198 @@
 /* You can add global styles to this file, and also import other style files */
-html, body { height: 100%; line-height: 1.15 !important;}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+  line-height: 1.15 !important;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 /* login page styles */
 .mat-form-field-appearance-legacy .mat-form-field-underline {
-    background-color: white;
-    height: 0px !important;
+  background-color: white;
+  height: 0px !important;
 }
-@media (min-width: 1024px){
-.lg\:w-64 {
+@media (min-width: 1024px) {
+  .lg\:w-64 {
     width: 40rem !important;
-}
-.mat-input-element{
-    padding:2em 0em 0.3em !important;
-}
-.mat-form-field-infix{
+  }
+  .mat-input-element {
+    padding: 2em 0em 0.3em !important;
+  }
+  .mat-form-field-infix {
     width: 350px !important;
-}
-.mat-select-panel {
+  }
+  .mat-select-panel {
     margin: 39px !important;
   }
 }
-@media (min-width: 320px){
-.pd{
+@media (min-width: 320px) {
+  .pd {
     width: 150px;
-}
+  }
 }
 /*  want text color is green */
 
-.text-green{
-    color:#6CB43B;
+.text-green {
+  color: #6cb43b;
 }
 /*  want text color is black */
-.text-black{
-    color: #13250C;
+.text-black {
+  color: #13250c;
 }
 /*  want text color is white */
-.text-white{
-    color:#FFFFFF;
+.text-white {
+  color: #ffffff;
 }
 /* loginbutton styles */
-.lg-button{
-    height: 45px;
-    width: 150px;
-    border-radius: 23px;
-    color: #6CB43B;
-    border: 1px solid #6CB43B;
-    font-size: 15px;
+.lg-button {
+  height: 45px;
+  width: 150px;
+  border-radius: 23px;
+  color: #6cb43b;
+  border: 1px solid #6cb43b;
+  font-size: 15px;
 }
 /*login Button hover styles */
-.lg-button:hover{
-    background-color: #6CB43B;
-    color: #FFFFFF;
+.lg-button:hover {
+  background-color: #6cb43b;
+  color: #ffffff;
 }
 /* border styles */
-.br-gray{
-    border:1px solid gray;
+.br-gray {
+  border: 1px solid gray;
 }
 /* border styles on hover */
-.br-gray:hover{
-    border:1px solid #6CB43B;
+.br-gray:hover {
+  border: 1px solid #6cb43b;
 }
 /* text styles */
-.txt-size{
-    font-size: 15px;
-    color: #13250C;
+.txt-size {
+  font-size: 15px;
+  color: #13250c;
 }
 /* text styles  on hover*/
-.txt-size:hover{
-    color: #6CB43B;
+.txt-size:hover {
+  color: #6cb43b;
 }
 /* heading styles */
-.hd-size{
-    font-size: 30px;
-    font-weight: 600;
-    font-family: 'Poppins';
-    color: #6CB43B;
+.hd-size {
+  font-size: 30px;
+  font-weight: 600;
+  font-family: "Poppins";
+  color: #6cb43b;
 }
 /* sub heading styles */
-.sub-hd-size{
-    font-size: 20px;
-    font-weight: normal;
-    font-family: 'Poppins';
+.sub-hd-size {
+  font-size: 20px;
+  font-weight: normal;
+  font-family: "Poppins";
 }
 /* paragraph styles */
-.para-styles{
-    font-size: 15px;
-    text-align: center;
+.para-styles {
+  font-size: 15px;
+  text-align: center;
 }
 
 /* add button styles */
-.add-button{
-    color: white;
-    background-color: #13250C;
+.add-button {
+  color: white;
+  background-color: #13250c;
 }
 
 /* table header styles */
-.tbl-header{
-    background-color: #6CB43B;
-    color: white;
+.tbl-header {
+  background-color: #6cb43b;
+  color: white;
 }
 .mat-form-field-label {
-    color:black !important;
-    font-size: 15px !important;
-    font-weight: 500 !important;
-    font-weight: 500 !important;
+  color: black !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  font-weight: 500 !important;
 }
-.br-btm{
-    border-bottom: 1px solid gray !important;
+.br-btm {
+  border-bottom: 1px solid gray !important;
 }
-.bx-shadow{
-    box-shadow: 0px 5px whitesmoke;
+.bx-shadow {
+  box-shadow: 0px 5px whitesmoke;
 }
-.hd-add{
-    color: #6CB43B;
+.hd-add {
+  color: #6cb43b;
 }
-.alrt-hd{
-    color: #6CB43B;
-    font-size: 18px !important;
-    text-align: center;
-    font-family: 'Poppins' !important;
-    margin: 0px !important;
+.alrt-hd {
+  color: #6cb43b;
+  font-size: 18px !important;
+  text-align: center;
+  font-family: "Poppins" !important;
+  margin: 0px !important;
 }
-.alrt-btn{
-    height: 33px;
-    width: 80px;
-    border-radius: 23px;
-    color: #FFFFFF;
-    border: 1px solid #6CB43B;
-    font-size: 15px;
-    background-color: #6CB43B;
+.alrt-btn {
+  height: 33px;
+  width: 80px;
+  border-radius: 23px;
+  color: #ffffff;
+  border: 1px solid #6cb43b;
+  font-size: 15px;
+  background-color: #6cb43b;
 }
-.br-about{
-    /* border: 1px solid gray !important; */
-    box-shadow: 0 0 15px rgba(0, 0, 0, .2);
+.br-about {
+  /* border: 1px solid gray !important; */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 .focus\:shadow-outline:focus {
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.25) !important;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.25) !important;
 }
 .mat-form-field-suffix {
-    margin-left: -20px !important;
+  margin-left: -20px !important;
 }
-.anchr-styles{
-    color: #6CB43B;
+.anchr-styles {
+  color: #6cb43b;
 }
-a{
-    cursor: pointer;
+a {
+  cursor: pointer;
 }
-.mat-list-item-content{
-    margin: 10px 0px !important;
-    font-size: 15px;
+.mat-list-item-content {
+  margin: 10px 0px !important;
+  font-size: 15px;
 }
-.mat-list-item-content:hover{
-    color: #6CB43B;
+.mat-list-item-content:hover {
+  color: #6cb43b;
 }
-.mat-nav-list .mat-list-item:hover{
-    background: none !important;
+.mat-nav-list .mat-list-item:hover {
+  background: none !important;
 }
-button{
-    cursor: pointer !important;
+button {
+  cursor: pointer !important;
 }
 .mat-icon {
-    cursor: pointer !important;
+  cursor: pointer !important;
 }
-.material-icons{
-    cursor: pointer !important;
+.material-icons {
+  cursor: pointer !important;
 }
-.mat-cell{
-    font-size: 12px !important;
+.mat-cell {
+  font-size: 12px !important;
 }
 mat-header-cell:last-of-type {
-    padding-right: 0px !important;
+  padding-right: 0px !important;
 }
-mat-cell:last-of-type{
-    padding-right: 0px !important;
+mat-cell:last-of-type {
+  padding-right: 0px !important;
 }
-mat-row{
-    min-height: 38px !important;
+mat-row {
+  min-height: 38px !important;
 }
-tr.mat-row{
-    height: 38px !important;   
+tr.mat-row {
+  height: 38px !important;
 }
 .mat-tab-label-active {
-    background-color: #6CB43B;
-    color: white !important;
-    border: 2px solid white !important
+  background-color: #6cb43b;
+  color: white !important;
+  border: 2px solid white !important;
 }
 .mat-tab-label {
-    opacity: 1.5 !important;
+  opacity: 1.5 !important;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

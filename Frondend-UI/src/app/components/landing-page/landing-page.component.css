@@ -7,6 +7,19 @@
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
 }
 
+.word-highlight {
+  background-color: #6cb43b;
+  color: #fff;
+}
+
+.section-background {
+  background-color: #f7fff1;
+}
+
+.text-color {
+  color: #6cb43b;
+}
+
 .spacer {
   flex: 1 1 auto;
 }

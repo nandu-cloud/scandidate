@@ -1,4 +1,5 @@
 <mat-toolbar color="primary">
+  <img width="25" src="./../../../assets/images/logo1.png" />
   <span class="spacer"></span>
   <a
     class="button"
@@ -10,30 +11,35 @@
 </mat-toolbar>
 
 <!-- first hero section -->
-<section class="text-center py-6 mb-12 polygon">
-  <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center">
-    <img
-      class="object-center mx-auto"
-      width="10%"
-      src="../../../assets/images/logo1.png"
-    />
-  </h1>
-  <div class="w-full mb-4">
+<section class="pt-10">
+  <div
+    class="container mx-auto flex flex-wrap flex-col md:flex-row items-center"
+  >
+    <!--Left Col-->
     <div
-      class="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"
-    ></div>
+      class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left"
+    >
+      <p class="leading-relaxed text-2xl font-bold leading-tight">
+        With <span style="color: #6cb43b"><b>SCANDIDATE</b></span
+        >, you can increase confidence that your new hire is
+        <span class="word-highlight">authentic, worthy and risk-free.</span>
+      </p>
+    </div>
+    <!--Right Col-->
+    <div class="flex w-full flex-col md:w-3/5 py-6 text-center items-end">
+      <img class="w-full md:w-3/5" src="../../../assets/images/header.svg" />
+    </div>
   </div>
-  <h2 class="my-2 text-5xl font-bold leading-tight">
-    With <span style="color: #6cb43b"><b>SCANDIDATE</b></span
-    >, you can increase confidence that your new hire is authentic, worthy and
-    risk-free.
-  </h2>
 </section>
 
-<div class="container mx-auto">
-  <!-- main section -->
-  <section>
-    <p class="text-justify text-base tracking-wider p-6">
+<!-- main section -->
+
+<section class="section-background p-6">
+  <div class="container mx-auto">
+    <p class="leading-relaxed text-3xl font-bold leading-tight text-center">
+      Know Your Hire
+    </p>
+    <p class="text-justify text-2xl p-6 leading-tight">
       Well begun is half done. It is the guiding HR principle of almost all
       modern organizations. If you focus on hiring right, the rest, by default,
       falls into place. <b>Recruiting "right"</b> is an effort-intensive process
@@ -42,22 +48,20 @@
       A complete, factual and guaranteed belief so that you
       <b>"Know Your Hire"</b>
     </p>
-  </section>
+  </div>
+</section>
 
+<section>
   <div class="container max-w-5xl mx-auto m-8">
-    <h1
-      class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800"
-    >
+    <p class="leading-relaxed text-3xl font-bold leading-tight text-center">
       Why SCANDIDATE?
-    </h1>
-    <div class="w-full mb-4">
-      <div
-        class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"
-      ></div>
-    </div>
+    </p>
     <div class="flex flex-wrap">
+      <div class="w-full sm:w-1/2 p-5">
+        <img src="./../../../assets/images/middle.svg" />
+      </div>
       <div class="w-5/6 sm:w-1/2 p-5">
-        <p class="text-gray-800 mb-8 text-justify text-base tracking-wider">
+        <p class="text-justify text-2xl p-6 leading-tight">
           We do a Candid Scan on every Candidate you want to hire. We exist and
           operate purely with the support, collaboration and partnership of
           Human Resources professionals across different sectors. And, we
@@ -70,28 +74,25 @@
           <br />
         </p>
       </div>
-      <div class="w-full sm:w-1/2 p-5">
-        <img src="./../../../assets//images/profiles.svg" />
-      </div>
     </div>
   </div>
+</section>
 
-  <section>
-    <h1
-      class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800"
-    >
+<section>
+  <div class="container mx-auto">
+    <p class="leading-relaxed text-3xl font-bold leading-tight text-center">
       How does SCANDIDATE help you reduce your time, cost and effort of
       recruitment?
-    </h1>
+    </p>
     <br />
     <div
-      class="grid lg:grid-cols-4 xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4"
+      class="grid lg:grid-cols-2 xl:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-4"
     >
       <div
         class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow p-3"
       >
         <h6 class="pad"><span class="circle">1</span></h6>
-        <p class="text-base leading-1 tracking-wider">
+        <p class="text-2xl p-6 leading-tight">
           Eliminates the need to conduct a post de-facto, lengthy, costlier
           background verification
         </p>
@@ -100,7 +101,7 @@
         class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow p-3"
       >
         <h6 class="pad"><span class="circle">2</span></h6>
-        <p class="text-base leading-1 tracking-wider">
+        <p class="text-2xl p-6 leading-tight">
           On-click, on-demand background report directly from the previous
           companies and educational institutes
         </p>
@@ -110,7 +111,7 @@
       >
         <h6 class="pad"><span class="circle">3</span></h6>
 
-        <p class="text-base leading-1 tracking-wider">
+        <p class="text-2xl p-6 leading-tight">
           Get REAL insights from previous organizations, educational institutes,
           fed into our system on a real-time basis
         </p>
@@ -120,108 +121,109 @@
       >
         <h6 class="pad"><span class="circle">4</span></h6>
 
-        <p class="text-base leading-1 tracking-wider">
+        <p class="text-2xl p-6 leading-tight">
           You will always know if your candidate has any "hidden" record which
           no other process brings to the fore
         </p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="bg-white border-t py-8">
-    <div class="container mx-auto flex flex-wrap pt-4 pb-12">
-      <h1
-        class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800"
+<section class="section-background border-t py-8 my-6">
+  <p class="leading-relaxed text-3xl font-bold leading-tight text-center">
+    What's in it for you?
+  </p>
+  <div class="container mx-auto flex flex-wrap pt-4 pb-12">
+    <div class="w-full mb-4">
+      <div
+        class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"
+      ></div>
+    </div>
+    <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+      <div
+        class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow p-3"
       >
-        What's in it for you?
-      </h1>
-      <div class="w-full mb-4">
-        <div
-          class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"
-        ></div>
-      </div>
-      <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-        <div
-          class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow p-3"
-        >
-          <a class="flex flex-wrap no-underline hover:no-underline">
-            <p class="w-full font-bold text-gray-800 text-xl md:text-sm px-6">
-              As an Organization :
-            </p>
+        <div class="flex flex-wrap">
+          <p class="leading-tight text-2xl font-bold text-color px-6">
+            As an Organization :
+          </p>
 
-            <ul
-              class="list-disc text-gray-800 text-base px-6 mb-5 tracking-wider"
-            >
-              <li>
-                De-mystify a candidate's work ethic, conduct and professionalism
-                history.
-              </li>
-              <li>
-                Eliminate Reference check and Background check as a step in your
-                hiring process and reduce cycle time.
-              </li>
-              <li>
-                Contribute to creating a universally effective and advantageous
-                industry practice.
-              </li>
-              <li>
-                Receive extensive industry HR reports on hiring, attrition and
-                best practices.
-              </li>
-              <li>
-                Motivate employees to work consistently even while serving
-                notice period.
-              </li>
-              <li>
-                Conquer the risk of recruitment "infant mortality" - candidates
-                leaving immediately after joining.
-              </li>
-            </ul>
-          </a>
-        </div>
-      </div>
-      <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-        <div
-          class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow p-3"
-        >
-          <a class="flex flex-wrap no-underline hover:no-underline">
-            <p class="w-full font-bold text-gray-800 text-xl md:text-sm px-6">
-              As an Employee :
-            </p>
-
-            <ul
-              class="list-disc text-gray-800 text-base px-6 mb-5 tracking-wider"
-            >
-              <li>
-                Augment your employability with your own Scandidate record -
-                your credentials can't get a stronger backing than this!
-              </li>
-            </ul>
-          </a>
+          <ul class="list-disc text-gray-800 text-2xl p-6 leading-tight">
+            <li>
+              De-mystify a candidate's work ethic, conduct and professionalism
+              history.
+            </li>
+            <li>
+              Eliminate Reference check and Background check as a step in your
+              hiring process and reduce cycle time.
+            </li>
+            <li>
+              Contribute to creating a universally effective and advantageous
+              industry practice.
+            </li>
+            <li>
+              Receive extensive industry HR reports on hiring, attrition and
+              best practices.
+            </li>
+            <li>
+              Motivate employees to work consistently even while serving notice
+              period.
+            </li>
+            <li>
+              Conquer the risk of recruitment "infant mortality" - candidates
+              leaving immediately after joining.
+            </li>
+          </ul>
         </div>
       </div>
     </div>
-  </section>
+    <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+      <div
+        class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow p-3"
+      >
+        <div class="flex flex-wrap">
+          <p class="leading-tight text-2xl font-bold text-color px-6">
+            As an Employee :
+          </p>
 
-  <section>
-    <h1
-      class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800"
-    >
+          <ul class="list-disc text-gray-800 text-2xl p-6 leading-tight">
+            <li>
+              Augment your employability with your own Scandidate record - your
+              credentials can't get a stronger backing than this!
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container mx-auto">
+    <p class="leading-relaxed text-2xl font-bold leading-tight text-center">
       Why should you give your ex-employees' information?
-    </h1>
-    <br />
-    <p class="text-base tracking-wider p-6">
-      You anyway do it - every time an ex-employee joins a new organization,
-      someone from your management team or HR is spending considerable effort in
-      helping the new organization complete their background checks. Why not
-      instead do it in a one-shot, structured way with SCANDIDATE and also earn
-      some revenue for each of your ex-employee's records downloaded by other
-      organizations?
     </p>
-  </section>
+    <div class="flex flex-wrap">
+      <div class="w-full sm:w-1/2 p-5">
+        <img src="./../../../assets/images/end.svg" />
+      </div>
+      <div class="w-5/6 sm:w-1/2 p-5">
+        <p class="text-justify text-2xl p-6 leading-tight">
+          You anyway do it - every time an ex-employee joins a new organization,
+          someone from your management team or HR is spending considerable
+          effort in helping the new organization complete their background
+          checks. Why not instead do it in a one-shot, structured way with
+          SCANDIDATE and also earn some revenue for each of your ex-employee's
+          records downloaded by other organizations?
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <br />
-</div>
+<br />
+
 <mat-toolbar color="primary">
   <p class="text-center">Copyright 2020</p>
 </mat-toolbar>
