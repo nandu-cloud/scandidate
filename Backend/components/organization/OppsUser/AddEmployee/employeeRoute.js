@@ -8,10 +8,7 @@ const addEmployeeController = require("./employeeController");
 const authJWT = require("./../../../../middlewares/authJWT");
 
 // user Storage Path
-const uploadPath = path.join(
-  __dirname,
-  "../../../../uploads/organizationIssues"
-);
+const uploadPath = path.join(__dirname, "../../../../uploads/organization_doc");
 let storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, uploadPath);
