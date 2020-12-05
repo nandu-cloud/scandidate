@@ -45,6 +45,10 @@ import { AllEmployeesComponent } from './components/scandidate/organization-onbo
 import { BGVViewComponent } from './components/bgv-view/bgv-view.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { WorkEthicDialogComponent } from './components/work-ethic-dialog/work-ethic-dialog.component';
+import { MeritQualityComponent } from './components/merit-quality/merit-quality.component';
+import { RecognitionComponent } from './components/recognition/recognition.component';
+import { LeadershipComponent } from './components/leadership/leadership.component';
+import { IssuesComponent } from './components/issues/issues.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +80,11 @@ import { WorkEthicDialogComponent } from './components/work-ethic-dialog/work-et
     BGVViewComponent,
     AllEmployeesComponent,
     LandingPageComponent,
-    WorkEthicDialogComponent
+    WorkEthicDialogComponent,
+    MeritQualityComponent,
+    RecognitionComponent,
+    LeadershipComponent,
+    IssuesComponent
   ],
   imports: [
     BrowserModule,

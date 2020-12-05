@@ -1,16 +1,18 @@
 .table1{
-    border: grey solid 1px;
+  border:#6cb43b solid 1px;
 }
 
 table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-  }
-  th, td {
-    padding: 5px;
-    text-align: left;
-  }
-  caption{
-      font-size: larger;
-      font-weight: bold;
-  }
+  border: 1px solid#6cb43b; ;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+  height: 20px;
+}
+caption{
+    font-size: larger;
+    font-weight: bold;
+    color: #6cb43b;
+}

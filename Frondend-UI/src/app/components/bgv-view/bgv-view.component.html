@@ -55,24 +55,21 @@
           <img class="w-20 h-20" *ngIf="list.organisationId === list1._id" src="{{orgLogo + list1.organisationLogo }}">
         </div>
       </div>
-      <div class="justify-start pl-10"  *ngIf="list.organisationId != '' && list.organisationId != undefined ">
+      <div class="justify-start pl-10" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
         <h2>{{list.organizationName}}</h2>
         <h4>{{list.role}}</h4>
         <span>{{list.dateOfJoining | date: 'MM yyyy'}} - {{list.exitDate | date: 'MM yyyy'}}</span><br>
         <h4>Professional Experience - {{list.professionalExperience}}</h4>
         <h4>{{list.address}}</h4>
       </div>
-      <div *ngIf="list.organisationId != '' && list.organisationId != undefined ">
-        <button (click)=edit(list._id) class="lg-button focus:outline-none focus:shadow-outline" (click)="openDialog()">Work Ethic</button>
-      </div>
-      <div *ngIf="list.organisationId != '' && list.organisationId != undefined ">
-        <button (click)=edit(list._id) class="lg-button focus:outline-none focus:shadow-outline" (click)="openDialog()">Recognition</button>
-      </div>
-      <div *ngIf="list.organisationId != '' && list.organisationId != undefined ">
-        <button (click)=edit(list._id) class="lg-button focus:outline-none focus:shadow-outline" (click)="openDialog()">Issues</button>
-      </div>
-      <hr>
 
+      <div class=" pl-10" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
+        <button class="px-2 lg-button focus:outline-none focus:shadow-outline"  (click)="openDialog(list._id)">Work Ethic</button>
+        <button class="px-2 lg-button focus:outline-none focus:shadow-outline"  (click)="openMeritDialog(list._id)">Merit-Quality</button>
+        <button class="px-2 lg-button focus:outline-none focus:shadow-outline"  (click)="openRecognitionDialog(list._id)">Recognition</button><br><br>
+        <button class="px-2 lg-button focus:outline-none focus:shadow-outline"  (click)="openLeadershipDialog(list._id)">Leadership</button>
+        <button class="px-2 lg-button focus:outline-none focus:shadow-outline"  (click)="openIssuesDialog(list._id)">Issues</button>
+      </div>
     </div>
   </div>
 </div>

@@ -1,0 +1,33 @@
+<table style="width:100%">
+    <caption>Recognition</caption>
+    <tr>
+      <th colspan="2">Awards</th>
+    </tr>
+    <tr>
+      <td colspan="2">{{award}}</td>
+    </tr>
+    <tr>
+      <th>Remark</th>
+      <th>Document Name</th>
+    </tr>
+    <tr>
+      <td>{{remark}}</td>
+      <td>{{docName}}</td>
+    </tr>
+    <tr>
+      <th colspan="2">Uploaded Document</th>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button
+        mat-button
+        (click)="downloadDoc()">
+        <mat-icon>file_download</mat-icon>
+      </button>
+      </td>
+    </tr>
+  </table>
+<div mat-dialog-actions>
+<button mat-button mat-dialog-close>Close</button>
+</div>
+

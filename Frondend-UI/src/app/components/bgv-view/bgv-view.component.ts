@@ -8,6 +8,10 @@ import { StorageService } from '../../services/storage.service';
 import { from, Subscription } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { WorkEthicDialogComponent } from '../work-ethic-dialog/work-ethic-dialog.component';
+import { MeritQualityComponent } from '../merit-quality/merit-quality.component';
+import { RecognitionComponent } from '../recognition/recognition.component';
+import { LeadershipComponent } from '../leadership/leadership.component';
+import { IssuesComponent } from '../issues/issues.component';
 
 import { DatePipe } from '@angular/common';
 import * as moment from 'moment';
@@ -95,6 +99,7 @@ export class BGVViewComponent implements OnInit {
   proYear: any;
   totalMonth: any = [];
   totalYears: any = [];
+  empId: number;
   constructor(
     public fb: FormBuilder,private _storage: StorageService,
     private cd: ChangeDetectorRef,public dialog: MatDialog,public route:ActivatedRoute,public empService : BgvSearchService,private datePipe: DatePipe
@@ -189,10 +194,49 @@ export class BGVViewComponent implements OnInit {
     
   }
   
-  openDialog(): void {
+  openDialog(empId:number): void {
     const dialogRef = this.dialog.open(WorkEthicDialogComponent,{
-      width: '640px',disableClose: true 
-    });
+      width: '600px',disableClose: true ,
+      data: {
+        id: empId
+      }   
+    });   
+}
+
+openMeritDialog(empId:number): void {
+  const dialogRef = this.dialog.open(MeritQualityComponent,{
+    width: '500px',disableClose: true ,
+    data: {
+      id: empId
+    }   
+  });   
+}
+
+openRecognitionDialog(empId:number): void {
+  const dialogRef = this.dialog.open(RecognitionComponent,{
+    width: '400px',disableClose: true ,
+    data: {
+      id: empId
+    }   
+  });   
+}
+
+openLeadershipDialog(empId:number): void {
+  const dialogRef = this.dialog.open(LeadershipComponent,{
+    width: '550px',disableClose: true ,
+    data: {
+      id: empId
+    }   
+  });   
+}
+
+openIssuesDialog(empId:number): void {
+  const dialogRef = this.dialog.open(IssuesComponent,{
+    width: '500px',disableClose: true ,
+    data: {
+      id: empId
+    }   
+  });   
 }
 
 
