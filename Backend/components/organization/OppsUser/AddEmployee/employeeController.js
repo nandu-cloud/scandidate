@@ -10,7 +10,7 @@ module.exports.fileUpload = async function (req, res, next) {
   return res.status(200).json({
     status: "SUCCESS",
     message: "Documents Uploaded SuccessFully!",
-    data: { documentLink: `${req.file.filename}` },
+    data: { documentUpload: `${req.file.filename}` },
   });
 };
 
