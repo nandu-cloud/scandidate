@@ -3,6 +3,7 @@ const AppError = require("./../../../../helpers/appError");
 const employeeDAL = require("./employeeDAL");
 const employeeDataValidator = require("./employeeValidator");
 const colors = require("./../../../../helpers/colors");
+const path = require("path");
 
 module.exports.fileUpload = async function (req, res, next) {
   if (!req.file) return next(new AppError("No file uploaded!", 400));
@@ -80,4 +81,19 @@ module.exports.updateMethod = async function (req, res, next) {
   } catch (err) {
     return next(new AppError(err, 400));
   }
+};
+
+module.exports.downloaddocuments = async (req, res, next) => {
+  const data = req.params.employeedocumentlink;
+  const filePath = path.join(
+    __dirname,
+    `../../../../uploads/organization_doc/${data}`
+  );
+  return res.download(filePath, data, function (err) {
+    if (err) {
+      console.log(colors.red, "inside err...");
+      if (err.code == "ENOENT")
+        return next(new AppError("user document not found", 404));
+    }
+  });
 };

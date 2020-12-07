@@ -53,4 +53,9 @@ router
 router
   .route("/getEmployee/:organisationId")
   .get(authJWT.verifyJWTToken, addEmployeeController.getAllMethod);
+
+router
+  .route("/downloadfile/:employeedocumentlink")
+  .get(authJWT.verifyJWTToken, addEmployeeController.downloaddocuments);
+
 module.exports = router;
