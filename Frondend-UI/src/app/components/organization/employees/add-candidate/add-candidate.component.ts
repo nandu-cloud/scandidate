@@ -15,7 +15,9 @@ import { ConnectedPositionStrategy } from '@angular/cdk/overlay';
   selector: 'app-add-candidate',
   templateUrl: './add-candidate.component.html',
   styleUrls: ['./add-candidate.component.css'],
-  providers: [EmployeeService, StorageService]
+  providers: [
+    // {provide: MAT_DATE_FORMATS, useValue: 'en-GB'},
+    EmployeeService, StorageService]
 })
 export class AddCandidateComponent implements OnInit {
   createCandidate: FormGroup;
@@ -70,12 +72,13 @@ export class AddCandidateComponent implements OnInit {
       panNumber: new FormControl(''),
       phoneNumber: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[1-9][0-9]{9}$')]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      dateOfBirth: new FormControl('', []),
+      dateOfBirth: new FormControl(''),
       dateOfJoining: new FormControl('', [Validators.required, this.validateJoiningDate()]),
       exitDate: new FormControl('', [Validators.required, this.validateExitDate()]),
       organizationName: new FormControl(this.organizationName),
       professionalExperience: new FormControl(''),
-      reasonForSerperation: new FormGroup({ IsSelect: new FormControl('voluntary'), voluntaryReason: new FormControl(), inVoluntaryReason: new FormControl()}),
+      reasonForSerperation: new FormGroup({ IsSelect: new FormControl('voluntary'), voluntaryReason: new FormControl(),
+       inVoluntaryReason: new FormControl()}),
       role: new FormControl(''),
       department: new FormControl(''),
       address: new FormControl(''),
@@ -100,14 +103,13 @@ export class AddCandidateComponent implements OnInit {
       productKnowledge: new FormControl('', [Validators.required]),
       industryKnowledge: new FormControl('', [Validators.required]),
       communicationSkills: new FormControl('', [Validators.required]),
-      rehireAgain: new FormControl(''),
+      rehireAgain: new FormControl(),
       keySkills: new FormControl('')
     });
     this.fourthFormGroup = new FormGroup({
       awards: new FormGroup({
         IsSelect: new FormControl(), remarks: new FormControl(),
-        documentName: new FormControl(),documentUpload: new FormControl()
-        
+        documentName: new FormControl(), documentUpload: new FormControl() 
       })
     });
     this.fifthFormGroup = new FormGroup({
@@ -119,28 +121,28 @@ export class AddCandidateComponent implements OnInit {
     });
     this.sixthFormGroup = new FormGroup({
       discrepancyDocuments: new FormGroup({
-        IsSelect: new FormControl(false), period: new FormControl(''),
-        causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
+        IsSelect: new FormControl(''), descrepencyPeriod: new FormControl(''),
+        descrepencyCauseActionTaken: new FormControl(''), descrepencyUploadDocument: new FormControl('')
       }),
       compliencyDiscrepancy: new FormGroup({
-        IsSelect: new FormControl(false), period: new FormControl(''),
-        causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
+        IsSelect: new FormControl(), compliencyPeriod: new FormControl(),
+        compliencyCauseActionTaken: new FormControl(), compliencyUploadDocument: new FormControl()
       }),
       warning: new FormGroup({
-        IsSelect: new FormControl(false), period: new FormControl(''),
-        causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
+        IsSelect: new FormControl(), warningPeriod: new FormControl(),
+        warningCauseActionTaken: new FormControl(), warningUploadDocument: new FormControl()
       }),
       showCausedIssue: new FormGroup({
-        IsSelect: new FormControl(false), period: new FormControl(''),
-        causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
+        IsSelect: new FormControl(), showCausedPeriod: new FormControl(),
+        showCausedCauseActionTaken: new FormControl(), showCausedUploadDocument: new FormControl()
       }),
       suspension: new FormGroup({
-        IsSelect: new FormControl(false), period: new FormControl(''),
-        causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
+        IsSelect: new FormControl(), suspensionPeriod: new FormControl(),
+        suspensionCauseActionTaken: new FormControl(), suspensionUploadDocument: new FormControl()
       }),
       termination: new FormGroup({
-        IsSelect: new FormControl(false), period: new FormControl(''),
-        causeActionTaken: new FormControl(''), uploadDocument: new FormControl('')
+        IsSelect: new FormControl(), terminationPeriod: new FormControl(),
+        terminationCauseActionTaken: new FormControl(), terminationUploadDocument: new FormControl()
       }),
     });
   }
@@ -243,22 +245,22 @@ export class AddCandidateComponent implements OnInit {
     this.studentDocSubscription = this.empService.postIssuesFile(this.fileToUpload).subscribe(
       data => {
         if (type == 'discrepancyDocuments') {
-          this.sixthFormGroup.patchValue({ discrepancyDocuments: { uploadDocument: data.data.documentLink } });
+          this.sixthFormGroup.patchValue({ discrepancyDocuments: { descrepencyUploadDocument: data.data.documentLink } });
         }
         if (type == 'compliencyDiscrepancy') {
-          this.sixthFormGroup.patchValue({ compliencyDiscrepancy: { uploadDocument: data.data.documentLink } });
+          this.sixthFormGroup.patchValue({ compliencyDiscrepancy: { compliencyUploadDocument: data.data.documentLink } });
         }
         if (type == 'Warning') {
-          this.sixthFormGroup.patchValue({ warning: { uploadDocument: data.data.documentLink } });
+          this.sixthFormGroup.patchValue({ warning: { warningUploadDocument: data.data.documentLink } });
         }
         if (type == 'showCausedIssue') {
-          this.sixthFormGroup.patchValue({ showCausedIssue: { uploadDocument: data.data.documentLink } });
+          this.sixthFormGroup.patchValue({ showCausedIssue: { showCausedUploadDocument: data.data.documentLink } });
         }
         if (type == 'suspension') {
-          this.sixthFormGroup.patchValue({ suspension: { uploadDocument: data.data.documentLink } });
+          this.sixthFormGroup.patchValue({ suspension: { suspensionUploadDocument: data.data.documentLink } });
         }
         if (type == 'termination') {
-          this.sixthFormGroup.patchValue({ termination: { uploadDocument: data.data.documentLink } });
+          this.sixthFormGroup.patchValue({ termination: { terminationUploadDocument: data.data.documentLink } });
         }
         this.documentName = `${this.baseUrl}/public/organization_doc/${data.data.documentLink}`;
         // this.studentDocSubscription = this.stuService.deleteFile(this.imageFilename).subscribe();
@@ -272,14 +274,56 @@ export class AddCandidateComponent implements OnInit {
       this.editEmployeeSubscription = this.empService.editEmployee(this.empIdedit).subscribe(respObj => {
         console.log(respObj.data);
         this.id = respObj.data._id;
-        // if (respObj.data.uploadDocument == "1") {
-          
-        // }
+
         this.firstFormGroup.patchValue(respObj.data);
         this.secondFormGroup.patchValue(respObj.data);
         this.thirdFormGroup.patchValue(respObj.data);
         this.fourthFormGroup.patchValue(respObj.data);
         this.fifthFormGroup.patchValue(respObj.data);
+        this.sixthFormGroup.patchValue(respObj.data);
+        // this.sixthFormGroup.patchValue({discrepancyDocuments:{
+        //   IsSelect: respObj.data.discrepancyDocuments.IsSelect,
+        //   descrepencyPeriod: respObj.data.discrepancyDocuments.descrepencyPeriod,
+        //   descrepencyUploadDocument: respObj.data.discrepancyDocuments.descrepencyUploadDocument,
+        //   descrepencyCauseActionTaken: respObj.data.discrepancyDocuments.descrepencyCauseActionTaken},
+        //   compliencyDiscrepancy: {
+        //     IsSelect: respObj.data.compliencyDiscrepancy.IsSelect,
+        //     compliencyPeriod: respObj.data.discrepancyDocuments.compliencyPeriod,
+        //     compliencyUploadDocument: respObj.data.discrepancyDocuments.compliencyUploadDocument,
+        //   compliencyCauseActionTaken: respObj.data.discrepancyDocuments.compliencyCauseActionTaken
+        //   },
+        //   warning: {
+        //     IsSelect: respObj.data.warning.IsSelect,
+        //     warningPeriod: respObj.data.discrepancyDocuments.warningPeriod,
+        //     warningUploadDocument: respObj.data.discrepancyDocuments.warningUploadDocument,
+        //   warningCauseActionTaken: respObj.data.discrepancyDocuments.warningCauseActionTaken
+        //   },
+        //   showCausedIssue: {
+        //     IsSelect: respObj.data.showCausedIssue.IsSelect,
+        //     showCausedPeriod: respObj.data.discrepancyDocuments.showCausedPeriod,
+        //     showCausedUploadDocument: respObj.data.discrepancyDocuments.showCausedUploadDocument,
+        //     showCausedCauseActionTaken: respObj.data.discrepancyDocuments.showCausedCauseActionTaken
+        //   },
+        //   suspension: {
+        //     IsSelect: respObj.data.suspension.IsSelect,
+        //     suspensionPeriod: respObj.data.discrepancyDocuments.suspensionPeriod,
+        //     suspensionUploadDocument: respObj.data.discrepancyDocuments.suspensionUploadDocument,
+        //     suspensionCauseActionTaken: respObj.data.discrepancyDocuments.suspensionCauseActionTaken
+        //   },
+        //   termination: {
+        //     IsSelect: respObj.data.termination.IsSelect,
+        //     terminationPeriod: respObj.data.discrepancyDocuments.terminationPeriod,
+        //     terminationUploadDocument: respObj.data.discrepancyDocuments.terminationUploadDocument,
+        //     terminationCauseActionTaken: respObj.data.discrepancyDocuments.terminationCauseActionTaken
+        //   }
+        // });
+
+    
+
+       
+
+
+
         // this.imageUrl=`${this.baseUrl}/public/organization_logo/${respObj.data.organisationLogo}`;
         // this.imageFilename=respObj.data.organisationLogo;
       }, err => {
@@ -416,6 +460,48 @@ export class AddCandidateComponent implements OnInit {
   
 
   update(id: number) {
+    if (this.firstFormGroup.invalid) {
+      this.firstFormGroup.markAllAsTouched();
+      if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = 0;
+        return;
+      }
+    }
+    if (this.secondFormGroup.invalid) {
+      this.secondFormGroup.markAllAsTouched();
+      if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = 1;
+        return;
+      }
+    }
+    if (this.thirdFormGroup.invalid) {
+      this.thirdFormGroup.markAllAsTouched();
+      if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = 2;
+        return;
+      }
+    }
+    if (this.fourthFormGroup.invalid) {
+      this.fourthFormGroup.markAllAsTouched();
+      if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = 3;
+        return;
+      }
+    }
+    if (this.fifthFormGroup.invalid) {
+      this.fifthFormGroup.markAllAsTouched();
+      if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = 4;
+        return;
+      }
+    }
+    if (this.sixthFormGroup.invalid) {
+      this.sixthFormGroup.markAllAsTouched();
+      if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = 5;
+        return;
+      }
+    }
     this.empIdupdate = id;
     this.employeeUpdateSubscription = this.empService.updateEmployee({
       ...this.firstFormGroup.value, ...this.secondFormGroup.value,

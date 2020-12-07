@@ -1,5 +1,5 @@
 <app-navbar>
-  <div class="pt-12 lg:pl-32 md:pl-40 bg-white">
+  <div class="pt-12 lg:pl-32 md:pl-24 bg-white">
     <div
       class="bg-red-100 border border-red-400 text-red-700 py-3 mb-4 rounded relative"
       role="alert"
@@ -259,7 +259,7 @@
                   formControlName="dateOfBirth"
                   [matDatepicker]="picker1"
                   class="br-btm input-w"
-                  placeholder="MM/DD/YYYY"
+                  placeholder="DD/MM/YYYY"
                   tabindex="8"
                 />
                 <mat-datepicker-toggle
@@ -478,7 +478,7 @@
             </div>
           </div>
           <div class="flex justify-end lg:pb-6 lg:pr-48">
-            <button
+            <button tabindex="19"
               class="lg-button focus:outline-none focus:shadow-outline"
               (click)="nextStep()"
             >
@@ -656,7 +656,7 @@
             </div>
           </div>
           <div class="flex justify-end lg:pb-6 lg:pr-48">
-            <button
+            <button tabindex="7"
               class="lg-button focus:outline-none focus:shadow-outline"
               (click)="cancel()"
             >
@@ -731,7 +731,8 @@
                       formControlName="keySkills"
                       style="line-height: 2px; font-size: smaller"
                       class="remarks br-btm input-w"
-                      placeholder="Key Skills"
+                      placeholder="Key Skills" 
+                      tabindex="5"
                       maxlength="200" style="resize: none"
                       ></textarea>
               </mat-form-field>
@@ -783,15 +784,15 @@
                 <input matInput placeholder="Input" style="display: none">
               <mat-label>Would you rehire this ex-employee in the future?</mat-label><br>
               <mat-radio-group
-  
+              tabindex="6"
                 aria-labelledby="example-radio-group-label"
                 class="example-radio-group"
                 formControlName="rehireAgain"
               >
-                <mat-radio-button [value]="'yes'"
+                <mat-radio-button value="yes"
                   >Yes</mat-radio-button
                 ><br />
-                <mat-radio-button [value]="'No'"
+                <mat-radio-button value="No"
                   >No</mat-radio-button
                 >
               </mat-radio-group>
@@ -806,6 +807,7 @@
               Back
             </button>
             <button
+              tabindex="7"
               class="lg-button focus:outline-none focus:shadow-outline"
               (click)="nextStep()"
             >
@@ -851,6 +853,7 @@
                       formControlName="remarks"
                       class="br-btm input-w"
                       placeholder="Remarks"
+                      tabindex="1"
                     ></textarea>
                   </mat-form-field>
                 </div>
@@ -862,6 +865,7 @@
                       formControlName="documentName"
                       type="text"
                       class="br-btm input-w"
+                      tabindex="2"
                     />
                   </mat-form-field>
                   <div class="group-gap">
@@ -875,8 +879,8 @@
                           id="imageUpload"
                           accept=".pdf"
                           #awards
+                          tabindex="3"
                           (change)="uploadawardsFile($event.target.files,'awards')"
-                          tabindex="21"
                         />
                         <div id="imagePreview">{{ this.documentName }}</div>
                       </div>
@@ -901,7 +905,7 @@
             </button>
             <button
               class="lg-button focus:outline-none focus:shadow-outline"
-              (click)="nextStep()"
+              (click)="nextStep()" tabindex="4"
             >
               Next
             </button>
@@ -923,21 +927,21 @@
                     <mat-select
                       class="br-btm input-w"
                       formControlName="IsSelect"
-                      tabindex="3"
+                      tabindex="1"
                     >
-                      <mat-option [value]="0">Select</mat-option>
-                      <mat-option [value]="1">Not satisfactory</mat-option>
-                      <mat-option [value]="2">Needs Improvement</mat-option>
-                      <mat-option [value]="3">Meets Expectations</mat-option>
-                      <mat-option [value]="4">Exceeds Expectations</mat-option>
+                      <mat-option [value]=0>Select</mat-option>
+                      <mat-option [value]=1>Not satisfactory</mat-option>
+                      <mat-option [value]=2>Needs Improvement</mat-option>
+                      <mat-option [value]=3>Meets Expectations</mat-option>
+                      <mat-option [value]=4>Exceeds Expectations</mat-option>
                     </mat-select>
-                    <mat-error
+                    <!-- <mat-error
                       *ngIf="
                         fifthFormGroup.get('quality.IsSelect').errors?.required
                       "
                     >
                       please select Quality
-                    </mat-error>
+                    </mat-error> -->
                   </mat-form-field>
                 </div>
                 <div class="w-full md:w-1/2 sm:w-full">
@@ -953,6 +957,7 @@
                       class="br-btm input-w"
                       placeholder="Strategic Thinking Remarks"
                       style="resize: none"
+                      tabindex="2"
                     ></textarea>
                   </mat-form-field>
                 </div>
@@ -965,22 +970,22 @@
                     <mat-select
                       class="br-btm input-w"
                       formControlName="IsSelect"
-                      tabindex="5"
+                      tabindex="3"
                     >
-                      <mat-option [value]="0">Select</mat-option>
-                      <mat-option [value]="1">Not satisfactory</mat-option>
-                      <mat-option [value]="2">Needs Improvement</mat-option>
-                      <mat-option [value]="3">Meets Expectations</mat-option>
-                      <mat-option [value]="4">Exceeds Expectations</mat-option>
+                      <mat-option [value]=0>Select</mat-option>
+                      <mat-option [value]=1>Not satisfactory</mat-option>
+                      <mat-option [value]=2>Needs Improvement</mat-option>
+                      <mat-option [value]=3>Meets Expectations</mat-option>
+                      <mat-option [value]=4>Exceeds Expectations</mat-option>
                     </mat-select>
-                    <mat-error
+                    <!-- <mat-error
                       *ngIf="
                         fifthFormGroup.get('consistency.IsSelect').errors
                           ?.required
                       "
                     >
                       please select Consistency
-                    </mat-error>
+                    </mat-error> -->
                   </mat-form-field>
                 </div>
                 <div class="w-full md:w-1/2 sm:w-full">
@@ -994,6 +999,7 @@
                       class="br-btm input-w"
                       placeholder="Problem Solving Remarks"
                       style="resize: none"
+                      tabindex="4"
                     ></textarea>
                   </mat-form-field>
                 </div>
@@ -1006,13 +1012,13 @@
                     <mat-select
                       class="br-btm input-w"
                       formControlName="IsSelect"
-                      tabindex="7"
+                      tabindex="5"
                     >
-                      <mat-option [value]="0">Select</mat-option>
-                      <mat-option [value]="1">Not satisfactory</mat-option>
-                      <mat-option [value]="2">Needs Improvement</mat-option>
-                      <mat-option [value]="3">Meets Expectations</mat-option>
-                      <mat-option [value]="4">Exceeds Expectations</mat-option>
+                      <mat-option [value]=0>Select</mat-option>
+                      <mat-option [value]=1>Not satisfactory</mat-option>
+                      <mat-option [value]=2>Needs Improvement</mat-option>
+                      <mat-option [value]=3>Meets Expectations</mat-option>
+                      <mat-option [value]=4>Exceeds Expectations</mat-option>
                     </mat-select>
                     <mat-error
                       *ngIf="
@@ -1036,6 +1042,7 @@
                       class="br-btm input-w"
                       placeholder="Building High Performance Team Remarks"
                       style="resize: none"
+                      tabindex="6"
                     ></textarea>
                   </mat-form-field>
                 </div>
@@ -1048,13 +1055,13 @@
                     <mat-select
                       class="br-btm input-w"
                       formControlName="IsSelect"
-                      tabindex="9"
+                      tabindex="7"
                     >
-                      <mat-option [value]="0">Select</mat-option>
-                      <mat-option [value]="1">Not satisfactory</mat-option>
-                      <mat-option [value]="2">Needs Improvement</mat-option>
-                      <mat-option [value]="3">Meets Expectations</mat-option>
-                      <mat-option [value]="4">Exceeds Expectations</mat-option>
+                      <mat-option [value]=0>Select</mat-option>
+                      <mat-option [value]=1>Not satisfactory</mat-option>
+                      <mat-option [value]=2>Needs Improvement</mat-option>
+                      <mat-option [value]=3>Meets Expectations</mat-option>
+                      <mat-option [value]=4>Exceeds Expectations</mat-option>
                     </mat-select>
                     <mat-error
                       *ngIf="
@@ -1079,6 +1086,7 @@
                       class="br-btm input-w"
                       placeholder=" StakeHolder Management Remarks"
                       style="resize: none"
+                      tabindex="8"
                     ></textarea>
                   </mat-form-field>
                 </div>
@@ -1094,7 +1102,7 @@
             </button>
             <button
               class="lg-button focus:outline-none focus:shadow-outline"
-              (click)="nextStep()"
+              (click)="nextStep()" tabindex="9"
             >
               Next
             </button>
@@ -1121,18 +1129,20 @@
                       formControlName="IsSelect"
                       tabindex="1"
                     >
-                      <mat-option [value]="true">Yes</mat-option>
-                      <mat-option [value]="false">No</mat-option>
+                      <mat-option [value]=true>Yes</mat-option>
+                      <mat-option [value]=false>No</mat-option>
                     </mat-select>
                     <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
                         Please select Discrepancy in documents & Declarations
                       </mat-error> -->
                   </mat-form-field>
                 </div>
-                <div
-                  *ngIf="
-                    sixthFormGroup.get('discrepancyDocuments.IsSelect').value !== true || sixthFormGroup.get('discrepancyDocuments.IsSelect').value !== false"
-                >
+                <div  class="w-full md:w-1/2 sm:w-full"
+                *ngIf="
+                  sixthFormGroup.get('discrepancyDocuments.IsSelect')
+                    .value !== true || sixthFormGroup.get('discrepancyDocuments.IsSelect')
+                    .value !== false
+                ">
                   <table class="issues border-collapse border-1 border-gray-200">
                     <thead>
                       <tr>
@@ -1162,10 +1172,11 @@
                         >
                           <input 
                             matInput
-                            formControlName="period"
+                            formControlName="descrepencyPeriod"
                             [matDatepicker]="picker1"
                             class="date br-btm input-w"
                             placeholder="DD/MM/YYYY"
+                            tabindex="2"
                           />
                           <mat-datepicker-toggle
                             matSuffix
@@ -1182,10 +1193,11 @@
                         >
                           <input
                             matInput
-                            formControlName="causeActionTaken"
+                            formControlName="descrepencyCauseActionTaken"
                             type="text"
                             class="br-btm input-w"
                             autoComplete="off"
+                            tabindex="3"
                           />
                         </td>
                         <td
@@ -1200,7 +1212,7 @@
                                   placeholder="Upload Document"
                                   id="imageUpload"
                                   accept=".pdf"
-                                  #dd
+                                  #dd 
                                   (change)="
                                     uploadIssuesFile(
                                       $event.target.files,
@@ -1211,7 +1223,7 @@
                                 <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
                               </div>
                             </div>
-                            <button mat-button (click)="dd.click()">
+                            <button mat-button (click)="dd.click()" tabindex="4">
                               <mat-icon>file_upload</mat-icon>
                             </button>
                             <button
@@ -1241,10 +1253,10 @@
                     <mat-select
                       class="br-btm input-w"
                       formControlName="IsSelect"
-                      tabindex="3"
+                      tabindex="5"
                     >
-                      <mat-option [value]="true">Yes</mat-option>
-                      <mat-option [value]="false">No</mat-option>
+                      <mat-option [value]=true>Yes</mat-option>
+                      <mat-option [value]=false>No</mat-option>
                     </mat-select>
                     <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
                        Please select Compliance and Discrepancy
@@ -1269,11 +1281,12 @@
                         >
                           <input
                             matInput
-                            formControlName="period"
+                            formControlName="compliencyPeriod"
                             [matDatepicker]="picker1"
                             class="date br-btm input-w"
                             [min]="minDate"
                             [max]="maxDate"
+                            tabindex="5"
                             placeholder="DD/MM/YYYY"
                           />
                           <mat-datepicker-toggle
@@ -1291,10 +1304,11 @@
                         >
                           <input
                             matInput
-                            formControlName="causeActionTaken"
+                            formControlName="compliencyCauseActionTaken"
                             type="text"
                             class="br-btm input-w"
                             autoComplete="off"
+                            tabindex="6"
                           />
                         </td>
 
@@ -1310,7 +1324,7 @@
                                   placeholder="Upload Document"
                                   id="imageUpload"
                                   accept=".pdf"
-                                  #cd
+                                  #cd 
                                   (change)="
                                     uploadIssuesFile(
                                       $event.target.files,
@@ -1321,7 +1335,7 @@
                                 <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
                               </div>
                             </div>
-                            <button mat-button (click)="cd.click()">
+                            <button mat-button (click)="cd.click()" tabindex="7">
                               <mat-icon>file_upload</mat-icon>
                             </button>
                             <button
@@ -1351,10 +1365,10 @@
                     <mat-select
                       class="br-btm input-w"
                       formControlName="IsSelect"
-                      tabindex="5"
+                      tabindex="8"
                     >
-                      <mat-option [value]="true">Yes</mat-option>
-                      <mat-option [value]="false">No</mat-option>
+                      <mat-option [value]=true>Yes</mat-option>
+                      <mat-option [value]=false>No</mat-option>
                     </mat-select>
                     <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
                        Please select warning
@@ -1375,12 +1389,13 @@
                         >
                           <input
                             matInput
-                            formControlName="period"
+                            formControlName="warningPeriod"
                             [matDatepicker]="picker1"
                             class="date br-btm input-w"
                             [min]="minDate"
                             [max]="maxDate"
                             placeholder="DD/MM/YYYY"
+                            tabindex="9"
                           />
                           <mat-datepicker-toggle
                             matSuffix
@@ -1397,10 +1412,11 @@
                         >
                           <input
                             matInput
-                            formControlName="causeActionTaken"
+                            formControlName="warningCauseActionTaken"
                             type="text"
                             class="br-btm input-w"
                             autoComplete="off"
+                            tabindex="10"
                           />
                         </td>
 
@@ -1416,7 +1432,7 @@
                                   placeholder="Upload Document"
                                   id="imageUpload"
                                   accept=".pdf"
-                                  #cat
+                                  #cat 
                                   (change)="
                                     uploadIssuesFile(
                                       $event.target.files,
@@ -1427,7 +1443,7 @@
                                 <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
                               </div>
                             </div>
-                            <button mat-button (click)="cat.click()">
+                            <button mat-button (click)="cat.click()" tabindex="11">
                               <mat-icon>file_upload</mat-icon>
                             </button>
                             <button
@@ -1456,10 +1472,10 @@
                     <mat-select
                       class="br-btm input-w"
                       formControlName="IsSelect"
-                      tabindex="2"
+                      tabindex="12"
                     >
-                      <mat-option [value]="true">Yes</mat-option>
-                      <mat-option [value]="false">No</mat-option>
+                      <mat-option [value]=true>Yes</mat-option>
+                      <mat-option [value]=false>No</mat-option>
                     </mat-select>
                   </mat-form-field>
                 </div>
@@ -1479,12 +1495,13 @@
                         >
                           <input
                             matInput
-                            formControlName="period"
+                            formControlName="showCausedPeriod"
                             [matDatepicker]="picker1"
                             class="date br-btm input-w"
                             [min]="minDate"
                             [max]="maxDate"
                             placeholder="DD/MM/YYYY"
+                            tabindex="13"
                           />
                           <mat-datepicker-toggle
                             matSuffix
@@ -1501,10 +1518,11 @@
                         >
                           <input
                             matInput
-                            formControlName="causeActionTaken"
+                            formControlName="showCausedCauseActionTaken"
                             type="text"
                             class="br-btm input-w"
                             autoComplete="off"
+                            tabindex="14"
                           />
                         </td>
 
@@ -1520,7 +1538,7 @@
                                   placeholder="Upload Document"
                                   id="imageUpload"
                                   accept=".pdf"
-                                  #sci
+                                  #sci 
                                   (change)="
                                     uploadIssuesFile(
                                       $event.target.files,
@@ -1531,7 +1549,7 @@
                                 <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
                               </div>
                             </div>
-                            <button mat-button (click)="sci.click()">
+                            <button mat-button (click)="sci.click()" tabindex="15">
                               <mat-icon>file_upload</mat-icon>
                             </button>
                             <button
@@ -1561,10 +1579,10 @@
                     <mat-select
                       class="br-btm input-w"
                       formControlName="IsSelect"
-                      tabindex="4"
+                      tabindex="16"
                     >
-                      <mat-option [value]="true">Yes</mat-option>
-                      <mat-option [value]="false">No</mat-option>
+                      <mat-option [value]=true>Yes</mat-option>
+                      <mat-option [value]=false>No</mat-option>
                     </mat-select>
                     <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
                        Please select Suspention
@@ -1587,12 +1605,13 @@
                         >
                           <input
                             matInput
-                            formControlName="period"
+                            formControlName="suspensionPeriod"
                             [matDatepicker]="picker1"
                             class="date br-btm input-w"
                             [min]="minDate"
                             [max]="maxDate"
                             placeholder="DD/MM/YYYY"
+                            tabindex="17"
                           />
                           <mat-datepicker-toggle
                             matSuffix
@@ -1609,10 +1628,11 @@
                         >
                           <input
                             matInput
-                            formControlName="causeActionTaken"
+                            formControlName="suspensionCauseActionTaken"
                             type="text"
                             class="br-btm input-w"
                             autoComplete="off"
+                            tabindex="18"
                           />
                         </td>
 
@@ -1627,7 +1647,7 @@
                                   type="file"
                                   placeholder="Upload Document"
                                   id="imageUpload"
-                                  accept=".pdf"
+                                  accept=".pdf" 
                                   #sus
                                   (change)="
                                     uploadIssuesFile(
@@ -1639,7 +1659,7 @@
                                 <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
                               </div>
                             </div>
-                            <button mat-button (click)="sus.click()">
+                            <button mat-button (click)="sus.click()" tabindex="19">
                               <mat-icon>file_upload</mat-icon>
                             </button>
                             <button
@@ -1669,10 +1689,10 @@
                     <mat-select
                       class="br-btm input-w"
                       formControlName="IsSelect"
-                      tabindex="6"
+                      tabindex="20"
                     >
-                      <mat-option [value]="true">Yes</mat-option>
-                      <mat-option [value]="false">No</mat-option>
+                      <mat-option [value]=true>Yes</mat-option>
+                      <mat-option [value]=false>No</mat-option>
                     </mat-select>
                     <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
                        Please select Termination
@@ -1695,12 +1715,13 @@
                         >
                           <input
                             matInput
-                            formControlName="period"
+                            formControlName="terminationPeriod"
                             [matDatepicker]="picker1"
                             class="date br-btm input-w"
                             [min]="minDate"
                             [max]="maxDate"
                             placeholder="DD/MM/YYYY"
+                            tabindex="21"
                           />
                           <mat-datepicker-toggle
                             matSuffix
@@ -1717,10 +1738,11 @@
                         >
                           <input
                             matInput
-                            formControlName="causeActionTaken"
+                            formControlName="terminationCauseActionTaken"
                             type="text"
                             class="br-btm input-w"
                             autoComplete="off"
+                            tabindex="22"
                           />
                         </td>
 
@@ -1735,7 +1757,7 @@
                                   type="file"
                                   placeholder="Upload Document"
                                   id="imageUpload"
-                                  accept=".pdf"
+                                  accept=".pdf" 
                                   #ter
                                   (change)="
                                     uploadIssuesFile(
@@ -1747,7 +1769,7 @@
                                 <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
                               </div>
                             </div>
-                            <button mat-button (click)="ter.click()">
+                            <button mat-button (click)="ter.click()" tabindex="23">
                               <mat-icon>file_upload</mat-icon>
                             </button>
                             <button
@@ -1787,7 +1809,7 @@
               class="lg-button focus:outline-none focus:shadow-outline"
               type="button"
               (click)="submit()"
-              *ngIf="!id"
+              *ngIf="!id" tabindex="24"
             >
               Submit
             </button>

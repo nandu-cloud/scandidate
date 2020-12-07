@@ -25,7 +25,7 @@ export class EmployeeService {
       'exitDate': string, 'professionalExperience': number, 'employeeId': string, 'role': string, 'department': string,
       'address': string, 'dateOfBirth': string, 'adharNumber': string, 'panNumber': string, 'selfDriven': number,
       'creativity': number, 'informalOrganizationSenseOfBelonging': number, 'initiative': number, 'workIndependenty': number, 'teamWork': number,
-      'dealConstructivelyWithPressure': number, 'volume': number, 'quality': number, 'consistency': number, 'punctuality': number,
+      'dealConstructivelyWithPressure': number, 'volume': number, 'quality': any, 'consistency': any, 'punctuality': number,
       'discipline': number, 'academicKnowledge': number, 'productKnowledge', 'industryKnowledge': number, 'communicationSkills': number,
       'addedById': string, 'organisationId': string, 'organizationName': string, 'awards': any, 'city': string, 'state': string,
       'pinCode': string, 'landMark': string, 'building': any, 'stakeholder': any, 'discrepancyDocuments': any,
@@ -72,12 +72,12 @@ export class EmployeeService {
       'exitDate': string, 'professionalExperience': number, 'employeeId': string, 'role': string, 'department': string,
       'address': string, 'dateOfBirth': string, 'adharNumber': string, 'panNumber': string, 'selfDriven': number,
       'creativity': number, 'informalOrganizationSenseOfBelonging': number, 'initiative': number, 'workIndependenty': number, 'teamWork': number,
-      'dealConstructivelyWithPressure': number, 'volume': number, 'quality': number, 'consistency': number, 'punctuality': number,
+      'dealConstructivelyWithPressure': number, 'volume': number, 'quality': number, 'consistency': any, 'punctuality': number,
       'discipline': number, 'academicKnowledge': number, 'productKnowledge', 'industryKnowledge': number, 'communicationSkills': number,
       'addedById': string, 'organisationId': string, 'organizationName': string, 'awards': any,
       'city': string, 'state': string, 'keySkills': string, 'rehireAgain': string,
       'pinCode': string, 'landMark': string, 'discrepancyDocuments': any,
-      'compliencyDiscrepancy': any, 'warning': any, 'showCausedIssue': any, 'suspension': any, 'termination': any, 'reasonForSerperation': any
+      'compliencyDiscrepancy': any, 'warning': any, 'showCausedIssue': any, 'suspension': any, 'termination': any, 'reasonForSerperation': any, 'building': any, 'stakeholder': any
     } =
     {
       'firstName': empupdateData.firstName, 'lastName': empupdateData.lastName, 'email': empupdateData.email, 'phoneNumber': empupdateData.phoneNumber, 'dateOfJoining': empupdateData.dateOfJoining,
@@ -91,7 +91,7 @@ export class EmployeeService {
       'discrepancyDocuments': empupdateData.discrepancyDocuments, 'compliencyDiscrepancy': empupdateData.compliencyDiscrepancy,
       'warning': empupdateData.warning, 'showCausedIssue': empupdateData.showCausedIssue, 'suspension': empupdateData.suspension,
       'termination': empupdateData.termination, 'rehireAgain': empupdateData.rehireAgain, 'keySkills': empupdateData.keySkills,
-      'reasonForSerperation': empupdateData.reasonForSerperation
+      'reasonForSerperation': empupdateData.reasonForSerperation, 'building': empupdateData.building, 'stakeholder': empupdateData.stakeholder
     };
     return this.http.put(this.baseUrl + '/api/organisation/operational/' + this.empIdupdate, EmployeeData
       , {
