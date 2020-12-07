@@ -115,7 +115,7 @@
                   [matDatepicker]="picker2"
                   class="br-btm input-w"
                   required
-                  placeholder="MM/DD/YYYY"
+                  placeholder="DD/MM/YYYY"
                   tabindex="9"
                 />
                 <mat-datepicker-toggle
@@ -276,7 +276,7 @@
                   [matDatepicker]="picker"
                   (dateChange)="calculateExperience()"
                   class="br-btm input-w"
-                  placeholder="MM/DD/YYYY"
+                  placeholder="DD/MM/YYYY"
                   required
                   tabindex="10"
                 />
@@ -880,9 +880,9 @@
                           accept=".pdf"
                           #awards
                           tabindex="3"
-                          (change)="uploadawardsFile($event.target.files,'awards')"
+                          (change)="uploadawardsFile($event.target.files)"
                         />
-                        <div id="imagePreview">{{ this.documentName }}</div>
+                        <div id="imagePreview">{{ this.documentNameData }}</div>
                       </div>
                     </div>
                     <button
@@ -1223,6 +1223,7 @@
                                 <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
                               </div>
                             </div>
+                            <div>{{this.documentName}}</div>
                             <button mat-button (click)="dd.click()" tabindex="4">
                               <mat-icon>file_upload</mat-icon>
                             </button>

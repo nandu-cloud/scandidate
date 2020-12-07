@@ -47,6 +47,7 @@ export class AddCandidateComponent implements OnInit {
   tabChangeEvent: any;
   fileToUpload: File;
   documentName: any;
+  documentNameData: string;
   studentDocSubscription: any;
   stuService: any;
   studentForm: any;
@@ -104,25 +105,25 @@ export class AddCandidateComponent implements OnInit {
       industryKnowledge: new FormControl('', [Validators.required]),
       communicationSkills: new FormControl('', [Validators.required]),
       rehireAgain: new FormControl(),
-      keySkills: new FormControl('')
+      keySkills: new FormControl()
     });
     this.fourthFormGroup = new FormGroup({
       awards: new FormGroup({
         IsSelect: new FormControl(), remarks: new FormControl(),
-        documentName: new FormControl(), documentUpload: new FormControl() 
+        documentName: new FormControl(), documentUpload: new FormControl()
       })
     });
     this.fifthFormGroup = new FormGroup({
       // volume: new FormControl('', [Validators.required]),
-      quality: new FormGroup({ IsSelect: new FormControl(''), description: new FormControl('') }),
-      consistency: new FormGroup({ IsSelect: new FormControl(''), description: new FormControl('') }),
-      building: new FormGroup({ IsSelect: new FormControl(''), description: new FormControl('') }),
-      stakeholder: new FormGroup({ IsSelect: new FormControl(''), description: new FormControl('') })
+      quality: new FormGroup({ IsSelect: new FormControl(), description: new FormControl() }),
+      consistency: new FormGroup({ IsSelect: new FormControl(), description: new FormControl() }),
+      building: new FormGroup({ IsSelect: new FormControl(), description: new FormControl() }),
+      stakeholder: new FormGroup({ IsSelect: new FormControl(), description: new FormControl() })
     });
     this.sixthFormGroup = new FormGroup({
       discrepancyDocuments: new FormGroup({
-        IsSelect: new FormControl(''), descrepencyPeriod: new FormControl(''),
-        descrepencyCauseActionTaken: new FormControl(''), descrepencyUploadDocument: new FormControl('')
+        IsSelect: new FormControl(), descrepencyPeriod: new FormControl(),
+        descrepencyCauseActionTaken: new FormControl(), descrepencyUploadDocument: new FormControl()
       }),
       compliencyDiscrepancy: new FormGroup({
         IsSelect: new FormControl(), compliencyPeriod: new FormControl(),
@@ -225,18 +226,20 @@ export class AddCandidateComponent implements OnInit {
    }
  }
 
-  uploadawardsFile(file: FileList,type) {
+  uploadawardsFile(file: FileList) {
     this.fileToUpload = file[0];
-    this.documentName = this.fileToUpload.name;
+    this.documentNameData = this.fileToUpload.name;
     this.studentDocSubscription =  this.empService.postIssuesFile(this.fileToUpload).subscribe(
       data => {
-        this.fourthFormGroup.patchValue({ awards: { documentUpload: data.data.documentLink } });
-        console.log(data.data.documentUpload);
-
-        this.documentName = `${this.baseUrl}/public/organization_doc/${data.data.documentLink}`;
+        this.fourthFormGroup.patchValue({ awards: { documentUpload: data.data.documentUpload } });
+        console.log('testing awards' + data.data.documentUpload);
+        this.documentNameData = `${data.data.documentUpload}`;
+        // this.documentNameData = `${this.baseUrl}/public/organization_doc/${data.data.documentUpload}`;
+        // console.log('testing awards'+ this.documentNameData);
         // this.studentDocSubscription = this.stuService.deleteFile(this.imageFilename).subscribe();
-      }
+      } 
     )
+    console.log(this.documentNameData + 'jkfshhhhhhhhhhhhhhhhhhhhhhhhhhh');
   }
 
   uploadIssuesFile(file: FileList, type) {
@@ -245,24 +248,24 @@ export class AddCandidateComponent implements OnInit {
     this.studentDocSubscription = this.empService.postIssuesFile(this.fileToUpload).subscribe(
       data => {
         if (type == 'discrepancyDocuments') {
-          this.sixthFormGroup.patchValue({ discrepancyDocuments: { descrepencyUploadDocument: data.data.documentLink } });
+          this.sixthFormGroup.patchValue({ discrepancyDocuments: { descrepencyUploadDocument: data.data.documentUpload } });
         }
         if (type == 'compliencyDiscrepancy') {
-          this.sixthFormGroup.patchValue({ compliencyDiscrepancy: { compliencyUploadDocument: data.data.documentLink } });
+          this.sixthFormGroup.patchValue({ compliencyDiscrepancy: { compliencyUploadDocument: data.data.documentUpload } });
         }
         if (type == 'Warning') {
-          this.sixthFormGroup.patchValue({ warning: { warningUploadDocument: data.data.documentLink } });
+          this.sixthFormGroup.patchValue({ warning: { warningUploadDocument: data.data.documentUpload } });
         }
         if (type == 'showCausedIssue') {
-          this.sixthFormGroup.patchValue({ showCausedIssue: { showCausedUploadDocument: data.data.documentLink } });
+          this.sixthFormGroup.patchValue({ showCausedIssue: { showCausedUploadDocument: data.data.documentUpload } });
         }
         if (type == 'suspension') {
-          this.sixthFormGroup.patchValue({ suspension: { suspensionUploadDocument: data.data.documentLink } });
+          this.sixthFormGroup.patchValue({ suspension: { suspensionUploadDocument: data.data.documentUpload } });
         }
         if (type == 'termination') {
-          this.sixthFormGroup.patchValue({ termination: { terminationUploadDocument: data.data.documentLink } });
+          this.sixthFormGroup.patchValue({ termination: { terminationUploadDocument: data.data.documentUpload } });
         }
-        this.documentName = `${this.baseUrl}/public/organization_doc/${data.data.documentLink}`;
+        this.documentName = `${this.baseUrl}/public/organization_doc/${data.data.documentUpload}`;
         // this.studentDocSubscription = this.stuService.deleteFile(this.imageFilename).subscribe();
       }
     )
@@ -281,51 +284,9 @@ export class AddCandidateComponent implements OnInit {
         this.fourthFormGroup.patchValue(respObj.data);
         this.fifthFormGroup.patchValue(respObj.data);
         this.sixthFormGroup.patchValue(respObj.data);
-        // this.sixthFormGroup.patchValue({discrepancyDocuments:{
-        //   IsSelect: respObj.data.discrepancyDocuments.IsSelect,
-        //   descrepencyPeriod: respObj.data.discrepancyDocuments.descrepencyPeriod,
-        //   descrepencyUploadDocument: respObj.data.discrepancyDocuments.descrepencyUploadDocument,
-        //   descrepencyCauseActionTaken: respObj.data.discrepancyDocuments.descrepencyCauseActionTaken},
-        //   compliencyDiscrepancy: {
-        //     IsSelect: respObj.data.compliencyDiscrepancy.IsSelect,
-        //     compliencyPeriod: respObj.data.discrepancyDocuments.compliencyPeriod,
-        //     compliencyUploadDocument: respObj.data.discrepancyDocuments.compliencyUploadDocument,
-        //   compliencyCauseActionTaken: respObj.data.discrepancyDocuments.compliencyCauseActionTaken
-        //   },
-        //   warning: {
-        //     IsSelect: respObj.data.warning.IsSelect,
-        //     warningPeriod: respObj.data.discrepancyDocuments.warningPeriod,
-        //     warningUploadDocument: respObj.data.discrepancyDocuments.warningUploadDocument,
-        //   warningCauseActionTaken: respObj.data.discrepancyDocuments.warningCauseActionTaken
-        //   },
-        //   showCausedIssue: {
-        //     IsSelect: respObj.data.showCausedIssue.IsSelect,
-        //     showCausedPeriod: respObj.data.discrepancyDocuments.showCausedPeriod,
-        //     showCausedUploadDocument: respObj.data.discrepancyDocuments.showCausedUploadDocument,
-        //     showCausedCauseActionTaken: respObj.data.discrepancyDocuments.showCausedCauseActionTaken
-        //   },
-        //   suspension: {
-        //     IsSelect: respObj.data.suspension.IsSelect,
-        //     suspensionPeriod: respObj.data.discrepancyDocuments.suspensionPeriod,
-        //     suspensionUploadDocument: respObj.data.discrepancyDocuments.suspensionUploadDocument,
-        //     suspensionCauseActionTaken: respObj.data.discrepancyDocuments.suspensionCauseActionTaken
-        //   },
-        //   termination: {
-        //     IsSelect: respObj.data.termination.IsSelect,
-        //     terminationPeriod: respObj.data.discrepancyDocuments.terminationPeriod,
-        //     terminationUploadDocument: respObj.data.discrepancyDocuments.terminationUploadDocument,
-        //     terminationCauseActionTaken: respObj.data.discrepancyDocuments.terminationCauseActionTaken
-        //   }
-        // });
-
-    
-
-       
-
-
-
-        // this.imageUrl=`${this.baseUrl}/public/organization_logo/${respObj.data.organisationLogo}`;
-        // this.imageFilename=respObj.data.organisationLogo;
+        // this.documentName = `${this.baseUrl}/public/organization_doc/${respObj.data.documentUpload}`;
+        this.documentName = `${respObj.data.documentUpload}`;
+        this.documentNameData = `${this.baseUrl}/public/organization_doc/${respObj.data.documentUpload}`;
       }, err => {
         this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
       })
