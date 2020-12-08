@@ -437,13 +437,11 @@ export class DialogElementsExampleDialog {
 
     ngOnInit(){
       console.log(this.methodType)
-      if (this.methodType == 'update'){
-        this.Message = "Student Updated successfully"
-      }
-      if (this.methodType == 'delete') {
+      if(this.methodType == 'update'){
+        this.Message = "Student information Updated Successfully"
+      }else if(this.methodType == 'delete') {
         this.Message = "Delete successfully"
-      }
-      else{
+      }else{
         this.Message = "Student added successfully"
       }
 

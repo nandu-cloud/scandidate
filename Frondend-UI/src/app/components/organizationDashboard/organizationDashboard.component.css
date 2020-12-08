@@ -8,3 +8,6 @@
 .border-btm{
     border-bottom: 1px solid #80808059;
 }
+.material-icons {
+    cursor: default !important;
+}
