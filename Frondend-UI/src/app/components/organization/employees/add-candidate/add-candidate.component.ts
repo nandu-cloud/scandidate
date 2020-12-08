@@ -54,7 +54,8 @@ export class AddCandidateComponent implements OnInit {
   baseUrl: any = environment.baseUrl;
   awardActivities: boolean = false;
   reasonsForSeparation: boolean = false;
-
+  minDate : any;
+  maxDate : any;
   constructor(
     public fb: FormBuilder,
     private cd: ChangeDetectorRef, public dialog: MatDialog, public route: ActivatedRoute, public empService: EmployeeService,
@@ -110,7 +111,7 @@ export class AddCandidateComponent implements OnInit {
     this.fourthFormGroup = new FormGroup({
       awards: new FormGroup({
         IsSelect: new FormControl(), remarks: new FormControl(),
-        documentName: new FormControl(), documentUpload: new FormControl()
+        documentName: new FormControl()
       })
     });
     this.fifthFormGroup = new FormGroup({
