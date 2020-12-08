@@ -8,6 +8,7 @@ const userDAL = require("./addUserDAL");
 const authDAL = require("./../../../auth/authDAL");
 const userValidator = require("./addUserValidator");
 const saltRounds = 10;
+const email = require("../../../../helpers/email");
 
 module.exports.createOppsUserMethod = async function (req, res, next) {
   const data = req.body;
