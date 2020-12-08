@@ -33,7 +33,7 @@
       <div class="justify-start mr-3 border-r pr-3">
         <h3>Awards</h3>
         <div *ngFor="let list of data">
-            <li *ngIf="list.awards">{{list.awards}}</li>
+            <li *ngIf="list.awards">awards</li>
         </div>
       </div>
       <div class="text-center">
@@ -49,7 +49,7 @@
 <div class="overflow-hidden shadow max-w-full my-3">
   <div class="text-left px-20 pb-6 pt-2">
     <h1 class="text-black text-sm bold font-sans">Experiance</h1>
-    <div class="flex justify-start pb-3 text-grey-dark" *ngFor="let list of data">
+    <div class="flex flex-nowrap justify-start pb-3 text-grey-dark" *ngFor="let list of data">
       <div class="text-center mr-3 border-r pr-3" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
         <div *ngFor="let list1 of data1">
           <img class="w-20 h-20" *ngIf="list.organisationId === list1._id" src="{{orgLogo + list1.organisationLogo }}">
@@ -66,7 +66,7 @@
       <div class=" pl-10" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
         <button class="px-2 lg-button focus:outline-none focus:shadow-outline"  (click)="openDialog(list._id)">Work Ethic</button>
         <button class="px-2 lg-button focus:outline-none focus:shadow-outline"  (click)="openMeritDialog(list._id)">Merit-Quality</button>
-        <button class="px-2 lg-button focus:outline-none focus:shadow-outline"  (click)="openRecognitionDialog(list._id)">Recognition</button><br><br>
+        <button class="px-2 lg-button focus:outline-none focus:shadow-outline"  (click)="openRecognitionDialog(list._id)">Recognition</button>
         <button class="px-2 lg-button focus:outline-none focus:shadow-outline"  (click)="openLeadershipDialog(list._id)">Leadership</button>
         <button class="px-2 lg-button focus:outline-none focus:shadow-outline"  (click)="openIssuesDialog(list._id)">Issues</button>
       </div>

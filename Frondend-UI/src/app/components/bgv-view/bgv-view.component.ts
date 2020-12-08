@@ -232,7 +232,7 @@ openLeadershipDialog(empId:number): void {
 
 openIssuesDialog(empId:number): void {
   const dialogRef = this.dialog.open(IssuesComponent,{
-    width: '500px',disableClose: true ,
+    width: '700px',disableClose: true ,
     data: {
       id: empId
     }   
