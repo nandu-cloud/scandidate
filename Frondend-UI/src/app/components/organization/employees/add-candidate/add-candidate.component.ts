@@ -229,17 +229,20 @@ export class AddCandidateComponent implements OnInit {
 
   uploadawardsFile(file: FileList) {
     this.fileToUpload = file[0];
-    this.documentNameData = this.fileToUpload.name;
+    this.documentName = this.fileToUpload.name;
     this.studentDocSubscription =  this.empService.postIssuesFile(this.fileToUpload).subscribe(
       data => {
         this.fourthFormGroup.patchValue({ awards: { documentUpload: data.data.documentUpload } });
+        // this.fourthFormGroup.controls.awards.setValue({documentUpload: data.data.documentUpload});
+        // this.fourthFormGroup.setValue({awards: {documentUpload: data.data.documentUpload}});
+        //  patchValue({ awards: { documentUpload: data.data.documentUpload } });
         console.log('testing awards' + data.data.documentUpload);
-        this.documentNameData = `${data.data.documentUpload}`;
-        // this.documentNameData = `${this.baseUrl}/public/organization_doc/${data.data.documentUpload}`;
+        // this.documentNameData = `${data.data.documentUpload}`;
+        this.documentNameData = `${this.baseUrl}/public/organization_doc/${data.data.documentUpload}`;
         // console.log('testing awards'+ this.documentNameData);
         // this.studentDocSubscription = this.stuService.deleteFile(this.imageFilename).subscribe();
-      } 
-    )
+      }
+    );
     console.log(this.documentNameData + 'jkfshhhhhhhhhhhhhhhhhhhhhhhhhhh');
   }
 
@@ -286,8 +289,9 @@ export class AddCandidateComponent implements OnInit {
         this.fifthFormGroup.patchValue(respObj.data);
         this.sixthFormGroup.patchValue(respObj.data);
         // this.documentName = `${this.baseUrl}/public/organization_doc/${respObj.data.documentUpload}`;
-        this.documentName = `${respObj.data.documentUpload}`;
-        this.documentNameData = `${this.baseUrl}/public/organization_doc/${respObj.data.documentUpload}`;
+        // this.documentName = `${respObj.data.documentUpload}`;
+        this.documentName = `${this.baseUrl}/public/organization_doc/${respObj.data.documentUpload}`;
+        console.log('edit' + this.documentName);
       }, err => {
         this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
       })
