@@ -18,12 +18,14 @@ export class LeadershipComponent implements OnInit {
   empIdedit: any;
   public setMessage: any = {};
   data1: any;
-  selfDriven: string;
-  workIndependenty: string;
-  creativity: string;
-  teamWork: string;
-  dealConstructivelyWithPressure: string;
-  discipline: string;
+  stategicThinking: string;
+  stategicThinkingRemarks: string;
+  problemSolving: string;
+  problemSolvingRemarks: string;
+  buildingHighPerformanceTeam: string;
+  buildingHighPerformanceTeamRemark: string;
+  stakeHolderManagment:string;
+  stakeHolderManagmentRemarks:string;
   
 
   constructor(
@@ -40,7 +42,59 @@ export class LeadershipComponent implements OnInit {
         console.log("dialogbox_details"+respObj.data);
         this.data1 = respObj.data;
         console.log(this.data1);
-      
+
+        //strategicThinking
+
+        if(this.data1.quality.IsSelect == 1)
+          { this.stategicThinking ="Not satisfactory"}
+        if(this.data1.quality.IsSelect == 2)
+          {  this.stategicThinking="Needs Improvement"}
+        if(this.data1.quality.IsSelect == 3)
+          { this.stategicThinking="Meets Expectations"}
+        if(this.data1.quality.IsSelect == 4) 
+          {this.stategicThinking="Exceeds Expectations"}
+          
+          
+        //problemsolving
+
+        if(this.data1.consistency.IsSelect == 1)
+        { this.problemSolving ="Not satisfactory"}
+        if(this.data1.consistency.IsSelect == 2)
+        {  this.problemSolving="Needs Improvement"}
+        if(this.data1.consistency.IsSelect == 3)
+        { this.problemSolving="Meets Expectations"}
+        if(this.data1.consistency.IsSelect == 4) 
+        {this.problemSolving="Exceeds Expectations"}
+
+        //buildingHighPer
+
+        if(this.data1.building.IsSelect == 1)
+        { this.buildingHighPerformanceTeam ="Not satisfactory"}
+        if(this.data1.building.IsSelect == 2)
+        {  this.buildingHighPerformanceTeam="Needs Improvement"}
+        if(this.data1.building.IsSelect == 3)
+        { this.buildingHighPerformanceTeam="Meets Expectations"}
+        if(this.data1.building.IsSelect == 4) 
+        {this.buildingHighPerformanceTeam="Exceeds Expectations"}
+
+         //buildingHighPer
+
+         if(this.data1.stakeholder.IsSelect == 1)
+           {this.stakeHolderManagment ="Not satisfactory"}
+         if(this.data1.stakeholder.IsSelect == 2)
+           {this.stakeHolderManagment="Needs Improvement"}
+         if(this.data1.stakeholder.IsSelect == 3)
+           {this.stakeHolderManagment="Meets Expectations"}
+         if(this.data1.stakeholder.IsSelect == 4) 
+           {this.stakeHolderManagment="Exceeds Expectations"}
+
+           this.stategicThinkingRemarks =this.data1.quality.description;
+           this.problemSolvingRemarks = this.data1.consistency.description;
+           this.buildingHighPerformanceTeamRemark  = this.data1.building.description;
+           this.stakeHolderManagmentRemarks = this.data1.stakeholder.description;
+ 
+
+
       }, err => {
         this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
       })
