@@ -16,6 +16,17 @@ let storage = multer.diskStorage({
   filename: function (req, file, cb) {
     let ext = mime.getExtension(file.mimetype);
     cb(null, short.uuid() + "." + ext);
+    // var dateTime = new Date();
+    // cb(
+    //   null,
+    //   dateTime.getDate() +
+    //     "-" +
+    //     dateTime.getMonth() +
+    //     "-" +
+    //     dateTime.getFullYear() +
+    //     " " +
+    //     file.originalname
+    // );
   },
 });
 
