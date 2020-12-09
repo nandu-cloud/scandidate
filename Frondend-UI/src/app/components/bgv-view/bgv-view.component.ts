@@ -100,6 +100,10 @@ export class BGVViewComponent implements OnInit {
   totalMonth: any = [];
   totalYears: any = [];
   empId: number;
+  y : any;
+  m : any;
+  m1 : any;
+  result;
   constructor(
     public fb: FormBuilder,private _storage: StorageService,
     private cd: ChangeDetectorRef,public dialog: MatDialog,public route:ActivatedRoute,public empService : BgvSearchService,private datePipe: DatePipe
@@ -131,6 +135,7 @@ export class BGVViewComponent implements OnInit {
         //let instLogo =`${this.baseUrl}/public/institute_logo/`;
         //let orgLogo =`${this.baseUrl}/public/organization_logo/`;
             //para for org logo
+            var result = [];
             for (let i = 0; i < this.data.length; i++) {
               if(this.data[i].organisationId)
               {
@@ -138,31 +143,20 @@ export class BGVViewComponent implements OnInit {
               this.orgId.push(data);
               var date = this.data[i].dateOfJoining;
               var date1 = this.data[i].exitDate;
-              this.joinMonth = this.datePipe.transform(date,"MM");
-              this.exMonth = this.datePipe.transform(date1,'MM');
-              this.joinYear = this.datePipe.transform(date,"yyyy");
-              this.exYear = this.datePipe.transform(date1,'yyyy');
-              this.totMonths = this.joinMonth-this.exMonth;
-              this.totYears = this.joinYear-this.exYear;
-              console.log(this.totMonths);
-              console.log(this.totYears);
-              this.months = moment(this.joinMonth).diff(moment(this.exMonth), 'month', true);
-              this.totalMonth.push(this.months);
-              this.years = moment(this.exYear).diff(moment(this.joinYear), 'year', true);
-              this.totalYears.push(this.years);
-              this.proMonth = this.totalMonth.reduce(function(a, b){
-                return a + b;
-              }, 0);
-              this.proYear = this.totalYears.reduce(function(a, b){
-                return a + b;
-              }, 0);
+              this.joinMonth = this.datePipe.transform(date,"MM/dd/yyyy");
+              this.exMonth = this.datePipe.transform(date1,'MM/dd/yyyy');
+              this.months = moment(this.exMonth).diff(moment(this.joinMonth), 'month', true);
+              result.push({month:this.months});
+              console.log(result);
+               
               }
-              console.log(this.proMonth);
-              console.log(this.proYear);
             }
-            console.log(this.orgId);
-        
-            //para for inst logo
+             let sum: number = 0;
+             result.forEach(a => sum += a.month);
+             console.log(sum);
+                 this.m = sum % 12,
+                 this.y = Math.floor(sum / 12);
+                 this.m1 = Math.floor(this.m);
           for (let i = 0; i < this.data.length; i++) {
             if(this.data[i].instituteId)
            {

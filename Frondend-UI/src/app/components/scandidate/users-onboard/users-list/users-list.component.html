@@ -40,7 +40,7 @@
     </ng-container>
 
     <ng-container matColumnDef="email">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>>
+      <mat-header-cell *matHeaderCellDef mat-sort-header >Email</mat-header-cell>>
       <mat-cell *matCellDef="let row">{{row.email}}</mat-cell>>
     </ng-container>
 
@@ -50,15 +50,15 @@
     </ng-container> -->
 
     <ng-container matColumnDef="phoneNumber">
-      <mat-header-cell *matHeaderCellDef mat-sort-header class="flex justify-center">User Contact</mat-header-cell>>
-      <mat-cell *matCellDef="let row"  class="flex justify-center">{{row.phoneNumber}}</mat-cell>>
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="flex justify-end" style="margin-left: -50px;">User Contact</mat-header-cell>>
+      <mat-cell *matCellDef="let row"  class="flex justify-end" style="margin-left: -40px;">{{row.phoneNumber}}</mat-cell>>
     </ng-container>
 
    
 
     <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef mat-sort-header class="flex justify-center">Status</mat-header-cell>>
-      <mat-cell *matCellDef="let row"  class="flex justify-center"><span class="bg-green-500 text-white pt-2 pb-2 pl-4 pr-4 w-24 text-center text-bold capitalize" [ngStyle]="{'background-color':row.status == true ? 'green' : 'blue' }">{{(row.status)?"Active":"Inactive"}}</span></mat-cell>>
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="flex justify-center" >Status</mat-header-cell>>
+      <mat-cell *matCellDef="let row"  class="flex justify-end"><span class="bg-green-500 text-white pt-2 pb-2 pl-4 pr-4 w-24 text-center text-bold capitalize" [ngStyle]="{'background-color':row.status == true ? 'green' : 'blue' }">{{(row.status)?"Active":"Inactive"}}</span></mat-cell>>
     </ng-container>
 
     <ng-container matColumnDef="action" >
