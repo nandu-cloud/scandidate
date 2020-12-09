@@ -236,6 +236,10 @@ const employeeSchema = new mongoose.Schema({
       type: String,
       required: false,
     },
+    originalFilename: {
+      type: String,
+      required: false,
+    },
   },
 
   reasonForSerperation: {
@@ -289,6 +293,10 @@ const employeeSchema = new mongoose.Schema({
       type: String,
       required: false,
     },
+    originalFilename: {
+      type: String,
+      required: false,
+    },
   },
 
   compliencyDiscrepancy: {
@@ -305,6 +313,10 @@ const employeeSchema = new mongoose.Schema({
       required: false,
     },
     compliencyUploadDocument: {
+      type: String,
+      required: false,
+    },
+    originalFilename: {
       type: String,
       required: false,
     },
@@ -327,6 +339,10 @@ const employeeSchema = new mongoose.Schema({
       type: String,
       required: false,
     },
+    originalFilename: {
+      type: String,
+      required: false,
+    },
   },
 
   showCausedIssue: {
@@ -343,6 +359,10 @@ const employeeSchema = new mongoose.Schema({
       required: false,
     },
     showCausedUploadDocument: {
+      type: String,
+      required: false,
+    },
+    originalFilename: {
       type: String,
       required: false,
     },
@@ -364,6 +384,10 @@ const employeeSchema = new mongoose.Schema({
       type: String,
       required: false,
     },
+    originalFilename: {
+      type: String,
+      required: false,
+    },
   },
   termination: {
     IsSelect: {
@@ -379,6 +403,10 @@ const employeeSchema = new mongoose.Schema({
       required: false,
     },
     terminationUploadDocument: {
+      type: String,
+      required: false,
+    },
+    originalFilename: {
       type: String,
       required: false,
     },

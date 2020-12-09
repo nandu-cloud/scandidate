@@ -6,7 +6,6 @@ const colors = require("./helpers/colors");
 const AppError = require("./helpers/appError");
 const errorHandler = require("./middlewares/errorHandler");
 const path = require("path");
-
 const morgan = require("morgan");
 
 const app = express();

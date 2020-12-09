@@ -6,11 +6,15 @@ const colors = require("./../../../../helpers/colors");
 const path = require("path");
 
 module.exports.fileUpload = async function (req, res, next) {
+  const fileName = req.file.originalname;
   if (!req.file) return next(new AppError("No file uploaded!", 400));
   return res.status(200).json({
     status: "SUCCESS",
     message: "Documents Uploaded SuccessFully!",
-    data: { documentUpload: `${req.file.filename}` },
+    data: {
+      documentUpload: `${req.file.filename}`,
+      originalFileName: fileName,
+    },
   });
 };
 
