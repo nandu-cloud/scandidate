@@ -13,7 +13,7 @@ module.exports.fileUpload = async function (req, res, next) {
     message: "Documents Uploaded SuccessFully!",
     data: {
       documentUpload: `${req.file.filename}`,
-      originalFileName: fileName,
+      originalFilename: fileName,
     },
   });
 };
