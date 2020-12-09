@@ -199,3 +199,8 @@ tr.mat-row {
 .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-can-float .mat-input-server:focus+.mat-form-field-label-wrapper .mat-form-field-label {
   transform: translateY(-0.34375em) scale(0.75) !important;
 }
+@media (min-width: 1024px){
+.mat-select {
+    padding: 2em 0em 0.3em !important;
+}
+}
