@@ -100,13 +100,10 @@ export class BGVViewComponent implements OnInit {
   totalMonth: any = [];
   totalYears: any = [];
   empId: number;
-<<<<<<< Updated upstream
   y : any;
   m : any;
   m1 : any;
   result;
-=======
->>>>>>> Stashed changes
   constructor(
     public fb: FormBuilder,private _storage: StorageService,
     private cd: ChangeDetectorRef,public dialog: MatDialog,public route:ActivatedRoute,public empService : BgvSearchService,private datePipe: DatePipe
@@ -193,11 +190,7 @@ export class BGVViewComponent implements OnInit {
   
   openDialog(empId:number): void {
     const dialogRef = this.dialog.open(WorkEthicDialogComponent,{
-<<<<<<< Updated upstream
       width: '600px',disableClose: true ,
-=======
-      width: '700px',disableClose: true ,
->>>>>>> Stashed changes
       data: {
         id: empId
       }   
@@ -206,11 +199,7 @@ export class BGVViewComponent implements OnInit {
 
 openMeritDialog(empId:number): void {
   const dialogRef = this.dialog.open(MeritQualityComponent,{
-<<<<<<< Updated upstream
     width: '500px',disableClose: true ,
-=======
-    width: '700px',disableClose: true ,
->>>>>>> Stashed changes
     data: {
       id: empId
     }   
@@ -219,11 +208,7 @@ openMeritDialog(empId:number): void {
 
 openRecognitionDialog(empId:number): void {
   const dialogRef = this.dialog.open(RecognitionComponent,{
-<<<<<<< Updated upstream
     width: '400px',disableClose: true ,
-=======
-    width: '700px',disableClose: true ,
->>>>>>> Stashed changes
     data: {
       id: empId
     }   
@@ -232,11 +217,7 @@ openRecognitionDialog(empId:number): void {
 
 openLeadershipDialog(empId:number): void {
   const dialogRef = this.dialog.open(LeadershipComponent,{
-<<<<<<< Updated upstream
-    width: '550px',disableClose: true ,
-=======
     width: '700px',disableClose: true ,
->>>>>>> Stashed changes
     data: {
       id: empId
     }   
