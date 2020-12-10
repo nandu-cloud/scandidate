@@ -11,6 +11,7 @@ import { environment } from '../../../../../environments/environment';
 import { fromEvent } from "rxjs";
 import { debounceTime, take } from "rxjs/operators";
 import { ConnectedPositionStrategy } from '@angular/cdk/overlay';
+import * as fileSaver from 'file-saver';
 @Component({
   selector: 'app-add-candidate',
   templateUrl: './add-candidate.component.html',
@@ -31,6 +32,7 @@ export class AddCandidateComponent implements OnInit {
   employeeSubscription: Subscription;
   editEmployeeSubscription: Subscription;
   employeeUpdateSubscription: Subscription;
+  downloadStudentSubscription: Subscription;
   public setMessage: any = {};
   error = '';
   empIdedit: any;
@@ -158,6 +160,12 @@ export class AddCandidateComponent implements OnInit {
     });
   }
 
+  // view(item){
+  //   this.downloadStudentSubscription = this.empService.downloadFile(item).subscribe(respObj => {
+  //     console.log(respObj.data);
+  //   })
+  // }
+
   validateExitDate(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       if (this.firstFormGroup !== undefined) {
@@ -270,6 +278,7 @@ export class AddCandidateComponent implements OnInit {
         if (type == 'discrepancyDocuments') {
           this.sixthFormGroup.patchValue({ discrepancyDocuments: { descrepencyUploadDocument: data.data.documentUpload }});
           this.discrepancyFileName = data.data.originalFilename;
+          // this.discrepancyDownloadFile = data.data.documentUpload;
           this.sixthFormGroup.value.discrepancyDocuments.originalFilename = this.discrepancyFileName;
           console.log('sssssssss' + this.discrepancyFileName)
         }
@@ -305,6 +314,23 @@ export class AddCandidateComponent implements OnInit {
     )
   }
 
+  view(employeedocumentlink){
+  // window.location.href = `${this.baseUrl}/public/organization_doc/${employeedocumentlink}`;
+  this.downloadStudentSubscription = this.empService.downloadFile(employeedocumentlink).subscribe(respObj => {
+    let newBlob = new Blob([respObj], {type: "application/pdf"});
+    if(window.navigator && window.navigator.msSaveOrOpenBlob) {
+      window.navigator.msSaveOrOpenBlob(newBlob);
+      return;
+    }
+    const temp = `${this.baseUrl}/public/organization_doc/${employeedocumentlink}`;
+      window.open(temp, "_blank", "scrollbars=yes,resizable=yes,top=800,left=800,width=800,height=800");
+    // window.URL.createObjectURL(newBlob);
+    // fileSaver.saveAs(newBlob, this.documentName, this.discrepancyFileName, this.compliencyFileName,
+    //                  this.warningFileName, this.suspensionFileName, this.showcausedFileName, this.terminationFileName);
+    // var link = 
+      // console.log(respObj.data);
+    })
+  }
   ngOnInit(): void {
     if (this.empIdedit) {
       this.editEmployeeSubscription = this.empService.editEmployee(this.empIdedit).subscribe(respObj => {
@@ -460,7 +486,7 @@ export class AddCandidateComponent implements OnInit {
   }
 
 
-  
+
 
   update(id: number) {
     if (this.firstFormGroup.invalid) {
@@ -542,13 +568,63 @@ export class AddCandidateComponent implements OnInit {
       throw this.setMessage.message;
     })
   }
+  // discrepancyDownloadFile = this.data.discrepancyDocuments.descrepencyUploadDocument;;
+  // discrepancyDownload(employeedocumentlink) {
+  //   if ((this.sixthFormGroup.value.discrepancyDocuments.descrepencyUploadDocument !== null) || (this.sixthFormGroup.value.discrepancyDocuments.descrepencyUploadDocument === undefined)) {
+  //         this.sixthFormGroup.value.discrepancyDocuments.descrepencyUploadDocument 
+  //        }
+  //   this.downloadStudentSubscription = this.empService.downloadFile(employeedocumentlink).subscribe(respObj => {
+  //     this.data1 = respObj.data;
+  //     console.log(respObj.data);
 
-  downloadDoc(docLink) {
-    if (docLink != '') {
-      const temp = `${this.baseUrl}/public/organization_doc/${docLink}`;
-      window.open(temp, "_blank", "scrollbars=yes,resizable=yes,top=800,left=800,width=800,height=800");
-    }
-  }
+  //       });
+    // if (this.discrepancyDownloadFile != '') {
+    //   const temp = `${this.baseUrl}/public/organization_doc/${employeedocumentlink}`;
+    //   window.open(temp, "_blank", "scrollbars=yes,resizable=yes,top=800,left=800,width=800,height=800");
+    // }
+  // }
+
+  // compliencyDownload(employeedocumentlink){
+  //   if (this.compliencyDocFileName != '') {
+  //     const temp = `${this.baseUrl}/public/organization_doc/${employeedocumentlink}`;
+  //     window.open(temp, "_blank", "scrollbars=yes,resizable=yes,top=800,left=800,width=800,height=800");
+  //   }
+  // }
+
+  // warningDownload(employeedocumentlink){
+  //   if (this.warningFileName != '') {
+  //     const temp = `${this.baseUrl}/public/organization_doc/${employeedocumentlink}`;
+  //     window.open(temp, "_blank", "scrollbars=yes,resizable=yes,top=800,left=800,width=800,height=800");
+  //   }
+  // }
+
+  // showcausedDownload(employeedocumentlink){
+  //   if (this.showcausedFileName != '') {
+  //     const temp = `${this.baseUrl}/public/organization_doc/${employeedocumentlink}`;
+  //     window.open(temp, "_blank", "scrollbars=yes,resizable=yes,top=800,left=800,width=800,height=800");
+  //   }
+  // }
+
+  // suspensionDownload(employeedocumentlink){
+  //   if (this.suspensionFileName != '') {
+  //     const temp = `${this.baseUrl}/public/organization_doc/${employeedocumentlink}`;
+  //     window.open(temp, "_blank", "scrollbars=yes,resizable=yes,top=800,left=800,width=800,height=800");
+  //   }
+  // }
+
+  // terminationDownload(employeedocumentlink){
+  //   if (this.terminationFileName != '') {
+  //     const temp = `${this.baseUrl}/public/organization_doc/${employeedocumentlink}`;
+  //     window.open(temp, "_blank", "scrollbars=yes,resizable=yes,top=800,left=800,width=800,height=800");
+  //   }
+  // }
+
+  // awardsDownload(employeedocumentlink){
+  //   if (this.documentName != '') {
+  //     const temp = `${this.baseUrl}/public/organization_doc/${employeedocumentlink}`;
+  //     window.open(temp, "_blank", "scrollbars=yes,resizable=yes,top=800,left=800,width=800,height=800");
+  //   }
+  // }
 }
 
 

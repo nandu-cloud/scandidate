@@ -115,4 +115,7 @@ export class EmployeeService {
     return this.http.post(this.baseUrl + '/api/organisation/operational/uploads', formData
     );
   }
+  downloadFile(employeedocumentlink): Observable<Blob> {
+    return this.http.get(`${this.baseUrl}/api/organisation/operational/downloadfile/${employeedocumentlink}`, { responseType: 'blob' });
+  }
 }

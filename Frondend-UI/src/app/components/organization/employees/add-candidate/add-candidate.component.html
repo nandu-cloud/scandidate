@@ -896,6 +896,12 @@
                     >
                       <mat-icon>file_upload</mat-icon>
                     </button>
+                    <button
+                              mat-button
+                              (click)="view(fourthFormGroup.value.awards.documentUpload)"
+                            >
+                              <mat-icon>file_download</mat-icon>
+                            </button>
                   </div>
                 </div>
               </div>
@@ -1234,13 +1240,7 @@
                             </button>
                             <button
                               mat-button
-                              (click)="
-                                downloadDoc(
-                                  sixthFormGroup.get(
-                                    'discrepancyDocuments.uploadDocument'
-                                  ).value
-                                )
-                              "
+                              (click)="view(sixthFormGroup.value.discrepancyDocuments.descrepencyUploadDocument)"
                             >
                               <mat-icon>file_download</mat-icon>
                             </button>
@@ -1347,13 +1347,7 @@
                             </button>
                             <button
                               mat-button
-                              (click)="
-                                downloadDoc(
-                                  sixthFormGroup.get(
-                                    'compliencyDiscrepancy.uploadDocument'
-                                  ).value
-                                )
-                              "
+                              (click)="view(sixthFormGroup.value.compliencyDiscrepancy.compliencyUploadDocument)"
                             >
                               <mat-icon>file_download</mat-icon>
                             </button>
@@ -1455,12 +1449,7 @@
                             </button>
                             <button
                               mat-button
-                              (click)="
-                                downloadDoc(
-                                  sixthFormGroup.get('warning.uploadDocument')
-                                    .value
-                                )
-                              "
+                              (click)="view(sixthFormGroup.value.warning.warningUploadDocument)"
                             >
                               <mat-icon>file_download</mat-icon>
                             </button>
@@ -1561,13 +1550,7 @@
                             </button>
                             <button
                               mat-button
-                              (click)="
-                                downloadDoc(
-                                  sixthFormGroup.get(
-                                    'showCausedIssue.uploadDocument'
-                                  ).value
-                                )
-                              "
+                              (click)="view(sixthFormGroup.value.showCausedIssue.showCausedUploadDocument)"
                             >
                               <mat-icon>file_download</mat-icon>
                             </button>
@@ -1671,13 +1654,7 @@
                             </button>
                             <button
                               mat-button
-                              (click)="
-                                downloadDoc(
-                                  sixthFormGroup.get(
-                                    'suspension.uploadDocument'
-                                  ).value
-                                )
-                              "
+                              (click)="view(sixthFormGroup.value.suspension.suspensionUploadDocument)"
                             >
                               <mat-icon>file_download</mat-icon>
                             </button>
@@ -1781,13 +1758,7 @@
                             </button>
                             <button
                               mat-button
-                              (click)="
-                                downloadDoc(
-                                  sixthFormGroup.get(
-                                    'termination.uploadDocument'
-                                  ).value
-                                )
-                              "
+                              (click)="view(sixthFormGroup.value.termination.terminationUploadDocument) "
                             >
                               <mat-icon>file_download</mat-icon>
                             </button>
