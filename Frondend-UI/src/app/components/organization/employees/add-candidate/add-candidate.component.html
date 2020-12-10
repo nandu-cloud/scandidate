@@ -487,11 +487,15 @@
           </div>
         </form>
       </mat-tab>
-      <mat-tab>
+      <mat-tab  matTooltip="Info about the action" >
         <form [formGroup]="secondFormGroup">
           <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon">card_travel</mat-icon>
-            Work Ethic
+            <label  class="labelHeading" 
+                  matTooltip="We are capturing key insights about your ex-employee in a very structured way. Your transparent and objective inputs in this section will be most helpful in creating long-term value for the hiring industry."
+                  matTooltipClass="example-tooltip-red1" matTooltipPosition="above">
+               Work Ethic
+            </label>
           </ng-template>
           <div class="flex flex-wrap">
             <div class="w-full md:w-1/2 sm:w-full">
@@ -1119,7 +1123,7 @@
             <div class="w-full md:w-full sm:w-full">
               <div class="flex flex-wrap" formGroupName="discrepancyDocuments">
                 <div class="w-full md:w-1/2 sm:w-full">
-                  <mat-form-field class="mt-8">
+                  <mat-form-field class="mt-8 size1">
                     <mat-label
                       >Discrepancy in Joining Documents and
                       Declarations</mat-label
@@ -1249,7 +1253,7 @@
 
               <div class="flex flex-wrap" formGroupName="compliencyDiscrepancy">
                 <div class="w-full md:w-1/2 sm:w-full">
-                  <mat-form-field>
+                  <mat-form-field class="size1">
                     <mat-label>Compliance and Discrepancy</mat-label>
                     <mat-select
                       class="br-btm input-w"
@@ -1362,7 +1366,7 @@
 
               <div class="flex flex-wrap" formGroupName="warning">
                 <div class="w-full md:w-1/2 sm:w-full">
-                  <mat-form-field>
+                  <mat-form-field class="size1">
                     <mat-label>Warning</mat-label>
                     <mat-select
                       class="br-btm input-w"
@@ -1469,7 +1473,7 @@
 
               <div class="flex flex-wrap" formGroupName="showCausedIssue">
                 <div class="w-full md:w-1/2 sm:w-full">
-                  <mat-form-field>
+                  <mat-form-field class="size1">
                     <mat-label>Show cause issued</mat-label>
                     <mat-select
                       class="br-btm input-w"
@@ -1576,7 +1580,7 @@
 
               <div class="flex flex-wrap" formGroupName="suspension">
                 <div class="w-full md:w-1/2 sm:w-full">
-                  <mat-form-field>
+                  <mat-form-field class="size1">
                     <mat-label>Performance Improvement Plan (PIP)</mat-label>
                     <mat-select
                       class="br-btm input-w"
@@ -1686,7 +1690,7 @@
 
               <div class="flex flex-wrap" formGroupName="termination">
                 <div class="w-full md:w-1/2 sm:w-full">
-                  <mat-form-field>
+                  <mat-form-field class="size1">
                     <mat-label>Termination</mat-label>
                     <mat-select
                       class="br-btm input-w"

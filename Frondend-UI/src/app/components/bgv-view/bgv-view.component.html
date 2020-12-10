@@ -26,7 +26,7 @@
 </div>
 <!--highlights-->
 
-<div class="overflow-hidden shadow max-w-full my-3">
+<!-- <div class="overflow-hidden shadow max-w-full my-3">
   <div class="text-left px-20 pb-6 pt-2">
     <h1 class="text-black text-sm bold font-sans">Highlights</h1>
     <div class="flex justify-start pb-3 text-grey-dark">
@@ -43,7 +43,7 @@
       <hr>
    </div>
   </div>
-</div>
+</div> -->
 
 <!--org-->
 <div class="overflow-hidden shadow max-w-full my-3">
@@ -66,7 +66,11 @@
       <div class=" pl-10" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
         <button class="px-2 lg-button focus:outline-none focus:shadow-outline"  (click)="openDialog(list._id)">Work Ethic</button>
         <button class="px-2 lg-button focus:outline-none focus:shadow-outline"  (click)="openMeritDialog(list._id)">Merit-Quality</button>
+<<<<<<< Updated upstream
         <button class="px-2 lg-button focus:outline-none focus:shadow-outline"  (click)="openRecognitionDialog(list._id)">Recognition</button>
+=======
+        <button class="px-2 lg-button focus:outline-none focus:shadow-outline"  (click)="openRecognitionDialog(list._id)">Recognition</button><br><br>
+>>>>>>> Stashed changes
         <button class="px-2 lg-button focus:outline-none focus:shadow-outline"  (click)="openLeadershipDialog(list._id)">Leadership</button>
         <button class="px-2 lg-button focus:outline-none focus:shadow-outline"  (click)="openIssuesDialog(list._id)">Issues</button>
       </div>

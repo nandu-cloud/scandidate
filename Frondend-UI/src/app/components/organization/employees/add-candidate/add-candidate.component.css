@@ -67,3 +67,16 @@
   .reason {
       margin-top: -27px !important;
   }
+  .size1
+  {
+    width:50%
+  }
+  .matTooltip{
+    font-size: 15px;
+    background: green;
+  }
+  
+  .example-tooltip-red {
+    background: #b71c1c;
+  }
+  
