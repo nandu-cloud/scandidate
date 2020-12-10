@@ -877,11 +877,12 @@
                           type="file"
                           id="imageUpload"
                           accept=".pdf"
-                          #awards
+                          #awards class="form-control"
                           tabindex="3"
                           (change)="uploadawardsFile($event.target.files)"
                         />
-                        <div id="imagePreview">{{ this.documentNameData }}</div>
+                        <div  id="imagePreview">{{ this.documentName }}</div>
+                        <!-- <input type="text" value="documentName" formControlName="originalFilename" id="imagePreview">{{ this.documentName }}</input> -->
                       </div>
                     </div>
                     <button
@@ -1219,7 +1220,7 @@
                                     )
                                   "
                                 />
-                                <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
+                                <div id="imagePreview">{{this.discrepancyFileName}}</div> 
                               </div>
                             </div>
                             <!-- <div>{{this.documentName}}</div> -->
@@ -1332,6 +1333,7 @@
                                   "
                                 />
                                 <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
+                                <div id="imagePreview">{{this.compliencyFileName}}</div> 
                               </div>
                             </div>
                             <!-- <div>{{this.documentName}}</div> -->
@@ -1440,7 +1442,7 @@
                                     )
                                   "
                                 />
-                                <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
+                                <div id="imagePreview">{{this.warningFileName}}</div> 
                               </div>
                             </div>
                             <button mat-button (click)="cat.click()" tabindex="11">
@@ -1546,7 +1548,7 @@
                                     )
                                   "
                                 />
-                                <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
+                                <div id="imagePreview">{{this.showcausedFileName}}</div> 
                               </div>
                             </div>
                             <button mat-button (click)="sci.click()" tabindex="15">
@@ -1656,7 +1658,7 @@
                                     )
                                   "
                                 />
-                                <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
+                                <div id="imagePreview">{{this.suspensionFileName}}</div> 
                               </div>
                             </div>
                             <button mat-button (click)="sus.click()" tabindex="19">
@@ -1766,7 +1768,7 @@
                                     )
                                   "
                                 />
-                                <!-- <div id="imagePreview">{{this.documentName}}</div>  -->
+                                <div id="imagePreview">{{this.terminationFileName}}</div> 
                               </div>
                             </div>
                             <button mat-button (click)="ter.click()" tabindex="23">
