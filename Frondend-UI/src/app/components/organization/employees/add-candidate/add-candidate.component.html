@@ -115,6 +115,7 @@
                   formControlName="dateOfJoining"
                   [matDatepicker]="picker2"
                   class="br-btm input-w"
+                  (dateChange)="calculateExperience()"
                   required
                   placeholder="DD/MM/YYYY"
                   tabindex="9"
