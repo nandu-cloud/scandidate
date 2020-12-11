@@ -21,7 +21,8 @@
         </svg>
       </span>
     </div>
-    <h1 class="hd-add">Add Candidate</h1>
+    <div *ngIf="!id"><h1 class="hd-add">Add Candidate</h1></div>
+    <div *ngIf="id"><h1 class="hd-add">Updata Candidate</h1></div>
     <span class="right-text"> (your ex employee){{ displayName() }} </span>
     <mat-tab-group
       [selectedIndex]="selectedIndex"
