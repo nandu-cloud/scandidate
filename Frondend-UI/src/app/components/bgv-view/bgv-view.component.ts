@@ -199,7 +199,7 @@ export class BGVViewComponent implements OnInit {
 
 openMeritDialog(empId:number): void {
   const dialogRef = this.dialog.open(MeritQualityComponent,{
-    width: '700px',disableClose: true ,
+    width: '600px',disableClose: true ,
     data: {
       id: empId
     }   
@@ -208,7 +208,7 @@ openMeritDialog(empId:number): void {
 
 openRecognitionDialog(empId:number): void {
   const dialogRef = this.dialog.open(RecognitionComponent,{
-    width: '700px',disableClose: true ,
+    width: '500px',disableClose: true ,
     data: {
       id: empId
     }   
