@@ -78,15 +78,16 @@ export class AddStudentComponent implements OnInit {
    maxNumberOfTabs: number;
 
    public tabChanged(tabChangedEvent: MatTabChangeEvent): void {
-    this.selectedIndex = this.tabChangeEvent.index;
+    this.selectedIndex = tabChangedEvent.index;
   }
 
   public nextStep(){
-    if (this.firstFormGroup.valid){
+    // if (this.firstFormGroup.valid){
       if (this.selectedIndex != this.maxNumberOfTabs) {
-        this.selectedIndex = 1
+        this.selectedIndex ++;
       }
-    }
+      console.log(this.selectedIndex);
+    // }
     // if (this.secondFormGroup.valid){
     //   if (this.selectedIndex != this.maxNumberOfTabs) {
     //     this.selectedIndex = 2
@@ -268,6 +269,20 @@ export class AddStudentComponent implements OnInit {
   
  
   submit(){
+    if (this.firstFormGroup.invalid) {
+      this.firstFormGroup.markAllAsTouched();
+      if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = 0;
+        return;
+      }
+    }
+    if (this.secondFormGroup.invalid) {
+      this.secondFormGroup.markAllAsTouched();
+      if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = 1;
+        return;
+      }
+    }
     console.log(this.firstFormGroup.value, this.secondFormGroup.value);
     console.log(this.dynamicForm.value)
 let k=[]

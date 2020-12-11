@@ -21,8 +21,8 @@
         </svg>
       </span>
     </div>
-    <div *ngIf="!id"><h1 class="hd-add">Add Candidate</h1></div>
-    <div *ngIf="id"><h1 class="hd-add">Updata Candidate</h1></div>
+      <h1 *ngIf="!id" class="hd-add">Add Candidate</h1>
+      <h1 *ngIf="id" class="hd-add">Updata Candidate</h1>
     <span class="right-text"> (your ex employee){{ displayName() }} </span>
     <mat-tab-group
       [selectedIndex]="selectedIndex"
@@ -207,6 +207,7 @@
                 <input
                   matInput
                   formControlName="lastName"
+                  (change)="displayName()"
                   type="text"
                   class="br-btm input-w"
                   autoComplete="off"
@@ -662,13 +663,13 @@
             </div>
           </div>
           <div class="flex justify-end lg:pb-6 lg:pr-48">
-            <button tabindex="7"
+            <button
               class="lg-button focus:outline-none focus:shadow-outline"
               (click)="cancel()"
             >
               Back
             </button>
-            <button
+            <button tabindex="7"
               class="lg-button focus:outline-none focus:shadow-outline"
               (click)="nextStep()"
             >
@@ -884,20 +885,20 @@
                           id="imageUpload"
                           accept=".pdf"
                           #awards class="form-control"
-                          tabindex="3"
+                          
                           (change)="uploadawardsFile($event.target.files)"
                         />
                         <div  id="imagePreview">{{ this.documentName }}</div>
                         <!-- <input type="text" value="documentName" formControlName="originalFilename" id="imagePreview">{{ this.documentName }}</input> -->
                       </div>
                     </div>
-                    <button
+                    <button tabindex="3"
                       mat-button
                       (click)="awards.click()"
                     >
                       <mat-icon>file_upload</mat-icon>
                     </button>
-                    <button
+                    <button tabindex="4"
                               mat-button
                               (click)="view(fourthFormGroup.value.awards.documentUpload)"
                             >
@@ -917,7 +918,7 @@
             </button>
             <button
               class="lg-button focus:outline-none focus:shadow-outline"
-              (click)="nextStep()" tabindex="4"
+              (click)="nextStep()" tabindex="5"
             >
               Next
             </button>
@@ -1239,7 +1240,7 @@
                             <button mat-button (click)="dd.click()" tabindex="4">
                               <mat-icon>file_upload</mat-icon>
                             </button>
-                            <button
+                            <button tabindex="5"
                               mat-button
                               (click)="view(sixthFormGroup.value.discrepancyDocuments.descrepencyUploadDocument)"
                             >
@@ -1260,7 +1261,7 @@
                     <mat-select
                       class="br-btm input-w"
                       formControlName="IsSelect"
-                      tabindex="5"
+                      tabindex="6"
                     >
                       <mat-option [value]=true>Yes</mat-option>
                       <mat-option [value]=false>No</mat-option>
@@ -1293,7 +1294,7 @@
                             class="date br-btm input-w"
                             [min]="minDate"
                             [max]="maxDate"
-                            tabindex="5"
+                            tabindex="7"
                             placeholder="DD/MM/YYYY"
                           />
                           <mat-datepicker-toggle
@@ -1315,7 +1316,7 @@
                             type="text"
                             class="br-btm input-w"
                             autoComplete="off"
-                            tabindex="6"
+                            tabindex="8"
                           />
                         </td>
 
@@ -1343,10 +1344,10 @@
                               </div>
                             </div>
                             <!-- <div>{{this.documentName}}</div> -->
-                            <button mat-button (click)="cd.click()" tabindex="7">
+                            <button mat-button (click)="cd.click()" tabindex="9">
                               <mat-icon>file_upload</mat-icon>
                             </button>
-                            <button
+                            <button tabindex="10"
                               mat-button
                               (click)="view(sixthFormGroup.value.compliencyDiscrepancy.compliencyUploadDocument)"
                             >
@@ -1367,7 +1368,7 @@
                     <mat-select
                       class="br-btm input-w"
                       formControlName="IsSelect"
-                      tabindex="8"
+                      tabindex="11"
                     >
                       <mat-option [value]=true>Yes</mat-option>
                       <mat-option [value]=false>No</mat-option>
@@ -1397,7 +1398,7 @@
                             [min]="minDate"
                             [max]="maxDate"
                             placeholder="DD/MM/YYYY"
-                            tabindex="9"
+                            tabindex="12"
                           />
                           <mat-datepicker-toggle
                             matSuffix
@@ -1418,7 +1419,7 @@
                             type="text"
                             class="br-btm input-w"
                             autoComplete="off"
-                            tabindex="10"
+                            tabindex="13"
                           />
                         </td>
 
@@ -1445,10 +1446,10 @@
                                 <div id="imagePreview">{{this.warningFileName}}</div> 
                               </div>
                             </div>
-                            <button mat-button (click)="cat.click()" tabindex="11">
+                            <button mat-button (click)="cat.click()" tabindex="14">
                               <mat-icon>file_upload</mat-icon>
                             </button>
-                            <button
+                            <button tabindex="15"
                               mat-button
                               (click)="view(sixthFormGroup.value.warning.warningUploadDocument)"
                             >
@@ -1469,7 +1470,7 @@
                     <mat-select
                       class="br-btm input-w"
                       formControlName="IsSelect"
-                      tabindex="12"
+                      tabindex="16"
                     >
                       <mat-option [value]=true>Yes</mat-option>
                       <mat-option [value]=false>No</mat-option>
@@ -1498,7 +1499,7 @@
                             [min]="minDate"
                             [max]="maxDate"
                             placeholder="DD/MM/YYYY"
-                            tabindex="13"
+                            tabindex="17"
                           />
                           <mat-datepicker-toggle
                             matSuffix
@@ -1519,7 +1520,7 @@
                             type="text"
                             class="br-btm input-w"
                             autoComplete="off"
-                            tabindex="14"
+                            tabindex="18"
                           />
                         </td>
 
@@ -1546,10 +1547,10 @@
                                 <div id="imagePreview">{{this.showcausedFileName}}</div> 
                               </div>
                             </div>
-                            <button mat-button (click)="sci.click()" tabindex="15">
+                            <button mat-button (click)="sci.click()" tabindex="19">
                               <mat-icon>file_upload</mat-icon>
                             </button>
-                            <button
+                            <button tabindex="20"
                               mat-button
                               (click)="view(sixthFormGroup.value.showCausedIssue.showCausedUploadDocument)"
                             >
@@ -1570,7 +1571,7 @@
                     <mat-select
                       class="br-btm input-w"
                       formControlName="IsSelect"
-                      tabindex="16"
+                      tabindex="21"
                     >
                       <mat-option [value]=true>Yes</mat-option>
                       <mat-option [value]=false>No</mat-option>
@@ -1602,7 +1603,7 @@
                             [min]="minDate"
                             [max]="maxDate"
                             placeholder="DD/MM/YYYY"
-                            tabindex="17"
+                            tabindex="22"
                           />
                           <mat-datepicker-toggle
                             matSuffix
@@ -1623,7 +1624,7 @@
                             type="text"
                             class="br-btm input-w"
                             autoComplete="off"
-                            tabindex="18"
+                            tabindex="23"
                           />
                         </td>
 
@@ -1650,10 +1651,10 @@
                                 <div id="imagePreview">{{this.suspensionFileName}}</div> 
                               </div>
                             </div>
-                            <button mat-button (click)="sus.click()" tabindex="19">
+                            <button mat-button (click)="sus.click()" tabindex="24">
                               <mat-icon>file_upload</mat-icon>
                             </button>
-                            <button
+                            <button tabindex="25"
                               mat-button
                               (click)="view(sixthFormGroup.value.suspension.suspensionUploadDocument)"
                             >
@@ -1674,7 +1675,7 @@
                     <mat-select
                       class="br-btm input-w"
                       formControlName="IsSelect"
-                      tabindex="20"
+                      tabindex="26"
                     >
                       <mat-option [value]=true>Yes</mat-option>
                       <mat-option [value]=false>No</mat-option>
@@ -1706,7 +1707,7 @@
                             [min]="minDate"
                             [max]="maxDate"
                             placeholder="DD/MM/YYYY"
-                            tabindex="21"
+                            tabindex="27"
                           />
                           <mat-datepicker-toggle
                             matSuffix
@@ -1727,7 +1728,7 @@
                             type="text"
                             class="br-btm input-w"
                             autoComplete="off"
-                            tabindex="22"
+                            tabindex="28"
                           />
                         </td>
 
@@ -1754,10 +1755,10 @@
                                 <div id="imagePreview">{{this.terminationFileName}}</div> 
                               </div>
                             </div>
-                            <button mat-button (click)="ter.click()" tabindex="23">
+                            <button mat-button (click)="ter.click()" tabindex="29">
                               <mat-icon>file_upload</mat-icon>
                             </button>
-                            <button
+                            <button tabindex="30"
                               mat-button
                               (click)="view(sixthFormGroup.value.termination.terminationUploadDocument) "
                             >
@@ -1788,11 +1789,11 @@
               class="lg-button focus:outline-none focus:shadow-outline"
               type="button"
               (click)="submit()"
-              *ngIf="!id" tabindex="24"
+              *ngIf="!id" tabindex="31"
             >
               Submit
             </button>
-            <button
+            <button tabindex="31"
               class="lg-button focus:outline-none focus:shadow-outline"
               (click)="update(id)"
               *ngIf="id"

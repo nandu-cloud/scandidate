@@ -6,7 +6,7 @@
             <div class="w-full md:w-1/2 sm:w-full">
               <mat-form-field>
                 <mat-label>First Name</mat-label>
-                <input  matInput formControlName="firstName"  type="text"  required  class="br-btm input-w" autoComplete='off' >
+                <input  matInput formControlName="firstName"  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="1">
                 <mat-error *ngIf ="createUser.get('firstName').errors?.required">
                     Required first Name.
                    </mat-error>
@@ -16,7 +16,7 @@
               </mat-form-field>
               <mat-form-field>
                 <mat-label>Last Name</mat-label>
-                <input  matInput formControlName="lastName"  type="text"  required  class="br-btm input-w" autoComplete='off' >
+                <input  matInput formControlName="lastName"  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="2">
                 <mat-error *ngIf ="createUser.get('lastName').errors?.required">
                     Required Last Name.
                    </mat-error>
@@ -26,15 +26,15 @@
               </mat-form-field>
               <mat-form-field>
                 <mat-label>Role</mat-label>
-                <input  matInput formControlName="role"  type="text"  required  class="br-btm input-w" autoComplete='off' >
+                <input  matInput formControlName="role"  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="3">
               </mat-form-field>
               <mat-form-field>
                 <mat-label>Sub Role</mat-label>
-                <input  matInput formControlName="subRole"  type="text"  required  class="br-btm input-w" autoComplete='off' >
+                <input  matInput formControlName="subRole"  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="4">
               </mat-form-field>
               <mat-form-field>
                 <mat-label>Email</mat-label>
-                <input  matInput formControlName="email"  type="text"  required  class="br-btm input-w" autoComplete='off' >
+                <input  matInput formControlName="email"  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="5">
                 <mat-error *ngIf ="createUser.get('email').errors?.required">
                   Required email address
                 </mat-error>
@@ -44,7 +44,7 @@
               </mat-form-field>
               <mat-form-field>
                 <mat-label>Phone Number</mat-label>
-                <input  matInput formControlName="phoneNumber"  type="text"  required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{10}$" >
+                <input  matInput formControlName="phoneNumber"  type="text"  required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{10}$" tabindex="6">
                 <mat-error *ngIf ="createUser.get('phoneNumber').errors?.required">
                   Required phone number.
               </mat-error>
@@ -65,10 +65,10 @@
             <a routerLink="/insitution-users-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button">
               Cancel
             </button></a>
-            <button class="lg-button focus:outline-none focus:shadow-outline" type="submit" (click)="onSubmit()" *ngIf= "!id">
+            <button class="lg-button focus:outline-none focus:shadow-outline" type="submit" (click)="onSubmit()" *ngIf= "!id" tabindex="7">
               Submit
             </button>
-            <button class="lg-button focus:outline-none focus:shadow-outline"  (click)="onupdate(id)" *ngIf = "id">
+            <button class="lg-button focus:outline-none focus:shadow-outline"  (click)="onupdate(id)" *ngIf = "id" tabindex="7">
               Update
             </button>
         </div>

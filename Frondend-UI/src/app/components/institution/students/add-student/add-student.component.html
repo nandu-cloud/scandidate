@@ -3,7 +3,7 @@
             <!-- <form class="login-form" [formGroup]="studentForm"  novalidate> -->
               <h1 class="hd-add pb-6">Add Student</h1>
      <mat-tab-group [selectedIndex]="selectedIndex" (selectedTabChange)="tabChanged($event)" class="mat-tab-group mat-primary">
-      <mat-tab *ngFor="let number of [0];let i=index;">
+      <mat-tab>
         <form [formGroup]="firstFormGroup">
         <ng-template mat-tab-label>
           <mat-icon class="example-tab-icon">face</mat-icon>
@@ -188,7 +188,9 @@
       </div>
         </div>
         <div class="flex justify-end lg:pb-6 lg:pr-48">
-          <button class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">
+          <button tabindex="18"
+           class="lg-button focus:outline-none focus:shadow-outline"
+            (click)="nextStep()">
               Next
           </button>
         </div> 

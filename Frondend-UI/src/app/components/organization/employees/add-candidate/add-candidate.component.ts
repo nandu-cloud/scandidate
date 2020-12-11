@@ -386,8 +386,8 @@ export class AddCandidateComponent implements OnInit {
   }
 
   displayName() {
-    if (this.firstFormGroup.value.firstName) {
-      return ' - ' + this.firstFormGroup.value.firstName + ' Information';
+    if (this.firstFormGroup.value.firstName, this.firstFormGroup.value.lastName) {
+      return ' - ' + this.firstFormGroup.value.firstName + ' ' + this.firstFormGroup.value.lastName;
     }
   }
 
