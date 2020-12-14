@@ -14,11 +14,10 @@
       <td>{{discrepancy_date  | date: 'dd/MM/yyyy'}}</td>
       <td>{{discrepancy_cause}}</td>
       <td colspan="2">
-        <button
-        mat-button
+        <a
         (click)="discrepancy_download()">
         View/DownLoad
-      </button>
+      </a>
       </td>
     </tr>
     <tr>
@@ -28,11 +27,10 @@
       <td>{{Compliance_date | date: 'dd/MM/yyyy'}}</td>
       <td>{{Compliance_cause}}</td>
       <td colspan="2">
-        <button
-        mat-button
+        <a
         (click)="Compliance_download()">
         View/DownLoad
-      </button>
+      </a>
       </td>
     </tr>
     <tr>
@@ -42,11 +40,10 @@
       <td>{{warning_date | date: 'dd/MM/yyyy'}}</td>
       <td>{{warning_cause}}</td>
       <td colspan="2">
-        <button
-        mat-button
+        <a
         (click)="warning_download()">
         View/DownLoad
-      </button>
+      </a>
       </td>
     </tr>
     <tr>
@@ -56,11 +53,10 @@
       <td>{{showCause_date  | date: 'dd/MM/yyyy'}}</td>
       <td>{{showCause_cause}}</td>
       <td colspan="2">
-        <button
-        mat-button
+        <a
         (click)="showCause_download()">
         View/DownLoad
-      </button>
+      </a>
       </td>
     </tr>
     <tr>
@@ -70,11 +66,10 @@
       <td>{{performance_date  | date: 'dd/MM/yyyy' }}</td>
       <td>{{performance_cause }}</td>
       <td colspan="2">
-        <button
-        mat-button
+        <a
         (click)="performance_download()">
         View/DownLoad
-      </button>
+      </a>
       </td>
     </tr>
     <tr>
@@ -84,11 +79,10 @@
       <td>{{termination_date  | date: 'dd/MM/yyyy'  }}</td>
       <td>{{termination_cause }}</td>
       <td colspan="2">
-        <button
-        mat-button
+        <a
         (click)="termination_download()">
         View/DownLoad
-      </button>
+      </a>
       </td>
     </tr>
   </table>

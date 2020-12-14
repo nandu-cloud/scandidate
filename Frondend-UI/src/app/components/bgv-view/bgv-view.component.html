@@ -52,7 +52,7 @@
     <div class="flex flex-nowrap justify-start pb-3 text-grey-dark" *ngFor="let list of data">
       <div class="text-center mr-3 border-r pr-3 logo" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
         <div *ngFor="let list1 of data1">
-          <img class=".logo" *ngIf="list.organisationId === list1._id" src="{{orgLogo + list1.organisationLogo }}">
+          <img *ngIf="list.organisationId === list1._id" src="{{orgLogo + list1.organisationLogo }}">
         </div>  
       </div>
       <div class="justify-start pl-10" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
@@ -81,7 +81,7 @@
     <div class="flex justify-start pb-3 text-grey-dark" *ngFor="let list of data">
       <div class="text-center mr-3 border-r pr-3" *ngIf="list.instituteId != '' && list.instituteId != undefined ">
         <div *ngFor="let list1 of data1">
-          <img  class="w-20 h-20" *ngIf="list.instituteId === list1._id" src="{{instLogo + list1.instituteLogo}}">
+          <img class="logo1" *ngIf="list.instituteId === list1._id" src="{{instLogo + list1.instituteLogo}}">
         </div>
       </div>
       <div class="justify-start pl-10" *ngIf="list.instituteId != '' && list.instituteId != undefined ">
@@ -101,18 +101,19 @@
 <div class="overflow-hidden shadow max-w-full my-3">
   <div class="text-left px-20 pb-6 pt-2">
     <h1 class="text-black text-sm bold font-sans">Documents
-
-
-
     </h1>
-    <div class="flex justify-start pb-3 text-grey-dark">
-      <div class="text-center mr-3 border-r pr-3">
+    <div class="flex justify-start pb-3 text-grey-dark max-w-full">
+      <div class="text-center mr-20 border-r pr-20 flex-wrap">
         <h3>Organisation Document</h3>
+        <div *ngFor="let list of data">
+          <div class="" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
+
+          </div>
+        </div>
       </div>
-      <div class="text-center">
+      <div class="text-center flex-wrap">
         <h3>Institute Document</h3>
       </div>
-      <hr>
   </div>
   </div>
 </div>
