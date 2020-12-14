@@ -12,22 +12,8 @@
     <div class="flex flex-wrap">
         <div class="w-full md:w-1/2 sm:w-full">
             <mat-form-field>
-                <mat-label>First Name</mat-label>
-                <input  matInput type="text"    name="firstName" formControlName="firstName"  required  class="br-btm input-w" autoComplete='off'>
-                <mat-error *ngIf ="createUserData.get('firstName').errors?.required">
-                    Required first Name.
-                </mat-error>
-                <mat-error *ngIf ="createUserData.get('firstName').errors?.minlength">
-                    First name must be at least 3 characters long.
-                   </mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Employee ID</mat-label>
-                <input  matInput   type="text"  name="employeeId" formControlName="employeeId" class="br-btm input-w" autoComplete='off'>
-            </mat-form-field>           
-            <mat-form-field>
-                <mat-label>Role</mat-label>
-                <mat-select  class="br-btm input-w" formControlName="role" required (selectionChange)="selectedTpe($event)">
+                <mat-label>System Role</mat-label>
+                <mat-select  class="br-btm input-w" formControlName="role" required (selectionChange)="selectedTpe($event)" tabindex="1">
                   <!-- <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option> -->
                   <mat-option value="SCANDIDATE">Scandidate</mat-option>
                   <mat-option value="ORGANIZATION">Organization</mat-option>
@@ -38,8 +24,34 @@
                 </mat-error>
             </mat-form-field>
             <mat-form-field>
+                <mat-label>Sub Role</mat-label>
+                <mat-select  class="br-btm input-w" formControlName="subRole" required tabindex="3">
+                  <!-- <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option> -->
+                  <mat-option value="ADMIN" *ngIf="((subroleTypeee == 'SCANDIDATE' ||subroleTypeee == 'ORGANIZATION') ||  ( subroleTypeee=='INSTITUTZON'))">Admin</mat-option>
+                  <mat-option value="OPERATIONAL_USER"  *ngIf="subroleTypeee == 'SCANDIDATE' ">Operational User</mat-option>
+                </mat-select>
+                <mat-error *ngIf ="createUserData.get('subRole').errors?.required">
+                    Required sub role.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>First Name</mat-label>
+                <input  matInput type="text"    name="firstName" formControlName="firstName"  required  class="br-btm input-w" autoComplete='off' tabindex="5">
+                <mat-error *ngIf ="createUserData.get('firstName').errors?.required">
+                    Required first Name.
+                </mat-error>
+                <mat-error *ngIf ="createUserData.get('firstName').errors?.minlength">
+                    First name must be at least 3 characters long.
+                   </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Employee ID</mat-label>
+                <input  matInput   type="text"  name="employeeId" formControlName="employeeId" class="br-btm input-w" autoComplete='off' tabindex="7">
+            </mat-form-field>           
+            
+            <mat-form-field>
                 <mat-label>DOB</mat-label>
-                <input matInput [matDatepicker]="picker2" formControlName="dateOfBirth" class="br-btm input-w">
+                <input matInput [matDatepicker]="picker2" formControlName="dateOfBirth" class="br-btm input-w" tabindex="9">
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2 color="primary"></mat-datepicker>
                 <mat-error *ngIf ="createUserData.get('dateOfBirth').errors?.required">
@@ -49,41 +61,8 @@
 
             <mat-form-field>
                 <mat-label>Current Location</mat-label>
-                <input  matInput  type="text" name="currentAddress" formControlName="currentAddress" class="br-btm input-w" autoComplete='off'>
+                <input  matInput  type="text" name="currentAddress" formControlName="currentAddress" class="br-btm input-w" autoComplete='off' tabindex="11">
             </mat-form-field>
-            
-            <!-- <mat-form-field>
-                <mat-label>Parament Address</mat-label>
-                <textarea  matInput name="permanentAddress" formControlName="permanentAddress" class="br-txtarea input-w" rows="6" autoComplete='off'></textarea>
-            </mat-form-field> -->
-           
-           
-            <mat-form-field *ngIf="subroleTypeee == 'ORGANIZATION'">
-                <mat-label>Organization</mat-label>
-                <mat-select   class="br-btm input-w" formControlName="organizationId" >
-                  <mat-option *ngFor="let itm of allOrganizations" [value]="itm._id">{{itm.organizationName}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-
-            <mat-form-field *ngIf="subroleTypeee == 'INSTITUTZON'">
-                <mat-label>Institution</mat-label>
-                <mat-select   class="br-btm input-w" formControlName="institutionId" >
-                  <mat-option *ngFor="let itm of allInstitutions" [value]="itm._id">{{itm.instituteName}}</mat-option>
-                </mat-select>
-                
-            </mat-form-field>
-            <!-- <mat-form-field>
-                <mat-label>Organization</mat-label>
-                <input  matInput   type="text"  name="organizationId" formControlName="organizationId" class="br-btm input-w" autoComplete='off'>
-            </mat-form-field> -->
-            <!-- <mat-form-field>
-                <mat-label>Associated ops user institution/organization</mat-label>
-                <mat-select  class="br-btm input-w">
-                  <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
-                  <mat-option value="yes">Yes</mat-option>
-                  <mat-option value="no">No</mat-option>
-                </mat-select>
-            </mat-form-field> -->
             <div class="w-1/4 ">
                 <div class="group-gap">
                     <button  (click)="avatar.click()">
@@ -104,20 +83,27 @@
             </div>
            
         </div>
-        <div class="w-full md:w-1/2 sm:w-full">
-            <mat-form-field>
-                <mat-label>Last Name</mat-label>
-                <input  matInput   type="text"  name="lastName"  formControlName="lastName" required  class="br-btm input-w" autoComplete='off'>
-                <mat-error *ngIf ="createUserData.get('lastName').errors?.required">
-                    Required last Name.
-                   </mat-error>
-                   <mat-error *ngIf ="createUserData.get('firstName').errors?.minlength">
-                    Last name must be at least 3 characters long.
-                   </mat-error>
+        <div class="w-full md:w-1/2 sm:w-full" >
+            <mat-form-field *ngIf="subroleTypeee == 'SCANDIDATE'">
+                <mat-label>Organization</mat-label>
+                <input  matInput type="text"  formControlName="scandidateId"  readonly disabled  class="br-btm input-w" autoComplete='off' tabindex="2">
+            </mat-form-field>
+            <mat-form-field *ngIf="subroleTypeee == 'ORGANIZATION'">
+                <mat-label>Organization</mat-label>
+                <mat-select   class="br-btm input-w" formControlName="organizationId" tabindex="2">
+                  <mat-option *ngFor="let itm of allOrganizations" [value]="itm._id">{{itm.organizationName}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="subroleTypeee == 'INSTITUTZON'">
+                <mat-label>Institution</mat-label>
+                <mat-select   class="br-btm input-w" formControlName="institutionId" tabindex="2">
+                  <mat-option *ngFor="let itm of allInstitutions" [value]="itm._id">{{itm.instituteName}}</mat-option>
+                </mat-select>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Email</mat-label>
-                <input  matInput   type="text"  name="email"  formControlName="email"  class="br-btm input-w" required autoComplete='off'>
+                <input  matInput   type="text"  name="email"  formControlName="email"  class="br-btm input-w" required autoComplete='off' tabindex="4">
                 <mat-error *ngIf ="createUserData.get('email').errors?.required">
                     Required email address.
                 </mat-error>
@@ -126,71 +112,38 @@
                 </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Sub Role</mat-label>
-                <mat-select  class="br-btm input-w" formControlName="subRole" required>
-                  <!-- <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option> -->
-                  <mat-option value="ADMIN" *ngIf="((subroleTypeee == 'SCANDIDATE' ||subroleTypeee == 'ORGANIZATION') ||  ( subroleTypeee=='INSTITUTZON'))">Admin</mat-option>
-                  <mat-option value="OPERATIONAL_USER"  *ngIf="subroleTypeee == 'SCANDIDATE' ">Operational User</mat-option>
-                </mat-select>
-                <mat-error *ngIf ="createUserData.get('subRole').errors?.required">
-                    Required sub role.
-                </mat-error>
+                <mat-label>Last Name</mat-label>
+                <input  matInput   type="text"  name="lastName"  formControlName="lastName" required  class="br-btm input-w" autoComplete='off' tabindex="6">
+                <mat-error *ngIf ="createUserData.get('lastName').errors?.required">
+                    Required last Name.
+                   </mat-error>
+                   <mat-error *ngIf ="createUserData.get('firstName').errors?.minlength">
+                    Last name must be at least 3 characters long.
+                   </mat-error>
             </mat-form-field>
-            
-           
             <mat-form-field>
                 <mat-label>Contact</mat-label>
-                <input  matInput   type="text"  name="contact"  formControlName="phoneNumber" required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{10}$">
+                <input  matInput   type="text"  name="contact"  formControlName="phoneNumber" required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{10}$" tabindex="8">
             <mat-error *ngIf ="createUserData.get('phoneNumber').errors?.required">
                 Required phone number.
             </mat-error>
             <mat-error *ngIf="!createUserData.get('phoneNumber').errors?.required && createUserData.get('phoneNumber').errors?.pattern">
-                Please enter valid mumber
+                Please enter valid number
                </mat-error>
-            </mat-form-field>
-        
-          
+            </mat-form-field> 
             <mat-form-field *ngIf="id">
                 <mat-label>Status</mat-label>
-                <mat-select   class="br-btm input-w" formControlName="status" required>
+                <mat-select   class="br-btm input-w" formControlName="status" required tabindex="10">
                   <mat-option [value]="true">Active</mat-option>
                   <mat-option [value]="false">Inactive</mat-option>
                 </mat-select>
             </mat-form-field>
-            <!-- <mat-form-field>
-                <mat-label>Institutions</mat-label>
-                <mat-select  class="br-btm input-w" formControlName="noOfAssociatedUsers">
-                  <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
-                  <mat-option value="a">Svce,Tirupati</mat-option>
-                  <mat-option value="b">JNTU,Anathapur</mat-option>
-                  <mat-option value="c">Sv Universcity</mat-option>
-                </mat-select>
-            </mat-form-field> -->
-            <!-- <mat-form-field>
-                <mat-label>Institution ID</mat-label>
-                <input  matInput   type="text"  name="institutionId"  formControlName="institutionId"  class="br-btm input-w" autoComplete='off'>
-                <Inpu  matInput name="institutionId" formControlName="institutionId" class="br-txtarea input-w" rows="6" autoComplete='off'></Inpu>
-            </mat-form-field> -->
-            
-            
-            <!-- <div class="w-1/4"> -->
-                <mat-form-field>
-                    <mat-label>About User</mat-label>
-                    <textarea  matInput name="aboutMe" formControlName="aboutMe" class="br-about" rows="8" autoComplete='off'></textarea>
-                </mat-form-field>
-            <!-- </div> -->
-        </div>
-        
-    </div>
-    <!-- <div class="flex flex-wrap sm:flex-wrap mt-8">
-       
-        <div class="w-3/4">
-            <mat-form-field class=" lg:ml-12 sm:ml-10">
-                <mat-label>About Me</mat-label>
+            <mat-form-field>
+                <mat-label>About User</mat-label>
                 <textarea  matInput name="aboutMe" formControlName="aboutMe" class="br-about" rows="8" autoComplete='off'></textarea>
             </mat-form-field>
         </div>
-    </div> -->
+    </div>
     <div class="flex justify-end lg:pb-6 lg:pr-48">
         <a routerLink="/users-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12 mt-24" type="button">
           Cancel

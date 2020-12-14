@@ -59,6 +59,7 @@ export class AddAppuserComponent implements OnInit {
         phoneNumber: new FormControl('', [Validators.required, Validators.pattern('^[1-9][0-9]{9}$')]),
         organizationId: new FormControl(),
         institutionId: new FormControl(),
+        scandidateId : new FormControl('SCANDIDATE'),
         employeeId: new FormControl(),
         currentAddress: new FormControl(),
         permanentAddress: new FormControl(),

@@ -18,7 +18,7 @@ export class AddOppuserComponent implements OnInit {
   orgUserSubscription : Subscription;
   editorganizationuserSubscription : Subscription;
   orgUserUpdateSubscription : Subscription;
-  minDate = new Date(1990, 0, 1);
+  minDate ;
   maxDate = new Date;
   id;
   userIdedit;

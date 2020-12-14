@@ -21,20 +21,22 @@ export class AppuserService {
   createUserData(createUserData): Observable<any> {
     let organId
     let instituteeId
+    let scandidateId
     if( createUserData.role == 'SCANDIDATE'){
   organId = undefined
   instituteeId = undefined
+  scandidateId = createUserData.scandidateId
 }else if(createUserData.role == 'ORGANIZATION'){
   organId = createUserData.organizationId
-
+  scandidateId = undefined 
   instituteeId = undefined
 }else{
   organId = undefined
-
+  scandidateId= undefined
   instituteeId=createUserData.institutionId
 }
     var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': 'number',
-   'organizationId': string, 'institutionId': string, 'employeeId': string, 'currentAddress': string, 'permanentAddress': string, 'aboutMe': string,
+   'organizationId': string, 'institutionId': string, 'scandidateId': string ,'employeeId': string, 'currentAddress': string, 'permanentAddress': string, 'aboutMe': string,
     'noOfAssociatedUsers': number, 'avatarLink': string
   } =
     {
@@ -44,6 +46,7 @@ export class AppuserService {
        'phoneNumber': createUserData.phoneNumber,
        'organizationId': organId == ""||organId == null?undefined:organId,
        'institutionId':instituteeId == ""|| instituteeId == null?undefined:instituteeId,
+       'scandidateId': scandidateId == ""|| scandidateId == null ? undefined : scandidateId,
         'employeeId': createUserData.employeeId == ""||createUserData.employeeId == null?undefined:createUserData.employeeId,
        'currentAddress': createUserData.currentAddress == ""||createUserData.currentAddress == null?undefined:createUserData.currentAddress,
         // tslint:disable-next-line: max-line-length
@@ -74,7 +77,7 @@ export class AppuserService {
   // Update
   editUser(updateUserData): Observable<any> {
     var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': number,
-    'organizationId': string, 'institutionId': string, 'employeeId': string, 'currentAddress': string, 'permanentAddress': string,
+    'organizationId': string, 'institutionId': string, 'scandidateId' : string, 'employeeId': string, 'currentAddress': string, 'permanentAddress': string,
      'aboutMe': string, 'noOfAssociatedUsers': number, 'avatarLink': string} = 
     { 'firstName': updateUserData.firstName, 'lastName': updateUserData.lastName, 'role':
     updateUserData.role, 'subRole': updateUserData.subRole, 'email': updateUserData.email,
@@ -82,6 +85,7 @@ export class AppuserService {
      'phoneNumber': updateUserData.phoneNumber,
       'organizationId': updateUserData.organizationId == ""||updateUserData.organizationId == null?undefined:updateUserData.organizationId,
      'institutionId': updateUserData.institutionId == ""||updateUserData.institutionId == null?undefined:updateUserData.institutionId,
+     'scandidateId' : updateUserData.scandidateId == ""|| updateUserData.scandidateId == null ? undefined : updateUserData.scandidateId,
       'employeeId': updateUserData.employeeId == ""||updateUserData.employeeId == null?undefined:updateUserData.employeeId,
      'currentAddress': updateUserData.currentAddress == "" || updateUserData.currentAddress == null?undefined:updateUserData.currentAddress,
       'permanentAddress': updateUserData.permanentAddress == "" || updateUserData.permanentAddress == null?undefined:updateUserData.permanentAddress,
