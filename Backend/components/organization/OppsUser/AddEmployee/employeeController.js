@@ -4,6 +4,7 @@ const employeeDAL = require("./employeeDAL");
 const employeeDataValidator = require("./employeeValidator");
 const colors = require("./../../../../helpers/colors");
 const path = require("path");
+const fs = require("fs");
 
 module.exports.fileUpload = async function (req, res, next) {
   const fileName = req.file.originalname;
@@ -99,5 +100,38 @@ module.exports.downloaddocuments = async (req, res, next) => {
       if (err.code == "ENOENT")
         return next(new AppError("user document not found", 404));
     }
+  });
+};
+
+module.exports.deleteDocument = async (req, res, next) => {
+  const data = req.params.employeedocumentlink;
+  const id = req.params.id;
+  const filePath = path.join(
+    __dirname,
+    `../../../../uploads/organization_doc/${data}`
+  );
+  // fs.unlink(filePath, (err) => {
+  //   if (err) {
+  //     console.log(colors.red, "inside err...");
+  //     if (err.code == "ENOENT")
+  //       return next(new AppError("user document not found", 404));
+  //     return next(new AppError("Unable to delete the file", 400));
+  //   }
+  //   return res.status(200).json({
+  //     status: "SUCCESS",
+  //     message: "User document removed successfully",
+  //   });
+  // });
+
+  try {
+    var userData = await employeeDAL.getEmplyeeById({ _id: id });
+    var keys = userData.awards;
+  } catch (err) {
+    return next(new AppError(err, 400));
+  }
+
+  return res.status(200).json({
+    filePath: filePath,
+    d: d,
   });
 };

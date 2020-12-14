@@ -73,6 +73,15 @@ async function search_employee_list(data) {
   }
 }
 
+async function deleteEmployeeDocument(data) {
+  try {
+    let result = await employeeModel.findByIdAndUpdate({ _id: data._id });
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
 // export functions
 module.exports = {
   addEmployee: addEmployee,
@@ -80,4 +89,5 @@ module.exports = {
   search_employee_list: search_employee_list,
   getEmplyeeById: getEmplyeeById,
   updateEmployee: updateEmployee,
+  deleteEmployeeDocument: deleteEmployeeDocument,
 };

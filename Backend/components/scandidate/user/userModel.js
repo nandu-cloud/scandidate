@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema({
     required: [true, "sub role cannot be empty"],
     enum: ["ADMIN", "OPERATIONAL_USER"],
   },
+  scandidateId: {
+    type: String,
+    required: false,
+  },
   email: {
     type: String,
     required: [true, "email cannot be empty"],
