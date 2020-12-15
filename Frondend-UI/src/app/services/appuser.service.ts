@@ -35,7 +35,7 @@ export class AppuserService {
   scandidateId= undefined
   instituteeId=createUserData.institutionId
 }
-    var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': 'number','countrycode':number,
+    var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': 'number','countrycode':string,
    'organizationId': string, 'institutionId': string, 'scandidateId': string ,'employeeId': string, 'currentAddress': string, 'permanentAddress': string, 'aboutMe': string,
     'noOfAssociatedUsers': number, 'avatarLink': string
   } =
@@ -77,7 +77,7 @@ export class AppuserService {
 
   // Update
   editUser(updateUserData): Observable<any> {
-    var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': number, 'countrycode':number
+    var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': number, 'countrycode':string
     'organizationId': string, 'institutionId': string, 'scandidateId' : string, 'employeeId': string, 'currentAddress': string, 'permanentAddress': string,
      'aboutMe': string, 'noOfAssociatedUsers': number, 'avatarLink': string} = 
     { 'firstName': updateUserData.firstName, 'lastName': updateUserData.lastName, 'role':
