@@ -7,6 +7,7 @@ import { EmployeeService } from '../../../../services/employee.service';
 import { StorageService } from '../../../../services/storage.service';
 import { from, Subscription } from 'rxjs';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { MatDatepicker } from '@angular/material/datepicker';
 import { environment } from '../../../../../environments/environment';
 import { fromEvent } from "rxjs";
 import { debounceTime, take } from "rxjs/operators";
@@ -16,9 +17,7 @@ import * as fileSaver from 'file-saver';
   selector: 'app-add-candidate',
   templateUrl: './add-candidate.component.html',
   styleUrls: ['./add-candidate.component.css'],
-  providers: [
-    // {provide: MAT_DATE_FORMATS, useValue: 'en-GB'},
-    EmployeeService, StorageService]
+  providers: [ EmployeeService, StorageService]
 })
 export class AddCandidateComponent implements OnInit {
   createCandidate: FormGroup;
@@ -60,6 +59,8 @@ export class AddCandidateComponent implements OnInit {
   reasonsForSeparation: boolean = false;
   minDate : any;
   maxDate : any;
+
+  @ViewChild('picker') picker: MatDatepicker<Date>;
   constructor(
     public fb: FormBuilder,
     private cd: ChangeDetectorRef, public dialog: MatDialog, public route: ActivatedRoute, public empService: EmployeeService,
@@ -78,7 +79,7 @@ export class AddCandidateComponent implements OnInit {
       panNumber: new FormControl(''),
       phoneNumber: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[1-9][0-9]{9}$')]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      dateOfBirth: new FormControl(''),
+      dateOfBirth: new FormControl(),
       dateOfJoining: new FormControl('', [Validators.required, this.validateJoiningDate()]),
       exitDate: new FormControl('', [Validators.required, this.validateExitDate()]),
       organizationName: new FormControl(this.organizationName),

@@ -10,7 +10,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule , MatDialogRef} from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MAT_LABEL_GLOBAL_OPTIONS } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MAT_LABEL_GLOBAL_OPTIONS } from '@angular/material/core';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,6 +24,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 @NgModule({
   declarations: [],
   imports: [
@@ -49,7 +50,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSortModule,
     MatSnackBarModule,
     MatTabsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatMomentDateModule
   ],
   exports: [
     CommonModule,
@@ -75,6 +77,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatRadioModule,
     MatTabsModule,
     MatTooltipModule
+  ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ]
 })
 export class MaterialModule { }
