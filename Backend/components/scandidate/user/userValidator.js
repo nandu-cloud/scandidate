@@ -13,6 +13,7 @@ const userCreationSchema = Joi.object({
   password: Joi.string(),
 
   phoneNumber: Joi.number().allow("").allow(null),
+  countrycode: Joi.number().allow("").allow(null),
   dateOfBirth: Joi.date().allow("").allow(null),
   employeeId: Joi.string().allow("").allow(null),
   currentAddress: Joi.string().allow("").allow(null),
@@ -35,6 +36,7 @@ const updationSchema = Joi.object({
   status: Joi.boolean().required(),
 
   phoneNumber: Joi.number().allow("").allow(null),
+  countrycode: Joi.number().allow("").allow(null),
   dateOfBirth: Joi.date().allow("").allow(null),
   employeeId: Joi.string().allow("").allow(null),
   currentAddress: Joi.string().allow("").allow(null),
