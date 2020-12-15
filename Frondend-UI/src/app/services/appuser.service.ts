@@ -35,7 +35,7 @@ export class AppuserService {
   scandidateId= undefined
   instituteeId=createUserData.institutionId
 }
-    var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': 'number',
+    var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': 'number','countrycode':number,
    'organizationId': string, 'institutionId': string, 'scandidateId': string ,'employeeId': string, 'currentAddress': string, 'permanentAddress': string, 'aboutMe': string,
     'noOfAssociatedUsers': number, 'avatarLink': string
   } =
@@ -44,6 +44,7 @@ export class AppuserService {
       createUserData.role, 'subRole': createUserData.subRole, 'email': createUserData.email,
        'dateOfBirth': createUserData.dateOfBirth, 'status': createUserData.status,
        'phoneNumber': createUserData.phoneNumber,
+       'countrycode': createUserData.countrycode,
        'organizationId': organId == ""||organId == null?undefined:organId,
        'institutionId':instituteeId == ""|| instituteeId == null?undefined:instituteeId,
        'scandidateId': scandidateId == ""|| scandidateId == null ? undefined : scandidateId,
@@ -76,13 +77,14 @@ export class AppuserService {
 
   // Update
   editUser(updateUserData): Observable<any> {
-    var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': number,
+    var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': number, 'countrycode':number
     'organizationId': string, 'institutionId': string, 'scandidateId' : string, 'employeeId': string, 'currentAddress': string, 'permanentAddress': string,
      'aboutMe': string, 'noOfAssociatedUsers': number, 'avatarLink': string} = 
     { 'firstName': updateUserData.firstName, 'lastName': updateUserData.lastName, 'role':
     updateUserData.role, 'subRole': updateUserData.subRole, 'email': updateUserData.email,
      'dateOfBirth': updateUserData.dateOfBirth, 'status': updateUserData.status,
      'phoneNumber': updateUserData.phoneNumber,
+     'countrycode': updateUserData.countrycode,
       'organizationId': updateUserData.organizationId == ""||updateUserData.organizationId == null?undefined:updateUserData.organizationId,
      'institutionId': updateUserData.institutionId == ""||updateUserData.institutionId == null?undefined:updateUserData.institutionId,
      'scandidateId' : updateUserData.scandidateId == ""|| updateUserData.scandidateId == null ? undefined : updateUserData.scandidateId,

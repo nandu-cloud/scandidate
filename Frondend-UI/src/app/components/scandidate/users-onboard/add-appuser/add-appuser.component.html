@@ -121,16 +121,21 @@
                     Last name must be at least 3 characters long.
                    </mat-error>
             </mat-form-field>
-            <mat-form-field>
-                <mat-label>Contact</mat-label>
-                <input  matInput   type="text"  name="contact"  formControlName="phoneNumber" required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{10}$" tabindex="8">
-            <mat-error *ngIf ="createUserData.get('phoneNumber').errors?.required">
-                Required phone number.
-            </mat-error>
-            <mat-error *ngIf="!createUserData.get('phoneNumber').errors?.required && createUserData.get('phoneNumber').errors?.pattern">
-                Please enter valid number
-               </mat-error>
-            </mat-form-field> 
+            <div style="display: flex;">
+                <mat-form-field style="width: 50px;">
+                    <input matInput type="text" name="code" formControlName="countrycode" class="br-btm input-w1" autoComplete='off' >
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Contact</mat-label>
+                    <input  matInput   type="text"  name="contact"  formControlName="phoneNumber" required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{10}$" tabindex="8">
+                <mat-error *ngIf ="createUserData.get('phoneNumber').errors?.required">
+                    Required phone number.
+                </mat-error>
+                <mat-error *ngIf="!createUserData.get('phoneNumber').errors?.required && createUserData.get('phoneNumber').errors?.pattern">
+                    Please enter valid number
+                </mat-error>
+                </mat-form-field> 
+            </div>
             <mat-form-field *ngIf="id">
                 <mat-label>Status</mat-label>
                 <mat-select   class="br-btm input-w" formControlName="status" required tabindex="10">

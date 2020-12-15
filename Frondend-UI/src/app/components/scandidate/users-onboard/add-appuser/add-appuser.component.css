@@ -8,6 +8,10 @@ input.mat-input-element {
 .input-w{
     width: 350px !important;
 }
+.input-w1{
+  width: 45px !important;
+  margin-top: 10px;
+}
 }
 @media (max-width: 320px){
 .mat-button {

@@ -65,7 +65,8 @@ export class AddAppuserComponent implements OnInit {
         permanentAddress: new FormControl(),
         noOfAssociatedUsers: new FormControl(),
         aboutMe: new FormControl(),
-        avatarLink: new FormControl()
+        avatarLink: new FormControl(),
+        countrycode: new FormControl('+91')
       });
     }
     registrationForm = this.fb.group({
