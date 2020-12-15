@@ -50,7 +50,7 @@ const userSchema = new mongoose.Schema({
     required: false,
   },
   countrycode: {
-    type: Number,
+    type: String,
     required: false,
   },
   dateOfBirth: {
