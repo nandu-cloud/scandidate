@@ -123,10 +123,11 @@
             </mat-form-field>
             <div style="display: flex;">
                 <mat-form-field style="width: 50px;">
+                    <mat-label>Contact</mat-label>
                     <input matInput type="text" name="code" formControlName="countrycode" class="br-btm input-w1" autoComplete='off' >
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-label>Contact</mat-label>
+                    
                     <input  matInput   type="text"  name="contact"  formControlName="phoneNumber" required  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{10}$" tabindex="8">
                 <mat-error *ngIf ="createUserData.get('phoneNumber').errors?.required">
                     Required phone number.
