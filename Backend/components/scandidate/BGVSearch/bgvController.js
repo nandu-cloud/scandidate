@@ -26,8 +26,8 @@ module.exports.searchbgv = async (req, res, next) => {
         .json({ status: 200, message: "Success", data: stdData });
     } else {
       return res.status(404).json({
-        status: 404,
-        message: "No Such employee or student is found",
+        status: 200,
+        message: "Success",
         data: [],
       });
     }
