@@ -19,11 +19,10 @@ export class BGVSearchComponent implements  OnInit {
   bgvListSubscription : Subscription;
   editorganizationSubscription: Subscription;
   setMessage : any = {};
-  createOrgData: FormGroup;
-  editOrgData: FormGroup;
+  searchForm: FormGroup;
   orgIdedit:number;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  searchForm: FormGroup;
+  
 
   constructor(private formBuilder: FormBuilder,private _storage: StorageService,private bgvService: BgvSearchService,private router:Router
    ) { 
@@ -41,7 +40,6 @@ export class BGVSearchComponent implements  OnInit {
     }
 
     search(){
-      
       this.bgvListSubscription = this.bgvService.getAllBGVData(this.searchForm.value).subscribe(respObj => {
        console.log(respObj.data); 
        this.dataSource = new MatTableDataSource(respObj.data);

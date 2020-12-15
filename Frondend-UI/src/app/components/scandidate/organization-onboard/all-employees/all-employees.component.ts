@@ -41,7 +41,6 @@ export class AllEmployeesComponent implements OnInit {
        this.displayedColumns = ['name', 'roll', 'orgName','email', 'phoneNumber', 'department'  ,'exp'];
      }
      search(){
-      
       this.studentListSubscription = this.orgnization.getAllEmployeeData(this.searchForm.value).subscribe(respObj => {
        console.log(respObj.data); 
        this.dataSource = new MatTableDataSource(respObj.data);
