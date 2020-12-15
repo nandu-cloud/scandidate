@@ -25,7 +25,7 @@ module.exports.searchbgv = async (req, res, next) => {
         .status(200)
         .json({ status: 200, message: "Success", data: stdData });
     } else {
-      return res.status(404).json({
+      return res.status(200).json({
         status: 200,
         message: "Success",
         data: [],
