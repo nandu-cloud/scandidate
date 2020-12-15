@@ -110,28 +110,37 @@ module.exports.deleteDocument = async (req, res, next) => {
     __dirname,
     `../../../../uploads/organization_doc/${data}`
   );
-  // fs.unlink(filePath, (err) => {
-  //   if (err) {
-  //     console.log(colors.red, "inside err...");
-  //     if (err.code == "ENOENT")
-  //       return next(new AppError("user document not found", 404));
-  //     return next(new AppError("Unable to delete the file", 400));
-  //   }
-  //   return res.status(200).json({
-  //     status: "SUCCESS",
-  //     message: "User document removed successfully",
-  //   });
-  // });
 
-  try {
-    var userData = await employeeDAL.getEmplyeeById({ _id: id });
-    var keys = userData.awards;
-  } catch (err) {
-    return next(new AppError(err, 400));
-  }
-
-  return res.status(200).json({
-    filePath: filePath,
-    d: d,
+  var userData = await employeeDAL.getEmplyeeById({ _id: id });
+  var isSelect = userData.awards.IsSelect;
+  var remark = userData.awards.remarks;
+  fs.unlink(filePath, (err) => {
+    if (err) {
+      console.log(colors.red, "inside err...");
+      if (err.code == "ENOENT")
+        return next(new AppError("user document not found", 404));
+      return next(new AppError("Unable to delete the file", 400));
+    } else {
+      try {
+        let d = {
+          _id: id,
+          awards: {
+            IsSelect: isSelect,
+            remarks: remark,
+            documentName: "",
+            documentUpload: "",
+            originalFilename: "",
+          },
+        };
+        employeeDAL.updateEmployee(d).then(() => {
+          return res.status(200).json({
+            status: 200,
+            message: "Successfully deleted",
+          });
+        });
+      } catch (err) {
+        return next(new AppError(err, 400));
+      }
+    }
   });
 };
