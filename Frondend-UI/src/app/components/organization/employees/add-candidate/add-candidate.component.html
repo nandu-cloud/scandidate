@@ -124,7 +124,7 @@
                   matSuffix
                   [for]="picker2"
                 ></mat-datepicker-toggle>
-                <mat-datepicker #picker2 color="primary"></mat-datepicker>
+                <mat-datepicker #picker2 color="primary" startView="multi-year"></mat-datepicker>
                 <mat-error
                   *ngIf="firstFormGroup.get('dateOfJoining').errors?.required"
                 >
@@ -289,7 +289,7 @@
                 <input
                   matInput
                   formControlName="exitDate"
-                  [matDatepicker]="picker"
+                  [matDatepicker]="picker1"
                   (dateChange)="calculateExperience()"
                   class="br-btm input-w"
                   placeholder="DD/MM/YYYY"
@@ -298,9 +298,9 @@
                 />
                 <mat-datepicker-toggle
                   matSuffix
-                  [for]="picker"
+                  [for]="picker1"
                 ></mat-datepicker-toggle>
-                <mat-datepicker #picker color="primary"></mat-datepicker>
+                <mat-datepicker #picker1 color="primary" startView="multi-year"></mat-datepicker>
                 <mat-error
                   *ngIf="firstFormGroup.get('exitDate').errors?.required"
                 >
