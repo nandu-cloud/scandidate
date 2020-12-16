@@ -52,6 +52,9 @@ const addEmployeeSchema = Joi.object({
   consistency: Joi.object().allow("").allow(null),
   building: Joi.object().allow("").allow(null),
   stakeholder: Joi.object().allow("").allow(null),
+  empThrive:Joi.string().allow("").allow(null),
+  inLeadership:Joi.string().allow("").allow(null),
+  otherInfo:Joi.string().allow("").allow(null),
 
   //Conduct
   punctuality: Joi.number().allow("").allow(null),
@@ -109,6 +112,9 @@ const updateEmployeeSchema = Joi.object({
   consistency: Joi.object().allow("").allow(null),
   building: Joi.object().allow("").allow(null),
   stakeholder: Joi.object().allow("").allow(null),
+  empThrive:Joi.string().allow("").allow(null),
+  inLeadership:Joi.string().allow("").allow(null),
+  otherInfo:Joi.string().allow("").allow(null),
 
   //Conduct
   punctuality: Joi.number().allow("").allow(null),

@@ -112,6 +112,7 @@ const employeeSchema = new mongoose.Schema({
     type: Number,
     required: false,
   },
+ 
 
   // performance
   volume: {
@@ -158,6 +159,19 @@ const employeeSchema = new mongoose.Schema({
     description: {
       type: String,
     },
+  },
+
+  empThrive:{
+    type:String,
+    required:false
+  },
+  inLeadership:{
+    type:String,
+    required:false
+  },
+  otherInfo:{
+    type:String,
+    required:false
   },
 
   // volume: {
