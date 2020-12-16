@@ -30,7 +30,7 @@ export class EmployeeService {
       'addedById': string, 'organisationId': string, 'organizationName': string, 'awards': any, 'city': string, 'state': string,
       'pinCode': string, 'landMark': string, 'building': any, 'stakeholder': any, 'discrepancyDocuments': any,
       'compliencyDiscrepancy': any, 'warning': any, 'showCausedIssue': any, 'suspension': any, 'termination': any,
-      'keySkills': string, 'rehireAgain': string, 'reasonForSerperation': any,
+      'keySkills': string, 'empThrive': string, 'inLeadership': string,'otherInfo': string,'rehireAgain': string, 'reasonForSerperation': any,
       'originalFilename': string
     } =
     {
@@ -44,7 +44,8 @@ export class EmployeeService {
       'city': empData.city, 'state': empData.state, 'pinCode': empData.pinCode, 'landMark': empData.landMark,
       'discrepancyDocuments': empData.discrepancyDocuments, 'compliencyDiscrepancy': empData.compliencyDiscrepancy,
       'warning': empData.warning, 'showCausedIssue': empData.showCausedIssue, 'suspension': empData.suspension,
-      'termination': empData.termination, 'keySkills': empData.keySkills, 'rehireAgain': empData.rehireAgain, 'reasonForSerperation': empData.reasonForSerperation,
+      'termination': empData.termination, 'keySkills': empData.keySkills, 'empThrive' : empData.empThrive, 'inLeadership': empData.inLeadership,'otherInfo': empData.otherInfo,
+      'rehireAgain': empData.rehireAgain, 'reasonForSerperation': empData.reasonForSerperation,
       'originalFilename': empData.originalFilename
     };
     return this.http.post(this.baseUrl + '/api/organisation/operational', EmployeeData
@@ -78,7 +79,7 @@ export class EmployeeService {
       'discipline': number, 'academicKnowledge': number, 'productKnowledge', 'industryKnowledge': number, 'communicationSkills': number,
       'addedById': string, 'organisationId': string, 'organizationName': string, 'awards': any,
       'city': string, 'state': string, 'keySkills': string, 'rehireAgain': string,
-      'pinCode': string, 'landMark': string, 'discrepancyDocuments': any,
+      'pinCode': string, 'landMark': string, 'discrepancyDocuments': any, 'empThrive': string, 'inLeadership': string,'otherInfo': string,
       'compliencyDiscrepancy': any, 'warning': any, 'showCausedIssue': any, 'suspension': any, 'termination': any, 'reasonForSerperation': any,
        'building': any, 'stakeholder': any,
        'originalFilename': string
@@ -95,6 +96,7 @@ export class EmployeeService {
       'discrepancyDocuments': empupdateData.discrepancyDocuments, 'compliencyDiscrepancy': empupdateData.compliencyDiscrepancy,
       'warning': empupdateData.warning, 'showCausedIssue': empupdateData.showCausedIssue, 'suspension': empupdateData.suspension,
       'termination': empupdateData.termination, 'rehireAgain': empupdateData.rehireAgain, 'keySkills': empupdateData.keySkills,
+      'empThrive' : empupdateData.empThrive, 'inLeadership': empupdateData.inLeadership,'otherInfo': empupdateData.otherInfo,
       'reasonForSerperation': empupdateData.reasonForSerperation, 'building': empupdateData.building,
        'stakeholder': empupdateData.stakeholder,
        'originalFilename': empupdateData.originalFilename

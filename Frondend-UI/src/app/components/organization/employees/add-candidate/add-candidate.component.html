@@ -757,6 +757,23 @@
                       maxlength="200" style="resize: none"
                       ></textarea>
               </mat-form-field>
+              <mat-form-field class="rehire">
+                <input matInput placeholder="Input" style="display: none">
+              <mat-label>Would you rehire this ex-employee in the future?</mat-label><br>
+              <mat-radio-group
+              tabindex="7"
+                aria-labelledby="example-radio-group-label"
+                class="example-radio-group"
+                formControlName="rehireAgain"
+              >
+                <mat-radio-button value="yes"
+                  >Yes</mat-radio-button
+                ><br />
+                <mat-radio-button value="No"
+                  >No</mat-radio-button
+                >
+              </mat-radio-group>
+            </mat-form-field>
             </div>
             <div class="w-full md:w-1/2 sm:w-full">
               <mat-form-field>
@@ -801,23 +818,17 @@
                   please select Subject Matter Expertise (SME)
                 </mat-error>
               </mat-form-field><br>
-              <mat-form-field class="rehire">
-                <input matInput placeholder="Input" style="display: none">
-              <mat-label>Would you rehire this ex-employee in the future?</mat-label><br>
-              <mat-radio-group
-              tabindex="6"
-                aria-labelledby="example-radio-group-label"
-                class="example-radio-group"
-                formControlName="rehireAgain"
-              >
-                <mat-radio-button value="yes"
-                  >Yes</mat-radio-button
-                ><br />
-                <mat-radio-button value="No"
-                  >No</mat-radio-button
-                >
-              </mat-radio-group>
-            </mat-form-field>
+              <mat-form-field class="ml-72" style="width: 400px;">
+                    <textarea
+                      matInput
+                      formControlName="empThrive"
+                      style="line-height: 2px; font-size: smaller"
+                      class="remarks br-btm input-w"
+                      placeholder="What kind of environment does the employee thrive in?" 
+                      tabindex="6"
+                      maxlength="200" style="resize: none"
+                      ></textarea>
+              </mat-form-field>
             </div>
           </div>
           <div class="flex justify-end lg:pb-6 lg:pr-48">
@@ -1099,6 +1110,7 @@
                       please select Consistency
                     </mat-error>
                   </mat-form-field>
+                  
                 </div>
                 <div class="w-full md:w-1/2 sm:w-full">
                   <mat-form-field
@@ -1118,6 +1130,17 @@
                   </mat-form-field>
                 </div>
               </div>
+              <mat-form-field class="ml-72" style="width: 430px;">
+                <textarea
+                  matInput
+                  formControlName="inLeadership"
+                  style="line-height: 2px; font-size: smaller"
+                  class="remarks br-btm input-w"
+                  placeholder="How would you describe this individual’s leadership style?" 
+                  tabindex="9"
+                  maxlength="200" style="resize: none"
+                  ></textarea>
+              </mat-form-field>
             </div>
           </div>
           <div class="flex justify-end lg:pb-6 lg:pr-48">
@@ -1785,6 +1808,18 @@
                   </table>
                 </div>
               </div>
+              <mat-form-field class="ml-72" style="width: 700px;">
+                    <textarea
+                      matInput
+                      formControlName="otherInfo"
+                      style="line-height: 2px; font-size: smaller"
+                      class="remarks br-btm input-w"
+                      placeholder=" Is there any other information about this individual you would like to record for future employers?" 
+                      tabindex="9"
+                      maxlength="200" style="resize: none"
+                      ></textarea>
+              </mat-form-field>
+             
             </div>
           </div>
           <div class="flex justify-end lg:pb-6 lg:pr-48">

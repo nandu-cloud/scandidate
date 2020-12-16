@@ -111,7 +111,8 @@ export class AddCandidateComponent implements OnInit {
       industryKnowledge: new FormControl('', [Validators.required]),
       communicationSkills: new FormControl('', [Validators.required]),
       rehireAgain: new FormControl(),
-      keySkills: new FormControl()
+      keySkills: new FormControl(),
+      empThrive: new FormControl()
     });
     this.fourthFormGroup = new FormGroup({
       awards: new FormGroup({
@@ -122,12 +123,15 @@ export class AddCandidateComponent implements OnInit {
     });
     this.fifthFormGroup = new FormGroup({
       // volume: new FormControl('', [Validators.required]),
+      inLeadership : new FormControl(),
       quality: new FormGroup({ IsSelect: new FormControl(), description: new FormControl() }),
       consistency: new FormGroup({ IsSelect: new FormControl(), description: new FormControl() }),
       building: new FormGroup({ IsSelect: new FormControl(), description: new FormControl() }),
-      stakeholder: new FormGroup({ IsSelect: new FormControl(), description: new FormControl() })
+      stakeholder: new FormGroup({ IsSelect: new FormControl(), description: new FormControl() }),
+      
     });
     this.sixthFormGroup = new FormGroup({
+      otherInfo: new FormControl(),
       discrepancyDocuments: new FormGroup({
         IsSelect: new FormControl(), descrepencyPeriod: new FormControl(),
         descrepencyCauseActionTaken: new FormControl(), descrepencyUploadDocument: new FormControl(),
