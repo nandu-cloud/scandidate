@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema({
     required: [true, "sub role cannot be empty"],
     enum: ["ADMIN", "OPERATIONAL_USER"],
   },
+  bgvCount:{
+    type:Number,
+    required:false
+  },
   scandidateId: {
     type: String,
     required: false,

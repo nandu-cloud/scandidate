@@ -3,9 +3,22 @@ const colors = require("./../../../helpers/colors");
 const bgvDAL = require("./bgvDAL");
 const instituionDAL = require("../institute-onboard/instituteOnboardDAL");
 const organizationDAL = require("../organization-onboard/orgOnboardDAL");
+const userDAL=require('../user/userDAL');
 
 module.exports.searchbgv = async (req, res, next) => {
   let data = req.body;
+  const id=req.params.id;
+  try{
+    let getData=await userDAL.getUserById({_id:id});
+    var getBGVCount=getData.bgvCount;
+    if(!getBGVCount){
+      await userDAL.updateUser({_id:id,bgvCount:1});
+    }else{
+      await userDAL.updateUser({_id:id,bgvCount:getBGVCount+1});
+    }
+  }catch(err){
+    return next(new AppError(err,400));
+  }
   try {
     let empData = await bgvDAL.searchBgvDataEmployee(data);
 

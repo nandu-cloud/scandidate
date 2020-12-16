@@ -36,6 +36,17 @@ async function getUserById(data) {
   }
 }
 
+async function getUserByIdForBGV(data) {
+  try {
+    let result = await userModel.findById({ _id: data._id })
+    .select("bgvCount")
+    .lean();
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
 async function updateUser(data) {
   try {
     let result = await userModel.findOneAndUpdate({ _id: data._id }, data, {
@@ -63,4 +74,5 @@ module.exports = {
   getUserById: getUserById,
   updateUser: updateUser,
   deleteUser: deleteUser,
+  getUserByIdForBGV:getUserByIdForBGV
 };
