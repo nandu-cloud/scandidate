@@ -39,18 +39,18 @@ module.exports.searchbgv = async (req, res, next) => {
 
 module.exports.searchByIdBGV = async (req, res, next) => {
   let _id = req.params.searchbyid;
-  let userId = req.params.id;
+  // let userId = req.params.id;
   try {
-    console.log("----------------UserId-----------", userId);
-    let getData = await bgvDAL.getBySearchedId({ _id: _id });
-    if (!getData) {
-      await bgvDAL.saveBGVSearch({
-        searchedById: userId,
-        bgvSearchCount: 1,
-        bgvSearchedDate: new Date(),
-        bgvSearchedId: _id,
-      });
-    }
+    // console.log("----------------UserId-----------", userId);
+    // let getData = await bgvDAL.getBySearchedId({ _id: _id });
+    // if (!getData) {
+    //   await bgvDAL.saveBGVSearch({
+    //     searchedById: userId,
+    //     bgvSearchCount: 1,
+    //     bgvSearchedDate: new Date(),
+    //     bgvSearchedId: _id,
+    //   });
+    // }
 
     let empData = await bgvDAL.searchBgvDataEmployeeId({ _id: _id });
     var aadharNumber = "";
