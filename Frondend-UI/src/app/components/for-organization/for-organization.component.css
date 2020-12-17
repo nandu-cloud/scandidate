@@ -1,0 +1,113 @@
+.mat-toolbar.mat-primary {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    color: #6cb43b;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+  }
+  
+  .word-highlight {
+    background-color: #6cb43b;
+    color: #fff;
+  }
+  
+  .section-background {
+    background-color: #f7fff1;
+  }
+  
+  .text-color {
+    color: #6cb43b;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  .example-icon {
+    padding: 0 14px;
+  }
+  
+  .pad {
+    padding-left: 35%;
+    padding-right: 35%;
+  }
+  
+  .polygon {
+    background-image: url(./../../../assets/images/traphizim.svg);
+    background-size: cover;
+  }
+  
+  .triangle {
+    background-image: url(../../../assets/images/triangles.svg);
+    background-size: cover;
+  }
+  
+  .circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 4px solid #6cb43b;
+    font-size: 24px;
+    color: white;
+    line-height: 20px;
+    text-align: center;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+    vertical-align: middle;
+    display: table-cell;
+  }
+  .circle:before {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    left: 4px;
+    bottom: 4px;
+    content: "";
+    background: #6cb43b;
+    border-radius: 50%;
+    z-index: -1;
+  }
+  
+  .button {
+    border-radius: 23px;
+    color: #6cb43b;
+    border: 1px solid #6cb43b;
+    font-size: 14px;
+    padding: 5px;
+  }
+  table{
+    width: 100% !important;
+  }
+  .mat-header-cell{
+    background: #6cb43b;
+    color: white !important;
+    font-weight: bold;
+    padding-left: 25px !important;
+    font-size: 1.5em !important;
+  }
+  td.mat-cell {
+    padding: 20px !important;
+    font-size: 1em !important;
+  }
+  .ins-icon{
+    height: 60px !important;
+    width: 70px !important;
+    background-color: #6CB43B;
+    color: white;
+    box-shadow: 0 0 15px rgba(1, 1, 1, 0.2);
+}
+.border-btm{
+    border-bottom: 1px solid #80808059;
+}
+.material-icons {
+    cursor: default !important;
+}
+.back-styles {
+    background-color: #6cb43b;
+    color: white !important;
+    font-weight: bold;
+    font-size: 1.5em;
+    padding: 10px;
+}

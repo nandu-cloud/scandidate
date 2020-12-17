@@ -1,6 +1,12 @@
 <mat-toolbar color="primary">
   <img width="25" src="./../../../assets/images/logo1.png" />
   <span class="spacer"></span>
+  <ul class="flex flex-row items-end">
+    <li class="pr-10 text-2xl"><a routerLink="/landing-page" class="active"> Home </a></li>
+    <li class="pr-10 text-2xl"><a routerLink="/why-scandidate">Why Scandidate</a></li>
+    <li class="pr-10 text-2xl"><a routerLink="/for-organization">For Organization</a></li>
+    <li class="pr-10 text-2xl"><a routerLink="/about-us">About Us</a></li>
+</ul>
   <a
     class="button"
     aria-label="Example icon-button with share icon"
@@ -11,14 +17,13 @@
 </mat-toolbar>
 
 <!-- first hero section -->
-<section class="pt-10">
-  <div
-    class="container mx-auto flex flex-wrap flex-col md:flex-row items-center"
-  >
+<section class="pt-8">
+  <div class="container mx-auto flex flex-wrap flex-col md:flex-row items-center">
+    <div class="flex w-full flex-col md:w-4/12 py-6 text-center items-center">
+      <img class="w-full md:w-2/5" src="./../../../assets/images/logo1.png" />
+    </div>
     <!--Left Col-->
-    <div
-      class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left"
-    >
+    <div class="flex flex-col w-full md:w-5/12 justify-center items-center text-center md:text-left">
       <p class="leading-relaxed text-2xl font-bold leading-tight">
         With <span style="color: #6cb43b"><b>SCANDIDATE</b></span
         >, you can increase confidence that your new hire is
@@ -26,15 +31,15 @@
       </p>
     </div>
     <!--Right Col-->
-    <div class="flex w-full flex-col md:w-3/5 py-6 text-center items-end">
-      <img class="w-full md:w-3/5" src="../../../assets/images/header.svg" />
+    <div class="flex w-full flex-col md:w-1/4 py-6 text-center items-end">
+      <img class="w-full md:w-9/12" src="../../../assets/images/header.svg" />
     </div>
   </div>
 </section>
 
 <!-- main section -->
 
-<section class="section-background p-6">
+<section class="section-background p-5">
   <div class="container mx-auto">
     <p class="leading-relaxed text-3xl font-bold leading-tight text-center">
       Know Your Hire
@@ -48,177 +53,6 @@
       A complete, factual and guaranteed belief so that you
       <b>"Know Your Hire"</b>
     </p>
-  </div>
-</section>
-
-<section>
-  <div class="container max-w-5xl mx-auto m-8">
-    <p class="leading-relaxed text-3xl font-bold leading-tight text-center">
-      Why SCANDIDATE?
-    </p>
-    <div class="flex flex-wrap">
-      <div class="w-full sm:w-1/2 p-5">
-        <img src="./../../../assets/images/middle.svg" />
-      </div>
-      <div class="w-5/6 sm:w-1/2 p-5">
-        <p class="text-justify text-2xl p-6 leading-tight">
-          We do a Candid Scan on every Candidate you want to hire. We exist and
-          operate purely with the support, collaboration and partnership of
-          Human Resources professionals across different sectors. And, we
-          therefore can provide pure, unadulterated support, collaboration and
-          partnership to Human Resources professionals across different sectors.
-          Yes, we are the bridge of information, from one HRD to another, about
-          each person leaving one company and joining another. Scandidate is a
-          candid career scan for each experienced professional.
-          <br />
-          <br />
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container mx-auto">
-    <p class="leading-relaxed text-3xl font-bold leading-tight text-center">
-      How does SCANDIDATE help you reduce your time, cost and effort of
-      recruitment?
-    </p>
-    <br />
-    <div
-      class="grid lg:grid-cols-2 xl:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-4"
-    >
-      <div
-        class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow p-3"
-      >
-        <h6 class="pad"><span class="circle">1</span></h6>
-        <p class="text-2xl p-6 leading-tight">
-          Eliminates the need to conduct a post de-facto, lengthy, costlier
-          background verification
-        </p>
-      </div>
-      <div
-        class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow p-3"
-      >
-        <h6 class="pad"><span class="circle">2</span></h6>
-        <p class="text-2xl p-6 leading-tight">
-          On-click, on-demand background report directly from the previous
-          companies and educational institutes
-        </p>
-      </div>
-      <div
-        class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow p-3"
-      >
-        <h6 class="pad"><span class="circle">3</span></h6>
-
-        <p class="text-2xl p-6 leading-tight">
-          Get REAL insights from previous organizations, educational institutes,
-          fed into our system on a real-time basis
-        </p>
-      </div>
-      <div
-        class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow p-3"
-      >
-        <h6 class="pad"><span class="circle">4</span></h6>
-
-        <p class="text-2xl p-6 leading-tight">
-          You will always know if your candidate has any "hidden" record which
-          no other process brings to the fore
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section-background border-t py-8 my-6">
-  <p class="leading-relaxed text-3xl font-bold leading-tight text-center">
-    What's in it for you?
-  </p>
-  <div class="container mx-auto flex flex-wrap pt-4 pb-12">
-    <div class="w-full mb-4">
-      <div
-        class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"
-      ></div>
-    </div>
-    <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-      <div
-        class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow p-3"
-      >
-        <div class="flex flex-wrap">
-          <p class="leading-tight text-2xl font-bold text-color px-6">
-            As an Organization :
-          </p>
-
-          <ul class="list-disc text-gray-800 text-2xl p-6 leading-tight">
-            <li>
-              De-mystify a candidate's work ethic, conduct and professionalism
-              history.
-            </li>
-            <li>
-              Eliminate Reference check and Background check as a step in your
-              hiring process and reduce cycle time.
-            </li>
-            <li>
-              Contribute to creating a universally effective and advantageous
-              industry practice.
-            </li>
-            <li>
-              Receive extensive industry HR reports on hiring, attrition and
-              best practices.
-            </li>
-            <li>
-              Motivate employees to work consistently even while serving notice
-              period.
-            </li>
-            <li>
-              Conquer the risk of recruitment "infant mortality" - candidates
-              leaving immediately after joining.
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-      <div
-        class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow p-3"
-      >
-        <div class="flex flex-wrap">
-          <p class="leading-tight text-2xl font-bold text-color px-6">
-            As an Employee :
-          </p>
-
-          <ul class="list-disc text-gray-800 text-2xl p-6 leading-tight">
-            <li>
-              Augment your employability with your own Scandidate record - your
-              credentials can't get a stronger backing than this!
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container mx-auto">
-    <p class="leading-relaxed text-2xl font-bold leading-tight text-center">
-      Why should you give your ex-employees' information?
-    </p>
-    <div class="flex flex-wrap">
-      <div class="w-full sm:w-1/2 p-5">
-        <img src="./../../../assets/images/end.svg" />
-      </div>
-      <div class="w-5/6 sm:w-1/2 p-5">
-        <p class="text-justify text-2xl p-6 leading-tight">
-          You anyway do it - every time an ex-employee joins a new organization,
-          someone from your management team or HR is spending considerable
-          effort in helping the new organization complete their background
-          checks. Why not instead do it in a one-shot, structured way with
-          SCANDIDATE and also earn some revenue for each of your ex-employee's
-          records downloaded by other organizations?
-        </p>
-      </div>
-    </div>
   </div>
 </section>
 

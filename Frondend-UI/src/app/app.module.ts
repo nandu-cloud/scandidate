@@ -49,6 +49,9 @@ import { MeritQualityComponent } from './components/merit-quality/merit-quality.
 import { RecognitionComponent } from './components/recognition/recognition.component';
 import { LeadershipComponent } from './components/leadership/leadership.component';
 import { IssuesComponent } from './components/issues/issues.component';
+import { WhyScandidateComponent } from './components/why-scandidate/why-scandidate.component';
+import { ForOrganizationComponent } from './components/for-organization/for-organization.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,7 +87,10 @@ import { IssuesComponent } from './components/issues/issues.component';
     MeritQualityComponent,
     RecognitionComponent,
     LeadershipComponent,
-    IssuesComponent
+    IssuesComponent,
+    WhyScandidateComponent,
+    ForOrganizationComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,

@@ -29,10 +29,16 @@ import { AllStudentsComponent } from './components/scandidate/institute-onboard/
 import { AllEmployeesComponent } from './components/scandidate/organization-onboard/all-employees/all-employees.component';
 import { BGVViewComponent } from './components/bgv-view/bgv-view.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { WhyScandidateComponent } from './components/why-scandidate/why-scandidate.component';
+import { ForOrganizationComponent} from './components/for-organization/for-organization.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/landing-page', pathMatch: 'full' },
+  { path:'why-scandidate', component: WhyScandidateComponent},
   { path: 'landing-page', component: LandingPageComponent },
+  { path: 'for-organization', component: ForOrganizationComponent},
+   {path: 'about-us',component:AboutUsComponent},
   { path: 'login', component: LoginComponent },
   { path: 'add-organization', component: AddOrganizationComponent },
   { path: 'navbar', component: NavbarComponent },
