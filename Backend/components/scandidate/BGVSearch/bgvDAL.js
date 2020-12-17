@@ -1,6 +1,7 @@
 const studentModel = require("../../institution/OppsUser/AddStudent/studentModel");
 const employeeModel = require("../../organization/OppsUser/AddEmployee/employeeModel");
 const colors = require("../../../helpers/colors");
+const bgvModel = require("./bgvModel");
 
 async function searchBgvDataEmployee(data) {
   try {
@@ -160,6 +161,36 @@ async function searchByNameInstittute(firstName, lastName, dob) {
   }
 }
 
+// BGV Search
+
+async function saveBGVSearch(data) {
+  const bgv = new bgvModel(data);
+  try {
+    let result = bgv.save();
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
+async function getBySearchedById(data) {
+  try {
+    let result = await bgvModel.find({ searchedById: data._id }).lean();
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
+async function getBySearchedId(data) {
+  try {
+    let result = await bgvModel.find({ bgvSearchedId: data._id }).lean();
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
 module.exports = {
   searchBgvDataEmployee: searchBgvDataEmployee,
   searchBgvDataStudent: searchBgvDataStudent,
@@ -173,4 +204,10 @@ module.exports = {
   searchByNameInstittute: searchByNameInstittute,
   searchBgvDataEmployeeId: searchBgvDataEmployeeId,
   searchBgvDataStudentId: searchBgvDataStudentId,
+
+  //BGV
+
+  saveBGVSearch: saveBGVSearch,
+  getBySearchedById: getBySearchedById,
+  getBySearchedId: getBySearchedId,
 };

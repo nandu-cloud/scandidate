@@ -3,22 +3,9 @@ const colors = require("./../../../helpers/colors");
 const bgvDAL = require("./bgvDAL");
 const instituionDAL = require("../institute-onboard/instituteOnboardDAL");
 const organizationDAL = require("../organization-onboard/orgOnboardDAL");
-const userDAL=require('../user/userDAL');
 
 module.exports.searchbgv = async (req, res, next) => {
   let data = req.body;
-  const id=req.params.id;
-  try{
-    let getData=await userDAL.getUserById({_id:id});
-    var getBGVCount=getData.bgvCount;
-    if(!getBGVCount){
-      await userDAL.updateUser({_id:id,bgvCount:1});
-    }else{
-      await userDAL.updateUser({_id:id,bgvCount:getBGVCount+1});
-    }
-  }catch(err){
-    return next(new AppError(err,400));
-  }
   try {
     let empData = await bgvDAL.searchBgvDataEmployee(data);
 
@@ -52,7 +39,19 @@ module.exports.searchbgv = async (req, res, next) => {
 
 module.exports.searchByIdBGV = async (req, res, next) => {
   let _id = req.params.searchbyid;
+  let userId = req.params.id;
   try {
+    console.log("----------------UserId-----------", userId);
+    let getData = await bgvDAL.getBySearchedId({ _id: _id });
+    if (!getData) {
+      await bgvDAL.saveBGVSearch({
+        searchedById: userId,
+        bgvSearchCount: 1,
+        bgvSearchedDate: new Date(),
+        bgvSearchedId: _id,
+      });
+    }
+
     let empData = await bgvDAL.searchBgvDataEmployeeId({ _id: _id });
     var aadharNumber = "";
     var phoneNumber = "";
