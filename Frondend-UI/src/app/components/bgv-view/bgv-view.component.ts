@@ -104,6 +104,7 @@ export class BGVViewComponent implements OnInit {
   m : any;
   m1 : any;
   result;
+  //fileName: string;
   constructor(
     public fb: FormBuilder,private _storage: StorageService,
     private cd: ChangeDetectorRef,public dialog: MatDialog,public route:ActivatedRoute,public empService : BgvSearchService,private datePipe: DatePipe
@@ -116,7 +117,7 @@ export class BGVViewComponent implements OnInit {
   ngOnInit(): void {
     if(this.empIdedit){
       this.editEmployeeSubscription = this.empService.ViewCandidate(this.empIdedit).subscribe(respObj => {
-        console.log(respObj.data);
+        console.log("records"+respObj.data);
         let logo = window.sessionStorage.getItem('logo');
         this.imageUrl=`${this.baseUrl}/public/user_avatar/${logo}`;
         this.data = respObj.data
@@ -131,6 +132,7 @@ export class BGVViewComponent implements OnInit {
         this.id = respObj.data._id;
         this.myDate = new Date();
         
+        
 
         //let instLogo =`${this.baseUrl}/public/institute_logo/`;
         //let orgLogo =`${this.baseUrl}/public/organization_logo/`;
@@ -141,6 +143,7 @@ export class BGVViewComponent implements OnInit {
               {
               const data = this.data[i].organisationId
               this.orgId.push(data);
+             // this.fileName=this.data[i].awards.documentUpload;
               var date = this.data[i].dateOfJoining;
               var date1 = this.data[i].exitDate;
               this.joinMonth = this.datePipe.transform(date,"MM/dd/yyyy");
@@ -163,7 +166,17 @@ export class BGVViewComponent implements OnInit {
             const data = this.data[i].instituteId
             this.instId.push(data);
             this.proExp = this.data[i].dateOfJoining
+
+            for(let j = 0; i < this.data[i].eductionalDocumentNames.length; j++){
+
+              var doc  = this.data[i].eductionalDocumentNames[j];
+              console.log(doc);
+
+            }
+
              }
+
+            
            }
            console.log(this.instId);
 
@@ -186,6 +199,20 @@ export class BGVViewComponent implements OnInit {
     }
   
     
+  }
+
+  downloadDoc(fileName) {
+    if (fileName != '') {
+      const temp = `${this.baseUrl}/public/organization_doc/${fileName}`;
+      window.open(temp, "_blank", "scrollbars=yes,resizable=yes,top=800,left=800,width=800,height=800");
+    }
+  }
+
+  downloadstuDoc(fileName) {
+    if (fileName != '') {
+      const temp = `${this.baseUrl}/public/student_doc/${fileName}`;
+      window.open(temp, "_blank", "scrollbars=yes,resizable=yes,top=800,left=800,width=800,height=800");
+    }
   }
   
   openDialog(empId:number): void {
