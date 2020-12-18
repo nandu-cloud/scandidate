@@ -1,5 +1,5 @@
 .mat-toolbar.mat-primary {
-    position: sticky;
+    position: inherit !important;
     top: 0;
     z-index: 1;
     color: #6cb43b;
@@ -90,4 +90,13 @@
   td.mat-cell {
     padding: 20px !important;
     font-size: 1em !important;
+  }
+  @media(max-width:320px){
+    .button{
+      border-radius: 23px;
+        color: #6cb43b;
+        border: 1px solid #6cb43b;
+        font-size: 11px;
+        padding: 0px;
+  }
   }
