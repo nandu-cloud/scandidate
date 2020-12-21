@@ -99,10 +99,12 @@ export class BGVViewComponent implements OnInit {
   proYear: any;
   totalMonth: any = [];
   totalYears: any = [];
+  doc: any =[];
   empId: number;
   y : any;
   m : any;
   m1 : any;
+  edudoc;
   result;
   //fileName: string;
   constructor(
@@ -120,7 +122,8 @@ export class BGVViewComponent implements OnInit {
         console.log("records"+respObj.data);
         let logo = window.sessionStorage.getItem('logo');
         this.imageUrl=`${this.baseUrl}/public/user_avatar/${logo}`;
-        this.data = respObj.data
+        this.data = respObj.data;
+        this.edudoc = respObj.data[2].eductionalDocumentNames;
         console.log(this.data);
         this.FirstName = this.data[0].firstName;
         this.lastName = this.data[0].lastName;
@@ -167,10 +170,9 @@ export class BGVViewComponent implements OnInit {
             this.instId.push(data);
             this.proExp = this.data[i].dateOfJoining
 
-            for(let j = 0; i < this.data[i].eductionalDocumentNames.length; j++){
-
-              var doc  = this.data[i].eductionalDocumentNames[j];
-              console.log(doc);
+            for(let j = 0; j < this.data[i].eductionalDocumentNames.length; j++){
+              this.doc.push({"docName":this.data[i].eductionalDocumentNames[j]});
+              console.log(this.doc);
 
             }
 

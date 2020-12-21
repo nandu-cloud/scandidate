@@ -12,7 +12,7 @@
      button
     {
         font-size: small;
-        
+        color: black !important;
     }
     .logo{
         width:300px;
@@ -22,4 +22,8 @@
         width:150px;
         height:100px;
     }
-     
+    @media(max-width:320px){
+    .scroll{
+        overflow-x: scroll !important;
+    }
+}
