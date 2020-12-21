@@ -32,6 +32,7 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { WhyScandidateComponent } from './components/why-scandidate/why-scandidate.component';
 import { ForOrganizationComponent} from './components/for-organization/for-organization.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { ScandidateReportComponent } from './components/scandidate-report/scandidate-report.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/landing-page', pathMatch: 'full' },
@@ -72,7 +73,8 @@ const routes: Routes = [
   { path: 'BGV', component: BGVSearchComponent },
   { path: 'students', component: AllStudentsComponent },
   { path: 'employee', component: AllEmployeesComponent },
-  { path: 'bgv-view/:id', component: BGVViewComponent }
+  { path: 'bgv-view/:id', component: BGVViewComponent },
+  { path: 'scandidate-report',component:ScandidateReportComponent }
 
 ];
 

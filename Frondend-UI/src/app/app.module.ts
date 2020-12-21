@@ -52,6 +52,7 @@ import { IssuesComponent } from './components/issues/issues.component';
 import { WhyScandidateComponent } from './components/why-scandidate/why-scandidate.component';
 import { ForOrganizationComponent } from './components/for-organization/for-organization.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { ScandidateReportComponent } from './components/scandidate-report/scandidate-report.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,7 +91,8 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     IssuesComponent,
     WhyScandidateComponent,
     ForOrganizationComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    ScandidateReportComponent
   ],
   imports: [
     BrowserModule,
