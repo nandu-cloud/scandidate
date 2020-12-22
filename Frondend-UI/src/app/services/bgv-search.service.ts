@@ -31,7 +31,9 @@ export class BgvSearchService {
 
 //view details
 public ViewCandidate(viewData) : Observable<any> {
-  return this.http.get(this.baseUrl + '/api/scandidate/bgvsearch/'+viewData );
+  var id = window.sessionStorage.getItem('ID');
+  // return this.http.get(this.baseUrl + '/api/scandidate/bgvsearch/'+viewData + id );
+  return this.http.get(`${this.baseUrl}/api/scandidate/bgvsearch/${viewData}/${id}`);
 }
 
 public ViewLogo(org,inst) : Observable<any> {
