@@ -14,7 +14,37 @@ const scandidateSearchCount = new Schema(
       type: Date,
       required: false,
     },
-    bgvSearchedId: [{ type: Schema.Types.ObjectId, required: false }],
+    bgvSearchExpireDate:{
+      type:Date,
+      required:false
+    },
+    bgvSearchedId: { type: Schema.Types.ObjectId, required: false },
+    adharNumber: {
+      type: String,
+      required: false,
+    },
+    phoneNumber: {
+      type: String,
+      required:false,
+    },
+    dateOfBirth: {
+      type: String,
+      required: false,
+    },
+    email: {
+      type: String,
+      required: false,
+    },
+    firstName: {
+      type: String,
+      required: false,
+    },
+    lastName: {
+      type: String,
+      required: false,
+    },
+
+
   },
   { timestamps: true }
 );

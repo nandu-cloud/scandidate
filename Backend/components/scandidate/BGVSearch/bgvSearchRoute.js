@@ -6,7 +6,7 @@ const bgvController = require("./bgvController");
 router.route("/").post(authJWT.verifyJWTToken, bgvController.searchbgv);
 
 router
-  .route("/:searchbyid")
+  .route("/:searchbyid/:id")
   .get(authJWT.verifyJWTToken, bgvController.searchByIdBGV);
 
 router

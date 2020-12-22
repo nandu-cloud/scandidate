@@ -4,7 +4,7 @@ const authJWT = require("./../../../middlewares/authJWT");
 const dashboardController = require("./dashboardController");
 
 router
-  .route("/count/:organisationId")
+  .route("/count/:organisationId/:id")
   .get(authJWT.verifyJWTToken, dashboardController.countTotalOrgUsers);
 
 module.exports = router;
