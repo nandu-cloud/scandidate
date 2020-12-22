@@ -120,23 +120,44 @@ export class BGVViewComponent implements OnInit {
     if(this.empIdedit){
       this.editEmployeeSubscription = this.empService.ViewCandidate(this.empIdedit).subscribe(respObj => {
         console.log("records"+respObj.data);
-        let logo = window.sessionStorage.getItem('logo');
-        this.imageUrl=`${this.baseUrl}/public/user_avatar/${logo}`;
         this.data = respObj.data;
-        this.edudoc = respObj.data[2].eductionalDocumentNames;
-        console.log(this.data);
-        this.FirstName = this.data[0].firstName;
-        this.lastName = this.data[0].lastName;
-        this.email = this.data[0].email;
-        this.dob = this.data[0].dateOfBirth;
-        this.aadhar = this.data[0].adharNumber;
-        this.phone = this.data[0].phoneNumber;
-        this.pan_card = this.data[0].panNumber;
-        this.id = respObj.data._id;
-        this.myDate = new Date();
-        
-        
-
+        for (let i = 0; i < this.data.length; i++) {
+          if(this.data[i].organisationId)
+          {
+            let logo = window.sessionStorage.getItem('logo');
+            this.imageUrl=`${this.baseUrl}/public/user_avatar/${logo}`;
+            // this.edudoc = respObj.data[2].eductionalDocumentNames;
+            console.log(this.data);
+            this.FirstName = this.data[0].firstName;
+            this.lastName = this.data[0].lastName;
+            this.email = this.data[0].email;
+            this.dob = this.data[0].dateOfBirth;
+            this.aadhar = this.data[0].adharNumber;
+            this.phone = this.data[0].phoneNumber;
+            this.pan_card = this.data[0].panNumber;
+            this.id = respObj.data._id;
+            this.myDate = new Date();
+          }
+        }
+        for (let i = 0; i < this.data.length; i++) {
+          if(this.data[i].instituteId)
+         {
+          let logo = window.sessionStorage.getItem('logo');
+          this.imageUrl=`${this.baseUrl}/public/user_avatar/${logo}`;
+          this.edudoc = respObj.data[2].eductionalDocumentNames;
+          console.log(this.data);
+          this.FirstName = this.data[0].firstName;
+          this.lastName = this.data[0].lastName;
+          this.email = this.data[0].email;
+          this.dob = this.data[0].dateOfBirth;
+          this.aadhar = this.data[0].adharNumber;
+          this.phone = this.data[0].phoneNumber;
+          this.pan_card = this.data[0].panNumber;
+          this.id = respObj.data._id;
+          this.myDate = new Date();
+         }
+        }
+      
         //let instLogo =`${this.baseUrl}/public/institute_logo/`;
         //let orgLogo =`${this.baseUrl}/public/organization_logo/`;
             //para for org logo

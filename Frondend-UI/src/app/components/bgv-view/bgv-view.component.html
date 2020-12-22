@@ -117,8 +117,8 @@
         <div *ngFor="let list of data">
           <span class="justify-start" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
               <!-- <span>{{list.awards.documentName}}</span> -->
-              <li *ngIf="list.discrepancyDocuments.originalFilename"><a
-                (click)="downloadDoc(list.discrepancyDocuments.descrepencyUploadDocument)">{{list.discrepancyDocuments.originalFilename}}</a></li>
+              <!-- <li *ngIf="list.discrepancyDocuments.originalFilename"><a
+                (click)="downloadDoc(list.discrepancyDocuments.descrepencyUploadDocument)">{{list.discrepancyDocuments.originalFilename}}</a></li> -->
           </span>
         </div>
       </div>

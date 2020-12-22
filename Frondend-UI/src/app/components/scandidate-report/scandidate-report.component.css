@@ -1,0 +1,10 @@
+table{
+    width: 87%;
+    margin-left: 7rem;
+}
+.table-heading{
+    margin-left: 7rem;
+}
+.inline{
+    display: inline-block;
+}
