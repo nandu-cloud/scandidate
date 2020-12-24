@@ -116,18 +116,22 @@ export class LoginComponent implements OnInit {
       this._sessionStorage.setSession('InistutionId',iniId);
       this._sessionStorage.setSession('organizationId',orgId);
       this._sessionStorage.setSession('logo',logo);
-
+      if (resp.status.toUpperCase() == 'SUCCESS') {
       if(role == 'SCANDIDATE'){
+        this._sessionStorage.setSession('isAuthenticated',true);
         this.router.navigate(['/dashboard']);
       } else if(role == 'INSTITUTION'){
+       this._sessionStorage.setSession('isAuthenticated',true);
        localStorage.setItem('instutuinId', resp.data.institutionId)
        this.router.navigate(['/institutionDashboard']);
        localStorage.setItem('_id', resp.data._id)
        this.router.navigate(['/institutionDashboard']);
       } else {
+        this._sessionStorage.setSession('isAuthenticated',true);
         localStorage.setItem('organizationId',resp.data.organizationId);
         this.router.navigate(['/organizationDashboard']);
       }
+    }
     }, err => {
     this.setMessage = { message: err.error.message, error: true };
     this.error = this.setMessage.message;

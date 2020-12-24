@@ -89,4 +89,7 @@ export class NavbarComponent implements OnInit {
       this.institutionLogo = `${this.baseUrl}/public/organization_logo/${respObj.data.organisationLogo}`
     })
   }
+  logout(){
+    sessionStorage.clear();
+  }
   }

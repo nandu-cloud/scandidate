@@ -53,6 +53,8 @@ import { WhyScandidateComponent } from './components/why-scandidate/why-scandida
 import { ForOrganizationComponent } from './components/for-organization/for-organization.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ScandidateReportComponent } from './components/scandidate-report/scandidate-report.component';
+import { AppGuard } from "../app/admin/app.guard";
+import { StorageService } from "./services/storage.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -107,7 +109,9 @@ import { ScandidateReportComponent } from './components/scandidate-report/scandi
     FileUploadModule
   ],
   providers: [
-    { provide: MatDialogRef,useValue: {} },
+    { provide: AppGuard},
+    { provide: StorageService},
+    { provide: MatDialogRef,useValue: {}},
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
 
