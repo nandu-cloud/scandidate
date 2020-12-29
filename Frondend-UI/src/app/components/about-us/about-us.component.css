@@ -84,6 +84,9 @@
       font-size: 11px;
       padding: 0px;
 }
+.text-xl{
+  font-size: 0.875rem !important;
+}
 }
 .rounded{
   border-radius: 55px;

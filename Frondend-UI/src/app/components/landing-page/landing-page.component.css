@@ -16,7 +16,7 @@
   background-color: #eeeeee;
   padding: 2em;
   margin: 0em 5em;
-  border-radius: 11%;
+  border-radius: 100px;
 }
 
 .text-color {
@@ -87,6 +87,17 @@
     border: 1px solid #6cb43b;
     font-size: 11px;
     padding: 0px;
+  }
+  .text-xl{
+    font-size: 0.875rem !important;
+  }
+  .section-background {
+    padding: 1em;
+    margin: 0em ;
+    border-radius: 50px;
+  }
+  .hea-border{
+    margin-left: 2rem !important;
   }
 }
 .hea-border{
