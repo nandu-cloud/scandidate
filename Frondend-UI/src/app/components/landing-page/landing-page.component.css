@@ -13,7 +13,10 @@
 }
 
 .section-background {
-  background-color: #f7fff1;
+  background-color: #eeeeee;
+  padding: 2em;
+  margin: 0em 5em;
+  border-radius: 11%;
 }
 
 .text-color {
@@ -80,9 +83,14 @@
 @media(max-width:320px){
   .button{
     border-radius: 23px;
-      color: #6cb43b;
-      border: 1px solid #6cb43b;
-      font-size: 11px;
-      padding: 0px;
+    color: #6cb43b;
+    border: 1px solid #6cb43b;
+    font-size: 11px;
+    padding: 0px;
+  }
 }
+.hea-border{
+  border-bottom: 9px solid #6cb43b;
+  outline:black solid 1px;
+  margin-left: 9rem;
 }

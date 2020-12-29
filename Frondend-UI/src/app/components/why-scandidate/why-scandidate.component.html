@@ -2,10 +2,10 @@
     <img width="25" src="./../../../assets/images/logo1.png" />
     <span class="spacer"></span>
     <ul class="flex flex-row items-end">
-        <li class="md:pr-10 pr-1 md:text-2xl text-xs"><a routerLink="/landing-page"> Home </a></li>
-        <li class="md:pr-10 pr-1 md:text-2xl text-xs"><a routerLink="/why-scandidate"  class="active">Why?</a></li>
-        <li class="md:pr-10 pr-1 md:text-2xl text-xs"><a routerLink="/for-organization">ForOrganization</a></li>
-        <li class="md:pr-10 pr-1 md:text-2xl text-xs"><a routerLink="/about-us">AboutUs</a></li>
+        <li class="md:pr-10 pr-1 md:text-xl text-xs"><a routerLink="/landing-page"> Home </a></li>
+        <li class="md:pr-10 pr-1 md:text-xl text-xs"><a routerLink="/why-scandidate"  class="active">Why?</a></li>
+        <li class="md:pr-10 pr-1 md:text-xl text-xs"><a routerLink="/for-organization">ForOrganization</a></li>
+        <li class="md:pr-10 pr-1 md:text-xl text-xs"><a routerLink="/about-us">AboutUs</a></li>
     </ul>
     <a
       class="button"
@@ -16,76 +16,64 @@
     </a>
   </mat-toolbar>
 
-  <section id="whyscandidate">
-    <div class="container max-w-5xl mx-auto m-8">
-      <p class="leading-relaxed text-3xl font-bold leading-tight text-center">
-        Why SCANDIDATE?
-      </p>
+  <section id="whyscandidate" class="section-background">
+    <div class="container max-w-5xl mx-auto ">
+      <div class="border-solid border-b-4 border-light-blue-500">
+        <p class="text-2xl font-extrabold leading-loose">
+          WHY SCANDIDATE?
+        </p>
+        <p class="text-xl font-bold">We do a Candid Scan on every Candidate you want to hire</p>
+      </div>
       <div class="flex flex-wrap">
-        <div class="w-full sm:w-1/2 p-5">
-          <img src="./../../../assets/images/middle.svg" />
+        <div class="w-5/6 sm:w-1/2 icon">
+            <ul class="text-justify text-xl p-6 leading-relaxed leading-loose img-style">
+              <li class="flex flex-row"><img src="../../../assets//images/check.png">We exist and operate purely with the support,collaboration and partnership of Human Resources professionals across different sectors. </li>
+              <li class="flex flex-row"><img src="../../../assets//images/check.png">And, we therefore can provide pure,unadulterated support, collaboration and partnership to Human Resources professionals across different sectors. </li>
+              <li class="flex flex-row"><img src="../../../assets//images/check.png">Yes, we are the bridge of information, from one HRD to another,about each person leaving one company and joining another.Scandidate is a candid career scan for each experienced professional.</li>
+              <li class="flex flex-row"><img src="../../../assets//images/check.png">Scandidate is a candid career scan for each experienced professional.</li>
+            </ul>
         </div>
-        <div class="w-5/6 sm:w-1/2 p-5">
-          <p class="text-justify text-2xl p-6 leading-tight">
-            We do a Candid Scan on every Candidate you want to hire. We exist and
-            operate purely with the support, collaboration and partnership of
-            Human Resources professionals across different sectors. And, we
-            therefore can provide pure, unadulterated support, collaboration and
-            partnership to Human Resources professionals across different sectors.
-            Yes, we are the bridge of information, from one HRD to another, about
-            each person leaving one company and joining another. Scandidate is a
-            candid career scan for each experienced professional.
-
-          </p>
+        <div class="w-full sm:w-1/2">
+          <img src="./../../../assets/images/middle.svg" />
         </div>
       </div>
     </div>
   </section>
 
-  <section>
+  <section class="mt-10">
     <div class="container mx-auto">
-      <p class="leading-relaxed text-3xl font-bold leading-tight text-center">
+      <p class="leading-relaxed text-2xl font-bold leading-tight text-center w-1/2 ml-80">
         How does SCANDIDATE help you reduce your time, cost and effort of
         recruitment?
       </p>
       <br />
-      <div
-        class="grid lg:grid-cols-2 xl:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-4"
-      >
-        <div
-          class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow p-3"
-        >
+      <div class="grid lg:grid-cols-2 xl:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-1">
+        <div class="flex-1 bg-gr rounded-t rounded-b-none overflow-hidden shadow p-4 mt-2 ml-24 mr-1 mb-2">
           <h6 class="pad"><span class="circle">1</span></h6>
-          <p class="text-2xl p-6 leading-tight">
+          <p class="text-xl p-6 leading-tight text-white text-center">
             Eliminates the need to conduct a post de-facto, lengthy, costlier
             background verification
           </p>
         </div>
-        <div
-          class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow p-3"
-        >
+        <div class="flex-1 bg-gr rounded-t rounded-b-none overflow-hidden shadow p-4 mt-2 ml-1 mr-24 mb-2">
           <h6 class="pad"><span class="circle">2</span></h6>
-          <p class="text-2xl p-6 leading-tight">
+          <p class="text-xl p-6 leading-tight text-white text-center">
             On-click, on-demand background report directly from the previous
             companies and educational institutes
           </p>
         </div>
-        <div
-          class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow p-3"
-        >
+        <div class="flex-1 bg-gr rounded-t rounded-b-none overflow-hidden shadow p-4 mt-2 ml-24 mr-1 mb-2">
           <h6 class="pad"><span class="circle">3</span></h6>
   
-          <p class="text-2xl p-6 leading-tight">
+          <p class="text-xl p-6 leading-tight text-white text-center">
             Get REAL insights from previous organizations, educational institutes,
             fed into our system on a real-time basis
           </p>
         </div>
-        <div
-          class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow p-3"
-        >
+        <div class="flex-1 bg-gr rounded-t rounded-b-none overflow-hidden shadow p-4 mt-2 ml-1 mr-24 mb-2">
           <h6 class="pad"><span class="circle">4</span></h6>
   
-          <p class="text-2xl p-6 leading-tight">
+          <p class="text-xl p-6 leading-tight text-white text-center">
             You will always know if your candidate has any "hidden" record which
             no other process brings to the fore
           </p>
@@ -94,13 +82,13 @@
     </div>
   </section>
 
-  <section>
+ <section class="section-background">
     <div class="container mx-auto">
-      <p class="leading-relaxed text-3xl font-bold leading-tight text-center pt-2">
-        Current gaps in hiring and how SCANDIDATE addresses them
+      <p class="leading-relaxed text-3xl font-bold leading-tight text-center">
+        Gap Scenarios
       </p>
       <br><br>
-      <table mat-table [dataSource]="dataSource" class="border-separate border border-green-800">
+      <!-- <table mat-table [dataSource]="dataSource" class="border-separate border border-green-800">
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef class="border border-green-600"> Gap Scenarios</th>
           <td mat-cell *matCellDef="let element" class="border border-green-600"> {{element.name}} </td>
@@ -113,28 +101,117 @@
       
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
+      </table> -->
+      <div class="grid lg:grid-cols-2 xl:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-1">
+      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-2 mt-2 ml-24 mr-4 mb-8">
+        <h6><img src="../../../assets/images/gap.png" class="-mt-12"></h6>
+        <p class="text-lg p-6 leading-tight text-black m-0">
+          Today ,An Employee's Background Is
+          Verified After Offer Acceptance Or More
+          Likely,After Joining
+        </p>
+      </div>
+      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-2 mt-2 ml-4 mr-24 mb-8">
+        <h6><img src="../../../assets/images/gap.png" class="-mt-12"></h6>
+        <p class="text-lg p-6 leading-tight text-black m-0">
+          Checking - resume,social media profiles,refrences
+        </p>
+      </div>
+      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-2 mt-4 ml-24 mr-4 mb-8">
+        <h6><img src="../../../assets/images/gap.png" class="-mt-12"></h6>
+        <p class="text-lg p-6 leading-tight text-black m-0">
+          Cost - junior level background check may be ignored due to high cost 
+        </p>
+      </div>
+      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-2 mt-4 ml-4 mr-24 mb-8">
+        <h6><img src="../../../assets/images/gap.png" class="-mt-12"></h6>
+        <p class="text-lg p-6 leading-tight text-black m-0">
+          Binary facts - BGV has red/yellow/ green attributes
+        </p>
+      </div>
+      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-2 mt-4 ml-24 mr-4 mb-8">
+        <h6><img src="../../../assets/images/gap.png" class="-mt-12"></h6>
+        <p class="text-lg p-6 leading-tight text-black m-0">
+          Hide - background check process also does not capture any ex- employer
+        </p>
+      </div>
+      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-2 mt-4 ml-4 mr-24 mb-8">
+        <h6><img src="../../../assets/images/gap.png" class="-mt-12"></h6>
+        <p class="text-lg p-6 leading-tight text-black m-0">
+          Late Verification Onboard - Reputation Loss, Motivation Loss, Monetary Loss,Productivity Loss
+        </p>
+      </div>
+    </div>
     </div>
  </section>
- <section class="pt-5">
-    <div class="container mx-auto">
-      <p class="leading-relaxed text-2xl font-bold leading-tight text-center">
-        Why should you give your ex-employees' information?
+ <section class="section-background">
+  <div class="container mx-auto">
+    <p class="leading-relaxed text-3xl font-bold leading-tight text-center">
+      Scandidate Solution
+    </p>
+    <br><br>
+    <div class="grid lg:grid-cols-2 xl:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-1">
+    <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-2 mt-2 ml-24 mr-4 mb-8">
+      <h6><img src="../../../assets/images/solution.png" class="-mt-12"></h6>
+      <p class="text-lg p-6 leading-tight text-black m-0">
+        Today ,An Employee's Background Is
+        Verified After Offer Acceptance Or More
+        Likely,After Joining
       </p>
+    </div>
+    <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-2 mt-2 ml-4 mr-24 mb-8">
+      <h6><img src="../../../assets/images/solution.png" class="-mt-12"></h6>
+      <p class="text-lg p-6 leading-tight text-black m-0">
+        Checking - resume,social media profiles,refrences
+      </p>
+    </div>
+    <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-2 mt-4 ml-24 mr-4 mb-8">
+      <h6><img src="../../../assets/images/solution.png" class="-mt-12"></h6>
+      <p class="text-lg p-6 leading-tight text-black m-0">
+        Cost - junior level background check may be ignored due to high cost 
+      </p>
+    </div>
+    <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-2 mt-4 ml-4 mr-24 mb-8">
+      <h6><img src="../../../assets/images/solution.png" class="-mt-12"></h6>
+      <p class="text-lg p-6 leading-tight text-black m-0">
+        Binary facts - BGV has red/yellow/ green attributes
+      </p>
+    </div>
+    <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-2 mt-4 ml-24 mr-4 mb-8">
+      <h6><img src="../../../assets/images/solution.png" class="-mt-12"></h6>
+      <p class="text-lg p-6 leading-tight text-black m-0">
+        Hide - background check process also does not capture any ex- employer
+      </p>
+    </div>
+    <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-2 mt-4 ml-4 mr-24 mb-8">
+      <h6><img src="../../../assets/images/solution.png" class="-mt-12"></h6>
+      <p class="text-lg p-6 leading-tight text-black m-0">
+        Late Verification Onboard - Reputation Loss, Motivation Loss, Monetary Loss,Productivity Loss
+      </p>
+    </div>
+  </div>
+  </div>
+</section>
+ <section class="section-background">
+    <div class="container mx-auto container1">
       <div class="flex flex-wrap">
-        <div class="w-full sm:w-1/2 p-5">
+        <div class="w-full sm:w-2/6 p-5 ml-20 mt-10">
           <img src="./../../../assets/images/end.svg" />
         </div>
         <div class="w-5/6 sm:w-1/2 p-5">
-          <p class="text-justify text-2xl p-6 leading-tight">
-            You anyway do it - every time an ex-employee joins a new organization,
-            someone from your management team or HR is spending considerable
-            effort in helping the new organization complete their background
-            checks. And, you may not be doing you good performers justice. 
+          <p class="leading-relaxed text-2xl font-bold leading-loose text-center">
+            Why should you give your ex-employee's information?
           </p>
-          <p class="text-justify text-2xl p-6 leading-tight">
-            Instead, let SCANDIDATE be your journal to record very insightful details about your ex-employees, AT the time of exit! You will lend incredible value to the careers of your ex-employees!
-          </p>
+          <p class="text-justify text-xl p-6 leading-loose">
+            You anyway do it - every time an ex-employee joins
+            a new organization, someone from your management
+            team or HR is spending considerable effort in helping
+            the new organization complete their background
+            checks. Why not instead do it in a one-shot, structured
+            way with SCANDIDATE and also earn some revenue for
+            each of your ex-employee's records downloaded by
+            other organizations?
+           </p>
         </div>
       </div>
     </div>
