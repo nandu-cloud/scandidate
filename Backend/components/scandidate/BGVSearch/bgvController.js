@@ -41,7 +41,6 @@ module.exports.searchByIdBGV = async (req, res, next) => {
   let _id = req.params.searchbyid;
   let userId = req.params.id;
   try {
-    
     let empData = await bgvDAL.searchBgvDataEmployeeId({ _id: _id });
     var aadharNumber = "";
     var phoneNumber = "";
@@ -63,11 +62,11 @@ module.exports.searchByIdBGV = async (req, res, next) => {
         adharNumber: aadharNumber,
         phoneNumber: phoneNumber,
         email: email,
-        firstName:firstName,
-        lastName:lastName
+        firstName: firstName,
+        lastName: lastName,
       });
 
-      if(checkData.length<1){
+      if (checkData.length < 1) {
         var date = new Date();
         date.setDate(date.getDate() + 30);
         var expireDate = date;
@@ -84,7 +83,7 @@ module.exports.searchByIdBGV = async (req, res, next) => {
           lastName: lastName,
           dateOfBirth: dob,
         });
-      }else{
+      } else {
         let { bgvSearchCount, bgvSearchExpireDate } = checkData[0];
         var totdays_Date = new Date();
         var Difference_In_Time =
@@ -101,9 +100,6 @@ module.exports.searchByIdBGV = async (req, res, next) => {
           });
         }
       }
-
-
-
     } else {
       let stuData = await bgvDAL.searchBgvDataStudentId({ _id: _id });
       if (stuData.length > 0) {
@@ -113,6 +109,50 @@ module.exports.searchByIdBGV = async (req, res, next) => {
         firstName = stuData[0].firstName;
         lastName = stuData[0].lastName;
         dob = stuData[0].dateOfBirth;
+
+        let checkData = await bgvDAL.pullData({
+          _id: userId,
+          adharNumber: aadharNumber,
+          phoneNumber: phoneNumber,
+          email: email,
+          firstName: firstName,
+          lastName: lastName,
+        });
+
+        if (checkData.length < 1) {
+          var date = new Date();
+          date.setDate(date.getDate() + 30);
+          var expireDate = date;
+          await bgvDAL.saveBGVSearch({
+            searchedById: userId,
+            bgvSearchCount: 1,
+            bgvSearchedDate: new Date(),
+            bgvSearchExpireDate: expireDate,
+            bgvSearchedId: _id,
+            adharNumber: aadharNumber,
+            phoneNumber: phoneNumber,
+            email: email,
+            firstName: firstName,
+            lastName: lastName,
+            dateOfBirth: dob,
+          });
+        } else {
+          let { bgvSearchCount, bgvSearchExpireDate } = checkData[0];
+          var totdays_Date = new Date();
+          var Difference_In_Time =
+            bgvSearchExpireDate.getTime() - totdays_Date.getTime();
+          var difference_In_Days = Math.floor(
+            Difference_In_Time / (1000 * 3600 * 24)
+          );
+
+          if (difference_In_Days == 0) {
+            var id = checkData[0]._id;
+            await bgvDAL.updateBgvCount({
+              _id: id,
+              bgvSearchCount: bgvSearchCount + 1,
+            });
+          }
+        }
       } else {
         return res.status(404).json({ status: 404, message: "No data found" });
       }
