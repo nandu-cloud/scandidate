@@ -72,7 +72,7 @@ const routes: Routes = [
   { path: 'students', component: AllStudentsComponent ,canActivate: [AppGuard]},
   { path: 'employee', component: AllEmployeesComponent ,canActivate: [AppGuard]},
   { path: 'bgv-view/:id', component: BGVViewComponent ,canActivate: [AppGuard]},
-  { path: 'scandidate-report',component:ScandidateReportComponent ,canActivate: [AppGuard]},
+  { path: 'scandidate-report/:id',component:ScandidateReportComponent ,canActivate: [AppGuard]},
   { path: '', redirectTo: '/landing-page', pathMatch: 'full' },
 
 ];

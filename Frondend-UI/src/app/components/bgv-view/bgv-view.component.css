@@ -22,8 +22,12 @@
         width:150px;
         height:100px;
     }
+    h5{
+        color: rgb(108, 180, 59);
+    }
     @media(max-width:320px){
     .scroll{
         overflow-x: scroll !important;
     }
+    
 }

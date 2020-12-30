@@ -1,205 +1,163 @@
-<!-- <div class="w-screen h-screen flex justify-center items-center">
-  <div class="grid grid-flow-row w-full">
-    <div class="flex items-center justify-around">
-      <div class="">
-        <p>small</p>
-      </div>
-      <div class="">
-        <p>medium</p>
-  
-      </div>
-      <div class="">
-        <p>Large</p>
-
-      </div>
-    </div>
-     <div class="flex items-center justify-around">
-      <div class="">
-        <p>small</p>
-        <button
-                class="text-white px-4 w-auto h-8 bg-red-600 rounded-full hover:bg-red-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
-          <svg viewBox="0 0 20 20" enable-background="new 0 0 20 20" class="w-4 h-4 inline-block mr-1">
-            <path fill="#FFFFFF" d="M17.561,2.439c-1.442-1.443-2.525-1.227-2.525-1.227L8.984,7.264L2.21,14.037L1.2,18.799l4.763-1.01
-                                    l6.774-6.771l6.052-6.052C18.788,4.966,19.005,3.883,17.561,2.439z M5.68,17.217l-1.624,0.35c-0.156-0.293-0.345-0.586-0.69-0.932
-                                    c-0.346-0.346-0.639-0.533-0.932-0.691l0.35-1.623l0.47-0.469c0,0,0.883,0.018,1.881,1.016c0.997,0.996,1.016,1.881,1.016,1.881
-                                    L5.68,17.217z"/>
-          </svg>
-          <span>Extended</span>
-        </button>
-      </div>
-      <div class="">
-        <p>medium</p>
-        <button
-                class="text-white px-4 w-auto h-10 bg-red-600 rounded-full hover:bg-red-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
-          <svg viewBox="0 0 20 20" enable-background="new 0 0 20 20" class="w-6 h-6 inline-block mr-1">
-            <path fill="#FFFFFF" d="M17.19,4.155c-1.672-1.534-4.383-1.534-6.055,0L10,5.197L8.864,4.155c-1.672-1.534-4.382-1.534-6.054,0
-                                    c-1.881,1.727-1.881,4.52,0,6.246L10,17l7.19-6.599C19.07,8.675,19.07,5.881,17.19,4.155z"/>
-          </svg>
-          <span>Extended</span>
-        </button>
-      </div>
-      <div class="">
-        <p>Large</p>
-        <button
-                class="text-white px-4 w-auto h-12 bg-red-600 rounded-full hover:bg-red-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
-          <svg viewBox="0 0 20 20" enable-background="new 0 0 20 20" class="w-6 h-6 inline-block mr-1">
-            <path fill="#FFFFFF" d="M16.399,7.643V10.4c0,2.236-1.643,4.629-5.399,4.959V18h2.6c0.22,0,0.4,0.18,0.4,0.4v1.2
-                                    c0,0.221-0.181,0.4-0.4,0.4H6.4C6.18,20,6,19.82,6,19.6v-1.2C6,18.18,6.18,18,6.399,18H9v-2.641c-3.758-0.33-5.4-2.723-5.4-4.959
-                                    V7.643c0-0.221,0.18-0.4,0.4-0.4h0.6c0.22,0,0.4,0.18,0.4,0.4V10.4c0,1.336,1.053,3.6,5,3.6c3.946,0,5-2.264,5-3.6V7.643
-                                    c0-0.221,0.18-0.4,0.399-0.4H16C16.22,7.242,16.399,7.422,16.399,7.643z M10,12c2.346,0,3-0.965,3-1.6V7.242H7V10.4
-                                    C7,11.035,7.652,12,10,12z M13,1.6C13,0.963,12.346,0,10,0C7.652,0,7,0.963,7,1.6v4.242h6V1.6z"/>
-          </svg>
-          <span>Extended</span>
-        </button>
-      </div>
-    </div>
-  </div>
-</div> -->
+<div class="border-dashed border-2 border-black w-11/12 m-auto mt-10" id="pdfTable" #pdfTable>
 <div class="grid grid-cols-3 gap-4 mt-8">
-  <div></div>
+  <div class="ml-16 w-1/2">
+    <img src="../../../assets/images/logo1.png" width="100" height="100" class="border-1 -mt-3">	
+  </div>
   <div class="ml-32">
-    <span class="text-2xl">FULL NAME</span>
+    <span class="text-2xl heading">{{FirstName}} {{lastName}}</span><br>
+    <span class="text-lg">Phone Number - <span class="text-black">{{phone}}</span></span><br>
+    <span class="text-lg">Email ID - {{email}}</span>
   </div>
   <div class="ml-40">
-    <span>Report date: __________</span><br><br>
-    <span class="text-lg">Phone no:</span><br>
-    <span class="text-lg">Email ID:</span>
-    </div>
+    <span>Report date:{{myDate | date}}</span><br><br>
+    
+  </div>
 </div>
-<div class="w-11/12 grid grid-cols-1 divide-y divide-green-500">
-  <div></div>
+<hr>
+<div class="w-11/12 grid grid-cols-1">
   <div class="ml-24"><br>
     <span class="text-lg">Highlights (If any)</span><br>
     <span class="text-lg">(Awards or Issues)</span><br><br>
   </div>
-  <div class="ml-24"><br>
-  <span class="text-lg">Experience</span><br><br>
-  </div>
+
 </div>
 
-<!-- <div class="container ">
-    <div class="table w-11/12 mx-auto md:box-content border-double border-2 border-black mt-10 p-10">
-        <div class="table-row-group">
-          <div class="table-row">
-            <div class="table-cell ..."></div>
-            <div class="table-cell ...">FULL NAME</div>
-            <div class="table-cell ...">Report date:</div>
-          </div>
-          <div class="table-row">
-            <div class="table-cell ..."></div>
-            <div class="table-cell ..."></div>
-            <div class="table-cell ...">Phone no:</div>
-          </div>
-          <div class="table-row">
-            <div class="table-cell ..."></div>
-            <div class="table-cell ..."></div>
-            <div class="table-cell ...">PEmail ID:</div>
-          </div>
-        </div>
-      </div>
+<hr>
 
-  </div> -->
 
-  <!-- <div>
-    <table>
-      <tr>
-        <span>Report date:</span><br>
-        <span>Phone no:</span><br>
-        <span></span>
-      </tr>
-    </table>
-  </div> -->
-  <table class="border-collapse w-7/12">
-    <thead>
-        <tr>
-            <th class="p-3 w-10 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Logo</th>
-            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Company name</th>
-            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Work Ethic</th>
-            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Merit/Quality</th>
-            <th class="p-3 w-10 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Recognition</th>
-            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Leadership</th>
-            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Issues</th>
-            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Any attachments</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Logo</span>
-                
-            </td>
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-              <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Company name</span>
-              From_____ To<br> ______<br> (Total period 3<br> years etc)
-          </td>
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                <p class="text-xs inline text-left">Self driven /  Initiative: __________</p>
-                <!-- <input type="text"><br> -->
-                <p class="text-xs text-justify">creativity: __________</p>
-                <!-- <input type="text"><br> -->
-                <p class="text-xs text-justify">Work independently: __________</p>
-                <!-- <input type="text"><br> -->
-                <p class="text-xs text-justify">Teamwork: __________</p>
-                <!-- <input type="text"><br> -->
-                <p class="text-xs text-justify">Ability to handle pressure: __________</p>
-                <!-- <input type="text"><br> -->
-                <p class="text-xs text-justify">Disipline: __________</p>
-                <!-- <input type="text"> -->
-            </td>
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                <!-- <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Status</span>
-                <span class="rounded bg-red-400 py-1 px-3 text-xs font-bold">deleted</span> -->
-                <p class="text-xs text-justify">Communication: __________</p>
-                <!-- <input type="text"><br> -->
-                <p class="text-xs text-justify">Product understanding: __________</p>
-                <!-- <input type="text"><br> -->
-                <p class="text-xs text-justify">Industry/domain knowlegde: __________</p>
-                <!-- <input type="text"><br> -->
-                <p class="text-xs text-justify">Subject matter expertise: __________</p>
-                <!-- <input type="text"><br> -->
-                <p class="text-xs text-justify">Key Skills: __________</p>
-                <!-- <input type="text"><br> -->
-                <p class="text-xs text-justify">Re-hire?: __________</p>
-                <input type="text">
-            </td>
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                <span class="text-xs lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Actions</span>
-                Performer & Awarded (Whichever one is choosen)
-            </td>
-            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-              <!-- <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Status</span>
-              <span class="rounded bg-red-400 py-1 px-3 text-xs font-bold">deleted</span> -->
-              <p class="text-xs text-justify">Strategic Thinking: __________</p>
-              <!-- <input type="text"><br> -->
-              <p class="text-xs text-justify">Problem Solving: __________</p> 
-              <!-- <input type="text"><br> -->
-              <p class="text-xs text-justify">Building High-performance: __________</p>
-              <!-- <input type="text"><br> -->
-              <p class="text-xs text-justify">Teams: __________</p>
-              <!-- <input type="text"><br> -->
-              <p class="text-xs text-justify">Stakeholder management: __________</p>
-              <!-- <input type="text"> -->
-          </td>
-          <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-            <!-- <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Status</span>
-            <span class="rounded bg-red-400 py-1 px-3 text-xs font-bold">deleted</span> -->
-            <p class="text-xs text-justify">Document discrepancies: __________</p>
-            <!-- <input type="text"><br> -->
-            <p class="text-xs text-justify">Compliance: __________</p>
-            <!-- <input type="text"><br> -->
-            <p class="text-xs text-justify">Warning: __________</p>
-            <!-- <input type="text"><br> -->
-            <p class="text-xs text-justify">Show cause: __________</p>
-            <!-- <input type="text"><br> -->
-            <p class="text-xs text-justify">Pip: __________</p>
-            <!-- <input type="text"><br> -->
-            <p class="text-xs text-justify">Termination: __________</p>
-            <input type="text">
-          </td>
-          <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-           
-          </td>
-        </tr>
-    </tbody>
-  </table>
+<table style="width:95%;margin-left:27px;">
+  <caption style="padding-bottom: 10px;">Experience</caption>
+  <tr>
+    <th>LOGO</th>
+    <th>COMPANY NAME</th>
+    <th>WORK ETHIC</th>
+    <th>MERIT/QUALITY</th>
+    <th>RECOGNITION</th>
+    <th>LEADERSHIP</th>
+    <th>ISSUES</th>
+    <th width="10px">ANY ATTACHMENTS</th>
+  </tr>
+  <tr *ngFor="let list of data">
+     <td *ngIf="list.organisationId != '' && list.organisationId != undefined ">
+      <span *ngFor="let list1 of data1"><img *ngIf="list.organisationId === list1._id" src="{{orgLogo + list1.organisationLogo }}" class="image"></span>
+     </td>
+     <td *ngIf="list.organisationId != '' && list.organisationId != undefined ">
+      {{list.organizationName}}
+     </td>
+    <td *ngIf="list.organisationId != '' && list.organisationId != undefined ">
+      Self Driven / Initiative:{{selfDriven}}<br>
+      Creativity: {{creativity}}<br>
+      Work independently:{{workIndependenty}}<br>
+      Teamwork:{{teamWork}}<br>
+      Ability to handle pressure: {{dealConstructivelyWithPressure}}<br>
+      Discipline:{{discipline}}<br>
+    </td>
+    <td *ngIf="list.organisationId != '' && list.organisationId != undefined ">
+      Communication:{{communicationSkills}}<br>
+      Product understanding:{{productKnowledge}}<br>
+      Industry / domain knowledge:{{industryKnowledge}}<br>
+      Subject matter expertise:{{subMatter}}<br>
+      Key Skills: {{list.keySkills}}<br>
+      Re-hire?: {{list.rehireAgain}}
+    </td>
+    <td *ngIf="list.organisationId != '' && list.organisationId != undefined ">
+      {{list.awards.IsSelect}}
+    </td>
+    <td *ngIf="list.organisationId != '' && list.organisationId != undefined ">
+      Strategic thinking: {{stategicThinking}}<br>
+      Problem Solving:{{problemSolving}}<br>
+      Building High-performance teams:{{buildingHighPerformanceTeam}}<br>
+      Stakeholder management:{{stakeHolderManagment}}<br>
+
+    </td>
+    <td *ngIf="list.organisationId != '' && list.organisationId != undefined ">
+      Document discrepancies: Date:{{discrepancy_date | date: 'dd/MM/yyyy'}}/Cause:{{discrepancy_cause}}<br>
+      Compliance: {{Compliance_date | date: 'dd/MM/yyyy'}}/Cause:{{Compliance_cause}}<br>
+      Warning: Date:Date:{{warning_date | date: 'dd/MM/yyyy'}}/Cause:{{warning_cause}}<br>
+      Show cause: Date:{{showCause_date | date: 'dd/MM/yyyy'}}/Cause:{{showCause_cause}}<br>
+      PIP:Date: {{performance_date | date: 'dd/MM/yyyy'}}/Cause:{{performance_cause}}<br>
+      TerminationDate: {{termination_date | date: 'dd/MM/yyyy'}}/Cause:{{termination_cause}}<br>
+
+    </td>
+    <td *ngIf="list.organisationId != '' && list.organisationId != undefined ">
+      <li *ngIf="list.awards.originalFilename">
+        {{list.awards.originalFilename}}
+      </li>
+      <li *ngIf="list.discrepancyDocuments.originalFilename || list.discrepancyDocuments.originalFilename != '' ">
+        {{list.discrepancyDocuments.originalFilename}}
+      </li>
+      <li *ngIf="list.compliencyDiscrepancy.originalFilename && list.compliencyDiscrepancy.originalFilename != '' ">
+        {{list.compliencyDiscrepancy.originalFilename}}
+      </li>
+      <li *ngIf="list.warning.originalFilename || list.warning.originalFilename != '' ">
+        {{list.warning.originalFilename}}
+      </li>
+      <li *ngIf="list.showCausedIssue.originalFilename || list.showCausedIssue.originalFilename != '' ">
+        {{list.showCausedIssue.originalFilename}}
+      </li>
+      <li *ngIf="list.suspension.originalFilename || list.suspension.originalFilename != '' ">
+        {{list.suspension.originalFilename}}
+      </li>
+      <li *ngIf="list.termination.originalFilename || list.termination.originalFilename != '' ">
+        {{list.termination.terminationUploadDocument}}
+      </li>
+    </td>
+  </tr>
+ 
+</table>
+
+<hr>
+<div class="pagebreak"> </div>
+
+<table style="width:95%;margin-left:27px;">
+  <caption style="padding-bottom: 10px;padding-top: 10px;">Educational Details</caption>
+  <tr>
+    <th class="w-16">LOGO</th>
+    <th>INSTITUTE NAME</th>
+    <th>LOCATION</th>
+    <th>COURSE NAME</th>
+    <th>DURATION/YEAR OF PASSING</th>
+    <th>RESULT</th>
+    <th>AWARDS,if any</th>
+    <th>REMARK</th>
+  </tr>
+  <tr *ngFor="let list of data">
+    <td  *ngIf="list.instituteId != '' && list.instituteId != undefined ">
+      <span *ngFor="let list1 of data1"><img class="image" *ngIf="list.instituteId === list1._id" src="{{instLogo + list1.instituteLogo}}"></span>
+    </td>
+    <td *ngIf="list.instituteId != '' && list.instituteId != undefined ">
+      {{list.intitutionName}}
+    </td>
+    <td *ngIf="list.instituteId != '' && list.instituteId != undefined ">
+      {{list.address}}
+    </td>
+    <td *ngIf="list.instituteId != '' && list.instituteId != undefined ">
+      {{list.nameOfCourse}}
+    </td>
+    <td *ngIf="list.instituteId != '' && list.instituteId != undefined ">
+      {{list.yearOfPassout - list.yearOfJoining }} YEARS <br>
+      {{list.yearOfPassout}}
+     </td>
+    <td *ngIf="list.instituteId != '' && list.instituteId != undefined ">
+      
+    </td>
+    <td *ngIf="list.instituteId != '' && list.instituteId != undefined ">
+     
+    </td>
+    <td *ngIf="list.instituteId != '' && list.instituteId != undefined ">
+    
+    </td>
+   
+    
+  </tr>
+ 
+</table>
+
+
+
+</div>
+
+<!-- component -->
+
+
     

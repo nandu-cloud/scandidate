@@ -117,8 +117,8 @@
         <div *ngFor="let list of data">
           <span class="justify-start" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
               <!-- <span>{{list.awards.documentName}}</span> -->
-              <!-- <li *ngIf="list.discrepancyDocuments.originalFilename"><a
-                (click)="downloadDoc(list.discrepancyDocuments.descrepencyUploadDocument)">{{list.discrepancyDocuments.originalFilename}}</a></li> -->
+              <li *ngIf="list.discrepancyDocuments.originalFilename || list.discrepancyDocuments.originalFilename != '' "><a
+                (click)="downloadDoc(list.discrepancyDocuments.descrepencyUploadDocument)">{{list.discrepancyDocuments.originalFilename}}</a></li>
           </span>
         </div>
       </div>
@@ -127,7 +127,7 @@
         <div *ngFor="let list of data">
           <span class="justify-start" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
               <!-- <span>{{list.awards.documentName}}</span> -->
-              <li *ngIf="list.compliencyDiscrepancy.originalFilename"><a
+              <li *ngIf="list.compliencyDiscrepancy.originalFilename && list.compliencyDiscrepancy.originalFilename != '' "><a
                 (click)="downloadDoc(list.compliencyDiscrepancy.compliencyUploadDocument)">{{list.compliencyDiscrepancy.originalFilename}}</a></li>
           </span>
         </div>
@@ -137,7 +137,7 @@
         <div *ngFor="let list of data">
           <span class="justify-start" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
               <!-- <span>{{list.awards.documentName}}</span> -->
-              <li *ngIf="list.warning.originalFilename"><a
+              <li *ngIf="list.warning.originalFilename || list.warning.originalFilename != '' "><a
                 (click)="downloadDoc(list.warning.warningUploadDocument)">{{list.warning.originalFilename}}</a></li>
           </span>
         </div>
@@ -147,7 +147,7 @@
         <div *ngFor="let list of data">
           <span class="justify-start" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
               <!-- <span>{{list.awards.documentName}}</span> -->
-              <li *ngIf="list.showCausedIssue.originalFilename"><a
+              <li *ngIf="list.showCausedIssue.originalFilename || list.showCausedIssue.originalFilename != '' "><a
                 (click)="downloadDoc(list.showCausedIssue.showCausedUploadDocument)">{{list.showCausedIssue.originalFilename}}</a></li>
           </span>
         </div>
@@ -157,7 +157,7 @@
         <div *ngFor="let list of data">
           <span class="justify-start" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
               <!-- <span>{{list.awards.documentName}}</span> -->
-              <li *ngIf="list.suspension.originalFilename"><a
+              <li *ngIf="list.suspension.originalFilename || list.suspension.originalFilename != '' "><a
                 (click)="downloadDoc(list.suspension.suspensionUploadDocument)">{{list.suspension.originalFilename}}</a></li>
           </span>
         </div>
@@ -167,7 +167,7 @@
         <div *ngFor="let list of data">
           <span class="justify-start" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
               <!-- <span>{{list.awards.documentName}}</span> -->
-              <li *ngIf="list.termination.originalFilename"><a
+              <li *ngIf="list.termination.originalFilename || list.termination.originalFilename != '' "><a
                 (click)="downloadDoc(list.termination.terminationUploadDocument)">{{list.termination.terminationUploadDocument}}</a></li>
           </span>
         </div>
@@ -202,11 +202,9 @@
 <!--BUTTON-->
 <div class="mt-8 flex justify-center text-center">
   <div class="inline-flex rounded-md bg-white shadow">
-      <button class=" hover:bg-green-500 text-white font-bold py-2 px-4 rounded">
-        <span class="material-icons">
-          save_alt 
-          </span> DOWNLOAD PDF
-      </button>
+    <a routerLink="/scandidate-report/{{empIdedit}}"><button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button">
+      Download PDF
+    </button></a>
   </div>
 </div>
 
