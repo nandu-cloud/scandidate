@@ -99,6 +99,9 @@
   .hea-border{
     margin-left: 2rem !important;
   }
+  .text-xs{
+    font-size: 0.65rem;
+  }
 }
 .hea-border{
   border-bottom: 9px solid #6cb43b;

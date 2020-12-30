@@ -87,6 +87,9 @@
 .text-xl{
   font-size: 0.875rem !important;
 }
+.text-xs{
+  font-size: 0.65rem;
+}
 }
 .rounded{
   border-radius: 55px;
