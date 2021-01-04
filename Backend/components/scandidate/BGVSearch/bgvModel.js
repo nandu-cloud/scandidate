@@ -14,9 +14,9 @@ const scandidateSearchCount = new Schema(
       type: Date,
       required: false,
     },
-    bgvSearchExpireDate:{
-      type:Date,
-      required:false
+    bgvSearchExpireDate: {
+      type: Date,
+      required: false,
     },
     bgvSearchedId: { type: Schema.Types.ObjectId, required: false },
     adharNumber: {
@@ -25,7 +25,7 @@ const scandidateSearchCount = new Schema(
     },
     phoneNumber: {
       type: String,
-      required:false,
+      required: false,
     },
     dateOfBirth: {
       type: String,
@@ -43,8 +43,6 @@ const scandidateSearchCount = new Schema(
       type: String,
       required: false,
     },
-
-
   },
   { timestamps: true }
 );

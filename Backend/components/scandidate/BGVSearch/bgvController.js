@@ -3,9 +3,19 @@ const colors = require("./../../../helpers/colors");
 const bgvDAL = require("./bgvDAL");
 const instituionDAL = require("../institute-onboard/instituteOnboardDAL");
 const organizationDAL = require("../organization-onboard/orgOnboardDAL");
+const bgvSeachDAL = require("./scandidateSearchDAL");
 
 module.exports.searchbgv = async (req, res, next) => {
+  let typeOfSearch = "";
   let data = req.body;
+  let id = req.params.userId;
+  var count = Object.keys(data).length;
+  if (count == 0) {
+    typeOfSearch = "Universal search";
+  } else {
+    typeOfSearch = "User Input search";
+    console.log(data);
+  }
   try {
     let empData = await bgvDAL.searchBgvDataEmployee(data);
 
@@ -13,18 +23,49 @@ module.exports.searchbgv = async (req, res, next) => {
 
     if (empData.length > 0 && stdData.length > 0) {
       let result = empData.concat(stdData);
+      var d = {
+        searchdedBy: id,
+        successfullSearch: true,
+        totalRecords: result.length,
+        typeOfSearch: typeOfSearch,
+        userInputData: data,
+      };
+      bgvSeachDAL.saveSearchResult(d);
       return res
         .status(200)
         .json({ status: 200, message: "Success", data: result });
     } else if (empData.length > 0 && !stdData.length > 0) {
+      var d = {
+        searchdedBy: id,
+        successfullSearch: true,
+        totalRecords: result.length,
+        typeOfSearch: typeOfSearch,
+        userInputData: data,
+      };
+      bgvSeachDAL.saveSearchResult(d);
       return res
         .status(200)
         .json({ status: 200, message: "Success", data: empData });
     } else if (!empData.length > 0 && stdData.length > 0) {
+      var d = {
+        searchdedBy: id,
+        successfullSearch: true,
+        totalRecords: result.length,
+        typeOfSearch: typeOfSearch,
+        userInputData: data,
+      };
+      bgvSeachDAL.saveSearchResult(d);
       return res
         .status(200)
         .json({ status: 200, message: "Success", data: stdData });
     } else {
+      var d = {
+        searchdedBy: id,
+        successfullSearch: false,
+        totalRecords: 0,
+        typeOfSearch: typeOfSearch,
+      };
+      bgvSeachDAL.saveSearchResult(d);
       return res.status(200).json({
         status: 200,
         message: "Success",
