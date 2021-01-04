@@ -37,12 +37,13 @@ import { AppGuard } from '../app/admin/app.guard';
 
 const routes: Routes = [
   { path: 'add-organization', component: AddOrganizationComponent ,canActivate: [AppGuard]},
-  { path:'why-scandidate', component: WhyScandidateComponent,},
+  { path: 'why-scandidate', component: WhyScandidateComponent,},
   { path: 'landing-page', component: LandingPageComponent },
   { path: 'for-organization', component: ForOrganizationComponent},
    {path: 'about-us',component:AboutUsComponent},
   { path: 'login', component: LoginComponent },
   { path: 'navbar', component: NavbarComponent ,canActivate: [AppGuard]},
+  { path: 'organization-list', component: OrganizationListComponent, canActivate: [AppGuard]},
   { path: 'add-institution/:id', component: AddInitutionComponent ,canActivate: [AppGuard]},
   { path: 'add-appuser', component: AddAppuserComponent ,canActivate: [AppGuard]},
   { path: 'add-appuser/:id', component: AddAppuserComponent,canActivate: [AppGuard] },
