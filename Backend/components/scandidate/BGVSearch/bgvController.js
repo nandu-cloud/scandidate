@@ -38,7 +38,7 @@ module.exports.searchbgv = async (req, res, next) => {
       var d = {
         searchdedBy: id,
         successfullSearch: true,
-        totalRecords: result.length,
+        totalRecords: empData.length,
         typeOfSearch: typeOfSearch,
         userInputData: data,
       };
@@ -50,7 +50,7 @@ module.exports.searchbgv = async (req, res, next) => {
       var d = {
         searchdedBy: id,
         successfullSearch: true,
-        totalRecords: result.length,
+        totalRecords: stdData.length,
         typeOfSearch: typeOfSearch,
         userInputData: data,
       };
