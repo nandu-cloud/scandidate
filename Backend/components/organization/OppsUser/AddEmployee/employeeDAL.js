@@ -54,22 +54,32 @@ async function updateEmployee(data) {
 // Search Employee
 
 async function search_employee_list(data) {
-  try {
-    let result = await employeeModel.find().and([
-      { firstName: { $regex: data.firstName || "", $options: "i" } },
-      {
-        organizationName: {
-          $regex: data.organizationName || "",
-          $options: "i",
+  var count = Object.keys(data).length;
+  if (count == 0) {
+    try {
+      let result = await employeeModel.find();
+      return result;
+    } catch (err) {
+      throw err;
+    }
+  } else {
+    try {
+      let result = await employeeModel.find().and([
+        { firstName: { $regex: data.firstName || "", $options: "i" } },
+        {
+          organizationName: {
+            $regex: data.organizationName || "",
+            $options: "i",
+          },
         },
-      },
-      { email: { $regex: data.email || "", $options: "i" } },
-      { phoneNumber: { $regex: data.phoneNumber || "" } },
-    ]);
-    // .collation({ locale: "en", strength: 1 });
-    return result;
-  } catch (err) {
-    throw err;
+        { email: { $regex: data.email || "", $options: "i" } },
+        { phoneNumber: { $regex: data.phoneNumber || "" } },
+      ]);
+      // .collation({ locale: "en", strength: 1 });
+      return result;
+    } catch (err) {
+      throw err;
+    }
   }
 }
 

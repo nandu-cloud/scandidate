@@ -4,20 +4,29 @@ const colors = require("../../../helpers/colors");
 const bgvModel = require("./bgvModel");
 
 async function searchBgvDataEmployee(data) {
-  try {
-    let employeeSearch = await employeeModel
-      .find()
-      .and([
-        { firstName: { $regex: data.firstName || "", $options: "i" } },
-        { dateOfBirth: { $regex: data.dateOfBirth || "" } },
-        { phoneNumber: { $regex: data.phoneNumber || "" } },
-        { email: { $regex: data.email || "", $options: "i" } },
-        { adharNumber: { $regex: data.adharNumber || "" } },
-      ]);
-    // .collation({ locale: "en", strength: 1 });
-    return employeeSearch;
-  } catch (err) {
-    throw err;
+  var count = Object.keys(data).length;
+  if (count == 0) {
+    try {
+      let employeeSearch = await employeeModel.find();
+      return employeeSearch;
+    } catch (err) {
+      throw err;
+    }
+  } else {
+    try {
+      let employeeSearch = await employeeModel
+        .find()
+        .and([
+          { firstName: { $regex: data.firstName || "", $options: "i" } },
+          { dateOfBirth: { $regex: data.dateOfBirth || "" } },
+          { phoneNumber: { $regex: data.phoneNumber || "" } },
+          { email: { $regex: data.email || "", $options: "i" } },
+          { adharNumber: { $regex: data.adharNumber || "" } },
+        ]);
+      return employeeSearch;
+    } catch (err) {
+      throw err;
+    }
   }
 }
 
@@ -184,39 +193,39 @@ async function getBySearchedById(data) {
 
 async function getBySearchedId(data) {
   try {
-    let result = await bgvModel.find({ bgvSearchedId: data._id,searchedById:data.searchedById }).lean();
+    let result = await bgvModel
+      .find({ bgvSearchedId: data._id, searchedById: data.searchedById })
+      .lean();
     return result;
   } catch (err) {
     throw err;
   }
 }
 
-async function updateBgvCount(data){
-  try{
-    let result=await bgvModel.update( { _id: data._id },
-      data,
-      {
-        new: true,
-      });
-      return result;
-  }catch(err){
+async function updateBgvCount(data) {
+  try {
+    let result = await bgvModel.update({ _id: data._id }, data, {
+      new: true,
+    });
+    return result;
+  } catch (err) {
     throw err;
   }
 }
 
-
-async function pullData(data){
-  try{
-    let result=await bgvModel.find({searchedById:data._id})
-    .and([
-      {adharNumber:{$regex:data.adharNumber|| "", $options: "i" }},
-      {phoneNumber:{$regex:data.phoneNumber||"",$options:"i"}},
-      {email:{$regex:data.email||"",$options:"i"}},
-      {firstName:{$regex:data.firstName||"",$options:"i"}},
-      {lastName:{$regex:data.lastName||"",$options:"i"}}
-    ]);
+async function pullData(data) {
+  try {
+    let result = await bgvModel
+      .find({ searchedById: data._id })
+      .and([
+        { adharNumber: { $regex: data.adharNumber || "", $options: "i" } },
+        { phoneNumber: { $regex: data.phoneNumber || "", $options: "i" } },
+        { email: { $regex: data.email || "", $options: "i" } },
+        { firstName: { $regex: data.firstName || "", $options: "i" } },
+        { lastName: { $regex: data.lastName || "", $options: "i" } },
+      ]);
     return result;
-  }catch(err){
+  } catch (err) {
     throw err;
   }
 }
@@ -240,6 +249,6 @@ module.exports = {
   saveBGVSearch: saveBGVSearch,
   getBySearchedById: getBySearchedById,
   getBySearchedId: getBySearchedId,
-  updateBgvCount:updateBgvCount,
-  pullData:pullData
+  updateBgvCount: updateBgvCount,
+  pullData: pullData,
 };

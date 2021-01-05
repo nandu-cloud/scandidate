@@ -99,29 +99,38 @@ async function updateStudent(data) {
 //Seacrh Student
 
 async function search_student_new(data) {
-  console.log(data);
-
-  try {
-    let result = await studentModel
-      .find()
-      .and([
-        { firstName: { $regex: data.firstName || "", $options: "i" } },
-        { intitutionName: { $regex: data.intitutionName || "", $options: "i" } },
-        { phoneNumber: { $regex: data.phoneNumber || "" } },
-        { yearOfPassout: { $regex: data.yearOfPassout || "" } }
-      ])
-    // .collation({ locale: "en", strength: 1 });
-    return result;
-  } catch (err) {
-    throw err;
+  var count = Object.keys(data).length;
+  if (count == 0) {
+    try {
+      let result = await studentModel.find();
+      return result;
+    } catch (err) {
+      throw err;
+    }
+  } else {
+    try {
+      let result = await studentModel
+        .find()
+        .and([
+          { firstName: { $regex: data.firstName || "", $options: "i" } },
+          {
+            intitutionName: {
+              $regex: data.intitutionName || "",
+              $options: "i",
+            },
+          },
+          { phoneNumber: { $regex: data.phoneNumber || "" } },
+          { yearOfPassout: { $regex: data.yearOfPassout || "" } },
+        ]);
+      // .collation({ locale: "en", strength: 1 });
+      return result;
+    } catch (err) {
+      throw err;
+    }
   }
 }
 
 // File Count
-
-
-
-
 
 // export functions
 module.exports = {

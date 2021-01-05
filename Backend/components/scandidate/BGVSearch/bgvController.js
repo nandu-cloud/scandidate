@@ -14,7 +14,6 @@ module.exports.searchbgv = async (req, res, next) => {
     typeOfSearch = "Universal search";
   } else {
     typeOfSearch = "User Input search";
-    console.log(data);
   }
   try {
     let empData = await bgvDAL.searchBgvDataEmployee(data);
