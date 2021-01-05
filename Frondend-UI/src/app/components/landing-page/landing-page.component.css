@@ -6,7 +6,9 @@
   background-color: rgb(255, 255, 255);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
 }
-
+.section-background1 {
+  background: #f5ffef !important;
+}
 .word-highlight {
   background-color: #6cb43b;
   color: #fff;
@@ -107,4 +109,10 @@
   border-bottom: 9px solid #6cb43b;
   outline:black solid 1px;
   margin-left: 9rem;
+}
+.bg-gr{
+  background-color: #eeeeee;
+  padding: 2em;
+  color: black;
+  border-radius: 25px;
 }
