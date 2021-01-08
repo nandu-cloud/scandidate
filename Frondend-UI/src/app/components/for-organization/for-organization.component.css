@@ -113,3 +113,19 @@
   margin-top: 20px;
   margin-right: 15px;
 }
+div.background {
+  background: url(../../../assets/images/b1.jpg);
+  background-size: cover;
+}
+
+div.transbox {
+  margin: 30px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  opacity: 0.6;
+}
+
+div.transbox ul {
+  font-weight: bold;
+  color: #000000;
+}

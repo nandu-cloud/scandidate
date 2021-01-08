@@ -94,3 +94,29 @@
 .rounded{
   border-radius: 55px;
 }
+.pageOption {
+  overflow: hidden;
+  position: relative;
+  width: 40em; height: 27em;
+}
+.option, .option img { width: 100%; height: 100%; }
+.option {
+  overflow: hidden;
+  position: absolute;  
+  /* arctan(27 / 40) = 34.01935deg 
+   * need to skew by 90deg - 34.01935deg = 55.98065deg
+  */
+  transform: skewX(-55.98deg);
+}
+.option:first-child {
+  left: -.25em;
+  transform-origin: 100% 0;
+}
+.option:last-child {
+  right: -.25em;
+  transform-origin: 0 100%;
+}
+.option img {
+  transform: skewX(55.98deg);
+  transform-origin: inherit;
+}

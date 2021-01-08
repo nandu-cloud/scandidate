@@ -110,6 +110,11 @@
   outline:black solid 1px;
   margin-left: 9rem;
 }
+.hea-border1{
+  border-bottom: 9px solid #6cb43b;
+  outline:black solid 1px;
+  margin-left: 3.4rem;
+}
 .bg-gr{
   background-color: #eeeeee;
   padding: 2em;

@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <img width="25" src="./../../../assets/images/logo1.png" />
+  <img width="45" class="ml-5" src="./../../../assets/images/logo1.png" />
   <span class="spacer"></span>
   <ul class="flex flex-row items-end">
     <li class="md:pr-10 pr-1 md:text-xl text-xs"><a routerLink="/landing-page" class="active"> Home </a></li>
@@ -18,20 +18,20 @@
 
 <!-- first hero section -->
 <section>
-  <div class="container mx-auto flex flex-row md:flex-row items-center">
+  <div class="container mx-auto flex flex-row md:flex-row items-center font-serif">
     <div class="flex w-full flex-col md:w-4/12 py-6 text-center items-center">
       <img class="w-full md:w-2/5" src="./../../../assets/images/logo1.png" />
     </div>
     <!--Left Col-->
-    <div class="w-full md:w-5/12 justify-center items-center text-center md:text-left">
-      <p class="leading-relaxed md:text-xl sm:text-sm font-bold leading-tight">
+    <div class="w-full md:w-5/12 justify-center items-center text-justify -ml-10">
+      <p class="leading-relaxed md:text-2xl sm:text-sm font-bold ">
         With <span style="color: #6cb43b"><b>SCANDIDATE</b></span
         >, you can increase confidence that your new hire is
         <span class="word-highlight">authentic, worthy and risk-free.</span>
       </p>
     </div>
     <!--Right Col-->
-    <div class="w-full md:w-1/4 py-6 text-center items-end">
+    <div class="w-full md:w-1/4 py-6 text-center items-end ml-8">
       <img class="w-full md:w-9/12" src="../../../assets/images/header.svg" />
     </div>
   </div>
@@ -39,10 +39,10 @@
 
 <!-- main section -->
 
-<section class="section-background">
+<section class="section-background font-serif">
   <div class="container mx-auto flex flex-row">
-    <div class="w-1/2">
-          <p class="text-justify text-xl p-6 pt-5 leading-loose	">
+    <div class="w-1/2 p-3">
+          <p class="text-justify text-lg p-6 pt-12 leading-loose	">
             Well begun is half done - a guiding HR principle for all modern organisations. <br><br>
             Recruiting <b>‘right’</b> is the key - and <b>SCANDIDATE</b> helps you #KnowYourHire to enable faster, more confident hiring decisions.
     </p>
@@ -55,23 +55,24 @@
     <img src="../../../assets/images/knowtohire.png">
   </div>
   </div>
-</section>
-
-
-<section class="section-background1 text-white ">
-  <div class="container mx-auto flex flex-wrap pt-5 pb-8">
-    <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-      <div class="text-center flex md:justify-between ">
+  <div class="container mx-auto flex flex-wrap pt-3 pb-4">
+    <div class="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
+      <!-- <div class="flex justify-end">
         <img src="../../../assets/images/rings.png" class="mr-16 -mt-8 -mb-3">
         <img src="../../../assets/images/\/costhire.png" class="mr-16 -mt-8 -mb-1 small">
-      </div>
-      <div class="flex-1 bg-gr shadow p-10">
-        <p class="leading-tight text-2xl font-bold text-center">
-          The “cost” of wrong hires
-        </p>
-        <div class="flex flex-row rounded p-4">
+      </div> -->
+      <div class="flex-1 bg-gr p-8">
+        <div class="flex flex-row rounded">
+          <div class="w-2/5">
+            <p class="leading-tight text-2xl font-bold text-center">
+              The "cost" of wrong hires
+            </p>
+            <p class="hea-border1 w-3/4"></p>
+            <img  src="../../../assets/images/cost - wrong hires.png">
+          </div>
           <div class="w-3/5">
-            <ul class="list-disc text-xl p-4 leading-loose img-style text-justify">
+           
+            <ul class="list-disc text-lg p-4 leading-loose img-style text-justify lowercase ">
               <li>
                 12% Of Senior Level Professionals Have Been Caught Fudging
                 Their Resumes As Compared Economic Times - Dec 2017
@@ -98,15 +99,12 @@
               </li>
             </ul>
           </div>
-        <div class="w-2/5">
-          <img  src="../../../assets/images/cost - wrong hires.png">
-        </div>
-          
         </div>
       </div>
     </div>
   </div>
 </section>
+
 <mat-toolbar color="primary">
   <p class="text-center">Copyright 2020</p>
 </mat-toolbar>
