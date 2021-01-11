@@ -28,8 +28,16 @@ const studentSchema = new mongoose.Schema({
   eductionalDocumentNames: {
     type: Array,
   },
+  originalFilename: {
+    type: String,
+    required: false,
+  },
+  originalFilenames: {
+    type: Array,
+    required: false,
+  },
   purposeOfFile: {
-    type: Array
+    type: Array,
   },
   firstName: {
     type: String,
