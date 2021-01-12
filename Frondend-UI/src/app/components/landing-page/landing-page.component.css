@@ -16,8 +16,8 @@
 
 .section-background {
   background-color: #eeeeee;
-  padding: 2em;
-  margin: 0em 5em;
+  padding: 2rem;
+  margin: 0 2rem 2rem 2rem;
   border-radius: 100px;
 }
 
@@ -105,19 +105,25 @@
     font-size: 0.65rem;
   }
 }
-.hea-border{
+/* .hea-border{
   border-bottom: 9px solid #6cb43b;
   outline:black solid 1px;
-  margin-left: 9rem;
+  margin-left: 6.5rem;
 }
 .hea-border1{
   border-bottom: 9px solid #6cb43b;
   outline:black solid 1px;
-  margin-left: 3.4rem;
-}
+  margin-left: 3.9rem;
+} */
 .bg-gr{
   background-color: #eeeeee;
   padding: 2em;
   color: black;
   border-radius: 25px;
+}
+.mt-5{
+  margin-top: 2rem;
+}
+.text-green{
+  color: 6cb43b;
 }
