@@ -118,9 +118,12 @@
 }
 .container1 {
   background: #6cb43b;
-  border-radius: 200px;
+  border-radius: 50px;
   color: white;
 }
 .fill {
   margin-top: -35px !important;
+}
+.overflow{
+  overflow: overlay !important;
 }
