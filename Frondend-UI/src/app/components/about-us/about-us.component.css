@@ -90,6 +90,9 @@
 .text-xs{
   font-size: 0.65rem;
 }
+.sm{
+  width: 60% !important;
+}
 }
 .rounded{
   border-radius: 55px;
