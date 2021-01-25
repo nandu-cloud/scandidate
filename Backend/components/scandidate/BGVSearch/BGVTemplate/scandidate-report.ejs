@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title></title>
+  <meta name="description" content="user-creation" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    table {
+      margin-left: 5px;
+      margin-bottom: 10px;
+    }
+
+    .inline {
+      display: inline-block;
+    }
+
+    html {
+      height: 100%;
+    }
+
+    .table1 {
+      width: 90%;
+    }
+
+    @media (min-width: 640px) {
+      table {
+        display: inline-table !important;
+      }
+    }
+
+    .table1 {
+      border: #6cb43b solid 1px;
+    }
+
+    .heading {
+      color: #6cb43b;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid#6cb43b;
+      border-collapse: collapse;
+      font-size: 10px;
+    }
+
+    th,
+    td {
+      padding: 5px;
+      text-align: left;
+      height: 20px;
+    }
+
+    caption {
+      font-size: larger;
+      font-weight: bold;
+      color: #6cb43b;
+    }
+
+    a {
+      color: #6cb43b;
+    }
+
+    hr {
+      background-color: #6cb43b;
+      height: 1px;
+      border-width: 0;
+      margin: 15px;
+    }
+
+    .image {
+      width: 50px;
+      height: 40px;
+    }
+
+    @media print {
+      .pagebreak {
+        page-break-before: always;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="border-dashed border-2 border-black w-11/12 m-auto mt-10" id="pdfTable" #pdfTable>
+    <div class="grid grid-cols-3 gap-4 mt-8">
+      <div class="ml-16 w-1/2">
+        <img src="../../../assets/images/logo1.png" width="100" height="100" class="border-1 -mt-3">
+      </div>
+      <div class="ml-32">
+        <span class="text-2xl heading">
+          <%=FirstName %>
+            <%=LastName %>
+        </span><br />
+        <span class="text-lg">Phone Number - <span class="text-black">
+            <%=phone %>
+          </span></span><br />
+        <span class="text-lg">Email ID - <%=email %></span>
+      </div>
+      <div class="ml-40">
+        <span>Report date:<%=myDate %></span><br /><br />
+      </div>
+    </div>
+    <hr>
+    <div class="w-11/12 grid grid-cols-1">
+      <div class="ml-24"><br />
+        <span class="text-lg">Highlights (If any)</span><br />
+        <span class="text-lg">(Awards or Issues)</span><br /><br />
+      </div>
+
+    </div>
+
+    <hr>
+
+
+    <table style="width:95%;margin-left:27px;">
+      <caption style="padding-bottom: 10px;">Experience</caption>
+      <tr>
+        <th>LOGO</th>
+        <th>COMPANY NAME</th>
+        <th>WORK ETHIC</th>
+        <th>MERIT/QUALITY</th>
+        <th>RECOGNITION</th>
+        <th>LEADERSHIP</th>
+        <th>ISSUES</th>
+        <th width="10px">ANY ATTACHMENTS</th>
+      </tr>
+      <% for(let list of data){%>
+        <tr>
+          <% if(list.organisationId !='' && list.organisationId !=undefined){%>
+            <td>
+              <% for(let list1 of data1){%>
+                <span>
+                  <% if(list.organisationId===list1._id){%>
+                    <img src="<%= orgLogo + list1.organisationLogo %>" class="image">
+                    <%}%>
+                </span>
+                <%}%>
+            </td>
+            <%}%>
+
+              <% if(list.organisationId !='' && list.organisationId !=undefined){%>
+                <td>
+                  <%=list.organizationName %>
+                </td>
+                <%}%>
+                  <% if(list.organisationId !='' && list.organisationId !=undefined) {%>
+                    <td>
+                      Self Driven / Initiative:<%=list.selfDriven %><br />
+                        Creativity: <%=list.creativity %><br />         
+                          Work independently:<%=list.workIndependenty %><br />
+                            Teamwork:<%=list.teamWork %><br />
+                              Ability to handle pressure: <%=list.dealConstructivelyWithPressure %><br />
+                                Discipline:<%=list.discipline %><br />
+                    </td>
+                    <%}%>
+                      <% if(list.organisationId !='' && list.organisationId !=undefined) {%>
+                        <td>
+                          Communication:<%=list.communicationSkills %><br />
+                            Product understanding:<%=list.productKnowledge %><br />
+                              Industry / domain knowledge:<%=list.industryKnowledge %><br />
+                                Subject matter expertise:<%=list.subMatter %><br />
+                                  Key Skills: <%=list.keySkills %><br />
+                                    Re-hire?: <%=list.rehireAgain %>
+                        </td>
+                        <%}%>
+                          <% if(list.organisationId !='' && list.organisationId !=undefined){%>
+                            <td>
+                              <%=list.awards.IsSelect %>
+                            </td>
+                            <%}%>
+                              <% if(list.organisationId !='' && list.organisationId !=undefined) {%>
+                                <td>
+                                  Strategic thinking: <%=list.stategicThinking %><br />
+                                    Problem Solving:<%=list.problemSolving %><br />
+                                      Building High-performance teams:<%=list.buildingHighPerformanceTeam %><br />
+                                        Stakeholder management:<%=list.stakeHolderManagment %><br />
+
+                                </td>
+                                <%}%>
+                                  <% if(list.organisationId !='' && list.organisationId !=undefined) {%>
+                                    <td>
+                                      Document discrepancies: Date:<%=list.discrepancy_date %>/Cause:<%=list.discrepancy_cause %>
+                                          <br />
+                                          Compliance: <%=list.Compliance_date %>/Cause:<%=list.Compliance_cause %><br />
+                                              Warning: Date:Date:<%=list.warning_date %>/Cause:<%=list.warning_cause %><br />
+                                                  Show cause: Date:<%=list.showCause_date %>/Cause:<%=list.showCause_cause %>
+                                                      <br />
+                                                      PIP:Date: <%=list.performance_date %>/Cause:<%=list.performance_cause %>
+                                                          <br />
+                                                          TerminationDate: <%=list.termination_date %>/Cause:
+                                                            <%=list.termination_cause %><br />
+
+                                    </td>
+                                    <%}%>
+                                      <% if(list.organisationId !='' && list.organisationId !=undefined) {%>
+                                        <td>
+                                            <% if(list.awards.originalFilename) {%>
+                                              <li>
+                                                <%=list.awards.originalFilename %>
+                                              </li>
+                                              <%}%>
+                                                  <% if(list.discrepancyDocuments.originalFilename || list.discrepancyDocuments.originalFilename !='' ){%>
+                                                    <li>
+                                                      <%=list.discrepancyDocuments.originalFilename %>
+                                                    </li>
+                                                    <%}%>
+                                                      <% if(list.compliencyDiscrepancy.originalFilename && list.compliencyDiscrepancy.originalFilename !='' ){%>
+                                                        <li>
+                                                          <%=list.compliencyDiscrepancy.originalFilename %>
+                                                        </li>
+                                                        <%}%>
+                                                          <% if(list.warning.originalFilename ||list.warning.originalFilename !='' ) {%>
+                                                            <li>
+                                                              <%=list.warning.originalFilename %>
+                                                            </li>
+                                                            <%}%>
+                                                              <% if(list.showCausedIssue.originalFilename || list.showCausedIssue.originalFilename !='' ){%>
+                                                                <li>
+                                                                  <%=list.showCausedIssue.originalFilename %>
+                                                                </li>
+                                                                <%}%>
+                                                                  <% if(list.suspension.originalFilename || list.suspension.originalFilename !='' ) {%>
+                                                                    <li>
+                                                                      <%=list.suspension.originalFilename %>
+                                                                    </li>
+                                                                    <%}%>
+                                                                      <% if(list.termination.originalFilename ||list.termination.originalFilename !='' ) {%>
+                                                                        <li>
+                                                                          <%=list.termination.terminationUploadDocument
+                                                                            %>
+                                                                        </li>
+                                                                        <%}%>
+                                        </td>
+                                        <%}%>
+        </tr>
+        <%}%>
+
+    </table>
+
+    <hr>
+    <div class="pagebreak"> </div>
+
+    <table style="width:95%;margin-left:27px;">
+      <caption style="padding-bottom: 10px;padding-top: 10px;">Educational Details</caption>
+      <tr>
+        <th class="w-16">LOGO</th>
+        <th>INSTITUTE NAME</th>
+        <th>LOCATION</th>
+        <th>COURSE NAME</th>
+        <th>DURATION/YEAR OF PASSING</th>
+        <th>RESULT</th>
+        <th>AWARDS,if any</th>
+        <th>REMARK</th>
+      </tr>
+      <% for(let list of data) {%>
+        <tr>
+          <% if(list.instituteId !='' && list.instituteId !=undefined) {%>
+            <td>
+              <% for(let list1 of data1) {%>
+                <span>
+                  <% if(list.instituteId===list1._id){%>
+                    <img class="image" src="<%= instLogo + list1.instituteLogo %>">
+                    <%}%>
+                </span>
+                <%}%>
+            </td>
+            <%}%>
+              <% if(list.instituteId !='' && list.instituteId !=undefined){%>
+                <td>
+                  <%=list.intitutionName %>
+                </td>
+                <%}%>
+                  <% if(list.instituteId !='' && list.instituteId !=undefined ){%>
+                    <td>
+                      <%=list.address %>
+                    </td>
+                    <%}%>
+                      <% if(list.instituteId !='' && list.instituteId !=undefined) {%>
+                        <td>
+                          <%=list.nameOfCourse %>
+                        </td>
+                        <%}%>
+                          <% if(list.instituteId !='' && list.instituteId !=undefined) {%>
+                            <td>
+                              <%list.yearOfPassout - list.yearOfJoining %> YEARS <br />
+                                <%=list.yearOfPassout %>
+                            </td>
+                            <%}%>
+                              <% if(list.instituteId !='' && list.instituteId !=undefined) {%>
+                                <td>
+
+                                </td>
+                                <%}%>
+                                  <% if(list.instituteId !='' && list.instituteId !=undefined) {%>
+                                    <td>
+
+                                    </td>
+                                    <%}%>
+                                      <% if(list.instituteId !='' && list.instituteId !=undefined) {%>
+                                        <td>
+
+                                        </td>
+                                        <%}%>
+
+        </tr>
+        <%}%>
+
+    </table>
+
+
+
+  </div>
+
+</body>
+
+</html>

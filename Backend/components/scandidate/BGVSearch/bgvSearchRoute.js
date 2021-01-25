@@ -13,4 +13,8 @@ router
   .route("/icon/show")
   .post(authJWT.verifyJWTToken, bgvController.searchIconOrganizationInstitute);
 
+router
+  .route("/searched-candidate/download")
+  .post(authJWT.verifyJWTToken, bgvController.downloadscandidateSeach);
+
 module.exports = router;
