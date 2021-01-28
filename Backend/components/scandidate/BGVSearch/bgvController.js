@@ -323,7 +323,7 @@ module.exports.searchIconOrganizationInstitute = async (req, res, next) => {
 
 module.exports.downloadscandidateSeach = async (req, res, next) => {
   let template = req.body.data;
-  let icons = req.body.datas;
+  let icons = req.body.data1;
 
   function format(date) {
     var d = date.getDate();
