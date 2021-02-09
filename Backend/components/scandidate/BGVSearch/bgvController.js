@@ -324,6 +324,9 @@ module.exports.searchIconOrganizationInstitute = async (req, res, next) => {
 module.exports.downloadscandidateSeach = async (req, res, next) => {
   let template = req.body.data;
   let icons = req.body.data1;
+  if (template.length === 0 || icons.length === 0) {
+    return next(new AppError('Something wrong, please check later', 400));
+  }
 
   function format(date) {
     var d = date.getDate();
