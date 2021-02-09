@@ -707,14 +707,22 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
           return next(new AppError(err, 400));
         }
 
-        var tempFilename =
-          "uploads/scandidate-report/" + fname + new Date().getTime() + ".pdf";
-        var temFilepath = tempFilename;
-        pdf.create(str).toFile(tempFilename, function (err, data) {
+
+        // Test
+        var checkFilePath = path.join(
+          __dirname,
+          "../../../uploads/scandidate-report/" + fname + new Date().getTime() + ".pdf"
+        )
+
+        // var tempFilename =
+        //   "uploads/scandidate-report/" + fname + new Date().getTime() + ".pdf";
+        // var temFilepath = checkFilePath;
+        pdf.create(str).toFile(checkFilePath, function (err, data) {
           if (err) {
             return next(new AppError(err, 400));
           }
-          return res.download(temFilepath, function (err) {
+
+          return res.status(200).download(checkFilePath, function (err) {
             if (err) {
               if (err.code == "ENOENT")
                 return next(new AppError("user document not found", 404));
