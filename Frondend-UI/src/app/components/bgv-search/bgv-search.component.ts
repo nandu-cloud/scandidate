@@ -36,7 +36,7 @@ export class BGVSearchComponent implements  OnInit {
    }
 
     ngOnInit() {
-      this.displayedColumns = ['name', 'dob', 'contact', 'email','adharno', 'action'];
+      this.displayedColumns = ['name','orgName','dob', 'contact', 'email','adharno', 'action'];
     }
 
     search(){

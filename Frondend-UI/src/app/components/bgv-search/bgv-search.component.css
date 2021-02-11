@@ -32,6 +32,9 @@ th {
   }
 
 }
+.mat-column-action {
+  flex: 0 0 200px;
+}
 
 .data-table {
   width: 80%;

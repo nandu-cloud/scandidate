@@ -13,6 +13,8 @@ import { RecognitionComponent } from '../recognition/recognition.component';
 import { LeadershipComponent } from '../leadership/leadership.component';
 import { IssuesComponent } from '../issues/issues.component';
 
+
+
 import { DatePipe } from '@angular/common';
 import * as moment from 'moment';
 // import { jsPDF } from 'jspdf';
@@ -51,6 +53,7 @@ export class BGVViewComponent implements OnInit {
   createCandidate: FormGroup;
   employeeSubscription : Subscription;
   editEmployeeSubscription : Subscription;
+  bgvListSubscription : Subscription;
   viewLogoSubscription : Subscription;
   employeeUpdateSubscription: Subscription;
   minDate = new Date(1990, 0, 1);
@@ -106,6 +109,7 @@ export class BGVViewComponent implements OnInit {
   m1 : any;
   edudoc;
   result;
+  res: any;
   //fileName: string;
   constructor(
     public fb: FormBuilder,private _storage: StorageService,
@@ -228,6 +232,55 @@ export class BGVViewComponent implements OnInit {
     if (fileName != '') {
       const temp = `${this.baseUrl}/public/organization_doc/${fileName}`;
       window.open(temp, "_blank", "scrollbars=yes,resizable=yes,top=800,left=800,width=800,height=800");
+    }
+  }
+
+  downloadPDF(){
+    if(this.empIdedit){
+      this.editEmployeeSubscription = this.empService.ViewCandidate(this.empIdedit).subscribe(respObj => {
+        console.log("records"+respObj.data);
+        this.data = respObj.data;
+            //para for org logo
+            var result = [];
+
+            for (let i = 0; i < this.data.length; i++) {
+              if(this.data[i].organisationId)
+              {
+              const id = this.data[i].organisationId
+              this.orgId.push(id);
+              }
+             }
+            
+            for (let i = 0; i < this.data.length; i++) {
+            if(this.data[i].instituteId)
+           {
+            const id = this.data[i].instituteId
+            this.instId.push(id);
+           }
+             }
+             console.log(this.instId);
+
+          this.viewLogoSubscription = this.empService.ViewLogo(this.orgId,this.instId).subscribe(respObj => {
+          this.data1 = respObj.data;
+          console.log("logo details");
+          console.log(this.data1); 
+
+        
+           this.bgvListSubscription = this.empService.download_PDF(this.data,this.data1).subscribe(respObj => {
+           console.log(respObj.data); 
+           this.res = respObj.data;
+           return this.res;
+           }, err => {
+          this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
+                     })  
+  
+      }, err => {
+        this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
+      })
+
+    }, err => {
+      this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
+    })
     }
   }
 
