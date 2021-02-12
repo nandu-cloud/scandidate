@@ -890,7 +890,7 @@
                   </mat-form-field>
                 </div>
                 <div class="w-full md:w-1/2 sm:w-full" style="margin-left: 27rem; margin-top: -6rem;">
-                  <mat-form-field class="ml-52">
+                  <!-- <mat-form-field class="ml-52">
                     <mat-label> Document Name</mat-label>
                     <input
                       matInput
@@ -899,9 +899,9 @@
                       class="br-btm input-w"
                       tabindex="2"
                     />
-                  </mat-form-field>
+                  </mat-form-field> -->
                   
-                  <div class="group-gap">
+                  <!-- <div class="group-gap">
                     <div class="avatar-upload">
                       <div class="avatar-edit">
                         <label class="image-text">Documents Upload</label>
@@ -914,7 +914,6 @@
                           (change)="uploadawardsFile($event.target.files)"
                         />
                         <div  id="imagePreview">{{ this.documentName }}</div>
-                        <!-- <input type="text" value="documentName" formControlName="originalFilename" id="imagePreview">{{ this.documentName }}</input> -->
                       </div>
                     </div>
                     <button tabindex="3"
@@ -929,7 +928,7 @@
                             >
                               <mat-icon>file_download</mat-icon>
                             </button>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -1207,11 +1206,11 @@
                           Cause/Action Taken
                         </th>
                         <!-- <th class="border border-gray-400 px-4 py-2 text-gray-800">Action Taken</th> -->
-                        <th
+                        <!-- <th
                           class="border border-gray-400 px-4 py-2 text-gray-800"
                         >
                           Upload Document
-                        </th>
+                        </th> -->
                       </tr>
                     </thead>
                     <tbody>
@@ -1251,7 +1250,6 @@
                           />
                         </td>
                         <td
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
                         >
                           <div class="group-gap">
                             <div class="avatar-upload">
@@ -1274,7 +1272,7 @@
                               </div>
                             </div>
                             <!-- <div>{{this.documentName}}</div> -->
-                            <button mat-button (click)="dd.click()" tabindex="4">
+                            <!-- <button mat-button (click)="dd.click()" tabindex="4">
                               <mat-icon>file_upload</mat-icon>
                             </button>
                             <button tabindex="5"
@@ -1282,7 +1280,7 @@
                               (click)="view(sixthFormGroup.value.discrepancyDocuments.descrepencyUploadDocument)"
                             >
                               <mat-icon>file_download</mat-icon>
-                            </button>
+                            </button> -->
                           </div>
                         </td>
                       </tr>
@@ -1358,7 +1356,6 @@
                         </td>
 
                         <td
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
                         >
                           <div class="group-gap">
                             <div class="avatar-upload">
@@ -1381,7 +1378,7 @@
                               </div>
                             </div>
                             <!-- <div>{{this.documentName}}</div> -->
-                            <button mat-button (click)="cd.click()" tabindex="9">
+                            <!-- <button mat-button (click)="cd.click()" tabindex="9">
                               <mat-icon>file_upload</mat-icon>
                             </button>
                             <button tabindex="10"
@@ -1389,7 +1386,7 @@
                               (click)="view(sixthFormGroup.value.compliencyDiscrepancy.compliencyUploadDocument)"
                             >
                               <mat-icon>file_download</mat-icon>
-                            </button>
+                            </button> -->
                           </div>
                         </td>
                       </tr>
@@ -1461,7 +1458,6 @@
                         </td>
 
                         <td
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
                         >
                           <div class="group-gap">
                             <div class="avatar-upload">
@@ -1483,7 +1479,7 @@
                                 <div id="imagePreview">{{this.warningFileName}}</div> 
                               </div>
                             </div>
-                            <button mat-button (click)="cat.click()" tabindex="14">
+                            <!-- <button mat-button (click)="cat.click()" tabindex="14">
                               <mat-icon>file_upload</mat-icon>
                             </button>
                             <button tabindex="15"
@@ -1491,7 +1487,7 @@
                               (click)="view(sixthFormGroup.value.warning.warningUploadDocument)"
                             >
                               <mat-icon>file_download</mat-icon>
-                            </button>
+                            </button> -->
                           </div>
                         </td>
                       </tr>
@@ -1562,7 +1558,6 @@
                         </td>
 
                         <td
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
                         >
                           <div class="group-gap">
                             <div class="avatar-upload">
@@ -1584,7 +1579,7 @@
                                 <div id="imagePreview">{{this.showcausedFileName}}</div> 
                               </div>
                             </div>
-                            <button mat-button (click)="sci.click()" tabindex="19">
+                            <!-- <button mat-button (click)="sci.click()" tabindex="19">
                               <mat-icon>file_upload</mat-icon>
                             </button>
                             <button tabindex="20"
@@ -1592,7 +1587,7 @@
                               (click)="view(sixthFormGroup.value.showCausedIssue.showCausedUploadDocument)"
                             >
                               <mat-icon>file_download</mat-icon>
-                            </button>
+                            </button> -->
                           </div>
                         </td>
                       </tr>
@@ -1666,7 +1661,6 @@
                         </td>
 
                         <td
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
                         >
                           <div class="group-gap">
                             <div class="avatar-upload">
@@ -1688,7 +1682,7 @@
                                 <div id="imagePreview">{{this.suspensionFileName}}</div> 
                               </div>
                             </div>
-                            <button mat-button (click)="sus.click()" tabindex="24">
+                            <!-- <button mat-button (click)="sus.click()" tabindex="24">
                               <mat-icon>file_upload</mat-icon>
                             </button>
                             <button tabindex="25"
@@ -1696,7 +1690,7 @@
                               (click)="view(sixthFormGroup.value.suspension.suspensionUploadDocument)"
                             >
                               <mat-icon>file_download</mat-icon>
-                            </button>
+                            </button> -->
                           </div>
                         </td>
                       </tr>
@@ -1769,9 +1763,12 @@
                           />
                         </td>
 
-                        <td
-                          class="border border-gray-400 px-4 py-2 text-gray-800"
+                        
+                       <td
                         >
+                        <!-- <td
+                          class="border border-gray-400 px-4 py-2 text-gray-800"
+                        > -->
                           <div class="group-gap">
                             <div class="avatar-upload">
                               <div class="avatar-edit">
@@ -1792,7 +1789,7 @@
                                 <div id="imagePreview">{{this.terminationFileName}}</div> 
                               </div>
                             </div>
-                            <button mat-button (click)="ter.click()" tabindex="29">
+                            <!-- <button mat-button (click)="ter.click()" tabindex="29">
                               <mat-icon>file_upload</mat-icon>
                             </button>
                             <button tabindex="30"
@@ -1800,7 +1797,7 @@
                               (click)="view(sixthFormGroup.value.termination.terminationUploadDocument) "
                             >
                               <mat-icon>file_download</mat-icon>
-                            </button>
+                            </button> -->
                           </div>
                         </td>
                       </tr>
@@ -1815,7 +1812,7 @@
                       style="line-height: 2px; font-size: smaller"
                       class="remarks br-btm input-w"
                       placeholder=" Is there any other information about this individual you would like to record for future employers?" 
-                      tabindex="9"
+                      tabindex="29"
                       maxlength="200" style="resize: none"
                       ></textarea>
               </mat-form-field>
