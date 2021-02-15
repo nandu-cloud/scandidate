@@ -44,7 +44,7 @@ module.exports.getAllMethod = async function (req, res, next) {
     );
     let result = employeeData.concat(incompleteData);
     let resultData = result.sort(function (a) {
-      if (a.status === "In-Process") {
+      if (!a.status) {
         return -1;
       }
     });
