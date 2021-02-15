@@ -11,7 +11,7 @@ const addEmployeeSchema = Joi.object({
   addedById: Joi.string().allow("").allow(null),
   organisationId: Joi.string().allow("").allow(null),
   organizationName: Joi.string().allow("").allow(null),
-  status: Joi.string().allow("").allow(null),
+  status: Joi.boolean().allow("").allow(null),
 
   //Issues
   discrepancyDocuments: Joi.object().allow("").allow(null),

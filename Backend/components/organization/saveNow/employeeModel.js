@@ -403,7 +403,7 @@ const saveEmployee = new Schema({
     },
   },
   status: {
-    type: String,
+    type: Boolean,
     required: false,
   },
 });

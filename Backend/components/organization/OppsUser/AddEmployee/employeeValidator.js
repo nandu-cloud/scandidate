@@ -11,7 +11,7 @@ const addEmployeeSchema = Joi.object({
   addedById: Joi.string().required(),
   organisationId: Joi.string().required(),
   organizationName: Joi.string().required(),
-  status: Joi.string().allow("").allow(null),
+  status: Joi.boolean().allow("").allow(null),
 
   //Issues
   discrepancyDocuments: Joi.object().allow("").allow(null),
@@ -80,7 +80,7 @@ const updateEmployeeSchema = Joi.object({
   addedById: Joi.string().required(),
   organisationId: Joi.string().required(),
   organizationName: Joi.string().required(),
-  status: Joi.string().allow("").allow(null),
+  status: Joi.boolean().allow("").allow(null),
 
   professionalExperience: Joi.string().allow("").allow(null),
   state: Joi.string().allow("").allow(null),

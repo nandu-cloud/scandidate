@@ -4,7 +4,7 @@ const authJWT = require("../../../middlewares/authJWT");
 const employeeController = require("./employeeSaveNowController");
 
 router
-  .route("/saveNow")
+  .route("/saveNow/:id")
   .post(authJWT.verifyJWTToken, employeeController.addEmployeeMethod);
 
 module.exports = router;
