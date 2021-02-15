@@ -333,7 +333,6 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
   }
 
 
-
   function format(date) {
     var d = date.getDate();
     var m = date.getMonth() + 1;

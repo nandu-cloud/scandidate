@@ -11,6 +11,7 @@ const addEmployeeSchema = Joi.object({
   addedById: Joi.string().required(),
   organisationId: Joi.string().required(),
   organizationName: Joi.string().required(),
+  status: Joi.string().allow("").allow(null),
 
   //Issues
   discrepancyDocuments: Joi.object().allow("").allow(null),
@@ -52,9 +53,9 @@ const addEmployeeSchema = Joi.object({
   consistency: Joi.object().allow("").allow(null),
   building: Joi.object().allow("").allow(null),
   stakeholder: Joi.object().allow("").allow(null),
-  empThrive:Joi.string().allow("").allow(null),
-  inLeadership:Joi.string().allow("").allow(null),
-  otherInfo:Joi.string().allow("").allow(null),
+  empThrive: Joi.string().allow("").allow(null),
+  inLeadership: Joi.string().allow("").allow(null),
+  otherInfo: Joi.string().allow("").allow(null),
 
   //Conduct
   punctuality: Joi.number().allow("").allow(null),
@@ -79,6 +80,7 @@ const updateEmployeeSchema = Joi.object({
   addedById: Joi.string().required(),
   organisationId: Joi.string().required(),
   organizationName: Joi.string().required(),
+  status: Joi.string().allow("").allow(null),
 
   professionalExperience: Joi.string().allow("").allow(null),
   state: Joi.string().allow("").allow(null),
@@ -112,9 +114,9 @@ const updateEmployeeSchema = Joi.object({
   consistency: Joi.object().allow("").allow(null),
   building: Joi.object().allow("").allow(null),
   stakeholder: Joi.object().allow("").allow(null),
-  empThrive:Joi.string().allow("").allow(null),
-  inLeadership:Joi.string().allow("").allow(null),
-  otherInfo:Joi.string().allow("").allow(null),
+  empThrive: Joi.string().allow("").allow(null),
+  inLeadership: Joi.string().allow("").allow(null),
+  otherInfo: Joi.string().allow("").allow(null),
 
   //Conduct
   punctuality: Joi.number().allow("").allow(null),

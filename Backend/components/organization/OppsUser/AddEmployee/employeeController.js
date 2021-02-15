@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const AppError = require("./../../../../helpers/appError");
 const employeeDAL = require("./employeeDAL");
+const incompleteemployeeDAL = require("../../saveNow/employeeSaveNowDAL");
 const employeeDataValidator = require("./employeeValidator");
 const colors = require("./../../../../helpers/colors");
 const path = require("path");
@@ -38,9 +39,18 @@ module.exports.getAllMethod = async function (req, res, next) {
   };
   try {
     let employeeData = await employeeDAL.getAllUsers(data);
+    let incompleteData = await incompleteemployeeDAL.getIncompleteCandidate(
+      data
+    );
+    let result = employeeData.concat(incompleteData);
+    let resultData = result.sort(function (a) {
+      if (a.status === "In-Process") {
+        return -1;
+      }
+    });
     return res
       .status(200)
-      .json({ status: "SUCCESS", message: null, data: employeeData });
+      .json({ status: "SUCCESS", message: null, data: resultData });
   } catch (err) {
     console.log(colors.red, `getAllMethod err ${err}`);
     return next(new AppError(err, 400));

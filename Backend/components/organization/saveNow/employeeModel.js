@@ -1,16 +1,14 @@
-const { boolean, string } = require("joi");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-// schema
-const employeeSchema = new mongoose.Schema({
+const saveEmployee = new Schema({
   //Presonal Info
   firstName: {
     type: String,
-    required: [true, "first name cannot be empty"],
+    required: false,
   },
   lastName: {
     type: String,
-    required: [true, "last name cannot be empty"],
+    required: false,
   },
   employeeId: {
     type: String,
@@ -20,6 +18,7 @@ const employeeSchema = new mongoose.Schema({
     type: String,
     lowercase: true,
     trim: true,
+    required: false,
   },
   role: {
     type: String,
@@ -56,7 +55,7 @@ const employeeSchema = new mongoose.Schema({
   },
   phoneNumber: {
     type: String,
-    required: [true, "Phone Number cannot be empty"],
+    required: false,
   },
   adharNumber: {
     type: String,
@@ -68,15 +67,15 @@ const employeeSchema = new mongoose.Schema({
   },
   organizationName: {
     type: String,
-    required: true,
+    required: false,
   },
   dateOfJoining: {
     type: Date,
-    required: [true, "Date Of Joining cannot be empty"],
+    required: false,
   },
   exitDate: {
     type: Date,
-    required: [true, "Date Of Exit cannot be empty"],
+    required: false,
   },
   professionalExperience: {
     type: String,
@@ -172,27 +171,6 @@ const employeeSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-
-  // volume: {
-  //   type: Number,
-  //   required: false
-  // },
-  // quality: {
-  //   type: Number,
-  //   required: false
-  // },
-  // consistency: {
-  //   type: Number,
-  //   required: false
-  // },
-  // building: {
-  //   type: Number,
-  //   required: false
-  // },
-  // stakeholder: {
-  //   type: Number,
-  //   required: false
-  // },
 
   //Conduct
   punctuality: {
@@ -429,5 +407,5 @@ const employeeSchema = new mongoose.Schema({
     required: false,
   },
 });
-// compile schema to model
-module.exports = mongoose.model("employees", employeeSchema, "employees");
+
+module.exports = mongoose.model("saveNowEmployee", saveEmployee);
