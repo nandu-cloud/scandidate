@@ -17,6 +17,8 @@ import { IssuesComponent } from '../issues/issues.component';
 
 import { DatePipe } from '@angular/common';
 import * as moment from 'moment';
+//import * as FileSaver from 'file-saver';
+import { saveAs } from 'file-saver/dist/FileSaver';
 // import { jsPDF } from 'jspdf';
 // import html2canvas from 'html2canvas';
 
@@ -110,6 +112,7 @@ export class BGVViewComponent implements OnInit {
   edudoc;
   result;
   res: any;
+  data_logo: any;
   //fileName: string;
   constructor(
     public fb: FormBuilder,private _storage: StorageService,
@@ -261,18 +264,37 @@ export class BGVViewComponent implements OnInit {
              console.log(this.instId);
 
           this.viewLogoSubscription = this.empService.ViewLogo(this.orgId,this.instId).subscribe(respObj => {
-          this.data1 = respObj.data;
+          this.data_logo = respObj.data;
           console.log("logo details");
           console.log(this.data1); 
 
         
-           this.bgvListSubscription = this.empService.download_PDF(this.data,this.data1).subscribe(respObj => {
-           console.log(respObj.data); 
-           this.res = respObj.data;
-           return this.res;
+           this.bgvListSubscription = this.empService.download_PDF(this.data,this.data_logo).subscribe(respObj => {
+
+            var blob = new Blob([respObj], {type: 'application/pdf'});
+            saveAs(blob);
+            
+          //   if (window.navigator && window.navigator.msSaveOrOpenBlob) { // IE workaround
+          //     var byteCharacters = atob(respObj.data);
+          //     var byteNumbers = new Array(byteCharacters.length);
+          //     for (var i = 0; i < byteCharacters.length; i++) {
+          //         byteNumbers[i] = byteCharacters.charCodeAt(i);
+          //     }
+          //     var byteArray = new Uint8Array(byteNumbers);
+          //     var blob = new Blob([byteArray], {type: 'application/pdf'});
+          //     window.navigator.msSaveOrOpenBlob(blob, 'IEPdf');
+          // }else{
+          
+          //     let filepdf = 'data:application/pdf;base64,' + respObj.data;
+          //     let a = document.createElement('a');
+          //     a.href = filepdf;
+          //     a.download = 'test';
+          //     a.click();
+          //     } 
+         
            }, err => {
           this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
-                     })  
+           })  
   
       }, err => {
         this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };

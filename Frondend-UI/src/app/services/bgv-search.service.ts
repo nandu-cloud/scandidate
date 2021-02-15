@@ -56,17 +56,17 @@ public ViewLogo(org,inst) : Observable<any> {
   return this.http.post(this.baseUrl + '/api/scandidate/bgvsearch/icon/show',logo );
 }
 
-public download_PDF(data,data1) : Observable<any> {
+public download_PDF(data,data_logo) : Observable<any> {
   console.log("hello");
   console.log(data);
-  console.log(data1);
+  console.log(data_logo);
   var pdf_data :{
     "data":[any],
     "data1":[any]
   } =
   {
     "data":data,
-    "data1":data1
+    "data1":data_logo
   }
   return this.http.post(this.baseUrl + '/api/scandidate/bgvsearch/searched-candidate/download',pdf_data);
 }
