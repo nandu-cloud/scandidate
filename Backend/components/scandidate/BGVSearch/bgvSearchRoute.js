@@ -15,6 +15,6 @@ router
 
 router
   .route("/searched-candidate/download")
-  .get(authJWT.verifyJWTToken, bgvController.downloadscandidateSeach);
+  .post(authJWT.verifyJWTToken, bgvController.downloadscandidateSeach);
 
 module.exports = router;

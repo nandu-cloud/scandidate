@@ -7,4 +7,8 @@ router
   .route("/saveNow/:id")
   .post(authJWT.verifyJWTToken, employeeController.addEmployeeMethod);
 
+router
+  .route("/getEmployee/:id")
+  .get(authJWT.verifyJWTToken, employeeController.showEmployee);
+
 module.exports = router;
