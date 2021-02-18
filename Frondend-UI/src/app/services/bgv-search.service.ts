@@ -68,7 +68,9 @@ public download_PDF(data,data_logo) : Observable<any> {
     "data":data,
     "data1":data_logo
   }
-  return this.http.post(this.baseUrl + '/api/scandidate/bgvsearch/searched-candidate/download',pdf_data);
+  return this.http.post(this.baseUrl + '/api/scandidate/bgvsearch/searched-candidate/download',pdf_data, {responseType: 'arraybuffer'});
+  // return this.http.post(`${this.baseUrl}/api/scandidate/bgvsearch/searched-candidate/download/${pdf_data}`, {responseType: 'blob'});
+  
 }
 
 }

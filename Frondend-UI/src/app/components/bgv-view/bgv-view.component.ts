@@ -17,7 +17,7 @@ import { IssuesComponent } from '../issues/issues.component';
 
 import { DatePipe } from '@angular/common';
 import * as moment from 'moment';
-//import * as FileSaver from 'file-saver';
+// import * as fileSaver from 'file-saver';
 import { saveAs } from 'file-saver/dist/FileSaver';
 // import { jsPDF } from 'jspdf';
 // import html2canvas from 'html2canvas';
@@ -238,6 +238,7 @@ export class BGVViewComponent implements OnInit {
     }
   }
 
+  
   downloadPDF(){
     if(this.empIdedit){
       this.editEmployeeSubscription = this.empService.ViewCandidate(this.empIdedit).subscribe(respObj => {
@@ -245,11 +246,10 @@ export class BGVViewComponent implements OnInit {
         this.data = respObj.data;
             //para for org logo
             var result = [];
-
             for (let i = 0; i < this.data.length; i++) {
               if(this.data[i].organisationId)
               {
-              const id = this.data[i].organisationId
+              var id = this.data[i].organisationId
               this.orgId.push(id);
               }
              }
@@ -257,7 +257,7 @@ export class BGVViewComponent implements OnInit {
             for (let i = 0; i < this.data.length; i++) {
             if(this.data[i].instituteId)
            {
-            const id = this.data[i].instituteId
+            var id = this.data[i].instituteId
             this.instId.push(id);
            }
              }
@@ -266,31 +266,15 @@ export class BGVViewComponent implements OnInit {
           this.viewLogoSubscription = this.empService.ViewLogo(this.orgId,this.instId).subscribe(respObj => {
           this.data_logo = respObj.data;
           console.log("logo details");
-          console.log(this.data1); 
+          console.log(this.data_logo); 
 
         
            this.bgvListSubscription = this.empService.download_PDF(this.data,this.data_logo).subscribe(respObj => {
-
-            var blob = new Blob([respObj], {type: 'application/pdf'});
-            saveAs(blob);
+            let blob = new Blob([respObj], {type: 'application/pdf'});
+            let filename = 'newfile.pdf';
+            saveAs(blob, filename);
+            alert('Download');
             
-          //   if (window.navigator && window.navigator.msSaveOrOpenBlob) { // IE workaround
-          //     var byteCharacters = atob(respObj.data);
-          //     var byteNumbers = new Array(byteCharacters.length);
-          //     for (var i = 0; i < byteCharacters.length; i++) {
-          //         byteNumbers[i] = byteCharacters.charCodeAt(i);
-          //     }
-          //     var byteArray = new Uint8Array(byteNumbers);
-          //     var blob = new Blob([byteArray], {type: 'application/pdf'});
-          //     window.navigator.msSaveOrOpenBlob(blob, 'IEPdf');
-          // }else{
-          
-          //     let filepdf = 'data:application/pdf;base64,' + respObj.data;
-          //     let a = document.createElement('a');
-          //     a.href = filepdf;
-          //     a.download = 'test';
-          //     a.click();
-          //     } 
          
            }, err => {
           this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
