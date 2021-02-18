@@ -67,7 +67,7 @@ app.use(
   require("./components/organization/OppsUser/AddEmployee/employeeRoute")
 );
 app.use(
-  "/api/organisation/operational/saveNow",
+  "/api/organisation/operational/inprogress",
   require("./components/organization/saveNow/employeeSaveNowRoute")
 );
 
