@@ -326,12 +326,10 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
   let icons = req.body.data1;
 
   if (!template || !icons) {
-    return next(new AppError('Employee/Student details not found', 400));
+    return next(new AppError("Employee/Student details not found", 400));
+  } else if (template.length === 0 || icons.length === 0) {
+    return next(new AppError("Details not found", 400));
   }
-  else if (template.length === 0 || icons.length === 0) {
-    return next(new AppError('Details not found', 400));
-  }
-
 
   function format(date) {
     var d = date.getDate();
@@ -712,12 +710,15 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
           return next(new AppError(err, 400));
         }
 
-
         // Test
         var checkFilePath = path.join(
           __dirname,
-          "../../../uploads/scandidate-report/" + fname + new Date().getTime() + ".pdf"
-        )
+          "../../../uploads/scandidate-report/" +
+            fname +
+            new Date().getTime() +
+            ".pdf"
+        );
+        var fileName = fname + new Date().getTime() + ".pdf";
 
         // var tempFilename =
         //   "uploads/scandidate-report/" + fname + new Date().getTime() + ".pdf";
@@ -727,7 +728,9 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
             return next(new AppError(err, 400));
           }
 
-          return res.status(200).download(checkFilePath, function (err) {
+          var fileName = fname + new Date().getTime() + ".pdf";
+          console.log(fileName);
+          return res.status(200).download(checkFilePath, fileName, (err) => {
             if (err) {
               if (err.code == "ENOENT")
                 return next(new AppError("user document not found", 404));
