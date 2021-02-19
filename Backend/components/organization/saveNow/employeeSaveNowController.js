@@ -27,9 +27,7 @@ module.exports.addEmployeeMethod = async function (req, res, next) {
 module.exports.showEmployee = async function (req, res, next) {
   try {
     const data = { _id: mongoose.Types.ObjectId(req.params.id) };
-    console.log(data);
     let studentData = await empDAL.getEmployeeById(data);
-    console.log(studentData);
     if (!studentData)
       return next(new AppError("Employee does not exists!", 404));
     return res.status(200).json({

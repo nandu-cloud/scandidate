@@ -27,7 +27,7 @@ async function getIncompleteCandidate(data) {
 
 async function getEmployeeById(data) {
   try {
-    let result = await empModel.find({ _id: data._id }).lean();
+    let result = await empModel.findById({ _id: data._id }).lean();
     return result;
   } catch (err) {
     throw err;
