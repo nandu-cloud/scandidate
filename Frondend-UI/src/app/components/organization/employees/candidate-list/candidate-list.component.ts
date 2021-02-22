@@ -18,13 +18,16 @@ export class CandidateListComponent implements OnInit {
   EmployeeSubscription : Subscription;
   setMessage: any = [];
   respObj : any = [];
+  // showEdit : boolean = true;
+  // saveNow : boolean = false;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   editEmployeeData: FormGroup;
+  empIdsave: number;
 
   constructor(private formBuilder: FormBuilder,private router:Router,public empService: EmployeeService) { }
 
   ngOnInit(): void {
-    this.displayedColumns =['name', 'phone_number', 'email', 'dateOfJoining', 'dateofexit', 'experience', 'action'];
+    this.displayedColumns =['name', 'phone_number', 'email', 'dateOfJoining', 'dateofexit', 'experience', 'status', 'action'];
     this.EmployeeSubscription = this.empService.getEmployeeData().subscribe(respObj => {
       this.dataSource = new MatTableDataSource(respObj.data);
       this.dataSource.paginator = this.paginator;
@@ -41,7 +44,15 @@ export class CandidateListComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
   edit(id:number){
+    console.log("completed record");
     this.empIdedit = id;
+    this.editEmployeeData = this.formBuilder.group({
+      _id:['', [Validators.required]],
+    })
+  }
+  saveRow(id:number){
+    console.log("save now record");
+    this.empIdsave = id;
     this.editEmployeeData = this.formBuilder.group({
       _id:['', [Validators.required]],
     })

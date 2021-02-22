@@ -104,6 +104,9 @@
   .text-xs{
     font-size: 0.65rem;
   }
+  .mat-toolbar-single-row {
+    padding: 1px !important;
+  }
 }
 /* .hea-border{
   border-bottom: 9px solid #6cb43b;

@@ -93,6 +93,9 @@
 .sm{
   width: 59% !important;
 }
+.mat-toolbar-single-row {
+  padding: 1px !important;
+}
 }
 .rounded{
   border-radius: 55px;

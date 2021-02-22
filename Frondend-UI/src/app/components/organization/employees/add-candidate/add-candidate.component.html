@@ -410,7 +410,7 @@
                 <button mat-menu-item>Horseshoe crabs</button>
               </mat-menu>
             </mat-form-field> -->
-              <!-- <mat-form-field>
+              <mat-form-field>
                  <mat-label>Professional Experience</mat-label>
                  <input  matInput formControlName="professionalExperience" type="text"  class="br-btm input-w" autoComplete='off' readonly tabindex="11">
                  <mat-error *ngIf ="firstFormGroup.get('professionalExperience').errors?.required">
@@ -422,7 +422,7 @@
                <mat-error *ngIf= "firstFormGroup.get('professionalExperience').errors?.pattern">
                please enter valid number
                </mat-error>
-             </mat-form-field> -->
+             </mat-form-field>
               <mat-form-field>
                 <mat-label>Department</mat-label>
                 <input
@@ -494,10 +494,10 @@
             </div>
           </div>
           <div class="flex justify-end lg:pb-6 lg:pr-48">
-            <button tabindex="19"
-              class="lg-button focus:outline-none focus:shadow-outline"
-              (click)="nextStep()"
-            >
+            <button class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
+              Save Now
+            </button>
+            <button tabindex="19" class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">
               Next
             </button>
           </div>
@@ -677,6 +677,9 @@
             </div>
           </div>
           <div class="flex justify-end lg:pb-6 lg:pr-48">
+            <button class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
+              Save Now
+            </button>
             <button
               class="lg-button focus:outline-none focus:shadow-outline"
               (click)="cancel()"
@@ -832,6 +835,9 @@
             </div>
           </div>
           <div class="flex justify-end lg:pb-6 lg:pr-48">
+            <button class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
+              Save Now
+            </button>
             <button
               class="lg-button focus:outline-none focus:shadow-outline"
               (click)="cancel()"
@@ -934,6 +940,9 @@
             </div>
           </div>
           <div class="flex justify-end lg:pb-6 lg:pr-48">
+            <button class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
+              Save Now
+            </button>
             <button
               class="lg-button focus:outline-none focus:shadow-outline"
               (click)="cancel()"
@@ -1143,6 +1152,9 @@
             </div>
           </div>
           <div class="flex justify-end lg:pb-6 lg:pr-48">
+            <button class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
+              Save Now
+            </button>
             <button
               class="lg-button focus:outline-none focus:shadow-outline"
               (click)="cancel()"
@@ -1839,11 +1851,18 @@
             >
               Submit
             </button>
-            <button tabindex="31"
+            <button
+              class="lg-button focus:outline-none focus:shadow-outline"
+              type="button"
+              (click)="submit()"
+              *ngIf="submitValue && id" tabindex="31"
+            >
+              Submit
+            </button>
+            <button  tabindex="31"
               class="lg-button focus:outline-none focus:shadow-outline"
               (click)="update(id)"
-              *ngIf="id"
-            >
+              *ngIf="id && !submitValue" >
               update
             </button>
           </div>

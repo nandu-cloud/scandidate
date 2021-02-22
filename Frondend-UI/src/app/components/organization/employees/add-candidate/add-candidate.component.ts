@@ -59,7 +59,10 @@ export class AddCandidateComponent implements OnInit {
   reasonsForSeparation: boolean = false;
   minDate : any;
   maxDate : any;
-
+  savenowSubscription: Subscription;
+  showSave: boolean = true;
+  submitValue : boolean = true;
+  empIdsave : any;
   @ViewChild('picker') picker: MatDatepicker<Date>;
   constructor(
     public fb: FormBuilder,
@@ -68,6 +71,7 @@ export class AddCandidateComponent implements OnInit {
   ) {
     this.route.params.subscribe(params => {
       this.empIdedit = params.id;
+      this.empIdsave =params.id;
     });
 
     this.firstFormGroup = new FormGroup({
@@ -338,7 +342,41 @@ export class AddCandidateComponent implements OnInit {
   }
   ngOnInit(): void {
     if (this.empIdedit) {
+      this.showSave = false;
       this.editEmployeeSubscription = this.empService.editEmployee(this.empIdedit).subscribe(respObj => {
+        console.log(respObj.data);
+        if(respObj.data.status == true) {
+          this.submitValue = false;
+        }else {
+          this.submitValue = true;
+        }
+        this.id = respObj.data._id;
+
+        this.firstFormGroup.patchValue(respObj.data);
+        this.secondFormGroup.patchValue(respObj.data);
+        this.thirdFormGroup.patchValue(respObj.data);
+        this.fourthFormGroup.patchValue(respObj.data);
+        this.documentName = (((respObj.data.awards.originalFilename !== null) ||(respObj.data.awards.originalFilename !== undefined)) ?
+         respObj.data.awards.originalFilename : '');
+        this.fifthFormGroup.patchValue(respObj.data);
+        this.sixthFormGroup.patchValue(respObj.data);
+        this.discrepancyFileName = (((respObj.data.discrepancyDocuments.originalFilename !== null) ||(respObj.data.discrepancyDocuments.originalFilename !== undefined)) ? respObj.data.discrepancyDocuments.originalFilename : ''); 
+        this.compliencyFileName = (((respObj.data.compliencyDiscrepancy.originalFilename !== null) ||(respObj.data.compliencyDiscrepancy.originalFilename !== undefined)) ? respObj.data.compliencyDiscrepancy.originalFilename : ''); 
+        this.warningFileName = (((respObj.data.warning.originalFilename !== null) ||(respObj.data.warning.originalFilename !== undefined)) ? respObj.data.warning.originalFilename : ''); 
+        this.showcausedFileName = (((respObj.data.showCausedIssue.originalFilename !== null) ||(respObj.data.showCausedIssue.originalFilename !== undefined)) ? respObj.data.showCausedIssue.originalFilename : ''); 
+        this.suspensionFileName = (((respObj.data.suspension.originalFilename !== null) ||(respObj.data.suspension.originalFilename !== undefined)) ? respObj.data.suspension.originalFilename : ''); 
+        this.terminationFileName = (((respObj.data.termination.originalFilename !== null) ||(respObj.data.termination.originalFilename !== undefined)) ? respObj.data.termination.originalFilename : '');
+        // this.documentName = `${this.baseUrl}/public/organization_doc/${respObj.data.documentUpload}`;
+        // this.documentName = `${respObj.data.documentUpload}`;
+        // this.documentName = `${this.baseUrl}/public/organization_doc/${respObj.data.documentUpload}`;
+        console.log('edit' + this.documentName);
+      }, err => {
+        this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
+      })
+    }
+    if (this.empIdsave) {
+      this.showSave = false;
+      this.editEmployeeSubscription = this.empService.saveAsEmployee(this.empIdsave).subscribe(respObj => {
         console.log(respObj.data);
         this.id = respObj.data._id;
 
@@ -430,6 +468,23 @@ export class AddCandidateComponent implements OnInit {
     };
   }
 
+  saveNow(){
+    var count=0;
+      this.savenowSubscription = this.empService.savenowEmployee({
+        ...this.firstFormGroup.value, ...this.secondFormGroup.value,
+        ...this.thirdFormGroup.value, ...this.fourthFormGroup.value, ...this.fifthFormGroup.value,
+        ...this.sixthFormGroup.value
+      })
+        .subscribe(resp => {
+          // console.log(this.createCandidate.value);
+          this.openDialog();
+        }, err => {
+          this.setMessage = { message: err.error.message, error: true };
+          this.error = this.setMessage.message;
+          throw this.setMessage.message;
+        })
+    }
+    
   submit() {
     if (this.firstFormGroup.invalid) {
       this.firstFormGroup.markAllAsTouched();
@@ -473,7 +528,6 @@ export class AddCandidateComponent implements OnInit {
         return;
       }
     }
-    if (!this.empIdedit) {
       this.employeeSubscription = this.empService.addEmployee({
         ...this.firstFormGroup.value, ...this.secondFormGroup.value,
         ...this.thirdFormGroup.value, ...this.fourthFormGroup.value, ...this.fifthFormGroup.value,
@@ -488,7 +542,7 @@ export class AddCandidateComponent implements OnInit {
           throw this.setMessage.message;
         })
     }
-  }
+  
 
 
 

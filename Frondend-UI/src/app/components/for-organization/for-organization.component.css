@@ -83,6 +83,9 @@
 .text-xs{
   font-size: 0.65rem;
 }
+.mat-toolbar-single-row {
+  padding: 1px !important;
+}
 }
 .rounded{
   border-radius: 55px;
