@@ -342,13 +342,15 @@ export class AddCandidateComponent implements OnInit {
   }
   ngOnInit(): void {
     if (this.empIdedit) {
-      this.showSave = false;
+      
       this.editEmployeeSubscription = this.empService.editEmployee(this.empIdedit).subscribe(respObj => {
         console.log(respObj.data);
         if(respObj.data.status == true) {
           this.submitValue = false;
+          this.showSave = false;
         }else {
           this.submitValue = true;
+          this.showSave = true;
         }
         this.id = respObj.data._id;
 
@@ -377,6 +379,13 @@ export class AddCandidateComponent implements OnInit {
     if (this.empIdsave) {
       this.showSave = false;
       this.editEmployeeSubscription = this.empService.saveAsEmployee(this.empIdsave).subscribe(respObj => {
+        if(respObj.data.status == true) {
+          this.submitValue = false;
+          this.showSave = false;
+        }else {
+          this.submitValue = true;
+          this.showSave = true;
+        }
         console.log(respObj.data);
         this.id = respObj.data._id;
 
