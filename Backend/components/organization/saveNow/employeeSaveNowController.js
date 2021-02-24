@@ -8,15 +8,18 @@ module.exports.addEmployeeMethod = async function (req, res, next) {
   const empId = req.params.id;
 
   try {
-    await employeeDataValidator.addEmployeeSchema.validateAsync(data);
+    let result = await employeeDataValidator.addEmployeeSchema.validateAsync(
+      data
+    );
     let fetchData = await empDAL.getEmployeeById({ _id: empId });
-    if (fetchData.length == 0) {
-      let employeeData = await empDAL.saveEmployee(data);
+
+    if (fetchData != null) {
+      result._id = mongoose.Types.ObjectId(empId);
+      result.updatedAt = new Date();
+      let employeeData = await empDAL.updateEmployee(result);
       return res.status(200).json({ status: "SUCCESS", data: employeeData });
     } else {
-      data._id = mongoose.Types.ObjectId(empId);
-      data.updatedAt = new Date();
-      let employeeData = await empDAL.updateEmployee(data);
+      let employeeData = await empDAL.saveEmployee(result);
       return res.status(200).json({ status: "SUCCESS", data: employeeData });
     }
   } catch (err) {
@@ -28,6 +31,7 @@ module.exports.showEmployee = async function (req, res, next) {
   try {
     const data = { _id: mongoose.Types.ObjectId(req.params.id) };
     let studentData = await empDAL.getEmployeeById(data);
+
     if (!studentData)
       return next(new AppError("Employee does not exists!", 404));
     return res.status(200).json({

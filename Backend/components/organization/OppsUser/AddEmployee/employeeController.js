@@ -33,7 +33,7 @@ module.exports.addEmployeeMethod = async function (req, res, next) {
 };
 
 //Get All Employee
-module.exports.getAllMethod = async function (req, res, next) {
+module.exports.getAllMethod = async (req, res, next) => {
   const data = {
     organisationId: mongoose.Types.ObjectId(req.params.organisationId),
   };
@@ -42,8 +42,19 @@ module.exports.getAllMethod = async function (req, res, next) {
     let incompleteData = await incompleteemployeeDAL.getIncompleteCandidate(
       data
     );
+
+    for (var i = 0; i < employeeData.length; i++) {
+      var getEmail = employeeData[i].email;
+      for (var j = 0; j < incompleteData.length; j++) {
+        var getEmail2 = incompleteData[j].email;
+        if (getEmail === getEmail2) {
+          incompleteData.splice(j, 1);
+        }
+      }
+    }
+
     let result = employeeData.concat(incompleteData);
-    let resultData = result.sort(function (a) {
+    let resultData = result.sort((a) => {
       if (!a.status) {
         return -1;
       }

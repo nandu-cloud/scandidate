@@ -14,19 +14,15 @@ async function searchBgvDataEmployee(data) {
     }
   } else {
     try {
-      let employeeSearch = await employeeModel.find().and([
-        { firstName: { $regex: data.firstName || "", $options: "i" } },
-        { dateOfBirth: { $regex: data.dateOfBirth || "" } },
-        { phoneNumber: { $regex: data.phoneNumber || "" } },
-        { email: { $regex: data.email || "", $options: "i" } },
-        {
-          organizationName: {
-            $regex: data.organizationName || "",
-            $options: "i",
-          },
-        },
-        { adharNumber: { $regex: data.adharNumber || "" } },
-      ]);
+      let employeeSearch = await employeeModel
+        .find()
+        .and([
+          { firstName: { $regex: data.firstName || "", $options: "i" } },
+          { dateOfBirth: { $regex: data.dateOfBirth || "" } },
+          { phoneNumber: { $regex: data.phoneNumber || "" } },
+          { email: { $regex: data.email || "", $options: "i" } },
+          { adharNumber: { $regex: data.adharNumber || "" } },
+        ]);
       return employeeSearch;
     } catch (err) {
       throw err;
@@ -45,16 +41,15 @@ async function searchBgvDataEmployeeId(data) {
 
 async function searchBgvDataStudent(data) {
   try {
-    let studentSearch = await studentModel.find().and([
-      { firstName: { $regex: data.firstName || "", $options: "i" } },
-      { dateOfBirth: { $regex: data.dateOfBirth || "" } },
-      { phoneNumber: { $regex: data.phoneNumber || "" } },
-      { email: { $regex: data.email || "", $options: "i" } },
-      {
-        intitutionName: { $regex: data.intitutionName || "", $options: "i" },
-      },
-      { adharNumber: { $regex: data.adharNumber || "" } },
-    ]);
+    let studentSearch = await studentModel
+      .find()
+      .and([
+        { firstName: { $regex: data.firstName || "", $options: "i" } },
+        { dateOfBirth: { $regex: data.dateOfBirth || "" } },
+        { phoneNumber: { $regex: data.phoneNumber || "" } },
+        { email: { $regex: data.email || "", $options: "i" } },
+        { adharNumber: { $regex: data.adharNumber || "" } },
+      ]);
     // .collation({ locale: "en", strength: 1 });
     return studentSearch;
   } catch (err) {

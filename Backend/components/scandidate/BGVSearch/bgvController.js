@@ -344,152 +344,184 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
   var eml = template[0].email;
   var today = new Date();
   var dateString = format(today);
+  var selfDriv = "";
+  var workIndepend = "";
+  var credvity = "";
+  var tWork = "";
+  var dealConstructivelyPressure = "";
+  var discipln = "";
+  var commSkill = "";
+  var indusKnow = "";
+  var prodKnow = "";
+  var subMtr = "";
+  var stragThink = "";
+  var problemSolv = "";
+  var buidPerformance = "";
+  var stakeMgmnt = "";
 
   for (let i = 0; i < template.length; i++) {
-    if (template[i].selfDriven == 1) {
-      selfDriv = "Not satisfactory";
-    }
-    if (template[i].selfDriven == 2) {
-      selfDriv = "Needs Improvement";
-    }
-    if (template[i].selfDriven == 3) {
-      selfDriv = "Meets Expectations";
-    }
-    if (template[i].selfDriven == 4) {
-      selfDriv = "Exceeds Expectations";
+    if (template[i].selfDriven) {
+      if (template[i].selfDriven == 1) {
+        selfDriv = "Not satisfactory";
+      }
+      if (template[i].selfDriven == 2) {
+        selfDriv = "Needs Improvement";
+      }
+      if (template[i].selfDriven == 3) {
+        selfDriv = "Meets Expectations";
+      }
+      if (template[i].selfDriven == 4) {
+        selfDriv = "Exceeds Expectations";
+      }
     }
 
-    if (template[i].workIndependenty == 1) {
-      workIndepend = "Not satisfactory";
-    }
-    if (template[i].workIndependenty == 2) {
-      workIndepend = "Needs Improvement";
-    }
-    if (template[i].workIndependenty == 3) {
-      workIndepend = "Meets Expectations";
-    }
-    if (template[i].workIndependenty == 4) {
-      workIndepend = "Exceeds Expectations";
+    if (template[i].workIndependenty) {
+      if (template[i].workIndependenty == 1) {
+        workIndepend = "Not satisfactory";
+      }
+      if (template[i].workIndependenty == 2) {
+        workIndepend = "Needs Improvement";
+      }
+      if (template[i].workIndependenty == 3) {
+        workIndepend = "Meets Expectations";
+      }
+      if (template[i].workIndependenty == 4) {
+        workIndepend = "Exceeds Expectations";
+      }
     }
 
     //Creativity
 
-    if (template[i].creativity == 1) {
-      credvity = "Not satisfactory";
-    }
-    if (template[i].creativity == 2) {
-      credvity = "Needs Improvement";
-    }
-    if (template[i].creativity == 3) {
-      credvity = "Meets Expectations";
-    }
-    if (template[i].creativity == 4) {
-      credvity = "Exceeds Expectations";
+    if (template[i].creativity) {
+      if (template[i].creativity == 1) {
+        credvity = "Not satisfactory";
+      }
+      if (template[i].creativity == 2) {
+        credvity = "Needs Improvement";
+      }
+      if (template[i].creativity == 3) {
+        credvity = "Meets Expectations";
+      }
+      if (template[i].creativity == 4) {
+        credvity = "Exceeds Expectations";
+      }
     }
 
     //Team Work
 
-    if (template[i].teamWork == 1) {
-      tWork = "Not satisfactory";
-    }
-    if (template[i].teamWork == 2) {
-      tWork = "Needs Improvement";
-    }
-    if (template[i].teamWork == 3) {
-      tWork = "Meets Expectations";
-    }
-    if (template[i].teamWork == 4) {
-      tWork = "Exceeds Expectations";
+    if (template[i].teamWork) {
+      if (template[i].teamWork == 1) {
+        tWork = "Not satisfactory";
+      }
+      if (template[i].teamWork == 2) {
+        tWork = "Needs Improvement";
+      }
+      if (template[i].teamWork == 3) {
+        tWork = "Meets Expectations";
+      }
+      if (template[i].teamWork == 4) {
+        tWork = "Exceeds Expectations";
+      }
     }
 
     //Deals Constructively With Pressure
 
-    if (template[i].dealConstructivelyWithPressure == 1) {
-      dealConstructivelyPressure = "Not satisfactory";
-    }
-    if (template[i].dealConstructivelyWithPressure == 2) {
-      dealConstructivelyPressure = "Needs Improvement";
-    }
-    if (template[i].dealConstructivelyWithPressure == 3) {
-      dealConstructivelyPressure = "Meets Expectations";
-    }
-    if (template[i].dealConstructivelyWithPressure == 4) {
-      dealConstructivelyPressure = "Exceeds Expectations";
+    if (template[i].dealConstructivelyWithPressure) {
+      if (template[i].dealConstructivelyWithPressure == 1) {
+        dealConstructivelyPressure = "Not satisfactory";
+      }
+      if (template[i].dealConstructivelyWithPressure == 2) {
+        dealConstructivelyPressure = "Needs Improvement";
+      }
+      if (template[i].dealConstructivelyWithPressure == 3) {
+        dealConstructivelyPressure = "Meets Expectations";
+      }
+      if (template[i].dealConstructivelyWithPressure == 4) {
+        dealConstructivelyPressure = "Exceeds Expectations";
+      }
     }
 
     //discipline
 
-    if (template[i].discipline == 1) {
-      discipln = "Not satisfactory";
-    }
-    if (template[i].discipline == 2) {
-      discipln = "Needs Improvement";
-    }
-    if (template[i].discipline == 3) {
-      discipln = "Meets Expectations";
-    }
-    if (template[i].discipline == 4) {
-      discipln = "Exceeds Expectations";
+    if (template[i].discipline) {
+      if (template[i].discipline == 1) {
+        discipln = "Not satisfactory";
+      }
+      if (template[i].discipline == 2) {
+        discipln = "Needs Improvement";
+      }
+      if (template[i].discipline == 3) {
+        discipln = "Meets Expectations";
+      }
+      if (template[i].discipline == 4) {
+        discipln = "Exceeds Expectations";
+      }
     }
 
     //comm skill
 
-    if (template[i].communicationSkills == 1) {
-      commSkill = "Basic";
-    }
-    if (template[i].communicationSkills == 2) {
-      commSkill = "Intermediate";
-    }
-    if (template[i].communicationSkills == 3) {
-      commSkill = "Proficient";
-    }
-    if (template[i].communicationSkills == 4) {
-      commSkill = "Expert";
+    if (template[i].communicationSkills) {
+      if (template[i].communicationSkills == 1) {
+        commSkill = "Basic";
+      }
+      if (template[i].communicationSkills == 2) {
+        commSkill = "Intermediate";
+      }
+      if (template[i].communicationSkills == 3) {
+        commSkill = "Proficient";
+      }
+      if (template[i].communicationSkills == 4) {
+        commSkill = "Expert";
+      }
     }
 
     //industry know
 
-    if (template[i].industryKnowledge == 1) {
-      indusKnow = "Basic";
+    if (template[i].industryKnowledge) {
+      if (template[i].industryKnowledge == 1) {
+        indusKnow = "Basic";
+      }
+      if (template[i].industryKnowledge == 2) {
+        indusKnow = "Intermediate";
+      }
+      if (template[i].industryKnowledge == 3) {
+        indusKnow = "Proficient";
+      }
+      if (template[i].industryKnowledge == 4) {
+        indusKnow = "Expert";
+      }
     }
-    if (template[i].industryKnowledge == 2) {
-      indusKnow = "Intermediate";
-    }
-    if (template[i].industryKnowledge == 3) {
-      indusKnow = "Proficient";
-    }
-    if (template[i].industryKnowledge == 4) {
-      indusKnow = "Expert";
-    }
-
     //pro unders
 
-    if (template[i].productKnowledge == 1) {
-      prodKnow = "Basic";
-    }
-    if (template[i].productKnowledge == 2) {
-      prodKnow = "Intermediate";
-    }
-    if (template[i].productKnowledge == 3) {
-      prodKnow = "Proficient";
-    }
-    if (template[i].productKnowledge == 4) {
-      prodKnow = "Expert";
+    if (template[i].productKnowledge) {
+      if (template[i].productKnowledge == 1) {
+        prodKnow = "Basic";
+      }
+      if (template[i].productKnowledge == 2) {
+        prodKnow = "Intermediate";
+      }
+      if (template[i].productKnowledge == 3) {
+        prodKnow = "Proficient";
+      }
+      if (template[i].productKnowledge == 4) {
+        prodKnow = "Expert";
+      }
     }
 
     //sub matter to expertise
-
-    if (template[i].academicKnowledge == 1) {
-      subMtr = "Basic";
-    }
-    if (template[i].academicKnowledge == 2) {
-      subMtr = "Intermediate";
-    }
-    if (template[i].academicKnowledge == 3) {
-      subMtr = "Proficient";
-    }
-    if (template[i].academicKnowledge == 4) {
-      subMtr = "Expert";
+    if (template[i].academicKnowledge) {
+      if (template[i].academicKnowledge == 1) {
+        subMtr = "Basic";
+      }
+      if (template[i].academicKnowledge == 2) {
+        subMtr = "Intermediate";
+      }
+      if (template[i].academicKnowledge == 3) {
+        subMtr = "Proficient";
+      }
+      if (template[i].academicKnowledge == 4) {
+        subMtr = "Expert";
+      }
     }
 
     if (template[i].quality) {
@@ -711,14 +743,13 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
         }
 
         // Test
+
+        var fileName = fname + new Date().getTime() + ".pdf";
+
         var checkFilePath = path.join(
           __dirname,
-          "../../../uploads/scandidate-report/" +
-            fname +
-            new Date().getTime() +
-            ".pdf"
+          "../../../uploads/scandidate-report/" + fileName
         );
-        var fileName = fname + new Date().getTime() + ".pdf";
 
         // var tempFilename =
         //   "uploads/scandidate-report/" + fname + new Date().getTime() + ".pdf";
@@ -728,8 +759,6 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
             return next(new AppError(err, 400));
           }
 
-          var fileName = fname + new Date().getTime() + ".pdf";
-          console.log(fileName);
           return res.status(200).download(checkFilePath, fileName, (err) => {
             if (err) {
               if (err.code == "ENOENT")
