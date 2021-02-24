@@ -41,7 +41,7 @@ export class EmployeeService {
     {
       'firstName': empData.firstName, 'lastName': empData.lastName, 'email': empData.email, 'phoneNumber': empData.phoneNumber, 'dateOfJoining': empData.dateOfJoining,
       'exitDate': empData.exitDate, 'professionalExperience': empData.professionalExperience, 'employeeId': empData.employeeId, 'role': empData.role, 'department': empData.department,
-      'address': empData.address, 'dateOfBirth': empData.dateOfBirth, 'adharNumber': empData.adharNumber, 'panNumber': empData.panNumber, 'selfDriven': empData.selfDriven,
+      'address': empData.address, 'dateOfBirth': empData.dateOfBirth == "" ? "" : empData.dateOfBirth, 'adharNumber': empData.adharNumber== "" ? "": empData.adharNumber, 'panNumber': empData.panNumber, 'selfDriven': empData.selfDriven,
       'creativity': empData.creativity, 'informalOrganizationSenseOfBelonging': empData.informalOrganizationSenseOfBelonging, 'initiative': empData.initiative, 'workIndependenty': empData.workIndependenty, 'teamWork': empData.teamWork,
       'dealConstructivelyWithPressure': empData.dealConstructivelyWithPressure, 'volume': empData.volume, 'quality': empData.quality, 'consistency': empData.consistency, 'building': empData.building, 'stakeholder': empData.stakeholder, 'punctuality': empData.punctuality, 'organizationName': empData.organizationName,
       'discipline': empData.discipline, 'academicKnowledge': empData.academicKnowledge, 'productKnowledge': empData.productKnowledge, 'industryKnowledge': empData.industryKnowledge, 'communicationSkills': empData.communicationSkills,
@@ -96,7 +96,7 @@ export class EmployeeService {
     {
       'firstName': empupdateData.firstName, 'lastName': empupdateData.lastName, 'email': empupdateData.email, 'phoneNumber': empupdateData.phoneNumber, 'dateOfJoining': empupdateData.dateOfJoining,
       'exitDate': empupdateData.exitDate, 'professionalExperience': empupdateData.professionalExperience, 'employeeId': empupdateData.employeeId, 'role': empupdateData.role, 'department': empupdateData.department,
-      'address': empupdateData.address, 'dateOfBirth': empupdateData.dateOfBirth, 'adharNumber': empupdateData.adharNumber, 'panNumber': empupdateData.panNumber, 'selfDriven': empupdateData.selfDriven,
+      'address': empupdateData.address, 'dateOfBirth': empupdateData.dateOfBirth, 'adharNumber': empupdateData.adharNumber==""? "": empupdateData.adharNumber, 'panNumber': empupdateData.panNumber, 'selfDriven': empupdateData.selfDriven,
       'creativity': empupdateData.creativity, 'informalOrganizationSenseOfBelonging': empupdateData.informalOrganizationSenseOfBelonging, 'initiative': empupdateData.initiative, 'workIndependenty': empupdateData.workIndependenty, 'teamWork': empupdateData.teamWork,
       'dealConstructivelyWithPressure': empupdateData.dealConstructivelyWithPressure, 'volume': empupdateData.volume, 'quality': empupdateData.quality, 'consistency': empupdateData.consistency, 'punctuality': empupdateData.punctuality,
       'discipline': empupdateData.discipline, 'academicKnowledge': empupdateData.academicKnowledge, 'productKnowledge': empupdateData.productKnowledge, 'industryKnowledge': empupdateData.industryKnowledge, 'communicationSkills': empupdateData.communicationSkills, 'organizationName': empupdateData.organizationName,
@@ -142,11 +142,11 @@ export class EmployeeService {
       'originalFilename': string, 'status': boolean
     } =
     {
-      'firstName': empData.firstName == "" ? null : empData.firstName, 'lastName': empData.lastName == "" ? null : empData.lastName, 'email': empData.email == "" ? null : empData.email, 
-      'phoneNumber': empData.phoneNumber == "" ? null : empData.phoneNumber, 'dateOfJoining': empData.dateOfJoining == "" ? null : empData.dateOfJoining,'exitDate': empData.exitDate == "" ? null : empData.exitDate, 
+      'firstName': empData.firstName == "" ? "" : empData.firstName, 'lastName': empData.lastName == "" ? null : empData.lastName, 'email': empData.email == "" ? null : empData.email, 
+      'phoneNumber': empData.phoneNumber == "" ? "" : empData.phoneNumber, 'dateOfJoining': empData.dateOfJoining == "" ? null : empData.dateOfJoining,'exitDate': empData.exitDate == "" ? null : empData.exitDate, 
       'professionalExperience': empData.professionalExperience == "" ? null : empData.professionalExperience, 'employeeId': empData.employeeId == "" ? null : empData.employeeId, 'role': empData.role == "" ? null : empData.role,
-      'department': empData.department == "" ? null : empData.department,'address': empData.address == "" ? null : empData.address, 'dateOfBirth': empData.dateOfBirth == "" ? null : empData.dateOfBirth, 
-      'adharNumber': empData.adharNumber == "" ? null : empData.panNumber, 'panNumber': empData.panNumber == "" ? null : empData.panNumber, 'selfDriven': empData.selfDriven == "" ? null : empData.selfDriven,
+      'department': empData.department == "" ? null : empData.department,'address': empData.address == "" ? null : empData.address, 'dateOfBirth': empData.dateOfBirth == "" ? "" : empData.dateOfBirth, 
+      'adharNumber': empData.adharNumber == "" ? "" : empData.adharNumber, 'panNumber': empData.panNumber == "" ? null : empData.panNumber, 'selfDriven': empData.selfDriven == "" ? null : empData.selfDriven,
       'creativity': empData.creativity == "" ? null : empData.creativity, 'informalOrganizationSenseOfBelonging': empData.informalOrganizationSenseOfBelonging == "" ? null : empData.informalOrganizationSenseOfBelonging, 'initiative': empData.initiative == "" ? null : empData.initiative, 
       'workIndependenty': empData.workIndependenty == "" ? null : empData.workIndependenty, 'teamWork': empData.teamWork == "" ? null : empData.teamWork,
       'dealConstructivelyWithPressure': empData.dealConstructivelyWithPressure == "" ? null : empData.dealConstructivelyWithPressure, 'volume': empData.volume == "" ? null : empData.volume, 'quality': empData.quality == "" ? null : empData.quality, 'consistency': empData.consistency == "" ? null : empData.consistency, 

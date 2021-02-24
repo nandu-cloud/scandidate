@@ -85,7 +85,7 @@ export class AddCandidateComponent implements OnInit {
       panNumber: new FormControl(''),
       phoneNumber: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[1-9][0-9]{9}$')]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      dateOfBirth: new FormControl(),
+      dateOfBirth: new FormControl(''),
       dateOfJoining: new FormControl('', [Validators.required, this.validateJoiningDate()]),
       exitDate: new FormControl('', [Validators.required, this.validateExitDate()]),
       organizationName: new FormControl(this.organizationName),
