@@ -237,7 +237,7 @@
                   tabindex="4"
                 />
               </mat-form-field>
-              <mat-form-field>
+              <mat-form-field *ngIf="!id">
                 <mat-label>Email</mat-label>
                 <input
                   matInput
@@ -247,6 +247,24 @@
                   autoComplete="off"
                   required
                   tabindex="6"
+                />
+                <mat-error *ngIf="firstFormGroup.get('email').errors?.required">
+                  Required email address
+                </mat-error>
+                <mat-error *ngIf="firstFormGroup.get('email').errors?.email">
+                  Enter a valid email address
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field *ngIf="id" >
+                <mat-label>Email</mat-label>
+                <input
+                  matInput
+                  formControlName="email"
+                  type="text"
+                  class="br-btm input-w"
+                  autoComplete="off"
+                  required
+                  tabindex="6" readonly disabled
                 />
                 <mat-error *ngIf="firstFormGroup.get('email').errors?.required">
                   Required email address
@@ -1835,6 +1853,9 @@
             <!-- <a routerLink="/candidate-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button">
                Cancel
              </button></a> -->
+             <button class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
+              Save Now
+            </button>
             <button
               class="lg-button focus:outline-none focus:shadow-outline"
               type="button"

@@ -63,6 +63,8 @@ export class AddCandidateComponent implements OnInit {
   showSave: boolean = true;
   submitValue : boolean = true;
   empIdsave : any;
+  count : boolean = false;
+  dis;
   @ViewChild('picker') picker: MatDatepicker<Date>;
   constructor(
     public fb: FormBuilder,
@@ -478,7 +480,16 @@ export class AddCandidateComponent implements OnInit {
   }
 
   saveNow(){
-    var count=0;
+    if(!this.empIdedit){
+      var ageControl = this.firstFormGroup.get('email');
+      if(ageControl.status == "INVALID"){
+        // this.dis = true;
+        return;
+      }else{
+      this.dis = false;
+      }
+    }
+    this.count = true;
       this.savenowSubscription = this.empService.savenowEmployee({
         ...this.firstFormGroup.value, ...this.secondFormGroup.value,
         ...this.thirdFormGroup.value, ...this.fourthFormGroup.value, ...this.fifthFormGroup.value,
