@@ -18,7 +18,7 @@ const saveEmployee = new Schema({
     type: String,
     lowercase: true,
     trim: true,
-    required: false,
+    required: true,
   },
   role: {
     type: String,

@@ -4,7 +4,7 @@ const addEmployeeSchema = Joi.object({
   //Required Fields
   firstName: Joi.string().allow("").allow(null),
   lastName: Joi.string().allow("").allow(null),
-  email: Joi.string().email().allow("").allow(null),
+  email: Joi.string().email().required(),
   phoneNumber: Joi.string().allow("").allow(null),
   dateOfJoining: Joi.date().allow("").allow(null),
   exitDate: Joi.date().allow("").allow(null),
