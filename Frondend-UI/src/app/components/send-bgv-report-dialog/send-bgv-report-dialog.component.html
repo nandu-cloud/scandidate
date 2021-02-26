@@ -1,0 +1,18 @@
+<p>Send BGV Report !</p>
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>To</mat-label>
+      <input matInput #to class="br-btm input-w" placeholder="Example@abc.com">
+    </mat-form-field>
+    <mat-form-field class="example-full-width-subj">
+        <mat-label>Subject</mat-label>
+        <input matInput #subject class="br-btm input-w" placeholder="Subject">
+    </mat-form-field>
+    <mat-form-field class="example-full-width-mesg">
+        <mat-label>Message</mat-label>
+        <input matInput #message  class="br-btm input-w" maxlength="256" placeholder="Message...">
+        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+      </mat-form-field>
+      <button mat-button mat-dialog-close>Close</button>
+      <button mat-raised-button color="primary" class="send">Send</button>
+  </form>

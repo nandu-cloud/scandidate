@@ -1,0 +1,22 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+
+  }
+  
+  .example-full-width {
+    width:50%;
+  }
+  .example-full-width-mesg {
+    width:100%;
+  }
+  .example-full-width-subj{
+      width:75%
+  }
+  p{
+    color: rgb(108, 180, 59);
+  }
+  .send{
+    background-color: rgb(108, 180, 59);
+  }

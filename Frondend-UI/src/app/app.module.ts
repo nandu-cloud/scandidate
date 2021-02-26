@@ -55,6 +55,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ScandidateReportComponent } from './components/scandidate-report/scandidate-report.component';
 import { AppGuard } from "../app/admin/app.guard";
 import { StorageService } from "./services/storage.service";
+import { SendBgvReportDialogComponent } from './components/send-bgv-report-dialog/send-bgv-report-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,7 +95,8 @@ import { StorageService } from "./services/storage.service";
     WhyScandidateComponent,
     ForOrganizationComponent,
     AboutUsComponent,
-    ScandidateReportComponent
+    ScandidateReportComponent,
+    SendBgvReportDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -82,17 +82,30 @@
       </ng-container>
   
       <ng-container matColumnDef="action">
-        <mat-header-cell *matHeaderCellDef class="flex justify-center">Action</mat-header-cell>
-        <mat-cell *matCellDef="let row">	<a [routerLink]="['/bgv-view/',row._id]"><span class="action" ><span class="bg-black text-white pt-2 pb-2 pl-2 pr-2 mr-0.5">View</span></span>{{row.action}}</a></mat-cell>
-        <!-- <mat-cell *matCellDef="let row">	<a [routerLink]="['/bgv-view/',row._id]"><span class="bg-black text-white pt-2 pb-2 pl-2 pr-2 mr-10">sssss</span>{{row.action}}</a></mat-cell> -->
+        <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+        <mat-cell *matCellDef="let row">	<a [routerLink]="['/bgv-view/',row._id]"><span class="action" ><span class="bg-black text-white pt-2 pb-2 pl-4 pr-4 w-24">View</span></span>{{row.action}}</a></mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions" class="justify-start">
+      <mat-header-cell *matHeaderCellDef>Mail</mat-header-cell>
+      <mat-cell *matCellDef="let row"><a (click)="showBGVReport(row._id)"><span class="bg-black text-white pt-2 pb-2 pl-1  pr-1 " >Send BGV Report</span></a></mat-cell>
 
       </ng-container>
-      <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef class="flex justify-center"></mat-header-cell>
-        <!-- <mat-cell *matCellDef="let row">	<a [routerLink]="['/bgv-view/',row._id]"><span class="action" ><span class="bg-black text-white pt-2 pb-2 pl-2 pr-2 mr-0.5">View</span></span>{{row.action}}</a></mat-cell> -->
-        <mat-cell *matCellDef="let row">	<a [routerLink]="['/bgv-view/',row._id]"><span class="bg-black text-white pt-2 pb-2 pl-2 pr-2 mr-10">send bgv</span>{{row.action}}</a></mat-cell>
 
+      <!-- <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef >Status</th>
+        <td mat-cell *matCellDef="let row" ><a (click)="showBGVReport(row._id)"><span class="pt-2 pb-2 pl-4 pr-4 w-24 text-center text-white text-bold capitalize">Send Report</span></a></td>>
       </ng-container>
+
+      <ng-container matColumnDef="actions" >
+        <th mat-header-cell *matHeaderCellDef >Action</th>
+        <td mat-cell *matCellDef="let row">
+          <a [routerLink]="['/bgv-view/',row._id]"><span class="action"><span class="bg-black text-white p-1 cursor-pointer mr-10">View</span></span>{{row.action}}</a>
+        </td>
+      </ng-container> -->
+      
+
+      
   
       
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

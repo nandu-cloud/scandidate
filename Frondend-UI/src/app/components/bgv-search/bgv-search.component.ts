@@ -7,6 +7,8 @@ import { BgvSearchService } from  '../../services/bgv-search.service' ;
 import { StorageService} from '../../services/storage.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { SendBgvReportDialogComponent } from '../send-bgv-report-dialog/send-bgv-report-dialog.component';
 @Component({
   selector: 'app-bgv-search',
   templateUrl: './bgv-search.component.html',
@@ -24,7 +26,7 @@ export class BGVSearchComponent implements  OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   
 
-  constructor(private formBuilder: FormBuilder,private _storage: StorageService,private bgvService: BgvSearchService,private router:Router
+  constructor(private formBuilder: FormBuilder,public dialog: MatDialog,private _storage: StorageService,private bgvService: BgvSearchService,private router:Router
    ) { 
     this.searchForm = new FormGroup({
       firstName: new FormControl(''),
@@ -36,7 +38,7 @@ export class BGVSearchComponent implements  OnInit {
    }
 
     ngOnInit() {
-      this.displayedColumns = ['name', 'dob', 'contact', 'email','adharno', 'action', 'actions'];
+      this.displayedColumns = ['name','orgName','dob', 'contact', 'email','adharno', 'action', 'actions'];
     }
 
     search(){
@@ -48,5 +50,16 @@ export class BGVSearchComponent implements  OnInit {
         this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
       })
     }
+
+
+    showBGVReport(empId:number): void {
+      const dialogRef = this.dialog.open(SendBgvReportDialogComponent, { width: '450px',height:'400px', 
+      data: {
+        id: empId
+      }     
+    });
+    }
+
+
 
 }
