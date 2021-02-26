@@ -249,14 +249,15 @@ export class BGVViewComponent implements OnInit {
             for (let i = 0; i < this.data.length; i++) {
               if(this.data[i].organisationId)
               {
+                this.orgId = [];
               var id = this.data[i].organisationId
               this.orgId.push(id);
               }
              }
-            
             for (let i = 0; i < this.data.length; i++) {
             if(this.data[i].instituteId)
            {
+            this.instId = [];
             var id = this.data[i].instituteId
             this.instId.push(id);
            }
@@ -271,10 +272,11 @@ export class BGVViewComponent implements OnInit {
         
            this.bgvListSubscription = this.empService.download_PDF(this.data,this.data_logo).subscribe(respObj => {
             let blob = new Blob([respObj], {type: 'application/pdf'});
-            let filename = 'newfile.pdf';
+            let filename = this.data[0].firstName + ' ' +this.data[0].lastName + '.pdf'
             saveAs(blob, filename);
-            alert('Download');
-            
+            // alert('Download');
+      //       const temp = `${this.baseUrl}/public/scandidate-report/${this.data,this.data_logo}`;
+      // window.open(temp, "_blank", "scrollbars=yes,resizable=yes,top=800,left=800,width=800,height=800");
          
            }, err => {
           this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
