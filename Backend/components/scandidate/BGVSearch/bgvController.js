@@ -754,7 +754,8 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
         // var tempFilename =
         //   "uploads/scandidate-report/" + fname + new Date().getTime() + ".pdf";
         // var temFilepath = checkFilePath;
-        pdf.create(str).toFile(checkFilePath, function (err, data) {
+        var options = { format: "Tabloid" };
+        pdf.create(str, options).toFile(checkFilePath, function (err, data) {
           if (err) {
             return next(new AppError(err, 400));
           }
