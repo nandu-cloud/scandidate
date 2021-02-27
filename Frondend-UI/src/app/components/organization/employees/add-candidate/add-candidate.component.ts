@@ -497,6 +497,7 @@ export class AddCandidateComponent implements OnInit {
       })
         .subscribe(resp => {
           // console.log(this.createCandidate.value);
+          this.methodtype = 'save';
           this.openDialog();
         }, err => {
           this.setMessage = { message: err.error.message, error: true };
@@ -724,9 +725,11 @@ export class DialogElementsExampleDialog {
     console.log(this.methodType)
     if (this.methodType == 'update') {
       this.Message = "Employee  Updated successfully"
-    } else {
-      this.Message = "Employee Onboarded successfully"
+    } else if(this.methodType == 'save') {
+      this.Message = "Employee Saved successfully"
 
+    } else {
+      this.Message ="Employee Onboared successfully"
     }
   }
 
