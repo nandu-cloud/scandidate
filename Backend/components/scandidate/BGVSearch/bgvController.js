@@ -591,10 +591,12 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
 
     if (template[i].discrepancyDocuments) {
       if (template[i].discrepancyDocuments.IsSelect) {
-        var temp = template[i].discrepancyDocuments.descrepencyPeriod;
-        const dis_date = new Date(temp);
-        // discrpncy_date = format(template[i].discrepancyDocuments.descrepencyPeriod);
-        discrpncy_date = format(dis_date);
+        if (template[i].discrepancyDocuments.descrepencyPeriod) {
+          var temp = template[i].discrepancyDocuments.descrepencyPeriod;
+          const dis_date = new Date(temp);
+          // discrpncy_date = format(template[i].discrepancyDocuments.descrepencyPeriod);
+          discrpncy_date = format(dis_date);
+        }
         discrpncy_cause =
           template[i].discrepancyDocuments.descrepencyCauseActionTaken;
         discrpncy_upload =
@@ -604,10 +606,12 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
 
     if (template[i].compliencyDiscrepancy) {
       if (template[i].compliencyDiscrepancy.IsSelect) {
-        var temp = template[i].compliencyDiscrepancy.compliencyPeriod;
-        const comp_date = new Date(temp);
-        // Complnce_date = template[i].compliencyDiscrepancy.compliencyPeriod;
-        Complnce_date = format(comp_date);
+        if (template[i].compliencyDiscrepancy.compliencyPeriod) {
+          var temp = template[i].compliencyDiscrepancy.compliencyPeriod;
+          const comp_date = new Date(temp);
+          // Complnce_date = template[i].compliencyDiscrepancy.compliencyPeriod;
+          Complnce_date = format(comp_date);
+        }
         Complnce_cause =
           template[i].compliencyDiscrepancy.compliencyCauseActionTaken;
         Complnce_upload =
@@ -617,10 +621,12 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
 
     if (template[i].warning) {
       if (template[i].warning.IsSelect) {
-        var temp = template[i].warning.warningPeriod;
-        const warn_date = new Date(temp);
-        // warningdate = template[i].warning.warningPeriod;
-        warningdate = format(warn_date);
+        if (template[i].warning.warningPeriod) {
+          var temp = template[i].warning.warningPeriod;
+          const warn_date = new Date(temp);
+          // warningdate = template[i].warning.warningPeriod;
+          warningdate = format(warn_date);
+        }
         warningcause = template[i].warning.warningCauseActionTaken;
         warningupload = template[i].warning.warningUploadDocument;
       }
@@ -628,10 +634,12 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
 
     if (template[i].showCausedIssue) {
       if (template[i].showCausedIssue.IsSelect) {
-        var temp = template[i].showCausedIssue.showCausedPeriod;
-        const show_caused_date = new Date(temp);
-        // showCausedate = template[i].showCausedIssue.showCausedPeriod;
-        showCausedate = format(show_caused_date);
+        if (template[i].showCausedIssue.showCausedPeriod) {
+          var temp = template[i].showCausedIssue.showCausedPeriod;
+          const show_caused_date = new Date(temp);
+          // showCausedate = template[i].showCausedIssue.showCausedPeriod;
+          showCausedate = format(show_caused_date);
+        }
         showCausecause = template[i].showCausedIssue.showCausedCauseActionTaken;
         showCauseupload = template[i].showCausedIssue.showCausedUploadDocument;
       }
@@ -639,10 +647,12 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
 
     if (template[i].suspension) {
       if (template[i].suspension.IsSelect) {
-        var temp = template[i].suspension.suspensionPeriod;
-        const susp_date = new Date(temp);
-        // performancedate = template[i].suspension.suspensionPeriod;
-        performancedate = format(susp_date);
+        if (template[i].suspension.suspensionPeriod) {
+          var temp = template[i].suspension.suspensionPeriod;
+          const susp_date = new Date(temp);
+          // performancedate = template[i].suspension.suspensionPeriod;
+          performancedate = format(susp_date);
+        }
         performancecause = template[i].suspension.suspensionCauseActionTaken;
         performanceupload = template[i].suspension.suspensionUploadDocument;
       }
@@ -650,10 +660,12 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
 
     if (template[i].termination) {
       if (template[i].termination.IsSelect) {
-        var temp = template[i].termination.terminationPeriod;
-        const term_date = new Date(temp);
-        // terminationdate = template[i].termination.terminationPeriod;
-        terminationdate = format(term_date);
+        if (template[i].termination.terminationPeriod) {
+          var temp = template[i].termination.terminationPeriod;
+          const term_date = new Date(temp);
+          // terminationdate = template[i].termination.terminationPeriod;
+          terminationdate = format(term_date);
+        }
         terminationcause = template[i].termination.terminationCauseActionTaken;
         terminationupload = template[i].termination.terminationUploadDocument;
       }

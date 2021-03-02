@@ -2,6 +2,7 @@ const studentModel = require("../../institution/OppsUser/AddStudent/studentModel
 const employeeModel = require("../../organization/OppsUser/AddEmployee/employeeModel");
 const colors = require("../../../helpers/colors");
 const bgvModel = require("./bgvModel");
+const mongoose = require("mongoose");
 
 async function searchBgvDataEmployee(data) {
   var count = Object.keys(data).length;
@@ -230,6 +231,19 @@ async function pullData(data) {
   }
 }
 
+async function getBGVDataEmail(data) {
+  const id = mongoose.Types.ObjectId(data._id);
+  const orgId = mongoose.Types.ObjectId(data.organisationId);
+  try {
+    let result = await employeeModel
+      .find({ _id: id })
+      .where({ organisationId: orgId });
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
 module.exports = {
   searchBgvDataEmployee: searchBgvDataEmployee,
   searchBgvDataStudent: searchBgvDataStudent,
@@ -251,4 +265,5 @@ module.exports = {
   getBySearchedId: getBySearchedId,
   updateBgvCount: updateBgvCount,
   pullData: pullData,
+  getBGVDataEmail: getBGVDataEmail,
 };
