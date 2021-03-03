@@ -501,7 +501,7 @@ async function scheduledEmail(data) {
   let info = await transporter.sendMail({
     from: "Scandidate.in" + process.env.AWSSENDERMAILID,
     to: data.email,
-    subject: data.email, // Subject line
+    subject: data.subject, // Subject line
     html: data.html,
     attachments: [
       {
