@@ -6,8 +6,6 @@ const AppError = require("../../../helpers/appError");
 const nodemailer = require("nodemailer");
 const AWS = require("aws-sdk");
 const ejs = require("ejs");
-const SES = require("aws-sdk");
-const mailcomposer = require("mailcomposer");
 
 function createXL(template) {
   var selfDriv = "";
@@ -458,8 +456,8 @@ module.exports.createbgvXL = async (req, res, next) => {
   const id = req.params.id;
   const orgId = req.params.organizationId;
   var data = { _id: id, organisationId: orgId };
-  var result = await bgvDAL.getBGVDataEmail(data);
 
+  var result = await bgvDAL.getBGVDataEmail(data);
   try {
     var fileName = createXL(result);
     return res.status(200).json({
@@ -505,10 +503,10 @@ async function scheduledEmail(data) {
     html: data.html,
     attachments: [
       {
-        filename: data.fileName,
+        filename: data.originalFileName,
         path: path.join(
           __dirname,
-          "../../../uploads/report-excel/" + data.fileName
+          "../../../uploads/report-excel/" + data.originalFileName
         ),
       },
     ],
