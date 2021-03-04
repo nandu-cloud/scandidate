@@ -473,10 +473,6 @@ module.exports.createbgvXL = async (req, res, next) => {
 
 module.exports.sendemail = async (req, res, next) => {
   var template = req.body;
-
-  template.html = await ejs.renderFile(
-    path.join(__dirname, "../../../helpers/email-templates/sendbgvemail.ejs")
-  );
   // Email sending
   try {
     let result = await scheduledEmail(template);
@@ -492,6 +488,11 @@ module.exports.sendemail = async (req, res, next) => {
 };
 
 async function scheduledEmail(data) {
+  var data1 = { msg: data.message };
+  data.html = await ejs.renderFile(
+    path.join(__dirname, "../../../helpers/email-templates/sendbgvemail.ejs"),
+    data1
+  );
   let transporter = nodemailer.createTransport({
     SES: new AWS.SES({ apiVersion: "2010-12-01" }),
   });
