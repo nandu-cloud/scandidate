@@ -727,8 +727,8 @@ export class DialogElementsExampleDialog {
       this.Message = "Employee  Updated successfully"
     } else if(this.methodType == 'save') {
       this.Message = "Employee Saved successfully"
-
-    } else {
+    }
+     else {
       this.Message ="Employee Onboared successfully"
     }
   }
