@@ -52,9 +52,9 @@ export class BGVSearchComponent implements  OnInit {
       })
     }
 
-
+    
     showBGVReport(id): void {
-      this.createbgvSubscription = this.bgvService.createbgvreport(id).subscribe(resp => {
+      this.createbgvSubscription = this.bgvService.createbgvreport(id).subscribe((resp: any) => {
         const dialogRef = this.dialog.open(SendBgvReportDialogComponent, { width: '450px',height:'400px', 
         data: {
           // id: empId
