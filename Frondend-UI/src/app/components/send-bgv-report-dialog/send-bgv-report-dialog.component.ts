@@ -1,6 +1,6 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BgvSearchService } from 'src/app/services/bgv-search.service';
@@ -17,10 +17,10 @@ export class SendBgvReportDialogComponent implements OnInit {
   baseUrl: any = environment.baseUrl;
   originalFileName: any;
   sendbgvmailSubscription: Subscription;
-  dialog: any;
+  // dialog: any;
   setMessage: { message: any; error: boolean; };
   error: any;
-  constructor(public bgvService: BgvSearchService,
+  constructor(public bgvService: BgvSearchService, public dialog: MatDialog,
      public dialogRef: MatDialogRef<SendBgvReportDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { 
 
@@ -48,7 +48,7 @@ export class SendBgvReportDialogComponent implements OnInit {
     this.sendbgvmailSubscription = this.bgvService.sendmail(this.sendbgvForm, this.originalFileName).subscribe(resp =>{
       this.methodtype = 'save';
       this.openDialog();
-      alert("Send mail");
+      // alert("Send mail");
     }, err => {
       this.setMessage = { message: err.error.message, error: true };
       this.error = this.setMessage.message;
