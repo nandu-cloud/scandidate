@@ -19,6 +19,7 @@ export class BGVSearchComponent implements  OnInit {
   public dataSource: any;
   displayedColumns : string[];
   bgvListSubscription : Subscription;
+  createbgvSubscription : Subscription;
   editorganizationSubscription: Subscription;
   setMessage : any = {};
   searchForm: FormGroup;
@@ -51,15 +52,17 @@ export class BGVSearchComponent implements  OnInit {
       })
     }
 
-
-    showBGVReport(empId:number): void {
-      const dialogRef = this.dialog.open(SendBgvReportDialogComponent, { width: '450px',height:'400px', 
-      data: {
-        id: empId
-      }     
-    });
+    
+    showBGVReport(id): void {
+      this.createbgvSubscription = this.bgvService.createbgvreport(id).subscribe((resp: any) => {
+        const dialogRef = this.dialog.open(SendBgvReportDialogComponent, { width: '450px',height:'400px', 
+        data: {
+          // id: empId
+          fileName: resp.originalFileName
+        }     
+      });
+      })
+   
     }
-
-
 
 }

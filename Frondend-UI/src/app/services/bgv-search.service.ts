@@ -73,5 +73,32 @@ public download_PDF(data,data_logo) : Observable<any> {
   
 }
 
+ createbgvreport (id) {
+  var organizationId = window.sessionStorage.getItem('organizationId');
+  return this.http.get(`${this.baseUrl}/api/scandidate/bgvsearch/scandidatereport/bgvreportemail/${id}/${organizationId}`);
+}
+
+sendmail(sendbgvmail, originalFileName){
+  var sendmail: {
+    'email': string,
+    'subject': string,
+    'message': string,
+    'originalFileName': string
+  } = {
+    'email': sendbgvmail.value.email,
+    'subject': sendbgvmail.value.subject,
+    'message': sendbgvmail.value.message,
+    'originalFileName': originalFileName
+  };
+
+  return this.http.post(this.baseUrl + '/api/scandidate/bgvsearch/scandidatereport/report/sendemail', sendmail,
+  {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }
+  );
+}
+
 }
 
