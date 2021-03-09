@@ -6,6 +6,7 @@ const AppError = require("../../../helpers/appError");
 const nodemailer = require("nodemailer");
 const AWS = require("aws-sdk");
 const ejs = require("ejs");
+const moment = require("moment");
 
 function createXL(template) {
   var selfDriv = "";
@@ -39,43 +40,45 @@ function createXL(template) {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
   }
-  var fileName = template[0].firstName + new Date().getTime() + ".xls";
+  var fileName = template[0].firstName + new Date().getTime() + ".csv";
   var writeStream = fs.createWriteStream(dir + fileName);
 
   var row1 =
     "NAME: " +
-    "\t\t" +
+    ",," +
     template[0].firstName +
     " " +
     template[0].lastName +
     "\n\n";
 
-  var row2 = "EMAIL ID:" + "\t\t" + template[0].email + "\n\n";
-  var row3 =
-    "PHONE NUMBER: " +
-    "\t\t" +
-    template[0].phoneNumber +
-    "\n\n" +
-    "------------------------------------------------------------------------------------------------" +
-    "\n\n";
+  var row2 = "EMAIL ID:" + ",," + template[0].email + "\n\n";
+  var row3 = "PHONE NUMBER: " + ",," + template[0].phoneNumber + "\n\n";
+  var row4 = "Role: " + ",," + template[0].role + "\n\n";
+
+  var joiningDate = moment(template[0].dateOfJoining).format("LL");
+  var exitDate = moment(template[0].exitDate).format("LL");
+
+  var row5 = "Start date: " + ",," + joiningDate + "\n\n";
+  var row6 = "Exit date: " + ",," + exitDate + "\n\n";
+
   var header =
     "COMPANY NAME" +
-    "\t\t\t\t\t\t" +
+    ",,,,,," +
     "WORK ETHIC" +
-    "\t\t\t\t\t\t" +
+    ",,,,,," +
     "MERIT QUALITY" +
-    "\t\t\t\t\t\t" +
+    ",,,,,," +
     "RECOGNITION" +
-    "\t\t\t\t\t\t" +
+    ",,,,,," +
     "LEADERSHIP" +
-    "\t\t\t\t\t\t" +
+    ",,,,,," +
     "ISSUES" +
     "\n\n";
-  writeStream.write(row1 + row2 + row3 + header);
+  writeStream.write(row1 + row2 + row3 + row4 + row5 + row6 + header, "UTF8");
   for (var i = 0; i < template.length; i++) {
     if (template[i].organizationName) {
       var comp = template[i].organizationName;
-      writeStream.write(comp + "\t\t\t\t\t\t");
+      writeStream.write(comp + ",,,,,,");
     }
     if (template[i].selfDriven) {
       if (template[i].selfDriven == 1) {
@@ -91,7 +94,7 @@ function createXL(template) {
         selfDriv = "Exceeds Expectations";
       }
       var SelfDriven = "SelfDriven/Initiative: " + selfDriv;
-      writeStream.write(SelfDriven + "\t\t\t\t\t\t");
+      writeStream.write(SelfDriven + ",,,,,,", "UTF8");
     }
     if (template[i].communicationSkills) {
       if (template[i].communicationSkills == 1) {
@@ -107,15 +110,15 @@ function createXL(template) {
         commSkill = "Expert";
       }
       var comm = "Communication: " + commSkill;
-      writeStream.write(comm + "\t\t\t\t\t\t");
+      writeStream.write(comm + ",,,,,,", "UTF8");
     }
 
     if (template[i].awards.IsSelect != null) {
       var awdObj = template[i].awards.IsSelect;
-      writeStream.write(awdObj + "\t\t\t\t\t\t");
+      writeStream.write(awdObj + ",,,,,,", "UTF8");
     } else {
       var awdObj = "Nil";
-      writeStream.write(awdObj + "\t\t\t\t\t\t");
+      writeStream.write(awdObj + ",,,,,,", "UTF8");
     }
 
     if (template[i].quality) {
@@ -132,7 +135,7 @@ function createXL(template) {
         stragThink = "Exceeds Expectations";
       }
       var stragThnk = "Strategic thinking: " + stragThink;
-      writeStream.write(stragThnk + "\t\t\t\t\t\t");
+      writeStream.write(stragThnk + ",,,,,,", "UTF8");
     }
 
     if (template[i].discrepancyDocuments) {
@@ -150,7 +153,7 @@ function createXL(template) {
       }
       var disDocumnt = "Document discrepancies: " + discrpncy_date;
       var disCause = "Causes: " + discrpncy_cause;
-      writeStream.write(disDocumnt + "\t\t" + disCause + "\n\t\t\t\t\t\t");
+      writeStream.write(disDocumnt + ",," + disCause + "\n,,,,,,", "UTF8");
     }
 
     if (template[i].workIndependenty) {
@@ -167,7 +170,7 @@ function createXL(template) {
         workIndepend = "Exceeds Expectations";
       }
       var workIndep = "Work Independently: " + workIndepend;
-      writeStream.write(workIndep + "\t\t\t\t\t\t");
+      writeStream.write(workIndep + ",,,,,,", "UTF8");
     }
     if (template[i].productKnowledge) {
       if (template[i].productKnowledge == 1) {
@@ -183,7 +186,7 @@ function createXL(template) {
         prodKnow = "Expert";
       }
       var prodKnow = "Product understanding: " + prodKnow;
-      writeStream.write(prodKnow + "\t\t\t\t\t\t\t\t\t\t\t\t");
+      writeStream.write(prodKnow + ",,,,,,,,,,,,", "UTF8");
     }
 
     if (template[i].consistency) {
@@ -200,7 +203,7 @@ function createXL(template) {
         problemSolv = "Exceeds Expectations";
       }
       var probSolv = "Problem solving: " + problemSolv;
-      writeStream.write(probSolv + "\t\t\t\t\t\t");
+      writeStream.write(probSolv + ",,,,,,", "UTF8");
     }
 
     if (template[i].compliencyDiscrepancy) {
@@ -218,7 +221,7 @@ function createXL(template) {
       }
       var compDocumnt = "Compliance: " + Complnce_date;
       var comCause = "Causes: " + Complnce_cause;
-      writeStream.write(compDocumnt + "\t\t" + comCause + "\n\t\t\t\t\t\t");
+      writeStream.write(compDocumnt + ",," + comCause + "\n,,,,,,", "UTF8");
     }
 
     if (template[i].creativity) {
@@ -235,7 +238,7 @@ function createXL(template) {
         credvity = "Exceeds Expectations";
       }
       var cred = "Creativity: " + credvity;
-      writeStream.write(cred + "\t\t\t\t\t\t");
+      writeStream.write(cred + ",,,,,,", "UTF8");
     }
 
     //industry know
@@ -254,7 +257,7 @@ function createXL(template) {
         indusKnow = "Expert";
       }
       var inKnow = "Industry/domain knowledge: " + indusKnow;
-      writeStream.write(inKnow + "\t\t\t\t\t\t\t\t\t\t\t\t");
+      writeStream.write(inKnow + ",,,,,,,,,,,,", "UTF8");
     }
 
     //buildingHighPer
@@ -272,7 +275,7 @@ function createXL(template) {
         buidPerformance = "Exceeds Expectations";
       }
       var buildPer = "Building High-Performance teams: " + buidPerformance;
-      writeStream.write(buildPer + "\t\t\t\t\t\t");
+      writeStream.write(buildPer + ",,,,,,", "UTF8");
     }
 
     if (template[i].warning) {
@@ -288,7 +291,7 @@ function createXL(template) {
       }
       var warnDocumnt = "Warning: " + warningdate;
       var warnCause = "Causes: " + warningcause;
-      writeStream.write(warnDocumnt + "\t\t" + warnCause + "\n\t\t\t\t\t\t");
+      writeStream.write(warnDocumnt + ",," + warnCause + "\n,,,,,,", "UTF8");
     }
 
     if (template[i].teamWork) {
@@ -305,7 +308,7 @@ function createXL(template) {
         tWork = "Exceeds Expectations";
       }
       var teamWrk = "Teamwork: " + tWork;
-      writeStream.write(teamWrk + "\t\t\t\t\t\t");
+      writeStream.write(teamWrk + ",,,,,,", "UTF8");
     }
 
     if (template[i].academicKnowledge) {
@@ -322,7 +325,7 @@ function createXL(template) {
         subMtr = "Expert";
       }
       var subjMatter = "Subject matter expertise: " + subMtr;
-      writeStream.write(subjMatter + "\t\t\t\t\t\t\t\t\t\t\t\t");
+      writeStream.write(subjMatter + ",,,,,,,,,,,,", "UTF8");
     }
 
     if (template[i].stakeholder) {
@@ -339,7 +342,7 @@ function createXL(template) {
         stakeMgmnt = "Exceeds Expectations";
       }
       var stakMgmnt = "Stakeholder management: " + stakeMgmnt;
-      writeStream.write(stakMgmnt + "\t\t\t\t\t\t");
+      writeStream.write(stakMgmnt + ",,,,,,", "UTF8");
     }
 
     if (template[i].showCausedIssue) {
@@ -356,7 +359,8 @@ function createXL(template) {
       var showCauseDocumnt = "Show cause: " + showCausedate;
       var showCauseCause = "Causes: " + showCausecause;
       writeStream.write(
-        showCauseDocumnt + "\t\t" + showCauseCause + "\n\t\t\t\t\t\t"
+        showCauseDocumnt + ",," + showCauseCause + "\n,,,,,,",
+        "UTF8"
       );
     }
 
@@ -375,15 +379,15 @@ function createXL(template) {
       }
       var pressure =
         "Ability to handle pressure: " + dealConstructivelyPressure;
-      writeStream.write(pressure + "\t\t\t\t\t\t");
+      writeStream.write(pressure + ",,,,,,", "UTF8");
     }
 
     if (template[i].keySkills) {
       var keySkl = "Key Skills: " + template[i].keySkills;
-      writeStream.write(keySkl + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+      writeStream.write(keySkl + ",,,,,,,,,,,,,,,,,,", "UTF8");
     } else {
       var keySkl = "Key Skills: " + "";
-      writeStream.write(keySkl + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+      writeStream.write(keySkl + ",,,,,,,,,,,,,,,,,,", "UTF8");
     }
 
     if (template[i].suspension) {
@@ -400,7 +404,8 @@ function createXL(template) {
       var performnaceDocumnt = "PIP: " + performancedate;
       var performnaceCause = "Causes: " + performancecause;
       writeStream.write(
-        performnaceDocumnt + "\t\t" + performnaceCause + "\n\t\t\t\t\t\t"
+        performnaceDocumnt + ",," + performnaceCause + "\n,,,,,,",
+        "UTF8"
       );
     }
 
@@ -418,15 +423,15 @@ function createXL(template) {
         discipln = "Exceeds Expectations";
       }
       var displn = "Discipline: " + discipln;
-      writeStream.write(displn + "\t\t\t\t\t\t");
+      writeStream.write(displn + ",,,,,,", "UTF8");
     }
 
     if (template[i].rehireAgain) {
       var rehire = "Re-hire: " + template[i].rehireAgain;
-      writeStream.write(rehire + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+      writeStream.write(rehire + ",,,,,,,,,,,,,,,,,,", "UTF8");
     } else {
       var rehire = "Re-hire: " + "";
-      writeStream.write(rehire + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+      writeStream.write(rehire + ",,,,,,,,,,,,,,,,,,", "UTF8");
     }
 
     if (template[i].termination) {
@@ -443,7 +448,8 @@ function createXL(template) {
       var terminationDocumnt = "Termination: " + terminationdate;
       var terminationCause = "Causes: " + terminationcause;
       writeStream.write(
-        terminationDocumnt + "\t\t" + terminationCause + "\n\t\t\t\t\t\t"
+        terminationDocumnt + ",," + terminationCause + "\n,,,,,,",
+        "UTF8"
       );
     }
   }

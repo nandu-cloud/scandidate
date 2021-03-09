@@ -773,7 +773,7 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
         //   "uploads/scandidate-report/" + fname + new Date().getTime() + ".pdf";
         // var temFilepath = checkFilePath;
         // var options = { format: "A4", orientation: "landscape" };
-         var options = { height: "10.5in", width: "15in" };
+        var options = { height: "10.5in", width: "15in" };
         pdf.create(str, options).toFile(checkFilePath, function (err, data) {
           if (err) {
             return next(new AppError(err, 400));
