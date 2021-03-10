@@ -39,7 +39,7 @@ export class BGVSearchComponent implements  OnInit {
    }
 
     ngOnInit() {
-      this.displayedColumns = ['name','orgName','dob', 'action', 'actions'];
+      this.displayedColumns = ['name','orgName','dob', 'action'];
     }
 
     search(){
@@ -53,16 +53,16 @@ export class BGVSearchComponent implements  OnInit {
     }
 
     
-    showBGVReport(id): void {
-      this.createbgvSubscription = this.bgvService.createbgvreport(id).subscribe((resp: any) => {
-        const dialogRef = this.dialog.open(SendBgvReportDialogComponent, { width: '450px',height:'400px', 
-        data: {
-          // id: empId
-          fileName: resp.originalFileName
-        }     
-      });
-      })
+    // showBGVReport(id): void {
+    //   this.createbgvSubscription = this.bgvService.createbgvreport(id).subscribe((resp: any) => {
+    //     const dialogRef = this.dialog.open(SendBgvReportDialogComponent, { width: '450px',height:'400px', 
+    //     data: {
+    //       // id: empId
+    //       fileName: resp.originalFileName
+    //     }     
+    //   });
+    //   })
    
-    }
+    // }
 
 }
