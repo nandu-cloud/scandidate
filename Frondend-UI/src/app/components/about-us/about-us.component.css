@@ -1,128 +1,139 @@
 .mat-toolbar.mat-primary {
-    position: inherit !important;
-    top: 0;
-    z-index: 1;
-    color: #6cb43b;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
-  }
+  position: inherit !important;
+  top: 0;
+  z-index: 1;
+  color: #6cb43b;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+}
 
-  body {
-    background: #f5ffef !important;
-  }
-  .word-highlight {
-    background-color: #6cb43b;
-    color: #fff;
-  }
-  
-  .section-background {
-    background-color: #f7fff1;
-  }
-  
-  .text-color {
-    color: #6cb43b;
-  }
-  
-  .spacer {
-    flex: 1 1 auto;
-  }
-  
-  .example-icon {
-    padding: 0 14px;
-  }
-  
-  .pad {
-    padding-left: 44%;
-    padding-right: 35%;
-  }
-  
-  .polygon {
-    background-image: url(./../../../assets/images/traphizim.svg);
-    background-size: cover;
-  }
-  
-  .triangle {
-    background-image: url(../../../assets/images/triangles.svg);
-    background-size: cover;
-  }
-  
-  
-  
-  .button {
-    border-radius: 23px;
-    color: #6cb43b;
-    border: 1px solid #6cb43b;
-    font-size: 14px;
-    padding: 5px;
-  }
-  
-  .ins-icon{
-    height: 60px !important;
-    width: 70px !important;
-    background-color: #6CB43B;
-    color: white;
-    box-shadow: 0 0 15px rgba(1, 1, 1, 0.2);
+body {
+  background: #f5ffef !important;
+}
+.word-highlight {
+  background-color: #6cb43b;
+  color: #fff;
+}
+
+.section-background {
+  background-color: #f7fff1;
+}
+
+.text-color {
+  color: #6cb43b;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.example-icon {
+  padding: 0 14px;
+}
+
+.pad {
+  padding-left: 44%;
+  padding-right: 35%;
+}
+
+.polygon {
+  background-image: url(./../../../assets/images/traphizim.svg);
+  background-size: cover;
+}
+
+.triangle {
+  background-image: url(../../../assets/images/triangles.svg);
+  background-size: cover;
+}
+
+
+
+.button {
+  border-radius: 23px;
+  color: #6cb43b;
+  border: 1px solid #6cb43b;
+  font-size: 14px;
+  padding: 5px;
+}
+
+.ins-icon{
+  height: 60px !important;
+  width: 70px !important;
+  background-color: #6CB43B;
+  color: white;
+  box-shadow: 0 0 15px rgba(1, 1, 1, 0.2);
 }
 .border-btm{
-    border-bottom: 1px solid #80808059;
+  border-bottom: 1px solid #80808059;
 }
 .material-icons {
-    cursor: default !important;
+  cursor: default !important;
 }
 .back-styles {
-    background-color: #6cb43b;
-    color: white !important;
-    font-weight: bold;
-    font-size: 1.5em;
-    padding: 10px;
+  background-color: #6cb43b;
+  color: white !important;
+  font-weight: bold;
+  font-size: 1.5em;
+  padding: 10px;
 }
 @media(max-width:320px){
-  .button{
-    border-radius: 23px;
-      color: #6cb43b;
-      border: 1px solid #6cb43b;
-      font-size: 11px;
-      padding: 0px;
+.button{
+  border-radius: 23px;
+    color: #6cb43b;
+    border: 1px solid #6cb43b;
+    font-size: 11px;
+    padding: 0px;
 }
 .text-xl{
-  font-size: 0.875rem !important;
+font-size: 0.875rem !important;
 }
 .text-xs{
-  font-size: 0.65rem;
+font-size: 0.65rem;
 }
 .sm{
-  width: 59% !important;
+width: 59% !important;
 }
 .mat-toolbar-single-row {
-  padding: 1px !important;
+padding: 1px !important;
 }
 }
 .rounded{
-  border-radius: 55px;
+border-radius: 55px;
 }
 .pageOption {
-  overflow: hidden;
-  position: relative;
-  width: 40em; height: 27em;
+overflow: hidden;
+position: relative;
+width: 40em; height: 27em;
 }
 .option, .option img { width: 100%; height: 100%; }
 .option {
-  overflow: hidden;
-  position: absolute;  
-  /* arctan(27 / 40) = 34.01935deg 
-   * need to skew by 90deg - 34.01935deg = 55.98065deg
-  */
-  transform: skewX(-55.98deg);
+overflow: hidden;
+position: absolute;  
+/* arctan(27 / 40) = 34.01935deg 
+ * need to skew by 90deg - 34.01935deg = 55.98065deg
+*/
+transform: skewX(-55.98deg);
 }
 .option:first-child {
-  left: -.25em;
-  transform-origin: 100% 0;
+left: -.25em;
+transform-origin: 100% 0;
 }
 .option:last-child {
-  right: -.25em;
-  transform-origin: 0 100%;
+right: -.25em;
+transform-origin: 0 100%;
 }
 .option img {
-  transform: skewX(55.98deg);
-  transform-origin: inherit;
+transform: skewX(55.98deg);
+transform-origin: inherit;
+}
+.tool {
+text-align: right;
+display: inline-block;
+width: 100%;
+/* font-size: 1rem; */
+font-size: 1rem;
+color: rgb(58, 58, 173);
+}
+.mat-toolbar-row {
+height: 0% !important;
 }

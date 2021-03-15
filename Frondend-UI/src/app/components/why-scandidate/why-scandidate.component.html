@@ -1,20 +1,26 @@
 <mat-toolbar color="primary">
-    <img width="45" class="md:ml-5" src="./../../../assets/images/logo1.png" />
-    <span class="spacer"></span>
-    <ul class="flex flex-row items-end">
-        <li class="md:pr-10 pr-1 md:text-xl text-xs"><a routerLink="/landing-page"> Home </a></li>
-        <li class="md:pr-10 pr-1 md:text-xl text-xs"><a routerLink="/why-scandidate"  class="active">Why?</a></li>
-        <li class="md:pr-10 pr-1 md:text-xl text-xs"><a routerLink="/for-organization">For Organization</a></li>
-        <li class="md:pr-10 pr-1 md:text-xl text-xs"><a routerLink="/about-us">About Us</a></li>
-    </ul>
-    <a
-      class="button"
-      aria-label="Example icon-button with share icon"
-      routerLink="/login"
-    >
-      Partner Login
-    </a>
-  </mat-toolbar>
+  <mat-toolbar-row>
+  <img width="45" class="md:ml-5" src="./../../../assets/images/logo1.png" />
+  <span class="spacer"></span>
+  <ul class="flex flex-row items-end">
+    <li class="md:pr-10 pr-1 md:text-xl text-xs"><a routerLink="/landing-page" > Home </a></li>
+    <li class="md:pr-10 pr-1 md:text-xl text-xs"><a routerLink="/why-scandidate" class="active">Why?</a></li>
+    <li class="md:pr-10 pr-1 md:text-xl text-xs"><a routerLink="/for-organization">For Organization</a></li>
+    <li class="md:pr-10 pr-1 md:text-xl text-xs"><a routerLink="/about-us">About Us</a></li>
+</ul>
+
+  <a
+    class="button"
+    aria-label="Example icon-button with share icon"
+    routerLink="/login" >
+    Partner Login
+  </a>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <span class="toolbar tool"><a href="https://www.inventiway.in/">A product by Inventiway</a></span>
+  </mat-toolbar-row>
+ 
+</mat-toolbar>
 
   <section id="whyscandidate" class="section-background font-sans">
     <div class="container max-w-5xl mx-auto ">
@@ -28,8 +34,8 @@
         <div class="w-9/12 sm:w-2/3 icon">
             <ul class="text-justify text-lg p-5 leading-relaxed leading-loose img-style">
               <li class="flex flex-row mb-3"><img src="../../../assets//images/check.png">A solution to synergize the HR and hiring communities</li>
-              <li class="flex flex-row mb-3"><img src="../../../assets//images/check.png">Authentic information about candidates sourced directly from ex-employers.</li>
-              <li class="flex flex-row mb-3"><img src="../../../assets//images/check.png">Single repository of all information about your ex-employees.</li>
+              <li class="flex flex-row mb-3"><img src="../../../assets//images/check.png">Authentic feedback about candidates sourced directly from ex-employers.</li>
+              <li class="flex flex-row mb-3"><img src="../../../assets//images/check.png">Single repository of all feedback about your ex-employees.</li>
               <!-- <li class="flex flex-row mb-3"><img src="../../../assets//images/check.png">Enabled by the support and collaboration of HR professionals across different sectors</li> -->
               <!-- <li class="flex flex-row mb-3"><img src="../../../assets//images/check.png">With SCANDIDATE, you can be confident that your new hire is authentic, worthy and risk-free.</li> -->
             </ul>
@@ -50,19 +56,19 @@
       <br />
       <div class="grid lg:grid-cols-3 xl:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 gap-1">
         <div class="flex-1 bg-gr rounded-t rounded-b-none overflow-hidden shadow p-4 mt-2 ml-24 mr-1 mb-2">
-          <h6 class="pad"><span class="circle"><img src="../../../assets/images/fast-time.png" class="ml-4"></span></h6>
+          <h6 class="pad"><span class="circle"><img src="../../../assets/images/fast-time.png" class="ml-2"></span></h6>
           <p class="text-xl p-5 leading-tight text-white text-center">
             Advances the time at which career background is checked
           </p>
         </div>
         <div class="flex-1 bg-gr rounded-t rounded-b-none overflow-hidden shadow p-4 mt-2 ml-10 mr-10 mb-2">
-          <h6 class="pad"><span class="circle"><img src="../../../assets/images/info.png" class="ml-4"></span></h6>
+          <h6 class="pad"><span class="circle"><img src="../../../assets/images/info.png" class="ml-2"></span></h6>
           <p class="text-xl p-5 leading-tight text-white text-center">
-            On-click, on-demand,real-time, REAL information from ex-employers and educational institutes
+            On-click, on-demand,real-time, REAL feedback from ex-employers and educational institutes
           </p>
         </div>
         <div class="flex-1 bg-gr rounded-t rounded-b-none overflow-hidden shadow p-4 mt-2 ml-1 mr-24 mb-2">
-          <h6 class="pad"><span class="circle"><img src="../../../assets/images/magnifying-glass.png" class="ml-4"></span></h6>
+          <h6 class="pad"><span class="circle"><img src="../../../assets/images/magnifying-glass.png" class="ml-2"></span></h6>
           <p class="text-xl p-5 leading-tight text-white text-center">
             Know any "hidden" records for your candidates which
             were previously uncaptured
@@ -84,86 +90,86 @@
       </div>
       <br>
       <div class="grid lg:grid-cols-2 xl:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-1">
-      <div class="flex-1  bg-white rounded-t rounded-b-none shadow p-1 mt-2 md:ml-24 mr-4 mb-8">
-        <p class="text-lg p-5 leading-tight text-black m-0">
+      <div class="flex-1  bg-white rounded-t rounded-b-none shadow p-1 mt-2 md:ml-24 mr-2 ">
+        <p class="text-lg p-1 leading-tight text-black m-0">
           Background verification post offer or joining
         </p>
       </div>
-      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 ml-4 md:mr-24 mb-8">
-        <p class="text-lg p-5 leading-tight text-black m-0">
+      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 ml-2 md:mr-24 ">
+        <p class="text-lg p-1 leading-tight text-black m-0">
           On-click, As-needed
         </p>
       </div>
-      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 md:ml-24 mr-4 mb-8">
+      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 md:ml-24 mr-2 ">
         <!-- <h6><img src="../../../assets/images/gap.png" class="-mt-8"></h6> -->
-        <p class="text-lg p-5 leading-tight text-black m-0">
-          Candidate-provided information during recruitment (resume, social media profiles, references)
+        <p class="text-lg p-1 leading-tight text-black m-0">
+          Candidate-provided feedback during recruitment (resume, social media profiles, references)
         </p>
       </div>
-      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 ml-4 md:mr-24 mb-8">
+      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 ml-2 md:mr-24 ">
         <!-- <h6><img src="../../../assets/images/solution.png" class="-mt-10"></h6> -->
-        <p class="text-lg p-5 leading-tight text-black m-0">
-          Information provided by past employers and institutes
+        <p class="text-lg p-1 leading-tight text-black m-0">
+          feedback provided by past employers and institutes
   
         </p>
       </div>
-      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 md:ml-24 mr-4 mb-8">
+      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 md:ml-24 mr-2 ">
         <!-- <h6><img src="../../../assets/images/gap.png" class="-mt-8"></h6> -->
-        <p class="text-lg p-5 leading-tight text-black m-0">
+        <p class="text-lg p-1 leading-tight text-black m-0">
           Minimum Rs. 2000 on plain vanilla background checks
         </p>
       </div>
-      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 ml-4 md:mr-24 mb-8">
+      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 ml-2 md:mr-24 ">
         <!-- <h6><img src="../../../assets/images/solution.png" class="-mt-10"></h6> -->
-        <p class="text-lg p-5 leading-tight text-black m-0">
+        <p class="text-lg p-1 leading-tight text-black m-0">
           Standard rates between Rs. 1000-1500
         </p>
       </div>
-      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 md:ml-24 mr-4 mb-8">
+      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 md:ml-24 mr-2 ">
         <!-- <h6><img src="../../../assets/images/gap.png" class="-mt-8"></h6> -->
-        <p class="text-lg p-5 leading-tight text-black m-0">
+        <p class="text-lg p-1 leading-tight text-black m-0">
           Binary fact-based inputs are checked
         </p>
       </div>
-      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 ml-4 md:mr-24 mb-8">
+      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 ml-2 md:mr-24 ">
         <!-- <h6><img src="../../../assets/images/solution.png" class="-mt-10"></h6> -->
-        <p class="text-lg p-5 leading-tight text-black m-0">
+        <p class="text-lg p-1 leading-tight text-black m-0">
           Work Ethic, Merit, Values – Emotional intelligence attributes
         </p>
       </div>
-      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 md:ml-24 mr-4 mb-8">
+      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 md:ml-24 mr-2 ">
         <!-- <h6><img src="../../../assets/images/gap.png" class="-mt-8"></h6> -->
-        <p class="text-lg p-5 leading-tight text-black m-0">
+        <p class="text-lg p-1 leading-tight text-black m-0">
           Ex-employers respond to verification requests much after the employee leaves
         </p>
       </div>
-      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 ml-4 md:mr-24 mb-8">
+      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 ml-2 md:mr-24 ">
         <!-- <h6><img src="../../../assets/images/solution.png" class="-mt-10"></h6> -->
-        <p class="text-lg p-5 leading-tight text-black m-0">
-          SCANDIDATE captures at the time of exit ensuring no information loss
+        <p class="text-lg p-1 leading-tight text-black m-0">
+          SCANDIDATE captures at the time of exit ensuring no feedback loss
         </p>
       </div>
-      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 md:ml-24 mr-4 mb-8">
+      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 md:ml-24 mr-2 ">
         <!-- <h6><img src="../../../assets/images/gap.png" class="-mt-8"></h6> -->
-        <p class="text-lg p-5 leading-tight text-black m-0">
+        <p class="text-lg p-1 leading-tight text-black m-0">
           No process today captures stints at firms an employee wants to "hide"
         </p>
       </div>
-      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 ml-4 md:mr-24 mb-8">
+      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 ml-2 md:mr-24 ">
         <!-- <h6><img src="../../../assets/images/solution.png" class="-mt-10"></h6> -->
-        <p class="text-lg p-5 leading-tight text-black m-0">
+        <p class="text-lg p-1 leading-tight text-black m-0">
           Any period of employment is fed into the system
         </p>
       </div>
-      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 md:ml-24 mr-4 mb-8">
+      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 md:ml-24 mr-2 mb-2 ">
         <!-- <h6><img src="../../../assets/images/gap.png" class="-mt-8"></h6> -->
-        <p class="text-lg p-5 leading-tight text-black m-0">
+        <p class="text-lg p-1 leading-tight text-black m-0">
           "Wrong Hire" losses - customer credibility, reputation, motivation, monetary, productivity
         </p>
       </div>
-      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 ml-4 md:mr-24 mb-8">
+      <div class="flex-1 bg-white rounded-t rounded-b-none shadow p-1 mt-2 ml-2 md:mr-24 mb-2">
         <!-- <h6><img src="../../../assets/images/solution.png" class="-mt-10"></h6> -->
-        <p class="text-lg p-5 leading-tight text-black m-0">
+        <p class="text-lg p-1 leading-tight text-black m-0">
           #RealityCheck before onboarding any new employee
         </p>
       </div>
@@ -182,10 +188,10 @@
         </div>
         <div class="md:w-1/2 sm:w-1/2 pt-5">
           <p class="leading-relaxed text-2xl font-bold leading-loose text-center">
-            Why should you give your ex-employee's information?
+            Why should you give your ex-employee's feedback?
           </p>
           <p class="text-justify text-lg leading-loose">
-            Let SCANDIDATE be your journal to record details about your employees when they leave. <br> Even today, without realizing it, you spend considerable time and effort giving information about your ex-employees when requested for a background or reference check. <br>Instead, lend meaning and value to the careers of your ex-employees by documenting this information AT the time of exit.<br> Happy alumni will always be the best ambassadors for your employer brand.
+            Let SCANDIDATE be your journal to record details about your employees when they leave. <br> Even today, without realizing it, you spend considerable time and effort giving feedback about your ex-employees when requested for a background or reference check. <br>Instead, lend meaning and value to the careers of your ex-employees by documenting this feedback AT the time of exit.<br> Happy alumni will always be the best ambassadors for your employer brand.
            </p>
         </div>
         
