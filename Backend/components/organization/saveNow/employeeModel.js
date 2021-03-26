@@ -253,6 +253,13 @@ const saveEmployee = new Schema({
     type: String,
     required: false,
   },
+
+  // Assigned to Line Manager
+  assignedId: {
+    type: String,
+    required: false,
+  },
+
   organisationId: {
     type: String,
     required: false,

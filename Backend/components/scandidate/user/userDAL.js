@@ -68,19 +68,6 @@ async function deleteUser(data) {
   }
 }
 
-async function showAllLineManager() {
-  try {
-    let result = await userModel
-      .find({ subRole: "LINE MANAGER" })
-      .select("_id firstName lastName")
-      .sort({ _id: -1 })
-      .lean();
-    return result;
-  } catch (err) {
-    throw err;
-  }
-}
-
 // export 4 functions i.e create,read,update,delete
 module.exports = {
   createUser: createUser,
@@ -89,5 +76,4 @@ module.exports = {
   updateUser: updateUser,
   deleteUser: deleteUser,
   getUserByIdForBGV: getUserByIdForBGV,
-  showAllLineManager: showAllLineManager,
 };

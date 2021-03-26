@@ -524,6 +524,7 @@ async function scheduledEmail(data) {
     .sendMail(mail)
     .then((info) => {
       mailResult = true;
+
     })
     .catch((err) => {
       mailResult = false;

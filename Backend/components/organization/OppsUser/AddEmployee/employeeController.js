@@ -52,6 +52,7 @@ module.exports.getAllMethod = async (req, res, next) => {
         }
       }
     }
+
     let result = employeeData.concat(incompleteData);
     let resultData = result.sort((a) => {
       if (!a.status) {

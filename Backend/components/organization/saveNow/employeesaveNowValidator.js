@@ -9,6 +9,7 @@ const addEmployeeSchema = Joi.object({
   dateOfJoining: Joi.date().allow("").allow(null),
   exitDate: Joi.date().allow("").allow(null),
   addedById: Joi.string().allow("").allow(null),
+  assignedId: Joi.string().allow("").allow(null),
   organisationId: Joi.string().allow("").allow(null),
   organizationName: Joi.string().allow("").allow(null),
   status: Joi.boolean().allow("").allow(null),

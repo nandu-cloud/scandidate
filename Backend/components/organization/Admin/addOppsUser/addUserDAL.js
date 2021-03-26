@@ -53,9 +53,23 @@ async function updateUser(data) {
   }
 }
 
+async function showAllLineManager() {
+  try {
+    let result = await userModel
+      .find({ subRole: "LINE MANAGER" })
+      .select("_id firstName lastName")
+      .sort({ _id: -1 })
+      .lean();
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
 module.exports = {
   createUser: createUser,
   getAllUsers: getAllUsers,
   getUserById: getUserById,
   updateUser: updateUser,
+  showAllLineManager: showAllLineManager,
 };
