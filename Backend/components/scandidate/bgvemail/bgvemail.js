@@ -494,6 +494,7 @@ module.exports.sendemail = async (req, res, next) => {
 };
 
 async function scheduledEmail(data) {
+  var mailResult;
   var data1 = { msg: data.message };
   data.html = await ejs.renderFile(
     path.join(__dirname, "../../../helpers/email-templates/sendbgvemail.ejs"),
@@ -503,7 +504,7 @@ async function scheduledEmail(data) {
     SES: new AWS.SES({ apiVersion: "2010-12-01" }),
   });
 
-  let info = await transporter.sendMail({
+  var mail = {
     from: "Scandidate.in" + process.env.AWSSENDERMAILID,
     to: data.email,
     subject: data.subject, // Subject line
@@ -517,8 +518,17 @@ async function scheduledEmail(data) {
         ),
       },
     ],
-  });
+  };
 
-  console.log("Message sent: %s", info.messageId);
-  return info;
+  await transporter
+    .sendMail(mail)
+    .then((info) => {
+      mailResult = true;
+    })
+    .catch((err) => {
+      mailResult = false;
+    });
+
+  // console.log("Message sent: %s", info.messageId);
+  return mailResult;
 }

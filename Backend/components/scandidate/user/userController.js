@@ -155,3 +155,15 @@ module.exports.avatarDeleteMethod = async function (req, res, next) {
     });
   });
 };
+
+module.exports.showLineManager = async (req, res, next) => {
+  try {
+    let getlineManager = await userDAL.showAllLineManager();
+    return res
+      .status(200)
+      .json({ status: 200, message: "Success", data: getlineManager });
+  } catch (err) {
+    console.log(colors.red, err);
+    return next(new AppError("Unable to find the user", 400));
+  }
+};

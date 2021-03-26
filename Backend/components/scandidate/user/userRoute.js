@@ -52,4 +52,8 @@ router
   .route("/deleteavatar/:avatarLink")
   .delete(authJWT.verifyJWTToken, userController.avatarDeleteMethod);
 
+router
+  .route("/show/lineManager")
+  .get(authJWT.verifyJWTToken, userController.showLineManager);
+
 module.exports = router;

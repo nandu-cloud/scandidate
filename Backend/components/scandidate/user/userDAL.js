@@ -38,9 +38,10 @@ async function getUserById(data) {
 
 async function getUserByIdForBGV(data) {
   try {
-    let result = await userModel.findById({ _id: data._id })
-    .select("bgvCount")
-    .lean();
+    let result = await userModel
+      .findById({ _id: data._id })
+      .select("bgvCount")
+      .lean();
     return result;
   } catch (err) {
     throw err;
@@ -67,6 +68,19 @@ async function deleteUser(data) {
   }
 }
 
+async function showAllLineManager() {
+  try {
+    let result = await userModel
+      .find({ subRole: "LINE MANAGER" })
+      .select("_id firstName lastName")
+      .sort({ _id: -1 })
+      .lean();
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
 // export 4 functions i.e create,read,update,delete
 module.exports = {
   createUser: createUser,
@@ -74,5 +88,6 @@ module.exports = {
   getUserById: getUserById,
   updateUser: updateUser,
   deleteUser: deleteUser,
-  getUserByIdForBGV:getUserByIdForBGV
+  getUserByIdForBGV: getUserByIdForBGV,
+  showAllLineManager: showAllLineManager,
 };
