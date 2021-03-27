@@ -72,6 +72,11 @@ app.use(
 );
 
 app.use(
+  "/api/organisation/lineManager",
+  require("./components/organization/LineManger/lineManagerRoute")
+);
+
+app.use(
   "/api/organisation/dashboard",
   require("./components/organization/Dashboard/dashboardRoute")
 );

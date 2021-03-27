@@ -26,6 +26,14 @@ module.exports.createOppsUserMethod = async function (req, res, next) {
     data.password = hash;
     try {
       let userData = await userDAL.createUser(data);
+
+      if (userData.subRole === "ADMIN") {
+        userData.subRole = "ADMIN HR ";
+      }
+      if (userData.subRole === "OPERATIONAL_USER") {
+        userData.subRole = "LINE HR ";
+      }
+
       let template = userData;
       template.logo = `${process.env.FRONT_END_URL}/logo1.png`;
       template.password = data.phoneNumber.toString();
@@ -64,6 +72,15 @@ module.exports.getAllMethod = async function (req, res, next) {
       organizationId: mongoose.Types.ObjectId(req.params.organizationId),
     };
     let userData = await userDAL.getAllUsers(data);
+    userData.map((e) => {
+      if (e.subRole === "ADMIN") {
+        e.subRole = "ADMIN HR ";
+      }
+      if (e.subRole === "OPERATIONAL_USER") {
+        e.subRole = "LINE HR ";
+      }
+    });
+
     if (!userData) return next(new AppError("user does not exists!", 404));
     return res.status(200).json({
       status: "SUCCESS",
@@ -113,7 +130,6 @@ module.exports.updateMethod = async function (req, res, next) {
     return next(new AppError(error, 400));
   }
 };
-
 
 module.exports.showLineManager = async (req, res, next) => {
   try {
