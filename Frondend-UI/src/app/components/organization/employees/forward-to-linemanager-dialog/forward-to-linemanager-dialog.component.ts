@@ -56,7 +56,11 @@ export class ForwardToLinemanagerDialogComponent implements OnInit {
     }
     this.assignLinemanagerSubscription = this.linemanagerService.assignLinemanager(this.employeeid._id, id, data).subscribe(resp => 
       { 
+        if(resp.status == 409){
+        this.methodtype = 'already Assiged';
+        }else{
         this.methodtype = 'assign';
+        }
         this.openDialog();   
       }, err=> {
         this.setMessage = { message: err.error.message, error: true };
@@ -84,10 +88,10 @@ export class DialogElementsExampleDialog {
 
   ngOnInit() {
     console.log(this.methodType)
-    if (this.methodType == 'assign') {
-      this.Message = "Employee  Assigned successfully"
-    } else if(this.methodType == 'save') {
-      this.Message = "Employee Saved successfully"
+    if (this.methodType == 'already Assiged') {
+      this.Message = "Employee  Already Assiged"
+    } else if(this.methodType == 'assign') {
+      this.Message = "Employee Assigned successfully"
     }
   }
 
