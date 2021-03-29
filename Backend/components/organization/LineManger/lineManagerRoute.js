@@ -7,4 +7,9 @@ router
   .route("/show/assignedEmployee/:id")
   .get(authJWT.verifyJWTToken, lineMgmntController.showEmployeeAssignedDetails);
 
+
+router
+  .route("/savenow/assigneddata/:empId/:linemanagerId")
+  .post(authJWT.verifyJWTToken, lineMgmntController.assignedDataTolineManager);
+
 module.exports = router;
