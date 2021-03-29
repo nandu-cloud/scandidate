@@ -178,4 +178,9 @@ export class EmployeeService {
   downloadFile(employeedocumentlink): Observable<Blob> {
     return this.http.get(`${this.baseUrl}/api/organisation/operational/downloadfile/${employeedocumentlink}`, { responseType: 'blob' });
   }
+
+  // get line manager employees
+  public getLinemanagerEmployeeData(id): Observable<any> {
+    return this.http.get(this.baseUrl + '/api/organisation/lineManager/show/assignedEmployee/' + id);
+  }
 }

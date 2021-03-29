@@ -8,6 +8,8 @@ import { EmployeeService } from '../../../../services/employee.service';
 import { BgvSearchService } from 'src/app/services/bgv-search.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SendBgvReportDialogComponent } from 'src/app/components/send-bgv-report-dialog/send-bgv-report-dialog.component';
+import { ForwardToLinemanagerDialogComponent } from '../forward-to-linemanager-dialog/forward-to-linemanager-dialog.component';
+import { AdminOrganizationService } from 'src/app/services/admin-organization.service';
 @Component({
   selector: 'app-candidate-list',
   templateUrl: './candidate-list.component.html',
@@ -20,19 +22,28 @@ export class CandidateListComponent implements OnInit {
   displayedColumns : string[];
   EmployeeSubscription : Subscription;
   createbgvSubscription: Subscription;
+  getLinemangerSubscription: Subscription;
+  LinemangerEmployeeSubscription: Subscription;
   setMessage: any = [];
   respObj : any = [];
+  data1 : any;
   // showEdit : boolean = true;
   // saveNow : boolean = false;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   editEmployeeData: FormGroup;
   empIdsave: number;
-
+  logiuser:any
   constructor(private formBuilder: FormBuilder,private router:Router,public empService: EmployeeService,
-    private bgvService: BgvSearchService, public dialog: MatDialog) { }
+    private bgvService: BgvSearchService, public dialog: MatDialog, public linemanagerService: AdminOrganizationService) { }
 
   ngOnInit(): void {
     this.displayedColumns =['name', 'phone_number', 'email', 'dateOfJoining', 'dateofexit', 'experience', 'status', 'action', 'actions'];
+    
+    if(sessionStorage.getItem('subRole')=='LINE MANAGER'){
+      this.getLinemanagerEmployeeData(sessionStorage.getItem('ID'))
+      this.logiuser ="linemanager"
+    }else if(sessionStorage.getItem('subRole')=='OPERATIONAL_USER'){
+    this.logiuser ="admin"
     this.EmployeeSubscription = this.empService.getEmployeeData().subscribe(respObj => {
       this.dataSource = new MatTableDataSource(respObj.data);
       this.dataSource.paginator = this.paginator;
@@ -42,6 +53,7 @@ export class CandidateListComponent implements OnInit {
     }, err => {
       this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
     })
+    }
   }
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -73,5 +85,22 @@ export class CandidateListComponent implements OnInit {
     });
     })
  
+  }
+  forwordToLinemanager(itm): void {
+      const dialogRef = this.dialog.open(ForwardToLinemanagerDialogComponent, { width: '250px',height:'400px', 
+    });
+    dialogRef.componentInstance.employeeid = itm
+  }
+
+  getLinemanagerEmployeeData(id): void{
+    this.LinemangerEmployeeSubscription = this.empService.getLinemanagerEmployeeData(id).subscribe(resp => {
+      this.dataSource = new MatTableDataSource(resp.data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.filterPredicate = function(data, filter: string): boolean {
+        return data.firstName.toLowerCase().includes(filter);
+      };
+    }, err => {
+      this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
+    }) 
   }
 }

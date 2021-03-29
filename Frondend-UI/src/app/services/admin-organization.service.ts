@@ -20,11 +20,20 @@ export class AdminOrganizationService {
 createUser(createUser): Observable<any> {
     var id = window.sessionStorage.getItem('ID');
     var organizationId = window.sessionStorage.getItem('organizationId');
-    var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'phoneNumber': number,'organizationId':string, 'status': boolean, 'onboardedById' : string} =
+    var create: { 'firstName': string,
+         'lastName': string,
+         'role': string,
+         'subRole': string,
+         'email': string,
+         'phoneNumber': number,
+         'organizationId':string,
+         'status': boolean,
+         'onboardedById' : string
+        } =
      { 'firstName': createUser.firstName,
         'lastName': createUser.lastName,
         'role': 'ORGANIZATION',
-        'subRole': 'OPERATIONAL_USER',
+        'subRole': createUser.subRole,
         'email': createUser.email,
         'phoneNumber': createUser.phoneNumber,
         'organizationId': organizationId,
@@ -61,7 +70,7 @@ updateUser(updateUser): Observable<any> {
    { 'firstName': updateUser.firstName,
       'lastName': updateUser.lastName,
       'role': 'ORGANIZATION',
-      'subRole': 'OPERATIONAL_USER',
+      'subRole': updateUser.subRole,
       'email': updateUser.email,
       'phoneNumber': updateUser.phoneNumber,
       'organizationId': organizationId,
@@ -76,5 +85,19 @@ updateUser(updateUser): Observable<any> {
     })
   }
   );
+}
+
+public getLinemanagerData(): Observable<any> {
+  return this.http.get(this.baseUrl + '/api/organisation/admin/show/lineManager');
+}
+
+// public assignLinemanager(id: number, redata): Observable<any> {
+//   return this.http.post(this.baseUrl + '/api/organisation/operational/inprogress/saveNow/' + id, redata);
+    // return this.http.get(`${this.baseUrl}/api/organisation/operational/downloadfile/${employeedocumentlink}`, { responseType: 'blob' });
+    // } 
+public assignLinemanager(empId, linemanagerId, redata): Observable<any> {
+  // return this.http.post(`${this.baseUrl}/api/organisation/lineManager/savenow/assigneddata/${empId}/${linemanagerId}`);
+     return this.http.post(`${this.baseUrl}/api/organisation/lineManager/savenow/assigneddata/${empId}/${linemanagerId}`, redata);
+    // return this.http.post(this.baseUrl + '/api/organisation/lineManager/savenow/assigneddata/' + empId + '/' +linemanagerId);
 }
 }

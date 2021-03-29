@@ -56,6 +56,7 @@ import { ScandidateReportComponent } from './components/scandidate-report/scandi
 import { AppGuard } from "../app/admin/app.guard";
 import { StorageService } from "./services/storage.service";
 import { SendBgvReportDialogComponent } from './components/send-bgv-report-dialog/send-bgv-report-dialog.component';
+import { ForwardToLinemanagerDialogComponent } from './components/organization/employees/forward-to-linemanager-dialog/forward-to-linemanager-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -96,7 +97,8 @@ import { SendBgvReportDialogComponent } from './components/send-bgv-report-dialo
     ForOrganizationComponent,
     AboutUsComponent,
     ScandidateReportComponent,
-    SendBgvReportDialogComponent
+    SendBgvReportDialogComponent,
+    ForwardToLinemanagerDialogComponent
   ],
   imports: [
     BrowserModule,

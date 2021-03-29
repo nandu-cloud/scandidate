@@ -36,6 +36,7 @@ export class AddCandidateComponent implements OnInit {
   error = '';
   empIdedit: any;
   id;
+  logiuser: any;
   empIdupdate: number;
   termination: string;
   showCase: string;
@@ -170,7 +171,12 @@ export class AddCandidateComponent implements OnInit {
       }),
     });
   }
+  
+  // this.firstFormGroup.disable() {
+  //   if() {
 
+  //   }
+  // }
   // view(item){
   //   this.downloadStudentSubscription = this.empService.downloadFile(item).subscribe(respObj => {
   //     console.log(respObj.data);
@@ -343,6 +349,9 @@ export class AddCandidateComponent implements OnInit {
     })
   }
   ngOnInit(): void {
+    if(sessionStorage.getItem('subRole')=='LINE MANAGER'){
+      this.firstFormGroup.disable()
+    }
     if (this.empIdedit) {
       
       this.editEmployeeSubscription = this.empService.editEmployee(this.empIdedit).subscribe(respObj => {
@@ -569,6 +578,12 @@ export class AddCandidateComponent implements OnInit {
 
 
   update(id: number) {
+    if(sessionStorage.getItem('subRole')=='LINE MANAGER'){
+      // this.getLinemanagerEmployeeData(sessionStorage.getItem('ID'))
+      this.logiuser ="linemanager"
+    }else if(sessionStorage.getItem('subRole')=='OPERATIONAL_USER'){
+      this.logiuser = "admin"
+    
     if (this.firstFormGroup.invalid) {
       this.firstFormGroup.markAllAsTouched();
       if (this.selectedIndex != this.maxNumberOfTabs) {
@@ -612,28 +627,6 @@ export class AddCandidateComponent implements OnInit {
       }
     }
 
-    // if ((this.fourthFormGroup.value.awards.originalFilename === null) || (this.fourthFormGroup.value.awards.originalFilename === undefined)) {
-    //     this.fourthFormGroup.value.awards.originalFilename = this.documentName;
-    // }
-    // if ((this.sixthFormGroup.value.discrepancyDocuments.originalFilename === null) || (this.sixthFormGroup.value.discrepancyDocuments.originalFilename === undefined)) {
-    //   this.sixthFormGroup.value.discrepancyDocuments.originalFilename = this.discrepancyFileName;
-    // }
-    // if ((this.sixthFormGroup.value.compliencyDiscrepancy.originalFilename === null) || (this.sixthFormGroup.value.compliencyDiscrepancy.originalFilename === undefined)) {
-    //   this.sixthFormGroup.value.compliencyDiscrepancy.originalFilename = this.compliencyFileName;
-    // }
-    // if ((this.sixthFormGroup.value.warning.originalFilename === null) || (this.sixthFormGroup.value.warning.originalFilename === undefined)) {
-    //   this.sixthFormGroup.value.warning.originalFilename = this.warningFileName;
-    // }
-    // if ((this.sixthFormGroup.value.showCausedIssue.originalFilename === null) || (this.sixthFormGroup.value.showCausedIssue.originalFilename === undefined)) {
-    //   this.sixthFormGroup.value.showCausedIssue.originalFilename = this.showcausedFileName;
-    // }
-    // if ((this.sixthFormGroup.value.suspension.originalFilename === null) || (this.sixthFormGroup.value.suspension.originalFilename === undefined)) {
-    //   this.sixthFormGroup.value.suspension.originalFilename = this.suspensionFileName;
-    // }
-    // if ((this.sixthFormGroup.value.termination.originalFilename === null) || (this.sixthFormGroup.value.termination.originalFilename === undefined)) {
-    //   this.sixthFormGroup.value.termination.originalFilename = this.terminationFileName;
-    // }
-
     this.empIdupdate = id;
     this.employeeUpdateSubscription = this.empService.updateEmployee({
       ...this.firstFormGroup.value, ...this.secondFormGroup.value,
@@ -648,6 +641,7 @@ export class AddCandidateComponent implements OnInit {
       throw this.setMessage.message;
     })
   }
+}
   // discrepancyDownloadFile = this.data.discrepancyDocuments.descrepencyUploadDocument;;
   // discrepancyDownload(employeedocumentlink) {
   //   if ((this.sixthFormGroup.value.discrepancyDocuments.descrepencyUploadDocument !== null) || (this.sixthFormGroup.value.discrepancyDocuments.descrepencyUploadDocument === undefined)) {

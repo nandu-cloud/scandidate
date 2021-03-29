@@ -1,0 +1,23 @@
+<!-- <p>forward-to-linemanager-dialog works!</p> -->
+
+
+<table style="width:100%" >
+    <tr>
+      <th>Line Managers</th>
+      <!-- <th>Action</th> -->
+    </tr>
+    <tr>
+      <ul> <li  *ngFor="let item of lm; let i = index" cursor-pointer>
+         
+    <div class="lm" (click)="assignLinemanager(item._id)">{{item.firstName}} {{item.lastName}}</div>
+         </li> </ul>
+
+    <!-- <td>    <button>send</button></td>  -->
+   </tr>
+  </table>
+  <!-- <div>
+  <button class="close" >Close</button>
+  </div> -->
+  <div class="close" mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+  </div>

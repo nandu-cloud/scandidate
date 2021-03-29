@@ -39,7 +39,7 @@ export class AddOppuserComponent implements OnInit {
       phoneNumber : new FormControl('', [Validators.required, Validators.pattern('^[1-9][0-9]{9}$')]),
       email : new FormControl('', [Validators.required]),
       role: new FormControl('ORGANIZATION', [Validators.required]),
-      subRole: new FormControl('OPERATIONAL_USER', [Validators.required]),
+      subRole: new FormControl('', [Validators.required]),
       dateOfBirth : new FormControl(''),
       address : new FormControl(''),
       status : new FormControl('')

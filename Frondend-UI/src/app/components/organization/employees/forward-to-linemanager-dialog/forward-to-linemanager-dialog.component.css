@@ -1,0 +1,27 @@
+.table{
+    border:#6cb43b solid 1px;
+  }
+  
+  table, th, td {
+    border: 1px solid#6cb43b; ;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 5px;
+    text-align: left;
+    height: 20px;
+  }
+.lm{
+  border: 1px solid#6cb43b; ;
+    border-collapse: collapse;
+    padding: 5px;
+    cursor: pointer;
+}
+.close {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}

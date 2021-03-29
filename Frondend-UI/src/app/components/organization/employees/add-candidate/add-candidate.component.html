@@ -38,7 +38,7 @@
           <div class="flex flex-wrap">
             <div class="w-full md:w-1/2 sm:w-full">
               <mat-form-field>
-                <mat-label>First Name</mat-label>
+                <mat-label>First Name </mat-label>
                 <input
                   matInput
                   formControlName="firstName"
@@ -47,7 +47,7 @@
                   class="br-btm input-w"
                   autoComplete="off"
                   required
-                  tabindex="1"
+                  tabindex="1"    
                 />
                 <mat-error
                   *ngIf="firstFormGroup.get('firstName').errors?.required"
@@ -1869,7 +1869,7 @@
               class="lg-button focus:outline-none focus:shadow-outline"
               type="button"
               (click)="submit()"
-              *ngIf="!id" tabindex="31"
+              *ngIf="!id && logiuser =='admin'" tabindex="31"
             >
               Submit
             </button>
@@ -1877,7 +1877,7 @@
               class="lg-button focus:outline-none focus:shadow-outline"
               type="button"
               (click)="submit()"
-              *ngIf="submitValue && id" tabindex="31"
+              *ngIf="submitValue && id && logiuser =='admin'" tabindex="31"
             >
               Submit
             </button>
