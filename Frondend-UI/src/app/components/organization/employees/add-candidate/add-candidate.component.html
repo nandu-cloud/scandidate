@@ -1861,7 +1861,6 @@
               class="lg-button focus:outline-none focus:shadow-outline"
               type="button"
               (click)="cancel()"
-              *ngIf="!id"
             >
               Back
             </button>
@@ -1877,7 +1876,7 @@
               class="lg-button focus:outline-none focus:shadow-outline"
               type="button"
               (click)="submit()"
-              *ngIf="submitValue && id && logiuser =='admin'" tabindex="31"
+              *ngIf="submitValue && id" tabindex="31"
             >
               Submit
             </button>

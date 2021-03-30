@@ -89,9 +89,9 @@ export class DialogElementsExampleDialog {
   ngOnInit() {
     console.log(this.methodType)
     if (this.methodType == 'already Assiged') {
-      this.Message = "Employee  Already Assiged"
+      this.Message = "Already Assiged"
     } else if(this.methodType == 'assign') {
-      this.Message = "Employee Assigned successfully"
+      this.Message = "Assigned – Manager"
     }
   }
 

@@ -3,7 +3,7 @@
   }
   
   table, th, td {
-    border: 1px solid#6cb43b; ;
+    border: 1px solid#6cb43b;
     border-collapse: collapse;
   }
   th, td {
@@ -12,16 +12,40 @@
     height: 20px;
   }
 .lm{
-  border: 1px solid#6cb43b; ;
+  border: 1px solid#6cb43b;
     border-collapse: collapse;
     padding: 5px;
     cursor: pointer;
 }
-.close {
+.close-btn{
+  position: absolute;
+  right: 10px;
+  top: 15px;
+}
+/* .close {
   margin: 0;
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+} */
+.close {
+  top: -27px;
+  margin-left: 158px;
+  padding: 1px;
+}
+.close .button{
+top: -32px;
+width: 1px;
+
+}
+.close .cls{
+  min-width:0px !important; 
+  padding: 2px;
+  margin-left: 42px;
+    top: -25px;
+    border: none;
+    outline:none;
+    background: none; 
 }

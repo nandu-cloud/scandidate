@@ -87,10 +87,13 @@ export class CandidateListComponent implements OnInit {
  
   }
   forwordToLinemanager(itm): void {
-      const dialogRef = this.dialog.open(ForwardToLinemanagerDialogComponent, { width: '250px',height:'400px', 
+      const dialogRef = this.dialog.open(ForwardToLinemanagerDialogComponent, { width: '250px',height:'400px',
     });
     dialogRef.componentInstance.employeeid = itm
+    
   }
+ close(){
+ }
 
   getLinemanagerEmployeeData(id): void{
     this.LinemangerEmployeeSubscription = this.empService.getLinemanagerEmployeeData(id).subscribe(resp => {
