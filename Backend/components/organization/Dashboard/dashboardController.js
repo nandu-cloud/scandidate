@@ -1,6 +1,6 @@
 const employeeModel = require("../OppsUser/AddEmployee/employeeModel");
 const AppError = require("./../../../helpers/appError");
-const bgvDAL=require("../../scandidate/BGVSearch/bgvDAL");
+const bgvDAL = require("../../scandidate/BGVSearch/bgvDAL");
 
 module.exports.countTotalOrgUsers = async function (req, res, next) {
   let organisationId = req.params.organisationId;
@@ -9,14 +9,16 @@ module.exports.countTotalOrgUsers = async function (req, res, next) {
     let totalEmployee = await employeeModel.countDocuments({
       organisationId: organisationId,
     });
-    let totalCandidate = await employeeModel.estimatedDocumentCount();
-    let totalBGVCount = await bgvDAL.getBySearchedById({_id:id});
-    var sumCount=0;
-    totalBGVCount.map(d=>{
-    sumCount=sumCount+d.bgvSearchCount
+    let totalStudentCount = await studenModel.estimatedDocumentCount();
+    let totalEmployeeCount = await employeeModel.estimatedDocumentCount();
+    var totalCandidate = totalStudentCount + totalEmployeeCount;
+    let totalBGVCount = await bgvDAL.getBySearchedById({ _id: id });
+    var sumCount = 0;
+    totalBGVCount.map(d => {
+      sumCount = sumCount + d.bgvSearchCount
     })
     // console.log(totalBGVCount);
-    let totalBGV=sumCount;
+    let totalBGV = sumCount;
     return res.status(200).json({
       status: "SUCCESS",
       data: {

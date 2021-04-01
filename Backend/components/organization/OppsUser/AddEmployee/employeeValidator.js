@@ -2,15 +2,15 @@ const Joi = require("joi");
 
 const addEmployeeSchema = Joi.object({
   //Required Fields
-  firstName: Joi.string().required(),
-  lastName: Joi.string().required(),
-  email: Joi.string().email().required(),
-  phoneNumber: Joi.string().required(),
-  dateOfJoining: Joi.date().required(),
-  exitDate: Joi.date().required(),
-  addedById: Joi.string().required(),
-  organisationId: Joi.string().required(),
-  organizationName: Joi.string().required(),
+  firstName: Joi.string().required().error(new Error('First name is required')),
+  lastName: Joi.string().required().error(new Error('Last name is required')),
+  email: Joi.string().email().required().error(new Error('Email is required')),
+  phoneNumber: Joi.string().required().error(new Error('Phone number is required')),
+  dateOfJoining: Joi.date().required().error(new Error('Date of joining is required')),
+  exitDate: Joi.date().required().error(new Error('Date of exit is required')),
+  addedById: Joi.string().required().error(new Error('Added by Id is required')),
+  organisationId: Joi.string().required().error(new Error('Organization Id is required')),
+  organizationName: Joi.string().required().error(new Error('Organization name is required')),
   status: Joi.boolean().allow("").allow(null),
 
   //Issues
@@ -71,15 +71,15 @@ const addEmployeeSchema = Joi.object({
 });
 const updateEmployeeSchema = Joi.object({
   //Required Fields
-  firstName: Joi.string().required(),
-  lastName: Joi.string().required(),
-  email: Joi.string().email().required(),
-  phoneNumber: Joi.string().required(),
-  dateOfJoining: Joi.date().required(),
-  exitDate: Joi.date().required(),
-  addedById: Joi.string().required(),
-  organisationId: Joi.string().required(),
-  organizationName: Joi.string().required(),
+  firstName: Joi.string().required().error(new Error('First name is required')),
+  lastName: Joi.string().required().error(new Error('Last name is required')),
+  email: Joi.string().email().required().error(new Error('Email is required')),
+  phoneNumber: Joi.string().required().error(new Error('Phone number is required')),
+  dateOfJoining: Joi.date().required().error(new Error('Date of joining is required')),
+  exitDate: Joi.date().required().error(new Error('Date of exit is required')),
+  addedById: Joi.string().required().error(new Error('Added by Id is required')),
+  organisationId: Joi.string().required().error(new Error('Organization Id is required')),
+  organizationName: Joi.string().required().error(new Error('Organization name is required')),
   status: Joi.boolean().allow("").allow(null),
 
   professionalExperience: Joi.string().allow("").allow(null),
