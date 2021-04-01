@@ -1,4 +1,5 @@
 const studentModel = require("../OppsUser/AddStudent/studentModel");
+const empModel = require("../../organization/OppsUser/AddEmployee/employeeModel");
 const AppError = require("./../../../helpers/appError");
 const colors = require("./../../../helpers/colors");
 const bgvDAL = require("../../scandidate/BGVSearch/bgvDAL");

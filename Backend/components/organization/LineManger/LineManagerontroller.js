@@ -6,10 +6,17 @@ module.exports.showEmployeeAssignedDetails = async (req, res, next) => {
   const id = req.params.id;
   try {
     let result = await lineManagerDAL.getEmp(id);
+    var result1 = result;
+    // console.log(result1);
+    let resultData = result1.sort((a) => {
+      if (!a.status) {
+        return -1;
+      }
+    });
     if (!result) return next(new AppError("user does not exists!", 404));
     return res
       .status(200)
-      .json({ status: 200, message: "Success", data: result });
+      .json({ status: 200, message: "Success", data: resultData });
   } catch (err) {
     console.log(colors.red, err);
     return next(new AppError("Something is wrong", 400));
