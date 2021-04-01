@@ -5,7 +5,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
-
+declare var $:any
 @Component({
   selector: 'app-forward-to-linemanager-dialog',
   templateUrl: './forward-to-linemanager-dialog.component.html',
@@ -40,6 +40,22 @@ export class ForwardToLinemanagerDialogComponent implements OnInit {
     dialogRef.componentInstance.methodType = this.methodtype;
   }
   assignLinemanager(id: number) {
+    $('ul').on('click', '.click_me', function(){
+      $(this).toggleClass('active').siblings().removeClass('active');   // <--- The trick!
+  })
+// document.getElementById(i).style.background="red"
+// document.getElementById(JSON.stringify(i-1)).classList.remove("mystyle");
+// $('.click_me').click(function() {
+//   $('.active').not(this).removeClass('active');
+//   $(this).toggleClass('active');
+// });
+console.log(this.employeeid)
+if(this.employeeid.firstName == ''  || this.employeeid.lastName == '' || this.employeeid.dateOfJoining == '' || this.employeeid.exitDate == '' || this.employeeid.phoneNumber == '' || this.employeeid.email == ''){
+  this.methodtype = 'empty';
+  this.openDialog()
+}else{
+
+    
     let data = {
       // "firstName": this.employeeid.firstName,
       // "lastName": this.employeeid.lastName,
@@ -67,6 +83,7 @@ export class ForwardToLinemanagerDialogComponent implements OnInit {
         this.error = this.setMessage.message;
         throw this.setMessage.message;
       })
+    }
   }
   close() {
     // this.dialogRef.close(true);
@@ -92,6 +109,8 @@ export class DialogElementsExampleDialog {
       this.Message = "Already Assiged"
     } else if(this.methodType == 'assign') {
       this.Message = "Assigned – Manager"
+    }else if(this.methodType == 'empty'){
+      this.Message = "Please Fill all required fields in Personal Information tab"
     }
   }
 

@@ -498,6 +498,7 @@ export class AddCandidateComponent implements OnInit {
       this.dis = false;
       }
     }
+    if(this.firstFormGroup.valid){
     this.count = true;
       this.savenowSubscription = this.empService.savenowEmployee({
         ...this.firstFormGroup.value, ...this.secondFormGroup.value,
@@ -513,6 +514,9 @@ export class AddCandidateComponent implements OnInit {
           this.error = this.setMessage.message;
           throw this.setMessage.message;
         })
+      }else{
+       
+      }
     }
     
   submit() {

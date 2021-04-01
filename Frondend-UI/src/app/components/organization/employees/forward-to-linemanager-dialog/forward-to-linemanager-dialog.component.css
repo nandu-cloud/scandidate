@@ -22,6 +22,10 @@
   right: 10px;
   top: 15px;
 }
+
+.active {
+  background-color: red !important;
+}
 /* .close {
   margin: 0;
   position: absolute;
@@ -30,7 +34,7 @@
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 } */
-.close {
+/* .close {
   top: -27px;
   margin-left: 158px;
   padding: 1px;
@@ -47,5 +51,11 @@ width: 1px;
     top: -25px;
     border: none;
     outline:none;
-    background: none; 
-}
+    background-color: none; 
+} */
+
+ button .send{
+  top: 12px;
+  
+  }
+

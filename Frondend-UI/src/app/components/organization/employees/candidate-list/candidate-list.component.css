@@ -46,3 +46,16 @@ th {
 .mat-row:nth-child(1){
   background-color: #0000001a;
 }
+
+.bg-black .mat-icon .forward{
+  min-width: 1px;
+}
+/* .initiated{
+  padding: 5px 8px !important;
+} */
+/* @media   (min-width:200px){
+
+    .initiated{
+    padding: 5px 8px !important;
+  }
+} */
