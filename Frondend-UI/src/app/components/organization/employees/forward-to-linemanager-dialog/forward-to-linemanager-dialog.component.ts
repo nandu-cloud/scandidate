@@ -4,6 +4,7 @@ import { AdminOrganizationService } from 'src/app/services/admin-organization.se
 import { EmployeeService } from 'src/app/services/employee.service';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
 
 declare var $:any
 @Component({
@@ -17,12 +18,18 @@ export class ForwardToLinemanagerDialogComponent implements OnInit {
   getLinemanagerSubscription : Subscription;
   assignLinemanagerSubscription : Subscription;
   respObj: any;
-  lm: any;
+  lm: any = [];
   id: any;
+  data1: any;
   error = '';
   setMessage: any = {};
+  assignnLinemanager: FormGroup;
   @Input() employeeid:any;
-  constructor(public linemanagerService: AdminOrganizationService, public dialog: MatDialog) { }
+  constructor(public linemanagerService: AdminOrganizationService, public dialog: MatDialog) { 
+    this.assignnLinemanager = new FormGroup({
+      linemanager: new FormControl('')
+    })
+  }
 
   ngOnInit(): void {
     console.log(this.employeeid._id);
@@ -30,8 +37,13 @@ export class ForwardToLinemanagerDialogComponent implements OnInit {
     .subscribe(respObj => {
       this.lm = respObj.data;
     })
-    console.log(this.lm.id);
-    this.displayedColumns = ['name', 'action'];
+    
+    // this.displayedColumns = ['name', 'action'];
+  }
+
+  getcompanyid(id) {
+    this.data1 = id;
+    console.log('hiii'+ this.data1);
   }
   methodtype;
   openDialog() {
@@ -39,10 +51,10 @@ export class ForwardToLinemanagerDialogComponent implements OnInit {
     });
     dialogRef.componentInstance.methodType = this.methodtype;
   }
-  assignLinemanager(id: number) {
-    $('ul').on('click', '.click_me', function(){
-      $(this).toggleClass('active').siblings().removeClass('active');   // <--- The trick!
-  })
+  assignLinemanager() {
+  //   $('ul').on('click', '.click_me', function(){
+  //     $(this).toggleClass('active').siblings().removeClass('active');   // <--- The trick!
+  // })
 // document.getElementById(i).style.background="red"
 // document.getElementById(JSON.stringify(i-1)).classList.remove("mystyle");
 // $('.click_me').click(function() {
@@ -70,7 +82,7 @@ if(this.employeeid.firstName == ''  || this.employeeid.lastName == '' || this.em
       // "assignedId":this.employeeid.assignedId,
       // "status": "false"
     }
-    this.assignLinemanagerSubscription = this.linemanagerService.assignLinemanager(this.employeeid._id, id, data).subscribe(resp => 
+    this.assignLinemanagerSubscription = this.linemanagerService.assignLinemanager(this.employeeid._id, this.data1, data).subscribe(resp => 
       { 
         if(resp.status == 409){
         this.methodtype = 'already Assiged';

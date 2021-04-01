@@ -1,34 +1,22 @@
 <!-- <p>forward-to-linemanager-dialog works!</p> -->
 
 <div>
-         <p>Line Managers</p>
-<table style="width:100%" >
-    <!-- <tr>
-      <th>Line Managers</th>
-    </tr> -->
-    <tr>
-      <ul> <li  *ngFor="let item of lm; let i = index" cursor-pointer>
+         <p>Line Managers</p><br><br>     
+         <mat-label>To</mat-label><br>
+     <mat-select  class="br-btm input-w pt-5">
+
+     <mat-option  value="1">Select</mat-option>
+     <mat-option (click)="getcompanyid(item._id)" *ngFor="let item of lm; let i=index" value={{item._id}}>
          
-    <div class="lm click_me" (click)="assignLinemanager(item._id)">
-       <span > {{item.firstName}} {{item.lastName}} </span>
-    </div>
-         </li> </ul>
+    <!-- <div class="lm click_me" (click)="assignLinemanager(item._id)"> -->
+    {{item.firstName}} {{item.lastName}}
+    <!-- </div> -->
+         </mat-option> 
+        </mat-select><br>
 
-         <!-- <ul>
-            <li class="click_me"  *ngFor="let item of lm; let i = index">
-                <div class="lm click_me" (click)="assignLinemanager(item._id)">
-                    <span > {{item.firstName}} {{item.lastName}} </span>
-                 </div>
-            </li>
-          </ul> -->
-
-    <!-- <td>    <button>send</button></td>  -->
-   </tr>
-  </table>
-  <!-- <div class="close" mat-dialog-actions>
-    <button class="cls" mat-button mat-dialog-close>close</button>
-  </div>
-  <button mat-raised-button color="primary" class="send">Send</button> -->
-  <button mat-button mat-dialog-close style="top: 10px">Close</button>
-      <button mat-raised-button color="primary"  style="top: 10px" class="send">Forward</button>
+  <button mat-button mat-dialog-close style="top: 160px" class="close">Close</button>
+ 
+       <!-- <div *ngFor="let item of lm; let i=index"> -->
+  <button mat-raised-button style="top: 160px" (click)="assignLinemanager()" class="send">Forward</button>
 </div>
+<!-- </div> -->

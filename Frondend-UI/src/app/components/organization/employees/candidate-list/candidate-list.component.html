@@ -95,10 +95,14 @@
 
         <td mat-cell *matCellDef="let row">
           <a (click)="forwordToLinemanager(row)" *ngIf="row.status == false && logiuser =='admin'">
-            <span class="bg-black text-white pt-2 pb-2 pl-1 w-8 pr-1 " >Forward</span>
+            <span class="bg-black text-white pt-2 pb-2 pl-1 w-8 pr-1 " ><span class="material-icons Forward">
+              arrow_forward
+              </span>Forward</span>
           </a>
           <a (click)="showBGVReport(row._id)" *ngIf="row.status == true">
-            <span class="bg-black text-white pt-2 pb-2 pl-1  pr-1 " >Send Feedback</span>
+            <span class="bg-black text-white pt-2 pb-2 pl-1  pr-1 " ><span class="material-icons">
+              mail_outline
+              </span>Send Feedback</span>
           </a>
         </td>
         <!-- <td mat-cell *matCellDef="let row">
