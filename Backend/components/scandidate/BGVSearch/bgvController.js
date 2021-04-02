@@ -291,25 +291,30 @@ module.exports.searchIconOrganizationInstitute = async (req, res, next) => {
   var orgJson = [];
   var instJson = [];
 
-  if (orgReq.length > 0) {
-    try {
-      for (var i = 0; i < orgReq.length; i++) {
-        let result = await organizationDAL.getOrganisationByIdNew(orgReq[i]);
-        orgJson.push(result);
+
+  if (orgReq) {
+    if (orgReq.length > 0) {
+      try {
+        for (var i = 0; i < orgReq.length; i++) {
+          let result = await organizationDAL.getOrganisationByIdNew(orgReq[i]);
+          orgJson.push(result);
+        }
+      } catch (err) {
+        return next(new AppError(err, 400));
       }
-    } catch (err) {
-      return next(new AppError(err, 400));
     }
   }
 
-  if (instReq.length > 0) {
-    try {
-      for (var i = 0; i < instReq.length; i++) {
-        let result = await instituionDAL.getInstituteByIdNew(instReq[i]);
-        instJson.push(result);
+  if (instReq) {
+    if (instReq.length > 0) {
+      try {
+        for (var i = 0; i < instReq.length; i++) {
+          let result = await instituionDAL.getInstituteByIdNew(instReq[i]);
+          instJson.push(result);
+        }
+      } catch (err) {
+        return next(new AppError(err, 400));
       }
-    } catch (err) {
-      return next(new AppError(err, 400));
     }
   }
 
