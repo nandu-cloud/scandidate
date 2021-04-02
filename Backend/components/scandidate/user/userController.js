@@ -66,6 +66,14 @@ module.exports.getAllMethod = async function (req, res, next) {
   const data = {};
   try {
     let userData = await userDAL.getAllUsers(data);
+    userData.map((e) => {
+      if (e.subRole === "ADMIN") {
+        e.subRole = "ADMIN HR ";
+      }
+      if (e.subRole === "OPERATIONAL_USER") {
+        e.subRole = "LINE HR ";
+      }
+    });
     return res
       .status(200)
       .json({ status: "SUCCESS", message: null, data: userData });

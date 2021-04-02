@@ -31,8 +31,8 @@ const addEmployeeSchema = Joi.object({
   role: Joi.string().allow("").allow(null),
   department: Joi.string().allow("").allow(null),
   address: Joi.string().allow("").allow(null),
-  dateOfBirth: Joi.string().allow("").allow(null),
-  adharNumber: Joi.string().allow("").allow(null),
+  dateOfBirth: Joi.string().allow("").error(new Error("Date of birth can't be null")),
+  adharNumber: Joi.string().allow("").error(new Error("Adharnumber can't be null")),
   panNumber: Joi.string().allow("").allow(null),
 
   //Work Ethic

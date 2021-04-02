@@ -64,6 +64,14 @@ module.exports.getAllMethod = async function (req, res, next) {
       institutionId: mongoose.Types.ObjectId(req.params.instituteId),
     };
     let userData = await userDAL.getAllUsers(data);
+    userData.map((e) => {
+      if (e.subRole === "ADMIN") {
+        e.subRole = "ADMIN HR ";
+      }
+      if (e.subRole === "OPERATIONAL_USER") {
+        e.subRole = "LINE HR ";
+      }
+    });
     if (!userData) return next(new AppError("user does not exists!", 404));
     return res.status(200).json({
       status: "SUCCESS",
