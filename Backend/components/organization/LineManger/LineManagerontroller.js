@@ -1,14 +1,31 @@
 const AppError = require("../../../helpers/appError");
 const colors = require("../../../helpers/colors");
 const lineManagerDAL = require("./LineManagerDAL");
+const empDAL = require('../OppsUser/AddEmployee/employeeDAL');
 
 module.exports.showEmployeeAssignedDetails = async (req, res, next) => {
   const id = req.params.id;
   try {
-    let result = await lineManagerDAL.getEmp(id);
-    var result1 = result;
-    // console.log(result1);
-    let resultData = result1.sort((a) => {
+    let empData = await lineManagerDAL.getEmp(id);
+    let getEmById = await empDAL.getEmployeByAddedById(id);
+
+    for (var i = 0; i < getEmById.length; i++) {
+      var getEmail = getEmById[i].email;
+      for (var j = 0; j < empData.length; j++) {
+        var getEmail2 = empData[j].email;
+        if (getEmail === getEmail2) {
+          empData.splice(j, 1);
+        }
+      }
+    }
+
+    let result = empData.concat(getEmById);
+
+    let r = result.sort((a, b) => {
+      return b.createdAt - a.createdAt;
+    })
+
+    let resultData = r.sort((a) => {
       if (!a.status) {
         return -1;
       }

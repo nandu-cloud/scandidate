@@ -9,7 +9,7 @@ const addEmployeeSchema = Joi.object({
   dateOfJoining: Joi.date().required().error(new Error('Date of joining is required')),
   exitDate: Joi.date().required().error(new Error('Date of exit is required')),
   addedById: Joi.string().required().error(new Error('Added by Id is required')),
-  organisationId: Joi.string().required().error(new Error('Organization Id is required')),
+  organisationId: Joi.string().required().error(new Error('Organization name is required')),
   organizationName: Joi.string().required().error(new Error('Organization name is required')),
   status: Joi.boolean().allow("").allow(null),
 
@@ -78,7 +78,7 @@ const updateEmployeeSchema = Joi.object({
   dateOfJoining: Joi.date().required().error(new Error('Date of joining is required')),
   exitDate: Joi.date().required().error(new Error('Date of exit is required')),
   addedById: Joi.string().required().error(new Error('Added by Id is required')),
-  organisationId: Joi.string().required().error(new Error('Organization Id is required')),
+  organisationId: Joi.string().required().error(new Error('Organization name is required')),
   organizationName: Joi.string().required().error(new Error('Organization name is required')),
   status: Joi.boolean().allow("").allow(null),
 

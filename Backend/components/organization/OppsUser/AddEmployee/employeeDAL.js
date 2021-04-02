@@ -83,6 +83,15 @@ async function search_employee_list(data) {
   }
 }
 
+async function getEmployeByAddedById(data) {
+  try {
+    let result = await employeeModel.find({ addedById: data });
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
 // export functions
 module.exports = {
   addEmployee: addEmployee,
@@ -90,4 +99,5 @@ module.exports = {
   search_employee_list: search_employee_list,
   getEmplyeeById: getEmplyeeById,
   updateEmployee: updateEmployee,
+  getEmployeByAddedById: getEmployeByAddedById
 };
