@@ -25,23 +25,23 @@
    
     <!-- Name Column -->
     <ng-container matColumnDef="firstName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>User Name</mat-header-cell>>
-      <mat-cell *matCellDef="let row">{{row.firstName}} {{row.lastName}}</mat-cell>>
+      <mat-header-cell *matHeaderCellDef>User Name</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.firstName}} {{row.lastName}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="role">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Entity Type</mat-header-cell>>
-      <mat-cell *matCellDef="let row">{{row.role | titlecase}}</mat-cell>>
+      <mat-header-cell *matHeaderCellDef>Entity Type</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.role | titlecase}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="subRole">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Role</mat-header-cell>>
-      <mat-cell *matCellDef="let row">{{row.subRole | titlecase}}</mat-cell>>
+      <mat-header-cell *matHeaderCellDef>Role</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.subRole | titlecase}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="email">
-      <mat-header-cell *matHeaderCellDef mat-sort-header >Email</mat-header-cell>>
-      <mat-cell *matCellDef="let row">{{row.email}}</mat-cell>>
+      <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.email}}</mat-cell>
     </ng-container>
 
     <!-- <ng-container matColumnDef="dateOfBirth">
@@ -50,19 +50,19 @@
     </ng-container> -->
 
     <ng-container matColumnDef="phoneNumber">
-      <mat-header-cell *matHeaderCellDef mat-sort-header class="flex justify-end" style="margin-left: -50px;">User Contact</mat-header-cell>>
+      <mat-header-cell *matHeaderCellDef class="flex justify-end" style="margin-left: -50px;">User Contact</mat-header-cell>>
       <mat-cell *matCellDef="let row"  class="flex justify-end" style="margin-left: -40px;">{{row.phoneNumber}}</mat-cell>>
     </ng-container>
 
    
 
     <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef mat-sort-header class="flex justify-center" >Status</mat-header-cell>>
+      <mat-header-cell *matHeaderCellDef class="flex justify-center" >Status</mat-header-cell>
       <mat-cell *matCellDef="let row"  class="flex justify-end"><span class="bg-green-500 text-white pt-2 pb-2 pl-4 pr-4 w-24 text-center text-bold capitalize" [ngStyle]="{'background-color':row.status == true ? 'green' : 'blue' }">{{(row.status)?"Active":"Inactive"}}</span></mat-cell>>
     </ng-container>
 
     <ng-container matColumnDef="action" >
-      <mat-header-cell *matHeaderCellDef mat-sort-header class="flex justify-center">Action</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef class="flex justify-center">Action</mat-header-cell>
       <mat-cell *matCellDef="let row" class="flex justify-center"><a [routerLink]="['/add-appuser',row._id]"><mat-icon class="action" (click)=edit(row._id)><span class="bg-black text-white p-1 mr-10 cursor-pointer">edit</span></mat-icon>{{row.action}}</a></mat-cell>>
     </ng-container>
 
@@ -72,7 +72,7 @@
     </mat-row>
     <div class="p-4" *matNoDataRow>
       <p>No data matching the filter.</p>
-    </div>
+    </div> 
   </table>
 
   <mat-paginator [length]="100"

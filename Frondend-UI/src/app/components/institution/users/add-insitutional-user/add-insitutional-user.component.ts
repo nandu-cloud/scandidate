@@ -112,9 +112,9 @@ export class DialogElementsExampleDialog implements OnInit{
   ngOnInit(){
     console.log(this.metrhodType)
     if(this.metrhodType == 'update'){
-      this.Message="Users onboarded Updated successfully"
+      this.Message="User Updated successfully"
     }else{
-      this.Message="Users onboarded Created successfully"
+      this.Message="User Created successfully"
 
     }
   }
