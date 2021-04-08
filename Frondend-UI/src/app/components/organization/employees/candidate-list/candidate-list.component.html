@@ -128,17 +128,26 @@
           <span class="mobile-label">
             Mail
           </span>
-          <a class="" style="width: 100%;" (click)="forwordToLinemanager(row)" *ngIf="row.status == false && logiuser =='admin'">
-            <span class="forwardd" >
+          <span class="mail bg-black text-white text-bold">
+          <a class="forwardd" (click)="forwordToLinemanager(row)" *ngIf="row.status == false && logiuser =='admin'">
+            <span class="numsicons">
               <mat-icon class="ico">forward</mat-icon>
               Forward</span>
           </a>
-          <a class="seend" (click)="showBGVReport(row._id)" *ngIf="row.status == true">
-            <span class="bg-black text-white pt-2 pb-2 pl-1  pr-1 " >
-              <span class="material-icons">
+          <a class="forwarddd" (click)="showBGVReport(row._id)" *ngIf="row.status == true">
+            <!-- <span class="nums">
+              <span class="numsicon material-icons">
                 email
-                </span>Send Feedback</span>
+                </span>
+                Send Feedback
+              </span> -->
+              <span class="numsiconss">
+                <span class="material-icons">email</span>
+                Send Feedback</span>
+          
+              
           </a>
+          </span>
         </td>   
         <!-- <td mat-cell *matCellDef="let row">
           <a *ngIf="row.status == false">
