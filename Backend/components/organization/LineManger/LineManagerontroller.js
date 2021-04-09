@@ -53,7 +53,7 @@ module.exports.assignedDataTolineManager = async (req, res, next) => {
       let result3 = await lineManagerDAL.addAssignedLineManager(result);
       if (!result3) return next(new AppError('Something went wrong'))
       let { firstName, lastName } = await lineManagerDAL.findassignUser(linemgrId);
-      return res.json({ status: 200, message: `Successfully assigned to ${firstName + ' ' + lastName}` });
+      return res.json({ status: 200, message: `Successfully assigned to ${firstName + ' ' + lastName}`, data: result });
     } else {
       return res.json({ status: 409, error: 'Already assigned' });
     }
