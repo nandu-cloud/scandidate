@@ -498,6 +498,23 @@ export class AddCandidateComponent implements OnInit {
       this.dis = false;
       }
     }
+    if(sessionStorage.getItem('subRole')=='LINE MANAGER') {
+      this.count = true;
+      this.savenowSubscription = this.empService.savenowEmployee({
+        ...this.firstFormGroup.value, ...this.secondFormGroup.value,
+        ...this.thirdFormGroup.value, ...this.fourthFormGroup.value, ...this.fifthFormGroup.value,
+        ...this.sixthFormGroup.value
+      })
+        .subscribe(resp => {
+          // console.log(this.createCandidate.value);
+          this.methodtype = 'save';
+          this.openDialog();
+        }, err => {
+          this.setMessage = { message: err.error.message, error: true };
+          this.error = this.setMessage.message;
+          throw this.setMessage.message;
+        })
+    }
     if(this.firstFormGroup.valid){
     this.count = true;
       this.savenowSubscription = this.empService.savenowEmployee({

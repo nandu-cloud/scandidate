@@ -213,14 +213,15 @@ th {
       background-color: black;
     }
     .add1 {
-      margin: 1px 111px;
-      padding-left: 66px !important;
+      margin: 1px 62px;
+    padding-left: 40px !important;
+
     }
     .org{
       margin-left: -43px;font-weight:bold;padding-top:11px;font-size: 15px;
     }
     .search-box{
-      padding-left: 95px;
+      padding-left: 82px;
     }
 }
 @media (min-width: 1440px) {
@@ -230,7 +231,7 @@ th {
     padding-right: 40px;
   }
   .search-box{
-    padding-left: 298px;
+    padding-left: 224px;
   }
   .org{
     padding-left:51px;font-weight:bold;padding-top:11px;font-size: 15px;
@@ -241,9 +242,9 @@ th {
   padding: 5px 0px 10px;
   }
   .add1 {
-    margin: 1px 191px;
-    padding-left: 132px !important;
-  }
+    margin: 1px 66px;
+    padding-left: 97px !important;
+}
 }
 .material-icons{
   display: inline-flex;

@@ -1,6 +1,6 @@
 <!-- <p>forward-to-linemanager-dialog works!</p> -->
 
-<div>
+<form [formGroup]="assignnLinemanager">
          <p>Line Managers</p><br><br>     
          <mat-label>To</mat-label><br>
      <mat-select  class="br-btm input-w pt-5">
@@ -14,9 +14,9 @@
          </mat-option> 
         </mat-select><br>
 
-  <button mat-button mat-dialog-close style="top: 160px" class="close">Close</button>
+  <button mat-button mat-dialog-close style="top: 160px" class="close" (click)="close()">Close</button>
  
        <!-- <div *ngFor="let item of lm; let i=index"> -->
-  <button mat-raised-button style="top: 160px" (click)="assignLinemanager()" class="send">Forward</button>
-</div>
+  <button type="button" mat-raised-button style="top: 160px" (click)="assignLinemanager()" class="send">Forward</button>
+</form>
 <!-- </div> -->
