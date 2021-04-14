@@ -2,15 +2,15 @@ const Joi = require("joi");
 
 const addEmployeeSchema = Joi.object({
   //Required Fields
-  firstName: Joi.string().required().error(new Error('First name is required')),
-  lastName: Joi.string().required().error(new Error('Last name is required')),
-  email: Joi.string().email().required().error(new Error('Email is required')),
-  phoneNumber: Joi.string().required().error(new Error('Phone number is required')),
-  dateOfJoining: Joi.date().required().error(new Error('Date of joining is required')),
-  exitDate: Joi.date().required().error(new Error('Date of exit is required')),
-  addedById: Joi.string().required().error(new Error('Added by Id is required')),
-  organisationId: Joi.string().required().error(new Error('Organization name is required')),
-  organizationName: Joi.string().required().error(new Error('Organization name is required')),
+  firstName: Joi.string().required().messages({ "any.required": 'First name is required' }),
+  lastName: Joi.string().required().messages({ "any.required": "Last name is required" }),
+  email: Joi.string().email().required().messages({ 'any.required': 'Email is required' }),
+  phoneNumber: Joi.string().required().messages({ 'any.required': 'Phone number is required' }),
+  dateOfJoining: Joi.date().required().messages({ 'any.required': 'Date of joining is required' }),
+  exitDate: Joi.date().required().messages({ 'any.required': 'Date of exit is required' }),
+  addedById: Joi.string().required().messages({ 'any.required': 'Added by name is required' }),
+  organisationId: Joi.string().required().messages({ 'any.required': 'Organization name is required' }),
+  organizationName: Joi.string().required().messages({ 'any.required': 'Organization name is required' }),
   status: Joi.boolean().allow("").allow(null),
 
   //Issues
@@ -31,8 +31,8 @@ const addEmployeeSchema = Joi.object({
   role: Joi.string().allow("").allow(null),
   department: Joi.string().allow("").allow(null),
   address: Joi.string().allow("").allow(null),
-  dateOfBirth: Joi.string().allow("").error(new Error("Date of birth can't be null")),
-  adharNumber: Joi.string().allow("").error(new Error("Adharnumber can't be null")),
+  dateOfBirth: Joi.string().allow(""),
+  adharNumber: Joi.string().allow(""),
   panNumber: Joi.string().allow("").allow(null),
 
   //Work Ethic
@@ -71,15 +71,15 @@ const addEmployeeSchema = Joi.object({
 });
 const updateEmployeeSchema = Joi.object({
   //Required Fields
-  firstName: Joi.string().required().error(new Error('First name is required')),
-  lastName: Joi.string().required().error(new Error('Last name is required')),
-  email: Joi.string().email().required().error(new Error('Email is required')),
-  phoneNumber: Joi.string().required().error(new Error('Phone number is required')),
-  dateOfJoining: Joi.date().required().error(new Error('Date of joining is required')),
-  exitDate: Joi.date().required().error(new Error('Date of exit is required')),
-  addedById: Joi.string().required().error(new Error('Added by Id is required')),
-  organisationId: Joi.string().required().error(new Error('Organization name is required')),
-  organizationName: Joi.string().required().error(new Error('Organization name is required')),
+  firstName: Joi.string().required().messages({ "any.required": 'First name is required' }),
+  lastName: Joi.string().required().messages({ "any.required": "Last name is required" }),
+  email: Joi.string().email().required().messages({ 'any.required': 'Email is required' }),
+  phoneNumber: Joi.string().required().messages({ 'any.required': 'Phone number is required' }),
+  dateOfJoining: Joi.date().required().messages({ 'any.required': 'Date of joining is required' }),
+  exitDate: Joi.date().required().messages({ 'any.required': 'Date of exit is required' }),
+  addedById: Joi.string().required().messages({ 'any.required': 'Added by name is required' }),
+  organisationId: Joi.string().required().messages({ 'any.required': 'Organization name is required' }),
+  organizationName: Joi.string().required().messages({ 'any.required': 'Organization name is required' }),
   status: Joi.boolean().allow("").allow(null),
 
   professionalExperience: Joi.string().allow("").allow(null),
@@ -92,8 +92,8 @@ const updateEmployeeSchema = Joi.object({
   role: Joi.string().allow("").allow(null),
   department: Joi.string().allow("").allow(null),
   address: Joi.string().allow("").allow(null),
-  dateOfBirth: Joi.string().allow("").allow(null),
-  adharNumber: Joi.string().allow("").allow(null),
+  dateOfBirth: Joi.string().allow(""),
+  adharNumber: Joi.string().allow(""),
   panNumber: Joi.string().allow("").allow(null),
 
   //Work Ethic
