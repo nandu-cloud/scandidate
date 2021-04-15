@@ -55,17 +55,16 @@ module.exports.getAllMethod = async (req, res, next) => {
 
     let result = employeeData.concat(incompleteData);
 
-    let r = result.sort((a, b) => {
+    // let r = result.sort((a, b) => {
+    //   return b.createdAt - a.createdAt;
+    // })
+
+
+
+    let resultData = result.sort((a, b) => {
       return b.createdAt - a.createdAt;
-    })
-
-
-
-    let resultData = r.sort((a) => {
-      if (!a.status) {
-        return -1;
-      }
     });
+
     return res
       .status(200)
       .json({ status: "SUCCESS", message: null, data: resultData });

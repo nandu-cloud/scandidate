@@ -52,6 +52,7 @@ async function findDuplicate(empId, linemgrId) {
 }
 
 
+
 module.exports = {
   getEmp: getEmp,
   fetchData: fetchData,

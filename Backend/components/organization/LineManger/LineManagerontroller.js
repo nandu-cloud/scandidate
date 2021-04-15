@@ -21,15 +21,14 @@ module.exports.showEmployeeAssignedDetails = async (req, res, next) => {
 
     let result = empData.concat(getEmById);
 
-    let r = result.sort((a, b) => {
-      return b.createdAt - a.createdAt;
-    })
+    // let r = result.sort((a, b) => {
+    //   return b.createdAt - a.createdAt;
+    // })
 
-    let resultData = r.sort((a) => {
-      if (!a.status) {
-        return -1;
-      }
+    let resultData = result.sort((a, b) => {
+      return b.createdAt - a.createdAt;
     });
+
     if (!result) return next(new AppError("user does not exists!", 404));
     return res
       .status(200)
@@ -50,14 +49,28 @@ module.exports.assignedDataTolineManager = async (req, res, next) => {
       let result = await lineManagerDAL.fetchData(empId);
       if (!result) return next(new AppError('User not found', 400))
       result.assignedId = linemgrId;
+      let { firstName, lastName } = await lineManagerDAL.findassignUser(linemgrId);
       let result3 = await lineManagerDAL.addAssignedLineManager(result);
       if (!result3) return next(new AppError('Something went wrong'))
-      let { firstName, lastName } = await lineManagerDAL.findassignUser(linemgrId);
       return res.json({ status: 200, message: `Successfully assigned to ${firstName + ' ' + lastName}`, data: result });
     } else {
       return res.json({ status: 409, error: 'Already assigned' });
     }
   } catch (err) {
     return next(new AppError('Unable to fetch data', 400))
+  }
+}
+
+module.exports.checkLineManager = async (req, res, next) => {
+  const empId = req.params.empId;
+  try {
+    let { assignedId } = await lineManagerDAL.fetchData(empId);
+    if (assignedId) {
+      let { firstName, lastName } = await lineManagerDAL.findassignUser(assignedId);
+      return res.status(200).json({ status: 200, data: 'success', message: `Employee already assigned to ${firstName + " " + lastName}` });
+    }
+
+  } catch (err) {
+    return next(new AppError(err, 400));
   }
 }

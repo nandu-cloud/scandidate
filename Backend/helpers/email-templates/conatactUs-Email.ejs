@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="user-creation" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background-color: #fafafa;
+      }
+      .card {
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+        border: 1px solid #e4e4e4;
+        border-radius: 3px;
+        background-color: white;
+        margin: 25px;
+      }
+      .card-header {
+        border-top: 3px solid rgb(108, 180, 59);
+      }
+      .card-content {
+        padding: 10px 60px 0;
+      }
+      .card-footer {
+        border-top: 1px dashed rgb(108, 180, 59);
+        padding: 10px 10px 10px;
+      }
+      td {
+        border: 1px dashed #6cb43b;
+        padding: 10px;
+      }
+      .capitalize {
+        text-transform: capitalize;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="card">
+      <div class="card-header">
+        <img
+          style="margin-left: 45%"
+          width="128"
+          height="128"
+          src="<%= logo %>"
+          alt="logo"
+        />
+      </div>
+      <div class="card-content">
+        <table cellpadding="0" cellspacing="0">
+          <tbody>
+            <tr>
+              <td><b>Name</b></td>
+              <!-- <td><%= firstName %> <%= lastName %></td> -->
+              <td>:</td>
+              <td><%=firstName %> &nbsp;<%=lastName%></td>
+            </tr>
+            <tr>
+              <td><b>Email</b></td>
+              <td>:</td>
+              <td><%= email %></td>
+            </tr>
+            <tr>
+                <td><b>Phone number</b></td>
+                <td>:</td>
+                <td><%=phoneNumber%></td>
+            </tr>
+            <tr>
+                <td><b>Designation</b></td>
+                <td>:</td>
+                  <td>
+                    <%=designation%>
+                  </td>
+            </tr>
+            <tr>
+                <td><b>Organization </b></td>
+                <td>:</td>
+                <td><%=organization%></td>
+            </tr>
+            <tr>
+                <td><b>Enquiry</b></td>
+                <td>:</td>
+                <td><%=enquiry%></td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        <br />
+      </div>
+      <div class="card-footer">
+        <p>
+          Regards,<br />
+          <b>Scandidate.in</b>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
