@@ -14,7 +14,7 @@ module.exports.savecontactus = async (req, res, next) => {
         if (!result) return next(new AppError('Something went wrong', 400));
         let template = data;
         template.toemail = process.env.FIRSTPERSONID;
-        template.logo = `${process.env.FRONT_END_URL}/logo1.png`;
+        template.logo = `${process.env.FRONT_END_URL}/assets/images/logo1.png`;
         template.toemailsecondary = process.env.SECONDPERSONID;
         template.subject = "Contact us form details";
 

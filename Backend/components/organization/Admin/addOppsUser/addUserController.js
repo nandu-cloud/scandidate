@@ -35,7 +35,7 @@ module.exports.createOppsUserMethod = async function (req, res, next) {
       }
 
       let template = userData;
-      template.logo = `${process.env.FRONT_END_URL}/logo1.png`;
+      template.logo = `${process.env.FRONT_END_URL}/assets/images/logo1.png`;
       template.password = data.phoneNumber.toString();
       template.url = `${process.env.FRONT_END_URL}`;
       template.subject = "Welcome to Scandidate!";

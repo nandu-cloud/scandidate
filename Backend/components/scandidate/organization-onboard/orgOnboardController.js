@@ -16,7 +16,7 @@ module.exports.onboardOrganisationMethod = async function (req, res, next) {
     await orgnisationValidator.organisationCreationSchema.validateAsync(data);
     let organisationData = await orgnisationDAL.onboardOrganisation(data);
     let template = organisationData;
-    template.logo = `${process.env.FRONT_END_URL}/logo1.png`;
+    template.logo = `${process.env.FRONT_END_URL}/assets/images/logo1.png`;
     template.email = organisationData.organisationEmail;
     template.subject = `Welcome to scandidate.`;
     try {

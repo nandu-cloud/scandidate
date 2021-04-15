@@ -30,7 +30,7 @@ module.exports.createUserMethod = async function (req, res, next) {
     try {
       let userData = await userDAL.createUser(data);
       let template = userData;
-      template.logo = `${process.env.FRONT_END_URL}/logo1.png`;
+      template.logo = `${process.env.FRONT_END_URL}/assets/images/logo1.png`;
       template.password = data.phoneNumber.toString();
       template.url = `${process.env.FRONT_END_URL}`;
       template.subject = "Welcome to Scandidate!";

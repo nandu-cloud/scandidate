@@ -73,7 +73,7 @@ module.exports.sendOTPEmail = async function (req, res, next) {
       return next(new AppError("The user email does not exists !", 404));
 
     userData.otp = Math.floor(1000 + Math.random() * 9000);
-    userData.logo = `${process.env.FRONT_END_URL}/logo1.png`;
+    userData.logo = `${process.env.FRONT_END_URL}/assets/images/logo1.png`;
     userData.url = `${process.env.FRONT_END_URL}`;
     let html = `Please find the OTP below to reset your password:\nOTP : ${userData.otp}\nThanks & Regards\nScandidate.in`;
     try {

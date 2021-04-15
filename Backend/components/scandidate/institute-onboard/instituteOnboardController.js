@@ -16,7 +16,7 @@ module.exports.onboardInstituteMethod = async function (req, res, next) {
     await instituteValidator.instituteCreationSchema.validateAsync(data);
     let instituteData = await instituteDAL.onboardInstitute(data);
     let template = instituteData;
-    template.logo = `${process.env.FRONT_END_URL}/logo1.png`;
+    template.logo = `${process.env.FRONT_END_URL}/assets/images/logo1.png`;
     template.email = instituteData.instituteEmail;
     template.subject = `Welcome to scandidate.`;
     try {
