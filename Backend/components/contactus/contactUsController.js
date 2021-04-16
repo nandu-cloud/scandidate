@@ -12,7 +12,7 @@ module.exports.savecontactus = async (req, res, next) => {
         await dataValidator.contactUsCreationSchema.validateAsync(data);
         let result = await contactUsDAL.saveContactUs(data);
         if (!result) return next(new AppError('Something went wrong', 400));
-        let template = data;
+        let template = result.toObject();
         template.toemail = process.env.FIRSTPERSONID;
         template.logo = `${process.env.FRONT_END_URL}/assets/images/logo1.png`;
         template.toemailsecondary = process.env.SECONDPERSONID;

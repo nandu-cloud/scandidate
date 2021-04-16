@@ -27,7 +27,7 @@ const contactUs = new Schema({
     },
     enquiry: {
         type: String,
-        required: [true, "Inquiry is required"]
+        required: [true, "Enquiry is required"]
     }
 }, { timestamps: true })
 
