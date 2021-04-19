@@ -109,7 +109,7 @@
                     firstFormGroup.get('phoneNumber').errors?.pattern
                   "
                 >
-                  Please enter valid mumber
+                  Please enter valid phone mumber
                 </mat-error>
               </mat-form-field>
               <mat-form-field>
@@ -358,6 +358,7 @@
              
               <div formGroupName= "reasonForSerperation">
                 <!-- <mat-form-field> -->
+               <div class="reason"> 
               <mat-label > Reason for Separation</mat-label>&nbsp;
               
               <mat-radio-group
@@ -366,11 +367,12 @@
                 <mat-radio-button value="voluntary">voluntary</mat-radio-button>
                 <mat-radio-button value="inVoluntary">In-Voluntary</mat-radio-button>
               </mat-radio-group>
+            </div> 
               <!-- </mat-form-field> -->
               
               <div *ngIf="firstFormGroup.get('reasonForSerperation.IsSelect').value == 'voluntary'">
                 <mat-form-field>
-                <mat-select class="br-btm input-w pt-4" tabindex="11" formControlName="voluntaryReason">
+                <mat-select class="dropdon br-btm input-w pt-4" tabindex="11" formControlName="voluntaryReason">
                 <mat-option  value="1">Select</mat-option>
                 <mat-option  value="2">Work Life Balance</mat-option>
                 <mat-option  value="3">Concerns With Manager</mat-option>

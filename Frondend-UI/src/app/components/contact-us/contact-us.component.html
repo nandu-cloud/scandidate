@@ -1,0 +1,112 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+    <img width="45" class="md:ml-5" src="./../../../assets/images/logo1.png" />
+    <span class="spacer"></span>
+    <ul class="flex flex-row items-end">
+      <li class="md:pr-10 pr-1 md:text-xl text-xs"><a routerLink="/landing-page"> Home </a></li>
+      <li class="md:pr-10 pr-1 md:text-xl text-xs"><a routerLink="/why-scandidate">Why?</a></li>
+      <li class="md:pr-10 pr-1 md:text-xl text-xs"><a routerLink="/for-organization">For Organization</a></li>
+      <li class="md:pr-10 pr-1 md:text-xl text-xs"><a routerLink="/contact-us" class="active">Contact Us</a></li>
+      <li class="md:pr-10 pr-1 md:text-xl text-xs"><a routerLink="/about-us">About Us</a></li>
+  </ul>
+  
+    <a
+      class="button"
+      aria-label="Example icon-button with share icon"
+      routerLink="/login" >
+      Partner Login
+    </a>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+      <span class="toolbar tool"><a href="https://www.inventiway.in/">A product by Inventiway</a></span>
+    </mat-toolbar-row>
+   
+  </mat-toolbar>
+  <section>
+    <!-- <div class="lg:pl-64 pl-12 md:pl-48 bg-white"> -->
+    <form  class="profile-form lg:pl-64 pl-12 pt-4 md:pl-48 pt-4" [formGroup]="contactForm" >
+        <!-- <h1 class="hd-add pb-6">Contact Us</h1> -->
+        <div class="flex flex-wrap">
+            <div class="w-full md:w-1/2 sm:w-full">
+                <mat-form-field>
+                    <mat-label>First Name</mat-label>
+                    <input  matInput type="text"  formControlName="firstName"  name="fname" tabindex="1" class="br-btm" required autoComplete='off'>
+                    <mat-error
+                    *ngIf="contactForm.get('firstName').errors?.required">
+                    First Name is required
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input  matInput   type="text"  name="email"  formControlName="email" tabindex="3" class="br-btm input-w" required autoComplete='off'>
+                    <mat-error *ngIf="contactForm.get('email').errors?.required">
+                        Required email address
+                      </mat-error>
+                      <mat-error *ngIf="contactForm.get('email').errors?.email">
+                        Enter a valid email address
+                      </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Designation</mat-label>
+                    <input  matInput type="text"  formControlName="designation"  name="fname" tabindex="5" class="br-btm" autoComplete='off'>
+                </mat-form-field>
+                <mat-form-field hintLabel="Max 300 characters">
+                    <mat-label>Enquiry</mat-label>
+                    <textarea  matInput name="caddress" #input maxlength="300" formControlName="enquiry" tabindex="7" class="br-about"  rows="8" autoComplete='off' required></textarea>
+                    <mat-hint align="end">{{input.value?.length || 0}}/300</mat-hint>
+                    <mat-error
+                    *ngIf="contactForm.get('firstName').errors?.required">
+                    Enquiry is required
+                  </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="w-full md:w-1/2 sm:w-full">
+                <mat-form-field>
+                    <mat-label>Last Name</mat-label>
+                    <input  matInput type="text"  name="lname" formControlName="lastName" tabindex="2" class="br-btm input-w" required autoComplete='off'>
+                    <mat-error
+                    *ngIf="contactForm.get('firstName').errors?.required">
+                    Last Name is required
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Phone Number</mat-label>
+                    <input  matInput   type="text"  name="contact" formControlName="phoneNumber" tabindex="4" class="br-btm input-w" required autoComplete='off'>
+                    <mat-error
+                    *ngIf="contactForm.get('phoneNumber').errors?.required"
+                  >
+                    Required phone number.
+                  </mat-error>
+                  <mat-error
+                    *ngIf="
+                      !contactForm.get('phoneNumber').errors?.required &&
+                      contactForm.get('phoneNumber').errors?.pattern
+                    "
+                  >
+                    Please enter valid phone mumber
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Organization</mat-label>
+                    <input  matInput   type="text"  name="contact" formControlName="organization" tabindex="6" class="br-btm input-w" required autoComplete='off'>
+                    <mat-error
+                    *ngIf="contactForm.get('firstName').errors?.required">
+                    Organization is required
+                  </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+  
+        <div class="flex justify-end lg:pr-48">
+            <!-- <a routerLink="/users-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12 mt-12 mb-8" tabindex="8" type="button">
+              Cancel
+            </button></a> -->
+            <button class="lg-button focus:outline-none focus:shadow-outline mt-12 mb-8" tabindex="9" (click)="onSubmit()" type="submit">
+              Submit
+            </button>
+        </div>
+    </form>
+    <!-- </div> -->
+</section>  

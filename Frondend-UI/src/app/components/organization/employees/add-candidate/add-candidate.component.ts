@@ -69,14 +69,16 @@ export class AddCandidateComponent implements OnInit {
   @ViewChild('picker') picker: MatDatepicker<Date>;
   constructor(
     public fb: FormBuilder,
-    private cd: ChangeDetectorRef, public dialog: MatDialog, public route: ActivatedRoute, public empService: EmployeeService,
+    private cd: ChangeDetectorRef,
+     public dialog: MatDialog,
+     public route: ActivatedRoute,
+      public empService: EmployeeService,
     private el: ElementRef
   ) {
     this.route.params.subscribe(params => {
       this.empIdedit = params.id;
       this.empIdsave =params.id;
     });
-
     this.firstFormGroup = new FormGroup({
       _id: new FormControl(),
       firstName: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -349,13 +351,33 @@ export class AddCandidateComponent implements OnInit {
     })
   }
   ngOnInit(): void {
+//     if (this.empIdedit) {
+//     this.editEmployeeSubscription = this.empService.editEmployee(this.empIdedit).subscribe(respObj => {
+//       console.log(respObj.data);
+      
+//     if(sessionStorage.getItem('subRole')=='LINE MANAGER'){
+//       this.logiuser ="linemanager"
+//       this.firstFormGroup.disable()
+//     } 
+//     if(sessionStorage.getItem('subRole')=='LINE MANAGER' && respObj.data.status == true){
+//       this.secondFormGroup.disable()
+//    }
+//   })
+// }
     if(sessionStorage.getItem('subRole')=='LINE MANAGER'){
-      this.firstFormGroup.disable()
-    }
+        this.firstFormGroup.disable()
+      }
     if (this.empIdedit) {
       
       this.editEmployeeSubscription = this.empService.editEmployee(this.empIdedit).subscribe(respObj => {
         console.log(respObj.data);
+        if(sessionStorage.getItem('subRole')=='LINE MANAGER' && respObj.data.status == true){
+          this.secondFormGroup.disable()
+          this.thirdFormGroup.disable()
+          this.fourthFormGroup.disable()
+          this.fifthFormGroup.disable()
+          this.sixthFormGroup.disable()
+       }
         if(respObj.data.status == true) {
           this.submitValue = false;
           this.showSave = false;
@@ -363,6 +385,7 @@ export class AddCandidateComponent implements OnInit {
           this.submitValue = true;
           this.showSave = true;
         }
+         
         this.id = respObj.data._id;
 
         this.firstFormGroup.patchValue(respObj.data);
@@ -397,6 +420,9 @@ export class AddCandidateComponent implements OnInit {
           this.submitValue = true;
           this.showSave = true;
         }
+      //   if(sessionStorage.getItem('subRole')=='LINE MANAGER' && respObj.data.status == true){
+      //     this.secondFormGroup.disable()
+      //  }
         console.log(respObj.data);
         this.id = respObj.data._id;
 
@@ -739,12 +765,12 @@ export class DialogElementsExampleDialog {
   ngOnInit() {
     console.log(this.methodType)
     if (this.methodType == 'update') {
-      this.Message = "Employee  Updated successfully"
+      this.Message = "Ex-Employee  Updated successfully"
     } else if(this.methodType == 'save') {
-      this.Message = "Employee Saved successfully"
+      this.Message = "Ex-Employee Feedback successfully Submitted"
     }
      else {
-      this.Message ="Employee Onboared successfully"
+      this.Message ="Ex-Employee Onboared successfully"
     }
   }
 

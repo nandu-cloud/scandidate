@@ -34,6 +34,7 @@ import { ForOrganizationComponent} from './components/for-organization/for-organ
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ScandidateReportComponent } from './components/scandidate-report/scandidate-report.component';
 import { AppGuard } from '../app/admin/app.guard';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
 const routes: Routes = [
   { path: 'add-organization', component: AddOrganizationComponent ,canActivate: [AppGuard]},
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
   { path: 'for-organization', component: ForOrganizationComponent},
    {path: 'about-us',component:AboutUsComponent},
+   {path: 'contact-us', component: ContactUsComponent},
   { path: 'login', component: LoginComponent },
   { path: 'navbar', component: NavbarComponent ,canActivate: [AppGuard]},
   { path: 'organization-list', component: OrganizationListComponent, canActivate: [AppGuard]},

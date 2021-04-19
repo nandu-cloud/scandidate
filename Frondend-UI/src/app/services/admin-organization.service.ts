@@ -90,11 +90,12 @@ updateUser(updateUser): Observable<any> {
 public getLinemanagerData(): Observable<any> {
   return this.http.get(this.baseUrl + '/api/organisation/admin/show/lineManager');
 }
+public checkLinemanager(empId): Observable<any> {
+  return this.http.get(`${this.baseUrl}/api/organisation/lineManager/checkLinemanagerName/${empId}`);
+  // return this.http.get(this.baseUrl +'/api/organisation/lineManager/checkLinemanagerName/' + empId);
+ 
+}
 
-// public assignLinemanager(id: number, redata): Observable<any> {
-//   return this.http.post(this.baseUrl + '/api/organisation/operational/inprogress/saveNow/' + id, redata);
-    // return this.http.get(`${this.baseUrl}/api/organisation/operational/downloadfile/${employeedocumentlink}`, { responseType: 'blob' });
-    // } 
 public assignLinemanager(empId, linemanagerId, redata): Observable<any> {
   // return this.http.post(`${this.baseUrl}/api/organisation/lineManager/savenow/assigneddata/${empId}/${linemanagerId}`);
      return this.http.post(`${this.baseUrl}/api/organisation/lineManager/savenow/assigneddata/${empId}/${linemanagerId}`, redata);

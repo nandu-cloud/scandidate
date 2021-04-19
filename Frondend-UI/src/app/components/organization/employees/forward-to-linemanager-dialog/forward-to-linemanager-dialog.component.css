@@ -69,3 +69,47 @@ p{
 .close {
   outline: none;
 }
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 100%;
+  height: 106px;
+  margin-left: 0px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding: 11px 7px;
+}
+.yes {
+  left: 237px;
+  top: 19px;
+  outline: none;
+  height: 38px;
+  width: 53px;
+  border-radius: 35px;
+  color: #6cb43b;
+  /* border: 1px solid #6cb43b; */
+  font-size: 15px;
+}
+.yes:hover {
+  background-color: #6cb43b;
+  color: #ffffff;
+}
+.no {
+  left: 242px;
+  top: 19px;
+  height: 38px;
+  width: 53px;
+  border-radius: 35px;
+  color: #6cb43b;
+  /* border: 1px solid #6cb43b; */
+  font-size: 15px;
+}
+.no:hover{
+  background-color: #6cb43b;
+  color: #ffffff;
+}

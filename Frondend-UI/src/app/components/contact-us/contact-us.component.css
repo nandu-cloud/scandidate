@@ -1,0 +1,69 @@
+.mat-toolbar.mat-primary {
+    position: inherit !important;
+    top: 0;
+    z-index: 1;
+    color: #6cb43b;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+  }
+  body {
+    background: #f5ffef !important;
+  }
+  .word-highlight {
+    background-color: #6cb43b;
+    color: #fff;
+  }
+  
+  .section-background {
+    background-color: #f7fff1;
+  }
+  
+  .text-color {
+    color: #6cb43b;
+    margin: 2rem 0 0 2rem;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  
+  .button {
+    border-radius: 23px;
+    color: #6cb43b;
+    border: 1px solid #6cb43b;
+    font-size: 14px;
+    padding: 5px;
+  }
+  
+  @media(max-width:320px){
+  .button{
+    border-radius: 23px;
+      color: #6cb43b;
+      border: 1px solid #6cb43b;
+      font-size: 11px;
+      padding: 0px;
+  }
+ 
+  .text-xl{
+  font-size: 0.875rem !important;
+  }
+  .text-xs{
+  font-size: 0.65rem;
+  }
+  .mat-toolbar-single-row {
+  padding: 1px !important;
+  }
+  }
+
+
+  .tool {
+  text-align: right;
+  display: inline-block;
+  width: 100%;
+  font-size: 1rem;
+  color: rgb(58, 58, 173);
+  }
+  .mat-toolbar-row {
+  height: 0% !important;
+  }

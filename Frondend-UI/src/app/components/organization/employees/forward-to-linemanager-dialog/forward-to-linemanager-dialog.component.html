@@ -1,5 +1,15 @@
 <!-- <p>forward-to-linemanager-dialog works!</p> -->
+<!-- <div class="v" *ngIf="this.rowinfo.rowinfo.status == false && this.rowinfo.rowinfo.assignedId">
+     <div class="card">
+          <div class="container">
+               {{Messagee}}
+               <button mat-button class="yes">yes</button>
+               <button mat-button class="no" (click)="close()">No</button>
+          </div>
+     </div>
+</div> -->
 
+<!-- <div *ngIf="this.rowinfo.rowinfo.status == false && !this.rowinfo.rowinfo.assignedId"> -->
 <form [formGroup]="assignnLinemanager">
          <p>Line Managers</p><br><br>     
          <mat-label>To</mat-label><br>
@@ -12,11 +22,14 @@
     {{item.firstName}} {{item.lastName}}
     <!-- </div> -->
          </mat-option> 
-        </mat-select><br>
+        </mat-select><br><br>  
 
-  <button mat-button mat-dialog-close style="top: 160px" class="close" (click)="close()">Close</button>
+<div>
+  <button mat-button mat-dialog-close style="top: 160px;" class="close" (click)="close()">Close</button>
  
        <!-- <div *ngFor="let item of lm; let i=index"> -->
-  <button type="button" mat-raised-button style="top: 160px" (click)="assignLinemanager()" class="send">Forward</button>
+  <button type="button" mat-raised-button style="top: 160px;" (click)="assignLinemanager()" class="send">Forward</button>
+</div>
 </form>
+<!-- </div> -->
 <!-- </div> -->

@@ -107,7 +107,11 @@
           <span class="mobile-label">
             Action
           </span>
-          <a [routerLink]="['/add-candidate/',row._id]" *ngIf="row.status == true"><mat-icon class="action" (click)=edit(row._id)><span class="bg-black text-white p-1 cursor-pointer mr-10">edit</span></mat-icon>{{row.action}}</a>
+          <a [routerLink]="['/add-candidate/',row._id]" *ngIf="row.status == true">
+            <mat-icon class="action" (click)=edit(row._id)>
+              <span class="bg-black text-white p-1 cursor-pointer mr-10">visibility</span>
+            </mat-icon>{{row.action}}
+          </a>
           <a [routerLink]="['/add-candidate/',row._id]" *ngIf="row.status == false"><mat-icon class="action" (click)=saveRow(row._id) ><span class="bg-black text-white p-1 cursor-pointer mr-10">border_color</span></mat-icon>{{row.action}}</a>
         </td>
       </ng-container>
@@ -129,12 +133,23 @@
             Mail
           </span>
           <span class="mail bg-black text-white text-bold">
-          <a class="forwardd" (click)="forwordToLinemanager(row, i + (paginator.pageIndex * paginator.pageSize))" *ngIf="row.status == false && logiuser =='admin'">
+          <a class="forwardd" (click)="forwordToLinemanager(row, i + (paginator.pageIndex * paginator.pageSize))"
+                          *ngIf="(!row.assignedId && row.status == false && logiuser =='admin');else checkLinemanagerDisplay" 
+                          >
             <span class="numsicons">
               <mat-icon class="ico">forward</mat-icon>
               Forward</span>
           </a>
-          <a class="forwarddd" (click)="showBGVReport(row._id)" *ngIf="row.status == true">
+          <ng-template #checkLinemanagerDisplay>
+            <a class="forwardd" (click)="checkLinemanagerId(row._id, row, i + (paginator.pageIndex * paginator.pageSize))"
+                          *ngIf="(row.status == false && logiuser =='admin')" 
+                          >
+            <span class="numsicons">
+              <mat-icon class="ico">forward</mat-icon>
+              Forward</span>
+          </a>
+          </ng-template>
+          <a class="forwarddd" (click)="showBGVReport(row._id)" *ngIf="row.status == true && logiuser == 'admin'">
             <!-- <span class="nums">
               <span class="numsicon material-icons">
                 email

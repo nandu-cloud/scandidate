@@ -89,4 +89,9 @@
     font-size: 13px;
     min-width: 490px;
   }
-  
+  .reason {
+    padding-top: 35px;
+  }
+  .dropdon {
+    margin-top: -25px;
+  }

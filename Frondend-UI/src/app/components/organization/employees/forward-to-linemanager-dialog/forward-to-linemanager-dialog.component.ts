@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, INJECTOR, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AdminOrganizationService } from 'src/app/services/admin-organization.service';
 import { EmployeeService } from 'src/app/services/employee.service';
@@ -25,22 +25,33 @@ export class ForwardToLinemanagerDialogComponent implements OnInit {
   dataa : any;
   assignnLinemanager: FormGroup;
   @Input() employeeid:any;
+  @Input() methodType: any
+  Messagee: any;
   router: any;
   dataSource: any;
-  constructor(public linemanagerService: AdminOrganizationService, public dialog: MatDialog, public empService: EmployeeService,
+  assign: any;
+  constructor(public linemanagerService: AdminOrganizationService,
+     public dialog: MatDialog,
+      public empService: EmployeeService,
     public dialogg: MatDialogRef<ForwardToLinemanagerDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public rowinfo: any) { 
+    @Inject(MAT_DIALOG_DATA) public rowinfo: any,
+    @Inject(MAT_DIALOG_DATA) public msgdataa: any
+     ) { 
     this.assignnLinemanager = new FormGroup({
       linemanager: new FormControl('')
     })
   }
 
   ngOnInit(): void {
-    console.log(this.rowinfo);
-    console.log(this.employeeid._id);
+    // this.rowinfo.status
+    // console.log(this.rowinfo.rowinfo.status)
+    // console.log(this.rowinfo);
+    // console.log(this.employeeid._id);
     this.getLinemanagerSubscription = this.linemanagerService.getLinemanagerData()
     .subscribe(respObj => {
       this.lm = respObj.data;
+      this.methodtype = 'assigned';
+     
     })
     
     // this.displayedColumns = ['name', 'action'];
@@ -57,34 +68,15 @@ export class ForwardToLinemanagerDialogComponent implements OnInit {
     dialogRef.componentInstance.methodType = this.methodtype;
   }
   assignLinemanager() {
-  //   $('ul').on('click', '.click_me', function(){
-  //     $(this).toggleClass('active').siblings().removeClass('active');   // <--- The trick!
-  // })
-// document.getElementById(i).style.background="red"
-// document.getElementById(JSON.stringify(i-1)).classList.remove("mystyle");
-// $('.click_me').click(function() {
-//   $('.active').not(this).removeClass('active');
-//   $(this).toggleClass('active');
-// });
-console.log(this.employeeid)
-if(this.employeeid.firstName == ''  || this.employeeid.lastName == '' || this.employeeid.dateOfJoining == '' || this.employeeid.exitDate == '' || this.employeeid.phoneNumber == '' || this.employeeid.email == ''){
-  this.methodtype = 'empty';
-  this.openDialog()
-}else{
+
+    console.log(this.employeeid)
+    if(this.employeeid.firstName == ''  || this.employeeid.lastName == '' || this.employeeid.dateOfJoining == '' || this.employeeid.exitDate == '' || this.employeeid.phoneNumber == '' || this.employeeid.email == ''){
+      this.methodtype = 'empty';
+      this.openDialog()
+    }else{
 
     let data = {
-      // "firstName": this.employeeid.firstName,
-      // "lastName": this.employeeid.lastName,
-      // "phoneNumber": this.employeeid.phoneNumber,
-      // "dateOfJoining": this.employeeid.phoneNumber,
-      // "exitDate": this.employeeid.exitDate,
-      // "professionalExperience": this.employeeid.professionalExperience,
-      // "addedById": this.employeeid.addedById,
-      // "organisationId": this.employeeid.organisationId,
-      // "role": this.employeeid.role,
-      // "email":this.employeeid.email,
-      // "assignedId":this.employeeid.assignedId,
-      // "status": "false"
+    
     }
     
     this.assignLinemanagerSubscription = this.linemanagerService.assignLinemanager(this.employeeid._id, this.data1, data).subscribe(resp => 
@@ -98,8 +90,16 @@ if(this.employeeid.firstName == ''  || this.employeeid.lastName == '' || this.em
         // this.linemanagerService.assignLinemanager
         // window.location.reload();
         // this.router.navigate(['/candidate-list'])
+        if(this.rowinfo){
         this.rowinfo.rowinfo.assignedId = resp.data.assignedId
+        }
         // this.data1 = resp.data.assignedId;
+        const dialogRef = this.dialog.open(DialogElementsExampleDialog,
+          { width: '350px', height: '200px', data: {
+            assign : resp.message
+          }
+        }
+          )
         this.methodtype = 'assign';
         this.dialogg.close(this.rowinfo);      
        }
@@ -113,7 +113,7 @@ if(this.employeeid.firstName == ''  || this.employeeid.lastName == '' || this.em
   }
   close() {
     // this.dialogRef.close(true);
-    this.router.navigate(['/candidate-list']);
+    // this.router.navigate(['/candidate-list']);
   }
 }
 
@@ -124,7 +124,8 @@ if(this.employeeid.firstName == ''  || this.employeeid.lastName == '' || this.em
 export class DialogElementsExampleDialog {
   @Input() methodType: any
   Message: any;
-  constructor(public dialogRef: MatDialogRef<DialogElementsExampleDialog>, private router: Router
+  constructor(public dialogRef: MatDialogRef<DialogElementsExampleDialog>, private router: Router,
+    @Inject(MAT_DIALOG_DATA) public assign: any
   ) {
     console.log(this.methodType)
   }
