@@ -137,7 +137,7 @@ export class CandidateListComponent implements OnInit {
        this.checkSubscription = this.linemanagerService.checkLinemanager(employeeid).subscribe(respObj => {
         // this.msgdata = respObj.message;
         const dialogRef = this.dialog.open(AssignToLinemanagerDialogComponent,
-          { width: '250px', height: '200px', data: {
+          { width: '350px', height: '200px', data: {
             rowinfo : itm,
             messagedata : respObj.message
           }
