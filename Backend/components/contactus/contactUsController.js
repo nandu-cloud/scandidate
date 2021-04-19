@@ -16,8 +16,8 @@ module.exports.savecontactus = async (req, res, next) => {
         template.toemail = process.env.FIRSTPERSONID;
         template.logo = `${process.env.FRONT_END_URL}/assets/images/logo1.png`;
         template.toemailsecondary = process.env.SECONDPERSONID;
-        // template.subject = "Contact us form details";
-        template.subject = "Test contact us form details";
+        template.subject = "Contact us form details";
+        // template.subject = "Test contact us form details";
 
 
         try {
