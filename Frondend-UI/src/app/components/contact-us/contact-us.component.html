@@ -24,19 +24,29 @@
   </mat-toolbar>
   <section>
     <!-- <div class="lg:pl-64 pl-12 md:pl-48 bg-white"> -->
-    <form  class="profile-form lg:pl-64 pl-12 pt-4 md:pl-48 pt-4" [formGroup]="contactForm" >
+      
+      <form  class="profile-form lg:pl-64 pl-12 pt-4 md:pl-48 pt-4" [formGroup]="contactForm" >
         <!-- <h1 class="hd-add pb-6">Contact Us</h1> -->
-        <div class="flex flex-wrap">
-            <div class="w-full md:w-1/2 sm:w-full">
+      
+        <!-- <div class="form-row"> -->
+            <div class="form-row w-full md:w-1/2 sm:w-full">
                 <mat-form-field>
                     <mat-label>First Name</mat-label>
                     <input  matInput type="text"  formControlName="firstName"  name="fname" tabindex="1" class="br-btm" required autoComplete='off'>
                     <mat-error
                     *ngIf="contactForm.get('firstName').errors?.required">
                     First Name is required
-                  </mat-error>
-                </mat-form-field>
+                    </mat-error>
+                </mat-form-field><br>
                 <mat-form-field>
+                  <mat-label>Last Name</mat-label>
+                  <input  matInput type="text"  name="lname" formControlName="lastName" tabindex="2" class="br-btm input-w" required autoComplete='off'>
+                  <mat-error
+                  *ngIf="contactForm.get('firstName').errors?.required">
+                  Last Name is required
+                </mat-error>
+              </mat-form-field>
+                <!-- <mat-form-field>
                     <mat-label>Email</mat-label>
                     <input  matInput   type="text"  name="email"  formControlName="email" tabindex="3" class="br-btm input-w" required autoComplete='off'>
                     <mat-error *ngIf="contactForm.get('email').errors?.required">
@@ -58,10 +68,43 @@
                     *ngIf="contactForm.get('firstName').errors?.required">
                     Enquiry is required
                   </mat-error>
-                </mat-form-field>
+                </mat-form-field> -->
             </div>
-            <div class="w-full md:w-1/2 sm:w-full">
-                <mat-form-field>
+
+
+            <div class="form-row w-full md:w-1/2 sm:w-full">
+              <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input  matInput   type="text"  name="email"  formControlName="email" tabindex="3" class="br-btm input-w" required autoComplete='off'>
+                <mat-error *ngIf="contactForm.get('email').errors?.required">
+                    Required email address
+                  </mat-error>
+                  <mat-error *ngIf="contactForm.get('email').errors?.email">
+                    Enter a valid email address
+                  </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Phone Number</mat-label>
+              <input  matInput   type="text"  name="contact" formControlName="phoneNumber" tabindex="4" class="br-btm input-w" required autoComplete='off'>
+              <mat-error
+              *ngIf="contactForm.get('phoneNumber').errors?.required"
+            >
+              Required phone number.
+            </mat-error>
+            <mat-error
+              *ngIf="
+                !contactForm.get('phoneNumber').errors?.required &&
+                contactForm.get('phoneNumber').errors?.pattern
+              "
+            >
+              Please enter valid phone mumber
+            </mat-error>
+          </mat-form-field>
+            </div>
+
+
+            <div class="form-row w-full md:w-1/2 sm:w-full">
+                <!-- <mat-form-field>
                     <mat-label>Last Name</mat-label>
                     <input  matInput type="text"  name="lname" formControlName="lastName" tabindex="2" class="br-btm input-w" required autoComplete='off'>
                     <mat-error
@@ -86,8 +129,11 @@
                   >
                     Please enter valid phone mumber
                   </mat-error>
+                </mat-form-field> -->
+                <mat-form-field>
+                  <mat-label>Designation</mat-label>
+                  <input  matInput type="text"  formControlName="designation"  name="fname" tabindex="5" class="br-btm" autoComplete='off'>
                 </mat-form-field>
-
                 <mat-form-field>
                     <mat-label>Organization</mat-label>
                     <input  matInput   type="text"  name="contact" formControlName="organization" tabindex="6" class="br-btm input-w" required autoComplete='off'>
@@ -97,9 +143,21 @@
                   </mat-error>
                 </mat-form-field>
             </div>
-        </div>
+        <!-- </div> -->
   
-        <div class="flex justify-end lg:pr-48">
+
+             <div class="form-row w-full md:w-1/2 sm:w-full">
+              <mat-form-field hintLabel="Max 300 characters">
+                <mat-label>Enquiry</mat-label>
+                <textarea  matInput name="caddress" #input maxlength="300" formControlName="enquiry" tabindex="7" class="br-about"  rows="8" autoComplete='off' required></textarea>
+                <mat-hint align="end">{{input.value?.length || 0}}/300</mat-hint>
+                <mat-error
+                *ngIf="contactForm.get('firstName').errors?.required">
+                Enquiry is required
+              </mat-error>
+            </mat-form-field>
+             </div>
+        <div class="mbutton flex justify-end lg:pr-48">
             <!-- <a routerLink="/users-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12 mt-12 mb-8" tabindex="8" type="button">
               Cancel
             </button></a> -->

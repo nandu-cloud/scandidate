@@ -53,6 +53,9 @@ export class ContactUsComponent implements OnInit {
         throw this.setMessage.message;
     })
   }
+  close() {
+    // this.router.navigate(['/landing-page']);
+  }
 }
 
 @Component({
@@ -71,7 +74,7 @@ export class DialogElementsExampleDialog {
   } 
  }
  close() {
-  // this.dialogRef.close(true);
-  this.router.navigate(['/landing-page']);
+  this.dialogRef.close();
+  // this.router.navigate(['/landing-page']);
 }
 }

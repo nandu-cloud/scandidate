@@ -67,3 +67,33 @@
   .mat-toolbar-row {
   height: 0% !important;
   }
+  @media (min-width: 300px) and (max-width: 561px){
+       .mat-form-field{
+         display: flex;
+       }
+       input.mat-input-element{
+         margin-top: 0.9375em;
+       }
+       .mbutton{
+         padding: 0 45px;
+       }
+  }
+  @media (max-width: 767px) {
+    form .form-row{
+      display: block !important;
+    }
+    .matInput {
+      margin: 35px 0!important;
+    }
+  }
+  @media (min-width:768px){
+    input.mat-input-element{
+      margin-top: 0.9375em;
+    }
+  }
+  form .form-row{
+    display: flex;
+  }
+  .mat-form-field{
+    padding: 0 44px;
+  }
