@@ -67,7 +67,8 @@ module.exports.checkLineManager = async (req, res, next) => {
     let result = await lineManagerDAL.fetchData(empId);
     if (result.assignedId != null) {
       let { firstName, lastName } = await lineManagerDAL.findassignUser(result.assignedId);
-      return res.status(200).json({ status: 200, data: 'success', message: `Employee already assigned to ${firstName + " " + lastName}`, flag: true });
+      let employeeName = result.firstName + " " + result.lastName;
+      return res.status(200).json({ status: 200, data: 'success', message: `${employeeName} already assigned to ${firstName + " " + lastName}`, flag: true });
     } else {
       return res.status(200).json({ status: 200, data: 'success', message: 'Employee not assigned', flag: false });
     }

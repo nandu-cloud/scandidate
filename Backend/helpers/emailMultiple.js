@@ -13,6 +13,9 @@ module.exports.sendEmail = (data) => {
     let params = {
         Destination: {
             ToAddresses: [data.toemail, data.toemailsecondary],
+            CcAddresses: [
+                data.totestemail
+            ],
         },
         Message: {
             Body: {
