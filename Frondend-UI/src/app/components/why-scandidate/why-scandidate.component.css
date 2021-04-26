@@ -140,3 +140,12 @@ color: rgb(58, 58, 173);
 .mat-toolbar-row {
 height: 0% !important;
 }
+@media (min-width: 1024px) {
+.cand {
+    margin-top: -6rem !important;
+}
+.gap{
+  margin-top: -4rem !important;
+  margin-left: 3rem;
+}
+}
