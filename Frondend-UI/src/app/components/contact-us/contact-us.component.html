@@ -146,8 +146,8 @@
         <!-- </div> -->
   
 
-             <div class="form-row w-full md:w-1/2 sm:w-full">
-              <mat-form-field hintLabel="Max 300 characters">
+             <div>
+              <mat-form-field class="enquiry" hintLabel="Max 300 characters">
                 <mat-label>Enquiry</mat-label>
                 <textarea  matInput name="caddress" #input maxlength="300" formControlName="enquiry" tabindex="7" class="br-about"  rows="8" autoComplete='off' required></textarea>
                 <mat-hint align="end">{{input.value?.length || 0}}/300</mat-hint>
@@ -158,9 +158,9 @@
             </mat-form-field>
              </div>
         <div class="mbutton flex justify-end lg:pr-48">
-            <!-- <a routerLink="/users-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12 mt-12 mb-8" tabindex="8" type="button">
+            <a routerLink="/landing-page"><button class="lg-button focus:outline-none focus:shadow-outline mr-12 mt-12 mb-8" tabindex="8" type="button">
               Cancel
-            </button></a> -->
+            </button></a>
             <button class="lg-button focus:outline-none focus:shadow-outline mt-12 mb-8" tabindex="9" (click)="onSubmit()" type="submit">
               Submit
             </button>

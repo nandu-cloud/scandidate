@@ -56,7 +56,9 @@
   }
   }
 
-
+.enquiry{
+  width: 874px;
+}
   .tool {
   text-align: right;
   display: inline-block;
@@ -77,6 +79,9 @@
        .mbutton{
          padding: 0 45px;
        }
+       .enquiry{
+        width: 374px;
+      }
   }
   @media (max-width: 767px) {
     form .form-row{

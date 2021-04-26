@@ -9,36 +9,30 @@
   }
 
 .message{
-    font-weight: bold;
+    /* font-weight: bold; */
+    font-size: 14px;
     padding-top: 14px;
 }
+p{
+  color: rgb(108, 180, 59);
+}
 .yes {
-    left: 159px;
-    top: 42px;
+    top: 50px;
+    margin-left: 2px;
     outline: none;
-    height: 38px;
-    width: 53px;
-    border-radius: 35px;
-    color: #6cb43b;
+    background-color: rgb(108, 180, 59);
     /* border: 1px solid #6cb43b; */
-    font-size: 15px;
-  }
-  .yes:hover {
-    background-color: #6cb43b;
-    color: #ffffff;
+    /* font-size: 15px; */
+    color: #fff;
   }
   .no {
-    left: 153px;
-    top: 42px;
+    top: 50px;
     outline: none;
-    height: 38px;
-    width: 53px;
-    border-radius: 35px;
-    color: #6cb43b;
+    /* color: #6cb43b; */
     /* border: 1px solid #6cb43b; */
-    font-size: 15px;
+    /* font-size: 15px; */
   }
   .no:hover{
-    background-color: #6cb43b;
-    color: #ffffff;
+    /* background-color: #6cb43b; */
+    color: #6cb43b;
   }

@@ -222,15 +222,16 @@ th {
       background-color: black;
     }
     .add1 {
-      margin: 1px 62px;
-    padding-left: 40px !important;
+      margin: 1px -31px;
+    padding-left: 65px !important;
 
     }
     .org{
-      margin-left: -43px;font-weight:bold;padding-top:11px;font-size: 15px;
+      margin-left: -60px;font-weight:bold;padding-top:11px;font-size: 15px;
     }
     .search-box{
-      padding-left: 82px;
+      /* padding-left: 371px; */
+      margin-left: -215px;
     }
 }
 @media (min-width: 1440px) {
@@ -240,7 +241,8 @@ th {
     padding-right: 40px;
   }
   .search-box{
-    padding-left: 224px;
+    /* padding-left: 458px; */
+    margin-left: -215px;
   }
   .org{
     padding-left:51px;font-weight:bold;padding-top:11px;font-size: 15px;
@@ -251,8 +253,8 @@ th {
   padding: 5px 0px 10px;
   }
   .add1 {
-    margin: 1px 66px;
-    padding-left: 97px !important;
+    margin: 1px -31px;
+    padding-left: 65px !important;
 }
 }
 .material-icons{
