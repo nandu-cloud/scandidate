@@ -142,10 +142,12 @@ height: 0% !important;
 }
 @media (min-width: 1024px) {
 .cand {
-    margin-top: -6rem !important;
+  margin-top: -6rem !important;
+  margin-bottom: 1.5rem;
 }
 .gap{
   margin-top: -4rem !important;
   margin-left: 3rem;
+  margin-bottom: 2rem;
 }
 }
