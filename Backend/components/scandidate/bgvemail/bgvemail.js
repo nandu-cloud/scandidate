@@ -504,6 +504,7 @@ async function scheduledEmail(data) {
     SES: new AWS.SES({ apiVersion: "2010-12-01" }),
   });
 
+
   var mail = {
     from: "Scandidate.in" + process.env.AWSSENDERMAILID,
     to: data.email,
