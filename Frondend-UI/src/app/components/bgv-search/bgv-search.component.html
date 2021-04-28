@@ -94,8 +94,15 @@
   
       <ng-container matColumnDef="action">
         <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
-        <mat-cell *matCellDef="let row">	<a [routerLink]="['/bgv-view/',row._id]"><span class="action" ><span class="bg-black text-white pt-2 pb-2 pl-4 pr-4 w-24">View</span></span>{{row.action}}</a></mat-cell>
+        <mat-cell *matCellDef="let row">	<a [routerLink]="['/bgv-view/',row._id]">
+          <span class="action" ><span class="view bg-black text-white p-1 cursor-pointer mr-10">
+            <mat-icon>visibility</mat-icon>
+          </span></span>{{row.action}}</a></mat-cell>
       </ng-container>
+
+      <!-- <mat-icon class="action" (click)=edit(row._id)>
+        <span class="bg-black text-white p-1 cursor-pointer mr-10">visibility</span>
+      </mat-icon> -->
 
       <!-- <ng-container matColumnDef="actions" class="justify-start">
       <mat-header-cell *matHeaderCellDef>Mail</mat-header-cell>

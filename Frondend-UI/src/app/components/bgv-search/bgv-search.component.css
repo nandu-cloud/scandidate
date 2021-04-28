@@ -53,3 +53,7 @@ th {
 .mat-row:nth-child(1){
   background-color: #0000001a;
 }
+.view {
+  padding-top: 14px;
+    padding-bottom: 0;
+}
