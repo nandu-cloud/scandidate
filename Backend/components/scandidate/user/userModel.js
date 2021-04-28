@@ -96,6 +96,10 @@ const userSchema = new mongoose.Schema({
   otp: {
     type: Number,
   },
+  workstation: {
+    type: String,
+    required: false
+  },
   createdAt: {
     type: Date,
     default: new Date(),

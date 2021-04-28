@@ -5,6 +5,7 @@ const bgvModel = require("./bgvModel");
 const mongoose = require("mongoose");
 
 async function searchBgvDataEmployee(data) {
+
   var count = Object.keys(data).length;
   if (count == 0) {
     try {

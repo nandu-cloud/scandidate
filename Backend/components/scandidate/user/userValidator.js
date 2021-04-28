@@ -10,6 +10,7 @@ const userCreationSchema = Joi.object({
   email: Joi.string().email().required(),
   status: Joi.boolean().required(),
   password: Joi.string(),
+  workstation: Joi.string().allow("").allow(null),
 
   scandidateId: Joi.string().allow("").allow(null),
   phoneNumber: Joi.number().allow("").allow(null),
@@ -33,6 +34,7 @@ const updationSchema = Joi.object({
   subRole: Joi.string().required(),
   email: Joi.string().email().required(),
   status: Joi.boolean().required(),
+  workstation: Joi.string().allow("").allow(null),
 
   scandidateId: Joi.string().allow("").allow(null),
   phoneNumber: Joi.number().allow("").allow(null),

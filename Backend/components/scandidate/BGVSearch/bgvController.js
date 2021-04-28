@@ -746,12 +746,15 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
     LastName: lname,
     phone: pNumber,
     email: eml,
-    orgLogo: `${process.env.FRONT_END_URL}` + "/public/organization_logo/",
-    instLogo: `${process.env.FRONT_END_URL}` + "/public/institute_logo/",
+    logo: `${process.env.FRONT_END_URL}/assets/images/logo1.png`,
+    orgLogo: `${process.env.FRONT_END_URL}/public/organization_logo/`,
+    instLogo: `${process.env.FRONT_END_URL}/public/institute_logo/`,
     myDate: dateString,
     data: template,
     data1: icons,
   };
+
+  console.log(result);
 
   try {
     ejs.renderFile(
@@ -777,7 +780,7 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
         // var tempFilename =
         //   "uploads/scandidate-report/" + fname + new Date().getTime() + ".pdf";
         // var temFilepath = checkFilePath;
-        // var options = { format: "A4", orientation: "landscape" };
+        // var options = { format: "A4", orientation: "Letter" };
         var options = { height: "10.5in", width: "15in" };
         pdf.create(str, options).toFile(checkFilePath, function (err, data) {
           if (err) {
