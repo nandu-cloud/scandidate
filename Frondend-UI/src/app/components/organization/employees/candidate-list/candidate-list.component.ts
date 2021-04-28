@@ -49,7 +49,7 @@ export class CandidateListComponent implements OnInit {
     if(sessionStorage.getItem('subRole')=='LINE MANAGER'){
       this.getLinemanagerEmployeeData(sessionStorage.getItem('ID'))
       this.logiuser ="linemanager"
-    }else if(sessionStorage.getItem('subRole')=='OPERATIONAL_USER'){
+    }else if(sessionStorage.getItem('subRole')=='OPERATIONAL_USER' || sessionStorage.getItem('subRole')=='ADMIN'){
     this.logiuser ="admin"
     this.EmployeeSubscription = this.empService.getEmployeeData().subscribe(respObj => {
       this.dataSource = new MatTableDataSource(respObj.data);
