@@ -2,14 +2,15 @@ const Joi = require("joi");
 
 const userCreationSchema = Joi.object({
 
-  organizationId:  Joi.string().required(),
+  organizationId: Joi.string().required(),
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   role: Joi.string().uppercase().required(),
   subRole: Joi.string().uppercase().required(),
   email: Joi.string().email().required(),
   password: Joi.string(),
-  
+  workstation: Joi.string().allow('').allow(null),
+
   phoneNumber: Joi.number().required(),
   dateOfBirth: Joi.date().allow('').allow(null),
   employeeId: Joi.string().allow('').allow(null),
@@ -23,14 +24,15 @@ const userCreationSchema = Joi.object({
 });
 
 const updationSchema = Joi.object({
-  
+
   organizationId: Joi.string().required(),
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   role: Joi.string().uppercase().required(),
   subRole: Joi.string().uppercase().required(),
   email: Joi.string().email().required(),
-    
+  workstation: Joi.string().allow('').allow(null),
+
   phoneNumber: Joi.number().required(),
   dateOfBirth: Joi.date().allow('').allow(null),
   employeeId: Joi.string().allow('').allow(null),
