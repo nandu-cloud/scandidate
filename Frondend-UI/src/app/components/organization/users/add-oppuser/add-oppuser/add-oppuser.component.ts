@@ -41,7 +41,7 @@ export class AddOppuserComponent implements OnInit {
       role: new FormControl('ORGANIZATION', [Validators.required]),
       subRole: new FormControl('', [Validators.required]),
       dateOfBirth : new FormControl(''),
-      address : new FormControl(''),
+      workstation : new FormControl(''),
       status : new FormControl('')
     });
   }

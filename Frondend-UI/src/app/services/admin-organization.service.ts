@@ -25,8 +25,10 @@ createUser(createUser): Observable<any> {
          'role': string,
          'subRole': string,
          'email': string,
+         'dateOfBirth': Date,
          'phoneNumber': number,
          'organizationId':string,
+         'workstation': string,
          'status': boolean,
          'onboardedById' : string
         } =
@@ -35,8 +37,10 @@ createUser(createUser): Observable<any> {
         'role': 'ORGANIZATION',
         'subRole': createUser.subRole,
         'email': createUser.email,
+        'dateOfBirth': createUser.dateOfBirth,
         'phoneNumber': createUser.phoneNumber,
         'organizationId': organizationId,
+        'workstation': createUser.workstation,
         'onboardedById' : id,
         'status':true,
      };
@@ -66,14 +70,16 @@ editOrganizationUser(editOrgUser) : Observable<any> {
 updateUser(updateUser): Observable<any> {
   var id = window.sessionStorage.getItem('ID');
   var organizationId = window.sessionStorage.getItem('organizationId');
-  var update: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'phoneNumber': number,'organizationId':string, 'status': boolean, 'onboardedById' : string} =
+  var update: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': Date, 'phoneNumber': number,'organizationId':string, 'workstation': string, 'status': boolean, 'onboardedById' : string} =
    { 'firstName': updateUser.firstName,
       'lastName': updateUser.lastName,
       'role': 'ORGANIZATION',
       'subRole': updateUser.subRole,
       'email': updateUser.email,
+      'dateOfBirth': updateUser.dateOfBirth,
       'phoneNumber': updateUser.phoneNumber,
       'organizationId': organizationId,
+      'workstation': updateUser.workstation,
       'onboardedById' : id,
       'status':updateUser.status,
    };

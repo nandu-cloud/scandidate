@@ -16,7 +16,18 @@
           <div class="w-full md:w-1/6 sm:w-full">
               <mat-form-field class="example-form-field">
                   <mat-label>Date Of Birth</mat-label>
-                  <input  matInput formControlName="dateOfBirth"  type="text"  class="br-btm input-w" autoComplete='off' placeholder="dd/mm/yyyy">
+                  <input  matInput 
+                  formControlName="dateOfBirth"
+                  type="text"  
+                  [matDatepicker]="picker"
+                  class="br-btm input-w" 
+                  autoComplete='off' 
+                  placeholder="dd/mm/yyyy">
+                  <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker color="primary" startView="multi-year"></mat-datepicker>
               </mat-form-field>
           </div>
           <div class="w-full md:w-1/6 sm:w-full">
