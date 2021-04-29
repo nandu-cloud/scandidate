@@ -754,8 +754,6 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
     data1: icons,
   };
 
-  console.log(result);
-
   try {
     ejs.renderFile(
       path.join(

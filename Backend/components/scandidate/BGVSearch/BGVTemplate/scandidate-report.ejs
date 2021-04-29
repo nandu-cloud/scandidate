@@ -89,7 +89,7 @@
   <div class="border-dashed border-2 border-black w-11/12 m-auto mt-10" id="pdfTable" #pdfTable>
     <div class="grid grid-cols-3 gap-4 mt-8">
       <div class="ml-16 w-1/2">
-        <img src="<%= logo %>" width="100" height="100" class="border-1 -mt-3">
+        <img src=<%= logo %> width="100" height="100" class="border-1 -mt-3">
       </div>
       <div class="ml-32">
         <span class="text-2xl heading">
@@ -106,7 +106,7 @@
       </div>
     </div>
     <hr>
-    <!-- <div class="w-11/12 grid grid-cols-1">
+    <div class="w-11/12 grid grid-cols-1">
       <div class="ml-24"><br />
         <span class="text-lg">Highlights (If any)</span><br />
         <span class="text-lg">(Awards or Issues)</span><br /><br />
@@ -114,9 +114,8 @@
 
     </div>
 
-    <hr> -->
+     <hr>
 
-    <br/>
 
 
     <table style="width:95%;margin-left:27px;">
@@ -129,7 +128,7 @@
         <th>RECOGNITION</th>
         <th>LEADERSHIP</th>
         <th>ISSUES</th>
-        <!-- <th width="10px">ANY ATTACHMENTS</th> -->
+        <th width="10px">ANY ATTACHMENTS</th>
       </tr>
       <% for(let list of data){%>
         <tr>
@@ -152,26 +151,22 @@
                 <%}%>
                   <% if(list.organisationId !='' && list.organisationId !=undefined) {%>
                     <td>
-                      <b>Self Driven / Initiative:</b>&nbsp;&nbsp;<%=list.selfDriven %><br />
-                        <b>Creativity:</b>&nbsp;&nbsp;<%=list.creativity %><br />         
-                          <b>Work independently:</b>&nbsp;&nbsp;<%=list.workIndependenty %><br />
-                            <b>Teamwork:</b>&nbsp;&nbsp;<%=list.teamWork %><br />
-                              <b>Ability to handle pressure:</b>&nbsp;&nbsp;<%=list.dealConstructivelyWithPressure %><br />
-                                <b>Discipline:</b>&nbsp;&nbsp;<%=list.discipline %><br />
+                      Self Driven / Initiative:<%=list.selfDriven %><br />
+                        Creativity: <%=list.creativity %><br />         
+                          Work independently:<%=list.workIndependenty %><br />
+                            Teamwork:<%=list.teamWork %><br />
+                              Ability to handle pressure: <%=list.dealConstructivelyWithPressure %><br />
+                                Discipline:<%=list.discipline %><br />
                     </td>
                     <%}%>
                       <% if(list.organisationId !='' && list.organisationId !=undefined) {%>
                         <td>
-                         <b> Communication:</b>&nbsp;&nbsp;<%=list.communicationSkills %><br />
-                            <b>Product understanding:</b>&nbsp;&nbsp;<%=list.productKnowledge %><br />
-                              <b>Industry / domain knowledge:</b>&nbsp;&nbsp;<%=list.industryKnowledge %><br />
-                                <b>Subject matter expertise:</b>&nbsp;&nbsp;<%=list.subMatter %><br />
-                                <% if(list.keySkills) {%>
-                                  <b>Key Skills:</b>&nbsp;&nbsp;<%=list.keySkills %><br />
-                                  <%}%>
-                                  <% if(list.rehireAgain) {%>
-                                    <b>Re-hire?:</b>&nbsp;&nbsp;<%=list.rehireAgain %>
-                                    <%}%>
+                          Communication:<%=list.communicationSkills %><br />
+                            Product understanding:<%=list.productKnowledge %><br />
+                              Industry / domain knowledge:<%=list.industryKnowledge %><br />
+                                Subject matter expertise:<%=list.subMatter %><br />
+                                  Key Skills: <%=list.keySkills %><br />
+                                    Re-hire?: <%=list.rehireAgain %>
                         </td>
                         <%}%>
                           <% if(list.organisationId !='' && list.organisationId !=undefined){%>
@@ -181,50 +176,29 @@
                             <%}%>
                               <% if(list.organisationId !='' && list.organisationId !=undefined) {%>
                                 <td>
-                                  <% if(list.stategicThinking){%>
-                                 <b> Strategic thinking:</b>&nbsp;&nbsp;<%=list.stategicThinking %><br />
-                                  <%}%>
-                                  <%if(list.problemSolving){%>
-                                   <b> Problem Solving:</b>&nbsp;&nbsp;<%=list.problemSolving %><br />
-                                    <%}%>
-                                    <%if(list.buildingHighPerformanceTeam){%>
-                                     <b> Building High-performance teams:</b>&nbsp;&nbsp;<%=list.buildingHighPerformanceTeam %><br />
-                                      <%}%>
-                                      <%if(list.stakeHolderManagment){%>
-                                        <b>Stakeholder management:</b>&nbsp;&nbsp;<%=list.stakeHolderManagment %><br />
-                                        <%}%>
+                                  Strategic thinking: <%=list.stategicThinking %><br />
+                                    Problem Solving:<%=list.problemSolving %><br />
+                                      Building High-performance teams:<%=list.buildingHighPerformanceTeam %><br />
+                                        Stakeholder management:<%=list.stakeHolderManagment %><br />
 
                                 </td>
                                 <%}%>
                                   <% if(list.organisationId !='' && list.organisationId !=undefined) {%>
                                     <td>
-                                      <%if(list.discrepancy_date){%>
-                                     <b> Document discrepancies:</b> &nbsp;<b>Date:</b>&nbsp;&nbsp;<%=list.discrepancy_date %>/<b>Cause:</b>&nbsp;&nbsp;<%=list.discrepancy_cause %>
-                                      <br />
-                                      <%}%>
-                                          
-                                          <%if(list.Compliance_date){%>
-                                         <b> Compliance:</b>&nbsp;&nbsp;<%=list.Compliance_date %>/<b>Cause:</b>&nbsp;&nbsp;<%=list.Compliance_cause %><br />
-                                          <%}%>
-                                              <%if(list.warning_date){%>
-                                             <b> Warning:&nbsp;</b> <b>Date:</b>&nbsp;&nbsp;<%=list.warning_date %>/<b>Cause:</b>&nbsp;&nbsp;<%=list.warning_cause %><br />
-                                              <%}%>
-                                              <%if(list.showCause_date){%>
-                                                <b>  Show cause:&nbsp; Date:</b>&nbsp;&nbsp;<%=list.showCause_date %>/<b>Cause:</b>&nbsp;&nbsp;<%=list.showCause_cause %>
+                                      Document discrepancies: Date:<%=list.discrepancy_date %>/Cause:<%=list.discrepancy_cause %>
+                                          <br />
+                                          Compliance: <%=list.Compliance_date %>/Cause:<%=list.Compliance_cause %><br />
+                                              Warning: Date:Date:<%=list.warning_date %>/Cause:<%=list.warning_cause %><br />
+                                                  Show cause: Date:<%=list.showCause_date %>/Cause:<%=list.showCause_cause %>
                                                       <br />
-                                                      <%}%>
-                                                      <%if(list.performance_date){%>
-                                                   <b>   PIP:&nbsp;Date:</b>&nbsp;&nbsp; <%=list.performance_date %>/<b>Cause:</b>&nbsp;&nbsp;<%=list.performance_cause %>
+                                                      PIP:Date: <%=list.performance_date %>/Cause:<%=list.performance_cause %>
                                                           <br />
-                                                          <%}%>
-                                                          <%if(list.termination_date){%>
-                                                         <b> TerminationDate:&nbsp;&nbsp;</b><%=list.termination_date %>/<b>Cause:</b>&nbsp;&nbsp;
+                                                          TerminationDate: <%=list.termination_date %>/Cause:
                                                             <%=list.termination_cause %><br />
-                                                            <%}%>
 
                                     </td>
                                     <%}%>
-                                      <!-- <% if(list.organisationId !='' && list.organisationId !=undefined) {%>
+                                      <% if(list.organisationId !='' && list.organisationId !=undefined) {%>
                                         <td>
                                             <% if(list.awards.originalFilename) {%>
                                               <li>
@@ -263,7 +237,7 @@
                                                                         </li>
                                                                         <%}%>
                                         </td>
-                                        <%}%> -->
+                                        <%}%>
         </tr>
         <%}%>
 
