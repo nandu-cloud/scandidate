@@ -66,6 +66,7 @@ export class AddCandidateComponent implements OnInit {
   empIdsave : any;
   count : boolean = false;
   dis;
+  today = new Date();
   @ViewChild('picker') picker: MatDatepicker<Date>;
   constructor(
     public fb: FormBuilder,
@@ -84,7 +85,7 @@ export class AddCandidateComponent implements OnInit {
       firstName: new FormControl('', [Validators.required, Validators.minLength(3)]),
       lastName: new FormControl('', [Validators.required, Validators.minLength(3)]),
       employeeId: new FormControl(''),
-      adharNumber: new FormControl(''),
+      adharNumber: new FormControl('', [Validators.pattern("^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$")]),
       panNumber: new FormControl(''),
       phoneNumber: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[1-9][0-9]{9}$')]),
       email: new FormControl('', [Validators.required, Validators.email]),

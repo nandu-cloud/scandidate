@@ -240,6 +240,9 @@
                   autoComplete="off"
                   tabindex="4"
                 />
+                <mat-error *ngIf="firstFormGroup.get('adharNumber').errors?.pattern">
+                  please enter valid aadhar number
+                </mat-error>
               </mat-form-field>
               <mat-form-field *ngIf="!id">
                 <mat-label>Email</mat-label>
@@ -283,6 +286,7 @@
                   matInput
                   formControlName="dateOfBirth"
                   type="text"
+                  [max]="today"
                   [matDatepicker]="picker"
                   class="br-btm input-w"
                   placeholder="DD/MM/YYYY"
@@ -519,6 +523,9 @@
             </div>
           </div>
           <div class="flex justify-end lg:pb-6 lg:pr-48">
+            <a routerLink="/candidate-list"><button class="lg-button focus:outline-none focus:shadow-outline" tabindex="8" type="button">
+              Cancel
+            </button></a>
             <button class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
               Save Now
             </button>

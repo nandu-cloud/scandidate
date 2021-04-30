@@ -46,6 +46,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'navbar', component: NavbarComponent ,canActivate: [AppGuard]},
   { path: 'organization-list', component: OrganizationListComponent, canActivate: [AppGuard]},
+  { path: 'add-institution', component: AddInitutionComponent ,canActivate: [AppGuard]},
   { path: 'add-institution/:id', component: AddInitutionComponent ,canActivate: [AppGuard]},
   { path: 'add-appuser', component: AddAppuserComponent ,canActivate: [AppGuard]},
   { path: 'add-appuser/:id', component: AddAppuserComponent,canActivate: [AppGuard] },

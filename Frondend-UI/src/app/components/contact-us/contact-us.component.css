@@ -54,6 +54,13 @@
   .mat-toolbar-single-row {
   padding: 1px !important;
   }
+  .lg-button{
+    width: 106px;
+  }
+  /*.lg-buttonn{
+    width: 106px;
+    margin-left: 8px;
+  } */
   }
 
 .enquiry{
@@ -90,10 +97,34 @@
     .matInput {
       margin: 35px 0!important;
     }
+    .lg-button{
+      width: 106px;
+      margin-right: 15px;
+    }
   }
   @media (min-width:768px){
     input.mat-input-element{
       margin-top: 0.9375em;
+    }
+    .enquiry{
+      width: 535px;
+    }
+    form{
+      margin-left: -37px;
+    }
+    .mat-toolbar{
+      margin: 0 0 0 -10px;
+    }
+  }
+  @media (min-width:1024px){
+   
+    .enquiry{
+      width: 875px;
+    }
+  }
+  @media (min-width: 1440px){
+    form{
+      margin-left: 82px;
     }
   }
   form .form-row{
