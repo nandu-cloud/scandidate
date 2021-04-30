@@ -747,12 +747,13 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
     phone: pNumber,
     email: eml,
     logo: `${process.env.FRONT_END_URL}/assets/images/logo1.png`,
-    orgLogo: `${process.env.FRONT_END_URL}/public/organization_logo/`,
-    instLogo: `${process.env.FRONT_END_URL}/public/institute_logo/`,
+    orgLogo: `${process.env.FRONT_END_ICON_URL}/public/organization_logo/`,
+    instLogo: `${process.env.FRONT_END_ICON_URL}/public/institute_logo/`,
     myDate: dateString,
     data: template,
     data1: icons,
   };
+
 
   try {
     ejs.renderFile(
