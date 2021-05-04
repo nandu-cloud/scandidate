@@ -4,6 +4,7 @@ const bgvDAL = require("./bgvDAL");
 const instituionDAL = require("../institute-onboard/instituteOnboardDAL");
 const organizationDAL = require("../organization-onboard/orgOnboardDAL");
 const bgvSeachDAL = require("./scandidateSearchDAL");
+const mongoose = require('mongoose');
 
 const ejs = require("ejs");
 const path = require("path");
@@ -211,7 +212,35 @@ module.exports.searchByIdBGV = async (req, res, next) => {
           aadharNumber
         );
 
+
+        for (var i = 0; i < empAdharData.length; i++) {
+          var orgId = empAdharData[i].organisationId;
+          var id = mongoose.Types.ObjectId(orgId);
+          var result = await organizationDAL.getOrganisationById({ _id: id });
+          if (result.organisationLogo != null) {
+            empAdharData[i].organisationLogo = result.organisationLogo;
+          }
+          else {
+            empAdharData[i].organisationLogo = "";
+          }
+
+        }
+        for (var i = 0; i < studentAdharData.length; i++) {
+          var insId = studentAdharData[i].instituteId;
+          var id = mongoose.Types.ObjectId(insId);
+          var result = await instituionDAL.getInstituteById({ _id: id })
+
+          if (result.instituteLogo != null) {
+            studentAdharData[i].institutionLogo = result.instituteLogo;
+          } else {
+            studentAdharData[i].institutionLogo = "";
+          }
+        }
+
+
+
         let resultData = empAdharData.concat(studentAdharData);
+
 
         return res.status(200).json({
           status: 200,
@@ -227,7 +256,30 @@ module.exports.searchByIdBGV = async (req, res, next) => {
       try {
         let empEmailData = await bgvDAL.searchByEmailEmployee(email);
         let studentEmailData = await bgvDAL.searchByEmailInstitute(email);
+
+        for (var i = 0; i < studentEmailData.length; i++) {
+          var instId = studentEmailData[i].instituteId;
+          var id = mongoose.Types.ObjectId(instId);
+          var result = await instituionDAL.getInstituteById({ _id: id });
+          if (result.instituteLogo != null) {
+            studentEmailData[i].institutionLogo = result.instituteLogo;
+          } else {
+            studentEmailData[i].institutionLogo = "";
+          }
+        }
+        for (var i = 0; i < empEmailData.length; i++) {
+          var orgId = empEmailData[i].organisationId;
+          var id = mongoose.Types.ObjectId(orgId);
+          var result = await organizationDAL.getOrganisationById({ _id: id });
+          if (result.organisationLogo != null) {
+            empEmailData[i].organisationLogo = result.organisationLogo;
+          } else {
+            empEmailData[i].organisationLogo = "";
+          }
+        }
+
         let resultData = empEmailData.concat(studentEmailData);
+
         return res
           .status(200)
           .json({ status: 200, message: "SUCCESS", data: resultData });
@@ -248,6 +300,32 @@ module.exports.searchByIdBGV = async (req, res, next) => {
           firstName,
           lastName
         );
+
+        for (var i = 0; i < empPhoneData.length; i++) {
+          var orgId = empPhoneData[i].organisationId;
+          var id = mongoose.Types.ObjectId(orgId);
+          var result = await organizationDAL.getOrganisationById({ _id: id });
+          if (result.organisationLogo != null) {
+            empPhoneData[i].organisationLogo = result.organisationLogo;
+          } else {
+            empPhoneData[i].organisationLogo = "";
+          }
+
+        }
+        for (var i = 0; i < studentPhoneData.length; i++) {
+          var insId = studentPhoneData[i].instituteId;
+          var id = mongoose.Types.ObjectId(insId);
+          var result = await instituionDAL.getInstituteById({ _id: id });
+          if (result.instituteLogo != null) {
+            studentPhoneData[i].institutionLogo = result.instituteLogo;
+          } else {
+            studentPhoneData[i].institutionLogo = "";
+          }
+        }
+
+
+
+
         let resultData = empPhoneData.concat(studentPhoneData);
         return res.status(200).json({
           status: 200,
@@ -269,6 +347,30 @@ module.exports.searchByIdBGV = async (req, res, next) => {
           lastName,
           dob
         );
+
+        for (var i = 0; i < findByNameEmp.length; i++) {
+          var orgId = findByNameEmp[i].organisationId;
+          var id = mongoose.Types.ObjectId(orgId);
+          var result = await organizationDAL.getOrganisationById({ _id: id });
+          if (result.organisationLogo != null) {
+            findByNameEmp[i].organisationLogo = result.organisationLogo;
+          } else {
+            findByNameEmp[i].organisationLogo = "";
+          }
+
+        }
+        for (var i = 0; i < findByNameStudent.length; i++) {
+          var insId = findByNameStudent[i].instituteId;
+          var id = mongoose.Types.ObjectId(insId);
+          var result = await instituionDAL.getInstituteById({ _id: id });
+          if (result.instituteLogo != null) {
+            findByNameStudent[i].institutionLogo = result.instituteLogo;
+          } else {
+            findByNameStudent[i].institutionLogo = "";
+          }
+        }
+
+
         let resultData = findByNameEmp.concat(findByNameStudent);
         return res.status(200).json({
           status: 200,
@@ -741,6 +843,7 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
     }
   }
 
+
   var result = {
     FirstName: fname,
     LastName: lname,
@@ -754,48 +857,106 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
     data1: icons,
   };
 
+  let count = 0;
+  let isOrganisation = false;
+  for (var i = 0; i < template.length; i++) {
+    if (!template[i].hasOwnProperty('organisationId')) {
+      count += 1;
+    }
+  }
 
-  try {
-    ejs.renderFile(
-      path.join(
-        __dirname,
-        "../../scandidate/BGVSearch/BGVTemplate/scandidate-report.ejs"
-      ),
-      result,
-      function (err, str) {
-        if (err) {
-          return next(new AppError(err, 400));
-        }
+  if (template.length > count) {
+    isOrganisation = true;
+  }
 
-        // Test
-
-        var fileName = fname + new Date().getTime() + ".pdf";
-
-        var checkFilePath = path.join(
+  if (!isOrganisation) {
+    try {
+      ejs.renderFile(
+        path.join(
           __dirname,
-          "../../../uploads/scandidate-report/" + fileName
-        );
-
-        // var tempFilename =
-        //   "uploads/scandidate-report/" + fname + new Date().getTime() + ".pdf";
-        // var temFilepath = checkFilePath;
-        // var options = { format: "A4", orientation: "Letter" };
-        var options = { height: "10.5in", width: "15in" };
-        pdf.create(str, options).toFile(checkFilePath, function (err, data) {
+          "../../scandidate/BGVSearch/BGVTemplate/scandidate-report-inst.ejs"
+        ),
+        result,
+        function (err, str) {
           if (err) {
             return next(new AppError(err, 400));
           }
 
-          return res.status(200).download(checkFilePath, fileName, (err) => {
+          // Test
+
+          var fileName = fname + new Date().getTime() + ".pdf";
+
+          var checkFilePath = path.join(
+            __dirname,
+            "../../../uploads/scandidate-report/" + fileName
+          );
+
+          // var tempFilename =
+          //   "uploads/scandidate-report/" + fname + new Date().getTime() + ".pdf";
+          // var temFilepath = checkFilePath;
+          // var options = { format: "A4", orientation: "Letter" };
+          var options = { height: "10.5in", width: "15in" };
+          pdf.create(str, options).toFile(checkFilePath, function (err, data) {
             if (err) {
-              if (err.code == "ENOENT")
-                return next(new AppError("user document not found", 404));
+              return next(new AppError(err, 400));
             }
+
+            return res.status(200).download(checkFilePath, fileName, (err) => {
+              if (err) {
+                if (err.code == "ENOENT")
+                  return next(new AppError("user document not found", 404));
+              }
+            });
           });
-        });
-      }
-    );
-  } catch (err) {
-    return next(new AppError(err, 400));
+        }
+      );
+    } catch (err) {
+      return next(new AppError(err, 400));
+    }
+  }
+  else {
+    try {
+      ejs.renderFile(
+        path.join(
+          __dirname,
+          "../../scandidate/BGVSearch/BGVTemplate/scandidate-report.ejs"
+        ),
+        result,
+        function (err, str) {
+          if (err) {
+            return next(new AppError(err, 400));
+          }
+
+          // Test
+
+          var fileName = fname + new Date().getTime() + ".pdf";
+
+          var checkFilePath = path.join(
+            __dirname,
+            "../../../uploads/scandidate-report/" + fileName
+          );
+
+          // var tempFilename =
+          //   "uploads/scandidate-report/" + fname + new Date().getTime() + ".pdf";
+          // var temFilepath = checkFilePath;
+          // var options = { format: "A4", orientation: "Letter" };
+          var options = { height: "10.5in", width: "15in" };
+          pdf.create(str, options).toFile(checkFilePath, function (err, data) {
+            if (err) {
+              return next(new AppError(err, 400));
+            }
+
+            return res.status(200).download(checkFilePath, fileName, (err) => {
+              if (err) {
+                if (err.code == "ENOENT")
+                  return next(new AppError("user document not found", 404));
+              }
+            });
+          });
+        }
+      );
+    } catch (err) {
+      return next(new AppError(err, 400));
+    }
   }
 };

@@ -113,7 +113,7 @@
      <hr> -->
 
     <br />
-
+ 
     <table style="width:95%;margin-left:27px;">
       <caption style="padding-bottom: 10px;">Experience</caption>
       <tr>
@@ -130,13 +130,11 @@
         <tr>
           <% if(list.organisationId !='' && list.organisationId !=undefined){%>
             <td>
-              <% for(let list1 of data1){%>
                 <span>
-                  <% if(list.organisationId===list1._id){%>
-                    <img src="<%= orgLogo + list1.organisationLogo %>" class="image">
+                  <% if(list.organisationLogo){%>
+                    <img src="<%= orgLogo + list.organisationLogo %>" class="image">
                     <%}%>
                 </span>
-                <%}%>
             </td>
             <%}%>
 
@@ -274,7 +272,6 @@
         <%}%>
 
     </table>
-
     <hr>
     <div class="pagebreak"> </div>
 
@@ -294,13 +291,11 @@
         <tr>
           <% if(list.instituteId !='' && list.instituteId !=undefined) {%>
             <td>
-              <% for(let list1 of data1) {%>
                 <span>
-                  <% if(list.instituteId===list1._id){%>
-                    <img class="image" src="<%= instLogo + list1.instituteLogo %>">
+                  <% if(list.institutionLogo){%>
+                    <img  src="<%= instLogo + list.institutionLogo %>" class="image" alt="icon">
                     <%}%>
                 </span>
-                <%}%>
             </td>
             <%}%>
               <% if(list.instituteId !='' && list.instituteId !=undefined){%>

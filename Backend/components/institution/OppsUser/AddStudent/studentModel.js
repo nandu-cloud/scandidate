@@ -6,6 +6,7 @@ const Schema = mongoose.Schema;
 const studentSchema = new mongoose.Schema({
   nameOfCourse: {
     type: String,
+    required: [true, "Name of course is required"]
   },
   yearOfJoining: {
     type: String,

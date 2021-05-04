@@ -92,6 +92,9 @@ async function getEmployeByAddedById(data) {
   }
 }
 
+
+
+
 // export functions
 module.exports = {
   addEmployee: addEmployee,
@@ -99,5 +102,5 @@ module.exports = {
   search_employee_list: search_employee_list,
   getEmplyeeById: getEmplyeeById,
   updateEmployee: updateEmployee,
-  getEmployeByAddedById: getEmployeByAddedById
+  getEmployeByAddedById: getEmployeByAddedById,
 };

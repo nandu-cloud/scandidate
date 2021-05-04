@@ -7,10 +7,12 @@ const addStudentSchema = Joi.object({
   yearOfJoining: Joi.string().required(),
   yearOfPassout: Joi.string().required(),
   studentType: Joi.string().required(),
+  nameOfCourse: Joi.string().required(),
+
+
   addedById: Joi.string().required().min(24).max(24).empty(""),
   instituteId: Joi.string().required().min(24).max(24).empty(""),
   intitutionName: Joi.string(),
-
   adharNumber: Joi.string().allow("").allow(null),
   state: Joi.string().allow("").allow(null),
   landMark: Joi.string().allow("").allow(null),
@@ -19,7 +21,7 @@ const addStudentSchema = Joi.object({
   dateOfBirth: Joi.string().allow("").allow(null),
   email: Joi.string().email().allow("").allow(null),
   phoneNumber: Joi.string().allow("").allow(null),
-  nameOfCourse: Joi.string().allow("").allow(null),
+
   address: Joi.string().allow("").allow(null),
   extraActivity: Joi.string().allow("").allow(null),
   extraActivityDocumentName: Joi.string().allow("").allow(null),
@@ -37,6 +39,9 @@ const updateStudentSchema = Joi.object({
   yearOfJoining: Joi.string().required(),
   yearOfPassout: Joi.string().required(),
   studentType: Joi.string().required(),
+  nameOfCourse: Joi.string().required(),
+
+
   addedById: Joi.string().required().min(24).max(24),
   instituteId: Joi.string().required().min(24).max(24).empty(""),
   intitutionName: Joi.string().required(),
@@ -49,7 +54,6 @@ const updateStudentSchema = Joi.object({
   dateOfBirth: Joi.string().allow("").allow(null),
   email: Joi.string().email().allow("").allow(null),
   phoneNumber: Joi.string().allow("").allow(null),
-  nameOfCourse: Joi.string().allow("").allow(null),
   address: Joi.string().allow("").allow(null),
   extraActivity: Joi.string().allow("").allow(null),
   extraActivityDocumentName: Joi.string().allow("").allow(null),
