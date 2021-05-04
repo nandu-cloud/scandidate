@@ -6,20 +6,21 @@ const organisationCreationSchema = Joi.object({
   organisationType: Joi.string().required(), //
   status: Joi.boolean().required(), //
   organisationZIP: Joi.number().required(), //
+  contactPersonName: Joi.string().required(),
+  legalEntityName: Joi.string().required(),
+  contact: Joi.number().integer().greater(6000000000).max(9999999999).required().error(new Error('Phone number is invalid or missing')),
+  headQuaterLocation: Joi.string().required(),
+  organisationAddress: Joi.string().required(),
+  state: Joi.string().required(),
+  organizationLocation: Joi.string().required(),
 
   landMark: Joi.string().allow("").allow(null),
-  contactPersonName: Joi.string().allow("").allow(null),
-  organisationAddress: Joi.string().allow("").allow(null),
   organisationEmployeeSize: Joi.string().allow("").allow(null),
   organisationActiveFrom: Joi.string().allow("").allow(null),
   organisationDescription: Joi.string().allow("").allow(null),
-  contact: Joi.number().allow("").allow(null),
   code: Joi.string().allow("").allow(null),
   organisationLogo: Joi.string().allow("").allow(null),
-  legalEntityName: Joi.string().allow("").allow(null),
   organizationLocation: Joi.string().allow("").allow(null),
-  state: Joi.string().allow("").allow(null),
-  headQuaterLocation: Joi.string().allow("").allow(null),
   organizationGstn: Joi.string().allow("").allow(null),
   organizationCin: Joi.string().allow("").allow(null),
   panNumber: Joi.string().allow("").allow(null),
@@ -31,6 +32,13 @@ const organisationUpdationSchema = Joi.object({
   organisationType: Joi.string().required(), //
   status: Joi.boolean().required(), //
   organisationZIP: Joi.number().required(), //
+  contactPersonName: Joi.string().required(),
+  legalEntityName: Joi.string().required(),
+  contact: Joi.number().integer().greater(6000000000).max(9999999999).required().error(new Error('Phone number is invalid or missing')),
+  headQuaterLocation: Joi.string().required(),
+  organisationAddress: Joi.string().required(),
+  state: Joi.string().required(),
+  organizationLocation: Joi.string().required(),
 
   landMark: Joi.string().allow("").allow(null),
   contactPersonName: Joi.string().allow("").allow(null),

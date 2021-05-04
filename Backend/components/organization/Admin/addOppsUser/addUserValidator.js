@@ -11,7 +11,7 @@ const userCreationSchema = Joi.object({
   password: Joi.string(),
   workstation: Joi.string().allow('').allow(null),
 
-  phoneNumber: Joi.number().required(),
+  phoneNumber: Joi.number().integer().greater(6000000000).max(9999999999).required().error(new Error('Phone number is invalid or missing')),
   dateOfBirth: Joi.date().allow('').allow(null),
   employeeId: Joi.string().allow('').allow(null),
   currentAddress: Joi.string().allow('').allow(null),
@@ -33,7 +33,7 @@ const updationSchema = Joi.object({
   email: Joi.string().email().required(),
   workstation: Joi.string().allow('').allow(null),
 
-  phoneNumber: Joi.number().required(),
+  phoneNumber: Joi.number().integer().greater(6000000000).max(9999999999).required().error(new Error('Phone number is invalid or missing')),
   dateOfBirth: Joi.date().allow('').allow(null),
   employeeId: Joi.string().allow('').allow(null),
   currentAddress: Joi.string().allow('').allow(null),

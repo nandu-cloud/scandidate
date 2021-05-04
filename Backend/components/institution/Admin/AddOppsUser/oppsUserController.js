@@ -12,6 +12,7 @@ const saltRounds = 10;
 
 module.exports.createOppsUserMethod = async function (req, res, next) {
   const data = req.body;
+
   try {
     await userValidator.userCreationSchema.validateAsync(data);
     let emailExists = await authDAL.authUser(data);
