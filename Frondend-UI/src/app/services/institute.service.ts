@@ -31,7 +31,8 @@ export class instituteService  {
       'contact': number, 'code': string,
       'instituteLogo' : string,
       'instituteLocation':string,
-      'state':string
+      'state':string,
+      'landMark':string
     } =
     {
       'instituteName': addInstituteData.instituteName,
@@ -47,6 +48,7 @@ export class instituteService  {
       'code': addInstituteData.code,
       'instituteLocation':addInstituteData.instituteLocation,
       'state':addInstituteData.state,
+      'landMark': addInstituteData.landMark,
       'instituteLogo': addInstituteData.instituteLogo == ""?undefined:addInstituteData.instituteLogo
     };
     return this.http.post(this.baseUrl + '/api/scandidate/institute', instituteData
@@ -93,7 +95,8 @@ export class instituteService  {
       'instituteDescription': string,
       'status': boolean,
       'contact': number, 'code': string,
-      'instituteLogo' : string
+      'instituteLogo' : string,
+      'landMark' : string
     } =
     {
       'instituteName': updateInstituteData.instituteName,
@@ -108,6 +111,7 @@ export class instituteService  {
       'status': updateInstituteData.status, 'contact': updateInstituteData.contact,
       'code': updateInstituteData.code,
       'instituteLogo': updateInstituteData.instituteLogo,
+      'landMark': updateInstituteData.landMark
     };
     return this.http.put(this.baseUrl + '/api/scandidate/institute/'+this.instituteIdupdate, instituteData
       , {
