@@ -36,6 +36,7 @@ export class AddAppuserComponent implements OnInit {
   id: any;
   organizationId: null;
   institutionId: null;
+  today = new Date();
   constructor(
     public fb: FormBuilder, private router: Router,
     private cd: ChangeDetectorRef, public dialog: MatDialog,

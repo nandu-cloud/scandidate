@@ -37,7 +37,7 @@ export class AddStudentComponent implements OnInit {
       this.studentIdedit = params.id;
     });
     this.firstFormGroup = new FormGroup({
-      lastName : new FormControl('', [Validators.required]),
+      lastName : new FormControl('', [Validators.required, Validators.minLength(3)]),
       firstName : new FormControl('', [Validators.required, Validators.minLength(3)]),
       roll : new FormControl('', [Validators.required]),
       email : new FormControl('', [Validators.email]),

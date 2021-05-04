@@ -24,6 +24,12 @@ input.mat-input-element {
   .mat-tab-group {
     position: sticky !important;
   }
-.enrollment{
-    margin-top: -27px !important;
+/* .enrollment{
+    margin-top: -19px !important;
+    /* margin-top: 4px; */
+.landmark{
+    margin-top: -19px;
+}
+.state{
+    margin-top: -19px;
 }

@@ -151,7 +151,7 @@ export class BGVViewComponent implements OnInit {
          {
           let logo = window.sessionStorage.getItem('logo');
           this.imageUrl=`${this.baseUrl}/public/user_avatar/${logo}`;
-          this.edudoc = respObj.data[2].eductionalDocumentNames;
+          this.edudoc = respObj.data[0].eductionalDocumentNames;
           console.log(this.data);
           this.FirstName = this.data[0].firstName;
           this.lastName = this.data[0].lastName;
@@ -197,13 +197,13 @@ export class BGVViewComponent implements OnInit {
             const data = this.data[i].instituteId
             this.instId.push(data);
             this.proExp = this.data[i].dateOfJoining
-
+             if(this.data[i].eductionalDocumentNames){
             for(let j = 0; j < this.data[i].eductionalDocumentNames.length; j++){
               this.doc.push({"docName":this.data[i].eductionalDocumentNames[j]});
               console.log(this.doc);
 
             }
-
+            }
              }
 
             

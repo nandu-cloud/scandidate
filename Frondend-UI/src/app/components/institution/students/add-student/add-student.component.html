@@ -60,7 +60,7 @@
             </mat-form-field>
             <mat-form-field>
               <mat-label>Institution Name</mat-label>
-              <input  matInput   type="text"  formControlName="intitutionName"  required readonly class="br-btm input-w" autoComplete='off' tabindex="11">
+              <input  matInput   type="text"  formControlName="intitutionName" readonly class="br-btm input-w" autoComplete='off' tabindex="11">
               <mat-error *ngIf ="firstFormGroup.get('intitutionName').errors?.required">
                   Required IntitutionName.
               </mat-error>
@@ -126,9 +126,9 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field class="enrollment">
-            <mat-label>Enrollment type</mat-label>
+            <mat-label class="enr">Enrollment type</mat-label>
             <input matInput placeholder="Input" style="display: none" required>
-            <mat-radio-group formControlName="studentType" required tabindex="12">
+            <mat-radio-group class="radio" formControlName="studentType" required tabindex="12">
               <mat-radio-button value="regular">Regular</mat-radio-button>&nbsp;
               <mat-radio-button value="correspondance">Correspondance</mat-radio-button>
             </mat-radio-group>
@@ -136,11 +136,11 @@
               Required Student Type
             </mat-error>
           </mat-form-field>
-          <mat-form-field>
+          <mat-form-field class="landmark">
             <mat-label>LandMark</mat-label>
             <input matInput type="text"  formControlName="landMark"   class="br-btm input-w" autoComplete='off' tabindex="14">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field class="state">
           <mat-label>State</mat-label>
           <mat-select  class="br-btm input-w pb-5" formControlName="state" tabindex="16">
             <mat-option value="select">Select</mat-option>
