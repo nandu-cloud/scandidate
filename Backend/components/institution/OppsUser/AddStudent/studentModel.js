@@ -16,6 +16,7 @@ const studentSchema = new mongoose.Schema({
   },
   studentType: {
     type: String,
+    required: true
   },
   extraActivity: {
     type: String,

@@ -6,7 +6,7 @@ const addStudentSchema = Joi.object({
   roll: Joi.string().required(),
   yearOfJoining: Joi.string().required(),
   yearOfPassout: Joi.string().required(),
-  studentType: Joi.string().required(),
+  studentType: Joi.string().required().messages({ "any.required": "Student type is required" }),
   nameOfCourse: Joi.string().required(),
 
 
@@ -38,7 +38,7 @@ const updateStudentSchema = Joi.object({
   roll: Joi.string().required(),
   yearOfJoining: Joi.string().required(),
   yearOfPassout: Joi.string().required(),
-  studentType: Joi.string().required(),
+  studentType: Joi.string().required().messages({ "any.required": "Student type is required" }),
   nameOfCourse: Joi.string().required(),
 
 
