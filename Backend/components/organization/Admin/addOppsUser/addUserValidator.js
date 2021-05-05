@@ -11,7 +11,12 @@ const userCreationSchema = Joi.object({
   password: Joi.string(),
   workstation: Joi.string().allow('').allow(null),
 
-  phoneNumber: Joi.number().integer().greater(6000000000).max(9999999999).required().error(new Error('Phone number is invalid or missing')),
+  // phoneNumber: Joi.number().integer().greater(6000000000).max(9999999999).required().error(new Error('Phone number is invalid or missing')),
+  phoneNumber: Joi.number().integer().greater(6000000000).max(9999999999).required().messages({
+    'number.base': 'Phone number is required',
+    'number.greater': 'Phone number is invalid',
+    'number.max': 'Phone number is invalid'
+  }),
   dateOfBirth: Joi.date().allow('').allow(null),
   employeeId: Joi.string().allow('').allow(null),
   currentAddress: Joi.string().allow('').allow(null),
@@ -33,7 +38,12 @@ const updationSchema = Joi.object({
   email: Joi.string().email().required(),
   workstation: Joi.string().allow('').allow(null),
 
-  phoneNumber: Joi.number().integer().greater(6000000000).max(9999999999).required().error(new Error('Phone number is invalid or missing')),
+  // phoneNumber: Joi.number().integer().greater(6000000000).max(9999999999).required().error(new Error('Phone number is invalid')),
+  phoneNumber: Joi.number().integer().greater(6000000000).max(9999999999).required().messages({
+    'number.base': 'Phone number is required',
+    'number.greater': 'Phone number is invalid',
+    'number.max': 'Phone number is invalid'
+  }),
   dateOfBirth: Joi.date().allow('').allow(null),
   employeeId: Joi.string().allow('').allow(null),
   currentAddress: Joi.string().allow('').allow(null),

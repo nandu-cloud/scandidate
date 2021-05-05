@@ -8,7 +8,12 @@ const organisationCreationSchema = Joi.object({
   organisationZIP: Joi.number().required(), //
   contactPersonName: Joi.string().required(),
   legalEntityName: Joi.string().required(),
-  contact: Joi.number().integer().greater(6000000000).max(9999999999).required().error(new Error('Phone number is invalid or missing')),
+  // contact: Joi.number().integer().greater(6000000000).max(9999999999).required().error(new Error('Phone number is invalid or missing')),
+  contact: Joi.number().integer().greater(6000000000).max(9999999999).required().messages({
+    'number.base': 'Phone number is required',
+    'number.greater': 'Phone number is invalid',
+    'number.max': 'Phone number is invalid'
+  }),
   headQuaterLocation: Joi.string().required(),
   organisationAddress: Joi.string().required(),
   state: Joi.string().required(),
@@ -34,7 +39,12 @@ const organisationUpdationSchema = Joi.object({
   organisationZIP: Joi.number().required(), //
   contactPersonName: Joi.string().required(),
   legalEntityName: Joi.string().required(),
-  contact: Joi.number().integer().greater(6000000000).max(9999999999).required().error(new Error('Phone number is invalid or missing')),
+  // contact: Joi.number().integer().greater(6000000000).max(9999999999).required().error(new Error('Phone number is invalid or missing')),
+  contact: Joi.number().integer().greater(6000000000).max(9999999999).required().messages({
+    'number.base': 'Phone number is required',
+    'number.greater': 'Phone number is invalid',
+    'number.max': 'Phone number is invalid'
+  }),
   headQuaterLocation: Joi.string().required(),
   organisationAddress: Joi.string().required(),
   state: Joi.string().required(),
