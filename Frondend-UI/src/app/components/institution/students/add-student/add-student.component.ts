@@ -27,6 +27,7 @@ export class AddStudentComponent implements OnInit {
   secondFormGroup: any;
   purposeOfFile : any;
   documentNameData: string;
+  today = new Date();
   constructor(
     public fb: FormBuilder,
     private cd: ChangeDetectorRef, public dialog: MatDialog, public route: ActivatedRoute,

@@ -320,7 +320,7 @@ th {
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 120px;
+  /* width: 120px; */
   background-color: #555;
   color: #fff;
   text-align: center;
@@ -350,3 +350,6 @@ th {
   visibility: visible;
   opacity: 1;
 }
+/* .mat-tooltip {
+  top: 104px;
+} */

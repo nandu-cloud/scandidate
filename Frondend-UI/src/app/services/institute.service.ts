@@ -96,7 +96,9 @@ export class instituteService  {
       'status': boolean,
       'contact': number, 'code': string,
       'instituteLogo' : string,
-      'landMark' : string
+      'landMark' : string,
+      'instituteLocation' : string,
+      'state': string
     } =
     {
       'instituteName': updateInstituteData.instituteName,
@@ -111,7 +113,9 @@ export class instituteService  {
       'status': updateInstituteData.status, 'contact': updateInstituteData.contact,
       'code': updateInstituteData.code,
       'instituteLogo': updateInstituteData.instituteLogo,
-      'landMark': updateInstituteData.landMark
+      'landMark': updateInstituteData.landMark, 
+      'instituteLocation': updateInstituteData.instituteLocation,
+      'state': updateInstituteData.state
     };
     return this.http.put(this.baseUrl + '/api/scandidate/institute/'+this.instituteIdupdate, instituteData
       , {

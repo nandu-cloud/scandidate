@@ -30,7 +30,7 @@
             </mat-form-field>
             <mat-form-field>
               <mat-label>DOB</mat-label>
-              <input matInput [matDatepicker]="picker2" formControlName="dateOfBirth" class="br-btm input-w" tabindex="5">
+              <input matInput [matDatepicker]="picker2" [max]="today" formControlName="dateOfBirth" class="br-btm input-w" tabindex="5">
               <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
               <mat-datepicker #picker2 color="primary"></mat-datepicker>
               <mat-error *ngIf ="firstFormGroup.get('dateOfBirth').errors?.required">
@@ -127,13 +127,16 @@
           </mat-form-field>
           <mat-form-field class="enrollment">
             <mat-label class="enr">Enrollment type</mat-label>
-            <input matInput placeholder="Input" style="display: none" required>
+            <input matInput placeholder="Input" style="display: none">
             <mat-radio-group class="radio" formControlName="studentType" required tabindex="12">
-              <mat-radio-button value="regular">Regular</mat-radio-button>&nbsp;
-              <mat-radio-button value="correspondance">Correspondance</mat-radio-button>
+              <mat-radio-button value="regular" required>Regular</mat-radio-button>&nbsp;
+              <mat-radio-button value="correspondance" required>Correspondance</mat-radio-button>
             </mat-radio-group>
-            <mat-error *ngIf ="firstFormGroup.get('studentType').errors?.required">
+            <!-- <mat-error *ngIf ="firstFormGroup.get('studentType').errors?.required">
               Required Student Type
+            </mat-error> -->
+            <mat-error *ngIf ="firstFormGroup.get('studentType').errors?.required">
+              Required Student Type 
             </mat-error>
           </mat-form-field>
           <mat-form-field class="landmark">

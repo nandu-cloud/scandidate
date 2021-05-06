@@ -67,7 +67,7 @@ export class AddOrganizationComponent implements OnInit {
       organizationGstn: new FormControl(''),
       organizationCin: new FormControl(''),
       panNumber: new FormControl(''),
-      LandMark: new FormControl('')
+      landMark: new FormControl('')
     })
   }
   close() {
