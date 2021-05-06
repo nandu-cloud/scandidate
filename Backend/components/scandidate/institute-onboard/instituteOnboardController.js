@@ -44,6 +44,7 @@ module.exports.getAllMethod = async function (req, res, next) {
   const data = {};
   try {
     let instituteData = await instituteDAL.getAllInstitute(data);
+
     return res
       .status(200)
       .json({ status: "SUCCESS", message: null, data: instituteData });
@@ -57,12 +58,14 @@ module.exports.getInstituteByIdMethod = async function (req, res, next) {
   try {
     const data = { _id: mongoose.Types.ObjectId(req.params.instituteId) };
     let instituteData = await instituteDAL.getInstituteById(data);
+    var getData = instituteData;
+    getData.instituteActiveFrom = getData.instituteActiveFrom.getFullYear();
     if (!instituteData)
       return next(new AppError("Institute does not exists!", 404));
     return res.status(200).json({
       status: "SUCCESS",
       message: null,
-      data: instituteData,
+      data: getData,
     });
   } catch (err) {
     return next(new AppError(err, 400));
