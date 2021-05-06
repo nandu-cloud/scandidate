@@ -117,7 +117,7 @@
                 <mat-error *ngIf ="createUserData.get('lastName').errors?.required">
                     Required last Name.
                    </mat-error>
-                   <mat-error *ngIf ="createUserData.get('firstName').errors?.minlength">
+                   <mat-error *ngIf ="createUserData.get('lastName').errors?.minlength">
                     Last name must be at least 3 characters long.
                    </mat-error>
             </mat-form-field>

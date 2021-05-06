@@ -121,7 +121,7 @@ changeCode() {
 
 
   submit(){
-   if(!this.instituteIdedit){
+   if(!this.instituteIdedit && this.instituteForm.valid){
     this.instituteSubscription = this.instituteService.checkAddInstitute(this.instituteForm.value).subscribe(resp =>{
       this.openDialog();
     }, err =>{

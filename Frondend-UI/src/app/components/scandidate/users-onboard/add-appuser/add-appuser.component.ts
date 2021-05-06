@@ -140,7 +140,7 @@ export class AddAppuserComponent implements OnInit {
   }
 
   onSubmit(){
-    if(!this.userIdedit){
+    if(!this.userIdedit || this.createUserData.valid){
       this.userSubscription = this.appUserService.createUserData(this.createUserData.value).subscribe(resp => {
         console.log(this.createUserData.value);
         this.methodtype="create";
