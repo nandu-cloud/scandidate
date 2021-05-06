@@ -18,15 +18,49 @@ export class addOrganizationService {
    }
 
   checkAddOrganization(addOrgData): Observable<any> {
-    var orgData: { 'organizationName': string, 'contactPersonName': string ,'organisationAddress': string ,'organisationType': string, 'organisationEmail': string ,
-                 'organisationEmployeeSize':string , 'organisationActiveFrom' : string , 'organisationZIP' : number, 'organisationDescription': string , 'status' : boolean , 'contact' : number , 'code': string , 'organisationLogo' : string,
-                  'legalEntityName' : string,organizationLocation:string,'state':string,'headQuaterLocation' :string,'organizationGstn':string,'organizationCin':string,'panNumber':string} =
-                { 'organizationName': addOrgData.organizationName, 'contactPersonName': addOrgData.contactPersonName ,'organisationAddress': addOrgData.organisationAddress, 'organisationType' : addOrgData.organisationType,
-                  'organisationEmail': addOrgData.organisationEmail,'organisationEmployeeSize':addOrgData.organisationEmployeeSize,'organisationActiveFrom':addOrgData.organisationActiveFrom,'organisationZIP':addOrgData.organisationZIP,'organisationDescription': addOrgData.organisationDescription,'status':true,'contact':addOrgData.contact,'code':addOrgData.code , 
-                  'legalEntityName':addOrgData.legalEntityName,'organizationLocation':addOrgData.organizationLocation,'state':addOrgData.state, 'headQuaterLocation': addOrgData.headQuaterLocation,'organizationGstn':addOrgData.organizationGstn == ""? undefined :addOrgData.organizationGstn,'organizationCin':addOrgData.organizationCin == ""? undefined : addOrgData.organizationCin,
+    var orgData: { 'organizationName': string, 
+                   'contactPersonName': string ,
+                   'organisationAddress': string ,
+                   'organisationType': string,
+                   'organisationEmail': string ,
+                   'organisationEmployeeSize':string ,
+                   'organisationActiveFrom' : string ,
+                   'organisationZIP' : number,
+                   'organisationDescription': string ,
+                   'status' : boolean ,
+                   'contact' : number ,
+                   'code': string ,
+                   'organisationLogo' : string,
+                   'legalEntityName' : string,
+                   'organizationLocation':string,
+                   'state':string,
+                   'headQuaterLocation' :string,
+                   'organizationGstn':string,
+                   'organizationCin':string,
+                   'panNumber':string,
+                   'landMark': string
+                  } =
+                { 'organizationName': addOrgData.organizationName,
+                  'contactPersonName': addOrgData.contactPersonName,
+                  'organisationAddress': addOrgData.organisationAddress,
+                   'organisationType' : addOrgData.organisationType,
+                  'organisationEmail': addOrgData.organisationEmail,
+                  'organisationEmployeeSize':addOrgData.organisationEmployeeSize,
+                  'organisationActiveFrom':addOrgData.organisationActiveFrom,
+                  'organisationZIP':addOrgData.organisationZIP,
+                  'organisationDescription': addOrgData.organisationDescription,
+                  'status':true,
+                  'contact':addOrgData.contact,
+                  'code':addOrgData.code , 
+                  'legalEntityName':addOrgData.legalEntityName,
+                  'organizationLocation':addOrgData.organizationLocation,
+                  'state':addOrgData.state,
+                   'headQuaterLocation': addOrgData.headQuaterLocation,
+                   'organizationGstn':addOrgData.organizationGstn == ""? undefined :addOrgData.organizationGstn,
+                   'organizationCin':addOrgData.organizationCin == ""? undefined : addOrgData.organizationCin,
                   'panNumber':addOrgData.panNumber == ""? undefined :addOrgData.panNumber,
                   'organisationLogo':addOrgData.organisationLogo == ""?undefined:addOrgData.organisationLogo,
-                  
+                  'landMark': addOrgData.landMark
                 };
     return this.http.post(this.baseUrl + '/api/scandidate/organisation', orgData
       , {
@@ -47,13 +81,50 @@ export class addOrganizationService {
   }
 
   updateOrganization(updateOrgData) : Observable<any>{
-    var orgData: { 'organizationName': string, 'contactPersonName': string ,'organisationAddress': string ,'organisationType': string, 'organisationEmail': string ,
-    'organisationEmployeeSize':string , 'organisationActiveFrom' : string , 'organisationZIP' : number, 'organisationDescription': string , 'status' : boolean , 'contact' : number , 'code': string , 'organisationLogo': string,
-    'legalEntityName' : string,organizationLocation:string,'state':string,'headQuaterLocation' :string,'organizationGstn':string,'organizationCin':string,'panNumber':string} =
-   { 'organizationName': updateOrgData.organizationName, 'contactPersonName': updateOrgData.contactPersonName ,'organisationAddress': updateOrgData.organisationAddress, 'organisationType' : updateOrgData.organisationType,
-     'organisationEmail': updateOrgData.organisationEmail,'organisationEmployeeSize':updateOrgData.organisationEmployeeSize,'organisationActiveFrom':updateOrgData.organisationActiveFrom,'organisationZIP':updateOrgData.organisationZIP,'organisationDescription': updateOrgData.organisationDescription,'status':updateOrgData.status,'contact':updateOrgData.contact,'code':updateOrgData.code , 
-     'legalEntityName':updateOrgData.legalEntityName,'organizationLocation':updateOrgData.organizationLocation,'state':updateOrgData.state, 'headQuaterLocation': updateOrgData.headQuaterLocation,'organizationGstn':updateOrgData.organizationGstn == ""? undefined :updateOrgData.organizationGstn,'organizationCin':updateOrgData.organizationCin == ""? undefined : updateOrgData.organizationCin,
-     'panNumber':updateOrgData.panNumber == ""? undefined :updateOrgData.panNumber,'organisationLogo':updateOrgData.organisationLogo == ""?undefined:updateOrgData.organisationLogo,};
+    var orgData: { 'organizationName': string,
+     'contactPersonName': string ,
+     'organisationAddress': string ,
+     'organisationType': string,
+      'organisationEmail': string ,
+    'organisationEmployeeSize':string , 
+    'organisationActiveFrom' : string ,
+     'organisationZIP' : number,
+      'organisationDescription': string ,
+       'status' : boolean ,
+        'contact' : number ,
+         'code': string ,
+          'organisationLogo': string,
+    'legalEntityName' : string,
+    'organizationLocation':string,
+    'state':string,
+    'headQuaterLocation' :string,
+    'organizationGstn':string,
+    'organizationCin':string,
+    'panNumber':string,
+    'landMark':string
+  } =
+   { 'organizationName': updateOrgData.organizationName,
+    'contactPersonName': updateOrgData.contactPersonName ,
+    'organisationAddress': updateOrgData.organisationAddress,
+     'organisationType' : updateOrgData.organisationType,
+     'organisationEmail': updateOrgData.organisationEmail,
+     'organisationEmployeeSize':updateOrgData.organisationEmployeeSize,
+     'organisationActiveFrom':updateOrgData.organisationActiveFrom,
+     'organisationZIP':updateOrgData.organisationZIP,
+     'organisationDescription': updateOrgData.organisationDescription,
+     'status':updateOrgData.status,
+     'contact':updateOrgData.contact,
+     'code':updateOrgData.code , 
+     'legalEntityName':updateOrgData.legalEntityName,
+     'organizationLocation':updateOrgData.organizationLocation,
+     'state':updateOrgData.state,
+      'headQuaterLocation': updateOrgData.headQuaterLocation,
+      'organizationGstn':updateOrgData.organizationGstn == ""? undefined :updateOrgData.organizationGstn,
+      'organizationCin':updateOrgData.organizationCin == ""? undefined : updateOrgData.organizationCin,
+     'panNumber':updateOrgData.panNumber == ""? undefined :updateOrgData.panNumber,
+     'organisationLogo':updateOrgData.organisationLogo == ""?undefined:updateOrgData.organisationLogo,
+     'landMark':updateOrgData.landMark
+    };
     return this.http.put(this.baseUrl + '/api/scandidate/organisation/' +this.orgIdupdate, orgData,
     {
       headers: new HttpHeaders({

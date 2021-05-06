@@ -9,7 +9,7 @@ import { StorageService } from '../../../../services/storage.service'
   selector: 'app-add-insitutional-user',
   templateUrl: './add-insitutional-user.component.html',
   styleUrls: ['./add-insitutional-user.component.css'],
-  providers: [ AdministituteService ,StorageService ]
+  providers: [ AdministituteService, StorageService ]
 })
 export class AddInsitutionalUserComponent implements OnInit {
   createUser: FormGroup;
@@ -63,6 +63,10 @@ export class AddInsitutionalUserComponent implements OnInit {
     dialogRef.componentInstance.metrhodType = this.methodtype;
   }
   onSubmit(){
+    if(this.createUser.invalid) {
+      return;
+    }
+
     const id =localStorage.getItem('instutuinId')
     const userId = localStorage.getItem('_id')
     this.userSubscription = this.instituteUser.createUser(this.createUser.value, id, userId).subscribe(resp => {
