@@ -9,6 +9,7 @@ const instituteValidator = require("./instituteOnboardValidator");
 const studentDAL = require("../../institution/OppsUser/AddStudent/studentDAL");
 const email = require("../../../helpers/email");
 
+
 // Add Institute
 module.exports.onboardInstituteMethod = async function (req, res, next) {
   const data = req.body;

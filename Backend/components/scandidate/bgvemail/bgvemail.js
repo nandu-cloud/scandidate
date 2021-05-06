@@ -8,6 +8,13 @@ const AWS = require("aws-sdk");
 const ejs = require("ejs");
 const moment = require("moment");
 
+function format(date) {
+  var d = date.getDate();
+  var m = date.getMonth() + 1;
+  var y = date.getFullYear();
+  return "" + (d <= 9 ? "0" + d : d) + "-" + (m <= 9 ? "0" + m : m) + "-" + y;
+}
+
 function createXL(template) {
   var selfDriv = "";
   var workIndepend = "";
