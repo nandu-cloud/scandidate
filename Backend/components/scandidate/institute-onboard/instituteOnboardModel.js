@@ -29,7 +29,7 @@ let onboardInstituteSchema = mongoose.Schema({
     required: false,
   },
   instituteActiveFrom: {
-    type: Date,
+    type: String,
     required: false,
   },
   instituteZIP: {
@@ -68,6 +68,7 @@ let onboardInstituteSchema = mongoose.Schema({
   },
   state: {
     type: String,
+    required: true
   },
 });
 

@@ -58,16 +58,12 @@ module.exports.getInstituteByIdMethod = async function (req, res, next) {
   try {
     const data = { _id: mongoose.Types.ObjectId(req.params.instituteId) };
     let instituteData = await instituteDAL.getInstituteById(data);
-    var getData = instituteData;
-    if (getData.instituteActiveFrom) {
-      getData.instituteActiveFrom = getData.instituteActiveFrom.getFullYear();
-    }
     if (!instituteData)
       return next(new AppError("Institute does not exists!", 404));
     return res.status(200).json({
       status: "SUCCESS",
       message: null,
-      data: getData,
+      data: instituteData,
     });
   } catch (err) {
     return next(new AppError(err, 400));
