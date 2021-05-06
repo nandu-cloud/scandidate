@@ -156,13 +156,17 @@
             </mat-form-field>
             <mat-form-field>
               <mat-label>Active From</mat-label>
-              <!-- <input  matInput  type="text"  formControlName="activeform"  required  class="br-btm input-w" autoComplete='off'> -->
-              <input matInput formControlName="instituteActiveFrom" placeholder="YYYY" class="br-btm input-w" required tabindex="8">
+              <input matInput
+               formControlName="instituteActiveFrom"
+               max="maxDate"
+               placeholder="YYYY"
+               class="br-btm input-w"
+                tabindex="8">
               <!-- <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
               <mat-datepicker #picker2 color="primary"></mat-datepicker> -->
-              <mat-error *ngIf ="instituteForm.get('instituteActiveFrom').errors?.required">
-                Choose date.
-            </mat-error>
+              <mat-error *ngIf ="instituteForm.get('instituteActiveFrom').errors?.max">
+                Enter valid Year
+              </mat-error>
           </mat-form-field>
           <mat-form-field>
             <mat-label>LandMark</mat-label>

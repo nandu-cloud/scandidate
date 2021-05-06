@@ -18,7 +18,7 @@
                   Required first Name.
               </mat-error>
               <mat-error *ngIf ="firstFormGroup.get('firstName').errors?.minlength">
-                   Name must be at least 5 characters long.
+                  First Name must be at least 5 characters long.
               </mat-error>
             </mat-form-field>
             <mat-form-field>
@@ -60,7 +60,7 @@
             </mat-form-field>
             <mat-form-field>
               <mat-label>Institution Name</mat-label>
-              <input  matInput   type="text"  formControlName="intitutionName" readonly class="br-btm input-w" autoComplete='off' tabindex="11">
+              <input  matInput   type="text"  formControlName="intitutionName" readonly class="br-btm input-w" autoComplete='off'>
               <mat-error *ngIf ="firstFormGroup.get('intitutionName').errors?.required">
                   Required IntitutionName.
               </mat-error>
@@ -85,6 +85,9 @@
             <mat-error *ngIf ="firstFormGroup.get('lastName').errors?.required">
               Required last Name.
           </mat-error>
+          <mat-error *ngIf ="firstFormGroup.get('lastName').errors?.minlength">
+            Last Name must be at least 5 characters long.
+       </mat-error>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Aadhaar Number</mat-label>
@@ -127,10 +130,10 @@
           </mat-form-field>
           <mat-form-field class="enrollment">
             <mat-label class="enr">Enrollment type</mat-label>
-            <input matInput placeholder="Input" style="display: none">
-            <mat-radio-group class="radio" formControlName="studentType" required tabindex="12">
-              <mat-radio-button value="regular" required>Regular</mat-radio-button>&nbsp;
-              <mat-radio-button value="correspondance" required>Correspondance</mat-radio-button>
+            <input matInput placeholder="Input" style="display: none" required>
+            <mat-radio-group class="radio" formControlName="studentType" required>
+              <mat-radio-button value="regular" tabindex="11">Regular</mat-radio-button>&nbsp;
+              <mat-radio-button value="correspondance" tabindex="12">Correspondance</mat-radio-button>
             </mat-radio-group>
             <!-- <mat-error *ngIf ="firstFormGroup.get('studentType').errors?.required">
               Required Student Type

@@ -28,7 +28,8 @@ export class AddInitutionComponent implements OnInit {
   instituteIdedit:number;
   id;
   minDate = new Date(1990, 0, 1);
-  maxDate = new Date;
+  // maxDate = new Date;
+  maxDate = (new Date()).getFullYear();
   instituteIdupdate : number ;
   imageUrl: any = '';
   imageFilename:string='';
@@ -51,7 +52,7 @@ export class AddInitutionComponent implements OnInit {
       contact : new FormControl('',[Validators.required, Validators.pattern('^[1-9][0-9]{9}$')]),
       instituteType : new FormControl('',[Validators.required]),
       instituteStudentSize : new FormControl(''),
-      instituteActiveFrom : new FormControl('',[Validators.required]),
+      instituteActiveFrom : new FormControl('', [Validators.max(new Date().getFullYear())]),
       instituteLogo : new FormControl(),
       instituteLocation : new FormControl('',[Validators.required]),
       state : new FormControl('',[Validators.required]),
@@ -120,7 +121,7 @@ changeCode() {
 
 
   submit(){
-    if(!this.instituteIdedit){
+   if(!this.instituteIdedit){
     this.instituteSubscription = this.instituteService.checkAddInstitute(this.instituteForm.value).subscribe(resp =>{
       this.openDialog();
     }, err =>{
