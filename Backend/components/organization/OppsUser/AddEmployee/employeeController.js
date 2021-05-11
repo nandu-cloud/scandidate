@@ -102,6 +102,13 @@ module.exports.updateMethod = async function (req, res, next) {
     const employeeExsits = await employeeDAL.getEmplyeeById(data);
     if (!employeeExsits)
       return next(new AppError("Employee does not exists!", 404));
+    var dateOfJoining = new Date(data.dateOfJoining);
+    var dateOfExit = new Date(data.exitDate);
+    var diffDates = dateOfJoining.getTime() - dateOfExit.getTime();
+    var days = diffDates / (1000 * 60 * 60 * 24);
+    if (days > 0) {
+      return next(new AppError('Relieving date must be greater than joining date', 400))
+    }
     result._id = mongoose.Types.ObjectId(req.params.employeeId);
     result.updatedAt = new Date();
     let studentData = await employeeDAL.updateEmployee(result);
