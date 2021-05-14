@@ -180,3 +180,11 @@ module.exports.deleteDocument = async (req, res, next) => {
 };
 
 
+
+module.exports.checkduplicateEmployeeRecords = async (req, res, next) => {
+  let result = await employeeDAL.checkDuplicateEmpRecord(req.body);
+  if (result === undefined) {
+    return res.status(200).json({ status: 200, message: "Employee doesn't exists" })
+  }
+  return next(new AppError(result, 400));
+}

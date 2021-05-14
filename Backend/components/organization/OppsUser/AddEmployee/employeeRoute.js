@@ -73,6 +73,9 @@ router
   .route("/deletefile/:employeedocumentlink/:id")
   .delete(authJWT.verifyJWTToken, addEmployeeController.deleteDocument);
 
+router
+  .route("/check/duplicateemployeerecord")
+  .get(authJWT.verifyJWTToken, addEmployeeController.checkduplicateEmployeeRecords);
 
 
 module.exports = router;
