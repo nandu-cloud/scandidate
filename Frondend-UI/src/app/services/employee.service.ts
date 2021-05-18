@@ -183,4 +183,8 @@ export class EmployeeService {
   public getLinemanagerEmployeeData(id): Observable<any> {
     return this.http.get(this.baseUrl + '/api/organisation/lineManager/show/assignedEmployee/' + id);
   }
+
+  public duplicateEntry(value): Observable<any> {
+   return this.http.get(this.baseUrl + '/api/organisation/operational/check/duplicateemployeerecord', value) 
+  }
 }
