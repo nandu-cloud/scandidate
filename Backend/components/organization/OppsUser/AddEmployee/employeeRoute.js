@@ -75,7 +75,7 @@ router
 
 router
   .route("/check/duplicateemployeerecord")
-  .get(authJWT.verifyJWTToken, addEmployeeController.checkduplicateEmployeeRecords);
+  .post(authJWT.verifyJWTToken, addEmployeeController.checkduplicateEmployeeRecords);
 
 
 module.exports = router;
