@@ -1,5 +1,6 @@
 <app-navbar>
-    <div class="pt-16 lg:pl-64 pl-12 md:pl-48 bg-white">
+  <div class="oopsuser lg:pl-64 pl-12 pt-4 md:pl-48 pt-4">
+    <!-- <div class="pt-16 lg:pl-64 pl-12 md:pl-48 bg-white"> -->
       <div class="bg-red-100 border border-red-400 text-red-700 py-3 mb-4 rounded relative" role="alert" *ngIf="error">
         <strong class="font-bold mr-4">Error ::</strong>
         <span class="block sm:inline">{{error}}</span>
@@ -9,8 +10,88 @@
       </div> 
             <form class="login-form" [formGroup]="organizationUserForm">
               <h1 class="hd-add pb-6">Operational User Form</h1>
-              <div class="flex flex-wrap">
-                <div class="w-full md:w-1/2 sm:w-full">
+              <div class="form-row">
+                <mat-form-field>
+                  <mat-label>First Name</mat-label>
+                  <input  matInput formControlName="firstName"  type="text" class="br-btm input-w" autoComplete='off' required tabindex="1">
+                  <mat-error *ngIf ="organizationUserForm.get('firstName').errors?.required">
+                      Required First Name.
+                  </mat-error>
+                  <mat-error *ngIf ="organizationUserForm.get('firstName').errors?.minlength">
+                    First name must be at least 5 characters long.
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="secondcol">
+                  <mat-label>Last Name</mat-label>
+                  <input  matInput formControlName="lastName"  type="text" class="br-btm input-w" autoComplete='off' required tabindex="2">
+                  <mat-error *ngIf = "organizationUserForm.get('lastName').errors?.required">
+                      Required Last Name.
+                  </mat-error>
+                  <mat-error *ngIf = "organizationUserForm.get('lastName').errors?.minlength">
+                    Last name must be at least 5 characters long.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              
+              <div class="form-row">
+                <mat-form-field>
+                  <mat-label>Role</mat-label>
+                  <input  matInput formControlName="role"  type="text" class="br-btm input-w" autoComplete='off' readonly required tabindex="3">
+                </mat-form-field> 
+                <mat-form-field class="secondcol lg:pl-24">
+                  <mat-label>Sub Role</mat-label>
+                  <!-- <input  matInput formControlName="subRole"  type="text"  class="br-btm input-w" autoComplete='off' required tabindex="4"> -->
+                  <mat-select  class="br-btm input-w" formControlName="subRole" required tabindex="4">
+                    <mat-option value="ADMIN">Admin HR</mat-option>
+                    <mat-option value="OPERATIONAL_USER">Line HR</mat-option>
+                    <mat-option value="LINE MANAGER">Line Manager</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="form-row">
+                <mat-form-field>
+                  <mat-label>Phone Number</mat-label>
+                  <input  matInput   type="text"  formControlName="phoneNumber" class="br-btm input-w" autoComplete='off' required pattern="^[0-9]{10}$" tabindex="5">
+                  <mat-error *ngIf ="organizationUserForm.get('phoneNumber').errors?.required">
+                    Required phone number.
+                </mat-error>
+                <mat-error *ngIf="!organizationUserForm.get('phoneNumber').errors?.required && organizationUserForm.get('phoneNumber').errors?.pattern">
+                    Please enter valid mumber
+                </mat-error>
+                </mat-form-field>
+                <mat-form-field class="secondcol lg:pl-24">
+                  <mat-label>Email</mat-label>
+                  <input  matInput   type="email"  formControlName="email"  class="br-btm input-w" autoComplete='off' required tabindex="6">
+                  <mat-error *ngIf ="organizationUserForm.get('email').errors?.required">
+                    Required email address
+                  </mat-error>
+                  <mat-error *ngIf ="organizationUserForm.get('email').errors?.email">
+                    Enter a valid email address
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="form-row">
+                <mat-form-field>
+                  <mat-label>Date of Birth</mat-label>
+                  <!-- <input  matInput  type="text"  formControlName="activeform"  required  class="br-btm input-w" autoComplete='off'> -->
+                  <input matInput [matDatepicker]="picker2" [min]="minDate" 
+                  [max]="maxDate" formControlName="dateOfBirth"  class="br-btm input-w" tabindex="7">
+                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2 color="primary"></mat-datepicker>
+                  <mat-error *ngIf ="organizationUserForm.get('dateOfBirth').errors?.required">
+                      Choose date.
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="secondcol lg:pl-24">
+                  <mat-label>Work Location</mat-label>
+                  <input  matInput   type="text"  formControlName="workstation"  class="br-btm input-w" autoComplete='off' tabindex="8">
+                </mat-form-field>
+              </div>
+
+              <!-- <div class="flex flex-wrap"> -->
+                <!-- <div class="w-full md:w-1/2 sm:w-full">
                   <mat-form-field>
                     <mat-label>First Name</mat-label>
                     <input  matInput formControlName="firstName"  type="text" class="br-btm input-w" autoComplete='off' required tabindex="1">
@@ -37,7 +118,6 @@
                   </mat-form-field>
                   <mat-form-field>
                     <mat-label>Date of Birth</mat-label>
-                    <!-- <input  matInput  type="text"  formControlName="activeform"  required  class="br-btm input-w" autoComplete='off'> -->
                     <input matInput [matDatepicker]="picker2" [min]="minDate" 
                     [max]="maxDate" formControlName="dateOfBirth"  class="br-btm input-w" tabindex="7">
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
@@ -53,8 +133,8 @@
                       <mat-option  [value]= false>Inactive</mat-option>
                     </mat-select>
                 </mat-form-field>
-                </div>
-                <div class="w-full md:w-1/2 sm:w-full">
+                </div> -->
+                <!-- <div class="w-full md:w-1/2 sm:w-full">
                   <mat-form-field>
                     <mat-label>Last Name</mat-label>
                     <input  matInput formControlName="lastName"  type="text" class="br-btm input-w" autoComplete='off' required tabindex="2">
@@ -68,7 +148,6 @@
                   
                   <mat-form-field>
                     <mat-label>Sub Role</mat-label>
-                    <!-- <input  matInput formControlName="subRole"  type="text"  class="br-btm input-w" autoComplete='off' required tabindex="4"> -->
                     <mat-select  class="br-btm input-w" formControlName="subRole" required tabindex="4">
                       <mat-option value="ADMIN">Admin HR</mat-option>
                       <mat-option value="OPERATIONAL_USER">Line HR</mat-option>
@@ -91,13 +170,13 @@
                   <mat-label>Work Location</mat-label>
                   <input  matInput   type="text"  formControlName="workstation"  class="br-btm input-w" autoComplete='off' tabindex="8">
                 </mat-form-field>
-                </div>
-              </div>
+                </div> -->
+              <!-- </div> -->
               <div class="flex justify-end lg:pb-6 lg:pr-48">
-                <a routerLink="/orgnization-users-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button">
+                <a routerLink="/orgnization-users-list"><button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button" tabindex="9">
                   Cancel
                 </button></a>
-                <button class="lg-button focus:outline-none focus:shadow-outline" type="submit" tabindex="9" (click)="submit()" *ngIf="!id" >
+                <button class="lg-button focus:outline-none focus:shadow-outline" type="submit" tabindex="10" (click)="submit()" *ngIf="!id" >
                   Submit
                 </button>
                 <button class="lg-button focus:outline-none focus:shadow-outline" (click)=update(id)  *ngIf="id" >

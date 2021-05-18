@@ -61,6 +61,7 @@ export class AddCandidateComponent implements OnInit {
   minDate : any;
   maxDate : any;
   savenowSubscription: Subscription;
+  duplicateSubscription: Subscription;
   showSave: boolean = true;
   submitValue : boolean = true;
   empIdsave : any;
@@ -174,17 +175,13 @@ export class AddCandidateComponent implements OnInit {
       }),
     });
   }
-  
-  // this.firstFormGroup.disable() {
-  //   if() {
-
-  //   }
-  // }
-  // view(item){
-  //   this.downloadStudentSubscription = this.empService.downloadFile(item).subscribe(respObj => {
-  //     console.log(respObj.data);
-  //   })
-  // }
+  onKeyup(event){
+   
+      this.duplicateSubscription = this.empService.duplicateEntry(event.target.value).subscribe(resp => {
+        console.log(event.target.value);
+      })
+    
+  }
 
   validateExitDate(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {

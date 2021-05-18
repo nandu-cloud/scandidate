@@ -44,6 +44,7 @@
               <mat-form-field>
                 <mat-label>First Name </mat-label>
                 <input
+                  (keyup)="onKeyup($event)"
                   matInput
                   formControlName="firstName"
                   (change)="displayName()"
@@ -89,6 +90,7 @@
               <mat-form-field>
                 <mat-label>Phone Number</mat-label>
                 <input
+                  (keyup)="onKeyup($event)"
                   matInput
                   formControlName="phoneNumber"
                   type="text"
@@ -116,6 +118,7 @@
                 <mat-label>Date Of Joining</mat-label>
                 <input
                   matInput
+                  (keyup)="onKeyup($event)"
                   formControlName="dateOfJoining"
                   [matDatepicker]="picker2"
                   class="br-btm input-w"
@@ -211,6 +214,7 @@
                 <mat-label>Last Name</mat-label>
                 <input
                   matInput
+                  (keyup)="onKeyup($event)"
                   formControlName="lastName"
                   (change)="displayName()"
                   type="text"
@@ -248,6 +252,7 @@
                 <mat-label>Email</mat-label>
                 <input
                   matInput
+                  (keyup)="onKeyup($event)"
                   formControlName="email"
                   type="text"
                   class="br-btm input-w"
@@ -315,6 +320,7 @@
                 <mat-label>Relieving Date</mat-label>
                 <input
                   matInput
+                  (keyup)="onKeyup($event)"
                   formControlName="exitDate"
                   [matDatepicker]="picker1"
                   (dateChange)="calculateExperience()"
