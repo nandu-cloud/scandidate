@@ -176,11 +176,26 @@ export class AddCandidateComponent implements OnInit {
     });
   }
   onKeyup(event){
-   
-      this.duplicateSubscription = this.empService.duplicateEntry(event.target.value).subscribe(resp => {
-        console.log(event.target.value);
+    if(this.firstFormGroup.value.firstName !== '',
+       this.firstFormGroup.value.lastName !== '',
+       this.firstFormGroup.value.email !== '',
+       this.firstFormGroup.value.phoneNumber !== '',
+       this.firstFormGroup.value.adharNumber == '',
+       this.firstFormGroup.value.dateOfJoining !== '',
+       this.firstFormGroup.value.exitDate !== ''
+       ){
+      this.duplicateSubscription = this.empService.duplicateEntry(this.firstFormGroup.value).subscribe(resp => {
+        console.log(event);
+        if(resp.statusCode == 400 ) {
+        this.methodtype = "duplicate";
+        this.openDialog();
+        }
+      }, err => {
+        this.setMessage = { message: err.error.message, error: true };
+        this.error = this.setMessage.message;
+        throw this.setMessage.message;
       })
-    
+    }
   }
 
   validateExitDate(): ValidatorFn {
@@ -766,10 +781,13 @@ export class DialogElementsExampleDialog {
       this.Message = "Ex-Employee  Updated successfully"
     } else if(this.methodType == 'save') {
       this.Message = "Ex-Employee Feedback successfully Submitted"
+    } else if(this.methodType == 'duplicate') {
+      this.Message = "Ex-Employee with same email exists"
     }
      else {
       this.Message ="Ex-Employee Onboared successfully"
     }
+    
   }
 
   close() {

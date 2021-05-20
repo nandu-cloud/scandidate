@@ -105,6 +105,7 @@ export class LoginComponent implements OnInit {
       let token = resp.data.token;
       let iniId = resp.data.institutionId;
       let orgId = resp.data.organizationId;
+      let orgName = resp.data.organizationName;
       let errMsg = resp.message;
       let logo = resp.data.avatarLink;
 
@@ -115,6 +116,7 @@ export class LoginComponent implements OnInit {
       this._sessionStorage.setSession('ID',userId);
       this._sessionStorage.setSession('InistutionId',iniId);
       this._sessionStorage.setSession('organizationId',orgId);
+      this._sessionStorage.setSession('orgName', orgName);
       this._sessionStorage.setSession('logo',logo);
       if (resp.status.toUpperCase() == 'SUCCESS') {
       if(role == 'SCANDIDATE'){
@@ -129,6 +131,7 @@ export class LoginComponent implements OnInit {
       } else {
         this._sessionStorage.setSession('isAuthenticated',true);
         localStorage.setItem('organizationId',resp.data.organizationId);
+        localStorage.setItem('orgName',resp.data.organizationName);
         this.router.navigate(['/organizationDashboard']);
       }
     }

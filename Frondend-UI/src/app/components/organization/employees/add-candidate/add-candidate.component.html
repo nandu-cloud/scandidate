@@ -43,8 +43,8 @@
             <div class="w-full md:w-1/2 sm:w-full">
               <mat-form-field>
                 <mat-label>First Name </mat-label>
-                <input
-                  (keyup)="onKeyup($event)"
+                <input #firstName
+                  (keyup)="onKeyup($event.target.value)"
                   matInput
                   formControlName="firstName"
                   (change)="displayName()"
@@ -89,8 +89,8 @@
               </mat-form-field>
               <mat-form-field>
                 <mat-label>Phone Number</mat-label>
-                <input
-                  (keyup)="onKeyup($event)"
+                <input #phoneNumber
+                  (keyup)="onKeyup($event.target.value)"
                   matInput
                   formControlName="phoneNumber"
                   type="text"
@@ -117,8 +117,8 @@
               <mat-form-field>
                 <mat-label>Date Of Joining</mat-label>
                 <input
-                  matInput
-                  (keyup)="onKeyup($event)"
+                  matInput #dateOfJoining
+                  (keyup)="onKeyup($event.target.value)"
                   formControlName="dateOfJoining"
                   [matDatepicker]="picker2"
                   class="br-btm input-w"
@@ -213,8 +213,8 @@
               <mat-form-field>
                 <mat-label>Last Name</mat-label>
                 <input
-                  matInput
-                  (keyup)="onKeyup($event)"
+                  matInput #lastName
+                  (keyup)="onKeyup($event.target.value)"
                   formControlName="lastName"
                   (change)="displayName()"
                   type="text"
@@ -237,7 +237,7 @@
               <mat-form-field>
                 <mat-label>Aadhaar Number</mat-label>
                 <input
-                  matInput
+                  matInput #adharNumber
                   formControlName="adharNumber"
                   type="text"
                   class="br-btm input-w"
@@ -252,7 +252,7 @@
                 <mat-label>Email</mat-label>
                 <input
                   matInput
-                  (keyup)="onKeyup($event)"
+                  (keyup)="onKeyup($event.target.value)"
                   formControlName="email"
                   type="text"
                   class="br-btm input-w"
@@ -270,7 +270,7 @@
               <mat-form-field *ngIf="id" >
                 <mat-label>Email</mat-label>
                 <input
-                  matInput
+                  matInput #email
                   formControlName="email"
                   type="text"
                   class="br-btm input-w"
@@ -318,9 +318,9 @@
 
               <mat-form-field>
                 <mat-label>Relieving Date</mat-label>
-                <input
-                  matInput
-                  (keyup)="onKeyup($event)"
+                <input #exitDate
+                  matInput 
+                  (keyup)="onKeyup($event.target.value)"
                   formControlName="exitDate"
                   [matDatepicker]="picker1"
                   (dateChange)="calculateExperience()"

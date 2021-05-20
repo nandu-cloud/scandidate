@@ -185,6 +185,24 @@ export class EmployeeService {
   }
 
   public duplicateEntry(value): Observable<any> {
-   return this.http.get(this.baseUrl + '/api/organisation/operational/check/duplicateemployeerecord', value) 
+    var organizationId = window.sessionStorage.getItem('organizationId');
+    var orgName = window.sessionStorage.getItem('orgName');
+    var EmpData: {
+      'firstName': string, 'lastName': string, 'email': string, 'phoneNumber': string, 'dateOfJoining': string,
+      'exitDate': string, 'adharNumber': string, 'organisationId': string, 'organizationName': string
+    }
+    =
+    {
+      'firstName': value.firstName,
+      'lastName': value.lastName,
+      'email': value.email, 
+      'phoneNumber': value.phoneNumber,
+      'dateOfJoining': value.dateOfJoining,
+      'exitDate': value.exitDate,
+      'adharNumber': value.adharNumber,
+      'organisationId': organizationId, 'organizationName': orgName
+    }
+   return this.http.post(this.baseUrl + '/api/organisation/operational/check/duplicateemployeerecord', EmpData
+   ) 
   }
 }
