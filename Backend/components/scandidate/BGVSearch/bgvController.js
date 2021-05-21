@@ -857,106 +857,106 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
     data1: icons,
   };
 
-  let count = 0;
-  let isOrganisation = false;
-  for (var i = 0; i < template.length; i++) {
-    if (!template[i].hasOwnProperty('organisationId')) {
-      count += 1;
-    }
-  }
+  // let count = 0;
+  // let isOrganisation = false;
+  // for (var i = 0; i < template.length; i++) {
+  //   if (!template[i].hasOwnProperty('organisationId')) {
+  //     count += 1;
+  //   }
+  // }
 
-  if (template.length > count) {
-    isOrganisation = true;
-  }
+  // if (template.length > count) {
+  //   isOrganisation = true;
+  // }
 
-  if (!isOrganisation) {
-    try {
-      ejs.renderFile(
-        path.join(
+  // if (!isOrganisation) {
+  //   try {
+  //     ejs.renderFile(
+  //       path.join(
+  //         __dirname,
+  //         "../../scandidate/BGVSearch/BGVTemplate/scandidate-report-inst.ejs"
+  //       ),
+  //       result,
+  //       function (err, str) {
+  //         if (err) {
+  //           return next(new AppError(err, 400));
+  //         }
+
+  //         // Test
+
+  //         var fileName = fname + new Date().getTime() + ".pdf";
+
+  //         var checkFilePath = path.join(
+  //           __dirname,
+  //           "../../../uploads/scandidate-report/" + fileName
+  //         );
+
+  //         // var tempFilename =
+  //         //   "uploads/scandidate-report/" + fname + new Date().getTime() + ".pdf";
+  //         // var temFilepath = checkFilePath;
+  //         // var options = { format: "A4", orientation: "Letter" };
+  //         var options = { height: "10.5in", width: "15in" };
+  //         pdf.create(str, options).toFile(checkFilePath, function (err, data) {
+  //           if (err) {
+  //             return next(new AppError(err, 400));
+  //           }
+
+  //           return res.status(200).download(checkFilePath, fileName, (err) => {
+  //             if (err) {
+  //               if (err.code == "ENOENT")
+  //                 return next(new AppError("user document not found", 404));
+  //             }
+  //           });
+  //         });
+  //       }
+  //     );
+  //   } catch (err) {
+  //     return next(new AppError(err, 400));
+  //   }
+  // }
+  // else {
+  try {
+    ejs.renderFile(
+      path.join(
+        __dirname,
+        "../../scandidate/BGVSearch/BGVTemplate/scandidate-report.ejs"
+      ),
+      result,
+      function (err, str) {
+        if (err) {
+          return next(new AppError(err, 400));
+        }
+
+        // Test
+
+        var fileName = fname + new Date().getTime() + ".pdf";
+
+        var checkFilePath = path.join(
           __dirname,
-          "../../scandidate/BGVSearch/BGVTemplate/scandidate-report-inst.ejs"
-        ),
-        result,
-        function (err, str) {
+          "../../../uploads/scandidate-report/" + fileName
+        );
+
+        // var tempFilename =
+        //   "uploads/scandidate-report/" + fname + new Date().getTime() + ".pdf";
+        // var temFilepath = checkFilePath;
+        // var options = { format: "A4", orientation: "Letter" };
+        var options = { height: "10.5in", width: "15in" };
+        pdf.create(str, options).toFile(checkFilePath, function (err, data) {
           if (err) {
             return next(new AppError(err, 400));
           }
 
-          // Test
-
-          var fileName = fname + new Date().getTime() + ".pdf";
-
-          var checkFilePath = path.join(
-            __dirname,
-            "../../../uploads/scandidate-report/" + fileName
-          );
-
-          // var tempFilename =
-          //   "uploads/scandidate-report/" + fname + new Date().getTime() + ".pdf";
-          // var temFilepath = checkFilePath;
-          // var options = { format: "A4", orientation: "Letter" };
-          var options = { height: "10.5in", width: "15in" };
-          pdf.create(str, options).toFile(checkFilePath, function (err, data) {
+          return res.status(200).download(checkFilePath, fileName, (err) => {
             if (err) {
-              return next(new AppError(err, 400));
+              if (err.code == "ENOENT")
+                return next(new AppError("user document not found", 404));
             }
-
-            return res.status(200).download(checkFilePath, fileName, (err) => {
-              if (err) {
-                if (err.code == "ENOENT")
-                  return next(new AppError("user document not found", 404));
-              }
-            });
           });
-        }
-      );
-    } catch (err) {
-      return next(new AppError(err, 400));
-    }
+        });
+      }
+    );
+  } catch (err) {
+    return next(new AppError(err, 400));
   }
-  else {
-    try {
-      ejs.renderFile(
-        path.join(
-          __dirname,
-          "../../scandidate/BGVSearch/BGVTemplate/scandidate-report.ejs"
-        ),
-        result,
-        function (err, str) {
-          if (err) {
-            return next(new AppError(err, 400));
-          }
 
-          // Test
-
-          var fileName = fname + new Date().getTime() + ".pdf";
-
-          var checkFilePath = path.join(
-            __dirname,
-            "../../../uploads/scandidate-report/" + fileName
-          );
-
-          // var tempFilename =
-          //   "uploads/scandidate-report/" + fname + new Date().getTime() + ".pdf";
-          // var temFilepath = checkFilePath;
-          // var options = { format: "A4", orientation: "Letter" };
-          var options = { height: "10.5in", width: "15in" };
-          pdf.create(str, options).toFile(checkFilePath, function (err, data) {
-            if (err) {
-              return next(new AppError(err, 400));
-            }
-
-            return res.status(200).download(checkFilePath, fileName, (err) => {
-              if (err) {
-                if (err.code == "ENOENT")
-                  return next(new AppError("user document not found", 404));
-              }
-            });
-          });
-        }
-      );
-    } catch (err) {
-      return next(new AppError(err, 400));
-    }
-  }
 };

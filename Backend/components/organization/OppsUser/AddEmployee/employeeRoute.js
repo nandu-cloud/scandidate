@@ -75,7 +75,17 @@ router
 
 router
   .route("/check/duplicateemployeerecord")
-  .post(authJWT.verifyJWTToken, addEmployeeController.checkduplicateEmployeeRecords);
+  .post(
+    authJWT.verifyJWTToken,
+    addEmployeeController.checkduplicateEmployeeRecords
+  );
 
+router
+  .route("/consent/sendEmail/:empId")
+  .post(authJWT.verifyJWTToken, addEmployeeController.sendConsentEmail);
+
+router
+  .route("/exemployee/validate/:empId/:option")
+  .get(addEmployeeController.validateConsent);
 
 module.exports = router;

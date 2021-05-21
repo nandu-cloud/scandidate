@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     required: [true, "role cannot be empty"],
-    enum: ["SCANDIDATE", "ORGANIZATION", "INSTITUTION"],
+    enum: ["SCANDIDATE", "ORGANIZATION", "INSTITUTION", "HR PARTNER"],
   },
   subRole: {
     type: String,
@@ -98,7 +98,7 @@ const userSchema = new mongoose.Schema({
   },
   workstation: {
     type: String,
-    required: false
+    required: false,
   },
   createdAt: {
     type: Date,

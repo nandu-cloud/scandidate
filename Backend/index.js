@@ -81,6 +81,10 @@ app.use(
   require("./components/organization/Dashboard/dashboardRoute")
 );
 
+app.use(
+  require("./components/organization/OppsUser/AddEmployee/employeeRoute")
+);
+
 app.use("/api/country", require("./components/city/statecityroute"));
 
 app.use("/api/enquiry", require("./components/contactus/conatctusRoute"));
