@@ -89,6 +89,11 @@ app.use("/api/country", require("./components/city/statecityroute"));
 
 app.use("/api/enquiry", require("./components/contactus/conatctusRoute"));
 
+app.use(
+  "/api/hrpartner/admin",
+  require("./components/HRPartner/hrpartnerroute")
+);
+
 app.all("*", (req, res, next) => {
   next(new AppError(`Cannot find ${req.originalUrl} on the server`, 404));
 });
