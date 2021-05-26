@@ -109,19 +109,17 @@ async function search_student_new(data) {
     }
   } else {
     try {
-      let result = await studentModel
-        .find()
-        .and([
-          { firstName: { $regex: data.firstName || "", $options: "i" } },
-          {
-            intitutionName: {
-              $regex: data.intitutionName || "",
-              $options: "i",
-            },
+      let result = await studentModel.find().and([
+        { firstName: { $regex: data.firstName || "", $options: "i" } },
+        {
+          intitutionName: {
+            $regex: data.intitutionName || "",
+            $options: "i",
           },
-          { phoneNumber: { $regex: data.phoneNumber || "" } },
-          { yearOfPassout: { $regex: data.yearOfPassout || "" } },
-        ]);
+        },
+        { phoneNumber: { $regex: data.phoneNumber || "" } },
+        { yearOfPassout: { $regex: data.yearOfPassout || "" } },
+      ]);
       // .collation({ locale: "en", strength: 1 });
       return result;
     } catch (err) {
@@ -130,6 +128,14 @@ async function search_student_new(data) {
   }
 }
 
+async function findDistinctStudent() {
+  try {
+    let result = (await studentModel.distinct("email")).length;
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
 // File Count
 
 // export functions
@@ -140,4 +146,5 @@ module.exports = {
   updateStudent: updateStudent,
   search_student_new: search_student_new,
   addStudentCsv: addStudentCsv,
+  findDistinctStudent: findDistinctStudent,
 };

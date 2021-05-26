@@ -4,7 +4,7 @@ const bgvDAL = require("./bgvDAL");
 const instituionDAL = require("../institute-onboard/instituteOnboardDAL");
 const organizationDAL = require("../organization-onboard/orgOnboardDAL");
 const bgvSeachDAL = require("./scandidateSearchDAL");
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const ejs = require("ejs");
 const path = require("path");
@@ -78,6 +78,7 @@ module.exports.searchbgv = async (req, res, next) => {
     }
   } catch (err) {
     console.log(colors.red, `${err}`);
+    ``;
     return next(new AppError(err, 400));
   }
 };
@@ -212,23 +213,20 @@ module.exports.searchByIdBGV = async (req, res, next) => {
           aadharNumber
         );
 
-
         for (var i = 0; i < empAdharData.length; i++) {
           var orgId = empAdharData[i].organisationId;
           var id = mongoose.Types.ObjectId(orgId);
           var result = await organizationDAL.getOrganisationById({ _id: id });
           if (result.organisationLogo != null) {
             empAdharData[i].organisationLogo = result.organisationLogo;
-          }
-          else {
+          } else {
             empAdharData[i].organisationLogo = "";
           }
-
         }
         for (var i = 0; i < studentAdharData.length; i++) {
           var insId = studentAdharData[i].instituteId;
           var id = mongoose.Types.ObjectId(insId);
-          var result = await instituionDAL.getInstituteById({ _id: id })
+          var result = await instituionDAL.getInstituteById({ _id: id });
 
           if (result.instituteLogo != null) {
             studentAdharData[i].institutionLogo = result.instituteLogo;
@@ -237,10 +235,7 @@ module.exports.searchByIdBGV = async (req, res, next) => {
           }
         }
 
-
-
         let resultData = empAdharData.concat(studentAdharData);
-
 
         return res.status(200).json({
           status: 200,
@@ -310,7 +305,6 @@ module.exports.searchByIdBGV = async (req, res, next) => {
           } else {
             empPhoneData[i].organisationLogo = "";
           }
-
         }
         for (var i = 0; i < studentPhoneData.length; i++) {
           var insId = studentPhoneData[i].instituteId;
@@ -322,9 +316,6 @@ module.exports.searchByIdBGV = async (req, res, next) => {
             studentPhoneData[i].institutionLogo = "";
           }
         }
-
-
-
 
         let resultData = empPhoneData.concat(studentPhoneData);
         return res.status(200).json({
@@ -357,7 +348,6 @@ module.exports.searchByIdBGV = async (req, res, next) => {
           } else {
             findByNameEmp[i].organisationLogo = "";
           }
-
         }
         for (var i = 0; i < findByNameStudent.length; i++) {
           var insId = findByNameStudent[i].instituteId;
@@ -369,7 +359,6 @@ module.exports.searchByIdBGV = async (req, res, next) => {
             findByNameStudent[i].institutionLogo = "";
           }
         }
-
 
         let resultData = findByNameEmp.concat(findByNameStudent);
         return res.status(200).json({
@@ -392,7 +381,6 @@ module.exports.searchIconOrganizationInstitute = async (req, res, next) => {
   var instReq = req.body.instituteId;
   var orgJson = [];
   var instJson = [];
-
 
   if (orgReq) {
     if (orgReq.length > 0) {
@@ -843,7 +831,6 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
     }
   }
 
-
   var result = {
     FirstName: fname,
     LastName: lname,
@@ -958,5 +945,4 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
   } catch (err) {
     return next(new AppError(err, 400));
   }
-
 };

@@ -1,6 +1,6 @@
 // import mongoose models
 const employeeModel = require("./employeeModel");
-const employeeSaveNowModel = require('../../saveNow/employeeModel');
+const employeeSaveNowModel = require("../../saveNow/employeeModel");
 
 // Add Employee
 async function addEmployee(data) {
@@ -97,20 +97,34 @@ async function checkDuplicateEmpRecord(data) {
   console.log(data);
   try {
     var result = await employeeModel.find({
-      $and: [{ organisationId: data.organisationId }, { dateOfJoining: data.dateOfJoining }, { exitDate: data.exitDate }, {
-        $or: [
-          { email: data.email }, { phoneNumber: data.phoneNumber }, { adharNumber: data.adharNumber }
-        ]
-      }]
+      $and: [
+        { organisationId: data.organisationId },
+        { dateOfJoining: data.dateOfJoining },
+        { exitDate: data.exitDate },
+        {
+          $or: [
+            { email: data.email },
+            { phoneNumber: data.phoneNumber },
+            { adharNumber: data.adharNumber },
+          ],
+        },
+      ],
     });
 
     if (!result.length > 0) {
       result = await employeeSaveNowModel.find({
-        $and: [{ organisationId: data.organisationId }, { dateOfJoining: data.dateOfJoining }, { exitDate: data.exitDate }, {
-          $or: [
-            { email: data.email }, { phoneNumber: data.phoneNumber }, { adharNumber: data.adharNumber }
-          ]
-        }]
+        $and: [
+          { organisationId: data.organisationId },
+          { dateOfJoining: data.dateOfJoining },
+          { exitDate: data.exitDate },
+          {
+            $or: [
+              { email: data.email },
+              { phoneNumber: data.phoneNumber },
+              { adharNumber: data.adharNumber },
+            ],
+          },
+        ],
       });
     }
 
@@ -123,7 +137,10 @@ async function checkDuplicateEmpRecord(data) {
         var r = "Employee with same phone number exists";
         break;
       }
-      if (result[i].adharNumber === data.adharNumber && data.adharNumber.length > 0) {
+      if (
+        result[i].adharNumber === data.adharNumber &&
+        data.adharNumber.length > 0
+      ) {
         var r = "Employee with same aadhar number exists";
         break;
       } else {
@@ -136,7 +153,14 @@ async function checkDuplicateEmpRecord(data) {
   }
 }
 
-
+async function findDistinctEmployee() {
+  try {
+    let result = (await employeeModel.distinct("email")).length;
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
 
 // export functions
 module.exports = {
@@ -146,5 +170,6 @@ module.exports = {
   getEmplyeeById: getEmplyeeById,
   updateEmployee: updateEmployee,
   getEmployeByAddedById: getEmployeByAddedById,
-  checkDuplicateEmpRecord: checkDuplicateEmpRecord
+  checkDuplicateEmpRecord: checkDuplicateEmpRecord,
+  findDistinctEmployee: findDistinctEmployee,
 };
