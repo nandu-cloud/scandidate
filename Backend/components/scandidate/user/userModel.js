@@ -10,6 +10,10 @@ const userSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     required: false,
   },
+  hrpartnerId: {
+    type: Schema.Types.ObjectId,
+    required: false,
+  },
   firstName: {
     type: String,
     required: [true, "first name cannot be empty"],

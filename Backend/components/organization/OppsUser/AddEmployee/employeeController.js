@@ -64,16 +64,20 @@ module.exports.getAllMethod = async (req, res, next) => {
 
     for (var i = 0; i < employeeData.length; i++) {
       var getEmail = employeeData[i].email;
+      var getDateOfJoining = employeeData[i].dateOfJoining;
       for (var j = 0; j < incompleteData.length; j++) {
         var getEmail2 = incompleteData[j].email;
-        if (getEmail === getEmail2) {
+        var getDateOfJoining2 = incompleteData[j].dateOfJoining;
+        if (
+          getEmail === getEmail2 &&
+          getDateOfJoining.getTime() === getDateOfJoining2.getTime()
+        ) {
           incompleteData.splice(j, 1);
         }
       }
     }
 
     let result = employeeData.concat(incompleteData);
-
     // let r = result.sort((a, b) => {
     //   return b.createdAt - a.createdAt;
     // })

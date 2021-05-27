@@ -162,6 +162,15 @@ async function findDistinctEmployee() {
   }
 }
 
+async function showEmployee(data) {
+  try {
+    let result = await employeeModel.find(data);
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
 // export functions
 module.exports = {
   addEmployee: addEmployee,
@@ -172,4 +181,5 @@ module.exports = {
   getEmployeByAddedById: getEmployeByAddedById,
   checkDuplicateEmpRecord: checkDuplicateEmpRecord,
   findDistinctEmployee: findDistinctEmployee,
+  showEmployee: showEmployee,
 };
