@@ -2,43 +2,43 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const hrpartnerSchema = new mongoose.Schema(
   {
-    organizationName: {
+    hrorganizationname: {
       type: String,
       required: [true, "Organization Name cannot be empty"],
     },
-    contactPersonName: {
+    hrcontactPersonName: {
       type: String,
       required: false,
     },
-    organisationAddress: {
+    hrorganisationAddress: {
       type: String,
       required: false,
     },
-    organisationType: {
+    hrorganisationType: {
       type: String,
       required: true,
     },
-    organisationEmail: {
+    hrorganisationEmail: {
       type: String,
       required: [true, "Email Cannot Be Empty"],
       unique: true,
     },
-    organisationEmployeeSize: {
+    hrorganisationEmployeeSize: {
       type: String,
       required: false,
     },
-    organisationActiveFrom: {
+    hrorganisationActiveFrom: {
       type: String,
     },
-    organisationZIP: {
+    hrorganisationZIP: {
       type: Number,
       required: true,
     },
-    organisationDescription: {
+    hrorganisationDescription: {
       type: String,
       required: false,
     },
-    organisationLogo: {
+    hrorganisationLogo: {
       type: String,
       required: false,
     },
@@ -55,7 +55,7 @@ const hrpartnerSchema = new mongoose.Schema(
     legalEntityName: {
       type: String,
     },
-    organizationLocation: {
+    hrorganizationLocation: {
       type: String,
     },
     state: {
@@ -68,10 +68,10 @@ const hrpartnerSchema = new mongoose.Schema(
     headQuaterLocation: {
       type: String,
     },
-    organizationGstn: {
+    hrorganizationGstn: {
       type: String,
     },
-    organizationCin: {
+    hrorganizationCin: {
       type: String,
     },
     panNumber: {

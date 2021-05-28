@@ -1,60 +1,54 @@
 const Joi = require("joi");
 
 const hrpartnerCreateValidator = Joi.object({
-  organizationName: Joi.string().required(), //
-  organisationEmail: Joi.string().email().required(), //
-  organisationType: Joi.string().required(), //
+  hrorganizationname: Joi.string().required(), //
+  hrorganisationEmail: Joi.string().email().required(), //
+  hrorganisationType: Joi.string().required(), //
   status: Joi.boolean().required(), //
-  organisationZIP: Joi.number().required(), //
-  contactPersonName: Joi.string().required(),
+  hrorganisationZIP: Joi.number().required(), //
+  hrcontactPersonName: Joi.string().required(),
   legalEntityName: Joi.string().required(),
   contact: Joi.number().required(),
   headQuaterLocation: Joi.string().required(),
-  organisationAddress: Joi.string().required(),
+  hrorganisationAddress: Joi.string().required(),
   state: Joi.string().required(),
-  organizationLocation: Joi.string().required(),
+  hrorganizationLocation: Joi.string().required(),
 
   landMark: Joi.string().allow("").allow(null),
-  organisationEmployeeSize: Joi.string().allow("").allow(null),
-  organisationActiveFrom: Joi.string().allow("").allow(null),
-  organisationDescription: Joi.string().allow("").allow(null),
+  hrorganisationEmployeeSize: Joi.string().allow("").allow(null),
+  hrorganisationActiveFrom: Joi.string().allow("").allow(null),
+  hrorganisationDescription: Joi.string().allow("").allow(null),
   code: Joi.string().allow("").allow(null),
-  organisationLogo: Joi.string().allow("").allow(null),
-  organizationLocation: Joi.string().allow("").allow(null),
-  organizationGstn: Joi.string().allow("").allow(null),
-  organizationCin: Joi.string().allow("").allow(null),
+  hrorganisationLogo: Joi.string().allow("").allow(null),
+  hrorganizationLocation: Joi.string().allow("").allow(null),
+  hrorganizationGstn: Joi.string().allow("").allow(null),
+  hrorganizationCin: Joi.string().allow("").allow(null),
   panNumber: Joi.string().allow("").allow(null),
 });
 
 const hrpartnerUpdateValidator = Joi.object({
-  organizationName: Joi.string().required(), //
-  organisationEmail: Joi.string().email().required(), //
-  organisationType: Joi.string().required(), //
+  hrorganizationname: Joi.string().required(), //
+  hrorganisationEmail: Joi.string().email().required(), //
+  hrorganisationType: Joi.string().required(), //
   status: Joi.boolean().required(), //
-  organisationZIP: Joi.number().required(), //
-  contactPersonName: Joi.string().required(),
+  hrorganisationZIP: Joi.number().required(), //
+  hrcontactPersonName: Joi.string().required(),
   legalEntityName: Joi.string().required(),
   contact: Joi.number().required(),
   headQuaterLocation: Joi.string().required(),
-  organisationAddress: Joi.string().required(),
+  hrorganisationAddress: Joi.string().required(),
   state: Joi.string().required(),
-  organizationLocation: Joi.string().required(),
+  hrorganizationLocation: Joi.string().required(),
 
   landMark: Joi.string().allow("").allow(null),
-  contactPersonName: Joi.string().allow("").allow(null),
-  organisationAddress: Joi.string().allow("").allow(null),
-  organisationEmployeeSize: Joi.string().allow("").allow(null),
-  organisationActiveFrom: Joi.string().allow("").allow(null),
-  organisationDescription: Joi.string().allow("").allow(null),
-  contact: Joi.number().allow("").allow(null),
+  hrorganisationEmployeeSize: Joi.string().allow("").allow(null),
+  hrorganisationActiveFrom: Joi.string().allow("").allow(null),
+  hrorganisationDescription: Joi.string().allow("").allow(null),
   code: Joi.string().allow("").allow(null),
-  organisationLogo: Joi.string().allow("").allow(null),
-  legalEntityName: Joi.string().allow("").allow(null),
-  organizationLocation: Joi.string().allow("").allow(null),
-  state: Joi.string().allow("").allow(null),
-  headQuaterLocation: Joi.string().allow("").allow(null),
-  organizationGstn: Joi.string().allow("").allow(null),
-  organizationCin: Joi.string().allow("").allow(null),
+  hrorganisationLogo: Joi.string().allow("").allow(null),
+  hrorganizationLocation: Joi.string().allow("").allow(null),
+  hrorganizationGstn: Joi.string().allow("").allow(null),
+  hrorganizationCin: Joi.string().allow("").allow(null),
   panNumber: Joi.string().allow("").allow(null),
 });
 
