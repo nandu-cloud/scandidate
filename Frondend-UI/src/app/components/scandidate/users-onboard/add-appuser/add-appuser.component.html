@@ -18,6 +18,7 @@
                   <mat-option value="SCANDIDATE">Scandidate</mat-option>
                   <mat-option value="ORGANIZATION">Organization</mat-option>
                   <mat-option value="INSTITUTION">Institution</mat-option>
+                  <mat-option value="HRPARTNER">Hr Partner</mat-option>
                 </mat-select>
                 <mat-error *ngIf ="createUserData.get('role').errors?.required">
                     Required role.
@@ -27,7 +28,7 @@
                 <mat-label>Sub Role</mat-label>
                 <mat-select  class="br-btm input-w" formControlName="subRole" required tabindex="3">
                   <!-- <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option> -->
-                  <mat-option value="ADMIN" *ngIf="((subroleTypeee == 'SCANDIDATE' ||subroleTypeee == 'ORGANIZATION') ||  ( subroleTypeee=='INSTITUTZON'))">Admin</mat-option>
+                  <mat-option value="ADMIN" *ngIf="((subroleTypeee == 'SCANDIDATE' ||subroleTypeee == 'ORGANIZATION') || (subroleTypeee == 'HRPARTNER') ||  ( subroleTypeee=='INSTITUTZON'))">Admin</mat-option>
                   <mat-option value="OPERATIONAL_USER"  *ngIf="subroleTypeee == 'SCANDIDATE' ">Line Hr</mat-option>
                 </mat-select>
                 <mat-error *ngIf ="createUserData.get('subRole').errors?.required">
@@ -88,10 +89,22 @@
                 <mat-label>Organization</mat-label>
                 <input  matInput type="text"  formControlName="scandidateId"  readonly disabled  class="br-btm input-w" autoComplete='off' tabindex="2">
             </mat-form-field>
+            <!-- <mat-form-field *ngIf="subroleTypeee == 'HRPARTNER'">
+                <mat-label>Organization</mat-label>
+                <input  matInput type="text"  formControlName="hrpartnerId"  readonly disabled  class="br-btm input-w" autoComplete='off' tabindex="2">
+            </mat-form-field> -->
             <mat-form-field *ngIf="subroleTypeee == 'ORGANIZATION'">
                 <mat-label>Organization</mat-label>
                 <mat-select   class="br-btm input-w" formControlName="organizationId" tabindex="2">
                   <mat-option *ngFor="let itm of allOrganizations" [value]="itm._id">{{itm.organizationName}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!--HRPARTNER organization list-->
+            <mat-form-field *ngIf="subroleTypeee == 'HRPARTNER'">
+                <mat-label>Organizationeee</mat-label>
+                <mat-select   class="br-btm input-w" tabindex="2">
+                  <mat-option *ngFor="let itm of allHrPartnerOrganization" [value]="itm._id">{{itm.hrorganizationname}}</mat-option>
                 </mat-select>
             </mat-form-field>
 

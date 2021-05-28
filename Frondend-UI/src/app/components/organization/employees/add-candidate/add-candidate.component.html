@@ -276,7 +276,7 @@
                   class="br-btm input-w"
                   autoComplete="off"
                   required
-                  tabindex="6" readonly disabled
+                  tabindex="6" 
                 />
                 <mat-error *ngIf="firstFormGroup.get('email').errors?.required">
                   Required email address
@@ -529,13 +529,13 @@
             </div>
           </div>
           <div class="flex justify-end lg:pb-6 lg:pr-48">
-            <a routerLink="/candidate-list"><button class="lg-button focus:outline-none focus:shadow-outline" tabindex="8" type="button">
+            <a routerLink="/candidate-list"><button class="lg-button focus:outline-none focus:shadow-outline" tabindex="18" type="button">
               Cancel
             </button></a>
-            <button class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
+            <button tabindex="19" type="submit" class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
               Save Now
             </button>
-            <button tabindex="19" class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">
+            <button tabindex="20" class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">
               Next
             </button>
           </div>

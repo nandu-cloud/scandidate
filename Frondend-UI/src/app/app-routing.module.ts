@@ -35,6 +35,8 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ScandidateReportComponent } from './components/scandidate-report/scandidate-report.component';
 import { AppGuard } from '../app/admin/app.guard';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { AddHrPartnerComponent } from './components/scandidate/hr-partner-onboard/add-hr-partner/add-hr-partner.component';
+import { HrPartnerListComponent } from './components/scandidate/hr-partner-onboard/hr-partner-list/hr-partner-list.component';
 
 const routes: Routes = [
   { path: 'add-organization', component: AddOrganizationComponent ,canActivate: [AppGuard]},
@@ -77,6 +79,9 @@ const routes: Routes = [
   { path: 'employee', component: AllEmployeesComponent ,canActivate: [AppGuard]},
   { path: 'bgv-view/:id', component: BGVViewComponent ,canActivate: [AppGuard]},
   { path: 'scandidate-report/:id',component:ScandidateReportComponent ,canActivate: [AppGuard]},
+  { path: 'add-hr-partner', component: AddHrPartnerComponent, canActivate: [AppGuard]},
+  { path: 'add-hr-partner/:id', component: AddHrPartnerComponent,canActivate: [AppGuard] },
+  { path: 'hrPartner-list', component: HrPartnerListComponent, canActivate: [AppGuard]},
   { path: '', redirectTo: '/landing-page', pathMatch: 'full' },
 
 ];

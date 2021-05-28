@@ -67,6 +67,7 @@ export class AddCandidateComponent implements OnInit {
   empIdsave : any;
   count : boolean = false;
   dis;
+  isDisabled = true;
   today = new Date();
   @ViewChild('picker') picker: MatDatepicker<Date>;
   constructor(
@@ -186,14 +187,22 @@ export class AddCandidateComponent implements OnInit {
        ){
       this.duplicateSubscription = this.empService.duplicateEntry(this.firstFormGroup.value).subscribe(resp => {
         console.log(event);
+        // this.isDisabled = !this.isDisabled;
         if(resp.statusCode == 400 ) {
-        this.methodtype = "duplicate";
-        this.openDialog();
+          // this.firstFormGroup.disable;
+        // this.methodtype = "duplicate";
+        // this.openDialog();
         }
       }, err => {
+        if(this.error){
+          this.firstFormGroup.disable()
+          this.methodtype = "duplicate";
+        this.openDialog();
+        }
         this.setMessage = { message: err.error.message, error: true };
         this.error = this.setMessage.message;
         throw this.setMessage.message;
+
       })
     }
   }
@@ -571,7 +580,6 @@ export class AddCandidateComponent implements OnInit {
           throw this.setMessage.message;
         })
       }else{
-       
       }
     }
     

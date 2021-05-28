@@ -22,14 +22,20 @@ export class AppuserService {
     let organId
     let instituteeId
     let scandidateId
+    let hrId
     if( createUserData.role == 'SCANDIDATE'){
   organId = undefined
   instituteeId = undefined
   scandidateId = createUserData.scandidateId
-}else if(createUserData.role == 'ORGANIZATION'){
+  }else if(createUserData.role == 'ORGANIZATION'){
   organId = createUserData.organizationId
   scandidateId = undefined 
   instituteeId = undefined
+  }else if(createUserData.role == 'HR PATNER'){
+  scandidateId = undefined 
+  instituteeId = undefined
+  organId = undefined
+  hrId = createUserData.hrpartnerId
 }else{
   organId = undefined
   scandidateId= undefined
@@ -37,7 +43,7 @@ export class AppuserService {
 }
     var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': 'number','countrycode':string,
    'organizationId': string, 'institutionId': string, 'scandidateId': string ,'employeeId': string, 'currentAddress': string, 'permanentAddress': string, 'aboutMe': string,
-    'noOfAssociatedUsers': number, 'avatarLink': string
+    'noOfAssociatedUsers': number, 'avatarLink': string, 'hrpartnerId': string
   } =
     {
       'firstName': createUserData.firstName, 'lastName': createUserData.lastName, 'role':
@@ -48,6 +54,7 @@ export class AppuserService {
        'organizationId': organId == ""||organId == null?undefined:organId,
        'institutionId':instituteeId == ""|| instituteeId == null?undefined:instituteeId,
        'scandidateId': scandidateId == ""|| scandidateId == null ? undefined : scandidateId,
+       'hrpartnerId': hrId == "" || hrId == null ? undefined : hrId,
         'employeeId': createUserData.employeeId == ""||createUserData.employeeId == null?undefined:createUserData.employeeId,
        'currentAddress': createUserData.currentAddress == ""||createUserData.currentAddress == null?undefined:createUserData.currentAddress,
         // tslint:disable-next-line: max-line-length

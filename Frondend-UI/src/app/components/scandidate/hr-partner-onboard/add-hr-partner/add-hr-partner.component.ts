@@ -6,74 +6,73 @@ import { from, Subscription } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
 import { addOrganizationService } from '../../../../services/organization.service';
 import { StorageService } from '../../../../services/storage.service';
-
+import { HrpartnerService } from '../../../../services/hrpartner.service';
 @Component({
-  selector: 'app-add-organization',
-  templateUrl: './add-organization.component.html',
-  styleUrls: ['./add-organization.component.css'],
-  providers: [addOrganizationService, StorageService]
+  selector: 'app-add-hr-partner',
+  templateUrl: './add-hr-partner.component.html',
+  styleUrls: ['./add-hr-partner.component.css']
 })
-export class AddOrganizationComponent implements OnInit {
+export class AddHrPartnerComponent implements OnInit {
   [x: string]: any;
-
+  
   companyName: string = '';
   companyName_code;
   baseUrl = environment.baseUrl;
-  organizationForm: FormGroup;
+  hrForm: FormGroup;
   orgSubscription: Subscription;
   orgupdateSubscription: Subscription;
   public setMessage: any = {};
   error = '';
-  editorganizationSubscription: Subscription;
+  editHrPartnerSubscription: Subscription;
+  hrPartnerSubscription: Subscription;
   orglogoSubscription: Subscription;
   createOrgData: FormGroup;
-  editOrgData: FormGroup;
-  orgIdedit: number;
+  editHrData: FormGroup;
+  hrIdedit: number;
   id;
   minDate = new Date();
   maxDate = (new Date()).getFullYear();
-  orgIdupdate: number;
+  hrIdupdate: number;
   imageUrl: any = '';
   imageFilename: string = '';
-  constructor(
-    public fb: FormBuilder,
-    private cd: ChangeDetectorRef,
-     public dialog: MatDialog,
-      public orgService: addOrganizationService,
-       public route: ActivatedRoute
-  ) {
-    console.log(this.maxDate);
+
+  constructor( public fb: FormBuilder,
+        private cd: ChangeDetectorRef,
+        public dialog: MatDialog,
+        public hrService: HrpartnerService,
+        public route: ActivatedRoute) {
+      console.log(this.maxDate);
     console.log(this.companyName);
     this.companyName_code = this.companyName.substr(0, 4).toUpperCase;
     console.log(this.companyName_code);
     this.route.params.subscribe(params => {
-      this.orgIdedit = params.id;
+      this.hrIdedit = params.id;
     });
-    this.organizationForm = new FormGroup({
-      organizationName: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      contactPersonName: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      organisationAddress: new FormControl('', [Validators.required]),
-      organisationEmail: new FormControl('', [Validators.required, Validators.email]),
-      organisationZIP: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{5,7}$/)]),
+    this.hrForm = new FormGroup({
+      hrorganizationname: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      hrcontactPersonName: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      hrorganisationAddress: new FormControl('', [Validators.required]),
+      hrorganisationEmail: new FormControl('', [Validators.required, Validators.email]),
+      hrorganisationZIP: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{5,7}$/)]),
       status: new FormControl('', [Validators.required]),
-      organisationDescription: new FormControl(''),
+      hrorganisationDescription: new FormControl(''),
       code: new FormControl(''),
       contact: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[1-9][0-9]{9}$')]),
-      organisationType: new FormControl(''),
-      organisationEmployeeSize: new FormControl(''),
-      organisationActiveFrom: new FormControl('', [Validators.max(new Date().getFullYear())]),
-      organisationLogo: new FormControl(''),
+      hrorganisationType: new FormControl(''),
+      hrorganisationEmployeeSize: new FormControl(''),
+      hrorganisationActiveFrom: new FormControl('', [Validators.max(new Date().getFullYear())]),
+      hrorganisationLogo: new FormControl(''),
       legalEntityName: new FormControl('', [Validators.required]),
-      organizationLocation: new FormControl('', [Validators.required]),
+      hrorganizationLocation: new FormControl('', [Validators.required]),
       state: new FormControl('', [Validators.required]),
       headQuaterLocation: new FormControl('', [Validators.required]),
-      organizationGstn: new FormControl(''),
-      organizationCin: new FormControl(''),
+      hrorganizationGstn: new FormControl(''),
+      hrorganizationCin: new FormControl(''),
       panNumber: new FormControl(''),
       landMark: new FormControl('')
     })
-  }
-  close() {
+   }
+   close() {
     setTimeout(() => {
       this.error = '';
     }, 100);
@@ -90,53 +89,47 @@ export class AddOrganizationComponent implements OnInit {
   }
 
   @ViewChild('fileInput') el: ElementRef;
-
-  editFile: boolean = true;
-  removeUpload: boolean = false;
-
-  uploadFile(file: FileList) {
+   uploadFile(file: FileList) {
     this.fileToUpload = file.item(0);
     var render = new FileReader();
     render.onload = (event: any) => {
       // this.imageUrl = event.target.result;
     }
     render.readAsDataURL(this.fileToUpload);
-    this.orgSubscription = this.orgService.postFile(this.fileToUpload).subscribe(
+    this.orgSubscription = this.hrService.postFile(this.fileToUpload).subscribe(
       data => {
-        this.organizationForm.patchValue({ organisationLogo: data.data.organisationLogo });
-        console.log(data.data.organisationLogo);
-        this.imageUrl = `${this.baseUrl}/public/organization_logo/${data.data.organisationLogo}`;
+        this.hrForm.patchValue({ hrorganisationLogo: data.data.hrorganisationLogo });
+        console.log(data.data.hrorganisationLogo);
+        this.imageUrl = `${this.baseUrl}/public/organization_logo/${data.data.hrorganisationLogo}`;
         this.orgSubscription = this.orgService.deleteFile(this.imageFilename).subscribe();
       }
     )
   }
-
-  ngOnInit() {
-    if (this.orgIdedit) {
-      this.editorganizationSubscription = this.orgService.editOrganization(this.orgIdedit).subscribe(respObj => {
+  
+  ngOnInit(): void {
+    if (this.hrIdedit) {
+      this.editHrPartnerSubscription = this.hrService.editHrPartner(this.hrIdedit).subscribe(respObj => {
         console.log(respObj.data);
         this.id = respObj.data._id;
-        this.organizationForm.patchValue(respObj.data);
-        this.imageUrl = `${this.baseUrl}/public/organization_logo/${respObj.data.organisationLogo}`;
-        this.imageFilename = respObj.data.organisationLogo;
+        this.hrForm.patchValue(respObj.data);
+        this.imageUrl = `${this.baseUrl}/public/organization_logo/${respObj.data.hrorganisationLogo}`;
       }, err => {
+        // this.imageFilename = respObj.data.organisationLogo;
         this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
       })
     }
   }
-
   changeCode() {
     {
-      if (this.organizationForm.value.organizationName.length > 0) {
-        this.organizationForm.patchValue({ code: this.organizationForm.value.organizationName.slice(0, 5).toUpperCase() })
+      if (this.hrForm.value.hrorganizationname.length > 0) {
+        this.hrForm.patchValue({ code: this.hrForm.value.hrorganizationname.slice(0, 5).toUpperCase() })
       }
     }
   }
-
   submit() {
-    if (!this.orgIdedit) {
-      this.orgSubscription = this.orgService.checkAddOrganization(this.organizationForm.value).subscribe(resp => {
-        console.log(this.organizationForm.value);
+    if (!this.hrIdedit) {
+      this.orgSubscription = this.hrService.addHrPartner(this.hrForm.value).subscribe(resp => {
+        console.log(this.hrForm.value);
         this.openDialog();
       }, err => {
         this.setMessage = { message: err.error.message, error: true };
@@ -146,9 +139,9 @@ export class AddOrganizationComponent implements OnInit {
     }
   }
   update(id: number) {
-    if (this.organizationForm.valid) {
+    if (this.hrForm.valid) {
       this.orgIdupdate = id;
-      this.orgupdateSubscription = this.orgService.updateOrganization(this.organizationForm.value).subscribe(resp => {
+      this.hrPartnerSubscription = this.hrService.updateHrPartner(this.hrForm.value, this.orgIdupdate).subscribe(resp => {
         this.methodtype = "update";
         this.openDialog();
       }, err => {
@@ -174,15 +167,15 @@ export class DialogElementsExampleDialog implements OnInit {
   ngOnInit() {
     console.log(this.methodType)
     if (this.methodType == 'update') {
-      this.Message = "Organization Updated successfully"
+      this.Message = "Hr-Partner Updated successfully"
     } else {
-      this.Message = "Organization Onboarded successfully"
+      this.Message = "Hr-Partner Onboarded successfully"
 
     }
   }
 
   close() {
     this.dialogRef.close(true);
-    this.router.navigate(['/organization-list']);
+    this.router.navigate(['/hrPartner-list']);
   }
 }

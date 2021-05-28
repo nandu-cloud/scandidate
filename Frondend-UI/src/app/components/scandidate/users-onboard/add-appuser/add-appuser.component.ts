@@ -8,6 +8,7 @@ import { instituteService } from '../../../../services/institute.service';
 import { from, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { StorageService } from '../../../../services/storage.service';
+import { HrpartnerService } from 'src/app/services/hrpartner.service';
 @Component({
   selector: 'app-add-appuser',
   templateUrl: './add-appuser.component.html',
@@ -43,6 +44,7 @@ export class AddAppuserComponent implements OnInit {
     private appUserService: AppuserService, private route: ActivatedRoute,
     private Org: addOrganizationService,
     private Inst: instituteService,
+    private hrpartner: HrpartnerService
     ) {
       this.route.params.subscribe(params => {
           this.userIdedit = params.id;
@@ -60,6 +62,7 @@ export class AddAppuserComponent implements OnInit {
         phoneNumber: new FormControl('', [Validators.required, Validators.pattern('^[1-9][0-9]{9}$')]),
         organizationId: new FormControl(),
         institutionId: new FormControl(),
+        hrpartnerId: new FormControl(),
         scandidateId : new FormControl('SCANDIDATE'),
         employeeId: new FormControl(),
         currentAddress: new FormControl(),
@@ -86,8 +89,16 @@ export class AddAppuserComponent implements OnInit {
       this.Org.getOrganizationData().subscribe(respObj => {
         this.allOrganizations = respObj.data;
       })
-
     }
+
+    allHrPartnerOrganization=[]
+    getallHrOrganization(){
+      this.hrpartner.getHrPartnerData().subscribe(resp => {
+        this.allHrPartnerOrganization = resp.data;
+        console.log(resp.data[0].hrorganizationname);
+      })
+    }
+
     allInstitutions=[]
     getInstitution(){
      this.Inst.getInstitutionList().subscribe(respObj => {
@@ -98,6 +109,7 @@ export class AddAppuserComponent implements OnInit {
   ngOnInit() {
     this.getallOrganizations();
     this.getInstitution();
+    this.getallHrOrganization();
     if (this.userIdedit){
         this.edituserSubscription = this.appUserService.getUserById(this.userIdedit).subscribe(respObj => {
           console.log(respObj.data);
@@ -119,10 +131,15 @@ export class AddAppuserComponent implements OnInit {
       console.log(evt)
       if(evt.value =='SCANDIDATE'){
         this.subroleTypeee="SCANDIDATE"
-      }else if(evt.value =='ORGANIZATION'){
+      }
+      else if(evt.value =='ORGANIZATION'){
         this.subroleTypeee="ORGANIZATION";
-      }else{
+      }
+      else if(evt.value == "INSTITUTION"){
         this.subroleTypeee="INSTITUTZON"
+      }
+      else{
+        this.subroleTypeee = "HRPARTNER";
       }
     }
   onupdate(id: number){

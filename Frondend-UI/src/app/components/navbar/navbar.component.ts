@@ -20,9 +20,11 @@ export class NavbarComponent implements OnInit {
   baseUrl = environment.baseUrl;
   public insitutionadmin : boolean ;
   public organizationadmin : boolean ;
+  public hrpartneradmin : boolean;
   public profileImg : boolean;
   public adminLogo : boolean;
   public Logo : boolean;
+  public hrlogo : boolean;
   imageUrl: any = '';
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -51,7 +53,7 @@ export class NavbarComponent implements OnInit {
       this.imageUrl=`${this.baseUrl}/public/user_avatar/${logo}`;
       console.log(this.imageUrl);
       this.getInstution()
-    } else {
+    } else if(role == 'ORGANIZATION'){
       this.insitutionadmin = false;
       this.appAdmin = false;
       this.organizationadmin = true;
@@ -59,6 +61,16 @@ export class NavbarComponent implements OnInit {
       this.imageUrl=`${this.baseUrl}/public/user_avatar/${logo}`;
       this.adminLogo = false;
       this.getOrganization()
+    } else {
+      // else if(role == 'HRPATNER'){
+        this.hrpartneradmin = true;
+        this.appAdmin = false;
+        this.insitutionadmin = false;
+        this.organizationadmin = false;
+        this.hrlogo = true;
+        this.adminLogo = false;
+        this.Logo = false;
+      // }
     }
     if((role == 'SCANDIDATE') && (subrole == 'ADMIN')) {
       this.profileImg = false;

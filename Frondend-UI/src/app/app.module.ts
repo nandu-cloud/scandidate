@@ -59,6 +59,8 @@ import { SendBgvReportDialogComponent } from './components/send-bgv-report-dialo
 import { ForwardToLinemanagerDialogComponent } from './components/organization/employees/forward-to-linemanager-dialog/forward-to-linemanager-dialog.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { AssignToLinemanagerDialogComponent } from './components/organization/employees/assign-to-linemanager-dialog/assign-to-linemanager-dialog.component';
+import { AddHrPartnerComponent } from './components/scandidate/hr-partner-onboard/add-hr-partner/add-hr-partner.component';
+import { HrPartnerListComponent } from './components/scandidate/hr-partner-onboard/hr-partner-list/hr-partner-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -102,7 +104,9 @@ import { AssignToLinemanagerDialogComponent } from './components/organization/em
     SendBgvReportDialogComponent,
     ForwardToLinemanagerDialogComponent,
     ContactUsComponent,
-    AssignToLinemanagerDialogComponent
+    AssignToLinemanagerDialogComponent,
+    AddHrPartnerComponent,
+    HrPartnerListComponent
   ],
   imports: [
     BrowserModule,

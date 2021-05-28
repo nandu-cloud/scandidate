@@ -1,0 +1,467 @@
+<app-navbar>
+    <div class="pt-16 lg:pl-64 pl-12 md:pl-48 bg-white">
+      <form class="login-form" [formGroup]="hrForm" novalidate>
+        <div
+          class="bg-red-100 border border-red-400 text-red-700 py-3 mb-4 rounded relative"
+          role="alert"
+          *ngIf="error"
+        >
+          <strong class="font-bold mr-4">Error ::</strong>
+          <span class="block sm:inline">{{ error }}</span>
+          <span
+            class="absolute top-0 bottom-0 right-0 px-4 py-3"
+            (click)="close()"
+          >
+            <svg
+              class="fill-current h-6 w-6 text-red-500"
+              role="button"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <title>Close</title>
+              <path
+                d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+              />
+            </svg>
+          </span>
+        </div>
+        <div *ngIf="!id">
+        <h1 class="hd-add">Add Hr Partner</h1></div>
+        <div *ngIf="id">
+        <h1 class="hd-add">Edit Hr Partner</h1>
+        </div>
+        <div class="flex flex-wrap">
+          <div class="w-full md:w-1/2 sm:w-full">
+            <mat-form-field>
+              <mat-label>Company Name</mat-label>
+              <input
+                matInput
+                formControlName="hrorganizationname"
+                (change)="changeCode()"
+                type="text"
+                required
+                class="br-btm input-w"
+                autoComplete="off"
+                tabindex="1"
+              />
+              <mat-error
+                *ngIf="hrForm.get('hrorganizationname').errors?.required"
+              >
+                Required company Name.
+              </mat-error>
+              <mat-error
+                *ngIf="hrForm.get('hrorganizationname').errors?.minlength"
+              >
+                company name must be at least 3 characters long.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Code</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="code"
+                class="br-btm input-w"
+                autoComplete="off"
+                tabindex="3"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="hrorganisationEmail"
+                required
+                class="br-btm input-w"
+                autoComplete="off"
+                tabindex="5"
+              />
+              <mat-error
+                *ngIf="hrForm.get('hrorganisationEmail').errors?.required"
+              >
+                Required Email Name.
+              </mat-error>
+              <mat-error
+                *ngIf="hrForm.get('hrorganisationEmail').errors?.email"
+              >
+                Enter correct email
+              </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field>
+              <mat-label>Company Size</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="hrorganisationEmployeeSize"
+                class="br-btm input-w"
+                autoComplete="off"
+                tabindex="7"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Active From</mat-label>
+              <!-- <input  matInput  type="text"  formControlName="activeform"  required  class="br-btm input-w" autoComplete='off'> -->
+              <input
+                matInput
+                formControlName="hrorganisationActiveFrom"
+                max="maxDate"
+                placeholder="YYYY"
+                class="br-btm input-w"
+                tabindex="9"
+              />
+              <!-- <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                      <mat-datepicker #picker2 color="primary"></mat-datepicker> -->
+              <mat-error
+                *ngIf="hrForm.get('hrorganisationActiveFrom').errors?.max"
+              >
+                Enter a Valid Year.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Address</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="hrorganisationAddress"
+                required
+                class="br-btm input-w"
+                autoComplete="off"
+                tabindex="11"
+              />
+              <mat-error
+                *ngIf="
+                  hrForm.get('hrorganisationAddress').errors?.required
+                "
+              >
+                Required organization address.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>State</mat-label>
+              <mat-select
+                class="br-btm input-w pb-5"
+                formControlName="state"
+                required
+                tabindex="14"
+              >
+                <mat-option>Select</mat-option>
+                <mat-option value="andaman">Andaman & Nicobar</mat-option>
+                <mat-option value="andrapradesh">Andra Pradesh</mat-option>
+                <mat-option value="arunachal">Arunachal Pradesh</mat-option>
+                <mat-option value="assam">Assam</mat-option>
+                <mat-option value="bihar">Bihar</mat-option>
+                <mat-option value="chandigarh">Chandigarh</mat-option>
+                <mat-option value="chhattisgarh">Chhattisgarh</mat-option>
+                <mat-option value="dadra">Dadra & Nagar Haveli</mat-option>
+                <mat-option value="daman">Daman & Diu</mat-option>
+                <mat-option value="delhi">Delhi</mat-option>
+                <mat-option value="goa">Goa</mat-option>
+                <mat-option value="gujarat">Gujarat</mat-option>
+                <mat-option value="haryana">Haryana</mat-option>
+                <mat-option value="himachal">Himachal Pradesh</mat-option>
+                <mat-option value="jammu">Jammu and Kashmir</mat-option>
+                <mat-option value="jharkhand">Jharkhand</mat-option>
+                <mat-option value="karnataka">Karnataka</mat-option>
+                <mat-option value="kerala">Kerala</mat-option>
+                <mat-option value="lakshadweep">Lakshadweep</mat-option>
+                <mat-option value="madyapradesh">Madya Pradesh</mat-option>
+                <mat-option value="maharastra">Maharashtra</mat-option>
+                <mat-option value="manipur">Manipur</mat-option>
+                <mat-option value="meghalaya">Meghalaya</mat-option>
+                <mat-option value="mizoram">Mizoram</mat-option>
+                <mat-option value="nagaland">Nagaland</mat-option>
+                <mat-option value="orissa">Orissa</mat-option>
+                <mat-option value="pondicherry">Pondicherry</mat-option>
+                <mat-option value="punjab">Punjab</mat-option>
+                <mat-option value="rajasthan">Rajasthan</mat-option>
+                <mat-option value="sikkim">Sikkim</mat-option>
+                <mat-option value="tamil">Tamil Nadu</mat-option>
+                <mat-option value="telangana">Telangana</mat-option>
+                <mat-option value="tripura">Tripura</mat-option>
+                <mat-option value="uttarpradesh">Uttar Pradesh</mat-option>
+                <mat-option value="uttaranchal">Uttaranchal</mat-option>
+                <mat-option value="westbengal">West Bengal</mat-option>
+              </mat-select>
+              <mat-error *ngIf="hrForm.get('state').errors?.required">
+                Required state.
+              </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field>
+              <mat-label>GSTN (optional)</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="hrorganizationGstn"
+                class="br-btm input-w"
+                autoComplete="off"
+                tabindex="15"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>CIN (optional)</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="hrorganizationCin"
+                class="br-btm input-w"
+                autoComplete="off"
+                tabindex="17"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Description</mat-label>
+              <textarea
+                matInput
+                formControlName="hrorganisationDescription"
+                class="br-btm input-w"
+                autoComplete="off"
+                tabindex="19"
+              ></textarea>
+            </mat-form-field>
+          </div>
+          <div class="w-full md:w-1/2 sm:w-full">
+            <mat-form-field>
+              <mat-label>Legal Entity Name</mat-label>
+              <input
+                matInput
+                formControlName="legalEntityName"
+                type="text"
+                required
+                class="br-btm input-w"
+                autoComplete="off"
+                tabindex="2"
+              />
+              <mat-error
+                *ngIf="hrForm.get('legalEntityName').errors?.required"
+              >
+                Required legal entity name.
+              </mat-error>
+              <mat-error
+                *ngIf="hrForm.get('legalEntityName').errors?.minlength"
+              >
+                legal entity name must be at least 5 characters long.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Contact Person Name</mat-label>
+              <input
+                matInput
+                formControlName="hrcontactPersonName"
+                placeholder="Enter full name"
+                type="text"
+                required
+                class="br-btm input-w"
+                autoComplete="off"
+                tabindex="4"
+              />
+              <mat-error
+                *ngIf="hrForm.get('hrcontactPersonName').errors?.required"
+              >
+                Required contact person name.
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  hrForm.get('hrcontactPersonName').errors?.minlength
+                "
+              >
+                Contact Person name must be at least 5 characters long.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Phone Number</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="contact"
+                required
+                class="br-btm input-w"
+                autoComplete="off"
+                pattern="^[0-9]{10}$"
+                tabindex="6"
+              />
+              <mat-error *ngIf="hrForm.get('contact').errors?.required">
+                Required phone number.
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  !hrForm.get('contact').errors?.required &&
+                  hrForm.get('contact').errors?.pattern
+                "
+              >
+                Please enter valid number
+              </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field>
+              <mat-label>Industry Type</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="hrorganisationType"
+                class="br-btm input-w"
+                autoComplete="off"
+                required
+                tabindex="8"
+              />
+              <mat-error
+                *ngIf="hrForm.get('hrorganisationType').errors?.required"
+              >
+                Required industry type.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Head Quarter Location</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="headQuaterLocation"
+                required
+                class="br-btm input-w"
+                autoComplete="off"
+                tabindex="10"
+              />
+              <mat-error
+                *ngIf="
+                  hrForm.get('headQuaterLocation').errors?.required
+                "
+              >
+                Required head quater location.
+              </mat-error>
+            </mat-form-field>
+            <!-- <mat-form-field>
+                  <mat-label>State</mat-label>
+                  <input matInput formControlName="state"  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="14">
+                  <mat-error *ngIf ="hrForm.get('state').errors?.required">
+                      Required state.
+                  </mat-error>
+              </mat-form-field> -->
+            <mat-form-field>
+              <mat-label>City</mat-label>
+              <input
+                matInput
+                formControlName="hrorganizationLocation"
+                type="text"
+                required
+                class="br-btm input-w"
+                autoComplete="off"
+                tabindex="13"
+              />
+              <mat-error
+                *ngIf="
+                  hrForm.get('hrorganizationLocation').errors?.required
+                "
+              >
+                Required location.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Pin Code</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="hrorganisationZIP"
+                required
+                class="br-btm input-w"
+                autoComplete="off"
+                tabindex="16"
+              />
+              <mat-error
+                *ngIf="
+                  hrForm.controls['hrorganisationZIP'].hasError(
+                    'required'
+                  )
+                "
+              >
+                Please enter
+                <strong>valid pincode</strong>
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  hrForm.controls['hrorganisationZIP'].hasError('pattern')
+                "
+              >
+                pincode
+                <strong>minimum length is 5 and maximum length is 7.</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>PAN (optional)</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="panNumber"
+                class="br-btm input-w"
+                autoComplete="off"
+                tabindex="18"
+              />
+            </mat-form-field>
+            <div class="group-gap">
+              <div class="avatar-upload">
+                <div class="avatar-edit">
+                  <input
+                    type="file"
+                    required
+                    id="imageUpload"
+                    accept=".png,.jpeg,.jpg"
+                    #logoLink
+                    (change)="uploadFile($event.target.files)"
+                    tabindex="20"
+                  />
+                </div>
+                <div class="avatar-preview">
+                  <div
+                    id="imagePreview"
+                    [style.backgroundImage]="'url(' + imageUrl + ')'"
+                  ></div>
+                </div>
+              </div>
+              <button mat-button (click)="logoLink.click()">
+                <mat-icon>file_upload</mat-icon>
+                Upload Logo
+              </button>
+            </div>
+            <mat-form-field *ngIf="id">
+              <mat-label>Status</mat-label>
+              <mat-select
+                class="br-btm input-w"
+                formControlName="status"
+                tabindex="21"
+              >
+                <mat-option [value]="true">Active</mat-option>
+                <mat-option [value]="false">Inactive</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="flex justify-end lg:pb-6 lg:pr-48 mt-10">
+          <a routerLink="/hrPartner-list"
+            ><button
+              class="lg-button focus:outline-none focus:shadow-outline mr-12"
+              type="button"
+            >
+              Cancel
+            </button></a
+          >
+          <button
+            class="lg-button focus:outline-none focus:shadow-outline"
+            type="submit"
+            (click)="submit()"
+            *ngIf="!id"
+          >
+            Submit
+          </button>
+          <button
+            class="lg-button focus:outline-none focus:shadow-outline"
+            (click)="update(id)"
+            *ngIf="id"
+          >
+            update
+          </button>
+        </div>
+      </form>
+    </div>
+  </app-navbar>
+  
