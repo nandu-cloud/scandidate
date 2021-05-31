@@ -102,7 +102,7 @@
 
             <!--HRPARTNER organization list-->
             <mat-form-field *ngIf="subroleTypeee == 'HRPARTNER'">
-                <mat-label>Organizationeee</mat-label>
+                <mat-label>Organization</mat-label>
                 <mat-select   class="br-btm input-w" tabindex="2">
                   <mat-option *ngFor="let itm of allHrPartnerOrganization" [value]="itm._id">{{itm.hrorganizationname}}</mat-option>
                 </mat-select>
