@@ -18,10 +18,11 @@ th {
 }
 @media (min-width: 300px) {
   .mat-elevation-z8 {
-    padding-left: 16px;
+    padding-left: 0px;
   }
   .data-table {
     margin: 10px auto;
+    width: 83% !important;
     }
     .org{
       padding-left:15px;font-weight:bold;padding-top:11px;font-size: 15px;
@@ -37,7 +38,7 @@ th {
     margin-top: -30px;
   }
   .data-table {
-    width: 80%;
+    width: 100% !important;
     margin: 49px auto;
   }
   /* .matHeaderCellDef {
@@ -51,7 +52,7 @@ th {
     margin: 10px auto;
     }
     .mat-elevation-z8 {
-      padding-left: 33px;
+      padding-left: 0px;
     }
     .org{
       padding-left:24px;font-weight:bold;padding-top:11px;font-size: 15px;
@@ -65,7 +66,7 @@ th {
 
   } */
    .data-table {
-     width: 91% !important;
+     width: 83% !important;
    }
   .forwardd{
     margin-right: -16px !important;
@@ -93,7 +94,7 @@ th {
     padding-right: 29px;
   }
   .mat-elevation-z8 {
-    margin-left: -18px !important;
+    margin-left: 34px !important;
    
   }
   .search-box{
@@ -112,7 +113,7 @@ th {
     position: relative;
   }
   .numsiconss{
-    padding: 8px 8px 5px 0px;
+    /* padding: 8px 8px 5px 0px; */
     margin: 4px -35px;
     background-color: black;
     float: left;

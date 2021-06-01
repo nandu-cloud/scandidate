@@ -27,7 +27,9 @@ th {
       width: 80%;
       margin: 49px auto;
     }
-  
+    .org{
+    margin-left: -50px;
+    }
   }
   @media (min-width: 1024px) {
   
@@ -41,9 +43,28 @@ th {
     .mat-header-cell{
       display: none;
     }
-    /* .table, .table tbody, .table tr, .table td{
-  
-    } */
+    .mat-header-row {
+      display: none;
+    }
+    .mat-cell {
+      display: block;
+      width: 100%;
+      text-align: right;
+      padding: 10px;
+      margin-right: 228px;
+      padding-left: 50%;
+      position: relative;
+    }
+    .mobile-label{
+      display: inline-block;
+      font-weight: bold;
+      position: absolute;
+      left: 31px;
+      width: 50%;
+      text-align: left;
+      color: rgb(108, 180, 59);
+      font-size: 14px;
+    }
      .data-table {
        width: 91% !important;
      }
@@ -56,28 +77,18 @@ th {
     .action {
       margin-right: 7px;
     }
-    .mat-header-row {
-      display: none;
-    }
-    .mobile-label{
-      display: inline-block;
-      font-weight: bold;
-      position: absolute;
-      left: 31px;
-      width: 50%;
-      text-align: left;
-      color: rgb(108, 180, 59);
-      font-size: 14px;
-    }
     .org {
       padding-right: 29px;
     }
     .mat-elevation-z8 {
-      margin-left: -18px !important;
-     
+      margin-left: 18px !important;
     }
-  
-  
+    .search{
+      margin-left: -33px;
+    }
+    .add1{
+      margin: 0 0 10px 36px;
+    }
   }
   .org{
     padding-left:15px;font-weight:bold;padding-top:11px; font-size: 15px;

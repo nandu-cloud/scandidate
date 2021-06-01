@@ -7,8 +7,8 @@
       </div>
     
       
-      <div class="lg:w-4/12 lg:-ml-4 lg:mt-0 xl:w-1/4 xl:ml-56 md:w-2/4 md:ml-40 md:-mt-8 sm:w-4/6">
-        <div class="pt-2 relative mx-auto mr-5 text-black-600" >
+      <div class="lg:w-4/12 lg:-ml-4 lg:mt-0 xl:w-1/4 xl:ml-56 md:w-2/4 md:ml-40 md:-mt-8">
+        <div class="search pt-2 relative mx-auto mr-5 text-black-600" >
            <input class="border-2 border-black bg-white h-10 px-5 w-64 rounded-lg text-sm focus:outline-none"
              type="search" name="search" placeholder="Search" (keyup)="applyFilter($event.target.value)" #input>    
          </div>
@@ -23,7 +23,7 @@
     <div class="mat-elevation-z8 data-table">
       <table mat-table [dataSource]="dataSource" class="full-width-table"  aria-label="Elements">
         
-        <!-- Name Column -->
+      <!-- Name Column -->
         <ng-container matColumnDef="userName">
           <th mat-header-cell *matHeaderCellDef >User Name</th>
           <td mat-cell *matCellDef="let row">
