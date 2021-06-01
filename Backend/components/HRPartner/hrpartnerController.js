@@ -1,5 +1,5 @@
 const hrpartnerValidator = require("./hrpartnerValidator");
-const AppError = require("../../../helpers/appError");
+const AppError = require("../../helpers/appError");
 const mongoose = require("mongoose");
 const hrpartnerDAL = require("./hrpartnerDAL");
 
