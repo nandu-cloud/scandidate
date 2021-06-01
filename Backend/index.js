@@ -91,7 +91,12 @@ app.use("/api/enquiry", require("./components/contactus/conatctusRoute"));
 
 app.use(
   "/api/hrpartner/admin",
-  require("./components/HRPartner/hrpartnerroute")
+  require("./components/scandidate/hrpartner-onboard/hrpartnerroute")
+);
+
+app.use(
+  "/api/hrpartner/employee",
+  require("./components/HRPartner/OppsUser/AddEmployee/EmployeeRoute")
 );
 
 app.all("*", (req, res, next) => {
