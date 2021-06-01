@@ -1,3 +1,4 @@
+const { boolean } = require("joi");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const consentModel = new Schema(
@@ -29,6 +30,10 @@ const consentModel = new Schema(
     },
     consent: {
       type: String,
+      required: false,
+    },
+    flag: {
+      type: Boolean,
       required: false,
     },
   },

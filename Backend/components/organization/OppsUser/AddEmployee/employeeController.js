@@ -9,6 +9,7 @@ const fs = require("fs");
 const ejs = require("ejs");
 const email = require("../../../../helpers/email");
 const consentDAL = require("../Consent/consentDAL");
+const cron = require("node-cron");
 
 module.exports.fileUpload = async function (req, res, next) {
   const fileName = req.file.originalname;
@@ -43,6 +44,35 @@ module.exports.addEmployeeMethod = async function (req, res, next) {
       email.sendEmail(template);
     } catch (err) {
       console.log(colors.red, "consent.ejs template render error");
+    }
+
+    var empConsentData = {
+      firstName: employeeData.firstName,
+      lastName: employeeData.lastName,
+      email: employeeData.email,
+      phoneNumber: employeeData.phoneNumber,
+      adharNumber: employeeData.adharNumber,
+    };
+
+    let checkConsent = await consentDAL.findSavedEmployeeConsent(
+      empConsentData
+    );
+    if (!checkConsent.length > 0) {
+      var consentData = {
+        firstName: employeeData.firstName,
+        lastName: employeeData.lastName,
+        email: employeeData.email,
+        phoneNumber: employeeData.phoneNumber,
+        adharNumber: employeeData.adharNumber,
+        employeeId: employeeData._id,
+        consent: false,
+        flag: false,
+      };
+
+      let saveConsent = await consentDAL.saveConsent(consentData);
+      if (!saveConsent) {
+        console.log(colors.err, "Consent not saved");
+      }
     }
 
     return res.status(200).json({ status: "SUCCESS", data: employeeData });
@@ -243,51 +273,45 @@ module.exports.validateConsent = async (req, res, next) => {
   if (!getEmpData) {
     return next(new AppError("Employee doesn't exists", 422));
   }
-
-  let result = await consentDAL.findEmployeeConsent({ _id: empId });
-  if (result) {
-    // return res
-    //   .status(200)
-    //   .json({ status: 422, message: "Employee consent found" });
+  var getConsent = await consentDAL.findEmployeeConsent({ _id: empId });
+  var getFlag = getConsent.flag;
+  if (getFlag) {
     return res.sendFile(path.join(__dirname, "../Consent/fail.html"));
   }
-
-  if (getOption == 0) {
-    try {
-      var data = {
-        firstName: getEmpData.firstName,
-        lastName: getEmpData.lastName,
-        email: getEmpData.email,
-        phoneNumber: getEmpData.phoneNumber,
-        adharNumber: getEmpData.adharNumber,
-        employeeId: empId,
-        consent: false,
-      };
-      let result = await consentDAL.saveConsent(data);
-      if (!result) {
-        console.log(colors.red, "Consent not saved");
-      }
-    } catch (err) {
-      console.log(colors.red, err);
-    }
-    // return res.status(200).json({ status: 200, message: "Consent disagreed" });
+  if (getOption == 1) {
+    // let data = { ...getConsent, consent: true, flag: true };
+    var data = getConsent;
+    data.consent = true;
+    data.flag = true;
+    var updateConsent = await consentDAL.updateConsent(data);
+    return res.sendFile(path.join(__dirname, "../Consent/success.html"));
+  } else {
+    // let data = { ...getConsent, consent: false, flag: true };
+    var data = getConsent;
+    data.consent = true;
+    data.flag = true;
+    var updateConsent = await consentDAL.updateConsent(data);
     return res.sendFile(path.join(__dirname, "../Consent/success.html"));
   }
-
-  var data = {
-    firstName: getEmpData.firstName,
-    lastName: getEmpData.lastName,
-    email: getEmpData.email,
-    phoneNumber: getEmpData.phoneNumber,
-    adharNumber: getEmpData.adharNumber,
-    employeeId: empId,
-    consent: true,
-  };
-  let consentSaved = await consentDAL.saveConsent(data);
-  if (!consentSaved) {
-    console.log(colors.red, "Consent not saved");
-  }
-
-  // return res.status(200).json({ status: 200, message: "Consent agreed" });
-  return res.sendFile(path.join(__dirname, "../Consent/success.html"));
 };
+
+const schedule = cron.schedule("30 6 * * *", async () => {
+  const getConsent = await consentDAL.showAllConsent();
+  let todaysDate = new Date();
+  console.log(colors.blue, "Run cron everyday at 6:30AM");
+  getConsent.map((employeeConsent) => {
+    var getConsentMailedDate = employeeConsent.createdAt;
+    var diffTime = todaysDate.getTime() - getConsentMailedDate.getTime();
+    var difference_In_Days = Math.floor(diffTime / (1000 * 3600 * 24));
+    if (difference_In_Days == 10 && !employeeConsent.flag) {
+      var data = employeeConsent;
+      data.consent = true;
+      data.flag = true;
+      try {
+        consentDAL.updateConsent(data);
+      } catch (err) {
+        console.log(colors.red, err);
+      }
+    }
+  });
+});
