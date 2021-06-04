@@ -625,6 +625,8 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
       }
     }
 
+    // Leadership
+
     if (template[i].quality) {
       if (template[i].quality.IsSelect == 1) {
         stragThink = "Not satisfactory";
@@ -782,6 +784,9 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
     template[i].industryKnowledge = indusKnow;
     template[i].productKnowledge = prodKnow;
     template[i].subMatter = subMtr;
+
+    // Leadership
+
     template[i].stategicThinking = stragThink;
     template[i].problemSolving = problemSolv;
     template[i].buildingHighPerformanceTeam = buidPerformance;
@@ -831,6 +836,53 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
     }
   }
 
+  let count = 0;
+  var leadership = false;
+  for (var i = 0; i < template.length; i++) {
+    if (
+      template[i].quality.IsSelect != null ||
+      template[i].consistency.IsSelect != null ||
+      template[i].building.IsSelect != null ||
+      template[i].stakeholder.IsSelect != null
+    ) {
+      count += 1;
+    }
+  }
+
+  if (count > 0) {
+    leadership = true;
+  }
+
+  var isAward = false;
+  let awardCount = 0;
+  for (var i = 0; i < template.length; i++) {
+    if (template[i].awards.IsSelect != null) {
+      awardCount += 1;
+    }
+  }
+
+  if (awardCount > 0) {
+    isAward = true;
+  }
+
+  var isDocument = false;
+  let countDoc = 0;
+  for (var i = 0; i < template.length; i++) {
+    if (
+      template[i].discrepancyDocuments.IsSelect != null ||
+      template[i].compliencyDiscrepancy.IsSelect != null ||
+      template[i].warning.IsSelect != null ||
+      template[i].showCausedIssue.IsSelect != null ||
+      template[i].suspension.IsSelect != null ||
+      template[i].termination.IsSelect != null
+    ) {
+      countDoc += 1;
+    }
+  }
+  if (countDoc > 0) {
+    isDocument = true;
+  }
+
   var result = {
     FirstName: fname,
     LastName: lname,
@@ -842,6 +894,9 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
     myDate: dateString,
     data: template,
     data1: icons,
+    ldrshp: leadership,
+    isAwarded: isAward,
+    isDocumentPresent: isDocument,
   };
 
   // let count = 0;

@@ -78,6 +78,20 @@ const employeeSchema = new mongoose.Schema({
     type: Date,
     required: [true, "Date Of Exit cannot be empty"],
   },
+  reasonForSerperation: {
+    IsSelect: {
+      type: String,
+      required: false,
+    },
+    voluntaryReason: {
+      type: String,
+      required: false,
+    },
+    inVoluntaryReason: {
+      type: String,
+      required: false,
+    },
+  },
   professionalExperience: {
     type: String,
     // required: [true, "Professional Experience Cannot Be Empty"],
@@ -123,6 +137,34 @@ const employeeSchema = new mongoose.Schema({
       type: String,
     },
   },
+
+  // Recognition
+
+  awards: {
+    IsSelect: {
+      type: String,
+      required: false,
+    },
+    remarks: {
+      type: String,
+      required: false,
+    },
+    documentName: {
+      type: String,
+      required: false,
+    },
+    documentUpload: {
+      type: String,
+      required: false,
+    },
+    originalFilename: {
+      type: String,
+      required: false,
+    },
+  },
+
+  // Leadership
+
   quality: {
     IsSelect: {
       type: Number,
@@ -160,14 +202,11 @@ const employeeSchema = new mongoose.Schema({
     },
   },
 
-  empThrive: {
-    type: String,
-    required: false,
-  },
   inLeadership: {
     type: String,
     required: false,
   },
+
   otherInfo: {
     type: String,
     required: false,
@@ -222,6 +261,11 @@ const employeeSchema = new mongoose.Schema({
     required: false,
   },
 
+  empThrive: {
+    type: String,
+    required: false,
+  },
+
   keySkills: {
     type: String,
     required: false,
@@ -230,44 +274,6 @@ const employeeSchema = new mongoose.Schema({
   rehireAgain: {
     type: String,
     required: false,
-  },
-
-  awards: {
-    IsSelect: {
-      type: String,
-      required: false,
-    },
-    remarks: {
-      type: String,
-      required: false,
-    },
-    documentName: {
-      type: String,
-      required: false,
-    },
-    documentUpload: {
-      type: String,
-      required: false,
-    },
-    originalFilename: {
-      type: String,
-      required: false,
-    },
-  },
-
-  reasonForSerperation: {
-    IsSelect: {
-      type: String,
-      required: false,
-    },
-    voluntaryReason: {
-      type: String,
-      required: false,
-    },
-    inVoluntaryReason: {
-      type: String,
-      required: false,
-    },
   },
 
   //Other Details
