@@ -85,7 +85,7 @@ router
   .post(authJWT.verifyJWTToken, addEmployeeController.sendConsentEmail);
 
 router
-  .route("/exemployee/validate/:empId/:option")
+  .route("/validate/:empId/:option")
   .get(addEmployeeController.validateConsent);
 
 module.exports = router;

@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     required: false,
   },
-  hrpartnerId: {
+  hrorganisationId: {
     type: Schema.Types.ObjectId,
     required: false,
   },

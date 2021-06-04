@@ -3,7 +3,7 @@ const Joi = require("joi");
 const userCreationSchema = Joi.object({
   organizationId: Joi.string().min(24).max(24).empty(""),
   institutionId: Joi.string().min(24).max(24).empty(""),
-  hrpartnerId: Joi.string().min(24).max(24).empty(""),
+  hrorganisationId: Joi.string().min(24).max(24).empty(""),
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   role: Joi.string().required(),
@@ -29,7 +29,7 @@ const userCreationSchema = Joi.object({
 const updationSchema = Joi.object({
   organizationId: Joi.string().min(24).max(24).empty(""),
   institutionId: Joi.string().min(24).max(24).empty(""),
-  hrpartnerId: Joi.string().min(24).max(24).empty(""),
+  hrorganisationId: Joi.string().min(24).max(24).empty(""),
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   role: Joi.string().required(),

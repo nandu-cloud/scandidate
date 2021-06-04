@@ -6,7 +6,7 @@ const empController = require("./EmployeeController");
 router.route("/").post(authJWT.verifyJWTToken, empController.addEmployee);
 
 router
-  .route("/getEmployee/:hrpartnerId")
+  .route("/getEmployee/:organisationId")
   .get(authJWT.verifyJWTToken, empController.getEmployee);
 
 module.exports = router;
