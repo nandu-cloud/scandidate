@@ -11,9 +11,7 @@ const authValidator = require("./authValidator");
 const colors = require("./../../helpers/colors");
 const AppError = require("./../../helpers/appError");
 const saltRounds = 10;
-const hrPartnerDAL = require("../scandidate/hrpartner-onboard/hrpartnerDAL");
-const organisationDAL = require("../scandidate/organization-onboard/orgOnboardDAL");
-const institutionDAL = require("../scandidate/institute-onboard/instituteOnboardDAL");
+
 // AWS Configs
 AWS.config.update({
   accessKeyId: process.env.AWSACCESSKEYID,
@@ -33,23 +31,6 @@ module.exports.getUserAuth = async function (req, res, next) {
       password: req.body.password,
     };
     let userData = await authDAL.authUser(data);
-    let { organizationId, institutionId, hrorganisationId } = userData;
-    if (organizationId != undefined) {
-      var { organizationName } = await organisationDAL.getOrganisationById({
-        _id: mongoose.Types.ObjectId(organizationId),
-      });
-      userData.organizationName = organizationName;
-    } else if (institutionId != undefined) {
-      var { instituteName } = await institutionDAL.getInstituteById({
-        _id: mongoose.Types.ObjectId(institutionId),
-      });
-      userData.instituteName = instituteName;
-    } else {
-      var { hrorganizationname } = await hrPartnerDAL.getHrPartnerFromId({
-        _id: mongoose.Types.ObjectId(hrorganisationId),
-      });
-      userData.hrorganizationname = hrorganizationname;
-    }
 
     if (userData != null) {
       try {
