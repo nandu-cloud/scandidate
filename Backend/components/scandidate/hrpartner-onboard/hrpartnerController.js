@@ -30,9 +30,12 @@ module.exports.getAllHRpartner = async (req, res, next) => {
 };
 
 module.exports.getHrPartnerById = async (req, res, next) => {
-  const data = req.params.organisationId;
+  const data = req.params.hrorganisationId;
   try {
     let result = await hrpartnerDAL.getHrPartnerFromId({ _id: data });
+    if (!result) {
+      return next(new AppError("Organisation does not exists!", 404));
+    }
     return res
       .status(200)
       .json({ status: "SUCCESS", message: null, data: result });
@@ -43,7 +46,7 @@ module.exports.getHrPartnerById = async (req, res, next) => {
 
 module.exports.updateHrPartner = async (req, res, next) => {
   const data = req.body;
-  const organisationId = req.params.organisationId;
+  const organisationId = req.params.hrorganisationId;
   try {
     let result = await hrpartnerValidator.hrpartnerUpdateValidator.validateAsync(
       data

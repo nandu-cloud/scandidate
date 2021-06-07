@@ -9,7 +9,7 @@ router
   .get(authJWT.verifyJWTToken, hrpartnerController.getAllHRpartner);
 
 router
-  .route("/:organisationId")
+  .route("/:hrorganisationId")
   .get(authJWT.verifyJWTToken, hrpartnerController.getHrPartnerById)
   .put(authJWT.verifyJWTToken, hrpartnerController.updateHrPartner);
 

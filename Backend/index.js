@@ -99,6 +99,11 @@ app.use(
   require("./components/HRPartner/OppsUser/AddEmployee/EmployeeRoute")
 );
 
+app.use(
+  "/api/hrpartner/addUser",
+  require("./components/HRPartner/Admin/AddOperationUser/addUserRoute")
+);
+
 app.all("*", (req, res, next) => {
   next(new AppError(`Cannot find ${req.originalUrl} on the server`, 404));
 });
