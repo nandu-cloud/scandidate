@@ -6,7 +6,7 @@ async function authUser(data) {
     let result = await userModel
       .findOne({ email: data.email })
       .select(
-        "organizationId institutionId firstName lastName role subRole  email avatarLink password otp"
+        "organizationId institutionId hrorganisationId firstName lastName role subRole  email avatarLink password otp"
       )
       .lean();
     return result;
