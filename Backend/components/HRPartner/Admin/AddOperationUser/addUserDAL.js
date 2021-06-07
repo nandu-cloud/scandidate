@@ -22,7 +22,7 @@ async function createUser(data) {
 async function getAllUsers(data) {
   try {
     let result = await userModel
-      .find({ organizationId: data.organizationId })
+      .find({ hrorganisationId: data.hrorganisationId })
       .sort({ _id: -1 })
       .lean();
     return result;

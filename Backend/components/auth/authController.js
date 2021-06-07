@@ -1,7 +1,6 @@
 const bcrypt = require("bcrypt");
 const AWS = require("aws-sdk");
 require("dotenv").config();
-const mongoose = require("mongoose");
 const ejs = require("ejs");
 const path = require("path");
 const authDAL = require("./authDAL");
