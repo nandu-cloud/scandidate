@@ -883,21 +883,71 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
     isDocument = true;
   }
 
-  var result = {
-    FirstName: fname,
-    LastName: lname,
-    phone: pNumber,
-    email: eml,
-    logo: `${process.env.FRONT_END_URL}/assets/images/logo1.png`,
-    orgLogo: `${process.env.FRONT_END_ICON_URL}/public/organization_logo/`,
-    instLogo: `${process.env.FRONT_END_ICON_URL}/public/institute_logo/`,
-    myDate: dateString,
-    data: template,
-    data1: icons,
-    ldrshp: leadership,
-    isAwarded: isAward,
-    isDocumentPresent: isDocument,
-  };
+  if (process.env.NODE_ENV === "development") {
+    var result = {
+      FirstName: fname,
+      LastName: lname,
+      phone: pNumber,
+      email: eml,
+      logo: `${process.env.FRONT_END_URL}/assets/images/logo1.png`,
+      orgLogo: `${process.env.FRONT_END_URL_LOCAL}/public/organization_logo/`,
+      instLogo: `${process.env.FRONT_END_URL_LOCAL}/public/institute_logo/`,
+      myDate: dateString,
+      data: template,
+      data1: icons,
+      ldrshp: leadership,
+      isAwarded: isAward,
+      isDocumentPresent: isDocument,
+    };
+  } else if (process.env.NODE_ENV === "uat") {
+    var result = {
+      FirstName: fname,
+      LastName: lname,
+      phone: pNumber,
+      email: eml,
+      logo: `${process.env.FRONT_END_URL}/assets/images/logo1.png`,
+      orgLogo: `${process.env.FRONT_END_URL_DEV}/public/organization_logo/`,
+      instLogo: `${process.env.FRONT_END_URL_DEV}/public/institute_logo/`,
+      myDate: dateString,
+      data: template,
+      data1: icons,
+      ldrshp: leadership,
+      isAwarded: isAward,
+      isDocumentPresent: isDocument,
+    };
+  } else if (process.env.NODE_ENV === "production") {
+    var result = {
+      FirstName: fname,
+      LastName: lname,
+      phone: pNumber,
+      email: eml,
+      logo: `${process.env.FRONT_END_URL}/assets/images/logo1.png`,
+      orgLogo: `${process.env.FRONT_END_URL}/public/organization_logo/`,
+      instLogo: `${process.env.FRONT_END_URL}/public/institute_logo/`,
+      myDate: dateString,
+      data: template,
+      data1: icons,
+      ldrshp: leadership,
+      isAwarded: isAward,
+      isDocumentPresent: isDocument,
+    };
+  }
+
+  // var result = {
+  //   FirstName: fname,
+  //   LastName: lname,
+  //   phone: pNumber,
+  //   email: eml,
+  //   logo: `${process.env.FRONT_END_URL}/assets/images/logo1.png`,
+  //   orgLogo: `${process.env.FRONT_END_ICON_URL}/public/organization_logo/`,
+  //   instLogo: `${process.env.FRONT_END_ICON_URL}/public/institute_logo/`,
+  //   myDate: dateString,
+  //   data: template,
+  //   data1: icons,
+  //   ldrshp: leadership,
+  //   isAwarded: isAward,
+  //   isDocumentPresent: isDocument,
+  // };
 
   // let count = 0;
   // let isOrganisation = false;

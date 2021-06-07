@@ -124,7 +124,7 @@ function createXL(template) {
       var awdObj = template[i].awards.IsSelect;
       writeStream.write(awdObj + ",,,,,,", "UTF8");
     } else {
-      var awdObj = "Nil";
+      var awdObj = "Nill";
       writeStream.write(awdObj + ",,,,,,", "UTF8");
     }
 
@@ -393,7 +393,7 @@ function createXL(template) {
       var keySkl = "Key Skills: " + template[i].keySkills;
       writeStream.write(keySkl + ",,,,,,,,,,,,,,,,,,", "UTF8");
     } else {
-      var keySkl = "Key Skills: " + "";
+      var keySkl = "Key Skills: " + "Nill";
       writeStream.write(keySkl + ",,,,,,,,,,,,,,,,,,", "UTF8");
     }
 
@@ -437,7 +437,7 @@ function createXL(template) {
       var rehire = "Re-hire: " + template[i].rehireAgain;
       writeStream.write(rehire + ",,,,,,,,,,,,,,,,,,", "UTF8");
     } else {
-      var rehire = "Re-hire: " + "";
+      var rehire = "Re-hire: " + "Nill";
       writeStream.write(rehire + ",,,,,,,,,,,,,,,,,,", "UTF8");
     }
 
@@ -511,7 +511,6 @@ async function scheduledEmail(data) {
     SES: new AWS.SES({ apiVersion: "2010-12-01" }),
   });
 
-
   var mail = {
     from: "Scandidate.in" + process.env.AWSSENDERMAILID,
     to: data.email,
@@ -532,7 +531,6 @@ async function scheduledEmail(data) {
     .sendMail(mail)
     .then((info) => {
       mailResult = true;
-
     })
     .catch((err) => {
       mailResult = false;

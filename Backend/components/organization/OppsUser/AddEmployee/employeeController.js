@@ -32,8 +32,21 @@ module.exports.addEmployeeMethod = async function (req, res, next) {
     let employeeData = await employeeDAL.addEmployee(data);
     let template = employeeData.toObject();
     template.logo = `${process.env.FRONT_END_URL}/assets/images/logo1.png`;
-    template.agreelink = `${process.env.FRONT_END_ICON_URL}/validate/${employeeData._id}/1`;
-    template.disagreelink = `${process.env.FRONT_END_ICON_URL}/validate/${employeeData._id}/0`;
+
+    if (process.env.NODE_ENV === "development") {
+      template.agreelink = `${process.env.FRONT_END_URL_LOCAL}/validate/${employeeData._id}/1`;
+      template.disagreelink = `${process.env.FRONT_END_URL_LOCAL}/validate/${employeeData._id}/0`;
+    } else if (process.env.NODE_ENV === "uat") {
+      template.agreelink = `${process.env.FRONT_END_URL_DEV}/validate/${employeeData._id}/1`;
+      template.disagreelink = `${process.env.FRONT_END_URL_DEV}/validate/${employeeData._id}/0`;
+    } else if (process.env.NODE_ENV === "production") {
+      template.agreelink = `${process.env.FRONT_END_URL}/validate/${employeeData._id}/1`;
+      template.disagreelink = `${process.env.FRONT_END_URL}/validate/${employeeData._id}/0`;
+    }
+
+    // template.agreelink = `${process.env.FRONT_END_ICON_URL}/validate/${employeeData._id}/1`;
+    // template.disagreelink = `${process.env.FRONT_END_ICON_URL}/validate/${employeeData._id}/0`;
+
     template.subject = "Consent Email";
     try {
       template.html = await ejs.renderFile(
