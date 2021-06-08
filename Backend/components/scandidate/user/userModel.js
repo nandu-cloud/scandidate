@@ -30,13 +30,7 @@ const userSchema = new mongoose.Schema({
   subRole: {
     type: String,
     required: [true, "sub role cannot be empty"],
-    enum: [
-      "ADMIN",
-      "OPERATIONAL_USER",
-      "LINE MANAGER",
-      "LINE_HR",
-      "LINE_MANAGER",
-    ],
+    enum: ["ADMIN", "OPERATIONAL_USER", "LINE MANAGER"],
   },
   bgvCount: {
     type: Number,

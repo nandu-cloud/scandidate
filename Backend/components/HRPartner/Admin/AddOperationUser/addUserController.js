@@ -30,6 +30,9 @@ module.exports.createOppsUserMethod = async function (req, res, next) {
       if (userData.subRole === "ADMIN") {
         userData.subRole = "ADMIN HR ";
       }
+      if (userData.subRole === "OPERATIONAL_USER") {
+        userData.subRole = "LINE HR ";
+      }
 
       let template = userData;
       template.logo = `${process.env.FRONT_END_URL}/assets/images/logo1.png`;
@@ -69,6 +72,14 @@ module.exports.getAllMethod = async function (req, res, next) {
       hrorganisationId: mongoose.Types.ObjectId(req.params.hrorganisationId),
     };
     let userData = await userDAL.getAllUsers(data);
+    userData.map((e) => {
+      if (e.subRole === "ADMIN") {
+        e.subRole = "ADMIN HR ";
+      }
+      if (e.subRole === "OPERATIONAL_USER") {
+        e.subRole = "LINE HR ";
+      }
+    });
 
     if (!userData) return next(new AppError("user does not exists!", 404));
     return res.status(200).json({
