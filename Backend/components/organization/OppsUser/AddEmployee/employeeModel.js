@@ -447,7 +447,7 @@ const employeeSchema = new mongoose.Schema({
   },
 
   candidateOrganisationId: {
-    type: Schema.Types.ObjectId,
+    type: String,
     required: false,
   },
   bgvCandidate: {

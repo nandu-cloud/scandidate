@@ -73,7 +73,7 @@ async function updateOrganisation(data) {
 
 async function findOrganisation(data) {
   try {
-    let result = await organizationModel.findOne(data);
+    let result = await organizationModel.findOne(data).lean();
     return result;
   } catch (err) {
     throw err;

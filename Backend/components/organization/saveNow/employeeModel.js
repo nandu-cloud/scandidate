@@ -413,6 +413,55 @@ const saveEmployee = new Schema({
     type: Boolean,
     required: false,
   },
+
+  // CANDIDATE ATTRIBUTES
+
+  nameofFeedbackProvider: {
+    type: String,
+    required: false,
+  },
+  designationOfFeedbackProvider: {
+    type: String,
+    required: false,
+  },
+
+  candidateOrganisationId: {
+    type: Schema.Types.ObjectId,
+    required: false,
+  },
+  bgvCandidate: {
+    type: Boolean,
+    required: false,
+  },
+  hrorganisationId: {
+    type: Schema.Types.ObjectId,
+    required: false,
+  },
+  dateOfVerification: {
+    type: Date,
+    required: false,
+  },
+
+  personalIdentity: {
+    type: String,
+    required: false,
+  },
+  criminal: {
+    type: String,
+    required: false,
+  },
+  verificationAddress: {
+    type: String,
+    required: false,
+  },
+  drugsAndSubstanceAbuse: {
+    type: String,
+    required: false,
+  },
+  salarySlipCTCdocument: {
+    type: String,
+    required: false,
+  },
 });
 
 module.exports = mongoose.model("saveNowEmployee", saveEmployee);

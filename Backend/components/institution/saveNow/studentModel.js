@@ -6,29 +6,35 @@ const Schema = mongoose.Schema;
 const studentSchema = new mongoose.Schema({
   nameOfCourse: {
     type: String,
-    required: [true, "Name of course is required"],
+    required: false,
   },
   yearOfJoining: {
     type: String,
+    required: false,
   },
   yearOfPassout: {
     type: String,
+    required: false,
   },
   studentType: {
     type: String,
-    required: true,
+    required: false,
   },
   extraActivity: {
     type: String,
+    required: false,
   },
   extraActivityDocumentName: {
     type: String,
+    required: false,
   },
   noOfEductionalDocuments: {
     type: Number,
+    required: false,
   },
   eductionalDocumentNames: {
     type: Array,
+    required: false,
   },
   originalFilename: {
     type: String,
@@ -43,15 +49,15 @@ const studentSchema = new mongoose.Schema({
   },
   firstName: {
     type: String,
-    required: [true, "first name cannot be empty"],
+    required: false,
   },
   lastName: {
     type: String,
-    required: [true, "last name cannot be empty"],
+    required: false,
   },
   roll: {
     type: String,
-    required: [true, "roll cannot be empty"],
+    required: false,
   },
   email: {
     type: String,
@@ -123,7 +129,7 @@ const studentSchema = new mongoose.Schema({
   },
 
   candidateInstituteId: {
-    type: String,
+    type: Schema.Types.ObjectId,
     required: false,
   },
   bgvCandidate: {

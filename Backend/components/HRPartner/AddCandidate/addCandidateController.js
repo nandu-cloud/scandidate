@@ -3,8 +3,8 @@ const orgDAL = require("../../scandidate/organization-onboard/orgOnboardDAL");
 const instDAL = require("../../scandidate/institute-onboard/instituteOnboardDAL");
 const empDAL = require("../../organization/OppsUser/AddEmployee/employeeDAL");
 const stdDAL = require("../../institution/OppsUser/AddStudent/studentDAL");
-const empValidator = require("../../organization/OppsUser/AddEmployee/employeeValidator");
-const stdValidator = require("../../institution/OppsUser/AddStudent/studentValidator");
+const empValidator = require("./addCandidateEmpValidator");
+const stdValidator = require("./addCandidateStdValidator");
 
 module.exports.saveCandidate = async (req, res, next) => {
   const { bio, candidate, verification } = req.body;
@@ -18,16 +18,17 @@ module.exports.saveCandidate = async (req, res, next) => {
       if (d.hasOwnProperty("organizationName")) {
         var orgName = { organizationName: d.organizationName };
         var { _id } = await orgDAL.findOrganisation(orgName);
-        d.candidateOrganisationId = _id;
+        d.candidateOrganisationId = _id.toString();
         d.bgvCandidate = true;
         var verificationDate = new Date();
         d.dateOfVerification = verificationDate;
+        console.log(d);
         let empValid = await empValidator.addEmployeeSchema.validateAsync(d);
         var saveCandidate = await empDAL.addEmployee(empValid);
       } else {
         var insName = { instituteName: d.intitutionName };
         var { _id } = await instDAL.findInstitution(insName);
-        d.candidateInstituteId = _id;
+        d.candidateInstituteId = _id.toString();
         d.bgvCandidate = true;
         var verificationDate = new Date();
         d.dateOfVerification = verificationDate;
