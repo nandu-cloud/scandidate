@@ -106,6 +106,8 @@ export class LoginComponent implements OnInit {
       let iniId = resp.data.institutionId;
       let orgId = resp.data.organizationId;
       let orgName = resp.data.organizationName;
+      let hrorganisationId = resp.data.hrorganisationId;
+      let hrorganizationname = resp.data.hrorganizationname;
       let errMsg = resp.message;
       let logo = resp.data.avatarLink;
 
@@ -117,6 +119,8 @@ export class LoginComponent implements OnInit {
       this._sessionStorage.setSession('InistutionId',iniId);
       this._sessionStorage.setSession('organizationId',orgId);
       this._sessionStorage.setSession('orgName', orgName);
+      this._sessionStorage.setSession('hrorganisationId', hrorganisationId);
+      this._sessionStorage.setSession('hrorganizationname', hrorganizationname);
       this._sessionStorage.setSession('logo',logo);
       if (resp.status.toUpperCase() == 'SUCCESS') {
       if(role == 'SCANDIDATE'){
@@ -128,11 +132,16 @@ export class LoginComponent implements OnInit {
        this.router.navigate(['/institutionDashboard']);
        localStorage.setItem('_id', resp.data._id)
        this.router.navigate(['/institutionDashboard']);
-      } else {
+      } else if(role == 'ORGANIZATION'){
         this._sessionStorage.setSession('isAuthenticated',true);
         localStorage.setItem('organizationId',resp.data.organizationId);
         localStorage.setItem('orgName',resp.data.organizationName);
         this.router.navigate(['/organizationDashboard']);
+      } else{
+        this._sessionStorage.setSession('isAuthenticated', true);
+        localStorage.setItem('hrorganisationId', resp.data.hrorganisationId);
+        localStorage.setItem('hrpartnerorgname', resp.data.hrorganizationname);
+        this.router.navigate(['/hrpartnerdashboard']);
       }
     }
     }, err => {

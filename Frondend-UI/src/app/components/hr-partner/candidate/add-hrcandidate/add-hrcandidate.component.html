@@ -369,6 +369,7 @@ Contents for  tab
                 <mat-label>Designation of feedback provider</mat-label>
                 <input
                   matInput
+                  formControlName="designationOfFeedbackProvider"
                   type="text"
                   class="br-btm input-w"
                   autoComplete="off"
@@ -382,6 +383,7 @@ Contents for  tab
                 <mat-label>Name of feedback provider</mat-label>
                 <input
                   matInput
+                  formControlName="nameofFeedbackProvider"
                   type="text"
                   class="br-btm input-w"
                   autoComplete="off"
@@ -1657,6 +1659,7 @@ Contents for  tab
  
 
         <mat-tab>
+          <form [formGroup]="thirdFormGroup">
           <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon">work</mat-icon>
             <label class="labelHeading">
@@ -1764,6 +1767,7 @@ Contents for  tab
               Back
             </button>
           </div>
+        </form>
         </mat-tab>
       </div>
       </mat-tab-group>

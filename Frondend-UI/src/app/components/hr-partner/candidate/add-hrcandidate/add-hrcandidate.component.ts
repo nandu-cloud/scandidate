@@ -98,6 +98,8 @@ export class AddHrcandidateComponent implements OnInit {
       pinCode: new FormControl()
     });
     this.secondFormGroup = new FormGroup({
+      nameofFeedbackProvider: new FormControl(''), 
+      designationOfFeedbackProvider: new FormControl(''), 
       employeeId: new FormControl(''),  
       dateOfJoining: new FormControl('', [Validators.required, this.validateJoiningDate()]),
       exitDate: new FormControl('', [Validators.required, this.validateExitDate()]),
@@ -167,7 +169,9 @@ export class AddHrcandidateComponent implements OnInit {
         originalFilename: new FormControl(this.terminationFileName)
       })
     });
-
+    this.thirdFormGroup = new FormGroup({
+      
+    })
    }
 
  
