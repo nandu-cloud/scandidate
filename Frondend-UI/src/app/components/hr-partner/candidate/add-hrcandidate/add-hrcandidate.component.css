@@ -1,0 +1,112 @@
+.mat-select{
+    padding-bottom: 10px !important;
+}
+.datepicker{
+    margin-left: -11px !important;
+    margin-bottom: -9px !important;
+}
+.image-text{
+    color: black !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    text-align: left;
+}
+.avatar-upload .avatar-edit input {
+    display: none;
+}
+.mat-form-field-infix{
+    padding: 0px !important;
+}
+.example-tab-icon {
+    margin-right: 8px;
+  }
+.hd-add, .right-text {
+    display:inline;
+}
+.right-text {
+    color: #6CB43B;
+    font-size: 15px;
+}
+
+.example-radio-group {
+    display: flex;
+    flex-direction: row;
+    margin: 15px 0;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+  .example-radio-group-label{
+      font-weight: bold;
+      padding-top: 5px;
+      font-size: larger;
+  }
+  .example-full-width {
+    width: 80%;
+  }
+  .mat-tab-group {
+    position: sticky !important;
+  }
+  .issues {
+    margin-left: -5rem;
+  }
+  .action {
+    width: 15rem;
+  }
+  .date {
+    width: 8rem;
+
+  }
+  .remarks {
+    height: 5rem;
+  }
+  .reason {
+      margin-top: -27px !important;
+  }
+  .size1
+  {
+    width:50%
+  }
+  .example-tooltip-red1{
+    min-width: 300px;
+      font-size: 16px !important;
+      background-color: green;
+    }
+  /* .labelHeading .matTooltip{
+    font-size: 15px;
+  } */
+  .example-tooltip-red {
+    background: #b71c1c;
+  }
+  .above-tooltip{
+    background-color: blueviolet;
+  }
+  ::ng-deep .mat-tooltip{
+    font-size: 13px;
+    min-width: 490px;
+  }
+  .reason {
+    padding-top: 35px;
+  }
+  .dropdon {
+    margin-top: -25px;
+  }
+  .hr{
+    border-width:1px;
+    max-width: 79%;
+  }
+  .add{
+    float: right;
+    margin-right: 28px;
+    /* margin-left: 16px; */
+    /* margin-right: 260px; */
+  }
+  .addr{
+    /* margin-right: -218px; */
+    float: right;
+    margin-right: 149px;
+  }

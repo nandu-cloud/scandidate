@@ -61,6 +61,13 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
 import { AssignToLinemanagerDialogComponent } from './components/organization/employees/assign-to-linemanager-dialog/assign-to-linemanager-dialog.component';
 import { AddHrPartnerComponent } from './components/scandidate/hr-partner-onboard/add-hr-partner/add-hr-partner.component';
 import { HrPartnerListComponent } from './components/scandidate/hr-partner-onboard/hr-partner-list/hr-partner-list.component';
+import { AddEmployeeComponent } from './components/hr-partner/employees/add-employee/add-employee.component';
+import { EmployeeListComponent } from './components/hr-partner/employees/employee-list/employee-list.component';
+import { UserListComponent } from './components/hr-partner/users/user-list/user-list.component';
+import { AddHroppuserComponent } from './components/hr-partner/users/add-hroppuser/add-hroppuser.component';
+import { HrcandidateListComponent } from './components/hr-partner/candidate/hrcandidate-list/hrcandidate-list.component';
+import { AddHrcandidateComponent } from './components/hr-partner/candidate/add-hrcandidate/add-hrcandidate.component';
+import { HrpartnerdashboardComponent } from './components/hr-partner/hrpartnerdashboard/hrpartnerdashboard/hrpartnerdashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -106,7 +113,14 @@ import { HrPartnerListComponent } from './components/scandidate/hr-partner-onboa
     ContactUsComponent,
     AssignToLinemanagerDialogComponent,
     AddHrPartnerComponent,
-    HrPartnerListComponent
+    HrPartnerListComponent,
+    AddEmployeeComponent,
+    EmployeeListComponent,
+    UserListComponent,
+    AddHroppuserComponent,
+    HrcandidateListComponent,
+    AddHrcandidateComponent,
+    HrpartnerdashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -127,6 +141,10 @@ import { HrPartnerListComponent } from './components/scandidate/hr-partner-onboa
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
 
+  ],
+  // schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  exports: [
+    ReactiveFormsModule
   ],
   bootstrap: [AppComponent]
 })

@@ -18,11 +18,10 @@ th {
 }
 @media (min-width: 300px) {
   .mat-elevation-z8 {
-    padding-left: 0px;
+    padding-left: 16px;
   }
   .data-table {
     margin: 10px auto;
-    width: 83% !important;
     }
     .org{
       padding-left:15px;font-weight:bold;padding-top:11px;font-size: 15px;
@@ -38,7 +37,7 @@ th {
     margin-top: -30px;
   }
   .data-table {
-    width: 100% !important;
+    width: 80% !important;
     margin: 49px auto;
   }
   /* .matHeaderCellDef {
@@ -152,7 +151,7 @@ th {
 @media (min-width: 768px) and (max-width: 1024px) {
 
   .data-table {
-    width: 100%;
+    width: 80%;
     margin: 56px auto;
     }
     .numsicons{
@@ -193,7 +192,7 @@ th {
       padding: 5px 23px 10px;
     } */
     .org{
-      margin-left: -122px;font-weight:bold;padding-top:11px;font-size: 15px;
+      margin-left: -86px;font-weight:bold;padding-top:11px;font-size: 15px;
     }
 }
 @media (min-width: 1024px) {
@@ -228,7 +227,7 @@ th {
 
     }
     .org{
-      margin-left: -60px;font-weight:bold;padding-top:11px;font-size: 15px;
+      margin-left: -23px;font-weight:bold;padding-top:11px;font-size: 15px;
     }
     .search-box{
       /* padding-left: 371px; */

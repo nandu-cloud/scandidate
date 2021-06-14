@@ -37,6 +37,13 @@ import { AppGuard } from '../app/admin/app.guard';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { AddHrPartnerComponent } from './components/scandidate/hr-partner-onboard/add-hr-partner/add-hr-partner.component';
 import { HrPartnerListComponent } from './components/scandidate/hr-partner-onboard/hr-partner-list/hr-partner-list.component';
+import { EmployeeListComponent } from './components/hr-partner/employees/employee-list/employee-list.component';
+import { AddEmployeeComponent } from './components/hr-partner/employees/add-employee/add-employee.component';
+import { UserListComponent } from './components/hr-partner/users/user-list/user-list.component';
+import { AddHroppuserComponent } from './components/hr-partner/users/add-hroppuser/add-hroppuser.component';
+import { HrcandidateListComponent } from './components/hr-partner/candidate/hrcandidate-list/hrcandidate-list.component';
+import { AddHrcandidateComponent } from './components/hr-partner/candidate/add-hrcandidate/add-hrcandidate.component';
+import { HrpartnerdashboardComponent } from './components/hr-partner/hrpartnerdashboard/hrpartnerdashboard/hrpartnerdashboard.component';
 
 const routes: Routes = [
   { path: 'add-organization', component: AddOrganizationComponent ,canActivate: [AppGuard]},
@@ -82,6 +89,14 @@ const routes: Routes = [
   { path: 'add-hr-partner', component: AddHrPartnerComponent, canActivate: [AppGuard]},
   { path: 'add-hr-partner/:id', component: AddHrPartnerComponent,canActivate: [AppGuard] },
   { path: 'hrPartner-list', component: HrPartnerListComponent, canActivate: [AppGuard]},
+  { path: 'employee-list', component: EmployeeListComponent, canActivate: [AppGuard]},
+  { path: 'add-employee', component: AddEmployeeComponent, canActivate: [AppGuard]},
+  { path: 'add-employee/:id', component: AddEmployeeComponent, canActivate: [AppGuard]},
+  { path: 'user-list', component: UserListComponent, canActivate: [AppGuard]},
+  { path: 'add-hroppuser', component: AddHroppuserComponent, canActivate: [AppGuard]},
+  { path: 'add-hrcandidate', component: AddHrcandidateComponent, canActivate: [AppGuard]},
+  { path: 'hrcandidate-list', component: HrcandidateListComponent, canActivate: [AppGuard]},
+  { path: 'hrpartnerdashboard', component: HrpartnerdashboardComponent ,canActivate: [AppGuard]},
   { path: '', redirectTo: '/landing-page', pathMatch: 'full' },
 
 ];

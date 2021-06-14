@@ -37,6 +37,7 @@ export class AddAppuserComponent implements OnInit {
   id: any;
   organizationId: null;
   institutionId: null;
+  hrorganisationId: null;
   today = new Date();
   constructor(
     public fb: FormBuilder, private router: Router,
@@ -62,7 +63,7 @@ export class AddAppuserComponent implements OnInit {
         phoneNumber: new FormControl('', [Validators.required, Validators.pattern('^[1-9][0-9]{9}$')]),
         organizationId: new FormControl(),
         institutionId: new FormControl(),
-        hrpartnerId: new FormControl(),
+        hrorganisationId: new FormControl(),
         scandidateId : new FormControl('SCANDIDATE'),
         employeeId: new FormControl(),
         currentAddress: new FormControl(),
@@ -95,7 +96,7 @@ export class AddAppuserComponent implements OnInit {
     getallHrOrganization(){
       this.hrpartner.getHrPartnerData().subscribe(resp => {
         this.allHrPartnerOrganization = resp.data;
-        console.log(resp.data[0].hrorganizationname);
+        console.log(resp.data[0]._id);
       })
     }
 

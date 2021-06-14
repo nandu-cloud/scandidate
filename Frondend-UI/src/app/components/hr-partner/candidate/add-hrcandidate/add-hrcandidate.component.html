@@ -1,0 +1,1773 @@
+<app-navbar>
+    <div class="pt-12 lg:pl-32 md:pl-24 bg-white">
+      <div
+        class="bg-red-100 border border-red-400 text-red-700 py-3 mb-4 rounded relative"
+        role="alert"
+        *ngIf="error"
+      >
+        <strong class="font-bold mr-4">Error ::</strong>
+        <span class="block sm:inline">{{ error }}</span>
+        <span class="absolute top-0 bottom-0 right-0 px-4 py-3" (click)="close()">
+          <svg
+            class="fill-current h-6 w-6 text-red-500"
+            role="button"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+          >
+            <title>Close</title>
+            <path
+              d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+            />
+          </svg>
+        </span>
+      </div>
+      <div>
+
+        <!-- <div>
+          <button mat-raised-button
+                  class="example-add-tab-button"
+                  (click)="addTab(selectAfterAdding.checked)">
+            Add new tab
+          </button>
+          <div #selectAfterAdding> </div>
+        </div>
+
+        <mat-tab-group [selectedIndex]="selected.value"
+        (selectedIndexChange)="selected.setValue($event)">
+<mat-tab *ngFor="let tab of tabs" [label]="tab">
+Contents for  tab
+
+</mat-tab>
+</mat-tab-group> -->
+
+
+
+
+        <button mat-raised-button class="addr bg-black text-white rounded inline-flex items-center"><mat-icon>add</mat-icon>Add Institute</button>
+      <button mat-raised-button class="add bg-black text-white rounded inline-flex items-center" 
+      (click)="addTab(selectAfterAdding.checked)"><mat-icon>add</mat-icon>Add Organization</button>
+      <div #selectAfterAdding> </div>
+      </div><br>
+        <h1 *ngIf="!id" class="hd-add">Add Candidate (BGV)</h1>
+        <h1 *ngIf="id" class="hd-add">Update Candidate</h1>
+      <!-- <span class="right-text"> (your ex employee){{ displayName() }} </span> -->
+      <mat-tab-group
+      [selectedIndex]="selected.value"
+      (selectedIndexChange)="selected.setValue($event)"
+        class="mat-tab-group mat-primary"
+      >
+      <div  > 
+        <!-- Contents for {{tab}} tab -->
+      
+        <mat-tab>
+          <form [formGroup]="firstFormGroup">
+            <ng-template mat-tab-label>
+              <mat-icon class="example-tab-icon">face</mat-icon>
+              <label  class="labelHeading" 
+                    matTooltip="We are capturing key insights about your ex-employee in a very structured way. Your transparent and objective inputs in this section will be most helpful in creating long-term value for the hiring industry."
+                    matTooltipClass="example-tooltip-red1" matTooltipPosition="above">
+                    Personal Information (Bio)
+              </label>
+            </ng-template>
+            <div class="flex flex-wrap">
+              <div class="w-full md:w-1/2 sm:w-full">
+                <mat-form-field>
+                  <mat-label>First Name </mat-label>
+                  <input #firstName
+                    matInput
+                    formControlName="firstName"
+                    (change)="displayName()"
+                    type="text"
+                    class="br-btm input-w"
+                    autoComplete="off"
+                    required
+                    tabindex="1"    
+                  />
+                  <mat-error
+                    *ngIf="firstFormGroup.get('firstName').errors?.required"
+                  >
+                    Required Employee Name.
+                  </mat-error>
+                  <mat-error
+                    *ngIf="firstFormGroup.get('firstName').errors?.minlength"
+                  >
+                    Employee name must be at least 5 characters long.
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>PAN Number</mat-label>
+                  <input
+                    matInput
+                    formControlName="panNumber"
+                    type="text"
+                    class="br-btm input-w"
+                    autoComplete="off"
+                    tabindex="5"
+                  />
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Phone Number</mat-label>
+                  <input #phoneNumber
+                    matInput
+                    formControlName="phoneNumber"
+                    type="text"
+                    class="br-btm input-w"
+                    autoComplete="off"
+                    required
+                    pattern="^[0-9]{10}$"
+                    tabindex="7"
+                  />
+                  <mat-error
+                    *ngIf="firstFormGroup.get('phoneNumber').errors?.required"
+                  >
+                    Required phone number.
+                  </mat-error>
+                  <mat-error
+                    *ngIf="
+                      !firstFormGroup.get('phoneNumber').errors?.required &&
+                      firstFormGroup.get('phoneNumber').errors?.pattern
+                    "
+                  >
+                    Please enter valid phone mumber
+                  </mat-error>
+                </mat-form-field>
+               
+            
+               
+                <mat-form-field>
+                  <mat-label>Address</mat-label>
+                  <input
+                    matInput
+                    formControlName="address"
+                    type="text"
+                    class="br-btm input-w"
+                    autoComplete="off"
+                    tabindex="14"
+                  />
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>City</mat-label>
+                  <input
+                    matInput
+                    type="text"
+                    formControlName="city"
+                    class="br-btm input-w"
+                    autoComplete="off"
+                    tabindex="16"
+                  />
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Pin Code</mat-label>
+                  <input
+                    matInput
+                    formControlName="pinCode"
+                    minLength="5"
+                    maxLength="7"
+                    class="br-btm input-w"
+                    pattern="^[0-9]{5,7}$"
+                    autoComplete="off"
+                    tabindex="18"
+                  />
+                </mat-form-field>
+                <!-- <mat-form-field>
+               <mat-label>State</mat-label>
+               <input  matInput   type="text"  formControlName="state"  class="br-btm input-w" autoComplete='off' tabindex="18">
+           </mat-form-field> -->
+              </div>
+              <div class="w-full md:w-1/2 sm:w-full">
+                <mat-form-field>
+                  <mat-label>Last Name</mat-label>
+                  <input
+                    matInput #lastName
+                    formControlName="lastName"
+                    (change)="displayName()"
+                    type="text"
+                    class="br-btm input-w"
+                    autoComplete="off"
+                    required
+                    tabindex="2"
+                  />
+                  <mat-error
+                    *ngIf="firstFormGroup.get('lastName').errors?.required"
+                  >
+                    Required Employee Last Name.
+                  </mat-error>
+                  <mat-error
+                    *ngIf="firstFormGroup.get('lastName').errors?.minlength"
+                  >
+                    Employee last name must be at least 3 characters long.
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Aadhaar Number</mat-label>
+                  <input
+                    matInput #adharNumber
+                    formControlName="adharNumber"
+                    type="text"
+                    class="br-btm input-w"
+                    autoComplete="off"
+                    tabindex="4"
+                  />
+                  <mat-error *ngIf="firstFormGroup.get('adharNumber').errors?.pattern">
+                    please enter valid aadhar number
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field *ngIf="!id">
+                  <mat-label>Email</mat-label>
+                  <input
+                    matInput
+                    formControlName="email"
+                    type="text"
+                    class="br-btm input-w"
+                    autoComplete="off"
+                    required
+                    tabindex="6"
+                  />
+                  <mat-error *ngIf="firstFormGroup.get('email').errors?.required">
+                    Required email address
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('email').errors?.email">
+                    Enter a valid email address
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field *ngIf="id" >
+                  <mat-label>Email</mat-label>
+                  <input
+                    matInput #email
+                    formControlName="email"
+                    type="text"
+                    class="br-btm input-w"
+                    autoComplete="off"
+                    required
+                    tabindex="6" 
+                  />
+                  <mat-error *ngIf="firstFormGroup.get('email').errors?.required">
+                    Required email address
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('email').errors?.email">
+                    Enter a valid email address
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>DOB</mat-label>
+                  <input
+                    matInput
+                    formControlName="dateOfBirth"
+                    type="text"
+                    [max]="today"
+                    [matDatepicker]="picker"
+                    class="br-btm input-w"
+                    placeholder="DD/MM/YYYY"
+                    tabindex="8"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker color="primary" startView="multi-year"></mat-datepicker>
+                </mat-form-field>
+          
+                <mat-form-field>
+                  <mat-label>LandMark</mat-label>
+                  <input
+                    matInput
+                    type="text"
+                    formControlName="landMark"
+                    class="br-btm input-w"
+                    autoComplete="off"
+                    tabindex="15"
+                  />
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>State</mat-label>
+                  <mat-select
+                    class="br-btm input-w pt-5"
+                    formControlName="state"
+                    tabindex="17"
+                  >
+                    <mat-option value="select">Select</mat-option>
+                    <mat-option value="andaman">Andaman & Nicobar</mat-option>
+                    <mat-option value="andrapradesh">Andra Pradesh</mat-option>
+                    <mat-option value="arunachal">Arunachal Pradesh</mat-option>
+                    <mat-option value="assam">Assam</mat-option>
+                    <mat-option value="bihar">Bihar</mat-option>
+                    <mat-option value="chandigarh">Chandigarh</mat-option>
+                    <mat-option value="chhattisgarh">Chhattisgarh</mat-option>
+                    <mat-option value="dadra">Dadra & Nagar Haveli</mat-option>
+                    <mat-option value="daman">Daman & Diu</mat-option>
+                    <mat-option value="delhi">Delhi</mat-option>
+                    <mat-option value="goa">Goa</mat-option>
+                    <mat-option value="gujarat">Gujarat</mat-option>
+                    <mat-option value="haryana">Haryana</mat-option>
+                    <mat-option value="himachal">Himachal Pradesh</mat-option>
+                    <mat-option value="jammu">Jammu and Kashmir</mat-option>
+                    <mat-option value="jharkhand">Jharkhand</mat-option>
+                    <mat-option value="karnataka">Karnataka</mat-option>
+                    <mat-option value="kerala">Kerala</mat-option>
+                    <mat-option value="lakshadweep">Lakshadweep</mat-option>
+                    <mat-option value="madyapradesh">Madya Pradesh</mat-option>
+                    <mat-option value="maharastra">Maharashtra</mat-option>
+                    <mat-option value="manipur">Manipur</mat-option>
+                    <mat-option value="meghalaya">Meghalaya</mat-option>
+                    <mat-option value="mizoram">Mizoram</mat-option>
+                    <mat-option value="nagaland">Nagaland</mat-option>
+                    <mat-option value="orissa">Orissa</mat-option>
+                    <mat-option value="pondicherry">Pondicherry</mat-option>
+                    <mat-option value="punjab">Punjab</mat-option>
+                    <mat-option value="rajasthan">Rajasthan</mat-option>
+                    <mat-option value="sikkim">Sikkim</mat-option>
+                    <mat-option value="tamil">Tamil Nadu</mat-option>
+                    <mat-option value="telangana">Telangana</mat-option>
+                    <mat-option value="tripura">Tripura</mat-option>
+                    <mat-option value="uttarpradesh">Uttar Pradesh</mat-option>
+                    <mat-option value="uttaranchal">Uttaranchal</mat-option>
+                    <mat-option value="westbengal">West Bengal</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="flex justify-end lg:pb-6 lg:pr-48">
+              <a routerLink="/candidate-list"><button class="lg-button focus:outline-none focus:shadow-outline" tabindex="18" type="button">
+                Cancel
+              </button></a>
+              <button tabindex="19" type="submit" class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
+                Save Now
+              </button>
+              <button tabindex="20" class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">
+                Next
+              </button>
+            </div>
+            
+          </form>
+        </mat-tab>
+        <!-- <mat-tab-group [selectedIndex]="selected.value"
+        (selectedIndexChange)="selected.setValue($event)"> -->
+        <mat-tab matTooltip="Info about the action" 
+        *ngFor="let tab of tabs" [label]="tab">
+          <form [formGroup]="secondFormGroup">
+            <ng-template mat-tab-label>
+              <mat-icon class="example-tab-icon">card_travel</mat-icon>
+              <label  class="labelHeading" >
+                 Organization 1
+              </label>
+            </ng-template>
+            <div class="flex flex-wrap">
+            <div class="w-full md:w-1/2 sm:w-full">
+              <mat-form-field>
+                <mat-label>Organization Name</mat-label>
+                <input
+                  matInput
+                  formControlName="organizationName"
+                  type="text"
+                  class="br-btm input-w"
+                  autoComplete="off"
+                  readonly
+                  disabled
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Designation of feedback provider</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  class="br-btm input-w"
+                  autoComplete="off"
+                  readonly
+                  disabled
+                />
+              </mat-form-field>
+            </div>
+            <div class="w-full md:w-1/2 sm:w-full">
+              <mat-form-field>
+                <mat-label>Name of feedback provider</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  class="br-btm input-w"
+                  autoComplete="off"
+                  readonly
+                  disabled
+                />
+              </mat-form-field>
+              
+            </div>
+            </div>
+            <hr style="border-width:1px;max-width: 79%;"><br>
+            <h2>Candidate feedback:</h2>
+            <div class="flex flex-wrap">
+              <div class="w-full md:w-1/2 sm:w-full">
+                <mat-form-field>
+                  <mat-label>Employee ID</mat-label>
+                  <input
+                    matInput
+                    formControlName="employeeId"
+                    type="text"
+                    class="br-btm input-w"
+                    autoComplete="off"
+                    tabindex="3"
+                  />
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Relieving Date</mat-label>
+                  <input #exitDate
+                    matInput 
+                    formControlName="exitDate"
+                    [matDatepicker]="picker1"
+                    (dateChange)="calculateExperience()"
+                    class="br-btm input-w"
+                    placeholder="DD/MM/YYYY"
+                    required
+                    tabindex="10"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker1"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker1 color="primary" startView="multi-year"></mat-datepicker>
+                  <mat-error
+                    *ngIf="secondFormGroup.get('exitDate').errors?.required"
+                  >
+                    please enter exit date
+                  </mat-error>
+                  <mat-error
+                    *ngIf="
+                    secondFormGroup.get('exitDate').hasError('requiredToDate')
+                    "
+                  >
+                    Exit date should be grater than joining date</mat-error
+                  >
+                </mat-form-field><br>
+                
+              <mat-form-field>
+                <mat-label>Professional Experience</mat-label>
+                <input  matInput formControlName="professionalExperience" type="text"  class="br-btm input-w" autoComplete='off' readonly tabindex="11">
+                <mat-error *ngIf ="secondFormGroup.get('professionalExperience').errors?.required">
+                  please enter number.
+              </mat-error>
+              <mat-error *ngIf ="secondFormGroup.get('professionalExperience').errors?.maxlength">
+                Please enter Number
+              </mat-error>
+              <mat-error *ngIf= "secondFormGroup.get('professionalExperience').errors?.pattern">
+              please enter valid number
+              </mat-error>
+            </mat-form-field>
+            <div formGroupName= "reasonForSerperation">
+             
+             <div class="reason"> 
+            <mat-label > Reason for Separation</mat-label>&nbsp;
+            
+            <mat-radio-group
+            formControlName="IsSelect"
+            aria-label="Select an option">
+              <mat-radio-button value="voluntary">voluntary</mat-radio-button>
+              <mat-radio-button value="inVoluntary">In-Voluntary</mat-radio-button>
+            </mat-radio-group>
+          </div> 
+            
+            
+            <div *ngIf="secondFormGroup.get('reasonForSerperation.IsSelect').value == 'voluntary'">
+              <mat-form-field>
+              <mat-select class="dropdon br-btm input-w pt-4" tabindex="11" formControlName="voluntaryReason">
+              <mat-option  value="1">Select</mat-option>
+              <mat-option  value="2">Work Life Balance</mat-option>
+              <mat-option  value="3">Concerns With Manager</mat-option>
+              <mat-option  value="4">Higher Education</mat-option>
+              <mat-option value="5">Relocation</mat-option>
+              <mat-option value="6">Personal Reason</mat-option>
+              <mat-option value="7">Maternity Break</mat-option>
+              <mat-option value="8">Compensation</mat-option>
+              <mat-option value="9">Shift Timing</mat-option>
+              <mat-option value="10">Health Reasons</mat-option>
+              <mat-option value="11">Moving To Group Company</mat-option>
+              <mat-option value="12">Better Role</mat-option>
+              <mat-option value="13">Promotion Issues</mat-option>
+              <mat-option value="14">Technology Issue</mat-option>
+              <mat-option value="15">Project Closed</mat-option>
+              <mat-option value="16">Appraisal Issues</mat-option>
+              <mat-option value="17">Job Role Mismatch</mat-option>
+            </mat-select>
+          </mat-form-field>
+            </div>
+            
+            
+            <div *ngIf="secondFormGroup.get('reasonForSerperation.IsSelect').value == 'inVoluntary'">
+              <mat-form-field>
+              <mat-select class="br-btm input-w pt-5" tabindex="11" formControlName="inVoluntaryReason"
+             >
+             <mat-option  value="18">Select</mat-option>
+              <mat-option value="19">Performance Issues</mat-option>
+              <mat-option value="20">Management Decision</mat-option>
+              <mat-option value="21">Death</mat-option>
+              <mat-option value="22">BGV Failure</mat-option>
+              <mat-option value="23">Value Transgression</mat-option>
+             </mat-select>
+            </mat-form-field>
+            </div>
+            </div>
+              </div>
+              <div class="w-full md:w-1/2 sm:w-full">
+                <mat-form-field>
+                  <mat-label>Date Of Joining</mat-label>
+                  <input
+                    matInput #dateOfJoining
+                    formControlName="dateOfJoining"
+                    [matDatepicker]="picker2"
+                    class="br-btm input-w"
+                    (dateChange)="calculateExperience()"
+                    required
+                    placeholder="DD/MM/YYYY"
+                    tabindex="9"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker2"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker2 color="primary" startView="multi-year"></mat-datepicker>
+                  <mat-error
+                    *ngIf="secondFormGroup.get('dateOfJoining').errors?.required"
+                  >
+                    Please enter dateOfJoining
+                  </mat-error>
+                  <mat-error
+                    *ngIf="
+                    secondFormGroup
+                        .get('dateOfJoining')
+                        .hasError('requiredFromDate')
+                    "
+                    >Joining date should be less than exit date</mat-error
+                  >
+                </mat-form-field>
+                <mat-form-field>
+                <mat-label>Role</mat-label>
+                <input
+                  matInput
+                  formControlName="role"
+                  type="text"
+                  class="br-btm input-w"
+                  autoComplete="off"
+                  tabindex="12"
+                />
+              </mat-form-field>
+              
+             <mat-form-field>
+              <mat-label>Department</mat-label>
+              <input
+                matInput
+                formControlName="department"
+                type="text"
+                class="br-btm input-w"
+                autoComplete="off"
+                tabindex="13"
+              />
+            </mat-form-field>
+              </div>
+            </div>
+            
+            <hr style="border-width:1px;max-width: 79%;"><br>
+            <div class="w-full md:w-1/2 sm:w-full">
+    
+            </div>
+            <h2>Feedback</h2><br>
+            <h3 style="color: #6CB43B">Work Ethic:</h3>
+            <div class="flex flex-wrap">
+              <div class="w-full md:w-1/2 sm:w-full">
+                <mat-form-field>
+                  <mat-label>Self Driven / Initiative</mat-label>
+                  <mat-select
+                    class="br-btm input-w"
+                    formControlName="selfDriven"
+                    required
+                    tabindex="1"
+                  >
+                    <mat-option [value]="1">Not satisfactory</mat-option>
+                    <mat-option [value]="2">Needs Improvement</mat-option>
+                    <mat-option [value]="3">Meets Expectations</mat-option>
+                    <mat-option [value]="4">Exceeds Expectations</mat-option>
+                  </mat-select>
+                  <mat-error
+                    *ngIf="secondFormGroup.get('selfDriven').errors?.required"
+                  >
+                    please select Self Driven value
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Creativity</mat-label>
+                  <mat-select
+                    class="br-btm input-w"
+                    formControlName="creativity"
+                    required
+                    tabindex="3"
+                  >
+                    <mat-option [value]="1">Not satisfactory</mat-option>
+                    <mat-option [value]="2">Needs Improvement</mat-option>
+                    <mat-option [value]="3">Meets Expectations</mat-option>
+                    <mat-option [value]="4">Exceeds Expectations</mat-option>
+                  </mat-select>
+                  <mat-error
+                    *ngIf="secondFormGroup.get('creativity').errors?.required"
+                  >
+                    please select Creativity
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Deals Constructively With Pressure</mat-label>
+                  <mat-select
+                    class="br-btm input-w"
+                    formControlName="dealConstructivelyWithPressure"
+                    required
+                    tabindex="5"
+                  >
+                    <mat-option [value]="1">Not satisfactory</mat-option>
+                    <mat-option [value]="2">Needs Improvement</mat-option>
+                    <mat-option [value]="3">Meets Expectations</mat-option>
+                    <mat-option [value]="4">Exceeds Expectations</mat-option>
+                  </mat-select>
+                  <mat-error
+                    *ngIf="
+                      secondFormGroup.get('dealConstructivelyWithPressure').errors
+                        ?.required
+                    "
+                  >
+                    please select Deals Constructively With Pressure
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="w-full md:w-1/2 sm:w-full">
+                <mat-form-field>
+                  <mat-label>Work Independently</mat-label>
+                  <mat-select
+                    class="br-btm input-w"
+                    formControlName="workIndependenty"
+                    required
+                    tabindex="2"
+                  >
+                    <mat-option [value]="1">Not satisfactory</mat-option>
+                    <mat-option [value]="2">Needs Improvement</mat-option>
+                    <mat-option [value]="3">Meets Expectations</mat-option>
+                    <mat-option [value]="4">Exceeds Expectations</mat-option>
+                  </mat-select>
+                  <mat-error
+                    *ngIf="
+                      secondFormGroup.get('workIndependenty').errors?.required
+                    "
+                  >
+                    please select Work Independently
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Team Work</mat-label>
+                  <mat-select
+                    class="br-btm input-w"
+                    formControlName="teamWork"
+                    required
+                    tabindex="4"
+                  >
+                    <mat-option [value]="1">Not satisfactory</mat-option>
+                    <mat-option [value]="2">Needs Improvement</mat-option>
+                    <mat-option [value]="3">Meets Expectations</mat-option>
+                    <mat-option [value]="4">Exceeds Expectations</mat-option>
+                  </mat-select>
+                  <mat-error
+                    *ngIf="secondFormGroup.get('teamWork').errors?.required"
+                  >
+                    please select Team Work
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Discipline (Time Management)</mat-label>
+                  <mat-select
+                    class="br-btm input-w"
+                    formControlName="discipline"
+                    required
+                    tabindex="6"
+                  >
+                    <mat-option [value]="1">Not satisfactory</mat-option>
+                    <mat-option [value]="2">Needs Improvement</mat-option>
+                    <mat-option [value]="3">Meets Expectations</mat-option>
+                    <mat-option [value]="4">Exceeds Expectations</mat-option>
+                  </mat-select>
+                  <mat-error
+                    *ngIf="secondFormGroup.get('discipline').errors?.required"
+                  >
+                    Please select Discipline
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div><br>
+
+            <h3 style="color: #6CB43B">Merit-quality:</h3>    
+            <div class="flex flex-wrap">
+              <div class="w-full md:w-1/2 sm:w-full">
+                <mat-form-field>
+                  <mat-label>Communication Skills</mat-label>
+                  <mat-select
+                    class="br-btm input-w"
+                    formControlName="communicationSkills"
+                    required
+                    tabindex="1"
+                  >
+                  <mat-option [value]="1">Basic</mat-option>
+                  <mat-option [value]="2">Intermediate</mat-option>
+                  <mat-option [value]="3">Proficient</mat-option>
+                  <mat-option [value]="4">Expert</mat-option>
+                  </mat-select>
+                  <mat-error
+                    *ngIf="
+                    secondFormGroup.get('communicationSkills').errors?.required
+                    "
+                  >
+                    please select Communication Skills
+                  </mat-error>
+                </mat-form-field>
+  
+                <mat-form-field>
+                  <mat-label>Product Understanding</mat-label>
+                  <mat-select
+                    class="br-btm input-w"
+                    formControlName="productKnowledge"
+                    required
+                    tabindex="3"
+                  >
+                    <mat-option [value]="1">Basic</mat-option>
+                    <mat-option [value]="2">Intermediate</mat-option>
+                    <mat-option [value]="3">Proficient</mat-option>
+                    <mat-option [value]="4">Expert</mat-option>
+                  </mat-select>
+                  <mat-error
+                    *ngIf="
+                    secondFormGroup.get('productKnowledge').errors?.required
+                    "
+                  >
+                    please select Product Understanding
+                  </mat-error>
+                </mat-form-field>
+  
+                <mat-form-field
+                      class="ml-72"
+                     >
+                      <textarea
+                        matInput
+                        formControlName="keySkills"
+                        style="line-height: 2px; font-size: smaller"
+                        class="remarks br-btm input-w"
+                        placeholder="Key Skills" 
+                        tabindex="5"
+                        maxlength="200" style="resize: none"
+                        ></textarea>
+                </mat-form-field>
+                <mat-form-field class="rehire">
+                  <input matInput placeholder="Input" style="display: none">
+                <mat-label>Would you rehire this ex-employee in the future?</mat-label><br>
+                <mat-radio-group
+                tabindex="7"
+                  aria-labelledby="example-radio-group-label"
+                  class="example-radio-group"
+                  formControlName="rehireAgain"
+                >
+                  <mat-radio-button value="yes"
+                    >Yes</mat-radio-button
+                  ><br />
+                  <mat-radio-button value="No"
+                    >No</mat-radio-button
+                  >
+                </mat-radio-group>
+              </mat-form-field>
+              </div>
+              <div class="w-full md:w-1/2 sm:w-full">
+                <mat-form-field>
+                  <mat-label>Industry / Domain Knowledge</mat-label>
+                  <mat-select
+                    class="br-btm input-w"
+                    formControlName="industryKnowledge"
+                    required
+                    tabindex="2"
+                  >
+                    <mat-option [value]="1">Basic</mat-option>
+                    <mat-option [value]="2">Intermediate</mat-option>
+                    <mat-option [value]="3">Proficient</mat-option>
+                    <mat-option [value]="4">Expert</mat-option>
+                  </mat-select>
+                  <mat-error
+                    *ngIf="
+                    secondFormGroup.get('industryKnowledge').errors?.required
+                    "
+                  >
+                    please select Industry / Domain Knowledge
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Subject Matter Expertise (SME)</mat-label>
+                  <mat-select
+                    class="br-btm input-w"
+                    formControlName="academicKnowledge"
+                    required
+                    tabindex="4"
+                  >
+                    <mat-option [value]="1">Basic</mat-option>
+                    <mat-option [value]="2">Intermediate</mat-option>
+                    <mat-option [value]="3">Proficient</mat-option>
+                    <mat-option [value]="4">Expert</mat-option>
+                  </mat-select>
+                  <mat-error
+                    *ngIf="
+                    secondFormGroup.get('academicKnowledge').errors?.required
+                    "
+                  >
+                    please select Subject Matter Expertise (SME)
+                  </mat-error>
+                </mat-form-field><br>
+                <mat-form-field class="ml-72" style="width: 400px;">
+                      <textarea
+                        matInput
+                        formControlName="empThrive"
+                        style="line-height: 2px; font-size: smaller"
+                        class="remarks br-btm input-w"
+                        placeholder="What kind of environment does the employee thrive in?" 
+                        tabindex="6"
+                        maxlength="200" style="resize: none"
+                        ></textarea>
+                </mat-form-field>
+              </div>
+            </div>    <br>
+            
+            <h3 style="color: #6CB43B">Recognition:</h3>
+            <div class="flex flex-wrap mt-5" formGroupName="awards" >
+              <div class="w-full md:w-1/2 sm:w-full">
+                <label class="font-bold">Awards(select one option)</label>
+                <mat-radio-group
+                  aria-labelledby="example-radio-group-label"
+                  class="example-radio-group"
+                  formControlName="IsSelect"
+                >
+                  <mat-radio-button value="Performer & Awarded"
+                    >Performer & Awarded</mat-radio-button
+                  ><br />
+                  <mat-radio-button value="Non-Performer & Awarded"
+                    >Non-Performer & Awarded</mat-radio-button
+                  ><br />
+                  <mat-radio-button value="Performer & Not Awarded"
+                    >Performer & Not Awarded</mat-radio-button
+                  ><br />
+                  <mat-radio-button value="Non-Performer & Not Awarded"
+                    >Non-Performer & Not Awarded</mat-radio-button
+                  >
+                </mat-radio-group>
+                <div class="flex flex-wrap" >
+                  <div class="w-full md:w-3/4 sm:w-full">
+                    <mat-form-field class="example-full-width ml-72">
+                      <mat-label>Remark</mat-label>
+                      <textarea
+                        matInput
+                        formControlName="remarks"
+                        class="br-btm input-w"
+                        placeholder="Remarks"
+                        tabindex="1"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="w-full md:w-1/2 sm:w-full" style="margin-left: 27rem; margin-top: -6rem;">
+                  </div>
+                </div>
+              </div>
+            </div><br>
+
+            <h3 style="color: #6CB43B">Leadership:</h3>
+            <div class="flex flex-nowrap">
+              <div class="w-full md:w:full sm:w-full">
+                <div class="flex flex-wrap" formGroupName="quality">
+                  <div class="w-full md:w-1/2 sm:w-full">
+                    <mat-form-field class="pt-3">
+                      <mat-label>Strategic Thinking </mat-label>
+                      <mat-select
+                        class="br-btm input-w"
+                        formControlName="IsSelect"
+                        tabindex="1"
+                      >
+                        <mat-option [value]=0>Select</mat-option>
+                        <mat-option [value]=1>Not satisfactory</mat-option>
+                        <mat-option [value]=2>Needs Improvement</mat-option>
+                        <mat-option [value]=3>Meets Expectations</mat-option>
+                        <mat-option [value]=4>Exceeds Expectations</mat-option>
+                      </mat-select>
+                     
+                    </mat-form-field>
+                  </div>
+                  <div class="w-full md:w-1/2 sm:w-full">
+                    <mat-form-field
+                      class="ml-72"
+                     
+                    >
+                      <textarea
+                        matInput
+                        formControlName="description"
+                        style="line-height: 2px; font-size: smaller"
+                        maxlength="150"
+                        class="br-btm input-w"
+                        placeholder="Strategic Thinking Remarks"
+                        style="resize: none"
+                        tabindex="2"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                </div>
+  
+                <div class="flex flex-wrap" formGroupName="consistency">
+                  <div class="w-full md:w-1/2 sm:w-full">
+                    <mat-form-field class="pt-3">
+                      <mat-label>Problem Solving</mat-label>
+                      <mat-select
+                        class="br-btm input-w"
+                        formControlName="IsSelect"
+                        tabindex="3"
+                      >
+                        <mat-option [value]=0>Select</mat-option>
+                        <mat-option [value]=1>Not satisfactory</mat-option>
+                        <mat-option [value]=2>Needs Improvement</mat-option>
+                        <mat-option [value]=3>Meets Expectations</mat-option>
+                        <mat-option [value]=4>Exceeds Expectations</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="w-full md:w-1/2 sm:w-full">
+                    <mat-form-field>
+                     
+                      <textarea
+                        matInput
+                        formControlName="description"
+                        style="line-height: 2px; font-size: smaller"
+                        maxlength="150"
+                        class="br-btm input-w"
+                        placeholder="Problem Solving Remarks"
+                        style="resize: none"
+                        tabindex="4"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                </div>
+  
+                <div class="flex flex-wrap" formGroupName="building">
+                  <div class="w-full md:w-1/2 sm:w-full">
+                    <mat-form-field class="pt-3">
+                      <mat-label>Building High Performance Team</mat-label>
+                      <mat-select
+                        class="br-btm input-w"
+                        formControlName="IsSelect"
+                        tabindex="5"
+                      >
+                        <mat-option [value]=0>Select</mat-option>
+                        <mat-option [value]=1>Not satisfactory</mat-option>
+                        <mat-option [value]=2>Needs Improvement</mat-option>
+                        <mat-option [value]=3>Meets Expectations</mat-option>
+                        <mat-option [value]=4>Exceeds Expectations</mat-option>
+                      </mat-select>
+                      <mat-error
+                        *ngIf="
+                        secondFormGroup.get('building.IsSelect').errors?.required
+                        "
+                      >
+                        please select Quality
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="w-full md:w-1/2 sm:w-full">
+                    <mat-form-field
+                     
+                    >
+                 
+                      <textarea
+                        matInput
+                        formControlName="description"
+                        style="line-height: 2px; font-size: smaller"
+                        maxlength="150"
+                        class="br-btm input-w"
+                        placeholder="Building High Performance Team Remarks"
+                        style="resize: none"
+                        tabindex="6"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                </div>
+  
+                <div class="flex flex-wrap" formGroupName="stakeholder">
+                  <div class="w-full md:w-1/2 sm:w-full">
+                    <mat-form-field class="pt-3">
+                      <mat-label>Stakeholder Management</mat-label>
+                      <mat-select
+                        class="br-btm input-w"
+                        formControlName="IsSelect"
+                        tabindex="7"
+                      >
+                        <mat-option [value]=0>Select</mat-option>
+                        <mat-option [value]=1>Not satisfactory</mat-option>
+                        <mat-option [value]=2>Needs Improvement</mat-option>
+                        <mat-option [value]=3>Meets Expectations</mat-option>
+                        <mat-option [value]=4>Exceeds Expectations</mat-option>
+                      </mat-select>
+                      <mat-error
+                        *ngIf="
+                        secondFormGroup.get('stakeholder.IsSelect').errors
+                            ?.required
+                        "
+                      >
+                        please select Consistency
+                      </mat-error>
+                    </mat-form-field>
+                    
+                  </div>
+                  <div class="w-full md:w-1/2 sm:w-full">
+                    <mat-form-field
+                     
+                    >
+                    
+                      <textarea
+                        matInput
+                        formControlName="description"
+                        style="line-height: 2px; font-size: smaller"
+                        maxlength="150"
+                        class="br-btm input-w"
+                        placeholder=" StakeHolder Management Remarks"
+                        style="resize: none"
+                        tabindex="8"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <mat-form-field class="ml-72" style="width: 430px;">
+                  <textarea
+                    matInput
+                    formControlName="inLeadership"
+                    style="line-height: 2px; font-size: smaller"
+                    class="remarks br-btm input-w"
+                    placeholder="How would you describe this individual’s leadership style?" 
+                    tabindex="9"
+                    maxlength="200" style="resize: none"
+                    ></textarea>
+                </mat-form-field>
+              </div>
+            </div><br>
+
+            <h3 style="color: #6CB43B">Issues: </h3>
+            <div class="flex flex-wrap">
+              <div class="w-full md:w-full sm:w-full">
+                <div class="flex flex-wrap" formGroupName="discrepancyDocuments">
+                  <div class="w-full md:w-1/2 sm:w-full">
+                    <mat-form-field class="mt-8 size1">
+                      <mat-label
+                        >Discrepancy in Joining Documents and
+                        Declarations</mat-label
+                      >
+                      <mat-select
+                        class="br-btm input-w"
+                        formControlName="IsSelect"
+                        tabindex="1"
+                      >
+                        <mat-option [value]=true>Yes</mat-option>
+                        <mat-option [value]=false>No</mat-option>
+                      </mat-select>
+                  
+                    </mat-form-field>
+                  </div>
+                  <div  class="w-full md:w-1/2 sm:w-full"
+                  *ngIf="
+                  secondFormGroup.get('discrepancyDocuments.IsSelect')
+                      .value !== true || secondFormGroup.get('discrepancyDocuments.IsSelect')
+                      .value !== false
+                  ">
+                    <table class="issues border-collapse border-1 border-gray-200">
+                      <thead>
+                        <tr>
+                          <th 
+                            class="border border-gray-400 px-2 py-2 text-gray-800"
+                          >
+                            Date
+                          </th>
+                          <th 
+                            class="border border-gray-400 px-4 py-2 text-gray-800"
+                          >
+                            Cause/Action Taken
+                          </th>
+                   
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td
+                            style="display: flex;"
+                            class="border border-gray-400 px-4 py-2 text-gray-800 w-52"
+                          >
+                            <input 
+                              matInput
+                              formControlName="descrepencyPeriod"
+                              [matDatepicker]="picker1"
+                              class="date br-btm input-w"
+                              placeholder="DD/MM/YYYY"
+                              tabindex="2"
+                            />
+                            <mat-datepicker-toggle
+                              matSuffix
+                              [for]="picker1"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker
+                              #picker1
+                              color="primary"
+                              class="datepicker"
+                            ></mat-datepicker>
+                          </td>
+                          <td
+                            class="action border border-gray-400 px-4 py-2 text-gray-800"
+                          >
+                            <input
+                              matInput
+                              formControlName="descrepencyCauseActionTaken"
+                              type="text"
+                              class="br-btm input-w"
+                              autoComplete="off"
+                              tabindex="3"
+                            />
+                          </td>
+                          <td
+                          >
+                            <div class="group-gap">
+                              <div class="avatar-upload">
+                                <div class="avatar-edit">
+                                  <input
+                                    type="file"
+                                    placeholder="Upload Document"
+                                    id="imageUpload"
+                                    accept=".pdf"
+                                    #dd 
+                                    (change)="
+                                      uploadIssuesFile(
+                                        $event.target.files,
+                                        'discrepancyDocuments'
+                                      )
+                                    "
+                                  />
+                                  <div id="imagePreview">{{this.discrepancyFileName}}</div> 
+                                </div>
+                              </div>
+                  
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+  
+                <div class="flex flex-wrap" formGroupName="compliencyDiscrepancy">
+                  <div class="w-full md:w-1/2 sm:w-full">
+                    <mat-form-field class="size1">
+                      <mat-label>Compliance and Discrepancy</mat-label>
+                      <mat-select
+                        class="br-btm input-w"
+                        formControlName="IsSelect"
+                        tabindex="6"
+                      >
+                        <mat-option [value]=true>Yes</mat-option>
+                        <mat-option [value]=false>No</mat-option>
+                      </mat-select>
+                     
+                    </mat-form-field>
+                  </div>
+                  <div
+                    class="w-full md:w-1/2 sm:w-full"
+                    *ngIf="
+                    secondFormGroup.get('compliencyDiscrepancy.IsSelect')
+                        .value !== true || secondFormGroup.get('compliencyDiscrepancy.IsSelect')
+                        .value !== false
+                    "
+                  >
+                    <table class="issues border-collapse border-1 border-gray-500">
+                     
+                      <tbody>
+                        <tr>
+                          <td
+                            style="display: flex"
+                            class="border border-gray-400 px-4 py-2 text-gray-800"
+                          >
+                            <input
+                              matInput
+                              formControlName="compliencyPeriod"
+                              [matDatepicker]="picker1"
+                              class="date br-btm input-w"
+                              [min]="minDate"
+                              [max]="maxDate"
+                              tabindex="7"
+                              placeholder="DD/MM/YYYY"
+                            />
+                            <mat-datepicker-toggle
+                              matSuffix
+                              [for]="picker1"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker
+                              #picker1
+                              color="primary"
+                              class="datepicker"
+                            ></mat-datepicker>
+                          </td>
+                          <td
+                            class="action border border-gray-400 px-4 py-2 text-gray-800"
+                          >
+                            <input
+                              matInput
+                              formControlName="compliencyCauseActionTaken"
+                              type="text"
+                              class="br-btm input-w"
+                              autoComplete="off"
+                              tabindex="8"
+                            />
+                          </td>
+  
+                          <td
+                          >
+                            <div class="group-gap">
+                              <div class="avatar-upload">
+                                <div class="avatar-edit">
+                        
+                                  <input
+                                    type="file"
+                                    id="imageUpload"
+                                    accept=".pdf"
+                                    #cd 
+                                    (change)="
+                                      uploadIssuesFile(
+                                        $event.target.files,
+                                        'compliencyDiscrepancy'
+                                      )
+                                    "
+                                  />
+                  
+                                  <div id="imagePreview">{{this.compliencyFileName}}</div> 
+                                </div>
+                              </div>
+                
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+  
+                <div class="flex flex-wrap" formGroupName="warning">
+                  <div class="w-full md:w-1/2 sm:w-full">
+                    <mat-form-field class="size1">
+                      <mat-label>Warning</mat-label>
+                      <mat-select
+                        class="br-btm input-w"
+                        formControlName="IsSelect"
+                        tabindex="11"
+                      >
+                        <mat-option [value]=true>Yes</mat-option>
+                        <mat-option [value]=false>No</mat-option>
+                      </mat-select>
+                     
+                    </mat-form-field>
+                  </div>
+                  <div
+                    class="w-full md:w-1/2 sm:w-full"
+                    *ngIf="secondFormGroup.get('warning.IsSelect').value !== true || secondFormGroup.get('warning.IsSelect').value !== false"
+                  >
+                    <table class="issues border-collapse border-1 border-gray-500">
+                      
+                      <tbody>
+                        <tr>
+                          <td
+                            style="display: flex"
+                            class="border border-gray-400 px-4 py-2 text-gray-800"
+                          >
+                            <input
+                              matInput
+                              formControlName="warningPeriod"
+                              [matDatepicker]="picker1"
+                              class="date br-btm input-w"
+                              [min]="minDate"
+                              [max]="maxDate"
+                              placeholder="DD/MM/YYYY"
+                              tabindex="12"
+                            />
+                            <mat-datepicker-toggle
+                              matSuffix
+                              [for]="picker1"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker
+                              #picker1
+                              color="primary"
+                              class="datepicker"
+                            ></mat-datepicker>
+                          </td>
+                          <td
+                            class="action border border-gray-400 px-4 py-2 text-gray-800"
+                          >
+                            <input
+                              matInput
+                              formControlName="warningCauseActionTaken"
+                              type="text"
+                              class="br-btm input-w"
+                              autoComplete="off"
+                              tabindex="13"
+                            />
+                          </td>
+  
+                          <td
+                          >
+                            <div class="group-gap">
+                              <div class="avatar-upload">
+                                <div class="avatar-edit">
+                    
+                                  <input
+                                    type="file"
+                                    placeholder="Upload Document"
+                                    id="imageUpload"
+                                    accept=".pdf"
+                                    #cat 
+                                    (change)="
+                                      uploadIssuesFile(
+                                        $event.target.files,
+                                        'Warning'
+                                      )
+                                    "
+                                  />
+                                  <div id="imagePreview">{{this.warningFileName}}</div> 
+                                </div>
+                              </div>
+                        
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+  
+                <div class="flex flex-wrap" formGroupName="showCausedIssue">
+                  <div class="w-full md:w-1/2 sm:w-full">
+                    <mat-form-field class="size1">
+                      <mat-label>Show cause issued</mat-label>
+                      <mat-select
+                        class="br-btm input-w"
+                        formControlName="IsSelect"
+                        tabindex="16"
+                      >
+                        <mat-option [value]=true>Yes</mat-option>
+                        <mat-option [value]=false>No</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div
+                    class="w-full md:w-1/2 sm:w-full"
+                    *ngIf="
+                    secondFormGroup.get('showCausedIssue.IsSelect').value !== true || secondFormGroup.get('showCausedIssue.IsSelect').value !== false
+                    "
+                  >
+                    <table class="issues border-collapse border-1 border-gray-500">
+                    
+                      <tbody>
+                        <tr>
+                          <td
+                            style="display: flex"
+                            class="border border-gray-400 px-4 py-2 text-gray-800"
+                          >
+                            <input
+                              matInput
+                              formControlName="showCausedPeriod"
+                              [matDatepicker]="picker1"
+                              class="date br-btm input-w"
+                              [min]="minDate"
+                              [max]="maxDate"
+                              placeholder="DD/MM/YYYY"
+                              tabindex="17"
+                            />
+                            <mat-datepicker-toggle
+                              matSuffix
+                              [for]="picker1"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker
+                              #picker1
+                              color="primary"
+                              class="datepicker"
+                            ></mat-datepicker>
+                          </td>
+                          <td
+                            class="action border border-gray-400 px-4 py-2 text-gray-800"
+                          >
+                            <input
+                              matInput
+                              formControlName="showCausedCauseActionTaken"
+                              type="text"
+                              class="br-btm input-w"
+                              autoComplete="off"
+                              tabindex="18"
+                            />
+                          </td>
+  
+                          <td
+                          >
+                            <div class="group-gap">
+                              <div class="avatar-upload">
+                                <div class="avatar-edit">
+              
+                                  <input
+                                    type="file"
+                                    placeholder="Upload Document"
+                                    id="imageUpload"
+                                    accept=".pdf"
+                                    #sci 
+                                    (change)="
+                                      uploadIssuesFile(
+                                        $event.target.files,
+                                        'showCausedIssue'
+                                      )
+                                    "
+                                  />
+                                  <div id="imagePreview">{{this.showcausedFileName}}</div> 
+                                </div>
+                              </div>
+           
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+  
+                <div class="flex flex-wrap" formGroupName="suspension">
+                  <div class="w-full md:w-1/2 sm:w-full">
+                    <mat-form-field class="size1">
+                      <mat-label>Performance Improvement Plan (PIP)</mat-label>
+                      <mat-select
+                        class="br-btm input-w"
+                        formControlName="IsSelect"
+                        tabindex="21"
+                      >
+                        <mat-option [value]=true>Yes</mat-option>
+                        <mat-option [value]=false>No</mat-option>
+                      </mat-select>
+         
+                    </mat-form-field>
+                  </div>
+                  <div
+                    class="w-full md:w-1/2 sm:w-full"
+                    *ngIf="
+                    secondFormGroup.get('suspension.IsSelect').value !== true || secondFormGroup.get('suspension.IsSelect').value !== false
+                    "
+                  >
+                    <table class="issues border-collapse border-1 border-gray-500">
+                     
+                      <tbody>
+                        <tr>
+                          <td
+                            style="display: flex"
+                            class="border border-gray-400 px-4 py-2 text-gray-800"
+                          >
+                            <input
+                              matInput
+                              formControlName="suspensionPeriod"
+                              [matDatepicker]="picker1"
+                              class="date br-btm input-w"
+                              [min]="minDate"
+                              [max]="maxDate"
+                              placeholder="DD/MM/YYYY"
+                              tabindex="22"
+                            />
+                            <mat-datepicker-toggle
+                              matSuffix
+                              [for]="picker1"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker
+                              #picker1
+                              color="primary"
+                              class="datepicker"
+                            ></mat-datepicker>
+                          </td>
+                          <td
+                            class="action border border-gray-400 px-4 py-2 text-gray-800"
+                          >
+                            <input
+                              matInput
+                              formControlName="suspensionCauseActionTaken"
+                              type="text"
+                              class="br-btm input-w"
+                              autoComplete="off"
+                              tabindex="23"
+                            />
+                          </td>
+  
+                          <td
+                          >
+                            <div class="group-gap">
+                              <div class="avatar-upload">
+                                <div class="avatar-edit">
+                             
+                                  <input
+                                    type="file"
+                                    placeholder="Upload Document"
+                                    id="imageUpload"
+                                    accept=".pdf" 
+                                    #sus
+                                    (change)="
+                                      uploadIssuesFile(
+                                        $event.target.files,
+                                        'suspension'
+                                      )
+                                    "
+                                  />
+                                  <div id="imagePreview">{{this.suspensionFileName}}</div> 
+                                </div>
+                              </div>
+                       
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+  
+                <div class="flex flex-wrap" formGroupName="termination">
+                  <div class="w-full md:w-1/2 sm:w-full">
+                    <mat-form-field class="size1">
+                      <mat-label>Termination</mat-label>
+                      <mat-select
+                        class="br-btm input-w"
+                        formControlName="IsSelect"
+                        tabindex="26"
+                      >
+                        <mat-option [value]=true>Yes</mat-option>
+                        <mat-option [value]=false>No</mat-option>
+                      </mat-select>
+            
+                    </mat-form-field>
+                  </div>
+                  <div
+                    class="w-full md:w-1/2 sm:w-full"
+                    *ngIf="
+                      secondFormGroup.get('termination.IsSelect').value !== true || secondFormGroup.get('termination.IsSelect').value !== false
+                    "
+                  >
+                    <table class="issues border-collapse border-1 border-gray-500">
+                      
+                      <tbody>
+                        <tr>
+                          <td
+                            style="display: flex"
+                            class="border border-gray-400 px-4 py-2 text-gray-800"
+                          >
+                            <input
+                              matInput
+                              formControlName="terminationPeriod"
+                              [matDatepicker]="picker1"
+                              class="date br-btm input-w"
+                              [min]="minDate"
+                              [max]="maxDate"
+                              placeholder="DD/MM/YYYY"
+                              tabindex="27"
+                            />
+                            <mat-datepicker-toggle
+                              matSuffix
+                              [for]="picker1"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker
+                              #picker1
+                              color="primary"
+                              class="datepicker"
+                            ></mat-datepicker>
+                          </td>
+                          <td
+                            class="action border border-gray-400 px-4 py-2 text-gray-800"
+                          >
+                            <input
+                              matInput
+                              formControlName="terminationCauseActionTaken"
+                              type="text"
+                              class="br-btm input-w"
+                              autoComplete="off"
+                              tabindex="28"
+                            />
+                          </td>
+  
+                          
+                         <td
+                          >
+                        
+                            <div class="group-gap">
+                              <div class="avatar-upload">
+                                <div class="avatar-edit">
+                             
+                                  <input
+                                    type="file"
+                                    placeholder="Upload Document"
+                                    id="imageUpload"
+                                    accept=".pdf" 
+                                    #ter
+                                    (change)="
+                                      uploadIssuesFile(
+                                        $event.target.files,
+                                        'termination'
+                                      )
+                                    "
+                                  />
+                                  <div id="imagePreview">{{this.terminationFileName}}</div> 
+                                </div>
+                              </div>
+               
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <mat-form-field class="ml-72" style="width: 700px;">
+                      <textarea
+                        matInput
+                        formControlName="otherInfo"
+                        style="line-height: 2px; font-size: smaller"
+                        class="remarks br-btm input-w"
+                        placeholder=" Is there any other information about this individual you would like to record for future employers?" 
+                        tabindex="29"
+                        maxlength="200" style="resize: none"
+                        ></textarea>
+                </mat-form-field>
+               
+              </div>
+            </div>
+            <div class="flex justify-end lg:pb-6 lg:pr-48">
+              <button class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
+                Save Now
+              </button>
+              <button
+                class="lg-button focus:outline-none focus:shadow-outline"
+                (click)="cancel()"
+              >
+                Back
+              </button>
+              <button tabindex="7"
+                class="lg-button focus:outline-none focus:shadow-outline"
+                (click)="nextStep()"
+              >
+                Next
+              </button>
+            </div>
+          </form>
+        </mat-tab>
+      <!-- </mat-tab-group> -->
+ 
+
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">work</mat-icon>
+            <label class="labelHeading">
+              Background Verification
+            </label>
+          </ng-template>
+          
+          <mat-form-field>
+            <mat-label>Date of verification</mat-label>
+            <input
+              matInput
+              type="text"
+              [max]="today"
+              [matDatepicker]="picker"
+              class="br-btm input-w"
+              placeholder="DD/MM/YYYY"
+              tabindex="8"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker color="primary" startView="multi-year"></mat-datepicker>
+          </mat-form-field>
+          <h3>Verified by:</h3>
+          <div class="flex flex-wrap">
+            <div class="w-full md:w-1/2 sm:w-full">
+              <mat-form-field>
+                <mat-label>Personal Identity</mat-label>
+                <mat-select
+                  class="br-btm input-w"
+                  tabindex="6"
+                >
+                  <mat-option [value]=true>Yes</mat-option>
+                  <mat-option [value]=false>No</mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
+                   Please select Compliance and Discrepancy
+                 </mat-error> -->
+              </mat-form-field>
+              <mat-form-field >
+                <mat-label>Criminal</mat-label>
+                <mat-select
+                  class="br-btm input-w"
+                  tabindex="6"
+                >
+                  <mat-option [value]=true>Yes</mat-option>
+                  <mat-option [value]=false>No</mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
+                   Please select Compliance and Discrepancy
+                 </mat-error> -->
+              </mat-form-field>
+              <mat-form-field >
+                <mat-label>Address</mat-label>
+                <mat-select
+                  class="br-btm input-w"
+                  tabindex="6"
+                >
+                  <mat-option [value]=true>Yes</mat-option>
+                  <mat-option [value]=false>No</mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
+                   Please select Compliance and Discrepancy
+                 </mat-error> -->
+              </mat-form-field>
+            </div>
+            <div class="w-full md:w-1/2 sm:w-full">
+              <mat-form-field >
+                <mat-label>Drugs / Substance abuse</mat-label>
+                <mat-select
+                  class="br-btm input-w"
+                  tabindex="6"
+                >
+                  <mat-option [value]=true>Yes</mat-option>
+                  <mat-option [value]=false>No</mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
+                   Please select Compliance and Discrepancy
+                 </mat-error> -->
+              </mat-form-field>
+              <mat-form-field >
+                <mat-label>Salary Slip / CTC Document</mat-label>
+                <mat-select
+                  class="br-btm input-w"
+                  tabindex="6"
+                >
+                  <mat-option [value]=true>Yes</mat-option>
+                  <mat-option [value]=false>No</mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
+                   Please select Compliance and Discrepancy
+                 </mat-error> -->
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="flex justify-end lg:pb-6 lg:pr-48">
+            <button class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
+              Submit
+            </button>
+            <button
+              class="lg-button focus:outline-none focus:shadow-outline"
+              (click)="cancel()"
+            >
+              Back
+            </button>
+          </div>
+        </mat-tab>
+      </div>
+      </mat-tab-group>
+
+    </div>
+  </app-navbar>
+  

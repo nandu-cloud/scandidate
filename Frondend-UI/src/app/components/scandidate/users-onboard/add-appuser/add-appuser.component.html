@@ -103,8 +103,8 @@
             <!--HRPARTNER organization list-->
             <mat-form-field *ngIf="subroleTypeee == 'HRPARTNER'">
                 <mat-label>Organization</mat-label>
-                <mat-select   class="br-btm input-w" tabindex="2">
-                  <mat-option *ngFor="let itm of allHrPartnerOrganization" [value]="itm._id">{{itm.hrorganizationname}}</mat-option>
+                <mat-select   class="br-btm input-w" formControlName="hrorganisationId" tabindex="2">
+                  <mat-option *ngFor="let itm of allHrPartnerOrganization" value="{{itm._id}}">{{itm.hrorganizationname}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
@@ -137,7 +137,7 @@
             <div style="display: flex;">
                 <mat-form-field style="width: 50px;">
                     <mat-label>Contact</mat-label>
-                    <input matInput type="text" name="code" formControlName="countrycode" class="br-btm input-w1" autoComplete='off' >
+                    <input matInput type="text" name="code" formControlName="countrycode" class="br-btm input-w1" required autoComplete='off' >
                 </mat-form-field>
                 <mat-form-field>
                     

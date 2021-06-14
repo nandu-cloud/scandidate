@@ -8,11 +8,12 @@ import { environment } from '../../../environments/environment';
 import { instituteService } from 'src/app/services/institute.service';
 import { addOrganizationService } from 'src/app/services/organization.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { HrpartnerService } from 'src/app/services/hrpartner.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
-  providers: [LoginService, instituteService, addOrganizationService, StorageService]
+  providers: [LoginService, instituteService, addOrganizationService, StorageService, HrpartnerService]
 })
 export class NavbarComponent implements OnInit {
   openNav: void;
@@ -33,7 +34,8 @@ export class NavbarComponent implements OnInit {
     );
 
   constructor(private breakpointObserver: BreakpointObserver,private lService:LoginService,public router:Router,
-    private appuserService:instituteService, private organizationService:addOrganizationService,public _sessionStorage: StorageService) {}
+    private appuserService:instituteService, private organizationService:addOrganizationService,public _sessionStorage: StorageService,
+    private hrpartnerService: HrpartnerService) {}
   ngOnInit(){
     let role = window.sessionStorage.getItem('role');
     let subrole = window.sessionStorage.getItem('subRole');
@@ -42,12 +44,14 @@ export class NavbarComponent implements OnInit {
       this.appAdmin = true;
       this.insitutionadmin = false;
       this.organizationadmin = false;
+      this.hrpartneradmin = false;
       this.adminLogo = true;
       this.Logo = false;
     } else if( role == 'INSTITUTION') {
       this.insitutionadmin = true;
       this.appAdmin = false;
       this.organizationadmin = false;
+      this.hrpartneradmin = false;
       this.adminLogo = false;
       this.Logo = true;
       this.imageUrl=`${this.baseUrl}/public/user_avatar/${logo}`;
@@ -57,6 +61,7 @@ export class NavbarComponent implements OnInit {
       this.insitutionadmin = false;
       this.appAdmin = false;
       this.organizationadmin = true;
+      this.hrpartneradmin = false;
       this.Logo = true;
       this.imageUrl=`${this.baseUrl}/public/user_avatar/${logo}`;
       this.adminLogo = false;
@@ -70,6 +75,7 @@ export class NavbarComponent implements OnInit {
         this.hrlogo = true;
         this.adminLogo = false;
         this.Logo = false;
+        this.getHrPartner()
       // }
     }
     if((role == 'SCANDIDATE') && (subrole == 'ADMIN')) {
@@ -84,6 +90,8 @@ export class NavbarComponent implements OnInit {
   institutionLogo: any;
   orgName:any;
   instName:any;
+  hrorganizationname:any;
+  hrorgName: any;
   getInstution(){
     this.appuserService.editInstitute( localStorage.getItem('instutuinId')).subscribe(respObj => {
       this.institueName =respObj.data.instituteName
@@ -91,7 +99,7 @@ export class NavbarComponent implements OnInit {
       this.instName = respObj.data.instituteName;
       this._sessionStorage.setSession('instName',this.instName);
        })
-  }
+  }         
   getOrganization(){
     this.organizationService.editOrganization(localStorage.getItem('organizationId')).subscribe(respObj => {
       this.orgName = respObj.data.organizationName;
@@ -100,6 +108,14 @@ export class NavbarComponent implements OnInit {
       this.institueName = respObj.data.organizationName
       this.institutionLogo = `${this.baseUrl}/public/organization_logo/${respObj.data.organisationLogo}`
     })
+  }
+  getHrPartner(){
+   this.hrpartnerService.editHrPartner(localStorage.getItem('hrorganisationId')).subscribe(respObj => {
+    this.hrorgName = respObj.data.hrorganizationname;
+    this._sessionStorage.setSession('hrorgName',this.hrorgName);
+    this.institueName = respObj.data.hrorganizationname
+    // this.institutionLogo = `${this.baseUrl}/public/organization_logo/${respObj.data.organisationLogo}`
+   })
   }
   logout(){
     sessionStorage.clear();

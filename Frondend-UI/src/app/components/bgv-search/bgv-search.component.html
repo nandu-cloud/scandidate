@@ -6,7 +6,7 @@
       Background Verification Search List
     </div>
     <form  class="login-form " [formGroup]="searchForm"  novalidate>
-      <div class="flex flex-wrap ">
+      <div class="bgv flex flex-wrap ">
           <div class="w-auto md:w-1/6 sm:w-auto">
               <mat-form-field class="example-form-field">
                   <mat-label>Name</mat-label>
@@ -59,72 +59,39 @@
   <div class="mat-elevation-z8 data-table">
     <table mat-table [dataSource]="dataSource" class="full-width-table"  aria-label="Elements">
       
-      <!-- Name Column -->
-      
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef >Name</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{row.firstName}}</mat-cell>
+        <mat-cell *matCellDef="let row">
+          <span class="mobile-label">Name</span>
+          {{row.firstName}}
+        </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="orgName">
         <mat-header-cell *matHeaderCellDef >Organization Name</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{row.organizationName}}</mat-cell>
+        <mat-cell *matCellDef="let row">
+          <span class="mobile-label">Organization Name</span>
+          {{row.organizationName}}
+        </mat-cell>
       </ng-container>
   
-      <!-- Email -->
       <ng-container matColumnDef="dob">
         <mat-header-cell *matHeaderCellDef >Date Of Birth</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{row.dateOfBirth | date :'dd/MM/yyyy'}}</mat-cell>
+        <mat-cell *matCellDef="let row">
+          <span class="mobile-label">Date Of Birth </span>
+          {{row.dateOfBirth | date :'dd/MM/yyyy'}}
+        </mat-cell>
       </ng-container>
-  
-      <!-- <ng-container matColumnDef="contact">
-        <mat-header-cell *matHeaderCellDef >Phone Number</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{row.phoneNumber}}</mat-cell>
-      </ng-container>
-  
-      <ng-container matColumnDef="email">
-        <mat-header-cell *matHeaderCellDef >Email ID</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{row.email}}</mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="adharno">
-        <mat-header-cell *matHeaderCellDef >Aadhar Card Number</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{row.adharNumber}}</mat-cell>
-      </ng-container> -->
   
       <ng-container matColumnDef="action">
         <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
         <mat-cell *matCellDef="let row">	<a [routerLink]="['/bgv-view/',row._id]">
-          <span class="action" ><span class="view bg-black text-white p-1 cursor-pointer mr-10">
+          <span class="mobile-label" >
+            Action
+          </span><span class="view bg-black text-white p-1 cursor-pointer mr-10">
             <mat-icon>visibility</mat-icon>
-          </span></span>{{row.action}}</a></mat-cell>
+          </span>{{row.action}}</a></mat-cell>
       </ng-container>
-
-      <!-- <mat-icon class="action" (click)=edit(row._id)>
-        <span class="bg-black text-white p-1 cursor-pointer mr-10">visibility</span>
-      </mat-icon> -->
-
-      <!-- <ng-container matColumnDef="actions" class="justify-start">
-      <mat-header-cell *matHeaderCellDef>Mail</mat-header-cell>
-      <mat-cell *matCellDef="let row"><a (click)="showBGVReport(row._id)"><span class="bg-black text-white pt-2 pb-2 pl-1  pr-1 " >Send BGV Report</span></a></mat-cell>
-
-      </ng-container> -->
-
-      <!-- <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef >Status</th>
-        <td mat-cell *matCellDef="let row" ><a (click)="showBGVReport(row._id)"><span class="pt-2 pb-2 pl-4 pr-4 w-24 text-center text-white text-bold capitalize">Send Report</span></a></td>>
-      </ng-container>
-
-      <ng-container matColumnDef="actions" >
-        <th mat-header-cell *matHeaderCellDef >Action</th>
-        <td mat-cell *matCellDef="let row">
-          <a [routerLink]="['/bgv-view/',row._id]"><span class="action"><span class="bg-black text-white p-1 cursor-pointer mr-10">View</span></span>{{row.action}}</a>
-        </td>
-      </ng-container> -->
-      
-
-      
-  
       
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"   > 

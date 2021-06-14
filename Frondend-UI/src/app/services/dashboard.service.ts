@@ -33,6 +33,13 @@ export class DashboardService {
     return this.http.get(`${this.baseUrl}/api/organisation/dashboard/count/${organisationId}/${id}`);
   }
 
+  public getHrpartnerCount() : Observable<any> {
+    var organisationId = window.sessionStorage.getItem('hrorganisationId');
+    var id = window.sessionStorage.getItem('ID');
+    console.log(id);
+    return this.http.get(`${this.baseUrl}/api/organisation/dashboard/count/${organisationId}/${id}`);
+  }
+
   organizationGraph(updateOrgData) : Observable<any>{
   
     return this.http.put(this.baseUrl + '/api/scandidate/dashboard/orgonboardtrend', updateOrgData,

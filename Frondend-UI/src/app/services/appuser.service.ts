@@ -22,7 +22,7 @@ export class AppuserService {
     let organId
     let instituteeId
     let scandidateId
-    let hrId
+    let hrorganisationId
     if( createUserData.role == 'SCANDIDATE'){
   organId = undefined
   instituteeId = undefined
@@ -31,11 +31,11 @@ export class AppuserService {
   organId = createUserData.organizationId
   scandidateId = undefined 
   instituteeId = undefined
-  }else if(createUserData.role == 'HR PATNER'){
+  }else if(createUserData.role == 'HRPARTNER'){
   scandidateId = undefined 
   instituteeId = undefined
   organId = undefined
-  hrId = createUserData.hrpartnerId
+  hrorganisationId = createUserData.hrorganisationId
 }else{
   organId = undefined
   scandidateId= undefined
@@ -43,7 +43,7 @@ export class AppuserService {
 }
     var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': 'number','countrycode':string,
    'organizationId': string, 'institutionId': string, 'scandidateId': string ,'employeeId': string, 'currentAddress': string, 'permanentAddress': string, 'aboutMe': string,
-    'noOfAssociatedUsers': number, 'avatarLink': string, 'hrpartnerId': string
+    'noOfAssociatedUsers': number, 'avatarLink': string, 'hrorganisationId': string
   } =
     {
       'firstName': createUserData.firstName, 'lastName': createUserData.lastName, 'role':
@@ -54,7 +54,7 @@ export class AppuserService {
        'organizationId': organId == ""||organId == null?undefined:organId,
        'institutionId':instituteeId == ""|| instituteeId == null?undefined:instituteeId,
        'scandidateId': scandidateId == ""|| scandidateId == null ? undefined : scandidateId,
-       'hrpartnerId': hrId == "" || hrId == null ? undefined : hrId,
+       'hrorganisationId': hrorganisationId == "" || hrorganisationId == null ? undefined : hrorganisationId,
         'employeeId': createUserData.employeeId == ""||createUserData.employeeId == null?undefined:createUserData.employeeId,
        'currentAddress': createUserData.currentAddress == ""||createUserData.currentAddress == null?undefined:createUserData.currentAddress,
         // tslint:disable-next-line: max-line-length
@@ -86,7 +86,7 @@ export class AppuserService {
   editUser(updateUserData): Observable<any> {
     var create: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': string, 'status': boolean, 'phoneNumber': number, 'countrycode':string
     'organizationId': string, 'institutionId': string, 'scandidateId' : string, 'employeeId': string, 'currentAddress': string, 'permanentAddress': string,
-     'aboutMe': string, 'noOfAssociatedUsers': number, 'avatarLink': string} = 
+     'aboutMe': string, 'noOfAssociatedUsers': number, 'avatarLink': string, 'hrorganisationId': string} = 
     { 'firstName': updateUserData.firstName, 'lastName': updateUserData.lastName, 'role':
     updateUserData.role, 'subRole': updateUserData.subRole, 'email': updateUserData.email,
      'dateOfBirth': updateUserData.dateOfBirth, 'status': updateUserData.status,
@@ -95,7 +95,8 @@ export class AppuserService {
       'organizationId': updateUserData.organizationId == ""||updateUserData.organizationId == null?undefined:updateUserData.organizationId,
      'institutionId': updateUserData.institutionId == ""||updateUserData.institutionId == null?undefined:updateUserData.institutionId,
      'scandidateId' : updateUserData.scandidateId == ""|| updateUserData.scandidateId == null ? undefined : updateUserData.scandidateId,
-      'employeeId': updateUserData.employeeId == ""||updateUserData.employeeId == null?undefined:updateUserData.employeeId,
+     'hrorganisationId': updateUserData.hrorganisationId == "" || updateUserData.hrorganisationId == null? undefined : updateUserData.hrorganisationId,
+     'employeeId': updateUserData.employeeId == ""||updateUserData.employeeId == null?undefined:updateUserData.employeeId,
      'currentAddress': updateUserData.currentAddress == "" || updateUserData.currentAddress == null?undefined:updateUserData.currentAddress,
       'permanentAddress': updateUserData.permanentAddress == "" || updateUserData.permanentAddress == null?undefined:updateUserData.permanentAddress,
       'aboutMe': updateUserData.aboutMe == ""|| updateUserData.aboutMe == null?undefined:updateUserData.aboutMe,
