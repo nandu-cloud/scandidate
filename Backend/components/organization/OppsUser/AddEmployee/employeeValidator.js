@@ -2,15 +2,34 @@ const Joi = require("joi");
 
 const addEmployeeSchema = Joi.object({
   //Required Fields
-  firstName: Joi.string().required().messages({ "any.required": 'First name is required' }),
-  lastName: Joi.string().required().messages({ "any.required": "Last name is required" }),
-  email: Joi.string().email().required().messages({ 'any.required': 'Email is required' }),
-  phoneNumber: Joi.string().required().messages({ 'any.required': 'Phone number is required' }),
-  dateOfJoining: Joi.date().required().messages({ 'any.required': 'Date of joining is required' }),
-  exitDate: Joi.date().required().messages({ 'any.required': 'Date of exit is required' }),
-  addedById: Joi.string().required().messages({ 'any.required': 'Added by name is required' }),
-  organisationId: Joi.string().required().messages({ 'any.required': 'Organization name is required' }),
-  organizationName: Joi.string().required().messages({ 'any.required': 'Organization name is required' }),
+  firstName: Joi.string()
+    .required()
+    .messages({ "any.required": "First name is required" }),
+  lastName: Joi.string()
+    .required()
+    .messages({ "any.required": "Last name is required" }),
+  email: Joi.string()
+    .email()
+    .required()
+    .messages({ "any.required": "Email is required" }),
+  phoneNumber: Joi.string()
+    .required()
+    .messages({ "any.required": "Phone number is required" }),
+  dateOfJoining: Joi.date()
+    .required()
+    .messages({ "any.required": "Date of joining is required" }),
+  exitDate: Joi.date()
+    .required()
+    .messages({ "any.required": "Date of exit is required" }),
+  addedById: Joi.string()
+    .required()
+    .messages({ "any.required": "Added by name is required" }),
+  organisationId: Joi.string()
+    .required()
+    .messages({ "any.required": "Organization name is required" }),
+  organizationName: Joi.string()
+    .required()
+    .messages({ "any.required": "Organization name is required" }),
   status: Joi.boolean().allow("").allow(null),
 
   //Issues
@@ -68,18 +87,50 @@ const addEmployeeSchema = Joi.object({
   communicationSkills: Joi.number().allow("").allow(null),
 
   //Other Variables
+
+  // CANDIDATE
+  nameofFeedbackProvider: Joi.string().allow("").allow(null),
+  designationOfFeedbackProvider: Joi.string().allow("").allow(null),
+  candidateOrganisationId: Joi.string().min(24).max(24).allow(null).allow(""),
+  bgvCandidate: Joi.boolean().allow(null).allow(""),
+  hrorganisationId: Joi.string().min(24).max(24).allow(null).allow(""),
+  dateOfVerification: Joi.date().allow(null).allow(""),
+  personalIdentity: Joi.string().allow("").allow(null),
+  criminal: Joi.string().allow("").allow(null),
+  verificationAddress: Joi.string().allow("").allow(null),
+  drugsAndSubstanceAbuse: Joi.string().allow("").allow(null),
+  salarySlipCTCdocument: Joi.string().allow("").allow(null),
 });
 const updateEmployeeSchema = Joi.object({
   //Required Fields
-  firstName: Joi.string().required().messages({ "any.required": 'First name is required' }),
-  lastName: Joi.string().required().messages({ "any.required": "Last name is required" }),
-  email: Joi.string().email().required().messages({ 'any.required': 'Email is required' }),
-  phoneNumber: Joi.string().required().messages({ 'any.required': 'Phone number is required' }),
-  dateOfJoining: Joi.date().required().messages({ 'any.required': 'Date of joining is required' }),
-  exitDate: Joi.date().required().messages({ 'any.required': 'Date of exit is required' }),
-  addedById: Joi.string().required().messages({ 'any.required': 'Added by name is required' }),
-  organisationId: Joi.string().required().messages({ 'any.required': 'Organization name is required' }),
-  organizationName: Joi.string().required().messages({ 'any.required': 'Organization name is required' }),
+  firstName: Joi.string()
+    .required()
+    .messages({ "any.required": "First name is required" }),
+  lastName: Joi.string()
+    .required()
+    .messages({ "any.required": "Last name is required" }),
+  email: Joi.string()
+    .email()
+    .required()
+    .messages({ "any.required": "Email is required" }),
+  phoneNumber: Joi.string()
+    .required()
+    .messages({ "any.required": "Phone number is required" }),
+  dateOfJoining: Joi.date()
+    .required()
+    .messages({ "any.required": "Date of joining is required" }),
+  exitDate: Joi.date()
+    .required()
+    .messages({ "any.required": "Date of exit is required" }),
+  addedById: Joi.string()
+    .required()
+    .messages({ "any.required": "Added by name is required" }),
+  organisationId: Joi.string()
+    .required()
+    .messages({ "any.required": "Organization name is required" }),
+  organizationName: Joi.string()
+    .required()
+    .messages({ "any.required": "Organization name is required" }),
   status: Joi.boolean().allow("").allow(null),
 
   professionalExperience: Joi.string().allow("").allow(null),
@@ -135,6 +186,19 @@ const updateEmployeeSchema = Joi.object({
   showCausedIssue: Joi.object().allow("").allow(null),
   suspension: Joi.object().allow("").allow(null),
   termination: Joi.object().allow("").allow(null),
+
+  // CANDIDATE
+  nameofFeedbackProvider: Joi.string().allow("").allow(null),
+  designationOfFeedbackProvider: Joi.string().allow("").allow(null),
+  candidateOrganisationId: Joi.string().min(24).max(24).allow(null).allow(""),
+  bgvCandidate: Joi.boolean().allow(null).allow(""),
+  hrorganisationId: Joi.string().min(24).max(24).allow(null).allow(""),
+  dateOfVerification: Joi.date().allow(null).allow(""),
+  personalIdentity: Joi.string().allow("").allow(null),
+  criminal: Joi.string().allow("").allow(null),
+  verificationAddress: Joi.string().allow("").allow(null),
+  drugsAndSubstanceAbuse: Joi.string().allow("").allow(null),
+  salarySlipCTCdocument: Joi.string().allow("").allow(null),
 });
 
 module.exports = {

@@ -138,6 +138,15 @@ async function findDistinctStudent() {
 }
 // File Count
 
+async function showStudent(data) {
+  try {
+    let result = await studentModel.find(data);
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
 // export functions
 module.exports = {
   addStudent: addStudent,
@@ -147,4 +156,5 @@ module.exports = {
   search_student_new: search_student_new,
   addStudentCsv: addStudentCsv,
   findDistinctStudent: findDistinctStudent,
+  showStudent: showStudent,
 };

@@ -71,6 +71,15 @@ async function updateOrganisation(data) {
   }
 }
 
+async function findOrganisation(data) {
+  try {
+    let result = await organizationModel.findOne(data);
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
 // export functions
 module.exports = {
   getAllOrganisation: getAllOrganisation,
@@ -79,4 +88,5 @@ module.exports = {
   updateOrganisation: updateOrganisation,
   deleteOrganisation: deleteOrganisation,
   getOrganisationByIdNew: getOrganisationByIdNew,
+  findOrganisation: findOrganisation,
 };

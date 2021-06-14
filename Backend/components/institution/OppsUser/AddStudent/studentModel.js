@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const studentSchema = new mongoose.Schema({
   nameOfCourse: {
     type: String,
-    required: [true, "Name of course is required"]
+    required: [true, "Name of course is required"],
   },
   yearOfJoining: {
     type: String,
@@ -16,7 +16,7 @@ const studentSchema = new mongoose.Schema({
   },
   studentType: {
     type: String,
-    required: true
+    required: true,
   },
   extraActivity: {
     type: String,
@@ -110,6 +110,50 @@ const studentSchema = new mongoose.Schema({
   updatedAt: {
     type: Date,
     default: new Date(),
+  },
+
+  // CANDIDATE ATTRIBUTES
+  nameofFeedbackProvider: {
+    type: String,
+    required: false,
+  },
+  designationOfFeedbackProvider: {
+    type: String,
+    required: false,
+  },
+
+  candidateInstituteId: {
+    type: Schema.Types.ObjectId,
+    required: false,
+  },
+  bgvCandidate: {
+    type: Boolean,
+    required: false,
+  },
+  hrorganisationId: {
+    type: Schema.Types.ObjectId,
+    required: false,
+  },
+  dateOfVerification: {
+    type: Date,
+    required: false,
+  },
+
+  personalIdentity: {
+    type: String,
+    required: false,
+  },
+  criminal: {
+    type: String,
+    required: false,
+  },
+  verificationAddress: {
+    type: String,
+    required: false,
+  },
+  drugsAndSubstanceAbuse: {
+    type: String,
+    required: false,
   },
 });
 // compile schema to model

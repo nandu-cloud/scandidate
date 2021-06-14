@@ -71,6 +71,16 @@ async function updateInstitute(data) {
     throw err;
   }
 }
+
+async function findInstitution(data) {
+  try {
+    let result = await instituteModel.findOne(data);
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
 // export functions
 module.exports = {
   getAllInstitute: getAllInstitute,
@@ -79,4 +89,5 @@ module.exports = {
   deleteInstitute: deleteInstitute,
   updateInstitute: updateInstitute,
   getInstituteByIdNew: getInstituteByIdNew,
+  findInstitution: findInstitution,
 };
