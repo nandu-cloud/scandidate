@@ -35,6 +35,10 @@ router
   .get(authJWT.verifyJWTToken, orgOnboardController.getAllMethod);
 
 router
+  .route("/listOfOrganization")
+  .get(authJWT.verifyJWTToken, orgOnboardController.getOrganisationName);
+
+router
   .route("/:organisationId")
   .get(authJWT.verifyJWTToken, orgOnboardController.getOrganisationByIdMethod)
   .put(authJWT.verifyJWTToken, orgOnboardController.updateOrganisationMethod)
@@ -54,7 +58,6 @@ router
 router
   .route("/deletelogo/:orgLogo")
   .delete(authJWT.verifyJWTToken, orgOnboardController.orgLogoDeleteMethod);
-
 
 router
   .route("/search/employee")

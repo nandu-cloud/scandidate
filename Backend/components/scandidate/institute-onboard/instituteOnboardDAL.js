@@ -81,6 +81,15 @@ async function findInstitution(data) {
   }
 }
 
+async function showListInstitution() {
+  try {
+    let result = await instituteModel.find().select("instituteName _id");
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
 // export functions
 module.exports = {
   getAllInstitute: getAllInstitute,
@@ -90,4 +99,5 @@ module.exports = {
   updateInstitute: updateInstitute,
   getInstituteByIdNew: getInstituteByIdNew,
   findInstitution: findInstitution,
+  showListInstitution: showListInstitution,
 };

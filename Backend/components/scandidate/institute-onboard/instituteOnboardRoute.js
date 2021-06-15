@@ -38,6 +38,10 @@ router
   .get(authJWT.verifyJWTToken, instituteOnboardController.getAllMethod);
 
 router
+  .route("/listOfInstitution")
+  .get(authJWT.verifyJWTToken, instituteOnboardController.getInstitutionName);
+
+router
   .route("/:instituteId")
   .get(
     authJWT.verifyJWTToken,

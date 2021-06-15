@@ -111,6 +111,10 @@ const studentSchema = new mongoose.Schema({
     type: Date,
     default: new Date(),
   },
+  status: {
+    type: Boolean,
+    required: false,
+  },
 
   // CANDIDATE ATTRIBUTES
   nameofFeedbackProvider: {

@@ -153,3 +153,12 @@ module.exports.search_employee = async (req, res, next) => {
     return next(new AppError(err, 400));
   }
 };
+
+module.exports.getOrganisationName = async (req, res, next) => {
+  try {
+    let result = await orgnisationDAL.findAllOrganization();
+    return res.status(200).json({ status: 200, message: null, data: result });
+  } catch (err) {
+    return next(new AppError(err, 400));
+  }
+};

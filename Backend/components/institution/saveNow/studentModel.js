@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 // schema
-const studentSchema = new mongoose.Schema({
+const studentSaveNowSchema = new mongoose.Schema({
   nameOfCourse: {
     type: String,
     required: false,
@@ -80,6 +80,10 @@ const studentSchema = new mongoose.Schema({
     type: Number,
     required: false,
   },
+  panNumber: {
+    type: String,
+    required: false,
+  },
   city: {
     type: String,
     required: false,
@@ -116,6 +120,10 @@ const studentSchema = new mongoose.Schema({
   updatedAt: {
     type: Date,
     default: new Date(),
+  },
+  status: {
+    type: Boolean,
+    required: false,
   },
 
   // CANDIDATE ATTRIBUTES
@@ -163,4 +171,4 @@ const studentSchema = new mongoose.Schema({
   },
 });
 // compile schema to model
-module.exports = mongoose.model("students", studentSchema, "students");
+module.exports = mongoose.model("studentsSaveNow", studentSaveNowSchema);

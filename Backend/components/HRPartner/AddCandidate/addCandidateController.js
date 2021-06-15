@@ -10,25 +10,62 @@ module.exports.saveCandidate = async (req, res, next) => {
   const { bio, candidate, verification } = req.body;
   var data = [];
   for (var d of candidate) {
-    var r = { ...bio, ...d, ...verification };
+    if (d.hasOwnProperty("organizationName")) {
+      var r = { ...bio, ...d, ...verification };
+    } else {
+      var {
+        firstName,
+        lastName,
+        email,
+        adharNumber,
+        phoneNumber,
+        dateOfBirth,
+        address,
+        addedById,
+        hrorganisationId,
+      } = bio;
+      var studentBio = {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        adharNumber: adharNumber,
+        phoneNumber: phoneNumber,
+        dateOfBirth: dateOfBirth,
+        address: address,
+        addedById: addedById,
+        hrorganisationId: hrorganisationId,
+      };
+      var {
+        personalIdentity,
+        criminal,
+        verificationAddress,
+        drugsAndSubstanceAbuse,
+      } = verification;
+      var verified = {
+        personalIdentity: personalIdentity,
+        criminal: criminal,
+        verificationAddress: verificationAddress,
+        drugsAndSubstanceAbuse: drugsAndSubstanceAbuse,
+      };
+      r = { ...studentBio, ...d, ...verified };
+    }
     data.push(r);
   }
   try {
     for (let d of data) {
       if (d.hasOwnProperty("organizationName")) {
-        var orgName = { organizationName: d.organizationName };
-        var { _id } = await orgDAL.findOrganisation(orgName);
-        d.candidateOrganisationId = _id.toString();
+        // var orgName = { organizationName: d.organizationName };
+        // var { _id } = await orgDAL.findOrganisation(orgName);
+        // d.candidateOrganisationId = _id.toString();
         d.bgvCandidate = true;
         var verificationDate = new Date();
         d.dateOfVerification = verificationDate;
-        console.log(d);
         let empValid = await empValidator.addEmployeeSchema.validateAsync(d);
         var saveCandidate = await empDAL.addEmployee(empValid);
       } else {
-        var insName = { instituteName: d.intitutionName };
-        var { _id } = await instDAL.findInstitution(insName);
-        d.candidateInstituteId = _id.toString();
+        // var insName = { instituteName: d.intitutionName };
+        // var { _id } = await instDAL.findInstitution(insName);
+        // d.candidateInstituteId = _id.toString();
         d.bgvCandidate = true;
         var verificationDate = new Date();
         d.dateOfVerification = verificationDate;

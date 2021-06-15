@@ -14,9 +14,20 @@ async function addEmployee(data) {
   }
 }
 
-async function fetchEmployeeEmail(data) {
+async function getEmployee(data) {
   try {
-    let result = await saveNowModel.find({ email: data.email, status: false });
+    let result = await saveNowModel.findOne({ _id: data._id });
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
+async function updateEmployee(data) {
+  try {
+    let result = await saveNowModel.findOneAndUpdate({ _id: data._id }, data, {
+      new: true,
+    });
     return result;
   } catch (err) {
     throw err;
@@ -25,5 +36,6 @@ async function fetchEmployeeEmail(data) {
 
 module.exports = {
   addEmployee: addEmployee,
-  fetchEmployeeEmail: fetchEmployeeEmail,
+  getEmployee: getEmployee,
+  updateEmployee: updateEmployee,
 };

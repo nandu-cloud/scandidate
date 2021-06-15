@@ -109,6 +109,11 @@ app.use(
   require("./components/HRPartner/AddCandidate/addCandidateRoute")
 );
 
+app.use(
+  "/api/candidate/savenow/",
+  require("./components/HRPartner/savenow/savenowRoute")
+);
+
 app.all("*", (req, res, next) => {
   next(new AppError(`Cannot find ${req.originalUrl} on the server`, 404));
 });

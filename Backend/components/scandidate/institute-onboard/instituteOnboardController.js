@@ -9,7 +9,6 @@ const instituteValidator = require("./instituteOnboardValidator");
 const studentDAL = require("../../institution/OppsUser/AddStudent/studentDAL");
 const email = require("../../../helpers/email");
 
-
 // Add Institute
 module.exports.onboardInstituteMethod = async function (req, res, next) {
   const data = req.body;
@@ -151,6 +150,15 @@ module.exports.search_student = async (req, res, next) => {
       message: "success",
       data: data,
     });
+  } catch (err) {
+    return next(new AppError(err, 400));
+  }
+};
+
+module.exports.getInstitutionName = async (req, res, next) => {
+  try {
+    let result = await instituteDAL.showListInstitution();
+    return res.status(200).json({ status: 200, message: null, data: result });
   } catch (err) {
     return next(new AppError(err, 400));
   }

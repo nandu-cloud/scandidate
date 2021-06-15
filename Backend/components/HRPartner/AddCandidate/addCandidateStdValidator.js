@@ -31,6 +31,7 @@ const addStudentSchema = Joi.object({
   originalFilename: Joi.string().allow("").allow(null),
   originalFilenames: Joi.array().allow("").allow(null),
   purposeOfFile: Joi.array().allow("").allow(null),
+  status: Joi.boolean().allow("").allow(null),
 
   // CANDIDATE
   nameofFeedbackProvider: Joi.string().allow("").allow(null),
@@ -76,6 +77,7 @@ const updateStudentSchema = Joi.object({
   originalFilename: Joi.string().allow("").allow(null),
   originalFilenames: Joi.array().allow("").allow(null),
   purposeOfFile: Joi.array().allow("").allow(null),
+  status: Joi.boolean().allow("").allow(null),
 
   // CANDIDATE
   nameofFeedbackProvider: Joi.string().allow("").allow(null),
