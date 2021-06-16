@@ -62,8 +62,8 @@ module.exports.saveNowExEmployee = async (req, res, next) => {
           // var { _id } = await orgDAL.findOrganisation(orgName);
           // d.candidateOrganisationId = _id.toString();
           d.bgvCandidate = true;
-          var verificationDate = new Date();
-          d.dateOfVerification = verificationDate;
+          // var verificationDate = new Date();
+          // d.dateOfVerification = verificationDate;
           let empValid = await saveNowValidator.addEmployeeSchema.validateAsync(
             d
           );
@@ -74,11 +74,12 @@ module.exports.saveNowExEmployee = async (req, res, next) => {
           // var { _id } = await instDAL.findInstitution(insName);
           // d.candidateInstituteId = _id.toString();
           d.bgvCandidate = true;
-          var verificationDate = new Date();
-          d.dateOfVerification = verificationDate;
+          // var verificationDate = new Date();
+          // d.dateOfVerification = verificationDate;
           let stdvalid = await saveNowValidator.addStudentSchema.validateAsync(
             d
           );
+          stdvalid._id = mongoose.Types.ObjectId(empId);
           var saveCandidate = await saveNowStdDAL.updateStudent({
             _id: mongoose.Types.ObjectId(empId),
             stdvalid,
@@ -106,8 +107,8 @@ module.exports.saveNowExEmployee = async (req, res, next) => {
           // var { _id } = await orgDAL.findOrganisation(orgName);
           // d.candidateOrganisationId = _id.toString();
           d.bgvCandidate = true;
-          var verificationDate = new Date();
-          d.dateOfVerification = verificationDate;
+          // var verificationDate = new Date();
+          // d.dateOfVerification = verificationDate;
           let empValid = await saveNowValidator.addEmployeeSchema.validateAsync(
             d
           );
@@ -117,8 +118,8 @@ module.exports.saveNowExEmployee = async (req, res, next) => {
           // var { _id } = await instDAL.findInstitution(insName);
           // d.candidateInstituteId = _id.toString();
           d.bgvCandidate = true;
-          var verificationDate = new Date();
-          d.dateOfVerification = verificationDate;
+          // var verificationDate = new Date();
+          // d.dateOfVerification = verificationDate;
           let stdvalid = await saveNowValidator.addStudentSchema.validateAsync(
             d
           );
