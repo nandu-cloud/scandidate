@@ -88,10 +88,19 @@ module.exports.showCandidate = async (req, res, next) => {
     let emp = await empDAL.showEmployee({
       hrorganisationId: req.params.hrorganisationId,
     });
+    let newEmployee = [];
+    let uniqueObject = {};
+    for (let i in emp) {
+      empEmail = emp[i]["email"];
+      uniqueObject[empEmail] = emp[i];
+    }
+    for (i in uniqueObject) {
+      newEmployee.push(uniqueObject[i]);
+    }
     let stud = await stdDAL.showStudent({
       hrorganisationId: req.params.hrorganisationId,
     });
-    let result = emp.concat(stud);
+    let result = newEmployee.concat(stud);
 
     let resultData = result.sort((a, b) => {
       return b.createdAt - a.createdAt;
@@ -174,10 +183,30 @@ module.exports.updateCandidateData = async (req, res, next) => {
   try {
     for (let d of data) {
       if (d.hasOwnProperty("organizationName")) {
-        d.bgvCandidate = true;
         let empValid = await empValidator.addEmployeeSchema.validateAsync(d);
-        var { email, candidateOrganisationId, dateOfJoining } = d;
+        var getEmployee = await canddidateDAL.fetchCandidateEmployeeData({
+          _id: mongoose.Types.ObjectId(empId),
+        });
+        if (getEmployee) {
+          empValid._id = mongoose.Types.ObjectId(empId);
+          var saveCandidate = await empDAL.updateEmployee(empValid);
+        } else {
+          var saveCandidate = await empDAL.addEmployee(empValid);
+        }
+      } else {
+        d.bgvCandidate = true;
+        let stdvalid = await saveNowValidator.addStudentSchema.validateAsync(d);
+        stdvalid._id = mongoose.Types.ObjectId(empId);
+        var saveCandidate = await saveNowStdDAL.updateStudent({
+          _id: mongoose.Types.ObjectId(empId),
+          stdvalid,
+        });
       }
+    }
+    if (saveCandidate) {
+      return res
+        .status(200)
+        .json({ status: 200, message: "Candidate updated successfully!" });
     }
   } catch (err) {
     return next(new AppError(err, 422));

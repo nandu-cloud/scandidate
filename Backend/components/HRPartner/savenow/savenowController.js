@@ -67,8 +67,17 @@ module.exports.saveNowExEmployee = async (req, res, next) => {
           let empValid = await saveNowValidator.addEmployeeSchema.validateAsync(
             d
           );
-          empValid._id = mongoose.Types.ObjectId(empId);
-          var saveCandidate = await saveNowEmpDAL.updateEmployee(empValid);
+          // empValid._id = mongoose.Types.ObjectId(empId);
+          // var saveCandidate = await saveNowEmpDAL.updateEmployee(empValid);
+          var getEmployee = await saveNowEmpDAL.getEmployee({
+            _id: mongoose.Types.ObjectId(empId),
+          });
+          if (getEmployee) {
+            empValid._id = mongoose.Types.ObjectId(empId);
+            var saveCandidate = await saveNowEmpDAL.updateEmployee(empValid);
+          } else {
+            var saveCandidate = await saveNowEmpDAL.addEmployee(empValid);
+          }
         } else {
           // var insName = { instituteName: d.intitutionName };
           // var { _id } = await instDAL.findInstitution(insName);
