@@ -7,68 +7,61 @@ const stdValidator = require("./addCandidateStdValidator");
 const mongoose = require("mongoose");
 
 module.exports.saveCandidate = async (req, res, next) => {
-  const { bio, candidate, verification } = req.body;
+  const { bio, candidate, canidateInstitute, verification } = req.body;
   var data = [];
   for (var d of candidate) {
-    if (d.hasOwnProperty("organizationName")) {
-      var r = { ...bio, ...d, ...verification };
-    } else {
-      var {
-        firstName,
-        lastName,
-        email,
-        adharNumber,
-        phoneNumber,
-        dateOfBirth,
-        address,
-        addedById,
-        hrorganisationId,
-      } = bio;
-      var studentBio = {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        adharNumber: adharNumber,
-        phoneNumber: phoneNumber,
-        dateOfBirth: dateOfBirth,
-        address: address,
-        addedById: addedById,
-        hrorganisationId: hrorganisationId,
-      };
-      var {
-        personalIdentity,
-        criminal,
-        verificationAddress,
-        drugsAndSubstanceAbuse,
-      } = verification;
-      var verified = {
-        personalIdentity: personalIdentity,
-        criminal: criminal,
-        verificationAddress: verificationAddress,
-        drugsAndSubstanceAbuse: drugsAndSubstanceAbuse,
-      };
-      r = { ...studentBio, ...d, ...verified };
-    }
+    var r = { ...bio, ...d, ...verification };
     data.push(r);
+  }
+  for (var d1 of canidateInstitute) {
+    var {
+      dateOfVerification,
+      personalIdentity,
+      criminal,
+      verificationAddress,
+      drugsAndSubstanceAbuse,
+    } = verification;
+    var verified = {
+      dateOfVerification: dateOfVerification,
+      personalIdentity: personalIdentity,
+      criminal: criminal,
+      verificationAddress: verificationAddress,
+      drugsAndSubstanceAbuse: drugsAndSubstanceAbuse,
+    };
+    var {
+      firstName,
+      lastName,
+      email,
+      dateOfBirth,
+      adharNumber,
+      addedById,
+      phoneNumber,
+      address,
+      hrorganisationId,
+    } = bio;
+    var studentBio = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      dateOfBirth: dateOfBirth,
+      adharNumber: adharNumber,
+      addedById: addedById,
+      phoneNumber: phoneNumber,
+      address: address,
+      hrorganisationId: hrorganisationId,
+    };
+    var r1 = { ...studentBio, ...d1, ...verified };
+    data.push(r1);
   }
   try {
     for (let d of data) {
+      console.log(d);
       if (d.hasOwnProperty("organizationName")) {
-        // var orgName = { organizationName: d.organizationName };
-        // var { _id } = await orgDAL.findOrganisation(orgName);
-        // d.candidateOrganisationId = _id.toString();
         d.bgvCandidate = true;
-        // var verificationDate = new Date();
-        // d.dateOfVerification = verificationDate;
         let empValid = await empValidator.addEmployeeSchema.validateAsync(d);
         var saveCandidate = await empDAL.addEmployee(empValid);
       } else {
-        // var insName = { instituteName: d.intitutionName };
-        // var { _id } = await instDAL.findInstitution(insName);
-        // d.candidateInstituteId = _id.toString();
         d.bgvCandidate = true;
-        // var verificationDate = new Date();
-        // d.dateOfVerification = verificationDate;
         let stdvalid = await stdValidator.addStudentSchema.validateAsync(d);
         var saveCandidate = await stdDAL.addStudent(stdvalid);
       }
@@ -88,21 +81,22 @@ module.exports.showCandidate = async (req, res, next) => {
     let emp = await empDAL.showEmployee({
       hrorganisationId: req.params.hrorganisationId,
     });
+    let stud = await stdDAL.showStudent({
+      hrorganisationId: req.params.hrorganisationId,
+    });
+    let result = emp.concat(stud);
+
     let newEmployeeArray = [];
     let uniqueEmployee = {};
-    for (let i in emp) {
-      empEmail = emp[i]["email"];
-      uniqueEmployee[empEmail] = emp[i];
+    for (let i in result) {
+      empEmail = result[i]["email"];
+      uniqueEmployee[empEmail] = result[i];
     }
     for (i in uniqueEmployee) {
       newEmployeeArray.push(uniqueEmployee[i]);
     }
-    let stud = await stdDAL.showStudent({
-      hrorganisationId: req.params.hrorganisationId,
-    });
-    let result = newEmployeeArray.concat(stud);
 
-    let resultData = result.sort((a, b) => {
+    let resultData = newEmployeeArray.sort((a, b) => {
       return b.createdAt - a.createdAt;
     });
 
@@ -123,9 +117,13 @@ module.exports.showCandidateById = async (req, res, next) => {
     if (!data) {
       data = await canddidateDAL.fetchCandidateStudent({ _id: candidateId });
     }
-    var { email } = data;
-    var studentData = await canddidateDAL.fetchStudent({ email: email });
-    var empData = await canddidateDAL.fetchEmployee({ email: email });
+    var { email, phoneNumber, adharNumber } = data;
+    var studentData = await canddidateDAL.fetchStudent({
+      email: email,
+    });
+    var empData = await canddidateDAL.fetchEmployee({
+      email: email,
+    });
     var totalData = studentData.concat(empData);
     var empBio = totalData[0];
     var bio = {
@@ -197,7 +195,6 @@ module.exports.showCandidateById = async (req, res, next) => {
         originalFilename: totalData[i].originalFilename,
         status: totalData[i].status,
       };
-
       var inst = {
         // Student
         nameofFeedbackProvider: totalData[i].nameofFeedbackProvider,
@@ -245,7 +242,7 @@ module.exports.showCandidateById = async (req, res, next) => {
       drugsAndSubstanceAbuse: empBio.drugsAndSubstanceAbuse,
       salarySlipCTCdocument: empBio.salarySlipCTCdocument,
       candidate: candidate,
-      candiadteSudnt: candiadteSudnt,
+      canidateInstitute: candiadteSudnt,
     };
     return res
       .status(200)
@@ -256,136 +253,43 @@ module.exports.showCandidateById = async (req, res, next) => {
 };
 
 module.exports.updateCandidateData = async (req, res, next) => {
-  const { bio, candidate, verification } = req.body;
-  const empId = req.params.candidateId;
+  let candidateId = mongoose.Types.ObjectId(req.params.candidateId);
+  const { bio, candidate, canidateInstitute, verification } = req.body;
   var data = [];
   for (var d of candidate) {
-    if (d.hasOwnProperty("organizationName")) {
-      var r = { ...bio, ...d, ...verification };
-    } else {
-      var {
-        firstName,
-        lastName,
-        email,
-        adharNumber,
-        phoneNumber,
-        dateOfBirth,
-        address,
-        addedById,
-        hrorganisationId,
-      } = bio;
-      var studentBio = {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        adharNumber: adharNumber,
-        phoneNumber: phoneNumber,
-        dateOfBirth: dateOfBirth,
-        address: address,
-        addedById: addedById,
-        hrorganisationId: hrorganisationId,
-      };
-      var {
-        personalIdentity,
-        criminal,
-        verificationAddress,
-        drugsAndSubstanceAbuse,
-      } = verification;
-      var verified = {
-        personalIdentity: personalIdentity,
-        criminal: criminal,
-        verificationAddress: verificationAddress,
-        drugsAndSubstanceAbuse: drugsAndSubstanceAbuse,
-      };
-      r = { ...studentBio, ...d, ...verified };
-    }
+    var r = { ...bio, ...d, ...verification };
     data.push(r);
   }
-  try {
-    for (let d of data) {
-      if (d.hasOwnProperty("organizationName")) {
-        let empValid = await empValidator.addEmployeeSchema.validateAsync(d);
-        var getEmployee = await canddidateDAL.fetchCandidateEmployeeData({
-          _id: mongoose.Types.ObjectId(empId),
-        });
-        if (getEmployee) {
-          empValid._id = mongoose.Types.ObjectId(empId);
-          var saveCandidate = await empDAL.updateEmployee(empValid);
-        } else {
-          var saveCandidate = await empDAL.addEmployee(empValid);
-        }
-      } else {
-        d.bgvCandidate = true;
-        let stdvalid = await stdValidator.addStudentSchema.validateAsync(d);
-        stdvalid._id = mongoose.Types.ObjectId(empId);
-        var saveCandidate = await saveNowStdDAL.updateStudent({
-          _id: mongoose.Types.ObjectId(empId),
-          stdvalid,
-        });
-      }
-    }
-    if (saveCandidate) {
-      return res
-        .status(200)
-        .json({ status: 200, message: "Candidate updated successfully!" });
-    }
-  } catch (err) {
-    return next(new AppError(err, 422));
-  }
-};
-
-module.exports.saveStudent = async (req, res, next) => {
-  const { bio, candidate, verification } = req.body;
-  var data = [];
-  for (var d of candidate) {
-    var {
-      firstName,
-      lastName,
-      email,
-      adharNumber,
-      phoneNumber,
-      dateOfBirth,
-      address,
-      addedById,
-      hrorganisationId,
-    } = bio;
-    var studentBio = {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      adharNumber: adharNumber,
-      phoneNumber: phoneNumber,
-      dateOfBirth: dateOfBirth,
-      address: address,
-      addedById: addedById,
-      hrorganisationId: hrorganisationId,
-    };
-    var {
-      personalIdentity,
-      criminal,
-      verificationAddress,
-      drugsAndSubstanceAbuse,
-    } = verification;
-    var verified = {
-      personalIdentity: personalIdentity,
-      criminal: criminal,
-      verificationAddress: verificationAddress,
-      drugsAndSubstanceAbuse: drugsAndSubstanceAbuse,
-    };
-    r = { ...studentBio, ...d, ...verified };
-
-    data.push(r);
+  var studentBio = {
+    firstName: bio.firstName,
+    lastName: bio.lastName,
+    email: bio.email,
+    dateOfBirth: bio.dateOfBirth,
+    adharNumber: bio.canidateInstitute,
+    address: bio.address,
+    addedById: bio.addedById,
+    hrorganisationId: bio.hrorganisationId,
+  };
+  var studentVerification = {
+    dateOfVerification: verification.dateOfVerification,
+    personalIdentity: verification.personalIdentity,
+    criminal: verification.criminal,
+    verificationAddress: verification.verificationAddress,
+    drugsAndSubstanceAbuse: verification.drugsAndSubstanceAbuse,
+  };
+  for (var d1 of canidateInstitute) {
+    var r1 = { ...studentBio, ...d1, ...studentVerification };
+    data.push(r1);
   }
   try {
-    for (let d of data) {
-      d.bgvCandidate = true;
-      let stdvalid = await stdValidator.addStudentSchema.validateAsync(d);
-      var saveCandidate = await stdDAL.addStudent(stdvalid);
+    for (var d of data) {
+      console.log(d);
+      var result = await canddidateDAL.updateDataByEmail(d);
     }
-    if (saveCandidate) {
+    if (result) {
       return res
         .status(200)
-        .json({ status: 200, message: "Candidate on-boarded successfully!" });
+        .json({ status: 200, message: "Candidate updated successfully" });
     }
   } catch (err) {
     return next(new AppError(err, 422));

@@ -27,10 +27,8 @@ async function fetchCandidateStudent(data) {
 
 async function fetchEmployee(data) {
   try {
-    let result = await empModel.find({
-      email: data.email,
-      bgvCandidate: true,
-    });
+    let result = await empModel.find({ email: data.email, bgvCandidate: true });
+
     return result;
   } catch (err) {
     throw err;
@@ -39,9 +37,26 @@ async function fetchEmployee(data) {
 
 async function fetchStudent(data) {
   try {
-    let result = await stdModel.find({
-      email: data.email,
-      bgvCandidate: true,
+    let result = await stdModel.find({ email: data.email, bgvCandidate: true });
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
+async function findByCandId(data) {
+  try {
+    let result = await empModel.findById({ _id: data._id });
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
+async function updateDataByEmail(data) {
+  try {
+    let result = await empModel.findOneAndUpdate({ email: data.email }, data, {
+      new: true,
     });
     return result;
   } catch (err) {
@@ -54,4 +69,6 @@ module.exports = {
   fetchCandidateStudent: fetchCandidateStudent,
   fetchEmployee: fetchEmployee,
   fetchStudent: fetchStudent,
+  updateDataByEmail: updateDataByEmail,
+  findByCandId: findByCandId,
 };

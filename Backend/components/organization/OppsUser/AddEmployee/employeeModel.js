@@ -464,23 +464,23 @@ const employeeSchema = new mongoose.Schema({
   },
 
   personalIdentity: {
-    type: String,
+    type: Boolean,
     required: false,
   },
   criminal: {
-    type: String,
+    type: Boolean,
     required: false,
   },
   verificationAddress: {
-    type: String,
+    type: Boolean,
     required: false,
   },
   drugsAndSubstanceAbuse: {
-    type: String,
+    type: Boolean,
     required: false,
   },
   salarySlipCTCdocument: {
-    type: String,
+    type: Boolean,
     required: false,
   },
 });

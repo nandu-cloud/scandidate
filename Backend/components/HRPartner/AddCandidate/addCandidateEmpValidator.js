@@ -93,11 +93,11 @@ const addEmployeeSchema = Joi.object({
   bgvCandidate: Joi.boolean().allow(null).allow(""),
   hrorganisationId: Joi.string().min(24).max(24).allow(null).allow(""),
   dateOfVerification: Joi.date().allow(null).allow(""),
-  personalIdentity: Joi.string().allow("").allow(null),
-  criminal: Joi.string().allow("").allow(null),
-  verificationAddress: Joi.string().allow("").allow(null),
-  drugsAndSubstanceAbuse: Joi.string().allow("").allow(null),
-  salarySlipCTCdocument: Joi.string().allow("").allow(null),
+  personalIdentity: Joi.boolean().allow("").allow(null),
+  criminal: Joi.boolean().allow("").allow(null),
+  verificationAddress: Joi.boolean().allow("").allow(null),
+  drugsAndSubstanceAbuse: Joi.boolean().allow("").allow(null),
+  salarySlipCTCdocument: Joi.boolean().allow("").allow(null),
 });
 const updateEmployeeSchema = Joi.object({
   //Required Fields
@@ -192,11 +192,11 @@ const updateEmployeeSchema = Joi.object({
   bgvCandidate: Joi.boolean().allow(null).allow(""),
   hrorganisationId: Joi.string().min(24).max(24).allow(null).allow(""),
   dateOfVerification: Joi.date().allow(null).allow(""),
-  personalIdentity: Joi.string().allow("").allow(null),
-  criminal: Joi.string().allow("").allow(null),
-  verificationAddress: Joi.string().allow("").allow(null),
-  drugsAndSubstanceAbuse: Joi.string().allow("").allow(null),
-  salarySlipCTCdocument: Joi.string().allow("").allow(null),
+  personalIdentity: Joi.boolean().allow("").allow(null),
+  criminal: Joi.boolean().allow("").allow(null),
+  verificationAddress: Joi.boolean().allow("").allow(null),
+  drugsAndSubstanceAbuse: Joi.boolean().allow("").allow(null),
+  salarySlipCTCdocument: Joi.boolean().allow("").allow(null),
 });
 
 module.exports = {
