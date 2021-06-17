@@ -353,7 +353,7 @@ export class ExEmployeeService {
     //       'otherInfo': empData.otherInfo,'rehireAgain': empData.rehireAgain, 'reasonForSerperation': empData.reasonForSerperation,
     //       'originalFilename': empData.originalFilename, 'status': empData.status
     // })
-    let verification = {
+    let bckverification = {
       'dateOfVerification': empData.dateOfVerification,
         'personalIdentity': empData.personalIdentity,
         'criminal': empData.personalIdentity,
@@ -361,7 +361,7 @@ export class ExEmployeeService {
         'drugsAndSubstanceAbuse': empData.personalIdentity,
         'salarySlipCTCdocument': empData.personalIdentity,
     }
-let o={bio:bioobjj,candidate:cavArr,bckverification: verification}
+let o={bio:bioobjj,candidate:cavArr,verification: bckverification}
 console.log(o)
 
 

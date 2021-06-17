@@ -1,24 +1,20 @@
-
-
-
-<form formGroup="assignnLinemanager">
-     <p>Line Managers</p><br><br>     
-     <!-- <mat-label>To</mat-label><br>
- <mat-select  class="br-btm input-w pt-5">
-
- <mat-option  value="1">Select</mat-option> -->
- <mat-option (click)="getcompanyid(item._id)" *ngFor="let item of lm; let i=index" value={{item._id}}>
-     
-<!-- <div class="lm click_me" (click)="assignLinemanager(item._id)"> -->
-{{item.firstName}} {{item.lastName}}
-<!-- </div> -->
-     </mat-option> 
-    <!-- </mat-select><br><br>   -->
-
-<div>
-<button mat-button mat-dialog-close style="top: 160px;" class="close" (click)="close()">Close</button>
-
-   <!-- <div *ngFor="let item of lm; let i=index"> -->
-<button type="button" mat-raised-button style="top: 160px;" (click)="assignLinemanager()" class="send">Forward</button>
-</div>
-</form>
+<!-- <form>
+    <label>
+        To
+    </label>
+    <mat-form-group>
+        <mat-select class="br-btm input-w pt-5">
+            <mat-option>
+                Select
+            </mat-option>
+            <mat-option (click)="getcompanyid(item._id)" *ngFor="let item of lm; let i=index" value={{item._id}}>
+                {{item.firstName}} {{item.lastName}}
+            </mat-option>
+        </mat-select>
+    </mat-form-group>
+    <div>
+        <button mat-button mat-dialog-close style="top: 160px;" class="close" (click)="close()">Close</button>
+       
+        <button type="button" mat-raised-button style="top: 160px;" (click)="assignLinemanager()" class="send">Forward</button>
+      </div>
+</form> -->

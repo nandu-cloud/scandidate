@@ -48,7 +48,7 @@ export class HrcandidateListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.displayedColumns =['name', 'phone_number', 'email', 'experience', 'action', 'actions'];
+    this.displayedColumns =['name', 'phone_number', 'email', 'action', 'actions'];
     this.EmployeeSubscription = this.empService.getCandidateList().subscribe(respObj=>{
       this.dataSource = new MatTableDataSource(respObj.data);
     })

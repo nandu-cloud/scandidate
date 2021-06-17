@@ -76,84 +76,116 @@ export class AddHrcandidateComponent implements OnInit {
   @ViewChildren(MatTab, {read: MatTab})
   public tabNodes: QueryList<MatTab>;
   public closedTabs = [];
-  
   createItem(): FormGroup{
-    return this.fb.group({
-        nameofFeedbackProvider: new FormControl(''), 
-        designationOfFeedbackProvider: new FormControl(''), 
-        employeeId: new FormControl(''),  
-        dateOfJoining: new FormControl('', [Validators.required, this.validateJoiningDate()]),
-        exitDate: new FormControl('', [Validators.required, this.validateJoiningDate()]),
-        organizationName: new FormControl(''),
-        role: new FormControl(''),
-        professionalExperience: new FormControl(''),
-        reasonForSerperation: new FormGroup({ IsSelect: new FormControl('voluntary'), voluntaryReason: new FormControl(),
-        inVoluntaryReason: new FormControl()}),
-        department: new FormControl(''),
+    return new FormGroup({ 
+      nameofFeedbackProvider: new FormControl(''), 
+          designationOfFeedbackProvider: new FormControl(''), 
+          employeeId: new FormControl(''),  
+          dateOfJoining: new FormControl('', [Validators.required, this.validateJoiningDate()]),
+          exitDate: new FormControl('', [Validators.required, this.validateJoiningDate()]),
+          organizationName: new FormControl(''),
+          role: new FormControl(''),
+          professionalExperience: new FormControl(''),
+          reasonForSerperation: new FormGroup({ IsSelect: new FormControl('voluntary'), voluntaryReason: new FormControl(),
+          inVoluntaryReason: new FormControl()}),
+          department: new FormControl(''),
 
-        selfDriven: new FormControl('', [Validators.required]),
-        creativity: new FormControl('', [Validators.required]),
-        workIndependenty: new FormControl('', [Validators.required]),
-        teamWork: new FormControl('', [Validators.required]),
-        dealConstructivelyWithPressure: new FormControl('', [Validators.required]),
-        discipline: new FormControl('', [Validators.required]),
+          selfDriven: new FormControl('', [Validators.required]),
+          creativity: new FormControl('', [Validators.required]),
+          workIndependenty: new FormControl('', [Validators.required]),
+          teamWork: new FormControl('', [Validators.required]),
+          dealConstructivelyWithPressure: new FormControl('', [Validators.required]),
+          discipline: new FormControl('', [Validators.required]),
 
-        academicKnowledge: new FormControl('', [Validators.required]),
-        productKnowledge: new FormControl('', [Validators.required]),
-        industryKnowledge: new FormControl('', [Validators.required]),
-        communicationSkills: new FormControl('', [Validators.required]),
-        rehireAgain: new FormControl(),
-        keySkills: new FormControl(),
-        empThrive: new FormControl(),
+          academicKnowledge: new FormControl('', [Validators.required]),
+          productKnowledge: new FormControl('', [Validators.required]),
+          industryKnowledge: new FormControl('', [Validators.required]),
+          communicationSkills: new FormControl('', [Validators.required]),
+          rehireAgain: new FormControl(),
+          keySkills: new FormControl(),
+          empThrive: new FormControl(),
 
-        awards: new FormGroup({
-          IsSelect: new FormControl(), remarks: new FormControl(),
-          documentName: new FormControl(), documentUpload: new FormControl(),
-          originalFilename: new FormControl(this.documentName)
-        }),
+          awards: new FormGroup({
+            IsSelect: new FormControl(), remarks: new FormControl(),
+            documentName: new FormControl(), documentUpload: new FormControl(),
+            originalFilename: new FormControl(this.documentName)
+          }),
 
-        inLeadership : new FormControl(),
-        quality: new FormGroup({ IsSelect: new FormControl(), description: new FormControl() }),
-        consistency: new FormGroup({ IsSelect: new FormControl(), description: new FormControl() }),
-        building: new FormGroup({ IsSelect: new FormControl(), description: new FormControl() }),
-        stakeholder: new FormGroup({ IsSelect: new FormControl(), description: new FormControl() }),
-        
-        otherInfo: new FormControl(),
-        discrepancyDocuments: new FormGroup({
-          IsSelect: new FormControl(), descrepencyPeriod: new FormControl(),
-          descrepencyCauseActionTaken: new FormControl(), descrepencyUploadDocument: new FormControl(),
-          originalFilename: new FormControl(this.discrepancyFileName)
-        }),
-        compliencyDiscrepancy: new FormGroup({
-          IsSelect: new FormControl(), compliencyPeriod: new FormControl(),
-          compliencyCauseActionTaken: new FormControl(), compliencyUploadDocument: new FormControl(),
-          originalFilename: new FormControl(this.compliencyFileName)
-        }),
-        warning: new FormGroup({
-          IsSelect: new FormControl(), warningPeriod: new FormControl(),
-          warningCauseActionTaken: new FormControl(), warningUploadDocument: new FormControl(),
-          originalFilename: new FormControl(this.warningFileName)
-        }),
-        showCausedIssue: new FormGroup({
-          IsSelect: new FormControl(), showCausedPeriod: new FormControl(),
-          showCausedCauseActionTaken: new FormControl(), showCausedUploadDocument: new FormControl(),
-          originalFilename: new FormControl(this.showcausedFileName)
-        }),
-        suspension: new FormGroup({
-          IsSelect: new FormControl(), suspensionPeriod: new FormControl(),
-          suspensionCauseActionTaken: new FormControl(), suspensionUploadDocument: new FormControl(),
-          originalFilename: new FormControl(this.suspensionFileName)
-        }),
-        termination: new FormGroup({
-          IsSelect: new FormControl(), terminationPeriod: new FormControl(),
-          terminationCauseActionTaken: new FormControl(), terminationUploadDocument: new FormControl(),
-          originalFilename: new FormControl(this.terminationFileName)
-        }),
-      
+          inLeadership : new FormControl(),
+          quality: new FormGroup({ IsSelect: new FormControl(), description: new FormControl() }),
+          consistency: new FormGroup({ IsSelect: new FormControl(), description: new FormControl() }),
+          building: new FormGroup({ IsSelect: new FormControl(), description: new FormControl() }),
+          stakeholder: new FormGroup({ IsSelect: new FormControl(), description: new FormControl() }),
+          
+          otherInfo: new FormControl(),
+          discrepancyDocuments: new FormGroup({
+            IsSelect: new FormControl(), descrepencyPeriod: new FormControl(),
+            descrepencyCauseActionTaken: new FormControl(), descrepencyUploadDocument: new FormControl(),
+            originalFilename: new FormControl(this.discrepancyFileName)
+          }),
+          compliencyDiscrepancy: new FormGroup({
+            IsSelect: new FormControl(), compliencyPeriod: new FormControl(),
+            compliencyCauseActionTaken: new FormControl(), compliencyUploadDocument: new FormControl(),
+            originalFilename: new FormControl(this.compliencyFileName)
+          }),
+          warning: new FormGroup({
+            IsSelect: new FormControl(), warningPeriod: new FormControl(),
+            warningCauseActionTaken: new FormControl(), warningUploadDocument: new FormControl(),
+            originalFilename: new FormControl(this.warningFileName)
+          }),
+          showCausedIssue: new FormGroup({
+            IsSelect: new FormControl(), showCausedPeriod: new FormControl(),
+            showCausedCauseActionTaken: new FormControl(), showCausedUploadDocument: new FormControl(),
+            originalFilename: new FormControl(this.showcausedFileName)
+          }),
+          suspension: new FormGroup({
+            IsSelect: new FormControl(), suspensionPeriod: new FormControl(),
+            suspensionCauseActionTaken: new FormControl(), suspensionUploadDocument: new FormControl(),
+            originalFilename: new FormControl(this.suspensionFileName)
+          }),
+          termination: new FormGroup({
+            IsSelect: new FormControl(), terminationPeriod: new FormControl(),
+            terminationCauseActionTaken: new FormControl(), terminationUploadDocument: new FormControl(),
+            originalFilename: new FormControl(this.terminationFileName)
+          })
     })
   }
+  formGroup = {
 
+    // bi0: this.fb.group({
+    _id: new FormControl(),
+    firstName: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    lastName: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    
+    adharNumber: new FormControl('', [Validators.pattern("^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$")]),
+    panNumber: new FormControl(''),
+    phoneNumber: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[1-9][0-9]{9}$')]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    dateOfBirth: new FormControl(''),
 
+    address: new FormControl(''),
+    landMark: new FormControl(),
+    city: new FormControl(),
+    state: new FormControl(),
+    pinCode: new FormControl(),
+    hrorganisationId: new FormControl(),
+    addedById: new FormControl(),
+    candidate: new FormArray([]),
+  // }),
+        
+      
+    // this.form=  fb.group({
+    //     candidate: new FormArray([])
+    //     });
+    // verification: this.fb.group({
+    personalIdentity: new FormControl(''),
+    criminal: new FormControl(''),
+    verificationAddress: new FormControl(''),
+    drugsAndSubstanceAbuse: new FormControl(''),
+    salarySlipCTCdocument: new FormControl('')
+  // })
+  }
+  candidates: FormArray
   constructor(
     public fb: FormBuilder,
     private cd: ChangeDetectorRef,
@@ -165,43 +197,6 @@ export class AddHrcandidateComponent implements OnInit {
       this.empIdedit = params.id;
       this.empIdsave =params.id;
     });
-    this.form = this.fb.group({
-
-      // bi0: this.fb.group({
-      _id: new FormControl(),
-      firstName: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      lastName: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      
-      adharNumber: new FormControl('', [Validators.pattern("^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$")]),
-      panNumber: new FormControl(''),
-      phoneNumber: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[1-9][0-9]{9}$')]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      dateOfBirth: new FormControl(''),
-
-      address: new FormControl(''),
-      landMark: new FormControl(),
-      city: new FormControl(),
-      state: new FormControl(),
-      pinCode: new FormControl(),
-      hrorganisationId: new FormControl(),
-      addedById: new FormControl(),
-    // }),
-      candidate: this.fb.array([ 
-        this.createItem()
-        ]),
-          
-        
-      // this.form=  fb.group({
-      //     candidate: new FormArray([])
-      //     });
-      // verification: this.fb.group({
-      personalIdentity: new FormControl(''),
-      criminal: new FormControl(''),
-      verificationAddress: new FormControl(''),
-      drugsAndSubstanceAbuse: new FormControl(''),
-      salarySlipCTCdocument: new FormControl('')
-    // })
-    })
    }
 
   //  get f() { return this.form.controls; }
@@ -290,40 +285,70 @@ export class AddHrcandidateComponent implements OnInit {
       console.log(resp.data[0]._id);
     })
   }
-  tabs =[""];// ["organization"];
+  tabs =[];// ["organization"];
   ngOnInit(): void {
    this.getAllOrganizationNames();
-   this.editEmployeeSubscription = this.exempService.editEmployee(this.empIdedit).subscribe(respObj => {
-    // console.log(respObj.data);
-   this.form.patchValue(respObj.data);
-   this.tabs = respObj.data.candidate;
-    // this.tabs[0] = respObj.data.candidate[0];
-    // this.tabs[1] = respObj.data.candidate[1];
-    // console.log(respObj.data.candidate[1].nameofFeedbackProvider)
-    // this.form.value.candidate.push(this.tabs[1])
-    // console.log(this.form.value.candidate);
-    // this.form.patchValue(respObj.data.candidate[1]);
-    this.form.setValue(respObj.data.candidate[1].nameofFeedbackProvider);
-    this.form.value.candidate[0].patchValue({nameofprovider:respObj.data.candidate[0].nameofprovider});
-    // this.tabs = respObj.data.candidate;
-    // var candidate = []
-    // for(var i=0 ; i < respObj.data.candidate.length;i++){
-    //   for(var j =0 ; j< this.form.value.candidate.length;j++){
-    //     if(respObj.data.candidate[i].nameofFeedbackProvider == this.form.value.candidate[j].nameofFeedbackProvider){
-    //       var obj1 = { 
-    //   nameofFeedbackProvider:this.form.value.candidate[j].nameofFeedbackProvider,
-    //          }
-    //       candidate.push(obj1);
-    //         }
-    //   }
-    //   j=0;
-    // }
-  //   var data = {
-  //     candidate
-  //  };
-   
-    // this.form.patchValue(data);
-   })
+   if(this.empIdedit){
+      this.editEmployeeSubscription = this.exempService.editEmployee(this.empIdedit).subscribe(respObj => {
+        console.log(respObj.data);
+        const { candidate: candidates } = respObj.data
+        this.form = this.fb.group(this.formGroup)
+        this.form.patchValue(respObj.data)
+        this.candidate = this.form.get('candidate') as FormArray
+        if(candidates.length > 0){
+          candidates.forEach( can => {
+            const candidateControls = this.createItem()
+            candidateControls.patchValue(can)
+            this.candidate.push(candidateControls)
+          })
+        }else{
+          this.candidate.push(this.createItem())
+        }
+        // const { candidate, ...rest } = respObj.data
+      //  if(respObj.data.candidate && respObj.data.candidate.length == 0){
+      //   this.formGroup['candidate'] = this.createItem()
+      // }else{
+      //   this.form = this.fb.group(this.formGroup)
+      //   this.form.patchValue(rest);
+      // }
+      // this.formGroup['candidate'] = this.createItem()
+      // this.form = this.fb.group(this.formGroup)
+      // this.form.patchValue(respObj.data);
+      
+      //   // this.tabs[0] = respObj.data.candidate[0];
+      //   // this.tabs[1] = respObj.data.candidate[1];
+      //   // console.log(respObj.data.candidate[1].nameofFeedbackProvider)
+      //   // this.form.value.candidate.push(this.tabs[1])
+      //   // console.log(this.form.value.candidate);
+      //   // this.form.patchValue(respObj.data.candidate[1]);
+      //   this.form.setValue(respObj.data.candidate[1].nameofFeedbackProvider);
+      //   // this.form.candidate[0].patchValue({nameofprovider:respObj.data.candidate[0].nameofprovider});
+      //   // this.tabs = respObj.data.candidate;
+      //   // var candidate = []
+      //   // for(var i=0 ; i < respObj.data.candidate.length;i++){
+      //   //   for(var j =0 ; j< this.form.value.candidate.length;j++){
+      //   //     if(respObj.data.candidate[i].nameofFeedbackProvider == this.form.value.candidate[j].nameofFeedbackProvider){
+      //   //       var obj1 = { 
+      //   //   nameofFeedbackProvider:this.form.value.candidate[j].nameofFeedbackProvider,
+      //   //          }
+      //   //       candidate.push(obj1);
+      //   //         }
+      //   //   }
+      //   //   j=0;
+      //   // }
+      // //   var data = {
+      // //     candidate
+      // //  };
+      
+      //   // this.form.patchValue(data);
+      })
+    }else{
+      
+    // this.formGroup['candidate'] = this.fb.array([this.createItem()])
+    this.form = this.fb.group(this.formGroup)
+    this.candidate = this.form.get('candidate') as FormArray
+    this.candidate.push(this.createItem())
+  }
     }
 
    
@@ -335,17 +360,19 @@ export class AddHrcandidateComponent implements OnInit {
   
   addTab(selectAfterAdding: boolean) {
     console.log(selectAfterAdding)
-    this.tabs.push('organization');
+    // this.tabs.push('organization');
     // this.selected.setValue(this.tabs.length + 1);
     // this.tabs = [ ...this.tabs, (this.tabs.length + 1) ];
-
-    this.candidate = this.form.get('candidate') as FormArray;
-    this.candidate.push(this.createItem());
-    if (selectAfterAdding) {
-      this.selected.setValue(this.tabs.length - 1);
-    }
+    // this.candidate = this.form.get('items') as FormArray;
+    // this.candidate.push(this.createItem());
+    // if (selectAfterAdding) {
+    //   this.selected.setValue(this.tabs.length - 1);
+    // }
+    // this.candidate = this.form.get('candidate') as FormArray
+    this.candidate.push(this.createItem())
 
   }
+
   removeTab(i :number) {
     this.tabs.splice(i, 1);
   }

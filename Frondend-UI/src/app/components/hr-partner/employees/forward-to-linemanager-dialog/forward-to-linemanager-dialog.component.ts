@@ -5,16 +5,13 @@ import { EmployeeService } from 'src/app/services/employee.service';
 import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ExEmployeeService } from '../../service/ex-employee.service';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 declare var $:any
-
 @Component({
   selector: 'app-forward-to-linemanager-dialog',
   templateUrl: './forward-to-linemanager-dialog.component.html',
-  styleUrls: ['./forward-to-linemanager-dialog.component.css'],
-  providers: [
-    ExEmployeeService
-  ]
+  styleUrls: ['./forward-to-linemanager-dialog.component.css']
+  // schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class ForwardToLinemanagerDialogComponent implements OnInit {
   displayedColumns : string[];
@@ -34,18 +31,17 @@ export class ForwardToLinemanagerDialogComponent implements OnInit {
   router: any;
   dataSource: any;
   assign: any;
-  constructor(
-    public linemanagerService: AdminOrganizationService,
+  constructor(public linemanagerService: AdminOrganizationService,
      public dialog: MatDialog,
-      public empService: ExEmployeeService,
+      public empService: EmployeeService,
     public dialogg: MatDialogRef<ForwardToLinemanagerDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public rowinfo: any,
     @Inject(MAT_DIALOG_DATA) public msgdataa: any
-  ) {
+     ) { 
     this.assignnLinemanager = new FormGroup({
       linemanager: new FormControl('')
     })
-   }
+  }
 
   ngOnInit(): void {
     this.getLinemanagerSubscription = this.linemanagerService.getLinemanagerData()
@@ -114,8 +110,8 @@ export class ForwardToLinemanagerDialogComponent implements OnInit {
     // this.dialogRef.close(true);
     // this.router.navigate(['/candidate-list']);
   }
-}
 
+}
 @Component({
   selector: 'dialog-elements-example-dialog',
   templateUrl: 'dialog-elements-example.html',
@@ -123,8 +119,7 @@ export class ForwardToLinemanagerDialogComponent implements OnInit {
 export class DialogElementsExampleDialog {
   @Input() methodType: any
   Message: any;
-  constructor(
-    public dialogRef: MatDialogRef<DialogElementsExampleDialog>, private router: Router,
+  constructor(public dialogRef: MatDialogRef<DialogElementsExampleDialog>, private router: Router,
     @Inject(MAT_DIALOG_DATA) public assign: any
   ) {
     console.log(this.methodType)

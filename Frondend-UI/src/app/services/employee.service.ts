@@ -70,7 +70,6 @@ export class EmployeeService {
 
   editEmployee(editEmpData): Observable<any> {
     return this.http.get(this.baseUrl + '/api/organisation/operational/' + editEmpData);
-    
   }
   saveAsEmployee(saveEmpData): Observable<any>{
     return this.http.get(this.baseUrl + '/api/organisation/operational/inprogress/getEmployee/' + saveEmpData)

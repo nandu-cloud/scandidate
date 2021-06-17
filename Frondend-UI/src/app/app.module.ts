@@ -6,7 +6,7 @@ import { MaterialModule } from './material/material.module';
 import { ChartsModule } from 'ng2-charts';
 import { from } from 'rxjs';
 import { LoginComponent } from './components/auth/login/login.component';
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { AddOrganizationComponent } from './components/scandidate/organization-onboard/add-organization/add-organization.component';
@@ -125,7 +125,6 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
