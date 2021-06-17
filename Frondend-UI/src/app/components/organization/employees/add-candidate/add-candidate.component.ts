@@ -446,7 +446,7 @@ export class AddCandidateComponent implements OnInit {
       //     this.secondFormGroup.disable()
       //  }
         console.log(respObj.data);
-        this.id = respObj.data._id;
+        this.id = respObj.data._id; 
 
         this.firstFormGroup.patchValue(respObj.data);
         this.secondFormGroup.patchValue(respObj.data);

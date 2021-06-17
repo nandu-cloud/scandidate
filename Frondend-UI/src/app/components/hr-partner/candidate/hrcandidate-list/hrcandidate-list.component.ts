@@ -11,6 +11,7 @@ import { SendBgvReportDialogComponent } from 'src/app/components/send-bgv-report
 // import { ForwardToLinemanagerDialogComponent } from '../forward-to-linemanager-dialog/forward-to-linemanager-dialog.component';
 import { AdminOrganizationService } from 'src/app/services/admin-organization.service';
 import { elementAt } from 'rxjs/operators';
+import { ExEmployeeService } from '../../service/ex-employee.service';
 // import { AssignToLinemanagerDialogComponent } from '../assign-to-linemanager-dialog/assign-to-linemanager-dialog.component';
 
 @Component({
@@ -39,14 +40,18 @@ export class HrcandidateListComponent implements OnInit {
   editEmployeeData: FormGroup;
   empIdsave: number;
   logiuser:any
+  exempService: any;
 
   constructor(
-    private formBuilder: FormBuilder,private router:Router,public empService: EmployeeService,
+    private formBuilder: FormBuilder,private router:Router,public empService: ExEmployeeService,
     private bgvService: BgvSearchService, public dialog: MatDialog, public linemanagerService: AdminOrganizationService
   ) { }
 
   ngOnInit(): void {
- 
+    this.displayedColumns =['name', 'phone_number', 'email', 'experience', 'action', 'actions'];
+    this.EmployeeSubscription = this.empService.getCandidateList().subscribe(respObj=>{
+      this.dataSource = new MatTableDataSource(respObj.data);
+    })
   }
 
   applyFilter(filterValue: string) {

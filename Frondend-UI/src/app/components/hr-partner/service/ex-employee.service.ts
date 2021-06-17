@@ -284,4 +284,112 @@ export class ExEmployeeService {
     }
     );
   }
+
+
+  // add candidate
+  addcandidate(empData): Observable<any> {
+    console.log(empData)
+    var id = window.sessionStorage.getItem('ID');
+    var organizationId = window.sessionStorage.getItem('hrorganisationId');
+    // {'firstName': string}
+    let bioobjj={
+          'firstName': empData.firstName,
+          'lastName': empData.lastName,
+          'email': empData.email,
+          'phoneNumber': empData.phoneNumber,
+          'dateOfBirth': empData.dateOfBirth == "" ? "" : empData.dateOfBirth,
+          'adharNumber': empData.adharNumber== "" ? "": empData.adharNumber,
+          'panNumber': empData.panNumber,'city': empData.city, 'state': empData.state,
+          'pinCode': empData.pinCode,
+          'address': empData.address, 'landMark': empData.landMark,'hrorganisationId': organizationId, 'addedById': id 
+    }
+
+    let cavArr=[]
+
+    empData.candidate.forEach(element => {
+      cavArr.push({
+        "organizationName": element.organizationName,
+          "nameofFeedbackProvider": element.nameofFeedbackProvider,
+           'designationOfFeedbackProvider': element.designationOfFeedbackProvider,
+          'exitDate': element.exitDate, 'dateOfJoining': element.dateOfJoining,
+               'professionalExperience': element.professionalExperience,
+            'employeeId': element.employeeId, 'role': element.role, 'department': element.department,
+              'selfDriven': element.selfDriven,
+            'creativity': element.creativity, 'informalOrganizationSenseOfBelonging': element.informalOrganizationSenseOfBelonging,
+             'initiative': element.initiative, 'workIndependenty': element.workIndependenty, 'teamWork': element.teamWork,
+            'dealConstructivelyWithPressure': element.dealConstructivelyWithPressure, 'volume': element.volume,
+             'quality': element.quality, 'consistency': element.consistency, 'punctuality': element.punctuality,
+            'discipline': element.discipline, 'academicKnowledge': element.academicKnowledge, 'productKnowledge': element.productKnowledge,
+             'industryKnowledge': element.industryKnowledge, 'communicationSkills': element.communicationSkills,
+             'awards': element.awards, 
+             'building': element.building, 'stakeholder': element.stakeholder, 'discrepancyDocuments': element.discrepancyDocuments,
+            'compliencyDiscrepancy': element.compliencyDiscrepancy, 'warning': element.warning, 'showCausedIssue': element.warning,
+             'suspension': element.suspension, 'termination': element.termination,
+            'keySkills': element.keySkills, 'empThrive': element.empThrive, 'inLeadership': element.inLeadership,
+            'otherInfo': element.otherInfo,'rehireAgain': element.rehireAgain, 'reasonForSerperation': element.reasonForSerperation,
+            'originalFilename': element.originalFilename, 'status': element.status
+      })
+    });
+
+    // cavArr.push({
+    //   "organizationName": empData.organizationName,
+    //     "nameofFeedbackProvider": empData.nameofFeedbackProvider,
+    //      'designationOfFeedbackProvider': empData.designationOfFeedbackProvider,
+    //     'exitDate': empData.exitDate, 'dateOfJoining': empData.dateOfJoining,
+    //          'professionalExperience': empData.professionalExperience,
+    //       'employeeId': empData.employeeId, 'role': empData.role, 'department': empData.department,
+    //         'selfDriven': empData.selfDriven,
+    //       'creativity': empData.creativity, 'informalOrganizationSenseOfBelonging': empData.informalOrganizationSenseOfBelonging,
+    //        'initiative': empData.initiative, 'workIndependenty': empData.workIndependenty, 'teamWork': empData.teamWork,
+    //       'dealConstructivelyWithPressure': empData.dealConstructivelyWithPressure, 'volume': empData.volume,
+    //        'quality': empData.quality, 'consistency': empData.consistency, 'punctuality': empData.punctuality,
+    //       'discipline': empData.discipline, 'academicKnowledge': empData.academicKnowledge, 'productKnowledge': empData.productKnowledge,
+    //        'industryKnowledge': empData.industryKnowledge, 'communicationSkills': empData.communicationSkills,
+    //        'awards': empData.awards, 
+    //        'building': empData.building, 'stakeholder': empData.stakeholder, 'discrepancyDocuments': empData.discrepancyDocuments,
+    //       'compliencyDiscrepancy': empData.compliencyDiscrepancy, 'warning': empData.warning, 'showCausedIssue': empData.warning,
+    //        'suspension': empData.suspension, 'termination': empData.termination,
+    //       'keySkills': empData.keySkills, 'empThrive': empData.empThrive, 'inLeadership': empData.inLeadership,
+    //       'otherInfo': empData.otherInfo,'rehireAgain': empData.rehireAgain, 'reasonForSerperation': empData.reasonForSerperation,
+    //       'originalFilename': empData.originalFilename, 'status': empData.status
+    // })
+    let verification = {
+      'dateOfVerification': empData.dateOfVerification,
+        'personalIdentity': empData.personalIdentity,
+        'criminal': empData.personalIdentity,
+        'verificationAddress': empData.personalIdentity,
+        'drugsAndSubstanceAbuse': empData.personalIdentity,
+        'salarySlipCTCdocument': empData.personalIdentity,
+    }
+let o={bio:bioobjj,candidate:cavArr,bckverification: verification}
+console.log(o)
+
+
+      return this.http.post(this.baseUrl + '/api/candidate/', o,
+       {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        })
+      }
+    );
+  }
+  
+  // get candidate list
+  public getCandidateList() : Observable<any> {
+    var hrorganisationId = window.sessionStorage.getItem('hrorganisationId');
+    return this.http.get(this.baseUrl + '/api/candidate/' + hrorganisationId);
+  }
+ // get by id candidate
+  editEmployee(editEmpData): Observable<any> {
+    return this.http.get(this.baseUrl + '/api/candidate/candidatedata/' + editEmpData);
+  }
+    // get all organization
+    public getAllOrganization() : Observable<any> {
+      return this.http.get(this.baseUrl + '/api/scandidate/organisation/listOfOrganization/');
+    }
+    // get all Institution
+    public getAllInstitution() : Observable<any>{
+      return this.http.get(this.baseUrl + '/api/scandidate/institute/');
+    }
 }

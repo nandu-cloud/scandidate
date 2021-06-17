@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
@@ -68,6 +68,7 @@ import { AddHroppuserComponent } from './components/hr-partner/users/add-hroppus
 import { HrcandidateListComponent } from './components/hr-partner/candidate/hrcandidate-list/hrcandidate-list.component';
 import { AddHrcandidateComponent } from './components/hr-partner/candidate/add-hrcandidate/add-hrcandidate.component';
 import { HrpartnerdashboardComponent } from './components/hr-partner/hrpartnerdashboard/hrpartnerdashboard/hrpartnerdashboard.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -124,6 +125,7 @@ import { HrpartnerdashboardComponent } from './components/hr-partner/hrpartnerda
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
@@ -142,7 +144,7 @@ import { HrpartnerdashboardComponent } from './components/hr-partner/hrpartnerda
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
 
   ],
-  // schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   exports: [
     ReactiveFormsModule
   ],

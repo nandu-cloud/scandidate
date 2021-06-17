@@ -77,15 +77,14 @@
 
       <!-- status Column -->
       
-      <ng-container matColumnDef="status">
+      <!-- <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef>Status</th>
         <td mat-cell *matCellDef="let element" >
           <span class="mobile-label">
             Status
           </span>
           <span class="pt-2 pb-2 pl-4 pr-4 w-24 text-center text-white text-bold capitalize" [ngStyle]="{'background-color':element.status == true ? '#6CB43B' : '#3f51b5' }">
-          <!-- {{element.status == true ? "Completed":"Initiated – HR"}}</span> -->
-          <!-- {{element.status == true ? "Completed":"Initiated – HR"}} -->
+        
         <span class="complete"  *ngIf="element.status == true">
 
         <span> Completed</span> 
@@ -99,7 +98,7 @@
         </span>
         
         </td>
-      </ng-container>
+      </ng-container> -->
 
       <ng-container matColumnDef="action" >
         <th mat-header-cell *matHeaderCellDef >Action</th>
@@ -107,12 +106,12 @@
           <span class="mobile-label">
             Action
           </span>
-          <a [routerLink]="['/add-candidate/',row._id]" *ngIf="row.status == true">
+          <!-- <a [routerLink]="['/add-candidate/',row._id]" *ngIf="row.status == true">
             <mat-icon class="action" (click)=edit(row._id)>
               <span class="bg-black text-white p-1 cursor-pointer mr-10">visibility</span>
             </mat-icon>{{row.action}}
-          </a>
-          <a [routerLink]="['/add-candidate/',row._id]" *ngIf="row.status == false"><mat-icon class="action" (click)=saveRow(row._id) ><span class="bg-black text-white p-1 cursor-pointer mr-10">border_color</span></mat-icon>{{row.action}}</a>
+          </a> -->
+          <a [routerLink]="['/add-hrcandidate/',row._id]"><mat-icon class="action" (click)=saveRow(row._id) ><span class="bg-black text-white p-1 cursor-pointer mr-10">border_color</span></mat-icon>{{row.action}}</a>
         </td>
       </ng-container>
 

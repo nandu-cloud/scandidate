@@ -13,9 +13,9 @@ th {
     enable-background:new 0 0 56.966 56.966;
     width:"512px"; height:"512px";
   }
-  .mobile-label {
-    display: none;
-  }
+ .mobile-label{
+   display: none;
+ }
   @media (min-width: 300px) {
     .mat-elevation-z8 {
       padding-left: 16px;
@@ -58,9 +58,7 @@ th {
       }
   }
   @media (max-width: 425px) {
-   .mat-header-cell{
-      display: none;
-    }
+  
     /* .table, .table tbody, .table tr, .table td{
   
     } */

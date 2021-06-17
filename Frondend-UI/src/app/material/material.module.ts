@@ -25,7 +25,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-
 @NgModule({
   declarations: [],
   imports: [
@@ -52,7 +51,9 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     MatSnackBarModule,
     MatTabsModule,
     MatTooltipModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports: [
     CommonModule,

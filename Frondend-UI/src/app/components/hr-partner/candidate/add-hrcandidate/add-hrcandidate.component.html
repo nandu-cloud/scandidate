@@ -21,29 +21,14 @@
           </svg>
         </span>
       </div>
+
+<!-- <div *ngFor="let tab of tabs; let index=index" >check<span>
+  {{tab.firstName}}
+</span></div> -->
+
       <div>
-
-        <!-- <div>
-          <button mat-raised-button
-                  class="example-add-tab-button"
-                  (click)="addTab(selectAfterAdding.checked)">
-            Add new tab
-          </button>
-          <div #selectAfterAdding> </div>
-        </div>
-
-        <mat-tab-group [selectedIndex]="selected.value"
-        (selectedIndexChange)="selected.setValue($event)">
-<mat-tab *ngFor="let tab of tabs" [label]="tab">
-Contents for  tab
-
-</mat-tab>
-</mat-tab-group> -->
-
-
-
-
-        <button mat-raised-button class="addr bg-black text-white rounded inline-flex items-center"><mat-icon>add</mat-icon>Add Institute</button>
+        <button mat-raised-button class="addr bg-black text-white rounded inline-flex items-center"
+        (click)="showSecondTab(selectAfterAdding.checked)"><mat-icon>add</mat-icon>Add Institute</button>
       <button mat-raised-button class="add bg-black text-white rounded inline-flex items-center" 
       (click)="addTab(selectAfterAdding.checked)"><mat-icon>add</mat-icon>Add Organization</button>
       <div #selectAfterAdding> </div>
@@ -51,16 +36,14 @@ Contents for  tab
         <h1 *ngIf="!id" class="hd-add">Add Candidate (BGV)</h1>
         <h1 *ngIf="id" class="hd-add">Update Candidate</h1>
       <!-- <span class="right-text"> (your ex employee){{ displayName() }} </span> -->
-      <mat-tab-group
-      [selectedIndex]="selected.value"
-      (selectedIndexChange)="selected.setValue($event)"
-        class="mat-tab-group mat-primary"
-      >
-      <div  > 
+      <mat-tab-group [selectedIndex]="selectedIndex"
+      (selectedTabChange)="tabChanged($event)"
+      class="mat-tab-group mat-primary">
+      <form [formGroup]="form"> 
         <!-- Contents for {{tab}} tab -->
-      
+        <!-- <div formGroup="bio"> -->
         <mat-tab>
-          <form [formGroup]="firstFormGroup">
+         
             <ng-template mat-tab-label>
               <mat-icon class="example-tab-icon">face</mat-icon>
               <label  class="labelHeading" 
@@ -84,12 +67,12 @@ Contents for  tab
                     tabindex="1"    
                   />
                   <mat-error
-                    *ngIf="firstFormGroup.get('firstName').errors?.required"
+                    *ngIf="form.get('firstName').errors?.required"
                   >
                     Required Employee Name.
                   </mat-error>
                   <mat-error
-                    *ngIf="firstFormGroup.get('firstName').errors?.minlength"
+                    *ngIf="form.get('firstName').errors?.minlength"
                   >
                     Employee name must be at least 5 characters long.
                   </mat-error>
@@ -102,7 +85,7 @@ Contents for  tab
                     type="text"
                     class="br-btm input-w"
                     autoComplete="off"
-                    tabindex="5"
+                    tabindex="3"
                   />
                 </mat-form-field>
                 <mat-form-field>
@@ -115,17 +98,17 @@ Contents for  tab
                     autoComplete="off"
                     required
                     pattern="^[0-9]{10}$"
-                    tabindex="7"
+                    tabindex="5"
                   />
                   <mat-error
-                    *ngIf="firstFormGroup.get('phoneNumber').errors?.required"
+                    *ngIf="form.get('phoneNumber').errors?.required"
                   >
                     Required phone number.
                   </mat-error>
                   <mat-error
                     *ngIf="
-                      !firstFormGroup.get('phoneNumber').errors?.required &&
-                      firstFormGroup.get('phoneNumber').errors?.pattern
+                      !form.get('phoneNumber').errors?.required &&
+                      form.get('phoneNumber').errors?.pattern
                     "
                   >
                     Please enter valid phone mumber
@@ -142,7 +125,7 @@ Contents for  tab
                     type="text"
                     class="br-btm input-w"
                     autoComplete="off"
-                    tabindex="14"
+                    tabindex="7"
                   />
                 </mat-form-field>
                 <mat-form-field>
@@ -153,7 +136,7 @@ Contents for  tab
                     formControlName="city"
                     class="br-btm input-w"
                     autoComplete="off"
-                    tabindex="16"
+                    tabindex="9"
                   />
                 </mat-form-field>
                 <mat-form-field>
@@ -166,7 +149,7 @@ Contents for  tab
                     class="br-btm input-w"
                     pattern="^[0-9]{5,7}$"
                     autoComplete="off"
-                    tabindex="18"
+                    tabindex="11"
                   />
                 </mat-form-field>
                 <!-- <mat-form-field>
@@ -188,12 +171,12 @@ Contents for  tab
                     tabindex="2"
                   />
                   <mat-error
-                    *ngIf="firstFormGroup.get('lastName').errors?.required"
+                    *ngIf="form.get('lastName').errors?.required"
                   >
                     Required Employee Last Name.
                   </mat-error>
                   <mat-error
-                    *ngIf="firstFormGroup.get('lastName').errors?.minlength"
+                    *ngIf="form.get('lastName').errors?.minlength"
                   >
                     Employee last name must be at least 3 characters long.
                   </mat-error>
@@ -208,7 +191,7 @@ Contents for  tab
                     autoComplete="off"
                     tabindex="4"
                   />
-                  <mat-error *ngIf="firstFormGroup.get('adharNumber').errors?.pattern">
+                  <mat-error *ngIf="form.get('adharNumber').errors?.pattern">
                     please enter valid aadhar number
                   </mat-error>
                 </mat-form-field>
@@ -223,10 +206,10 @@ Contents for  tab
                     required
                     tabindex="6"
                   />
-                  <mat-error *ngIf="firstFormGroup.get('email').errors?.required">
+                  <mat-error *ngIf="form.get('email').errors?.required">
                     Required email address
                   </mat-error>
-                  <mat-error *ngIf="firstFormGroup.get('email').errors?.email">
+                  <mat-error *ngIf="form.get('email').errors?.email">
                     Enter a valid email address
                   </mat-error>
                 </mat-form-field>
@@ -241,10 +224,10 @@ Contents for  tab
                     required
                     tabindex="6" 
                   />
-                  <mat-error *ngIf="firstFormGroup.get('email').errors?.required">
+                  <mat-error *ngIf="form.get('email').errors?.required">
                     Required email address
                   </mat-error>
-                  <mat-error *ngIf="firstFormGroup.get('email').errors?.email">
+                  <mat-error *ngIf="form.get('email').errors?.email">
                     Enter a valid email address
                   </mat-error>
                 </mat-form-field>
@@ -275,7 +258,7 @@ Contents for  tab
                     formControlName="landMark"
                     class="br-btm input-w"
                     autoComplete="off"
-                    tabindex="15"
+                    tabindex="10"
                   />
                 </mat-form-field>
                 <mat-form-field>
@@ -283,7 +266,7 @@ Contents for  tab
                   <mat-select
                     class="br-btm input-w pt-5"
                     formControlName="state"
-                    tabindex="17"
+                    tabindex="12"
                   >
                     <mat-option value="select">Select</mat-option>
                     <mat-option value="andaman">Andaman & Nicobar</mat-option>
@@ -330,66 +313,78 @@ Contents for  tab
               <a routerLink="/candidate-list"><button class="lg-button focus:outline-none focus:shadow-outline" tabindex="18" type="button">
                 Cancel
               </button></a>
-              <button tabindex="19" type="submit" class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
+              <!-- <button tabindex="19" type="submit" class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
                 Save Now
-              </button>
+              </button> -->
               <button tabindex="20" class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">
                 Next
               </button>
             </div>
             
-          </form>
+          
         </mat-tab>
-        <!-- <mat-tab-group [selectedIndex]="selected.value"
-        (selectedIndexChange)="selected.setValue($event)"> -->
-        <mat-tab matTooltip="Info about the action" 
-        *ngFor="let tab of tabs" [label]="tab">
-          <form [formGroup]="secondFormGroup">
-            <ng-template mat-tab-label>
+        
+        <div >
+        <mat-tab matTooltip="Info about the action"
+        *ngFor="let tab of tabs; let i=index" [label]="tab">
+        
+        <div formArrayName="candidate">
+        <div formGroupName=0>
+            <ng-template mat-tab-label >
               <mat-icon class="example-tab-icon">card_travel</mat-icon>
-              <label  class="labelHeading" >
-                 Organization 1
-              </label>
+            
+              <div class="labelHeading">
+                 Organization {{i+1}}
+              </div> &nbsp; &nbsp; &nbsp;
+              <mat-icon class="cls" [disabled]="tabs.length === 1"
+              (click)="removeTab(index)">close</mat-icon>
+              <!-- <button mat-icon-button (click)="closeTab(index)">
+                <mat-icon>close</mat-icon>
+              </button> -->
+
+            <!-- <ng-template mat-tab-label>
+              <div class="col" style="margin-left: 20px;">{{tab.name}}</div>
+              <button *ngIf="tab.name !== 'Main'" style="color:black" mat-icon-button (click)="closeTab(index)">
+              <mat-icon>close</mat-icon>
+            </button>
+          </ng-template> -->
+
             </ng-template>
+            
             <div class="flex flex-wrap">
             <div class="w-full md:w-1/2 sm:w-full">
-              <mat-form-field>
+              <mat-form-field>              
+
                 <mat-label>Organization Name</mat-label>
-                <input
-                  matInput
-                  formControlName="organizationName"
-                  type="text"
-                  class="br-btm input-w"
-                  autoComplete="off"
-                  readonly
-                  disabled
-                />
+                <mat-select   class="br-btm input-w" formControlName="organizationName" tabindex="2" required>
+                  <mat-option *ngFor="let itm of allOrganization" value="{{itm.organizationName}}">{{itm.organizationName}}</mat-option>
+                </mat-select>
               </mat-form-field>
-              <mat-form-field>
+              <mat-form-field >
                 <mat-label>Designation of feedback provider</mat-label>
                 <input
                   matInput
                   formControlName="designationOfFeedbackProvider"
                   type="text"
                   class="br-btm input-w"
-                  autoComplete="off"
-                  readonly
-                  disabled
+                  autoComplete="off" required
+                  
                 />
+                
               </mat-form-field>
             </div>
             <div class="w-full md:w-1/2 sm:w-full">
-              <mat-form-field>
+              <mat-form-field >
                 <mat-label>Name of feedback provider</mat-label>
                 <input
                   matInput
                   formControlName="nameofFeedbackProvider"
-                  type="text"
+                  type="text" 
                   class="br-btm input-w"
-                  autoComplete="off"
-                  readonly
-                  disabled
+                  autoComplete="off" required
                 />
+                <!-- {{ this.form.candidate.get('nameofFeedbackProvider').value }} -->
+               <!-- <input [(ngModel)]="data.nameofFeedbackProvider"> -->
               </mat-form-field>
               
             </div>
@@ -398,7 +393,7 @@ Contents for  tab
             <h2>Candidate feedback:</h2>
             <div class="flex flex-wrap">
               <div class="w-full md:w-1/2 sm:w-full">
-                <mat-form-field>
+                <mat-form-field >
                   <mat-label>Employee ID</mat-label>
                   <input
                     matInput
@@ -427,32 +422,28 @@ Contents for  tab
                   ></mat-datepicker-toggle>
                   <mat-datepicker #picker1 color="primary" startView="multi-year"></mat-datepicker>
                   <mat-error
-                    *ngIf="secondFormGroup.get('exitDate').errors?.required"
+                    *ngIf="form.get('exitDate')?.errors?.required"
                   >
                     please enter exit date
                   </mat-error>
-                  <mat-error
-                    *ngIf="
-                    secondFormGroup.get('exitDate').hasError('requiredToDate')
-                    "
-                  >
-                    Exit date should be grater than joining date</mat-error
-                  >
+                  <mat-error *ngIf=" form.get('exitDate')?.hasError('requiredToDate') " >
+                    Exit date should be grater than joining date</mat-error>
                 </mat-form-field><br>
                 
               <mat-form-field>
                 <mat-label>Professional Experience</mat-label>
                 <input  matInput formControlName="professionalExperience" type="text"  class="br-btm input-w" autoComplete='off' readonly tabindex="11">
-                <mat-error *ngIf ="secondFormGroup.get('professionalExperience').errors?.required">
+                <mat-error *ngIf ="form.get('professionalExperience')?.errors?.required">
                   please enter number.
               </mat-error>
-              <mat-error *ngIf ="secondFormGroup.get('professionalExperience').errors?.maxlength">
+              <mat-error *ngIf ="form.get('professionalExperience')?.errors?.maxlength">
                 Please enter Number
               </mat-error>
-              <mat-error *ngIf= "secondFormGroup.get('professionalExperience').errors?.pattern">
+              <mat-error *ngIf= "form.get('professionalExperience')?.errors?.pattern">
               please enter valid number
               </mat-error>
             </mat-form-field>
+            <div>
             <div formGroupName= "reasonForSerperation">
              
              <div class="reason"> 
@@ -464,10 +455,10 @@ Contents for  tab
               <mat-radio-button value="voluntary">voluntary</mat-radio-button>
               <mat-radio-button value="inVoluntary">In-Voluntary</mat-radio-button>
             </mat-radio-group>
-          </div> 
+            </div> 
             
             
-            <div *ngIf="secondFormGroup.get('reasonForSerperation.IsSelect').value == 'voluntary'">
+            <div *ngIf="form.get('reasonForSerperation.IsSelect')?.value == 'voluntary'">
               <mat-form-field>
               <mat-select class="dropdon br-btm input-w pt-4" tabindex="11" formControlName="voluntaryReason">
               <mat-option  value="1">Select</mat-option>
@@ -492,7 +483,7 @@ Contents for  tab
             </div>
             
             
-            <div *ngIf="secondFormGroup.get('reasonForSerperation.IsSelect').value == 'inVoluntary'">
+            <!-- <div *ngIf="form.get('reasonForSerperation.IsSelect').value == 'inVoluntary'"> -->
               <mat-form-field>
               <mat-select class="br-btm input-w pt-5" tabindex="11" formControlName="inVoluntaryReason"
              >
@@ -504,6 +495,7 @@ Contents for  tab
               <mat-option value="23">Value Transgression</mat-option>
              </mat-select>
             </mat-form-field>
+            <!-- </div> -->
             </div>
             </div>
               </div>
@@ -526,15 +518,14 @@ Contents for  tab
                   ></mat-datepicker-toggle>
                   <mat-datepicker #picker2 color="primary" startView="multi-year"></mat-datepicker>
                   <mat-error
-                    *ngIf="secondFormGroup.get('dateOfJoining').errors?.required"
+                    *ngIf="form.get('dateOfJoining')?.errors?.required"
                   >
                     Please enter dateOfJoining
                   </mat-error>
                   <mat-error
                     *ngIf="
-                    secondFormGroup
-                        .get('dateOfJoining')
-                        .hasError('requiredFromDate')
+                    form
+                        .get('dateOfJoining')?.hasError('requiredFromDate')
                     "
                     >Joining date should be less than exit date</mat-error
                   >
@@ -564,6 +555,7 @@ Contents for  tab
             </mat-form-field>
               </div>
             </div>
+         <!--end-->
             
             <hr style="border-width:1px;max-width: 79%;"><br>
             <div class="w-full md:w-1/2 sm:w-full">
@@ -573,7 +565,7 @@ Contents for  tab
             <h3 style="color: #6CB43B">Work Ethic:</h3>
             <div class="flex flex-wrap">
               <div class="w-full md:w-1/2 sm:w-full">
-                <mat-form-field>
+                <mat-form-field >
                   <mat-label>Self Driven / Initiative</mat-label>
                   <mat-select
                     class="br-btm input-w"
@@ -587,12 +579,12 @@ Contents for  tab
                     <mat-option [value]="4">Exceeds Expectations</mat-option>
                   </mat-select>
                   <mat-error
-                    *ngIf="secondFormGroup.get('selfDriven').errors?.required"
+                    *ngIf="form.get('selfDriven')?.errors.required"
                   >
                     please select Self Driven value
                   </mat-error>
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field >
                   <mat-label>Creativity</mat-label>
                   <mat-select
                     class="br-btm input-w"
@@ -606,12 +598,12 @@ Contents for  tab
                     <mat-option [value]="4">Exceeds Expectations</mat-option>
                   </mat-select>
                   <mat-error
-                    *ngIf="secondFormGroup.get('creativity').errors?.required"
+                    *ngIf="form.get('creativity')?.errors?.required"
                   >
                     please select Creativity
                   </mat-error>
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field >
                   <mat-label>Deals Constructively With Pressure</mat-label>
                   <mat-select
                     class="br-btm input-w"
@@ -626,7 +618,7 @@ Contents for  tab
                   </mat-select>
                   <mat-error
                     *ngIf="
-                      secondFormGroup.get('dealConstructivelyWithPressure').errors
+                      form.get('dealConstructivelyWithPressure')?.errors
                         ?.required
                     "
                   >
@@ -635,7 +627,7 @@ Contents for  tab
                 </mat-form-field>
               </div>
               <div class="w-full md:w-1/2 sm:w-full">
-                <mat-form-field>
+                <mat-form-field >
                   <mat-label>Work Independently</mat-label>
                   <mat-select
                     class="br-btm input-w"
@@ -650,13 +642,13 @@ Contents for  tab
                   </mat-select>
                   <mat-error
                     *ngIf="
-                      secondFormGroup.get('workIndependenty').errors?.required
+                      form.get('workIndependenty')?.errors?.required
                     "
                   >
                     please select Work Independently
                   </mat-error>
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field >
                   <mat-label>Team Work</mat-label>
                   <mat-select
                     class="br-btm input-w"
@@ -670,12 +662,12 @@ Contents for  tab
                     <mat-option [value]="4">Exceeds Expectations</mat-option>
                   </mat-select>
                   <mat-error
-                    *ngIf="secondFormGroup.get('teamWork').errors?.required"
+                    *ngIf="form.get('teamWork')?.errors?.required"
                   >
                     please select Team Work
                   </mat-error>
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field >
                   <mat-label>Discipline (Time Management)</mat-label>
                   <mat-select
                     class="br-btm input-w"
@@ -689,7 +681,7 @@ Contents for  tab
                     <mat-option [value]="4">Exceeds Expectations</mat-option>
                   </mat-select>
                   <mat-error
-                    *ngIf="secondFormGroup.get('discipline').errors?.required"
+                    *ngIf="form.get('discipline')?.errors?.required"
                   >
                     Please select Discipline
                   </mat-error>
@@ -700,7 +692,7 @@ Contents for  tab
             <h3 style="color: #6CB43B">Merit-quality:</h3>    
             <div class="flex flex-wrap">
               <div class="w-full md:w-1/2 sm:w-full">
-                <mat-form-field>
+                <mat-form-field >
                   <mat-label>Communication Skills</mat-label>
                   <mat-select
                     class="br-btm input-w"
@@ -715,14 +707,14 @@ Contents for  tab
                   </mat-select>
                   <mat-error
                     *ngIf="
-                    secondFormGroup.get('communicationSkills').errors?.required
+                    form.get('communicationSkills')?.errors?.required
                     "
                   >
                     please select Communication Skills
                   </mat-error>
                 </mat-form-field>
   
-                <mat-form-field>
+                <mat-form-field >
                   <mat-label>Product Understanding</mat-label>
                   <mat-select
                     class="br-btm input-w"
@@ -737,14 +729,14 @@ Contents for  tab
                   </mat-select>
                   <mat-error
                     *ngIf="
-                    secondFormGroup.get('productKnowledge').errors?.required
+                    form.get('productKnowledge')?.errors?.required
                     "
                   >
                     please select Product Understanding
                   </mat-error>
                 </mat-form-field>
   
-                <mat-form-field
+                <mat-form-field 
                       class="ml-72"
                      >
                       <textarea
@@ -757,7 +749,7 @@ Contents for  tab
                         maxlength="200" style="resize: none"
                         ></textarea>
                 </mat-form-field>
-                <mat-form-field class="rehire">
+                <mat-form-field class="rehire" >
                   <input matInput placeholder="Input" style="display: none">
                 <mat-label>Would you rehire this ex-employee in the future?</mat-label><br>
                 <mat-radio-group
@@ -776,7 +768,7 @@ Contents for  tab
               </mat-form-field>
               </div>
               <div class="w-full md:w-1/2 sm:w-full">
-                <mat-form-field>
+                <mat-form-field >
                   <mat-label>Industry / Domain Knowledge</mat-label>
                   <mat-select
                     class="br-btm input-w"
@@ -791,13 +783,13 @@ Contents for  tab
                   </mat-select>
                   <mat-error
                     *ngIf="
-                    secondFormGroup.get('industryKnowledge').errors?.required
+                    form.get('industryKnowledge')?.errors?.required
                     "
                   >
                     please select Industry / Domain Knowledge
                   </mat-error>
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field >
                   <mat-label>Subject Matter Expertise (SME)</mat-label>
                   <mat-select
                     class="br-btm input-w"
@@ -812,7 +804,7 @@ Contents for  tab
                   </mat-select>
                   <mat-error
                     *ngIf="
-                    secondFormGroup.get('academicKnowledge').errors?.required
+                    form.get('academicKnowledge')?.errors?.required
                     "
                   >
                     please select Subject Matter Expertise (SME)
@@ -833,6 +825,7 @@ Contents for  tab
             </div>    <br>
             
             <h3 style="color: #6CB43B">Recognition:</h3>
+            <div>
             <div class="flex flex-wrap mt-5" formGroupName="awards" >
               <div class="w-full md:w-1/2 sm:w-full">
                 <label class="font-bold">Awards(select one option)</label>
@@ -872,7 +865,7 @@ Contents for  tab
                 </div>
               </div>
             </div><br>
-
+            </div>
             <h3 style="color: #6CB43B">Leadership:</h3>
             <div class="flex flex-nowrap">
               <div class="w-full md:w:full sm:w-full">
@@ -895,7 +888,7 @@ Contents for  tab
                     </mat-form-field>
                   </div>
                   <div class="w-full md:w-1/2 sm:w-full">
-                    <mat-form-field
+                    <mat-form-field 
                       class="ml-72"
                      
                     >
@@ -931,7 +924,7 @@ Contents for  tab
                     </mat-form-field>
                   </div>
                   <div class="w-full md:w-1/2 sm:w-full">
-                    <mat-form-field>
+                    <mat-form-field >
                      
                       <textarea
                         matInput
@@ -949,7 +942,7 @@ Contents for  tab
   
                 <div class="flex flex-wrap" formGroupName="building">
                   <div class="w-full md:w-1/2 sm:w-full">
-                    <mat-form-field class="pt-3">
+                    <mat-form-field class="pt-3" >
                       <mat-label>Building High Performance Team</mat-label>
                       <mat-select
                         class="br-btm input-w"
@@ -964,7 +957,7 @@ Contents for  tab
                       </mat-select>
                       <mat-error
                         *ngIf="
-                        secondFormGroup.get('building.IsSelect').errors?.required
+                        form.get('building.IsSelect')?.errors?.required
                         "
                       >
                         please select Quality
@@ -972,7 +965,7 @@ Contents for  tab
                     </mat-form-field>
                   </div>
                   <div class="w-full md:w-1/2 sm:w-full">
-                    <mat-form-field
+                    <mat-form-field 
                      
                     >
                  
@@ -1007,7 +1000,7 @@ Contents for  tab
                       </mat-select>
                       <mat-error
                         *ngIf="
-                        secondFormGroup.get('stakeholder.IsSelect').errors
+                        form.get('stakeholder.IsSelect')?.errors
                             ?.required
                         "
                       >
@@ -1017,7 +1010,7 @@ Contents for  tab
                     
                   </div>
                   <div class="w-full md:w-1/2 sm:w-full">
-                    <mat-form-field
+                    <mat-form-field 
                      
                     >
                     
@@ -1034,7 +1027,7 @@ Contents for  tab
                     </mat-form-field>
                   </div>
                 </div>
-                <mat-form-field class="ml-72" style="width: 430px;">
+                <mat-form-field  class="ml-72" style="width: 430px;">
                   <textarea
                     matInput
                     formControlName="inLeadership"
@@ -1053,7 +1046,7 @@ Contents for  tab
               <div class="w-full md:w-full sm:w-full">
                 <div class="flex flex-wrap" formGroupName="discrepancyDocuments">
                   <div class="w-full md:w-1/2 sm:w-full">
-                    <mat-form-field class="mt-8 size1">
+                    <mat-form-field class="mt-8 size1" >
                       <mat-label
                         >Discrepancy in Joining Documents and
                         Declarations</mat-label
@@ -1071,9 +1064,8 @@ Contents for  tab
                   </div>
                   <div  class="w-full md:w-1/2 sm:w-full"
                   *ngIf="
-                  secondFormGroup.get('discrepancyDocuments.IsSelect')
-                      .value !== true || secondFormGroup.get('discrepancyDocuments.IsSelect')
-                      .value !== false
+                  form.get('discrepancyDocuments.IsSelect')?.value !== true ||
+                   form.get('discrepancyDocuments.IsSelect')?.value !== false
                   ">
                     <table class="issues border-collapse border-1 border-gray-200">
                       <thead>
@@ -1100,17 +1092,17 @@ Contents for  tab
                             <input 
                               matInput
                               formControlName="descrepencyPeriod"
-                              [matDatepicker]="picker1"
+                              [matDatepicker]="picker3"
                               class="date br-btm input-w"
                               placeholder="DD/MM/YYYY"
                               tabindex="2"
                             />
                             <mat-datepicker-toggle
                               matSuffix
-                              [for]="picker1"
+                              [for]="picker3"
                             ></mat-datepicker-toggle>
                             <mat-datepicker
-                              #picker1
+                              #picker3
                               color="primary"
                               class="datepicker"
                             ></mat-datepicker>
@@ -1175,11 +1167,7 @@ Contents for  tab
                   <div
                     class="w-full md:w-1/2 sm:w-full"
                     *ngIf="
-                    secondFormGroup.get('compliencyDiscrepancy.IsSelect')
-                        .value !== true || secondFormGroup.get('compliencyDiscrepancy.IsSelect')
-                        .value !== false
-                    "
-                  >
+                    form.get('compliencyDiscrepancy.IsSelect')?.value !== true || form.get('compliencyDiscrepancy.IsSelect')?.value !== false">
                     <table class="issues border-collapse border-1 border-gray-500">
                      
                       <tbody>
@@ -1191,7 +1179,7 @@ Contents for  tab
                             <input
                               matInput
                               formControlName="compliencyPeriod"
-                              [matDatepicker]="picker1"
+                              [matDatepicker]="picker4"
                               class="date br-btm input-w"
                               [min]="minDate"
                               [max]="maxDate"
@@ -1200,10 +1188,10 @@ Contents for  tab
                             />
                             <mat-datepicker-toggle
                               matSuffix
-                              [for]="picker1"
+                              [for]="picker4"
                             ></mat-datepicker-toggle>
                             <mat-datepicker
-                              #picker1
+                              #picker4
                               color="primary"
                               class="datepicker"
                             ></mat-datepicker>
@@ -1269,7 +1257,7 @@ Contents for  tab
                   </div>
                   <div
                     class="w-full md:w-1/2 sm:w-full"
-                    *ngIf="secondFormGroup.get('warning.IsSelect').value !== true || secondFormGroup.get('warning.IsSelect').value !== false"
+                    *ngIf="form.get('warning.IsSelect')?.value !== true || form.get('warning.IsSelect')?.value !== false"
                   >
                     <table class="issues border-collapse border-1 border-gray-500">
                       
@@ -1282,7 +1270,7 @@ Contents for  tab
                             <input
                               matInput
                               formControlName="warningPeriod"
-                              [matDatepicker]="picker1"
+                              [matDatepicker]="picker5"
                               class="date br-btm input-w"
                               [min]="minDate"
                               [max]="maxDate"
@@ -1291,10 +1279,10 @@ Contents for  tab
                             />
                             <mat-datepicker-toggle
                               matSuffix
-                              [for]="picker1"
+                              [for]="picker5"
                             ></mat-datepicker-toggle>
                             <mat-datepicker
-                              #picker1
+                              #picker5
                               color="primary"
                               class="datepicker"
                             ></mat-datepicker>
@@ -1345,7 +1333,7 @@ Contents for  tab
   
                 <div class="flex flex-wrap" formGroupName="showCausedIssue">
                   <div class="w-full md:w-1/2 sm:w-full">
-                    <mat-form-field class="size1">
+                    <mat-form-field class="size1" >
                       <mat-label>Show cause issued</mat-label>
                       <mat-select
                         class="br-btm input-w"
@@ -1360,7 +1348,7 @@ Contents for  tab
                   <div
                     class="w-full md:w-1/2 sm:w-full"
                     *ngIf="
-                    secondFormGroup.get('showCausedIssue.IsSelect').value !== true || secondFormGroup.get('showCausedIssue.IsSelect').value !== false
+                    form.get('showCausedIssue.IsSelect')?.value !== true || form.get('showCausedIssue.IsSelect')?.value !== false
                     "
                   >
                     <table class="issues border-collapse border-1 border-gray-500">
@@ -1374,7 +1362,7 @@ Contents for  tab
                             <input
                               matInput
                               formControlName="showCausedPeriod"
-                              [matDatepicker]="picker1"
+                              [matDatepicker]="picker6"
                               class="date br-btm input-w"
                               [min]="minDate"
                               [max]="maxDate"
@@ -1383,10 +1371,10 @@ Contents for  tab
                             />
                             <mat-datepicker-toggle
                               matSuffix
-                              [for]="picker1"
+                              [for]="picker6"
                             ></mat-datepicker-toggle>
                             <mat-datepicker
-                              #picker1
+                              #picker6
                               color="primary"
                               class="datepicker"
                             ></mat-datepicker>
@@ -1437,7 +1425,7 @@ Contents for  tab
   
                 <div class="flex flex-wrap" formGroupName="suspension">
                   <div class="w-full md:w-1/2 sm:w-full">
-                    <mat-form-field class="size1">
+                    <mat-form-field class="size1" >
                       <mat-label>Performance Improvement Plan (PIP)</mat-label>
                       <mat-select
                         class="br-btm input-w"
@@ -1453,7 +1441,7 @@ Contents for  tab
                   <div
                     class="w-full md:w-1/2 sm:w-full"
                     *ngIf="
-                    secondFormGroup.get('suspension.IsSelect').value !== true || secondFormGroup.get('suspension.IsSelect').value !== false
+                    form.get('suspension.IsSelect')?.value !== true || form.get('suspension.IsSelect')?.value !== false
                     "
                   >
                     <table class="issues border-collapse border-1 border-gray-500">
@@ -1467,7 +1455,7 @@ Contents for  tab
                             <input
                               matInput
                               formControlName="suspensionPeriod"
-                              [matDatepicker]="picker1"
+                              [matDatepicker]="picker7"
                               class="date br-btm input-w"
                               [min]="minDate"
                               [max]="maxDate"
@@ -1476,10 +1464,10 @@ Contents for  tab
                             />
                             <mat-datepicker-toggle
                               matSuffix
-                              [for]="picker1"
+                              [for]="picker7"
                             ></mat-datepicker-toggle>
                             <mat-datepicker
-                              #picker1
+                              #picker7
                               color="primary"
                               class="datepicker"
                             ></mat-datepicker>
@@ -1546,7 +1534,7 @@ Contents for  tab
                   <div
                     class="w-full md:w-1/2 sm:w-full"
                     *ngIf="
-                      secondFormGroup.get('termination.IsSelect').value !== true || secondFormGroup.get('termination.IsSelect').value !== false
+                      form.get('termination.IsSelect')?.value !== true || form.get('termination.IsSelect')?.value !== false
                     "
                   >
                     <table class="issues border-collapse border-1 border-gray-500">
@@ -1560,7 +1548,7 @@ Contents for  tab
                             <input
                               matInput
                               formControlName="terminationPeriod"
-                              [matDatepicker]="picker1"
+                              [matDatepicker]="picker8"
                               class="date br-btm input-w"
                               [min]="minDate"
                               [max]="maxDate"
@@ -1569,10 +1557,10 @@ Contents for  tab
                             />
                             <mat-datepicker-toggle
                               matSuffix
-                              [for]="picker1"
+                              [for]="picker8"
                             ></mat-datepicker-toggle>
                             <mat-datepicker
-                              #picker1
+                              #picker8
                               color="primary"
                               class="datepicker"
                             ></mat-datepicker>
@@ -1636,10 +1624,12 @@ Contents for  tab
                
               </div>
             </div>
+          
+
             <div class="flex justify-end lg:pb-6 lg:pr-48">
-              <button class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
+              <!-- <button class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
                 Save Now
-              </button>
+              </button> -->
               <button
                 class="lg-button focus:outline-none focus:shadow-outline"
                 (click)="cancel()"
@@ -1653,13 +1643,63 @@ Contents for  tab
                 Next
               </button>
             </div>
-          </form>
+          </div>   
+        </div>
         </mat-tab>
+        </div>
       <!-- </mat-tab-group> -->
  
-
+      <div *ngIf="showTab">
+       <mat-tab *ngFor="let tab of Insttabs; let i=index">
+         <!-- <div *ngIf="Insttab.index(i) < 0"> -->
+          <div >
+            <div >
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon">work</mat-icon>
+          <div class="labelHeading">
+            Institution {{i+1}}
+            <!-- <mat-icon>close</mat-icon> -->
+          </div>&nbsp; &nbsp; &nbsp;
+          <!-- <mat-icon class="cls" [disabled]="Insttabs.length === 1"
+              (click)="removeTab(i)">close</mat-icon> -->
+        </ng-template>
+        <div class="flex flex-wrap">
+          <div class="w-full md:w-1/2 sm:w-full">
+            <mat-form-field>
+              <mat-label>Institution Name</mat-label>
+              <!-- <input  matInput   type="text"  readonly class="br-btm input-w" autoComplete='off'> -->
+              <mat-select   class="br-btm input-w" tabindex="2" required>
+                <mat-option *ngFor="let itm of allIntitution" value="{{itm.organizationName}}">{{itm.organizationName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Roll No</mat-label>
+              <input  matInput type="text"  class="br-btm input-w" autoComplete='off' required tabindex="3">
+              
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Year of Joining</mat-label>
+                  <input  matInput  required type="text"  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{4}$" tabindex="9">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Year of Passing</mat-label>
+              <input  matInput required  type="text"   class="br-btm input-w" autoComplete='off' pattern="^[0-9]{4}$" tabindex="10">
+          
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Name of course</mat-label>
+                <input  matInput  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="8">
+            </mat-form-field>
+            </div>
+            </div>
+        
+      </div>
+      </div>
+        <!-- </div> -->
+       </mat-tab>
+      </div>
+      <!-- <div formGroupName="verification"> -->
         <mat-tab>
-          <form [formGroup]="thirdFormGroup">
           <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon">work</mat-icon>
             <label class="labelHeading">
@@ -1667,34 +1707,33 @@ Contents for  tab
             </label>
           </ng-template>
           
-          <mat-form-field>
+          <mat-form-field >
             <mat-label>Date of verification</mat-label>
             <input
               matInput
               type="text"
               [max]="today"
-              [matDatepicker]="picker"
+              [matDatepicker]="picker9"
               class="br-btm input-w"
               placeholder="DD/MM/YYYY"
               tabindex="8"
             />
             <mat-datepicker-toggle
               matSuffix
-              [for]="picker"
+              [for]="picker9"
             ></mat-datepicker-toggle>
-            <mat-datepicker #picker color="primary" startView="multi-year"></mat-datepicker>
+            <mat-datepicker #picker9 color="primary" startView="multi-year"></mat-datepicker>
           </mat-form-field>
           <h3>Verified by:</h3>
           <div class="flex flex-wrap">
             <div class="w-full md:w-1/2 sm:w-full">
               <mat-form-field>
                 <mat-label>Personal Identity</mat-label>
-                <mat-select
-                  class="br-btm input-w"
-                  tabindex="6"
+                <mat-select formControlName="personalIdentity"
+                  class="br-btm input-w" tabindex="6"
                 >
-                  <mat-option [value]=true>Yes</mat-option>
-                  <mat-option [value]=false>No</mat-option>
+                  <mat-option [value]="true">Yes</mat-option>
+                  <mat-option [value]="false">No</mat-option>
                 </mat-select>
                 <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
                    Please select Compliance and Discrepancy
@@ -1702,12 +1741,9 @@ Contents for  tab
               </mat-form-field>
               <mat-form-field >
                 <mat-label>Criminal</mat-label>
-                <mat-select
-                  class="br-btm input-w"
-                  tabindex="6"
-                >
-                  <mat-option [value]=true>Yes</mat-option>
-                  <mat-option [value]=false>No</mat-option>
+                <mat-select class="br-btm input-w" tabindex="6" formControlName="criminal">
+                  <mat-option [value]="true">Yes</mat-option>
+                  <mat-option [value]="false">No</mat-option>
                 </mat-select>
                 <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
                    Please select Compliance and Discrepancy
@@ -1715,12 +1751,9 @@ Contents for  tab
               </mat-form-field>
               <mat-form-field >
                 <mat-label>Address</mat-label>
-                <mat-select
-                  class="br-btm input-w"
-                  tabindex="6"
-                >
-                  <mat-option [value]=true>Yes</mat-option>
-                  <mat-option [value]=false>No</mat-option>
+                <mat-select class="br-btm input-w" tabindex="6" formControlName="verificationAddress">
+                  <mat-option [value]="true">Yes</mat-option>
+                  <mat-option [value]="false">No</mat-option>
                 </mat-select>
                 <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
                    Please select Compliance and Discrepancy
@@ -1730,12 +1763,9 @@ Contents for  tab
             <div class="w-full md:w-1/2 sm:w-full">
               <mat-form-field >
                 <mat-label>Drugs / Substance abuse</mat-label>
-                <mat-select
-                  class="br-btm input-w"
-                  tabindex="6"
-                >
-                  <mat-option [value]=true>Yes</mat-option>
-                  <mat-option [value]=false>No</mat-option>
+                <mat-select class="br-btm input-w" tabindex="6" formControlName="drugsAndSubstanceAbuse" >
+                  <mat-option [value]="true">Yes</mat-option>
+                  <mat-option [value]="false">No</mat-option>
                 </mat-select>
                 <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
                    Please select Compliance and Discrepancy
@@ -1743,12 +1773,9 @@ Contents for  tab
               </mat-form-field>
               <mat-form-field >
                 <mat-label>Salary Slip / CTC Document</mat-label>
-                <mat-select
-                  class="br-btm input-w"
-                  tabindex="6"
-                >
-                  <mat-option [value]=true>Yes</mat-option>
-                  <mat-option [value]=false>No</mat-option>
+                <mat-select formControlName="salarySlipCTCdocument" class="br-btm input-w" tabindex="6">
+                  <mat-option [value]="true">Yes</mat-option>
+                  <mat-option [value]="false">No</mat-option>
                 </mat-select>
                 <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
                    Please select Compliance and Discrepancy
@@ -1757,7 +1784,7 @@ Contents for  tab
             </div>
           </div>
           <div class="flex justify-end lg:pb-6 lg:pr-48">
-            <button class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
+            <button class="lg-button focus:outline-none focus:shadow-outline" (click)="submit()" *ngIf="showSave">
               Submit
             </button>
             <button
@@ -1767,9 +1794,10 @@ Contents for  tab
               Back
             </button>
           </div>
-        </form>
+        
         </mat-tab>
-      </div>
+      <!-- </div>  -->
+      </form>
       </mat-tab-group>
 
     </div>

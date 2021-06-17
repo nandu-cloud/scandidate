@@ -95,6 +95,7 @@ const routes: Routes = [
   { path: 'user-list', component: UserListComponent, canActivate: [AppGuard]},
   { path: 'add-hroppuser', component: AddHroppuserComponent, canActivate: [AppGuard]},
   { path: 'add-hrcandidate', component: AddHrcandidateComponent, canActivate: [AppGuard]},
+  { path: 'add-hrcandidate/:id', component: AddHrcandidateComponent, canActivate: [AppGuard]},
   { path: 'hrcandidate-list', component: HrcandidateListComponent, canActivate: [AppGuard]},
   { path: 'hrpartnerdashboard', component: HrpartnerdashboardComponent ,canActivate: [AppGuard]},
   { path: '', redirectTo: '/landing-page', pathMatch: 'full' },
