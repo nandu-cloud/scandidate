@@ -149,6 +149,7 @@ module.exports.showCandidateById = async (req, res, next) => {
       salarySlipCTCdocument: empBio.salarySlipCTCdocument,
     };
     var candidate = [];
+    var candiadteSudnt = [];
     for (var i = 0; i < totalData.length; i++) {
       var org = {
         organizationName: totalData[i].organizationName,
@@ -196,7 +197,34 @@ module.exports.showCandidateById = async (req, res, next) => {
         originalFilename: totalData[i].originalFilename,
         status: totalData[i].status,
       };
-      candidate.push(org);
+
+      var inst = {
+        // Student
+        nameofFeedbackProvider: totalData[i].nameofFeedbackProvider,
+        designationOfFeedbackProvider:
+          totalData[i].designationOfFeedbackProvider,
+        nameOfCourse: totalData[i].nameOfCourse,
+        yearOfJoining: totalData[i].yearOfJoining,
+        yearOfPassout: totalData[i].yearOfPassout,
+        studentType: totalData[i].studentType,
+        extraActivity: totalData[i].extraActivity,
+        extraActivityDocumentName: totalData[i].extraActivityDocumentName,
+        noOfEductionalDocuments: totalData[i].noOfEductionalDocuments,
+        eductionalDocumentNames: totalData[i].eductionalDocumentNames,
+        originalFilename: totalData[i].originalFilename,
+        originalFilenames: totalData[i].originalFilenames,
+        purposeOfFile: totalData[i].purposeOfFile,
+        roll: totalData[i].roll,
+        intitutionName: totalData[i].intitutionName,
+        instituteId: totalData[i].instituteId,
+        status: totalData[i].status,
+      };
+      if (org.organizationName) {
+        candidate.push(org);
+      }
+      if (inst.intitutionName) {
+        candiadteSudnt.push(inst);
+      }
     }
     var candidateData = {
       firstName: empBio.firstName,
@@ -217,6 +245,7 @@ module.exports.showCandidateById = async (req, res, next) => {
       drugsAndSubstanceAbuse: empBio.drugsAndSubstanceAbuse,
       salarySlipCTCdocument: empBio.salarySlipCTCdocument,
       candidate: candidate,
+      candiadteSudnt: candiadteSudnt,
     };
     return res
       .status(200)
@@ -299,6 +328,64 @@ module.exports.updateCandidateData = async (req, res, next) => {
       return res
         .status(200)
         .json({ status: 200, message: "Candidate updated successfully!" });
+    }
+  } catch (err) {
+    return next(new AppError(err, 422));
+  }
+};
+
+module.exports.saveStudent = async (req, res, next) => {
+  const { bio, candidate, verification } = req.body;
+  var data = [];
+  for (var d of candidate) {
+    var {
+      firstName,
+      lastName,
+      email,
+      adharNumber,
+      phoneNumber,
+      dateOfBirth,
+      address,
+      addedById,
+      hrorganisationId,
+    } = bio;
+    var studentBio = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      adharNumber: adharNumber,
+      phoneNumber: phoneNumber,
+      dateOfBirth: dateOfBirth,
+      address: address,
+      addedById: addedById,
+      hrorganisationId: hrorganisationId,
+    };
+    var {
+      personalIdentity,
+      criminal,
+      verificationAddress,
+      drugsAndSubstanceAbuse,
+    } = verification;
+    var verified = {
+      personalIdentity: personalIdentity,
+      criminal: criminal,
+      verificationAddress: verificationAddress,
+      drugsAndSubstanceAbuse: drugsAndSubstanceAbuse,
+    };
+    r = { ...studentBio, ...d, ...verified };
+
+    data.push(r);
+  }
+  try {
+    for (let d of data) {
+      d.bgvCandidate = true;
+      let stdvalid = await stdValidator.addStudentSchema.validateAsync(d);
+      var saveCandidate = await stdDAL.addStudent(stdvalid);
+    }
+    if (saveCandidate) {
+      return res
+        .status(200)
+        .json({ status: 200, message: "Candidate on-boarded successfully!" });
     }
   } catch (err) {
     return next(new AppError(err, 422));

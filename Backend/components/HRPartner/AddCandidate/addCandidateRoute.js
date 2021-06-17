@@ -8,6 +8,10 @@ router
   .post(authJWT.verifyJWTToken, candidateController.saveCandidate);
 
 router
+  .route("/addStudent")
+  .post(authJWT.verifyJWTToken, candidateController.saveStudent);
+
+router
   .route("/:hrorganisationId")
   .get(authJWT.verifyJWTToken, candidateController.showCandidate);
 
