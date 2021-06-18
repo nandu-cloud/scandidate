@@ -21,6 +21,10 @@ module.exports.saveCandidate = async (req, res, next) => {
     dateOfBirth: bio.dateOfBirth,
     adharNumber: bio.canidateInstitute,
     address: bio.address,
+    city: bio.city,
+    state: bio.state,
+    landMark: bio.landMark,
+    zipCode: bio.zipCode,
     addedById: bio.addedById,
     hrorganisationId: bio.hrorganisationId,
   };
@@ -267,6 +271,10 @@ module.exports.updateCandidateData = async (req, res, next) => {
     dateOfBirth: bio.dateOfBirth,
     adharNumber: bio.canidateInstitute,
     address: bio.address,
+    city: bio.city,
+    state: bio.state,
+    landMark: bio.landMark,
+    zipCode: bio.zipCode,
     addedById: bio.addedById,
     hrorganisationId: bio.hrorganisationId,
   };
