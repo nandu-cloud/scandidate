@@ -66,7 +66,7 @@ async function addStudentCsv(path, id, instituteId1) {
 async function getAllUsers(data) {
   try {
     let result = await studentModel
-      .find({ instituteId: data.instituteId })
+      .find({ instituteId: data.instituteId, bgvCandidate: undefined })
       .sort({ _id: -1 })
       .lean();
     return result;
