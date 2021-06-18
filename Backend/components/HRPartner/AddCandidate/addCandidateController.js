@@ -17,6 +17,7 @@ module.exports.saveCandidate = async (req, res, next) => {
     firstName: bio.firstName,
     lastName: bio.lastName,
     email: bio.email,
+    phoneNumber: bio.phoneNumber,
     dateOfBirth: bio.dateOfBirth,
     adharNumber: bio.canidateInstitute,
     address: bio.address,
@@ -68,6 +69,7 @@ module.exports.showCandidate = async (req, res, next) => {
       hrorganisationId: req.params.hrorganisationId,
     });
     let result = emp.concat(stud);
+    console.log(result);
 
     let newEmployeeArray = [];
     let uniqueEmployee = {};
