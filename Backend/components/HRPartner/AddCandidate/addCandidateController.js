@@ -45,7 +45,6 @@ module.exports.saveCandidate = async (req, res, next) => {
   }
   try {
     for (let d of data) {
-      console.log(d);
       if (d.hasOwnProperty("organizationName")) {
         d.bgvCandidate = true;
         var orgName = d.organizationName;
@@ -86,8 +85,6 @@ module.exports.showCandidate = async (req, res, next) => {
       hrorganisationId: req.params.hrorganisationId,
     });
     let result = emp.concat(stud);
-    console.log(result);
-
     let newEmployeeArray = [];
     let uniqueEmployee = {};
     for (let i in result) {
