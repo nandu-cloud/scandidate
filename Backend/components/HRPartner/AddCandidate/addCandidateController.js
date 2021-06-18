@@ -106,7 +106,18 @@ module.exports.showCandidateById = async (req, res, next) => {
       email: email,
     });
     var totalData = studentData.concat(empData);
-    var empBio = totalData[0];
+
+    for (var i = 0; i < totalData.length; i++) {
+      var org = totalData[i];
+      if (org.organizationName != null) {
+        var key = i;
+        break;
+      } else {
+        key = 0;
+      }
+    }
+
+    var empBio = totalData[key];
     var bio = {
       firstName: empBio.firstName,
       lastName: empBio.lastName,
