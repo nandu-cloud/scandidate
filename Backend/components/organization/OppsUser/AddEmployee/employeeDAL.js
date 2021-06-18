@@ -21,7 +21,7 @@ async function addEmployee(data) {
 async function getAllUsers(data) {
   try {
     let result = await employeeModel
-      .find({ organisationId: data.organisationId })
+      .find({ organisationId: data.organisationId, bgvCandidate: undefined })
       .sort({ _id: -1 })
       .lean();
     return result;

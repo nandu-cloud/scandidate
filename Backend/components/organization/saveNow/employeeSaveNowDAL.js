@@ -16,7 +16,7 @@ async function saveEmployee(data) {
 async function getIncompleteCandidate(data) {
   try {
     let result = await empModel
-      .find({ organisationId: data.organisationId })
+      .find({ organisationId: data.organisationId, bgvCandidate: undefined })
       .sort({ _id: -1 })
       .lean();
     return result;

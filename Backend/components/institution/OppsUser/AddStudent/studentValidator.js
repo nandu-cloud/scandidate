@@ -36,7 +36,6 @@ const addStudentSchema = Joi.object({
   // CANDIDATE
   nameofFeedbackProvider: Joi.string().allow("").allow(null),
   designationOfFeedbackProvider: Joi.string().allow("").allow(null),
-  candidateInstituteId: Joi.string().min(24).max(24).allow(null).allow(""),
   bgvCandidate: Joi.boolean().allow(null).allow(""),
   hrorganisationId: Joi.string().min(24).max(24).allow(null).allow(""),
   dateOfVerification: Joi.date().allow(null).allow(""),
@@ -82,7 +81,6 @@ const updateStudentSchema = Joi.object({
   // CANDIDATE
   nameofFeedbackProvider: Joi.string().allow("").allow(null),
   designationOfFeedbackProvider: Joi.string().allow("").allow(null),
-  candidateInstituteId: Joi.string().min(24).max(24).allow(null).allow(""),
   bgvCandidate: Joi.boolean().allow(null).allow(""),
   hrorganisationId: Joi.string().min(24).max(24).allow(null).allow(""),
   dateOfVerification: Joi.date().allow(null).allow(""),

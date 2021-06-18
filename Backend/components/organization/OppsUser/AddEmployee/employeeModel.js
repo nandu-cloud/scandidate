@@ -446,10 +446,6 @@ const employeeSchema = new mongoose.Schema({
     required: false,
   },
 
-  candidateOrganisationId: {
-    type: Schema.Types.ObjectId,
-    required: false,
-  },
   bgvCandidate: {
     type: Boolean,
     required: false,

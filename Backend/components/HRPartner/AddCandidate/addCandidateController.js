@@ -152,7 +152,7 @@ module.exports.showCandidateById = async (req, res, next) => {
       var org = {
         _id: totalData[i]._id,
         organizationName: totalData[i].organizationName,
-        candidateOrganisationId: totalData[i].candidateOrganisationId,
+        organisationId: totalData[i].organisationId,
         nameofFeedbackProvider: totalData[i].nameofFeedbackProvider,
         designationOfFeedbackProvider:
           totalData[i].designationOfFeedbackProvider,
@@ -201,7 +201,7 @@ module.exports.showCandidateById = async (req, res, next) => {
         // Student
         _id: totalData[i]._id,
         nameofFeedbackProvider: totalData[i].nameofFeedbackProvider,
-        candidateInstituteId: totalData[i].candidateInstituteId,
+        instituteId: totalData[i].instituteId,
         designationOfFeedbackProvider:
           totalData[i].designationOfFeedbackProvider,
         nameOfCourse: totalData[i].nameOfCourse,
