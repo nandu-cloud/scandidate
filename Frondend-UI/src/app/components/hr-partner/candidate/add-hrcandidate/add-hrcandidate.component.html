@@ -1827,13 +1827,13 @@
               </div>
             </div>
             <div class="flex justify-end lg:pb-6 lg:pr-48">
-              <button class="lg-button focus:outline-none focus:shadow-outline" (click)="submit()" *ngIf="showSave">
+              <button class="lg-button focus:outline-none focus:shadow-outline" (click)="submit()" *ngIf=!empIdedit>
                 Submit
               </button>
               <button  tabindex="31"
               class="lg-button focus:outline-none focus:shadow-outline"
-              (click)="update(id)"
-              *ngIf="id" >
+              (click)="update(id)" *ngIf=empIdedit
+               >
               update
               </button>
               <button
