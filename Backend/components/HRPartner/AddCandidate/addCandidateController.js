@@ -263,6 +263,7 @@ module.exports.updateCandidateData = async (req, res, next) => {
     firstName: bio.firstName,
     lastName: bio.lastName,
     email: bio.email,
+    phoneNumber: bio.phoneNumber,
     dateOfBirth: bio.dateOfBirth,
     adharNumber: bio.canidateInstitute,
     address: bio.address,
