@@ -13,7 +13,10 @@ router
 
 router
   .route("/candidatedata/:candidateId")
-  .get(authJWT.verifyJWTToken, candidateController.showCandidateById)
+  .get(authJWT.verifyJWTToken, candidateController.showCandidateById);
+
+router
+  .route("/candidateUpdate")
   .put(authJWT.verifyJWTToken, candidateController.updateCandidateData);
 
 module.exports = router;

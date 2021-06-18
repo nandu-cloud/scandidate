@@ -13,44 +13,25 @@ module.exports.saveCandidate = async (req, res, next) => {
     var r = { ...bio, ...d, ...verification };
     data.push(r);
   }
+  var studentBio = {
+    firstName: bio.firstName,
+    lastName: bio.lastName,
+    email: bio.email,
+    dateOfBirth: bio.dateOfBirth,
+    adharNumber: bio.canidateInstitute,
+    address: bio.address,
+    addedById: bio.addedById,
+    hrorganisationId: bio.hrorganisationId,
+  };
+  var studentVerification = {
+    dateOfVerification: verification.dateOfVerification,
+    personalIdentity: verification.personalIdentity,
+    criminal: verification.criminal,
+    verificationAddress: verification.verificationAddress,
+    drugsAndSubstanceAbuse: verification.drugsAndSubstanceAbuse,
+  };
   for (var d1 of canidateInstitute) {
-    var {
-      dateOfVerification,
-      personalIdentity,
-      criminal,
-      verificationAddress,
-      drugsAndSubstanceAbuse,
-    } = verification;
-    var verified = {
-      dateOfVerification: dateOfVerification,
-      personalIdentity: personalIdentity,
-      criminal: criminal,
-      verificationAddress: verificationAddress,
-      drugsAndSubstanceAbuse: drugsAndSubstanceAbuse,
-    };
-    var {
-      firstName,
-      lastName,
-      email,
-      dateOfBirth,
-      adharNumber,
-      addedById,
-      phoneNumber,
-      address,
-      hrorganisationId,
-    } = bio;
-    var studentBio = {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      dateOfBirth: dateOfBirth,
-      adharNumber: adharNumber,
-      addedById: addedById,
-      phoneNumber: phoneNumber,
-      address: address,
-      hrorganisationId: hrorganisationId,
-    };
-    var r1 = { ...studentBio, ...d1, ...verified };
+    var r1 = { ...studentBio, ...d1, ...studentVerification };
     data.push(r1);
   }
   try {
@@ -150,7 +131,9 @@ module.exports.showCandidateById = async (req, res, next) => {
     var candiadteSudnt = [];
     for (var i = 0; i < totalData.length; i++) {
       var org = {
+        _id: totalData[i]._id,
         organizationName: totalData[i].organizationName,
+        candidateOrganisationId: totalData[i].candidateOrganisationId,
         nameofFeedbackProvider: totalData[i].nameofFeedbackProvider,
         designationOfFeedbackProvider:
           totalData[i].designationOfFeedbackProvider,
@@ -197,7 +180,9 @@ module.exports.showCandidateById = async (req, res, next) => {
       };
       var inst = {
         // Student
+        _id: totalData[i]._id,
         nameofFeedbackProvider: totalData[i].nameofFeedbackProvider,
+        candidateInstituteId: totalData[i].candidateInstituteId,
         designationOfFeedbackProvider:
           totalData[i].designationOfFeedbackProvider,
         nameOfCourse: totalData[i].nameOfCourse,
@@ -253,7 +238,6 @@ module.exports.showCandidateById = async (req, res, next) => {
 };
 
 module.exports.updateCandidateData = async (req, res, next) => {
-  let candidateId = mongoose.Types.ObjectId(req.params.candidateId);
   const { bio, candidate, canidateInstitute, verification } = req.body;
   var data = [];
   for (var d of candidate) {
@@ -283,10 +267,23 @@ module.exports.updateCandidateData = async (req, res, next) => {
   }
   try {
     for (var d of data) {
-      console.log(d);
-      var result = await canddidateDAL.updateDataByEmail(d);
+      if (d.hasOwnProperty("organizationName")) {
+        var getCand = await canddidateDAL.findByCandIdEmployee({ _id: d._id });
+        if (getCand) {
+          var candidateUpdate = await canddidateDAL.updateDataByIdEmp(d);
+        } else {
+          candidateUpdate = await empDAL.addEmployee(d);
+        }
+      } else {
+        var getStd = await canddidateDAL.findByCandIdStudent({ _id: d._id });
+        if (getStd) {
+          candidateUpdate = await canddidateDAL.updateDataByIdStd(d);
+        } else {
+          candidateUpdate = await stdDAL.addStudent(d);
+        }
+      }
     }
-    if (result) {
+    if (candidateUpdate) {
       return res
         .status(200)
         .json({ status: 200, message: "Candidate updated successfully" });
