@@ -30,9 +30,11 @@ module.exports.saveCandidate = async (req, res, next) => {
     verificationAddress: verification.verificationAddress,
     drugsAndSubstanceAbuse: verification.drugsAndSubstanceAbuse,
   };
-  for (var d1 of canidateInstitute) {
-    var r1 = { ...studentBio, ...d1, ...studentVerification };
-    data.push(r1);
+  if (canidateInstitute) {
+    for (var d1 of canidateInstitute) {
+      var r1 = { ...studentBio, ...d1, ...studentVerification };
+      data.push(r1);
+    }
   }
   try {
     for (let d of data) {
@@ -272,9 +274,11 @@ module.exports.updateCandidateData = async (req, res, next) => {
     verificationAddress: verification.verificationAddress,
     drugsAndSubstanceAbuse: verification.drugsAndSubstanceAbuse,
   };
-  for (var d1 of canidateInstitute) {
-    var r1 = { ...studentBio, ...d1, ...studentVerification };
-    data.push(r1);
+  if (canidateInstitute) {
+    for (var d1 of canidateInstitute) {
+      var r1 = { ...studentBio, ...d1, ...studentVerification };
+      data.push(r1);
+    }
   }
   try {
     for (var d of data) {
