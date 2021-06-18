@@ -1,5 +1,7 @@
 const AppError = require("../../../helpers/appError");
 const empDAL = require("../../organization/OppsUser/AddEmployee/employeeDAL");
+const orgDAL = require("../../scandidate/organization-onboard/orgOnboardDAL");
+const instDAL = require("../../scandidate/institute-onboard/instituteOnboardDAL");
 const stdDAL = require("../../institution/OppsUser/AddStudent/studentDAL");
 const canddidateDAL = require("./addCandidateDAL");
 const empValidator = require("./addCandidateEmpValidator");
@@ -46,10 +48,21 @@ module.exports.saveCandidate = async (req, res, next) => {
       console.log(d);
       if (d.hasOwnProperty("organizationName")) {
         d.bgvCandidate = true;
+        var orgName = d.organizationName;
+        var { _id } = await orgDAL.findOrganisation({
+          organizationName: orgName,
+        });
+        d.organisationId = _id.toString();
         let empValid = await empValidator.addEmployeeSchema.validateAsync(d);
         var saveCandidate = await empDAL.addEmployee(empValid);
       } else {
         d.bgvCandidate = true;
+        var insName = d.intitutionName;
+        console.log(insName);
+        var { _id } = await instDAL.findInstitution({
+          instituteName: insName,
+        });
+        d.instituteId = _id.toString();
         let stdvalid = await stdValidator.addStudentSchema.validateAsync(d);
         var saveCandidate = await stdDAL.addStudent(stdvalid);
       }
@@ -135,6 +148,10 @@ module.exports.showCandidateById = async (req, res, next) => {
       panNumber: empBio.panNumber,
       dateOfBirth: empBio.dateOfBirth,
       address: empBio.address,
+      city: empBio.city,
+      state: empBio.state,
+      landMark: empBio.landMark,
+      zipCode: empBio.zipCode,
       addedById: empBio.addedById,
       hrorganisationId: empBio.hrorganisationId,
     };
@@ -236,6 +253,10 @@ module.exports.showCandidateById = async (req, res, next) => {
       panNumber: empBio.panNumber,
       dateOfBirth: empBio.dateOfBirth,
       address: empBio.address,
+      city: empBio.city,
+      state: empBio.state,
+      landMark: empBio.landMark,
+      zipCode: empBio.zipCode,
       addedById: empBio.addedById,
       hrorganisationId: empBio.hrorganisationId,
 
