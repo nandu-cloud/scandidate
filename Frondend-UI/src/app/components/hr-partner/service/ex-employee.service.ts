@@ -301,7 +301,8 @@ export class ExEmployeeService {
           'adharNumber': empData.adharNumber== "" ? "": empData.adharNumber,
           'panNumber': empData.panNumber,'city': empData.city, 'state': empData.state,
           'pinCode': empData.pinCode,
-          'address': empData.address, 'landMark': empData.landMark,'hrorganisationId': organizationId, 'addedById': id 
+          'address': empData.address, 'landMark': empData.landMark,
+          'hrorganisationId': organizationId, 'addedById': id 
     }
 
     let cavArr=[]
@@ -331,28 +332,21 @@ export class ExEmployeeService {
       })
     });
 
-    // cavArr.push({
-    //   "organizationName": empData.organizationName,
-    //     "nameofFeedbackProvider": empData.nameofFeedbackProvider,
-    //      'designationOfFeedbackProvider': empData.designationOfFeedbackProvider,
-    //     'exitDate': empData.exitDate, 'dateOfJoining': empData.dateOfJoining,
-    //          'professionalExperience': empData.professionalExperience,
-    //       'employeeId': empData.employeeId, 'role': empData.role, 'department': empData.department,
-    //         'selfDriven': empData.selfDriven,
-    //       'creativity': empData.creativity, 'informalOrganizationSenseOfBelonging': empData.informalOrganizationSenseOfBelonging,
-    //        'initiative': empData.initiative, 'workIndependenty': empData.workIndependenty, 'teamWork': empData.teamWork,
-    //       'dealConstructivelyWithPressure': empData.dealConstructivelyWithPressure, 'volume': empData.volume,
-    //        'quality': empData.quality, 'consistency': empData.consistency, 'punctuality': empData.punctuality,
-    //       'discipline': empData.discipline, 'academicKnowledge': empData.academicKnowledge, 'productKnowledge': empData.productKnowledge,
-    //        'industryKnowledge': empData.industryKnowledge, 'communicationSkills': empData.communicationSkills,
-    //        'awards': empData.awards, 
-    //        'building': empData.building, 'stakeholder': empData.stakeholder, 'discrepancyDocuments': empData.discrepancyDocuments,
-    //       'compliencyDiscrepancy': empData.compliencyDiscrepancy, 'warning': empData.warning, 'showCausedIssue': empData.warning,
-    //        'suspension': empData.suspension, 'termination': empData.termination,
-    //       'keySkills': empData.keySkills, 'empThrive': empData.empThrive, 'inLeadership': empData.inLeadership,
-    //       'otherInfo': empData.otherInfo,'rehireAgain': empData.rehireAgain, 'reasonForSerperation': empData.reasonForSerperation,
-    //       'originalFilename': empData.originalFilename, 'status': empData.status
-    // })
+    let inst = []
+    empData.canidateInstitute.forEach(element => {
+      inst.push({
+        "nameofFeedbackProvider":  element.nameofFeedbackProvider,
+        "designationOfFeedbackProvider": element.designationOfFeedbackProvider,
+        "intitutionName": element.intitutionName,
+        "candidateInstituteId": element.candidateInstituteId,
+        "nameOfCourse": element.nameOfCourse,
+        "yearOfJoining": element.yearOfJoining,
+        "yearOfPassout": element.yearOfPassout,
+        "studentType": element.yearOfPassout,
+        "roll": element.roll
+      })
+    });
+   
     let bckverification = {
       'dateOfVerification': empData.dateOfVerification,
         'personalIdentity': empData.personalIdentity,
@@ -361,7 +355,11 @@ export class ExEmployeeService {
         'drugsAndSubstanceAbuse': empData.personalIdentity,
         'salarySlipCTCdocument': empData.personalIdentity,
     }
-let o={bio:bioobjj,candidate:cavArr,verification: bckverification}
+let o={bio:bioobjj,
+       candidate:cavArr,
+       verification: bckverification,
+       canidateInstitute: inst
+      }
 console.log(o)
 
 
@@ -383,6 +381,85 @@ console.log(o)
  // get by id candidate
   editEmployee(editEmpData): Observable<any> {
     return this.http.get(this.baseUrl + '/api/candidate/candidatedata/' + editEmpData);
+  }
+  // Update candidate
+  updateCandidate(candupdateData): Observable<any> {
+    let bioobjj={
+      'firstName': candupdateData.firstName,
+      'lastName': candupdateData.lastName,
+      'email': candupdateData.email,
+      'phoneNumber': candupdateData.phoneNumber,
+      'dateOfBirth': candupdateData.dateOfBirth == "" ? "" : candupdateData.dateOfBirth,
+      'adharNumber': candupdateData.adharNumber== "" ? "": candupdateData.adharNumber,
+      'panNumber': candupdateData.panNumber,'city': candupdateData.city, 'state': candupdateData.state,
+      'pinCode': candupdateData.pinCode,
+      'address': candupdateData.address, 'landMark': candupdateData.landMark
+      }
+
+      let cavArr=[]
+
+      candupdateData.candidate.forEach(element => {
+        cavArr.push({
+          "organizationName": element.organizationName,
+            "nameofFeedbackProvider": element.nameofFeedbackProvider,
+            'designationOfFeedbackProvider': element.designationOfFeedbackProvider,
+            'exitDate': element.exitDate, 'dateOfJoining': element.dateOfJoining,
+                'professionalExperience': element.professionalExperience,
+              'employeeId': element.employeeId, 'role': element.role, 'department': element.department,
+                'selfDriven': element.selfDriven,
+              'creativity': element.creativity, 'informalOrganizationSenseOfBelonging': element.informalOrganizationSenseOfBelonging,
+              'initiative': element.initiative, 'workIndependenty': element.workIndependenty, 'teamWork': element.teamWork,
+              'dealConstructivelyWithPressure': element.dealConstructivelyWithPressure, 'volume': element.volume,
+              'quality': element.quality, 'consistency': element.consistency, 'punctuality': element.punctuality,
+              'discipline': element.discipline, 'academicKnowledge': element.academicKnowledge, 'productKnowledge': element.productKnowledge,
+              'industryKnowledge': element.industryKnowledge, 'communicationSkills': element.communicationSkills,
+              'awards': element.awards, 
+              'building': element.building, 'stakeholder': element.stakeholder, 'discrepancyDocuments': element.discrepancyDocuments,
+              'compliencyDiscrepancy': element.compliencyDiscrepancy, 'warning': element.warning, 'showCausedIssue': element.warning,
+              'suspension': element.suspension, 'termination': element.termination,
+              'keySkills': element.keySkills, 'empThrive': element.empThrive, 'inLeadership': element.inLeadership,
+              'otherInfo': element.otherInfo,'rehireAgain': element.rehireAgain, 'reasonForSerperation': element.reasonForSerperation,
+              'originalFilename': element.originalFilename, 'status': element.status
+        })
+      });
+
+      let inst = []
+      candupdateData.candidate.forEach(element => {
+        inst.push({
+          'nameofFeedbackProvider':  element.nameofFeedbackProvider,
+          'designationOfFeedbackProvider': element.designationOfFeedbackProvider,
+          'intitutionName': element.intitutionName,
+          'candidateInstituteId': element.candidateInstituteId,
+          'nameOfCourse': element.nameOfCourse,
+          'yearOfJoining': element.yearOfJoining,
+          'yearOfPassout': element.yearOfPassout,
+          'studentType': element.yearOfPassout,
+          'roll': element.roll
+        })
+      });
+
+      let bckverification = {
+        'dateOfVerification': candupdateData.dateOfVerification,
+          'personalIdentity': candupdateData.personalIdentity,
+          'criminal': candupdateData.personalIdentity,
+          'verificationAddress': candupdateData.personalIdentity,
+          'drugsAndSubstanceAbuse': candupdateData.personalIdentity,
+          'salarySlipCTCdocument': candupdateData.personalIdentity,
+      }
+      let update={bio:bioobjj,
+        candidate:cavArr,
+        verification: bckverification,
+        canidateInstitute: inst
+        }
+    console.log(update)
+    return this.http.put(this.baseUrl + '/api/candidate/candidateUpdate', update,
+       {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        })
+      }
+    );
   }
     // get all organization
     public getAllOrganization() : Observable<any> {

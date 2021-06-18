@@ -1651,11 +1651,12 @@
           </div>
         <!-- </mat-tab-group> -->
   
-        <div *ngIf="showTab">
-        <mat-tab *ngFor="let tab of Insttabs; let i=index">
+        <div >
+        <mat-tab *ngFor="let candInt of form.get('canidateInstitute')['controls']; let i=index" [label]="i"
+        formArrayName="canidateInstitute">
           <!-- <div *ngIf="Insttab.index(i) < 0"> -->
-            <div >
-              <div >
+            <div [formGroupName]="i">
+              
           <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon">work</mat-icon>
             <div class="labelHeading">
@@ -1670,35 +1671,74 @@
               <mat-form-field>
                 <mat-label>Institution Name</mat-label>
                 <!-- <input  matInput   type="text"  readonly class="br-btm input-w" autoComplete='off'> -->
-                <mat-select   class="br-btm input-w" tabindex="2" required>
-                  <mat-option *ngFor="let itm of allIntitution" value="{{itm.organizationName}}">{{itm.organizationName}}</mat-option>
+                <mat-select   class="br-btm input-w" formControlName="intitutionName" tabindex="2">
+                  <mat-option *ngFor="let itm of allIntitution" value="{{itm.instituteName}}">{{itm.instituteName}}</mat-option>
                 </mat-select>
               </mat-form-field>
               <mat-form-field>
                 <mat-label>Roll No</mat-label>
-                <input  matInput type="text"  class="br-btm input-w" autoComplete='off' required tabindex="3">
+                <input  matInput type="text" formControlName="roll" class="br-btm input-w" autoComplete='off' required tabindex="3">
                 
               </mat-form-field>
               <mat-form-field>
                 <mat-label>Year of Joining</mat-label>
-                    <input  matInput  required type="text"  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{4}$" tabindex="9">
+                    <input  matInput formControlName="yearOfJoining" required type="text"  class="br-btm input-w" autoComplete='off' pattern="^[0-9]{4}$" tabindex="9">
               </mat-form-field>
               <mat-form-field>
                 <mat-label>Year of Passing</mat-label>
-                <input  matInput required  type="text"   class="br-btm input-w" autoComplete='off' pattern="^[0-9]{4}$" tabindex="10">
+                <input  matInput required formControlName="yearOfPassout" type="text"   class="br-btm input-w" autoComplete='off' pattern="^[0-9]{4}$" tabindex="10">
             
               </mat-form-field>
               <mat-form-field>
                 <mat-label>Name of course</mat-label>
-                  <input  matInput  type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="8">
+                  <input  matInput formControlName="nameOfCourse" type="text"  required  class="br-btm input-w" autoComplete='off' tabindex="8">
+              </mat-form-field>
+              <mat-form-field class="enrollment">
+                <mat-label class="enr">Enrollment type</mat-label>
+                <input matInput placeholder="Input" style="display: none" required><br><br>
+                <mat-radio-group class="radio" formControlName="studentType" required>
+                  <mat-radio-button value="regular" tabindex="11">Regular</mat-radio-button>&nbsp;
+                  <mat-radio-button value="correspondance" tabindex="12">Correspondance</mat-radio-button>
+                </mat-radio-group>
+                <!-- <mat-error *ngIf ="firstFormGroup.get('studentType').errors?.required">
+                  Required Student Type
+                </mat-error> -->
+                <!-- <mat-error *ngIf ="firstFormGroup.get('studentType').errors?.required">
+                  Required Student Type 
+                </mat-error> -->
               </mat-form-field>
               </div>
               </div>
-          
+              <div class="flex flex-wrap">
+                <div class="w-full md:w-1/2 sm:w-full">
+                  <mat-form-field>
+                    <mat-label>Name Of FeedbackProvider</mat-label>
+                    <input  matInput type="text" formControlName="nameofFeedbackProvider" class="br-btm input-w" autoComplete='off' required tabindex="3">
+                    
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Designation Of FeedbackProvider</mat-label>
+                    <input  matInput type="text" formControlName="designationOfFeedbackProvider" class="br-btm input-w" autoComplete='off' required tabindex="3">
+                    
+                  </mat-form-field>
+             </div>
+             </div>
+       
         </div>
+        <div class="flex justify-end lg:pb-6 lg:pr-48">
+          <a routerLink="/candidate-list"><button class="lg-button focus:outline-none focus:shadow-outline" tabindex="18" type="button">
+            Cancel
+          </button></a>
+          <!-- <button tabindex="19" type="submit" class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
+            Save Now
+          </button> -->
+          <button tabindex="20" class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">
+            Next
+          </button>
         </div>
           <!-- </div> -->
         </mat-tab>
+        
         </div>
         <!-- <div formGroupName="verification"> -->
           <mat-tab>
@@ -1715,10 +1755,11 @@
                 matInput
                 type="text"
                 [max]="today"
+                formControlName="dateOfVerification"
                 [matDatepicker]="picker9"
                 class="br-btm input-w"
                 placeholder="DD/MM/YYYY"
-                tabindex="8"
+                tabindex="1"
               />
               <mat-datepicker-toggle
                 matSuffix
@@ -1732,10 +1773,10 @@
                 <mat-form-field>
                   <mat-label>Personal Identity</mat-label>
                   <mat-select formControlName="personalIdentity"
-                    class="br-btm input-w" tabindex="6"
+                    class="br-btm input-w" tabindex="2"
                   >
-                    <mat-option [value]="true">Yes</mat-option>
-                    <mat-option [value]="false">No</mat-option>
+                    <mat-option value="true">Yes</mat-option>
+                    <mat-option value="false">No</mat-option>
                   </mat-select>
                   <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
                     Please select Compliance and Discrepancy
@@ -1743,9 +1784,9 @@
                 </mat-form-field>
                 <mat-form-field >
                   <mat-label>Criminal</mat-label>
-                  <mat-select class="br-btm input-w" tabindex="6" formControlName="criminal">
-                    <mat-option [value]="true">Yes</mat-option>
-                    <mat-option [value]="false">No</mat-option>
+                  <mat-select class="br-btm input-w" tabindex="6" formControlName="criminal" tabindex="4">
+                    <mat-option value="true">Yes</mat-option>
+                    <mat-option value="false">No</mat-option>
                   </mat-select>
                   <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
                     Please select Compliance and Discrepancy
@@ -1753,9 +1794,9 @@
                 </mat-form-field>
                 <mat-form-field >
                   <mat-label>Address</mat-label>
-                  <mat-select class="br-btm input-w" tabindex="6" formControlName="verificationAddress">
-                    <mat-option [value]="true">Yes</mat-option>
-                    <mat-option [value]="false">No</mat-option>
+                  <mat-select class="br-btm input-w" tabindex="6" formControlName="verificationAddress" tabindex="6">
+                    <mat-option value="true">Yes</mat-option>
+                    <mat-option value="false">No</mat-option>
                   </mat-select>
                   <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
                     Please select Compliance and Discrepancy
@@ -1765,9 +1806,9 @@
               <div class="w-full md:w-1/2 sm:w-full">
                 <mat-form-field >
                   <mat-label>Drugs / Substance abuse</mat-label>
-                  <mat-select class="br-btm input-w" tabindex="6" formControlName="drugsAndSubstanceAbuse" >
-                    <mat-option [value]="true">Yes</mat-option>
-                    <mat-option [value]="false">No</mat-option>
+                  <mat-select class="br-btm input-w" tabindex="6" formControlName="drugsAndSubstanceAbuse" tabindex="2">
+                    <mat-option value="true">Yes</mat-option>
+                    <mat-option value="false">No</mat-option>
                   </mat-select>
                   <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
                     Please select Compliance and Discrepancy
@@ -1775,9 +1816,9 @@
                 </mat-form-field>
                 <mat-form-field >
                   <mat-label>Salary Slip / CTC Document</mat-label>
-                  <mat-select formControlName="salarySlipCTCdocument" class="br-btm input-w" tabindex="6">
-                    <mat-option [value]="true">Yes</mat-option>
-                    <mat-option [value]="false">No</mat-option>
+                  <mat-select formControlName="salarySlipCTCdocument" class="br-btm input-w" tabindex="5">
+                    <mat-option value="true">Yes</mat-option>
+                    <mat-option value="false">No</mat-option>
                   </mat-select>
                   <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
                     Please select Compliance and Discrepancy
@@ -1788,6 +1829,12 @@
             <div class="flex justify-end lg:pb-6 lg:pr-48">
               <button class="lg-button focus:outline-none focus:shadow-outline" (click)="submit()" *ngIf="showSave">
                 Submit
+              </button>
+              <button  tabindex="31"
+              class="lg-button focus:outline-none focus:shadow-outline"
+              (click)="update(id)"
+              *ngIf="id" >
+              update
               </button>
               <button
                 class="lg-button focus:outline-none focus:shadow-outline"

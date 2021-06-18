@@ -5,15 +5,13 @@ import { EmployeeService } from 'src/app/services/employee.service';
 import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 declare var $:any
 @Component({
-  selector: 'app-forward-to-linemanager-dialog',
-  templateUrl: './forward-to-linemanager-dialog.component.html',
-  styleUrls: ['./forward-to-linemanager-dialog.component.css']
-  // schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  selector: 'app-candidate-forward-linemanager-dialog',
+  templateUrl: './candidate-forward-linemanager-dialog.component.html',
+  styleUrls: ['./candidate-forward-linemanager-dialog.component.css']
 })
-export class ForwardToLinemanagerDialogComponent implements OnInit {
+export class CandidateForwardLinemanagerDialogComponent implements OnInit {
   displayedColumns : string[];
   getLinemanagerSubscription : Subscription;
   assignLinemanagerSubscription : Subscription;
@@ -31,13 +29,14 @@ export class ForwardToLinemanagerDialogComponent implements OnInit {
   router: any;
   dataSource: any;
   assign: any;
-  constructor(public linemanagerService: AdminOrganizationService,
+  constructor(
+    public linemanagerService: AdminOrganizationService,
      public dialog: MatDialog,
       public empService: EmployeeService,
-    public dialogg: MatDialogRef<ForwardToLinemanagerDialogComponent>,
+    // public dialogg: MatDialogRef<ForwardToLinemanagerDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public rowinfo: any,
     @Inject(MAT_DIALOG_DATA) public msgdataa: any
-     ) { 
+  ) { 
     this.assignnLinemanager = new FormGroup({
       linemanager: new FormControl('')
     })
@@ -47,11 +46,10 @@ export class ForwardToLinemanagerDialogComponent implements OnInit {
     this.getLinemanagerSubscription = this.linemanagerService.getLinemanagerData()
     .subscribe(respObj => {
       this.lm = respObj.data;
-      this.methodtype = 'assigned';
+      // this.methodtype = 'assigned';
      
     })
   }
-
   getcompanyid(id) {
     this.data1 = id;
     console.log('hiii'+ this.data1);
@@ -62,6 +60,7 @@ export class ForwardToLinemanagerDialogComponent implements OnInit {
     });
     dialogRef.componentInstance.methodType = this.methodtype;
   }
+
   assignLinemanager() {
 
     console.log(this.employeeid)
@@ -96,7 +95,7 @@ export class ForwardToLinemanagerDialogComponent implements OnInit {
         }
           )
         this.methodtype = 'assign';
-        this.dialogg.close(this.rowinfo);      
+        // this.dialogg.close(this.rowinfo);      
        }
         // this.openDialog();   
       }, err=> {
@@ -113,8 +112,8 @@ export class ForwardToLinemanagerDialogComponent implements OnInit {
 
 }
 @Component({
-  selector: 'dialog-elements-example-dialog',
-  templateUrl: 'dialog-elements-example.html',
+  selector: 'candidate-dialog-elements-example-dialog',
+  templateUrl: 'candidate-dialog-elements-example.html',
 })
 export class DialogElementsExampleDialog {
   @Input() methodType: any

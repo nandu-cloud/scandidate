@@ -25,6 +25,7 @@ export class AddHrcandidateComponent implements OnInit {
   fifthFormGroup: FormGroup;
   sixthFormGroup: FormGroup;
   candidate: FormArray;
+  canidateInstitute: FormArray;
   form: FormGroup;
 
   employeeSubscription: Subscription;
@@ -63,6 +64,7 @@ export class AddHrcandidateComponent implements OnInit {
   savenowSubscription: Subscription;
   duplicateSubscription: Subscription;
   candidateSubscription: Subscription;
+  candUpdateSubscription: Subscription;
   showSave: boolean = true;
   submitValue : boolean = true;
   empIdsave : any;
@@ -78,7 +80,8 @@ export class AddHrcandidateComponent implements OnInit {
   public closedTabs = [];
   createItem(): FormGroup{
     return new FormGroup({ 
-      nameofFeedbackProvider: new FormControl(''), 
+          // _id: new FormControl(''),
+          nameofFeedbackProvider: new FormControl(''), 
           designationOfFeedbackProvider: new FormControl(''), 
           employeeId: new FormControl(''),  
           dateOfJoining: new FormControl('', [Validators.required, this.validateJoiningDate()]),
@@ -86,7 +89,8 @@ export class AddHrcandidateComponent implements OnInit {
           organizationName: new FormControl(''),
           role: new FormControl(''),
           professionalExperience: new FormControl(''),
-          reasonForSerperation: new FormGroup({ IsSelect: new FormControl('voluntary'), voluntaryReason: new FormControl(),
+          reasonForSerperation: new FormGroup({ IsSelect: new FormControl('voluntary'),
+          voluntaryReason: new FormControl(),
           inVoluntaryReason: new FormControl()}),
           department: new FormControl(''),
 
@@ -150,9 +154,20 @@ export class AddHrcandidateComponent implements OnInit {
           })
     })
   }
+  createInst(): FormGroup{
+    return new FormGroup({
+      nameofFeedbackProvider: new FormControl(''),
+      designationOfFeedbackProvider: new FormControl(''),
+      intitutionName:new FormControl(''),
+      candidateInstituteId:new FormControl(''),
+      nameOfCourse:new FormControl(''),
+      yearOfJoining: new FormControl(''),
+      yearOfPassout:new FormControl(''),
+      studentType: new FormControl(''),
+      roll:new FormControl('')
+    })
+  }
   formGroup = {
-
-    // bi0: this.fb.group({
     _id: new FormControl(),
     firstName: new FormControl('', [Validators.required, Validators.minLength(3)]),
     lastName: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -171,21 +186,16 @@ export class AddHrcandidateComponent implements OnInit {
     hrorganisationId: new FormControl(),
     addedById: new FormControl(),
     candidate: new FormArray([]),
-  // }),
-        
-      
-    // this.form=  fb.group({
-    //     candidate: new FormArray([])
-    //     });
-    // verification: this.fb.group({
+    canidateInstitute: new FormArray([]),
+    dateOfVerification: new FormControl(),
     personalIdentity: new FormControl(''),
     criminal: new FormControl(''),
     verificationAddress: new FormControl(''),
     drugsAndSubstanceAbuse: new FormControl(''),
     salarySlipCTCdocument: new FormControl('')
-  // })
   }
   candidates: FormArray
+  canidateInstitutes: FormArray
   constructor(
     public fb: FormBuilder,
     private cd: ChangeDetectorRef,
@@ -288,13 +298,17 @@ export class AddHrcandidateComponent implements OnInit {
   tabs =[];// ["organization"];
   ngOnInit(): void {
    this.getAllOrganizationNames();
+   this.getAllIntitutionName();
    if(this.empIdedit){
       this.editEmployeeSubscription = this.exempService.editEmployee(this.empIdedit).subscribe(respObj => {
         console.log(respObj.data);
         const { candidate: candidates } = respObj.data
+        const { canidateInstitute: canidateInstitutes } = respObj.data
         this.form = this.fb.group(this.formGroup)
         this.form.patchValue(respObj.data)
         this.candidate = this.form.get('candidate') as FormArray
+        this.canidateInstitute = this.form.get('canidateInstitute') as FormArray
+
         if(candidates.length > 0){
           candidates.forEach( can => {
             const candidateControls = this.createItem()
@@ -304,6 +318,19 @@ export class AddHrcandidateComponent implements OnInit {
         }else{
           this.candidate.push(this.createItem())
         }
+
+        if(canidateInstitutes || canidateInstitutes.length > 0) {
+          canidateInstitutes.forEach( inst => {
+             const canidateInstituteControls = this.createInst()
+             canidateInstituteControls.patchValue(inst)
+             this.canidateInstitute.push(canidateInstituteControls)
+          })
+        }
+        else{
+          this.canidateInstitute.push(this.createInst())
+        }
+
+        // this.id = respObj.data._id;
         // const { candidate, ...rest } = respObj.data
       //  if(respObj.data.candidate && respObj.data.candidate.length == 0){
       //   this.formGroup['candidate'] = this.createItem()
@@ -348,6 +375,8 @@ export class AddHrcandidateComponent implements OnInit {
     this.form = this.fb.group(this.formGroup)
     this.candidate = this.form.get('candidate') as FormArray
     this.candidate.push(this.createItem())
+    this.canidateInstitute = this.form.get('canidateInstitute') as FormArray
+    this.canidateInstitute.push(this.createInst())
   }
     }
 
@@ -402,7 +431,8 @@ export class AddHrcandidateComponent implements OnInit {
   showTab= false;
   showSecondTab(selectAfterAdding: boolean){
     this.showTab = true;
-    this.Insttabs.push(selectAfterAdding);
+    console.log(selectAfterAdding)
+    this.canidateInstitute.push(this.createInst());
     // this.tabGroup.selectedIndex = this.Insttabs.length - 1;
   }
   // close() {
@@ -499,9 +529,17 @@ export class AddHrcandidateComponent implements OnInit {
 
 
   update(id: number) {
- 
+    this.candUpdateSubscription = this.exempService.updateCandidate(this.form.value).subscribe(resp =>{
+      this.methodtype="update";
+      this.openDialog();
+    }, err =>{
+      this.setMessage = { message: err.error.message, error: true };
+      this.error = this.setMessage.message;
+      throw this.setMessage.message;
+    })
+  }
 }
-}
+
 
 @Component({
   selector: 'dialog-elements-example-dialog',
@@ -518,7 +556,7 @@ export class DialogElementsExampleDialog {
   ngOnInit() {
     console.log(this.methodType)
     if (this.methodType == 'update') {
-      this.Message = "Ex-Employee  Updated successfully"
+      this.Message = "Candidate Updated successfully"
     } else if(this.methodType == 'save') {
       this.Message = "Ex-Employee Feedback successfully Submitted"
     } else if(this.methodType == 'duplicate') {

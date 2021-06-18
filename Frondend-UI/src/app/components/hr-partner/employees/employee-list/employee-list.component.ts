@@ -8,11 +8,12 @@ import { EmployeeService } from '../../../../services/employee.service';
 import { BgvSearchService } from 'src/app/services/bgv-search.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SendBgvReportDialogComponent } from 'src/app/components/send-bgv-report-dialog/send-bgv-report-dialog.component';
-import { ForwardToLinemanagerDialogComponent } from '../forward-to-linemanager-dialog/forward-to-linemanager-dialog.component';
+
 import { AdminOrganizationService } from 'src/app/services/admin-organization.service';
 import { elementAt } from 'rxjs/operators';
 import { AssignToLinemanagerDialogComponent } from '../assign-to-linemanager-dialog/assign-to-linemanager-dialog.component';
 import { ExEmployeeService } from '../../service/ex-employee.service';
+import { CandidateForwardLinemanagerDialogComponent } from '../candidate-forward-linemanager-dialog/candidate-forward-linemanager-dialog.component';
 
 @Component({
   selector: 'app-employee-list',
@@ -100,14 +101,14 @@ export class EmployeeListComponent implements OnInit {
   }
   // var dataa = 
   forwordToLinemanager(itm, i): void {
-      const dialogRef = this.dialog.open(ForwardToLinemanagerDialogComponent,
+      const dialogRef = this.dialog.open(CandidateForwardLinemanagerDialogComponent,
          { width: '450px',height:'400px', data : {
              rowinfo : itm
          }
     }
     
     );
-    dialogRef.componentInstance.employeeid = itm
+    // dialogRef.componentInstance.employeeid = itm
     // console.log("gggggggggggggggggggggg", itm);
     dialogRef.afterClosed().subscribe( result => { 
       if (result){

@@ -69,6 +69,8 @@ import { HrcandidateListComponent } from './components/hr-partner/candidate/hrca
 import { AddHrcandidateComponent } from './components/hr-partner/candidate/add-hrcandidate/add-hrcandidate.component';
 import { HrpartnerdashboardComponent } from './components/hr-partner/hrpartnerdashboard/hrpartnerdashboard/hrpartnerdashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CandidateForwardLinemanagerDialogComponent } from './components/hr-partner/employees/candidate-forward-linemanager-dialog/candidate-forward-linemanager-dialog.component';
+// import { ForwardToLinemanagerDialogComponent } from './components/hr-partner/employees/forward-to-linemanager-dialog/forward-to-linemanager-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -121,7 +123,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AddHroppuserComponent,
     HrcandidateListComponent,
     AddHrcandidateComponent,
-    HrpartnerdashboardComponent
+    HrpartnerdashboardComponent,
+    CandidateForwardLinemanagerDialogComponent
   ],
   imports: [
     BrowserModule,

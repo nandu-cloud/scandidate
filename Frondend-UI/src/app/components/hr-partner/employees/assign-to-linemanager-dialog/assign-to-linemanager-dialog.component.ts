@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { AdminOrganizationService } from 'src/app/services/admin-organization.service';
-import { ForwardToLinemanagerDialogComponent } from '../forward-to-linemanager-dialog/forward-to-linemanager-dialog.component';
+import { CandidateForwardLinemanagerDialogComponent } from '../candidate-forward-linemanager-dialog/candidate-forward-linemanager-dialog.component';
 
 @Component({
   selector: 'app-assign-to-linemanager-dialog',
@@ -30,12 +30,12 @@ export class AssignToLinemanagerDialogComponent implements OnInit {
   }
 forwordToLinemanager(): void {
       this.dialoge.close()
-      const dialogRef = this.dialog.open(ForwardToLinemanagerDialogComponent,
+      const dialogRef = this.dialog.open(CandidateForwardLinemanagerDialogComponent,
          { width: '450px',height:'400px'
     }
     
     );
-    dialogRef.componentInstance.employeeid = this.rowinfo.rowinfo
+    // dialogRef.componentInstance.employeeid = this.rowinfo.rowinfo
     console.log()
     dialogRef.afterClosed().subscribe( result => { 
       // this.dataSource.data = result;
