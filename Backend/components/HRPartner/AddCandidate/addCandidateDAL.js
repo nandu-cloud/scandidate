@@ -84,6 +84,37 @@ async function updateDataByIdStd(data) {
   }
 }
 
+async function checkDuplicateEmpRecord(data) {
+  try {
+    var result = await empModel.findOne({
+      $and: [
+        { organizationName: data.organizationName },
+        { email: data.email },
+      ],
+    });
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
+async function checkDuplicateStudentRecord(data) {
+  try {
+    var result = await stdModel.findOne({
+      $and: [
+        {
+          intitutionName: data.intitutionName,
+        },
+
+        { email: data.email },
+      ],
+    });
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
 module.exports = {
   fetchCandidateEmployeeData: fetchCandidateEmployeeData,
   fetchCandidateStudent: fetchCandidateStudent,
@@ -93,4 +124,6 @@ module.exports = {
   findByCandIdEmployee: findByCandIdEmployee,
   findByCandIdStudent: findByCandIdStudent,
   updateDataByIdStd: updateDataByIdStd,
+  checkDuplicateEmpRecord: checkDuplicateEmpRecord,
+  checkDuplicateStudentRecord: checkDuplicateStudentRecord,
 };

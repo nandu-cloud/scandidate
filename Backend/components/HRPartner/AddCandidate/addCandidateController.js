@@ -44,6 +44,8 @@ module.exports.saveCandidate = async (req, res, next) => {
     }
   }
   try {
+    var duplicate = [];
+    var uniqueData = [];
     for (let d of data) {
       if (d.hasOwnProperty("organizationName")) {
         d.bgvCandidate = true;
@@ -53,23 +55,68 @@ module.exports.saveCandidate = async (req, res, next) => {
         });
         d.organisationId = _id.toString();
         let empValid = await empValidator.addEmployeeSchema.validateAsync(d);
-        var saveCandidate = await empDAL.addEmployee(empValid);
+        var dataEmployee = {
+          organizationName: d.organizationName,
+          email: d.email,
+        };
+        var checkDuplicate = await canddidateDAL.checkDuplicateEmpRecord(
+          dataEmployee
+        );
+        if (checkDuplicate) {
+          duplicate.push(checkDuplicate.organizationName);
+          continue;
+        } else {
+          var saveCandidate = await empDAL.addEmployee(empValid);
+        }
       } else {
         d.bgvCandidate = true;
         var insName = d.intitutionName;
-        console.log(insName);
         var { _id } = await instDAL.findInstitution({
           instituteName: insName,
         });
         d.instituteId = _id.toString();
         let stdvalid = await stdValidator.addStudentSchema.validateAsync(d);
-        var saveCandidate = await stdDAL.addStudent(stdvalid);
+        var dataStduent = {
+          intitutionName: d.intitutionName,
+          email: d.email,
+        };
+        var checkDuplicate = await canddidateDAL.checkDuplicateStudentRecord(
+          dataStduent
+        );
+        if (checkDuplicate) {
+          duplicate.push(checkDuplicate.intitutionName);
+        } else {
+          saveCandidate = await stdDAL.addStudent(stdvalid);
+        }
       }
     }
-    if (saveCandidate) {
-      return res
-        .status(200)
-        .json({ status: 200, message: "Candidate on-boarded successfully!" });
+    uniqueData = [...new Set(duplicate)];
+    if (duplicate.length > 0) {
+      var duplicateNames = "";
+      for (var i = 0; i < uniqueData.length; i++) {
+        if (i < uniqueData.length - 1) {
+          duplicateNames = duplicateNames + uniqueData[i] + ",";
+        } else {
+          duplicateNames = duplicateNames + uniqueData[i];
+        }
+      }
+    }
+    if (saveCandidate === undefined && duplicate.length > 0) {
+      return res.status(200).json({
+        status: 200,
+        message: `Record already exists for ${duplicateNames}`,
+      });
+    } else if (saveCandidate && duplicate.length > 0) {
+      return res.status(200).json({
+        status: 200,
+        message: `Partital saved, record exists for ${duplicateNames}`,
+      });
+    } else {
+      if (saveCandidate) {
+        return res
+          .status(200)
+          .json({ status: 200, message: "Candidate on-boarded successfully!" });
+      }
     }
   } catch (err) {
     return next(new AppError(err, 422));
@@ -134,7 +181,7 @@ module.exports.showCandidateById = async (req, res, next) => {
         key = 0;
       }
     }
-
+    console.log(key);
     var empBio = totalData[key];
     var bio = {
       firstName: empBio.firstName,

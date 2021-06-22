@@ -94,7 +94,6 @@ async function getEmployeByAddedById(data) {
 }
 
 async function checkDuplicateEmpRecord(data) {
-  console.log(data);
   try {
     var result = await employeeModel.find({
       $and: [
