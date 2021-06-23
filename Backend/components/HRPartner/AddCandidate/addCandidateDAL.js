@@ -90,6 +90,8 @@ async function checkDuplicateEmpRecord(data) {
       $and: [
         { organizationName: data.organizationName },
         { email: data.email },
+        { dateOfJoining: data.dateOfJoining },
+        { exitDate: data.exitDate },
       ],
     });
     return result;

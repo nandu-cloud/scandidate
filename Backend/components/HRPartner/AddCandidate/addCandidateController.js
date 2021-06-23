@@ -58,6 +58,8 @@ module.exports.saveCandidate = async (req, res, next) => {
         var dataEmployee = {
           organizationName: d.organizationName,
           email: d.email,
+          dateOfJoining: d.dateOfJoining,
+          exitDate: d.exitDate,
         };
         var checkDuplicate = await canddidateDAL.checkDuplicateEmpRecord(
           dataEmployee

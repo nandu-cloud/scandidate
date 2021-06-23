@@ -189,14 +189,14 @@ const updateEmployeeSchema = Joi.object({
   // CANDIDATE
   nameofFeedbackProvider: Joi.string().allow("").allow(null),
   designationOfFeedbackProvider: Joi.string().allow("").allow(null),
-  bgvCandidate: Joi.boolean().allow(null).allow(""),
+  bgvCandidate: Joi.boolean().allow(null),
   hrorganisationId: Joi.string().min(24).max(24).allow(null).allow(""),
   dateOfVerification: Joi.date().allow(null).allow(""),
-  personalIdentity: Joi.boolean().allow("").allow(null),
+  personalIdentity: Joi.boolean().allow(null),
   criminal: Joi.boolean().allow("").allow(null),
-  verificationAddress: Joi.boolean().allow("").allow(null),
-  drugsAndSubstanceAbuse: Joi.boolean().allow("").allow(null),
-  salarySlipCTCdocument: Joi.boolean().allow("").allow(null),
+  verificationAddress: Joi.boolean().allow(null),
+  drugsAndSubstanceAbuse: Joi.boolean().allow(null),
+  salarySlipCTCdocument: Joi.boolean().allow(null),
 });
 
 module.exports = {
