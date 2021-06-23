@@ -347,13 +347,20 @@ export class ExEmployeeService {
       })
     });
    
-    let bckverification = {
+    let bckverification:{
+       'dateOfVerification': string,
+        'personalIdentity': boolean,
+         'criminal': boolean,
+         'verificationAddress': boolean,
+         'drugsAndSubstanceAbuse': boolean,
+         'salarySlipCTCdocument': boolean
+    } = {
       'dateOfVerification': empData.dateOfVerification,
         'personalIdentity': empData.personalIdentity,
-        'criminal': empData.personalIdentity,
-        'verificationAddress': empData.personalIdentity,
-        'drugsAndSubstanceAbuse': empData.personalIdentity,
-        'salarySlipCTCdocument': empData.personalIdentity,
+        'criminal': empData.criminal,
+        'verificationAddress': empData.verificationAddress,
+        'drugsAndSubstanceAbuse': empData.drugsAndSubstanceAbuse,
+        'salarySlipCTCdocument': empData.salarySlipCTCdocument,
     }
 let o={bio:bioobjj,
        candidate:cavArr,
@@ -440,13 +447,20 @@ console.log(o)
         })
       });
 
-      let bckverification = {
+      let bckverification: {
+        'dateOfVerification': string,
+        'personalIdentity': boolean,
+         'criminal': boolean,
+         'verificationAddress': boolean,
+         'drugsAndSubstanceAbuse': boolean,
+         'salarySlipCTCdocument': boolean
+      } = {
         'dateOfVerification': candupdateData.dateOfVerification,
           'personalIdentity': candupdateData.personalIdentity,
-          'criminal': candupdateData.personalIdentity,
-          'verificationAddress': candupdateData.personalIdentity,
-          'drugsAndSubstanceAbuse': candupdateData.personalIdentity,
-          'salarySlipCTCdocument': candupdateData.personalIdentity,
+          'criminal': candupdateData.criminal,
+          'verificationAddress': candupdateData.verificationAddress,
+          'drugsAndSubstanceAbuse': candupdateData.drugsAndSubstanceAbuse,
+          'salarySlipCTCdocument': candupdateData.salarySlipCTCdocument,
       }
       let update={bio:bioobjj,
         candidate:cavArr,

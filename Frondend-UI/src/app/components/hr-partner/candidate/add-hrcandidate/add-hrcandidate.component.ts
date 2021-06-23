@@ -189,11 +189,11 @@ export class AddHrcandidateComponent implements OnInit {
     candidate: new FormArray([]),
     canidateInstitute: new FormArray([]),
     dateOfVerification: new FormControl(),
-    personalIdentity: new FormControl(''),
-    criminal: new FormControl(''),
-    verificationAddress: new FormControl(''),
-    drugsAndSubstanceAbuse: new FormControl(''),
-    salarySlipCTCdocument: new FormControl('')
+    personalIdentity: new FormControl(),
+    criminal: new FormControl(),
+    verificationAddress: new FormControl(),
+    drugsAndSubstanceAbuse: new FormControl(),
+    salarySlipCTCdocument: new FormControl()
   }
   candidates: FormArray
   canidateInstitutes: FormArray
