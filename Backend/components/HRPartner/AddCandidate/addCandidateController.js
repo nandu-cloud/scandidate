@@ -50,10 +50,13 @@ module.exports.saveCandidate = async (req, res, next) => {
       if (d.hasOwnProperty("organizationName")) {
         d.bgvCandidate = true;
         var orgName = d.organizationName;
-        var { _id } = await orgDAL.findOrganisation({
-          organizationName: orgName,
-        });
-        d.organisationId = _id.toString();
+        if (orgName) {
+          var { _id } = await orgDAL.findOrganisation({
+            organizationName: orgName,
+          });
+
+          d.organisationId = _id.toString();
+        }
         let empValid = await empValidator.addEmployeeSchema.validateAsync(d);
         var dataEmployee = {
           organizationName: d.organizationName,
@@ -73,10 +76,13 @@ module.exports.saveCandidate = async (req, res, next) => {
       } else {
         d.bgvCandidate = true;
         var insName = d.intitutionName;
-        var { _id } = await instDAL.findInstitution({
-          instituteName: insName,
-        });
-        d.instituteId = _id.toString();
+        if (insName) {
+          var { _id } = await instDAL.findInstitution({
+            instituteName: insName,
+          });
+
+          d.instituteId = _id.toString();
+        }
         let stdvalid = await stdValidator.addStudentSchema.validateAsync(d);
         var dataStduent = {
           intitutionName: d.intitutionName,
@@ -183,7 +189,6 @@ module.exports.showCandidateById = async (req, res, next) => {
         key = 0;
       }
     }
-    console.log(key);
     var empBio = totalData[key];
     var bio = {
       firstName: empBio.firstName,
