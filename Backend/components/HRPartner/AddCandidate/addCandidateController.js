@@ -73,7 +73,7 @@ module.exports.saveCandidate = async (req, res, next) => {
         } else {
           var saveCandidate = await empDAL.addEmployee(empValid);
         }
-      } else {
+      } else if (d.intitutionName.length > 0) {
         d.bgvCandidate = true;
         var insName = d.intitutionName;
         if (insName) {
@@ -111,12 +111,12 @@ module.exports.saveCandidate = async (req, res, next) => {
     }
     if (saveCandidate === undefined && duplicate.length > 0) {
       return res.status(200).json({
-        status: 200,
+        status: 410,
         message: `Record already exists for ${duplicateNames}`,
       });
     } else if (saveCandidate && duplicate.length > 0) {
       return res.status(200).json({
-        status: 200,
+        status: 409,
         message: `Partital saved, record exists for ${duplicateNames}`,
       });
     } else {
