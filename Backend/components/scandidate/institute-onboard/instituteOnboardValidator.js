@@ -1,14 +1,14 @@
 const Joi = require("joi");
 
 const instituteCreationSchema = Joi.object({
-  instituteName: Joi.string().required(),
-  instituteAddress: Joi.string().required(),
-  instituteType: Joi.string().required(),
-  instituteEmail: Joi.string().email().required(),
-  instituteZIP: Joi.number().required(),
-  status: Joi.boolean().required(),
-  contact: Joi.number().required(),
-  state: Joi.string().required(),
+  instituteName: Joi.string(),
+  instituteAddress: Joi.string(),
+  instituteType: Joi.string(),
+  instituteEmail: Joi.string().email(),
+  instituteZIP: Joi.number(),
+  status: Joi.boolean(),
+  contact: Joi.number(),
+  state: Joi.string(),
 
   landMark: Joi.string().allow("").allow(null),
   contactPersonName: Joi.string().min(1),
@@ -18,28 +18,28 @@ const instituteCreationSchema = Joi.object({
   code: Joi.string().allow("").allow(null),
   instituteLogo: Joi.string().allow("").allow(null),
   instituteLocation: Joi.string().allow("").allow(null),
-
+  scandiate: Joi.boolean().allow(null),
 });
 
 const instituteUpdationSchema = Joi.object({
-  instituteName: Joi.string().required(),
+  instituteName: Joi.string(),
   contactPersonName: Joi.string(),
-  instituteAddress: Joi.string().required(),
-  instituteType: Joi.string().required(),
-  instituteEmail: Joi.string().email().required(),
+  instituteAddress: Joi.string(),
+  instituteType: Joi.string(),
+  instituteEmail: Joi.string().email(),
   instituteStudentSize: Joi.string().allow("").allow(null),
   instituteActiveFrom: Joi.string().allow("").allow(null),
-  instituteZIP: Joi.number().required(),
+  instituteZIP: Joi.number(),
   instituteDescription: Joi.string().allow("").allow(null),
-  status: Joi.boolean().required(),
-  contact: Joi.number().required(),
-  state: Joi.string().required(),
+  status: Joi.boolean(),
+  contact: Joi.number(),
+  state: Joi.string(),
 
   landMark: Joi.string().allow("").allow(null),
   code: Joi.string().allow("").allow(null),
   instituteLogo: Joi.string().allow("").allow(null),
   instituteLocation: Joi.string().allow("").allow(null),
-
+  scandiate: Joi.boolean().allow(null),
 });
 
 module.exports = {

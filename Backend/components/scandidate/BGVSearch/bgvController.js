@@ -212,6 +212,17 @@ module.exports.searchByIdBGV = async (req, res, next) => {
         let studentAdharData = await bgvDAL.searchByAdharNumberInstitute(
           aadharNumber
         );
+        let studentEmailData = await bgvDAL.searchByEmailInstitute(email);
+        let studentPhoneData = await bgvDAL.searchByPhoneNumberInstitute(
+          phoneNumber,
+          firstName,
+          lastName
+        );
+        let findByNameStudent = await bgvDAL.searchByNameInstittute(
+          firstName,
+          lastName,
+          dob
+        );
 
         for (var i = 0; i < empAdharData.length; i++) {
           var orgId = empAdharData[i].organisationId;
@@ -223,20 +234,67 @@ module.exports.searchByIdBGV = async (req, res, next) => {
             empAdharData[i].organisationLogo = "";
           }
         }
-        for (var i = 0; i < studentAdharData.length; i++) {
-          var insId = studentAdharData[i].instituteId;
-          var id = mongoose.Types.ObjectId(insId);
-          var result = await instituionDAL.getInstituteById({ _id: id });
 
-          if (result.instituteLogo != null) {
-            studentAdharData[i].institutionLogo = result.instituteLogo;
-          } else {
-            studentAdharData[i].institutionLogo = "";
+        if (studentAdharData.length > 0) {
+          for (var i = 0; i < studentAdharData.length; i++) {
+            var insId = studentAdharData[i].instituteId;
+            var id = mongoose.Types.ObjectId(insId);
+            var result = await instituionDAL.getInstituteById({
+              _id: id,
+            });
+
+            if (result.instituteLogo != null) {
+              studentAdharData[i].institutionLogo = result.instituteLogo;
+            } else {
+              studentAdharData[i].institutionLogo = "";
+            }
           }
+          resultData = empAdharData.concat(studentAdharData);
+        } else if (studentEmailData.length > 0) {
+          for (var i = 0; i < studentEmailData.length; i++) {
+            var instId = studentEmailData[i].instituteId;
+            var id = mongoose.Types.ObjectId(instId);
+            var result = await instituionDAL.getInstituteById({
+              _id: id,
+            });
+            if (result.instituteLogo != null) {
+              studentEmailData[i].institutionLogo = result.instituteLogo;
+            } else {
+              studentEmailData[i].institutionLogo = "";
+            }
+          }
+          resultData = empAdharData.concat(studentEmailData);
+        } else if (studentPhoneData.length > 0) {
+          for (var i = 0; i < studentPhoneData.length; i++) {
+            var insId = studentPhoneData[i].instituteId;
+            var id = mongoose.Types.ObjectId(insId);
+            var result = await instituionDAL.getInstituteById({
+              _id: id,
+            });
+            if (result.instituteLogo != null) {
+              studentPhoneData[i].institutionLogo = result.instituteLogo;
+            } else {
+              studentPhoneData[i].institutionLogo = "";
+            }
+          }
+          resultData = empAdharData.concat(studentPhoneData);
+        } else if (findByNameStudent.length > 0) {
+          for (var i = 0; i < findByNameStudent.length; i++) {
+            var insId = findByNameStudent[i].instituteId;
+            var id = mongoose.Types.ObjectId(insId);
+            var result = await instituionDAL.getInstituteById({
+              _id: id,
+            });
+            if (result.instituteLogo != null) {
+              findByNameStudent[i].institutionLogo = result.instituteLogo;
+            } else {
+              findByNameStudent[i].institutionLogo = "";
+            }
+          }
+          resultData = empAdharData.concat(findByNameStudent);
+        } else {
+          resultData = empAdharData;
         }
-
-        let resultData = empAdharData.concat(studentAdharData);
-
         return res.status(200).json({
           status: 200,
           message: "SUCCESS",
@@ -250,30 +308,63 @@ module.exports.searchByIdBGV = async (req, res, next) => {
     if (email.length > 0) {
       try {
         let empEmailData = await bgvDAL.searchByEmailEmployee(email);
+
         let studentEmailData = await bgvDAL.searchByEmailInstitute(email);
 
-        for (var i = 0; i < studentEmailData.length; i++) {
-          var instId = studentEmailData[i].instituteId;
-          var id = mongoose.Types.ObjectId(instId);
-          var result = await instituionDAL.getInstituteById({ _id: id });
-          if (result.instituteLogo != null) {
-            studentEmailData[i].institutionLogo = result.instituteLogo;
-          } else {
-            studentEmailData[i].institutionLogo = "";
-          }
-        }
-        for (var i = 0; i < empEmailData.length; i++) {
-          var orgId = empEmailData[i].organisationId;
-          var id = mongoose.Types.ObjectId(orgId);
-          var result = await organizationDAL.getOrganisationById({ _id: id });
-          if (result.organisationLogo != null) {
-            empEmailData[i].organisationLogo = result.organisationLogo;
-          } else {
-            empEmailData[i].organisationLogo = "";
-          }
-        }
+        let studentPhoneData = await bgvDAL.searchByPhoneNumberInstitute(
+          phoneNumber,
+          firstName,
+          lastName
+        );
 
-        let resultData = empEmailData.concat(studentEmailData);
+        let findByNameStudent = await bgvDAL.searchByNameInstittute(
+          firstName,
+          lastName,
+          dob
+        );
+        if (studentEmailData.length > 0) {
+          for (var i = 0; i < studentEmailData.length; i++) {
+            var instId = studentEmailData[i].instituteId;
+            var id = mongoose.Types.ObjectId(instId);
+            var result = await instituionDAL.getInstituteById({ _id: id });
+            if (result.instituteLogo != null) {
+              studentEmailData[i].institutionLogo = result.instituteLogo;
+            } else {
+              studentEmailData[i].institutionLogo = "";
+            }
+          }
+          resultData = empEmailData.concat(studentEmailData);
+        } else if (studentPhoneData.length > 0) {
+          for (var i = 0; i < studentPhoneData.length; i++) {
+            var insId = studentPhoneData[i].instituteId;
+            var id = mongoose.Types.ObjectId(insId);
+            var result = await instituionDAL.getInstituteById({
+              _id: id,
+            });
+            if (result.instituteLogo != null) {
+              studentPhoneData[i].institutionLogo = result.instituteLogo;
+            } else {
+              studentPhoneData[i].institutionLogo = "";
+            }
+          }
+          resultData = empEmailData.concat(studentPhoneData);
+        } else if (findByNameStudent.length > 0) {
+          for (var i = 0; i < findByNameStudent.length; i++) {
+            var insId = findByNameStudent[i].instituteId;
+            var id = mongoose.Types.ObjectId(insId);
+            var result = await instituionDAL.getInstituteById({
+              _id: id,
+            });
+            if (result.instituteLogo != null) {
+              findByNameStudent[i].institutionLogo = result.instituteLogo;
+            } else {
+              findByNameStudent[i].institutionLogo = "";
+            }
+          }
+          resultData = empEmailData.concat(findByNameStudent);
+        } else {
+          resultData = empEmailData;
+        }
 
         return res
           .status(200)

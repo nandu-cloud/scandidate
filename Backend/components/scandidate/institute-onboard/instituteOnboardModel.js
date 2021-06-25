@@ -13,15 +13,15 @@ let onboardInstituteSchema = mongoose.Schema({
   },
   instituteAddress: {
     type: String,
-    required: true,
+    required: false,
   },
   instituteType: {
     type: String,
-    required: true,
+    required: false,
   },
   instituteEmail: {
     type: String,
-    required: [true, "Email Cannot Be Empty"],
+    required: false,
     unique: true,
   },
   instituteStudentSize: {
@@ -34,7 +34,7 @@ let onboardInstituteSchema = mongoose.Schema({
   },
   instituteZIP: {
     type: Number,
-    required: true,
+    required: false,
   },
   landMark: {
     type: String,
@@ -68,7 +68,11 @@ let onboardInstituteSchema = mongoose.Schema({
   },
   state: {
     type: String,
-    required: true
+    required: false,
+  },
+  scandiate: {
+    type: Boolean,
+    required: false,
   },
 });
 

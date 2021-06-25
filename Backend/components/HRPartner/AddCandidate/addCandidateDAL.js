@@ -1,5 +1,7 @@
 const empModel = require("../../organization/OppsUser/AddEmployee/employeeModel");
 const stdModel = require("../../institution/OppsUser/AddStudent/studentModel");
+const orgModel = require("../../scandidate/organization-onboard/orgOnboardModel");
+const instModel = require("../../scandidate/institute-onboard/instituteOnboardModel");
 
 async function fetchCandidateEmployeeData(data) {
   try {
@@ -90,8 +92,12 @@ async function checkDuplicateEmpRecord(data) {
       $and: [
         { organizationName: data.organizationName },
         { email: data.email },
-        { dateOfJoining: data.dateOfJoining },
-        { exitDate: data.exitDate },
+        {
+          $or: [
+            { dateOfJoining: data.dateOfJoining },
+            { exitDate: data.exitDate },
+          ],
+        },
       ],
     });
     return result;
@@ -117,6 +123,32 @@ async function checkDuplicateStudentRecord(data) {
   }
 }
 
+async function showOrganization(data) {
+  try {
+    let result = await orgModel
+      .find({
+        organizationName: { $regex: data, $options: "i" },
+      })
+      .select("_id organizationName");
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
+async function showInstitution(data) {
+  try {
+    let result = await instModel
+      .find({
+        instituteName: { $regex: data, $options: "i" },
+      })
+      .select("_id instituteName");
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
 module.exports = {
   fetchCandidateEmployeeData: fetchCandidateEmployeeData,
   fetchCandidateStudent: fetchCandidateStudent,
@@ -128,4 +160,6 @@ module.exports = {
   updateDataByIdStd: updateDataByIdStd,
   checkDuplicateEmpRecord: checkDuplicateEmpRecord,
   checkDuplicateStudentRecord: checkDuplicateStudentRecord,
+  showOrganization: showOrganization,
+  showInstitution: showInstitution,
 };

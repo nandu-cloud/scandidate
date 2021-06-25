@@ -125,6 +125,10 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  institutionlocation: {
+    type: String,
+    required: false,
+  },
 
   bgvCandidate: {
     type: Boolean,

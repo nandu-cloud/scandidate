@@ -7,6 +7,9 @@ const canddidateDAL = require("./addCandidateDAL");
 const empValidator = require("./addCandidateEmpValidator");
 const stdValidator = require("./addCandidateStdValidator");
 const mongoose = require("mongoose");
+const ejs = require("ejs");
+const path = require("path");
+var pdf = require("html-pdf");
 
 module.exports.saveCandidate = async (req, res, next) => {
   const { bio, candidate, canidateInstitute, verification } = req.body;
@@ -21,7 +24,7 @@ module.exports.saveCandidate = async (req, res, next) => {
     email: bio.email,
     phoneNumber: bio.phoneNumber,
     dateOfBirth: bio.dateOfBirth,
-    adharNumber: bio.canidateInstitute,
+    adharNumber: bio.adharNumber,
     address: bio.address,
     city: bio.city,
     state: bio.state,
@@ -47,14 +50,23 @@ module.exports.saveCandidate = async (req, res, next) => {
     var duplicate = [];
     var uniqueData = [];
     for (let d of data) {
+      // console.log(d);
       if (d.hasOwnProperty("organizationName")) {
         d.bgvCandidate = true;
         var orgName = d.organizationName;
-        if (orgName) {
-          var { _id } = await orgDAL.findOrganisation({
-            organizationName: orgName,
-          });
+        var getOrganisation = await orgDAL.findOrganisation({
+          organizationName: orgName,
+        });
 
+        if (getOrganisation) {
+          d.organisationId = getOrganisation._id.toString();
+        } else {
+          var org = {
+            organizationName: orgName,
+            organisationEmail: orgName + "@gmail.com",
+            scandiate: false,
+          };
+          var { _id } = await orgDAL.onboardOrganisation(org);
           d.organisationId = _id.toString();
         }
         let empValid = await empValidator.addEmployeeSchema.validateAsync(d);
@@ -76,13 +88,21 @@ module.exports.saveCandidate = async (req, res, next) => {
       } else if (d.intitutionName.length > 0) {
         d.bgvCandidate = true;
         var insName = d.intitutionName;
-        if (insName) {
-          var { _id } = await instDAL.findInstitution({
+        var getInstitute = await instDAL.findInstitution({
+          instituteName: insName,
+        });
+        if (getInstitute) {
+          d.instituteId = getInstitute._id.toString();
+        } else {
+          var inst = {
             instituteName: insName,
-          });
-
+            instituteEmail: insName + "@gmail.com",
+            scandiate: false,
+          };
+          var { _id } = await instDAL.onboardInstitute(inst);
           d.instituteId = _id.toString();
         }
+
         let stdvalid = await stdValidator.addStudentSchema.validateAsync(d);
         var dataStduent = {
           intitutionName: d.intitutionName,
@@ -171,6 +191,9 @@ module.exports.showCandidateById = async (req, res, next) => {
     if (!data) {
       data = await canddidateDAL.fetchCandidateStudent({ _id: candidateId });
     }
+    if (!data) {
+      return next(new AppError("Employee not found", 422));
+    }
     var { email, phoneNumber, adharNumber } = data;
     var studentData = await canddidateDAL.fetchStudent({
       email: email,
@@ -221,9 +244,15 @@ module.exports.showCandidateById = async (req, res, next) => {
         _id: totalData[i]._id,
         organizationName: totalData[i].organizationName,
         organisationId: totalData[i].organisationId,
-        nameofFeedbackProvider: totalData[i].nameofFeedbackProvider,
-        designationOfFeedbackProvider:
-          totalData[i].designationOfFeedbackProvider,
+        // nameofFeedbackProvider: totalData[i].nameofFeedbackProvider,
+        // designationOfFeedbackProvider:
+        //   totalData[i].designationOfFeedbackProvider,
+        feedbackProviderName: totalData[i].feedbackProviderName,
+        feedbackProviderDesignation: totalData[i].feedbackProviderDesignation,
+        feedbackProviderRelationship: totalData[i].feedbackProviderRelationship,
+        feedbackProviderEmail: totalData[i].feedbackProviderEmail,
+        feedbackProviderPhoneNumber: totalData[i].feedbackProviderPhoneNumber,
+        organiationLocation: totalData[i].organiationLocation,
         exitDate: totalData[i].exitDate,
         professionalExperience: totalData[i].professionalExperience,
         employeeId: totalData[i].employeeId,
@@ -285,6 +314,7 @@ module.exports.showCandidateById = async (req, res, next) => {
         purposeOfFile: totalData[i].purposeOfFile,
         roll: totalData[i].roll,
         intitutionName: totalData[i].intitutionName,
+        institutionlocation: totalData[i].institutionlocation,
         instituteId: totalData[i].instituteId,
         status: totalData[i].status,
       };
@@ -341,7 +371,7 @@ module.exports.updateCandidateData = async (req, res, next) => {
     email: bio.email,
     phoneNumber: bio.phoneNumber,
     dateOfBirth: bio.dateOfBirth,
-    adharNumber: bio.canidateInstitute,
+    adharNumber: bio.adharNumber,
     address: bio.address,
     city: bio.city,
     state: bio.state,
@@ -385,6 +415,219 @@ module.exports.updateCandidateData = async (req, res, next) => {
       return res
         .status(200)
         .json({ status: 200, message: "Candidate updated successfully" });
+    }
+  } catch (err) {
+    return next(new AppError(err, 422));
+  }
+};
+
+module.exports.showOrganization = async (req, res, next) => {
+  const data = req.body.organizationName;
+  try {
+    let result = await canddidateDAL.showOrganization(data);
+    return res
+      .status(200)
+      .json({ status: 200, message: "SUCCESS", data: result });
+  } catch (err) {
+    return next(new AppError(err, 422));
+  }
+};
+
+module.exports.showInstitution = async (req, res, next) => {
+  const data = req.body.intitutionName;
+  try {
+    let result = await canddidateDAL.showInstitution(data);
+    return res
+      .status(200)
+      .json({ status: 200, message: "SUCCESS", data: result });
+  } catch (err) {
+    return next(new AppError(err, 422));
+  }
+};
+
+module.exports.downloadReportPDF = async (req, res, next) => {
+  const { bio, candidate, canidateInstitute, verification } = req.body;
+  const key = req.params.index;
+  var data = [];
+  for (var d of candidate) {
+    var r = { ...bio, ...d, ...verification };
+    data.push(r);
+  }
+  var studentBio = {
+    firstName: bio.firstName,
+    lastName: bio.lastName,
+    email: bio.email,
+    phoneNumber: bio.phoneNumber,
+    dateOfBirth: bio.dateOfBirth,
+    adharNumber: bio.adharNumber,
+    address: bio.address,
+    city: bio.city,
+    state: bio.state,
+    landMark: bio.landMark,
+    zipCode: bio.zipCode,
+    addedById: bio.addedById,
+    hrorganisationId: bio.hrorganisationId,
+  };
+  var studentVerification = {
+    dateOfVerification: verification.dateOfVerification,
+    personalIdentity: verification.personalIdentity,
+    criminal: verification.criminal,
+    verificationAddress: verification.verificationAddress,
+    drugsAndSubstanceAbuse: verification.drugsAndSubstanceAbuse,
+  };
+  if (canidateInstitute) {
+    for (var d1 of canidateInstitute) {
+      var r1 = { ...studentBio, ...d1, ...studentVerification };
+      data.push(r1);
+    }
+  }
+  try {
+    var getData = data[key];
+    var template = [];
+    template.push(getData);
+    function format(date) {
+      var d = date.getDate();
+      var m = date.getMonth() + 1;
+      var y = date.getFullYear();
+      return (
+        "" + (d <= 9 ? "0" + d : d) + "-" + (m <= 9 ? "0" + m : m) + "-" + y
+      );
+    }
+    var today = new Date();
+    var dateString = format(today);
+
+    let count = 0;
+    var leadership = false;
+    for (var i = 0; i < template.length; i++) {
+      if (
+        template[i].quality.IsSelect != null ||
+        template[i].consistency.IsSelect != null ||
+        template[i].building.IsSelect != null ||
+        template[i].stakeholder.IsSelect != null
+      ) {
+        count += 1;
+      }
+    }
+
+    if (count > 0) {
+      leadership = true;
+    }
+
+    var isAward = false;
+    let awardCount = 0;
+    for (var i = 0; i < template.length; i++) {
+      if (template[i].awards.IsSelect != null) {
+        awardCount += 1;
+      }
+    }
+
+    if (awardCount > 0) {
+      isAward = true;
+    }
+
+    var isDocument = false;
+    let countDoc = 0;
+    for (var i = 0; i < template.length; i++) {
+      if (
+        template[i].discrepancyDocuments.IsSelect != null ||
+        template[i].compliencyDiscrepancy.IsSelect != null ||
+        template[i].warning.IsSelect != null ||
+        template[i].showCausedIssue.IsSelect != null ||
+        template[i].suspension.IsSelect != null ||
+        template[i].termination.IsSelect != null
+      ) {
+        countDoc += 1;
+      }
+    }
+    if (countDoc > 0) {
+      isDocument = true;
+    }
+
+    if (process.env.NODE_ENV === "development") {
+      var result = {
+        FirstName: bio.firstName,
+        LastName: bio.lastName,
+        phone: bio.phoneNumber,
+        email: bio.email,
+        logo: `${process.env.FRONT_END_URL}/assets/images/logo1.png`,
+        orgLogo: `${process.env.FRONT_END_URL_LOCAL}/public/organization_logo/`,
+        instLogo: `${process.env.FRONT_END_URL_LOCAL}/public/institute_logo/`,
+        myDate: dateString,
+        data: template,
+        ldrshp: leadership,
+        isAwarded: isAward,
+        isDocumentPresent: isDocument,
+      };
+    } else if (process.env.NODE_ENV === "uat") {
+      var result = {
+        FirstName: bio.firstName,
+        LastName: bio.lastName,
+        phone: bio.phoneNumber,
+        email: bio.email,
+        logo: `${process.env.FRONT_END_URL}/assets/images/logo1.png`,
+        orgLogo: `${process.env.FRONT_END_URL_DEV}/public/organization_logo/`,
+        instLogo: `${process.env.FRONT_END_URL_DEV}/public/institute_logo/`,
+        myDate: dateString,
+        data: template,
+        ldrshp: leadership,
+        isAwarded: isAward,
+        isDocumentPresent: isDocument,
+      };
+    } else if (process.env.NODE_ENV === "production") {
+      var result = {
+        FirstName: bio.firstName,
+        LastName: bio.lastName,
+        phone: bio.phoneNumber,
+        email: bio.email,
+        logo: `${process.env.FRONT_END_URL}/assets/images/logo1.png`,
+        orgLogo: `${process.env.FRONT_END_URL}/public/organization_logo/`,
+        instLogo: `${process.env.FRONT_END_URL}/public/institute_logo/`,
+        myDate: dateString,
+        data: template,
+        ldrshp: leadership,
+        isAwarded: isAward,
+        isDocumentPresent: isDocument,
+      };
+    }
+
+    console.log(result);
+
+    try {
+      ejs.renderFile(
+        path.join(
+          __dirname,
+          "../../scandidate/BGVSearch/BGVTemplate/scandidate-report-org.ejs"
+        ),
+        result,
+        function (err, str) {
+          if (err) {
+            return next(new AppError(err, 400));
+          }
+
+          var fileName = bio.firstName + new Date().getTime() + ".pdf";
+
+          var checkFilePath = path.join(
+            __dirname,
+            "../../../uploads/scandidate-report/" + fileName
+          );
+
+          var options = { height: "10.5in", width: "15in" };
+          pdf.create(str, options).toFile(checkFilePath, function (err, data) {
+            if (err) {
+              return next(new AppError(err, 400));
+            }
+
+            return res.status(200).download(checkFilePath, fileName, (err) => {
+              if (err) {
+                if (err.code == "ENOENT")
+                  return next(new AppError("user document not found", 404));
+              }
+            });
+          });
+        }
+      );
+    } catch (err) {
+      return next(new AppError(err, 400));
     }
   } catch (err) {
     return next(new AppError(err, 422));

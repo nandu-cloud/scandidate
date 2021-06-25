@@ -89,8 +89,14 @@ const addEmployeeSchema = Joi.object({
   //Other Variables
 
   // CANDIDATE
-  nameofFeedbackProvider: Joi.string().allow("").allow(null),
-  designationOfFeedbackProvider: Joi.string().allow("").allow(null),
+  // nameofFeedbackProvider: Joi.string().allow("").allow(null),
+  // designationOfFeedbackProvider: Joi.string().allow("").allow(null),
+  organiationLocation: Joi.string().allow("").allow(null),
+  feedbackProviderName: Joi.string().allow("").allow(null),
+  feedbackProviderDesignation: Joi.string().allow("").allow(null),
+  feedbackProviderRelationship: Joi.string().allow("").allow(null),
+  feedbackProviderEmail: Joi.string().allow("").allow(null),
+  feedbackProviderPhoneNumber: Joi.number().allow("").allow(null),
   bgvCandidate: Joi.boolean().allow(null).allow(""),
   hrorganisationId: Joi.string().min(24).max(24).allow(null).allow(""),
   dateOfVerification: Joi.date().allow(null).allow(""),
@@ -187,8 +193,14 @@ const updateEmployeeSchema = Joi.object({
   termination: Joi.object().allow("").allow(null),
 
   // CANDIDATE
-  nameofFeedbackProvider: Joi.string().allow("").allow(null),
-  designationOfFeedbackProvider: Joi.string().allow("").allow(null),
+  // nameofFeedbackProvider: Joi.string().allow("").allow(null),
+  // designationOfFeedbackProvider: Joi.string().allow("").allow(null),
+  organiationLocation: Joi.string().allow("").allow(null),
+  feedbackProviderName: Joi.string().allow("").allow(null),
+  feedbackProviderDesignation: Joi.string().allow("").allow(null),
+  feedbackProviderRelationship: Joi.string().allow("").allow(null),
+  feedbackProviderEmail: Joi.string().allow("").allow(null),
+  feedbackProviderPhoneNumber: Joi.number().allow("").allow(null),
   bgvCandidate: Joi.boolean().allow(null),
   hrorganisationId: Joi.string().min(24).max(24).allow(null).allow(""),
   dateOfVerification: Joi.date().allow(null).allow(""),

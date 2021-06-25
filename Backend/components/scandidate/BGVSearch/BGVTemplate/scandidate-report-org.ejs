@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="user-creation" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        table {
+            margin-left: 5px;
+            margin-bottom: 10px;
+        }
+
+        .inline {
+            display: inline-block;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        .table1 {
+            width: 90%;
+        }
+
+        @media (min-width: 640px) {
+            table {
+                display: inline-table !important;
+            }
+        }
+
+        .table1 {
+            border: #6cb43b solid 1px;
+        }
+
+        .heading {
+            color: #6cb43b;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid#6cb43b;
+            border-collapse: collapse;
+            font-size: 10px;
+            padding: 5px;
+            text-align: left;
+            height: 20px;
+        }
+
+        caption {
+            font-size: larger;
+            font-weight: bold;
+            color: #6cb43b;
+        }
+
+        a {
+            color: #6cb43b;
+        }
+
+        hr {
+            background-color: #6cb43b;
+            height: 1px;
+            border-width: 0;
+            margin: 15px;
+        }
+
+        .image {
+            width: 50px;
+            height: 40px;
+        }
+
+        @media print {
+            .pagebreak {
+                page-break-before: always;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="border-dashed border-2 border-black w-11/12 m-auto mt-10" id="pdfTable" #pdfTable>
+        <div class="grid grid-cols-3 gap-4 mt-8">
+            <div class="ml-16 w-1/2">
+                <img src=<%=logo %> width="100" height="100" class="border-1 -mt-3">
+
+            </div>
+            <div class="ml-32">
+                <span class="text-2xl heading">
+                    <%=FirstName %>
+                        <%=LastName %>
+                </span><br />
+                <span class="text-lg">Phone Number - <span class="text-black">
+                        <%=phone %>
+                    </span></span><br />
+                <span class="text-lg">Email ID - <%=email %></span>
+            </div>
+            <div class="ml-40">
+                <span>Report date:<%=myDate %></span><br /><br />
+            </div>
+        </div>
+        <hr>
+
+
+        <br />
+
+        <table style="width:95%;margin-left:27px;">
+            <caption style="padding-bottom: 10px;">Experience</caption>
+            <tr>
+                <th>COMPANY NAME</th>
+                <th>WORK ETHIC</th>
+                <th>MERIT/QUALITY</th>
+                <%if(isAwarded){%>
+                    <th>RECOGNITION</th>
+                    <%}%>
+                        <% if(ldrshp){%>
+                            <th>LEADERSHIP</th>
+                            <%}%>
+                                <%if(isDocumentPresent){%>
+                                    <th>ISSUES</th>
+                                    <%}%>
+                                        <!-- <th width="10px">ANY ATTACHMENTS</th> -->
+            </tr>
+            <% for(let list of data){%>
+                <tr>
+
+                    <% if(list.organisationId !='' && list.organisationId !=undefined){%>
+                        <td>
+                            <%=list.organizationName %>
+                        </td>
+                        <%}%>
+                            <% if(list.organisationId !='' && list.organisationId !=undefined) {%>
+                                <td>
+                                    <b> Self Driven / Initiative:</b>&nbsp;&nbsp;<%=list.selfDriven %><br />
+                                        <b>Creativity:</b>&nbsp;&nbsp; <%=list.creativity %><br />
+                                            <b>Work independently:</b> &nbsp;&nbsp;<%=list.workIndependenty %>
+                                                <br />
+                                                <b>Teamwork:</b>&nbsp;&nbsp;<%=list.teamWork %><br />
+                                                    <b>Ability to handle pressure:</b>&nbsp;&nbsp;
+                                                    <%=list.dealConstructivelyWithPressure %>
+                                                        <br />
+                                                        <b>Discipline:</b>&nbsp;&nbsp;<%=list.discipline %>
+                                                            <br />
+                                </td>
+                                <%}%>
+                                    <% if(list.organisationId !='' && list.organisationId !=undefined) {%>
+                                        <td>
+                                            <b>Communication:</b>&nbsp;&nbsp;<%=list.communicationSkills %>
+                                                <br />
+                                                <b>Product understanding:</b>&nbsp;&nbsp;
+                                                <%=list.productKnowledge %><br />
+                                                    <b>Industry / domain knowledge:</b>&nbsp;&nbsp;
+                                                    <%=list.industryKnowledge %><br />
+                                                        <b>Subject matter expertise:</b>&nbsp;&nbsp;
+                                                        <%=list.subMatter %><br />
+                                                            <%if(list.keySkills){%>
+                                                                <b>Key Skills:</b>&nbsp;&nbsp; <%=list.keySkills %>
+                                                                    <br />
+                                                                    <%}%>
+                                                                        <%if(list.rehireAgain){%>
+                                                                            <b> Re-hire?:</b>&nbsp;&nbsp;
+                                                                            <%=list.rehireAgain %>
+                                                                                <%}%>
+                                        </td>
+                                        <%}%>
+                                            <% if(list.organisationId !='' && list.organisationId !=undefined){%>
+                                                <%if(isAwarded){%>
+                                                    <td>
+                                                        <%=list.awards.IsSelect %>
+                                                    </td>
+                                                    <%}%>
+                                                        <%}%>
+                                                            <% if(list.organisationId !='' && list.organisationId
+                                                                !=undefined) {%>
+                                                                <%if(ldrshp){%>
+                                                                    <td>
+                                                                        <%if(list.stategicThinking){%>
+                                                                            <b>Strategic
+                                                                                thinking:</b>&nbsp;&nbsp;
+                                                                            <%=list.stategicThinking %><br />
+                                                                                <%}%>
+                                                                                    <%if(list.problemSolving){%>
+                                                                                        <b>Problem
+                                                                                            Solving:</b>&nbsp;&nbsp;
+                                                                                        <%=list.problemSolving %><br />
+                                                                                            <%}%>
+                                                                                                <%if(list.buildingHighPerformanceTeam){%>
+                                                                                                    <b>Building
+                                                                                                        High-performance
+                                                                                                        teams:</b>&nbsp;&nbsp;
+                                                                                                    <%=list.buildingHighPerformanceTeam
+                                                                                                        %><br />
+                                                                                                        <%}%>
+                                                                                                            <%if(list.stakeHolderManagment){%>
+                                                                                                                <b>Stakeholder
+                                                                                                                    management:</b>&nbsp;&nbsp;
+                                                                                                                <%=list.stakeHolderManagment
+                                                                                                                    %>
+                                                                                                                    <br />
+                                                                                                                    <%}%>
+
+                                                                    </td>
+                                                                    <%}%>
+                                                                        <%}%>
+                                                                            <% if(list.organisationId !='' &&
+                                                                                list.organisationId !=undefined) {%>
+                                                                                <%if(isDocumentPresent){%>
+                                                                                    <td>
+                                                                                        <%if(list.discrepancy_date||list.discrepancy_cause){%>
+                                                                                            <b>Document
+                                                                                                discrepancies:<b>
+                                                                                                    Date:</b></b>&nbsp;
+                                                                                            <%=list.discrepancy_date %>
+                                                                                                <b>/Cause:</b>&nbsp;
+                                                                                                <%=list.discrepancy_cause
+                                                                                                    %>
+                                                                                                    <br />
+                                                                                                    <%}%>
+                                                                                                        <%if(list.Compliance_date
+                                                                                                            ||
+                                                                                                            list.Compliance_cause){%>
+                                                                                                            <b>Compliance:</b>&nbsp;&nbsp;
+                                                                                                            <%=list.Compliance_date
+                                                                                                                %>
+                                                                                                                <b>/Cause:</b>&nbsp;
+                                                                                                                <%=list.Compliance_cause
+                                                                                                                    %>
+                                                                                                                    <br />
+                                                                                                                    <%}%>
+                                                                                                                        <%if(list.warning_date||list.warning_cause){%>
+                                                                                                                            <b>
+                                                                                                                                Warning:</b>&nbsp;&nbsp;
+                                                                                                                            <b>Date:</b>&nbsp;
+                                                                                                                            <%=list.warning_date
+                                                                                                                                %>
+                                                                                                                                <b>/Cause:</b>&nbsp;
+                                                                                                                                <%=list.warning_cause
+                                                                                                                                    %>
+                                                                                                                                    <br />
+                                                                                                                                    <%}%>
+                                                                                                                                        <%if(list.showCause_date||list.showCause_cause){%>
+                                                                                                                                            <b> Show
+                                                                                                                                                cause:</b>&nbsp;&nbsp;
+                                                                                                                                            <b>Date:</b>&nbsp;
+                                                                                                                                            <%=list.showCause_date
+                                                                                                                                                %>
+                                                                                                                                                <b>/Cause:</b>&nbsp;
+                                                                                                                                                <%=list.showCause_cause
+                                                                                                                                                    %>
+                                                                                                                                                    <br />
+                                                                                                                                                    <%}%>
+                                                                                                                                                        <%if(list.performance_date||list.performance_cause){%>
+                                                                                                                                                            <b>
+                                                                                                                                                                PIP:</b><b>Date:</b>&nbsp;&nbsp;
+                                                                                                                                                            <%=list.performance_date
+                                                                                                                                                                %>
+                                                                                                                                                                <b>/Cause:</b>&nbsp;
+                                                                                                                                                                <%=list.performance_cause
+                                                                                                                                                                    %>
+                                                                                                                                                                    <br />
+                                                                                                                                                                    <%}%>
+                                                                                                                                                                        <%if(list.termination_date||list.termination_cause){%>
+                                                                                                                                                                            <b>TerminationDate:</b>
+                                                                                                                                                                            &nbsp;&nbsp;
+                                                                                                                                                                            <%=list.termination_date
+                                                                                                                                                                                %>
+                                                                                                                                                                                <b>/Cause:</b>&nbsp;
+                                                                                                                                                                                <%=list.termination_cause
+                                                                                                                                                                                    %>
+                                                                                                                                                                                    <br />
+                                                                                                                                                                                    <%}%>
+
+                                                                                    </td>
+                                                                                    <%}%>
+                                                                                        <%}%>
+
+                </tr>
+                <%}%>
+
+        </table>
+    </div>
+</body>
+
+</html>

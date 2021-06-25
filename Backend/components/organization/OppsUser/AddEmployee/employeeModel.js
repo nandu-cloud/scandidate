@@ -437,15 +437,30 @@ const employeeSchema = new mongoose.Schema({
 
   // CANDIDATE ATTRIBUTES
 
-  nameofFeedbackProvider: {
+  organiationLocation: {
     type: String,
     required: false,
   },
-  designationOfFeedbackProvider: {
+  feedbackProviderName: {
     type: String,
     required: false,
   },
-
+  feedbackProviderDesignation: {
+    type: String,
+    required: false,
+  },
+  feedbackProviderRelationship: {
+    type: String,
+    required: false,
+  },
+  feedbackProviderEmail: {
+    type: String,
+    required: false,
+  },
+  feedbackProviderPhoneNumber: {
+    type: Number,
+    required: false,
+  },
   bgvCandidate: {
     type: Boolean,
     required: false,

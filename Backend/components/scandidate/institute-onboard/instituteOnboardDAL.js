@@ -4,7 +4,10 @@ const instituteModel = require("./instituteOnboardModel");
 // Get All Institute
 async function getAllInstitute(data) {
   try {
-    let result = await instituteModel.find({}).sort({ _id: -1 }).lean();
+    let result = await instituteModel
+      .find({ scandiate: undefined })
+      .sort({ _id: -1 })
+      .lean();
     return result;
   } catch (err) {
     throw err;

@@ -19,7 +19,10 @@ async function onboardOrganisation(data) {
 // Get All Organisation
 async function getAllOrganisation(data) {
   try {
-    let result = await organizationModel.find({}).sort({ _id: -1 }).lean();
+    let result = await organizationModel
+      .find({ scandiate: undefined })
+      .sort({ _id: -1 })
+      .lean();
     return result;
   } catch (err) {
     throw err;

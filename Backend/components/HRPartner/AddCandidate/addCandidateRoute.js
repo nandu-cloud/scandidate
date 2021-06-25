@@ -19,4 +19,16 @@ router
   .route("/candidateUpdate")
   .put(authJWT.verifyJWTToken, candidateController.updateCandidateData);
 
+router
+  .route("/searchOrganization")
+  .post(authJWT.verifyJWTToken, candidateController.showOrganization);
+
+router
+  .route("/searchInstitution")
+  .post(authJWT.verifyJWTToken, candidateController.showInstitution);
+
+router
+  .route("/downloadReport/:index")
+  .post(authJWT.verifyJWTToken, candidateController.downloadReportPDF);
+
 module.exports = router;

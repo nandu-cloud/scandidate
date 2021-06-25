@@ -2,17 +2,17 @@ const Joi = require("joi");
 
 const organisationCreationSchema = Joi.object({
   organizationName: Joi.string().required(), //
-  organisationEmail: Joi.string().email().required(), //
-  organisationType: Joi.string().required(), //
+  organisationEmail: Joi.string().email(), //
+  organisationType: Joi.string(), //
   status: Joi.boolean().required(), //
-  organisationZIP: Joi.number().required(), //
-  contactPersonName: Joi.string().required(),
-  legalEntityName: Joi.string().required(),
-  contact: Joi.number().required(),
-  headQuaterLocation: Joi.string().required(),
-  organisationAddress: Joi.string().required(),
-  state: Joi.string().required(),
-  organizationLocation: Joi.string().required(),
+  organisationZIP: Joi.number(), //
+  contactPersonName: Joi.string(),
+  legalEntityName: Joi.string(),
+  contact: Joi.number(),
+  headQuaterLocation: Joi.string(),
+  organisationAddress: Joi.string(),
+  state: Joi.string(),
+  organizationLocation: Joi.string(),
 
   landMark: Joi.string().allow("").allow(null),
   organisationEmployeeSize: Joi.string().allow("").allow(null),
@@ -24,21 +24,22 @@ const organisationCreationSchema = Joi.object({
   organizationGstn: Joi.string().allow("").allow(null),
   organizationCin: Joi.string().allow("").allow(null),
   panNumber: Joi.string().allow("").allow(null),
+  scandiate: Joi.boolean().allow(null),
 });
 
 const organisationUpdationSchema = Joi.object({
   organizationName: Joi.string().required(), //
-  organisationEmail: Joi.string().email().required(), //
-  organisationType: Joi.string().required(), //
+  organisationEmail: Joi.string().email(), //
+  organisationType: Joi.string(), //
   status: Joi.boolean().required(), //
-  organisationZIP: Joi.number().required(), //
-  contactPersonName: Joi.string().required(),
-  legalEntityName: Joi.string().required(),
-  contact: Joi.number().required(),
-  headQuaterLocation: Joi.string().required(),
-  organisationAddress: Joi.string().required(),
-  state: Joi.string().required(),
-  organizationLocation: Joi.string().required(),
+  organisationZIP: Joi.number(), //
+  contactPersonName: Joi.string(),
+  legalEntityName: Joi.string(),
+  contact: Joi.number(),
+  headQuaterLocation: Joi.string(),
+  organisationAddress: Joi.string(),
+  state: Joi.string(),
+  organizationLocation: Joi.string(),
 
   landMark: Joi.string().allow("").allow(null),
   contactPersonName: Joi.string().allow("").allow(null),
@@ -56,6 +57,7 @@ const organisationUpdationSchema = Joi.object({
   organizationGstn: Joi.string().allow("").allow(null),
   organizationCin: Joi.string().allow("").allow(null),
   panNumber: Joi.string().allow("").allow(null),
+  scandiate: Joi.boolean().allow(null),
 });
 
 module.exports = {

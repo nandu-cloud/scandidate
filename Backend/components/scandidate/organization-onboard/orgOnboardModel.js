@@ -17,11 +17,11 @@ let onboardOrganizationSchema = mongoose.Schema({
   },
   organisationType: {
     type: String,
-    required: true,
+    required: false,
   },
   organisationEmail: {
     type: String,
-    required: [true, "Email Cannot Be Empty"],
+    required: false,
     unique: true,
   },
   organisationEmployeeSize: {
@@ -33,7 +33,7 @@ let onboardOrganizationSchema = mongoose.Schema({
   },
   organisationZIP: {
     type: Number,
-    required: true,
+    required: false,
   },
   organisationDescription: {
     type: String,
@@ -45,7 +45,7 @@ let onboardOrganizationSchema = mongoose.Schema({
   },
   status: {
     type: Boolean,
-    required: true,
+    required: false,
   },
   contact: {
     type: Number,
@@ -84,7 +84,11 @@ let onboardOrganizationSchema = mongoose.Schema({
   panNumber: {
     type: String,
     required: false,
-  }
+  },
+  scandiate: {
+    type: Boolean,
+    required: false,
+  },
 });
 
 module.exports = mongoose.model(
