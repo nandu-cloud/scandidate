@@ -328,3 +328,40 @@ const schedule = cron.schedule("30 6 * * *", async () => {
     }
   });
 });
+
+// const directoryExcel = path.join(__dirname, "../../../../uploads/report-excel");
+// const directoryPDF = path.join(
+//   __dirname,
+//   "../../../../uploads/scandidate-report"
+// );
+// cron.schedule(`15 3 * * *`, async () => {
+//   fs.readdir(directoryExcel, (err, files) => {
+//     if (err) throw err;
+
+//     for (const file of files) {
+//       fs.unlink(path.join(directoryExcel, file), (err) => {
+//         if (err) throw err;
+//       });
+//     }
+//     console.log(
+//       colors.blue,
+//       "Run cron everyday at 3:15 AM, delete all files from Report-Excel folder"
+//     );
+//   });
+
+//   // Delete PDF files
+
+//   fs.readdir(directoryPDF, (err, files) => {
+//     if (err) throw err;
+
+//     for (const file of files) {
+//       fs.unlink(path.join(directoryPDF, file), (err) => {
+//         if (err) throw err;
+//       });
+//     }
+//     console.log(
+//       colors.blue,
+//       "Run cron everyday at 3:15 AM, delete all files from scandidate-report folder"
+//     );
+//   });
+// });

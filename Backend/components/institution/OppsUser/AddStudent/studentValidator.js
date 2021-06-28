@@ -34,8 +34,13 @@ const addStudentSchema = Joi.object({
   status: Joi.boolean().allow("").allow(null),
 
   // CANDIDATE
-  nameofFeedbackProvider: Joi.string().allow("").allow(null),
-  designationOfFeedbackProvider: Joi.string().allow("").allow(null),
+  // nameofFeedbackProvider: Joi.string().allow("").allow(null),
+  // designationOfFeedbackProvider: Joi.string().allow("").allow(null),
+  feedbackProviderName: Joi.string().allow("").allow(null),
+  feedbackProviderDesignation: Joi.string().allow("").allow(null),
+  feedbackProviderRelationship: Joi.string().allow("").allow(null),
+  feedbackProviderEmail: Joi.string().allow("").allow(null),
+  feedbackProviderPhoneNumber: Joi.number().allow("").allow(null),
   institutionlocation: Joi.string().allow("").allow(null),
   bgvCandidate: Joi.boolean().allow(null).allow(""),
   hrorganisationId: Joi.string().min(24).max(24).allow(null).allow(""),
@@ -81,8 +86,13 @@ const updateStudentSchema = Joi.object({
   status: Joi.boolean().allow("").allow(null),
 
   // CANDIDATE
-  nameofFeedbackProvider: Joi.string().allow("").allow(null),
-  designationOfFeedbackProvider: Joi.string().allow("").allow(null),
+  // nameofFeedbackProvider: Joi.string().allow("").allow(null),
+  // designationOfFeedbackProvider: Joi.string().allow("").allow(null),
+  feedbackProviderName: Joi.string().allow("").allow(null),
+  feedbackProviderDesignation: Joi.string().allow("").allow(null),
+  feedbackProviderRelationship: Joi.string().allow("").allow(null),
+  feedbackProviderEmail: Joi.string().allow("").allow(null),
+  feedbackProviderPhoneNumber: Joi.number().allow("").allow(null),
   institutionlocation: Joi.string().allow("").allow(null),
   bgvCandidate: Joi.boolean().allow(null).allow(""),
   hrorganisationId: Joi.string().min(24).max(24).allow(null).allow(""),

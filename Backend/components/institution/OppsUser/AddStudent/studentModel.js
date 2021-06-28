@@ -117,14 +117,36 @@ const studentSchema = new mongoose.Schema({
   },
 
   // CANDIDATE ATTRIBUTES
-  nameofFeedbackProvider: {
+  // nameofFeedbackProvider: {
+  //   type: String,
+  //   required: false,
+  // },
+  // designationOfFeedbackProvider: {
+  //   type: String,
+  //   required: false,
+  // },
+
+  feedbackProviderName: {
     type: String,
     required: false,
   },
-  designationOfFeedbackProvider: {
+  feedbackProviderDesignation: {
     type: String,
     required: false,
   },
+  feedbackProviderRelationship: {
+    type: String,
+    required: false,
+  },
+  feedbackProviderEmail: {
+    type: String,
+    required: false,
+  },
+  feedbackProviderPhoneNumber: {
+    type: Number,
+    required: false,
+  },
+
   institutionlocation: {
     type: String,
     required: false,
