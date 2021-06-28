@@ -477,11 +477,11 @@ module.exports.downloadReportPDF = async (req, res, next) => {
   var showCausedate = "";
   var performancedate = "";
   var terminationdate = "";
-  const { bio, candidate, canidateInstitute, verification } = req.body;
+  const { bio, candidate, canidateInstitute } = req.body;
   const key = req.params.index;
   var data = [];
   for (var d of candidate) {
-    var r = { ...bio, ...d, ...verification };
+    var r = { ...bio, ...d };
     data.push(r);
   }
   var studentBio = {
@@ -499,16 +499,9 @@ module.exports.downloadReportPDF = async (req, res, next) => {
     addedById: bio.addedById,
     hrorganisationId: bio.hrorganisationId,
   };
-  var studentVerification = {
-    dateOfVerification: verification.dateOfVerification,
-    personalIdentity: verification.personalIdentity,
-    criminal: verification.criminal,
-    verificationAddress: verification.verificationAddress,
-    drugsAndSubstanceAbuse: verification.drugsAndSubstanceAbuse,
-  };
   if (canidateInstitute) {
     for (var d1 of canidateInstitute) {
-      var r1 = { ...studentBio, ...d1, ...studentVerification };
+      var r1 = { ...studentBio, ...d1 };
       data.push(r1);
     }
   }
