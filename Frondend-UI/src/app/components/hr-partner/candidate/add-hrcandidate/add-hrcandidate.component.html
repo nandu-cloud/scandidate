@@ -311,7 +311,7 @@
                 </div>
               </div>
               <div class="flex justify-end lg:pb-6 lg:pr-48">
-                <a routerLink="/candidate-list"><button class="lg-button focus:outline-none focus:shadow-outline" tabindex="18" type="button">
+                <a routerLink="/hrcandidate-list"><button class="lg-button focus:outline-none focus:shadow-outline" tabindex="18" type="button">
                   Cancel
                 </button></a>
                 <!-- <button tabindex="19" type="submit" class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
@@ -1836,12 +1836,18 @@
        
         </div>
         <div class="flex justify-end lg:pb-6 lg:pr-48">
-          <a routerLink="/hrcandidate-list"><button class="lg-button focus:outline-none focus:shadow-outline" tabindex="18" type="button">
+          <!-- <a routerLink="/hrcandidate-list"><button class="lg-button focus:outline-none focus:shadow-outline" tabindex="18" type="button">
             Cancel
-          </button></a>
+          </button></a> -->
           <!-- <button tabindex="19" type="submit" class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
             Save Now
           </button> -->
+          <button
+                class="lg-button focus:outline-none focus:shadow-outline"
+                (click)="cancel()"
+              >
+                Back
+              </button>
           <button tabindex="20" class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">
             Next
           </button>
