@@ -355,18 +355,26 @@ module.exports.updateCandidateData = async (req, res, next) => {
   try {
     for (var d of data) {
       if (d.hasOwnProperty("organizationName")) {
-        var getCand = await canddidateDAL.findByCandIdEmployee({ _id: d._id });
-        if (getCand) {
-          var candidateUpdate = await canddidateDAL.updateDataByIdEmp(d);
+        if (d._id != null) {
+          var getCand = await canddidateDAL.findByCandIdEmployee({
+            _id: d._id,
+          });
+          if (getCand) {
+            var candidateUpdate = await canddidateDAL.updateDataByIdEmp(d);
+          }
         } else {
-          candidateUpdate = await empDAL.addEmployee(d);
+          var newEmployee = { ...d, bgvCandidate: true };
+          candidateUpdate = await empDAL.addEmployee(newEmployee);
         }
       } else {
-        var getStd = await canddidateDAL.findByCandIdStudent({ _id: d._id });
-        if (getStd) {
-          candidateUpdate = await canddidateDAL.updateDataByIdStd(d);
+        if (d._id != null) {
+          var getStd = await canddidateDAL.findByCandIdStudent({ _id: d._id });
+          if (getStd) {
+            candidateUpdate = await canddidateDAL.updateDataByIdStd(d);
+          }
         } else {
-          candidateUpdate = await stdDAL.addStudent(d);
+          var newStudent = { ...d, bgvCandidate: true };
+          candidateUpdate = await stdDAL.addStudent(newStudent);
         }
       }
     }
