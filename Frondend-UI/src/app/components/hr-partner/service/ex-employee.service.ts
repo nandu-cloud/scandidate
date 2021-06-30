@@ -227,7 +227,7 @@ export class ExEmployeeService {
         } =
      { 'firstName': createUser.firstName,
         'lastName': createUser.lastName,
-        'role': 'ORGANIZATION',
+        'role': 'AGENCY',
         'subRole': createUser.subRole,
         'email': createUser.email,
         'dateOfBirth': createUser.dateOfBirth,
@@ -266,7 +266,7 @@ export class ExEmployeeService {
     var update: { 'firstName': string, 'lastName': string, 'role': string, 'subRole': string, 'email': string, 'dateOfBirth': Date, 'phoneNumber': number,'hrorganisationId':string, 'workstation': string, 'status': boolean, 'onboardedById' : string} =
      { 'firstName': updateUser.firstName,
         'lastName': updateUser.lastName,
-        'role': 'ORGANIZATION',
+        'role': 'AGENCY',
         'subRole': updateUser.subRole,
         'email': updateUser.email,
         'dateOfBirth': updateUser.dateOfBirth,

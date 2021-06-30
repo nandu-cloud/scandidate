@@ -94,6 +94,7 @@ const routes: Routes = [
   { path: 'add-employee/:id', component: AddEmployeeComponent, canActivate: [AppGuard]},
   { path: 'user-list', component: UserListComponent, canActivate: [AppGuard]},
   { path: 'add-hroppuser', component: AddHroppuserComponent, canActivate: [AppGuard]},
+  { path: 'add-hroppuser/:id', component: AddHroppuserComponent, canActivate: [AppGuard]},
   { path: 'add-hrcandidate', component: AddHrcandidateComponent, canActivate: [AppGuard]},
   { path: 'add-hrcandidate/:id', component: AddHrcandidateComponent, canActivate: [AppGuard]},
   { path: 'hrcandidate-list', component: HrcandidateListComponent, canActivate: [AppGuard]},

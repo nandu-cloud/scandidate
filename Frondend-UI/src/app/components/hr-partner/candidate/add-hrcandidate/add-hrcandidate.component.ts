@@ -569,8 +569,8 @@ export class AddHrcandidateComponent implements OnInit {
         console.log(resp);
         // alert("download")
         let blob = new Blob([resp], {type: 'application/pdf'});
-       let filename = this.form.value.bio.firstName + '.pdf'
-       saveAs(blob, filename);
+      //  let filename = this.form.value.bio.firstName + '.pdf'
+       saveAs(blob);
         
       },
       // err => {
