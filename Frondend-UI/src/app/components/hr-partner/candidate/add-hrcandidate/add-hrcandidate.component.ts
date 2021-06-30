@@ -566,7 +566,7 @@ export class AddHrcandidateComponent implements OnInit {
       console.log(index)
       this.downloadPDFSubscription = this.exempService.downloadReport(this.form.value, index).subscribe(resp => {
         console.log(resp);
-        alert("download")
+        // alert("download")
         let blob = new Blob([resp], {type: 'application/pdf'});
       //  let filename = this.form.value.bio.firstName + '.pdf'
        saveAs(blob);
