@@ -226,6 +226,7 @@ module.exports.showCandidateById = async (req, res, next) => {
           totalData[i].informalOrganizationSenseOfBelonging,
         workIndependenty: totalData[i].workIndependenty,
         volume: totalData[i].volume,
+        teamWork: totalData[i].teamWork,
         consistency: totalData[i].consistency,
         punctuality: totalData[i].punctuality,
         academicKnowledge: totalData[i].academicKnowledge,
@@ -354,6 +355,7 @@ module.exports.updateCandidateData = async (req, res, next) => {
   }
   try {
     for (var d of data) {
+      console.log(d);
       if (d.hasOwnProperty("organizationName")) {
         if (d._id != null) {
           var getCand = await canddidateDAL.findByCandIdEmployee({
