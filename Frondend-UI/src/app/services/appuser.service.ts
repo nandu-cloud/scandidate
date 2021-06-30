@@ -31,7 +31,7 @@ export class AppuserService {
   organId = createUserData.organizationId
   scandidateId = undefined 
   instituteeId = undefined
-  }else if(createUserData.role == 'HRPARTNER'){
+  }else if(createUserData.role == 'AGENCY'){
   scandidateId = undefined 
   instituteeId = undefined
   organId = undefined
