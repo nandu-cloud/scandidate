@@ -48,10 +48,7 @@ module.exports.saveCandidate = async (req, res, next) => {
     }
   }
   try {
-    var duplicate = [];
-    var uniqueData = [];
     for (let d of data) {
-      // console.log(d);
       if (d.hasOwnProperty("organizationName")) {
         d.bgvCandidate = true;
         var orgName = d.organizationName;
@@ -71,21 +68,8 @@ module.exports.saveCandidate = async (req, res, next) => {
           d.organisationId = _id.toString();
         }
         let empValid = await empValidator.addEmployeeSchema.validateAsync(d);
-        var dataEmployee = {
-          organizationName: d.organizationName,
-          email: d.email,
-          dateOfJoining: d.dateOfJoining,
-          exitDate: d.exitDate,
-        };
-        var checkDuplicate = await canddidateDAL.checkDuplicateEmpRecord(
-          dataEmployee
-        );
-        if (checkDuplicate) {
-          duplicate.push(checkDuplicate.organizationName);
-          continue;
-        } else {
-          var saveCandidate = await empDAL.addEmployee(empValid);
-        }
+
+        var saveCandidate = await empDAL.addEmployee(empValid);
       } else if (d.intitutionName.length > 0) {
         d.bgvCandidate = true;
         var insName = d.intitutionName;
@@ -105,47 +89,13 @@ module.exports.saveCandidate = async (req, res, next) => {
         }
 
         let stdvalid = await stdValidator.addStudentSchema.validateAsync(d);
-        var dataStduent = {
-          intitutionName: d.intitutionName,
-          email: d.email,
-        };
-        var checkDuplicate = await canddidateDAL.checkDuplicateStudentRecord(
-          dataStduent
-        );
-        if (checkDuplicate) {
-          duplicate.push(checkDuplicate.intitutionName);
-        } else {
-          saveCandidate = await stdDAL.addStudent(stdvalid);
-        }
+        var saveCandidate = await stdDAL.addStudent(stdvalid);
       }
     }
-    uniqueData = [...new Set(duplicate)];
-    if (duplicate.length > 0) {
-      var duplicateNames = "";
-      for (var i = 0; i < uniqueData.length; i++) {
-        if (i < uniqueData.length - 1) {
-          duplicateNames = duplicateNames + uniqueData[i] + ",";
-        } else {
-          duplicateNames = duplicateNames + uniqueData[i];
-        }
-      }
-    }
-    if (saveCandidate === undefined && duplicate.length > 0) {
-      return res.status(200).json({
-        status: 410,
-        message: `Record already exists for ${duplicateNames}`,
-      });
-    } else if (saveCandidate && duplicate.length > 0) {
-      return res.status(200).json({
-        status: 409,
-        message: `Partital saved, record exists for ${duplicateNames}`,
-      });
-    } else {
-      if (saveCandidate) {
-        return res
-          .status(200)
-          .json({ status: 200, message: "Candidate on-boarded successfully!" });
-      }
+    if (saveCandidate) {
+      return res
+        .status(200)
+        .json({ status: 200, message: "Candidate on-boarded successfully!" });
     }
   } catch (err) {
     return next(new AppError(err, 422));
@@ -299,10 +249,15 @@ module.exports.showCandidateById = async (req, res, next) => {
       var inst = {
         // Student
         _id: totalData[i]._id,
-        nameofFeedbackProvider: totalData[i].nameofFeedbackProvider,
+        // nameofFeedbackProvider: totalData[i].nameofFeedbackProvider,
+        feedbackProviderName: totalData[i].feedbackProviderName,
+        feedbackProviderDesignation: totalData[i].feedbackProviderDesignation,
+        feedbackProviderRelationship: totalData[i].feedbackProviderRelationship,
+        feedbackProviderEmail: totalData[i].feedbackProviderEmail,
+        feedbackProviderPhoneNumber: totalData[i].feedbackProviderPhoneNumber,
         instituteId: totalData[i].instituteId,
-        designationOfFeedbackProvider:
-          totalData[i].designationOfFeedbackProvider,
+        // designationOfFeedbackProvider:
+        //   totalData[i].designationOfFeedbackProvider,
         nameOfCourse: totalData[i].nameOfCourse,
         yearOfJoining: totalData[i].yearOfJoining,
         yearOfPassout: totalData[i].yearOfPassout,
@@ -499,6 +454,7 @@ module.exports.downloadReportPDF = async (req, res, next) => {
     addedById: bio.addedById,
     hrorganisationId: bio.hrorganisationId,
   };
+
   if (canidateInstitute) {
     for (var d1 of canidateInstitute) {
       var r1 = { ...studentBio, ...d1 };
@@ -924,12 +880,12 @@ module.exports.downloadReportPDF = async (req, res, next) => {
     let countDoc = 0;
     for (var i = 0; i < template.length; i++) {
       if (
-        template[i].discrepancyDocuments.IsSelect != null ||
-        template[i].compliencyDiscrepancy.IsSelect != null ||
-        template[i].warning.IsSelect != null ||
-        template[i].showCausedIssue.IsSelect != null ||
-        template[i].suspension.IsSelect != null ||
-        template[i].termination.IsSelect != null
+        template[i].discrepancyDocuments.descrepencyCauseActionTaken != null ||
+        template[i].compliencyDiscrepancy.compliencyCauseActionTaken != null ||
+        template[i].warning.warningCauseActionTaken != null ||
+        template[i].showCausedIssue.showCausedCauseActionTaken != null ||
+        template[i].suspension.suspensionCauseActionTaken != null ||
+        template[i].termination.terminationCauseActionTaken != null
       ) {
         countDoc += 1;
       }
@@ -950,8 +906,6 @@ module.exports.downloadReportPDF = async (req, res, next) => {
       isAwarded: isAward,
       isDocumentPresent: isDocument,
     };
-
-    console.log(result);
 
     try {
       ejs.renderFile(
@@ -990,6 +944,36 @@ module.exports.downloadReportPDF = async (req, res, next) => {
     } catch (err) {
       return next(new AppError(err, 400));
     }
+  } catch (err) {
+    return next(new AppError(err, 422));
+  }
+};
+
+module.exports.checkForDuplicateCandidate = async (req, res, next) => {
+  const data = req.body;
+  try {
+    let result = await canddidateDAL.checkDiplicateEmployee(data);
+    if (result === undefined) {
+      return res
+        .status(200)
+        .json({ status: 200, message: "Employee doesn't exists" });
+    }
+    return next(new AppError(result, 400));
+  } catch (err) {
+    return next(new AppError(err, 422));
+  }
+};
+
+module.exports.checkForDuplicateStudent = async (req, res, next) => {
+  const data = req.body;
+  try {
+    let result = await canddidateDAL.checkDuplicateStudentRecord(data);
+    if (result === undefined) {
+      return res
+        .status(200)
+        .json({ status: 200, message: "Student doesn't exists" });
+    }
+    return next(new AppError(result, 400));
   } catch (err) {
     return next(new AppError(err, 422));
   }

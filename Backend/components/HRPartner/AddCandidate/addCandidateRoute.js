@@ -31,4 +31,12 @@ router
   .route("/downloadReport/:index")
   .post(authJWT.verifyJWTToken, candidateController.downloadReportPDF);
 
+router
+  .route("/check/duplicateCandidateEmployee")
+  .post(authJWT.verifyJWTToken, candidateController.checkForDuplicateCandidate);
+
+router
+  .route("/check/duplicateCandiateStudent")
+  .post(authJWT.verifyJWTToken, candidateController.checkForDuplicateStudent);
+
 module.exports = router;

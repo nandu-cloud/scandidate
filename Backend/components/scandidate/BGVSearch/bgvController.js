@@ -960,12 +960,12 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
   let countDoc = 0;
   for (var i = 0; i < template.length; i++) {
     if (
-      template[i].discrepancyDocuments.IsSelect != null ||
-      template[i].compliencyDiscrepancy.IsSelect != null ||
-      template[i].warning.IsSelect != null ||
-      template[i].showCausedIssue.IsSelect != null ||
-      template[i].suspension.IsSelect != null ||
-      template[i].termination.IsSelect != null
+      template[i].discrepancyDocuments.descrepencyCauseActionTaken != null ||
+      template[i].compliencyDiscrepancy.compliencyCauseActionTaken != null ||
+      template[i].warning.warningCauseActionTaken != null ||
+      template[i].showCausedIssue.showCausedCauseActionTaken != null ||
+      template[i].suspension.suspensionCauseActionTaken != null ||
+      template[i].termination.terminationCauseActionTaken != null
     ) {
       countDoc += 1;
     }

@@ -98,13 +98,11 @@ async function checkDuplicateEmpRecord(data) {
     var result = await employeeModel.find({
       $and: [
         { organisationId: data.organisationId },
-        { dateOfJoining: data.dateOfJoining },
-        { exitDate: data.exitDate },
+        { email: data.email },
         {
           $or: [
-            { email: data.email },
-            { phoneNumber: data.phoneNumber },
-            { adharNumber: data.adharNumber },
+            { dateOfJoining: data.dateOfJoining },
+            { exitDate: data.exitDate },
           ],
         },
       ],
@@ -114,37 +112,40 @@ async function checkDuplicateEmpRecord(data) {
       result = await employeeSaveNowModel.find({
         $and: [
           { organisationId: data.organisationId },
-          { dateOfJoining: data.dateOfJoining },
-          { exitDate: data.exitDate },
+          { email: data.email },
           {
             $or: [
-              { email: data.email },
-              { phoneNumber: data.phoneNumber },
-              { adharNumber: data.adharNumber },
+              { dateOfJoining: data.dateOfJoining },
+              { exitDate: data.exitDate },
             ],
           },
         ],
       });
     }
 
-    for (var i = 0; i < result.length; i++) {
-      if (result[i].email === data.email) {
-        var r = "Employee with same email exists";
-        break;
-      }
-      if (result[i].phoneNumber === data.phoneNumber) {
-        var r = "Employee with same phone number exists";
-        break;
-      }
-      if (
-        result[i].adharNumber === data.adharNumber &&
-        data.adharNumber.length > 0
-      ) {
-        var r = "Employee with same aadhar number exists";
-        break;
-      } else {
-        var r = undefined;
-      }
+    // for (var i = 0; i < result.length; i++) {
+    //   if (result[i].email === data.email) {
+    //     var r = "Employee with same email exists";
+    //     break;
+    //   }
+    //   if (result[i].phoneNumber === data.phoneNumber) {
+    //     var r = "Employee with same phone number exists";
+    //     break;
+    //   }
+    //   if (
+    //     result[i].adharNumber === data.adharNumber &&
+    //     data.adharNumber.length > 0
+    //   ) {
+    //     var r = "Employee with same aadhar number exists";
+    //     break;
+    //   } else {
+    //     var r = undefined;
+    //   }
+    // }
+    if (result.length > 0) {
+      var r = "Employee already exists";
+    } else {
+      var r = undefined;
     }
     return r;
   } catch (err) {

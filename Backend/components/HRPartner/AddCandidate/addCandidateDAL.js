@@ -127,7 +127,7 @@ async function showOrganization(data) {
   try {
     let result = await orgModel
       .find({
-        organizationName: { $regex: data, $options: "i" },
+        organizationName: { $regex: "^" + data, $options: "i" },
       })
       .select("_id organizationName");
     return result;
@@ -140,10 +140,54 @@ async function showInstitution(data) {
   try {
     let result = await instModel
       .find({
-        instituteName: { $regex: data, $options: "i" },
+        instituteName: { $regex: "^" + data, $options: "i" },
       })
       .select("_id instituteName");
     return result;
+  } catch (err) {
+    throw err;
+  }
+}
+
+async function checkDiplicateEmployee(data) {
+  try {
+    let result = await empModel.find({
+      $and: [
+        { organizationName: { $regex: data.organizationName, $options: "i" } },
+        { email: data.email },
+        {
+          $or: [
+            { dateOfJoining: data.dateOfJoining },
+            { exitDate: data.exitDate },
+          ],
+        },
+      ],
+    });
+    if (result.length > 0) {
+      var r = "Employee already exists";
+    } else {
+      var r = undefined;
+    }
+    return r;
+  } catch (err) {
+    throw err;
+  }
+}
+
+async function checkDuplicateStudentRecord(data) {
+  try {
+    let result = await stdModel.find({
+      $and: [
+        { intitutionName: { $regex: data.intitutionName, $options: "i" } },
+        { email: data.email },
+      ],
+    });
+    if (result.length > 0) {
+      var r = "Student already exists";
+    } else {
+      var r = undefined;
+    }
+    return r;
   } catch (err) {
     throw err;
   }
@@ -162,4 +206,5 @@ module.exports = {
   checkDuplicateStudentRecord: checkDuplicateStudentRecord,
   showOrganization: showOrganization,
   showInstitution: showInstitution,
+  checkDiplicateEmployee: checkDiplicateEmployee,
 };
