@@ -1,4 +1,5 @@
 <app-navbar>
+  <div class="bg-white">
     <div class="hd flex flex-wrap overflow-hidden sm:p-0">
         <div class="org sm:w-4/6 lg:mr-8 mt-2">Our Candidates (Feedback)</div>
         <div class="search-box lg:w-4/12 lg:-ml-4 lg:mt-0 xl:w-1/4 xl:ml-56 md:w-2/4 md:ml-40 md:-mt-8 sm:w-4/6">
@@ -45,35 +46,35 @@
     </ng-container>
   
     <!-- Contact Column -->
-    <ng-container matColumnDef="dateOfJoining">
+    <!-- <ng-container matColumnDef="dateOfJoining">
       <th mat-header-cell *matHeaderCellDef> Date Of Joining </th>
       <td mat-cell *matCellDef="let element">
         <span class="mobile-label">
          Date Of Joining
         </span>
         {{element.dateOfJoining | date:'dd-MM-yyyy'}} </td>
-    </ng-container>
+    </ng-container> -->
 
     <!-- DOB Column -->
-    <ng-container matColumnDef="dateofexit">
+    <!-- <ng-container matColumnDef="dateofexit">
         <th mat-header-cell *matHeaderCellDef> Date Of Exit </th>
         <td mat-cell *matCellDef="let element">
           <span class="mobile-label">
             Exit Date
           </span>
           {{element.exitDate | date:'dd-MM-yyyy'}} </td>
-      </ng-container>
+      </ng-container> -->
 
 
       <!-- experience Column -->
-      <ng-container matColumnDef="experience">
+      <!-- <ng-container matColumnDef="experience">
         <th mat-header-cell *matHeaderCellDef> Experience </th>
         <td mat-cell *matCellDef="let element">
           <span class="mobile-label">
             Experience
           </span>
           {{element.professionalExperience}}</td>
-      </ng-container>
+      </ng-container> -->
 
       <!-- status Column -->
       
@@ -106,81 +107,22 @@
           <span class="mobile-label">
             Action
           </span>
-          <!-- <a [routerLink]="['/add-candidate/',row._id]" *ngIf="row.status == true">
-            <mat-icon class="action" (click)=edit(row._id)>
-              <span class="bg-black text-white p-1 cursor-pointer mr-10">visibility</span>
-            </mat-icon>{{row.action}}
-          </a> -->
+        
           <a [routerLink]="['/add-hrcandidate/',row._id]"><mat-icon class="action" (click)=saveRow(row._id) ><span class="bg-black text-white p-1 cursor-pointer mr-10">border_color</span></mat-icon>{{row.action}}</a>
         </td>
       </ng-container>
 
      
 
-      <ng-container matColumnDef="actions">
-        <!-- <mat-header-cell *matHeaderCellDef>Mail</mat-header-cell> -->
-      
-          <th mat-header-cell *matHeaderCellDef  >
-            <div *ngIf="logiuser =='admin'">   Mail </div>
-          </th>
-
-       
-        <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header >Mail</th> -->
-
-        <td mat-cell *matCellDef="let row; let i = index">
-          <span class="mobile-label">
-            Mail
-          </span>
-          <span class="mail bg-black text-white text-bold">
-          <a class="forwardd" (click)="forwordToLinemanager(row, i + (paginator.pageIndex * paginator.pageSize))"
-                          *ngIf="(!row.assignedId && row.status == false && logiuser =='admin');else checkLinemanagerDisplay" 
-                          >
-            <span class="numsicons">
-              <mat-icon class="ico">forward</mat-icon>
-              Forward</span>
-          </a>
-          <ng-template #checkLinemanagerDisplay>
-            <a class="forwardd" (click)="checkLinemanagerId(row._id, row, i + (paginator.pageIndex * paginator.pageSize))"
-                          *ngIf="(row.status == false && logiuser =='admin')" 
-                          >
-            <span class="numsicons">
-              <mat-icon class="ico">forward</mat-icon>
-              Forward</span>
-          </a>
-          </ng-template>
-          <a class="forwarddd" (click)="showBGVReport(row._id)" *ngIf="row.status == true && logiuser == 'admin'">
-            <!-- <span class="nums">
-              <span class="numsicon material-icons">
-                email
-                </span>
-                Send Feedback
-              </span> -->
-              <span class="numsiconss">
-                <span class="material-icons">email</span>
-                Send Feedback</span>
-          
-              
-          </a>
-          </span>
-        </td>   
-        <!-- <td mat-cell *matCellDef="let row">
-          <a *ngIf="row.status == false">
-            <span class="bg-black text-white pt-2 pb-2 pl-1  pr-1 " >LineManager</span>
-          </a>
-        </td> -->
-        <!-- <mat-cell *matCellDef="let row">
-          <a (click)="showBGVReport(row._id)"><span class="bg-black text-white pt-2 pb-2 pl-1  pr-1 " >Send BGV Report</span></a>
-        </mat-cell> -->
-  
-        </ng-container>
-      
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    <div class="p-4" *matNoDataRow>
-      <p>No data matching the filter</p>
-    </div>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"   > 
+      </tr>
+      <div class="p-4" *matNoDataRow>
+        <p>No data matching the filter</p>
+      </div>
     
   </table>
   <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator>
+  </div>
   </div>
   </app-navbar>

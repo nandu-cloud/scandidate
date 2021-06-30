@@ -24,6 +24,7 @@ export class AddHroppuserComponent implements OnInit {
   public setMessage: any = {};
   error = '';
   orgIdupdate;
+  nonWhitespaceRegExp: RegExp = new RegExp("\\S");
   constructor(public fb: FormBuilder,
     private cd: ChangeDetectorRef,
     public dialog: MatDialog,
@@ -34,11 +35,11 @@ export class AddHroppuserComponent implements OnInit {
     });
     this.organizationUserForm = new FormGroup({
       _id: new FormControl(), 
-      firstName : new FormControl('', [Validators.required]),
-      lastName : new FormControl('', [Validators.required]),
+      firstName : new FormControl('', [Validators.required, Validators.pattern(this.nonWhitespaceRegExp)]),
+      lastName : new FormControl('', [Validators.required, Validators.pattern(this.nonWhitespaceRegExp)]),
       phoneNumber : new FormControl('', [Validators.required, Validators.pattern('^[1-9][0-9]{9}$')]),
       email : new FormControl('', [Validators.required]),
-      role: new FormControl('HRPARTNER', [Validators.required]),
+      role: new FormControl('Agency', [Validators.required]),
       subRole: new FormControl('', [Validators.required]),
       dateOfBirth : new FormControl(''),
       workstation : new FormControl(''),

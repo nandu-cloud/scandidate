@@ -13,6 +13,7 @@ export class ExEmployeeService {
   empIdupdate: number;
   empIdSave : string;
   userIdupdate;
+  index;
   count : number =0;
   constructor(private http: HttpClient,
      private route: ActivatedRoute) {
@@ -310,8 +311,14 @@ export class ExEmployeeService {
     empData.candidate.forEach(element => {
       cavArr.push({
         "organizationName": element.organizationName,
-          "nameofFeedbackProvider": element.nameofFeedbackProvider,
-           'designationOfFeedbackProvider': element.designationOfFeedbackProvider,
+        "organiationLocation": element.organiationLocation,
+          "feedbackProviderName": element.feedbackProviderName,
+          "feedbackProviderDesignation": element.feedbackProviderDesignation,
+          "feedbackProviderRelationship": element.feedbackProviderRelationship,
+          "feedbackProviderEmail": element.feedbackProviderEmail,
+          "feedbackProviderPhoneNumber": element.feedbackProviderPhoneNumber,
+          // "nameofFeedbackProvider": element.nameofFeedbackProvider,
+          //  'designationOfFeedbackProvider': element.designationOfFeedbackProvider,
           'exitDate': element.exitDate, 'dateOfJoining': element.dateOfJoining,
                'professionalExperience': element.professionalExperience,
             'employeeId': element.employeeId, 'role': element.role, 'department': element.department,
@@ -335,8 +342,11 @@ export class ExEmployeeService {
     let inst = []
     empData.canidateInstitute.forEach(element => {
       inst.push({
-        "nameofFeedbackProvider":  element.nameofFeedbackProvider,
-        "designationOfFeedbackProvider": element.designationOfFeedbackProvider,
+        "feedbackProviderName": element.feedbackProviderName,
+        "feedbackProviderDesignation": element.feedbackProviderDesignation,
+        "feedbackProviderRelationship": element.feedbackProviderRelationship,
+        "feedbackProviderEmail": element.feedbackProviderEmail,
+        "feedbackProviderPhoneNumber": element.feedbackProviderPhoneNumber,
         "intitutionName": element.intitutionName,
         "candidateInstituteId": element.candidateInstituteId,
         "nameOfCourse": element.nameOfCourse,
@@ -409,13 +419,19 @@ console.log(o)
         cavArr.push({
           "_id": element._id,
           "organizationName": element.organizationName,
-            "nameofFeedbackProvider": element.nameofFeedbackProvider,
-            'designationOfFeedbackProvider': element.designationOfFeedbackProvider,
-            'exitDate': element.exitDate, 'dateOfJoining': element.dateOfJoining,
-                'professionalExperience': element.professionalExperience,
-              'employeeId': element.employeeId, 'role': element.role, 'department': element.department,
-                'selfDriven': element.selfDriven,
-              'creativity': element.creativity, 'informalOrganizationSenseOfBelonging': element.informalOrganizationSenseOfBelonging,
+          "organiationLocation": element.organiationLocation,
+          "feedbackProviderName": element.feedbackProviderName,
+          "feedbackProviderDesignation": element.feedbackProviderDesignation,
+          "feedbackProviderRelationship": element.feedbackProviderRelationship,
+          "feedbackProviderEmail": element.feedbackProviderEmail,
+          "feedbackProviderPhoneNumber": element.feedbackProviderPhoneNumber,
+          // "nameofFeedbackProvider": element.nameofFeedbackProvider,
+          // 'designationOfFeedbackProvider': element.designationOfFeedbackProvider,
+          'exitDate': element.exitDate, 'dateOfJoining': element.dateOfJoining,
+          'professionalExperience': element.professionalExperience,
+          'employeeId': element.employeeId, 'role': element.role, 'department': element.department,
+          'selfDriven': element.selfDriven,
+          'creativity': element.creativity, 'informalOrganizationSenseOfBelonging': element.informalOrganizationSenseOfBelonging,
               'initiative': element.initiative, 'workIndependenty': element.workIndependenty, 'teamWork': element.teamWork,
               'dealConstructivelyWithPressure': element.dealConstructivelyWithPressure, 'volume': element.volume,
               'quality': element.quality, 'consistency': element.consistency, 'punctuality': element.punctuality,
@@ -435,8 +451,11 @@ console.log(o)
       candupdateData.canidateInstitute.forEach(element => {
         inst.push({
           '_id': element._id,
-          'nameofFeedbackProvider':  element.nameofFeedbackProvider,
-          'designationOfFeedbackProvider': element.designationOfFeedbackProvider,
+          "feedbackProviderName": element.feedbackProviderName,
+        "feedbackProviderDesignation": element.feedbackProviderDesignation,
+        "feedbackProviderRelationship": element.feedbackProviderRelationship,
+        "feedbackProviderEmail": element.feedbackProviderEmail,
+        "feedbackProviderPhoneNumber": element.feedbackProviderPhoneNumber,
           'intitutionName': element.intitutionName,
           'candidateInstituteId': element.candidateInstituteId,
           'nameOfCourse': element.nameOfCourse,
@@ -484,5 +503,123 @@ console.log(o)
     // get all Institution
     public getAllInstitution() : Observable<any>{
       return this.http.get(this.baseUrl + '/api/scandidate/institute/');
+    }
+
+    //download report
+    downloadReport(report, index): Observable<any> {
+      let bioobjj={
+        'firstName': report.firstName,
+        'lastName': report.lastName,
+        'email': report.email,
+        'phoneNumber': report.phoneNumber,
+        'dateOfBirth': report.dateOfBirth == "" ? "" : report.dateOfBirth,
+        'adharNumber': report.adharNumber== "" ? "": report.adharNumber,
+        'panNumber': report.panNumber,'city': report.city, 'state': report.state,
+        'pinCode': report.pinCode,
+        'address': report.address, 'landMark': report.landMark
+        }
+  
+        let cavArr=[]
+  
+        report.candidate.forEach(element => {
+          cavArr.push({
+            "_id": element._id,
+            "organizationName": element.organizationName,
+            "organiationLocation": element.organiationLocation,
+            "feedbackProviderName": element.feedbackProviderName,
+            "feedbackProviderDesignation": element.feedbackProviderDesignation,
+            "feedbackProviderRelationship": element.feedbackProviderRelationship,
+            "feedbackProviderEmail": element.feedbackProviderEmail,
+            "feedbackProviderPhoneNumber": element.feedbackProviderPhoneNumber,
+            // "nameofFeedbackProvider": element.nameofFeedbackProvider,
+            // 'designationOfFeedbackProvider': element.designationOfFeedbackProvider,
+            'exitDate': element.exitDate, 'dateOfJoining': element.dateOfJoining,
+            'professionalExperience': element.professionalExperience,
+            'employeeId': element.employeeId, 'role': element.role, 'department': element.department,
+            'selfDriven': element.selfDriven,
+            'creativity': element.creativity, 'informalOrganizationSenseOfBelonging': element.informalOrganizationSenseOfBelonging,
+                'initiative': element.initiative, 'workIndependenty': element.workIndependenty, 'teamWork': element.teamWork,
+                'dealConstructivelyWithPressure': element.dealConstructivelyWithPressure, 'volume': element.volume,
+                'quality': element.quality, 'consistency': element.consistency, 'punctuality': element.punctuality,
+                'discipline': element.discipline, 'academicKnowledge': element.academicKnowledge, 'productKnowledge': element.productKnowledge,
+                'industryKnowledge': element.industryKnowledge, 'communicationSkills': element.communicationSkills,
+                'awards': element.awards, 
+                'building': element.building, 'stakeholder': element.stakeholder, 'discrepancyDocuments': element.discrepancyDocuments,
+                'compliencyDiscrepancy': element.compliencyDiscrepancy, 'warning': element.warning, 'showCausedIssue': element.warning,
+                'suspension': element.suspension, 'termination': element.termination,
+                'keySkills': element.keySkills, 'empThrive': element.empThrive, 'inLeadership': element.inLeadership,
+                'otherInfo': element.otherInfo,'rehireAgain': element.rehireAgain, 'reasonForSerperation': element.reasonForSerperation,
+                'originalFilename': element.originalFilename, 'status': element.status
+          })
+        });
+  
+        let inst = []
+        report.canidateInstitute.forEach(element => {
+          inst.push({
+            '_id': element._id,
+            "feedbackProviderName": element.feedbackProviderName,
+          "feedbackProviderDesignation": element.feedbackProviderDesignation,
+          "feedbackProviderRelationship": element.feedbackProviderRelationship,
+          "feedbackProviderEmail": element.feedbackProviderEmail,
+          "feedbackProviderPhoneNumber": element.feedbackProviderPhoneNumber,
+            'intitutionName': element.intitutionName,
+            'candidateInstituteId': element.candidateInstituteId,
+            'nameOfCourse': element.nameOfCourse,
+            'yearOfJoining': element.yearOfJoining,
+            'yearOfPassout': element.yearOfPassout,
+            'studentType': element.yearOfPassout,
+            'roll': element.roll
+          })
+        });
+  
+        let bckverification = {
+          'dateOfVerification': report.dateOfVerification,
+            'personalIdentity': report.personalIdentity,
+            'criminal': report.criminal,
+            'verificationAddress': report.verificationAddress,
+            'drugsAndSubstanceAbuse': report.drugsAndSubstanceAbuse,
+            'salarySlipCTCdocument': report.salarySlipCTCdocument,
+        }
+        let download ={bio:bioobjj,
+          candidate:cavArr,
+          verification: bckverification,
+          canidateInstitute: inst
+          }
+      return this.http.post(this.baseUrl + '/api/candidate/downloadReport/'+ index, download,{responseType: 'blob'}
+      // {
+      //   headers: new HttpHeaders({
+      //     'Content-Type': 'application/json',
+      //     'Access-Control-Allow-Origin': '*'
+      //   })
+      // }
+      );
+    }
+
+    //search organization
+    searchOrgName(orgName): Observable<any>{
+     var search: {
+         "organizationName": string
+     } = {
+      "organizationName": orgName
+     };
+     console.log(search)
+     return this.http.post(this.baseUrl + '/api/candidate/searchOrganization', search
+    );
+    }
+
+    //search Institution
+    searchInstName(instName): Observable<any>{
+     var search: {
+         "intitutionName": string
+     } = {
+      "intitutionName": instName
+     };
+     return this.http.post(this.baseUrl + '/api/candidate/searchInstitution', search,
+     {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    );
     }
 }

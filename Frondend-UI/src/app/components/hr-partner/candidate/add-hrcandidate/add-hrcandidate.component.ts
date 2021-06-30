@@ -10,6 +10,8 @@ import { MatTabChangeEvent,MatTab, MatTabGroup } from '@angular/material/tabs';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { environment } from '../../../../../environments/environment';
 import { ExEmployeeService } from '../../service/ex-employee.service';
+import { BehaviorSubject } from "rxjs";
+import { saveAs } from 'file-saver/dist/FileSaver';
 
 @Component({
   selector: 'app-add-hrcandidate',
@@ -32,6 +34,7 @@ export class AddHrcandidateComponent implements OnInit {
   editEmployeeSubscription: Subscription;
   employeeUpdateSubscription: Subscription;
   downloadStudentSubscription: Subscription;
+  searchSubscription: Subscription;
   public setMessage: any = {};
   error = '';
   empIdedit: any;
@@ -65,6 +68,9 @@ export class AddHrcandidateComponent implements OnInit {
   duplicateSubscription: Subscription;
   candidateSubscription: Subscription;
   candUpdateSubscription: Subscription;
+  downloadPDFSubscription: Subscription;
+  searchInstSubscription: Subscription;
+  searchorgSubscription: Subscription;
   showSave: boolean = true;
   submitValue : boolean = true;
   empIdsave : any;
@@ -78,15 +84,23 @@ export class AddHrcandidateComponent implements OnInit {
   @ViewChildren(MatTab, {read: MatTab})
   public tabNodes: QueryList<MatTab>;
   public closedTabs = [];
+  value; 
+  candIndex: any;
+  index: any;
+
   createItem(): FormGroup{
     return new FormGroup({ 
           _id: new FormControl(null),
-          nameofFeedbackProvider: new FormControl(''), 
-          designationOfFeedbackProvider: new FormControl(''), 
+          feedbackProviderName: new FormControl(''),
+          feedbackProviderDesignation: new FormControl(''),
+          feedbackProviderRelationship: new FormControl(''),
+          feedbackProviderEmail: new FormControl(''),
+          feedbackProviderPhoneNumber: new FormControl(''),
           employeeId: new FormControl(''),  
           dateOfJoining: new FormControl('', [Validators.required, this.validateJoiningDate()]),
           exitDate: new FormControl('', [Validators.required, this.validateJoiningDate()]),
           organizationName: new FormControl(''),
+          organiationLocation: new FormControl(''),
           role: new FormControl(''),
           professionalExperience: new FormControl(''),
           reasonForSerperation: new FormGroup({ IsSelect: new FormControl('voluntary'),
@@ -157,8 +171,13 @@ export class AddHrcandidateComponent implements OnInit {
   createInst(): FormGroup{
     return new FormGroup({
       _id: new FormControl(null),
-      nameofFeedbackProvider: new FormControl(''),
-      designationOfFeedbackProvider: new FormControl(''),
+      feedbackProviderName: new FormControl(''),
+      feedbackProviderDesignation: new FormControl(''),
+      feedbackProviderRelationship: new FormControl(''),
+      feedbackProviderEmail: new FormControl(''),
+      feedbackProviderPhoneNumber: new FormControl(''),  
+      // nameofFeedbackProvider: new FormControl(''),
+      // designationOfFeedbackProvider: new FormControl(''),
       intitutionName:new FormControl(''),
       candidateInstituteId:new FormControl(''),
       nameOfCourse:new FormControl(''),
@@ -207,12 +226,15 @@ export class AddHrcandidateComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.empIdedit = params.id;
       this.empIdsave =params.id;
+      // this.candIndex = params.index;
     });
    }
 
   //  get f() { return this.form.controls; }
   //  get t() { return this.f.candidate as FormArray; }
 
+  
+  
   validateExitDate(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       if (this.form !== undefined) {
@@ -296,7 +318,9 @@ export class AddHrcandidateComponent implements OnInit {
       console.log(resp.data[0]._id);
     })
   }
-  tabs =[];// ["organization"];
+  tabs: [];// ["organization"];
+  cand = [];
+  
   ngOnInit(): void {
    this.getAllOrganizationNames();
    this.getAllIntitutionName();
@@ -314,8 +338,12 @@ export class AddHrcandidateComponent implements OnInit {
           candidates.forEach( can => {
             const candidateControls = this.createItem()
             candidateControls.patchValue(can)
+            console.log("hiiiii", can);
             this.candidate.push(candidateControls)
           })
+          // function getIndex(val){
+          //   for (var i = 0; i<candidates.length; i++){}
+          // }
         }else{
           this.candidate.push(this.createItem())
         }
@@ -396,24 +424,51 @@ export class AddHrcandidateComponent implements OnInit {
     // this.candidate = this.form.get('items') as FormArray;
     // this.candidate.push(this.createItem());
     // if (selectAfterAdding) {
-    //   this.selected.setValue(this.tabs.length - 1);
+    //   this.selected.setValue(this.candidate.length - 1);
     // }
     // this.candidate = this.form.get('candidate') as FormArray
     this.candidate.push(this.createItem())
-
+    
   }
-
-  removeTab(i :number) {
-    this.tabs.splice(i, 1);
+  
+  
+  showTab= false;
+  showSecondTab(selectAfterAdding: boolean){
+    this.showTab = true;
+    console.log(selectAfterAdding)
+    this.canidateInstitute.push(this.createInst());
+    // this.tabGroup.selectedIndex = this.Insttabs.length - 1;
   }
+  // closeTab(index :number) {
+  //   this.candidates.splice(index, 1);
+  // }
   removeTabs(index :number) {
-    this.tabs.splice(index, 1);
+    // this.candidates.splice(index, 1);
   }
-  // closeTab(index: number) {
+
+  // closeTab(){
+    // for (let i = 0; i < this.candidate.length; i++) {
+    //   if (this.candidate[i] === cand) {
+    //     this.tabs.splice(i, 1);
+
+    //   }
+    // }
+
+  // }
+  // public tabSub = new BehaviorSubject<cand>(this.tabs);
+  closeTab(index: number) {
+    // this.tabs.splice(c, 1);
+    // if (this.tabs.length > 0) {
+    // this.tabs[this.tabs.length - 1].active = true;
   //   event.stopPropagation();
   //   this.closedTabs.push(index);
-  //   this.tabGroup.selectedIndex = this.tabNodes.length - 1;
-  // }
+    // }
+    // this.tabSub.next(this.tabs);
+    // this.candidates.splice(index, 1);
+    // if (selectAfterAdding) {
+      this.selected.setValue(this.candidate.length - 1);
+    // }
+  }
   public nextStep() {
     if (this.selectedIndex != this.maxNumberOfTabs) {
       this.selectedIndex ++;
@@ -429,13 +484,6 @@ export class AddHrcandidateComponent implements OnInit {
     console.log(this.selectedIndex);
   }
 
-  showTab= false;
-  showSecondTab(selectAfterAdding: boolean){
-    this.showTab = true;
-    console.log(selectAfterAdding)
-    this.canidateInstitute.push(this.createInst());
-    // this.tabGroup.selectedIndex = this.Insttabs.length - 1;
-  }
   // close() {
 
   // }
@@ -502,10 +550,70 @@ export class AddHrcandidateComponent implements OnInit {
       days: days
     };
   }
-
+  // showText = false;
+  onChange(value) {
+    this.value = value;
+    // this.showText = true;
+  }
   saveNow(){
-  
+     
     }
+
+    
+    downloadPDF(){
+      console.log(this.candidate.length);
+      var index = (this.candidate.length) - 1;
+      console.log(index)
+      this.downloadPDFSubscription = this.exempService.downloadReport(this.form.value, index).subscribe(resp => {
+        console.log(resp);
+        alert("download")
+        let blob = new Blob([resp], {type: 'application/pdf'});
+      //  let filename = this.form.value.bio.firstName + '.pdf'
+       saveAs(blob);
+        
+      },
+      // err => {
+      //   this.setMessage = { message: err.error.message, error: true };
+      //   this.error = this.setMessage.message;
+      //   throw this.setMessage.message;
+      //  }
+       )
+    } 
+
+    // allIntitution =[]
+    // getAllIntitutionName(){
+    //   this.exempService.getAllInstitution().subscribe(resp => {
+    //     this.allIntitution = resp.data;
+    //     console.log(resp.data[0]._id);
+    //   })
+    // }
+
+    allOrganizationName = []
+    onKeydown(event){
+      if(this.form.value.candidate.organizationName !== ''){
+      this.searchorgSubscription = this.exempService.searchOrgName(event).subscribe(resp => {
+       console.log(resp.data);
+       this.allOrganizationName = resp.data;
+      }, err => {
+        this.setMessage = { message: err.error.message, error: true };
+        this.error = this.setMessage.message;
+        throw this.setMessage.message;
+      })
+     }
+    } 
+    allIntitutionName = []
+    onKeyup(event){
+      if(this.form.value.candidate.intitutionName !== ''){
+      this.searchInstSubscription = this.exempService.searchInstName(event).subscribe(resp => {
+       console.log(resp.data);
+       this.allIntitutionName = resp.data;
+      }, err => {
+        this.setMessage = { message: err.error.message, error: true };
+        this.error = this.setMessage.message;
+        throw this.setMessage.message;
+      })
+     }
+    } 
     methodtype;
     openDialog() {
       const dialogRef = this.dialog.open(DialogElementsExampleDialog, {
@@ -517,12 +625,22 @@ export class AddHrcandidateComponent implements OnInit {
       this.form.value
      
       ).subscribe(resp => {
+        // if(resp.statusCode == 200){}
+        // if(resp.statusCode == 410){
+        //   this.methodtype = "duplicate";
+        //   this.openDialog();
+        // }
+        this.methodtype = "save";
         this.openDialog();
       }, err => {
+        // if(this.error){
+        //   this.methodtype = "save";
+        //   this.openDialog();;
+        // }
         this.setMessage = { message: err.error.message, error: true };
         this.error = this.setMessage.message;
         throw this.setMessage.message;
-      })
+       })
     }
   
 
@@ -559,13 +677,13 @@ export class DialogElementsExampleDialog {
     if (this.methodType == 'update') {
       this.Message = "Candidate Updated successfully"
     } else if(this.methodType == 'save') {
-      this.Message = "Ex-Employee Feedback successfully Submitted"
+      this.Message = "Candidate added successfully"
     } else if(this.methodType == 'duplicate') {
-      this.Message = "Ex-Employee with same email exists"
+      this.Message = "Record already exists"
     }
-     else {
-      this.Message ="Candidate added successfully"
-    }
+    //  else {
+    //   this.Message ="Candidate added successfully"
+    // }
     
   }
 

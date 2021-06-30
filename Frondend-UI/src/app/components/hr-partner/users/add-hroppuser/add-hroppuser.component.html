@@ -20,6 +20,9 @@
                     <mat-error *ngIf ="organizationUserForm.get('firstName').errors?.minlength">
                       First name must be at least 5 characters long.
                     </mat-error>
+                    <mat-error *ngIf="organizationUserForm.get('firstName').errors?.pattern">
+                      Enter First Name Without Space
+                    </mat-error>
                   </mat-form-field>
                   <mat-form-field class="secondcol lg:pl-24">
                     <mat-label>Last Name</mat-label>
@@ -29,6 +32,9 @@
                     </mat-error>
                     <mat-error *ngIf = "organizationUserForm.get('lastName').errors?.minlength">
                       Last name must be at least 5 characters long.
+                    </mat-error>
+                    <mat-error *ngIf="organizationUserForm.get('lastName').errors?.pattern">
+                      Enter Last Name Without Space
                     </mat-error>
                   </mat-form-field>
                 </div>

@@ -48,9 +48,12 @@ export class HrcandidateListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.displayedColumns =['name', 'phone_number', 'email', 'action', 'actions'];
+    this.displayedColumns =['name', 'phone_number', 'email', 'action'];
     this.EmployeeSubscription = this.empService.getCandidateList().subscribe(respObj=>{
       this.dataSource = new MatTableDataSource(respObj.data);
+      this.dataSource.paginator = this.paginator;
+    },err => {
+      this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
     })
   }
 
