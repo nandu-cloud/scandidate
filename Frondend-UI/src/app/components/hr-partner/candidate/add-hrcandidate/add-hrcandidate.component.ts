@@ -208,6 +208,7 @@ export class AddHrcandidateComponent implements OnInit {
     candidate: new FormArray([]),
     canidateInstitute: new FormArray([]),
     dateOfVerification: new FormControl(),
+    verifiedFor: new FormControl(),
     personalIdentity: new FormControl(),
     criminal: new FormControl(),
     verificationAddress: new FormControl(),
@@ -568,8 +569,8 @@ export class AddHrcandidateComponent implements OnInit {
         console.log(resp);
         // alert("download")
         let blob = new Blob([resp], {type: 'application/pdf'});
-      //  let filename = this.form.value.bio.firstName + '.pdf'
-       saveAs(blob);
+       let filename = this.form.value.bio.firstName + '.pdf'
+       saveAs(blob, filename);
         
       },
       // err => {

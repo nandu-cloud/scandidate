@@ -359,6 +359,7 @@ export class ExEmployeeService {
    
     let bckverification:{
        'dateOfVerification': string,
+       'verifiedFor': string
         'personalIdentity': boolean,
          'criminal': boolean,
          'verificationAddress': boolean,
@@ -366,6 +367,7 @@ export class ExEmployeeService {
          'salarySlipCTCdocument': boolean
     } = {
       'dateOfVerification': empData.dateOfVerification,
+      'verifiedFor': empData.verifiedFor,
         'personalIdentity': empData.personalIdentity,
         'criminal': empData.criminal,
         'verificationAddress': empData.verificationAddress,
@@ -472,9 +474,11 @@ console.log(o)
          'criminal': boolean,
          'verificationAddress': boolean,
          'drugsAndSubstanceAbuse': boolean,
-         'salarySlipCTCdocument': boolean
+         'salarySlipCTCdocument': boolean,
+         'verifiedFor': string
       } = {
         'dateOfVerification': candupdateData.dateOfVerification,
+        'verifiedFor': candupdateData.verifiedFor,
           'personalIdentity': candupdateData.personalIdentity,
           'criminal': candupdateData.criminal,
           'verificationAddress': candupdateData.verificationAddress,

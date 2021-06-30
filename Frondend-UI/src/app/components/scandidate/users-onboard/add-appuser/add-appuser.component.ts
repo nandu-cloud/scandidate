@@ -140,7 +140,7 @@ export class AddAppuserComponent implements OnInit {
         this.subroleTypeee="INSTITUTZON"
       }
       else{
-        this.subroleTypeee = "HRPARTNER";
+        this.subroleTypeee = "AGENCY";
       }
     }
   onupdate(id: number){
