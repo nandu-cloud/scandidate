@@ -95,11 +95,11 @@ export class AddHrcandidateComponent implements OnInit {
           feedbackProviderDesignation: new FormControl(''),
           feedbackProviderRelationship: new FormControl(''),
           feedbackProviderEmail: new FormControl(''),
-          feedbackProviderPhoneNumber: new FormControl(''),
+          feedbackProviderPhoneNumber: new FormControl('', [Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[1-9][0-9]{9}$')]),
           employeeId: new FormControl(''),  
           dateOfJoining: new FormControl('', [Validators.required, this.validateJoiningDate()]),
           exitDate: new FormControl('', [Validators.required, this.validateJoiningDate()]),
-          organizationName: new FormControl(''),
+          organizationName: new FormControl('', [Validators.required]),
           organiationLocation: new FormControl(''),
           role: new FormControl(''),
           professionalExperience: new FormControl(''),
@@ -569,8 +569,8 @@ export class AddHrcandidateComponent implements OnInit {
         console.log(resp);
         // alert("download")
         let blob = new Blob([resp], {type: 'application/pdf'});
-      //  let filename = this.form.value.bio.firstName + '.pdf'
-       saveAs(blob);
+       let filename = this.form.value.firstName + '-' + this.form.value.candidate[index].organizationName + '.pdf'
+       saveAs(blob, filename);
         
       },
       // err => {
@@ -591,10 +591,12 @@ export class AddHrcandidateComponent implements OnInit {
 
     allOrganizationName = []
     onKeydown(event){
+      this.value = event;
       if(this.form.value.candidate.organizationName !== ''){
       this.searchorgSubscription = this.exempService.searchOrgName(event).subscribe(resp => {
        console.log(resp.data);
        this.allOrganizationName = resp.data;
+      //  this.value = resp.data.allOrganizationName.organizationName;
       }, err => {
         this.setMessage = { message: err.error.message, error: true };
         this.error = this.setMessage.message;

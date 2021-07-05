@@ -334,13 +334,14 @@
           <div>
               <ng-template mat-tab-label >
                 <mat-icon class="example-tab-icon">card_travel</mat-icon>
-              
+                <span>{{ value }}  Organization</span>
                 <div class="labelHeading">
                 <!-- <span  *ngIf="c != 0">{{ value }} </span>  -->
-                  <span>{{ value }}  Organization</span>
-                </div> &nbsp; &nbsp; &nbsp;
-                <mat-icon class="cls"
-                (click)="closeTab(index)">close</mat-icon>
+              </div> &nbsp; &nbsp; &nbsp;
+
+                <!-- <mat-icon class="cls"
+                (click)="closeTab(index)">close</mat-icon> -->
+              
               </ng-template>
               
               <div class="flex flex-wrap">
@@ -354,6 +355,11 @@
                   <input matInput #organizationName [matAutocomplete]="auto" type="text" class="br-btm input-w" tabindex="1" required
                   autoComplete="off" 
                   (keyup)="onKeydown($event.target.value)" formControlName="organizationName">
+                  <mat-error
+                      *ngIf="form.get('organizationName')?.errors?.required"
+                    >
+                      Required Organization Name.
+                    </mat-error>
                   <mat-autocomplete #auto="matAutocomplete">
                   <mat-option *ngFor="let itm of allOrganizationName" value={{itm.organizationName}}>
                     {{itm.organizationName}}
@@ -404,6 +410,7 @@
                          <mat-option value="5">You were peers in the different groups</mat-option>
                          <mat-option value="6">You mentored this person</mat-option>
                          <mat-option value="7">You reported to this person directly</mat-option>
+                         <mat-option value="8">This person was senior to you - no reporting relationship</mat-option>
                        </mat-select> 
                       </mat-form-field>
                       <mat-form-field>
@@ -411,9 +418,22 @@
                         <input
                           matInput
                           type="text" formControlName="feedbackProviderPhoneNumber"
-                          class="br-btm input-w"
-                          autoComplete="off" tabindex="7"
+                          class="br-btm input-w" 
+                          autoComplete="off" tabindex="7" pattern="^[0-9]{10}$"
                         />
+                        <!-- <mat-error
+                      *ngIf="form.get('feedbackProviderPhoneNumber')?.errors?.required"
+                    >
+                      Required phone number.
+                    </mat-error> -->
+                    <mat-error
+                      *ngIf="
+                        !form.get('feedbackProviderPhoneNumber')?.errors?.required &&
+                        form.get('feedbackProviderPhoneNumber')?.errors?.pattern
+                      "
+                    >
+                      Please enter valid phone mumber
+                    </mat-error>
                       </mat-form-field>
                     </div>
                     <div class="w-full md:w-1/2 sm:w-full">
@@ -1720,7 +1740,7 @@
             <div class="w-full md:w-1/2 sm:w-full">
               <mat-form-field>
                 <mat-label>Institution Name</mat-label>
-                <input  matInput  #intitutionName type="text" [matAutocomplete]="auto"
+                <input  matInput  #intitutionName type="text" [matAutocomplete]="auto" required
                 autoComplete="off" (keyup)="onKeyup($event.target.value)" formControlName="intitutionName" class="br-btm input-w" tabindex="1">
                 <mat-autocomplete #auto="matAutocomplete">
                   <mat-option *ngFor="let itm of allIntitutionName" value="{{itm.instituteName}}">
