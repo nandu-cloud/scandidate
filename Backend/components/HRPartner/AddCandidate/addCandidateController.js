@@ -355,7 +355,6 @@ module.exports.updateCandidateData = async (req, res, next) => {
   }
   try {
     for (var d of data) {
-      console.log(d);
       if (d.hasOwnProperty("organizationName")) {
         if (d._id != null) {
           var getCand = await canddidateDAL.findByCandIdEmployee({

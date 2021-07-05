@@ -132,8 +132,9 @@ module.exports.updateMethod = async function (req, res, next) {
 };
 
 module.exports.showLineManager = async (req, res, next) => {
+  const data = mongoose.Types.ObjectId(req.params.organizationId);
   try {
-    let getlineManager = await userDAL.showAllLineManager();
+    let getlineManager = await userDAL.showAllLineManager({ organizationId: data });
     return res
       .status(200)
       .json({ status: 200, message: "Success", data: getlineManager });

@@ -53,10 +53,10 @@ async function updateUser(data) {
   }
 }
 
-async function showAllLineManager() {
+async function showAllLineManager(data) {
   try {
     let result = await userModel
-      .find({ subRole: "LINE MANAGER" })
+      .find({ subRole: "LINE MANAGER", organizationId: data.organizationId })
       .select("_id firstName lastName")
       .sort({ _id: -1 })
       .lean();

@@ -21,7 +21,15 @@ async function findEmployeeConsent(data) {
 
 async function findSavedEmployeeConsent(data) {
   try {
-    let result = await consentModel.find(data);
+    let result = await consentModel.find({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      $or: [
+        { email: data.email },
+        { phoneNumber: data.phoneNumber },
+        { adharNumber: data.adharNumber },
+      ],
+    });
     return result;
   } catch (err) {
     throw err;

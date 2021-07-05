@@ -17,7 +17,7 @@ router
   .put(authJWT.verifyJWTToken, addUserController.updateMethod);
 
 router
-  .route("/show/lineManager")
+  .route("/show/lineManager/:organizationId")
   .get(authJWT.verifyJWTToken, addUserController.showLineManager);
 
 module.exports = router;
