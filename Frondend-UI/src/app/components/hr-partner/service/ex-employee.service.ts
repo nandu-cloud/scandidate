@@ -348,7 +348,6 @@ export class ExEmployeeService {
         "feedbackProviderEmail": element.feedbackProviderEmail,
         "feedbackProviderPhoneNumber": element.feedbackProviderPhoneNumber,
         "intitutionName": element.intitutionName,
-        "candidateInstituteId": element.candidateInstituteId,
         "nameOfCourse": element.nameOfCourse,
         "yearOfJoining": element.yearOfJoining,
         "yearOfPassout": element.yearOfPassout,
@@ -459,7 +458,6 @@ console.log(o)
         "feedbackProviderEmail": element.feedbackProviderEmail,
         "feedbackProviderPhoneNumber": element.feedbackProviderPhoneNumber,
           'intitutionName': element.intitutionName,
-          'candidateInstituteId': element.candidateInstituteId,
           'nameOfCourse': element.nameOfCourse,
           'yearOfJoining': element.yearOfJoining,
           'yearOfPassout': element.yearOfPassout,
@@ -567,7 +565,6 @@ console.log(o)
           "feedbackProviderEmail": element.feedbackProviderEmail,
           "feedbackProviderPhoneNumber": element.feedbackProviderPhoneNumber,
             'intitutionName': element.intitutionName,
-            'candidateInstituteId': element.candidateInstituteId,
             'nameOfCourse': element.nameOfCourse,
             'yearOfJoining': element.yearOfJoining,
             'yearOfPassout': element.yearOfPassout,
@@ -625,5 +622,10 @@ console.log(o)
       })
     }
     );
+    }
+
+    public getCandLinemanagerData(): Observable<any> {
+      var organizationId = window.sessionStorage.getItem('hrorganisationId');
+      return this.http.get(this.baseUrl + '/api/organisation/admin/show/lineManager/' + organizationId);
     }
 }

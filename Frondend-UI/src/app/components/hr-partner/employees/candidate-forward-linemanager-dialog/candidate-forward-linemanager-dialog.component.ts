@@ -5,6 +5,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ExEmployeeService } from 'src/app/components/hr-partner/service/ex-employee.service';
 declare var $:any
 @Component({
   selector: 'app-candidate-forward-linemanager-dialog',
@@ -30,6 +31,7 @@ export class CandidateForwardLinemanagerDialogComponent implements OnInit {
   dataSource: any;
   assign: any;
   constructor(
+    public exempService: ExEmployeeService,
     public linemanagerService: AdminOrganizationService,
      public dialog: MatDialog,
       public empService: EmployeeService,
@@ -43,7 +45,7 @@ export class CandidateForwardLinemanagerDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getLinemanagerSubscription = this.linemanagerService.getLinemanagerData()
+    this.getLinemanagerSubscription = this.exempService.getCandLinemanagerData()
     .subscribe(respObj => {
       this.lm = respObj.data;
       // this.methodtype = 'assigned';

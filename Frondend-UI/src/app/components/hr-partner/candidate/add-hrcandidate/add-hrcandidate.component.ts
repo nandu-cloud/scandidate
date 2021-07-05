@@ -179,7 +179,7 @@ export class AddHrcandidateComponent implements OnInit {
       // nameofFeedbackProvider: new FormControl(''),
       // designationOfFeedbackProvider: new FormControl(''),
       intitutionName:new FormControl(''),
-      candidateInstituteId:new FormControl(''),
+      // candidateInstituteId:new FormControl(''),
       nameOfCourse:new FormControl(''),
       yearOfJoining: new FormControl(''),
       yearOfPassout:new FormControl(''),
@@ -591,7 +591,12 @@ export class AddHrcandidateComponent implements OnInit {
 
     allOrganizationName = []
     onKeydown(event){
-      this.value = event;
+      // this.value = event;
+      // for(var i=0; i<this.candidate.length; i++){
+      //   if(this.candidate[i].organizationName == this.index){
+         
+      //   }
+      // }
       if(this.form.value.candidate.organizationName !== ''){
       this.searchorgSubscription = this.exempService.searchOrgName(event).subscribe(resp => {
        console.log(resp.data);
