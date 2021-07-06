@@ -611,6 +611,7 @@ export class AddHrcandidateComponent implements OnInit {
     } 
     allIntitutionName = []
     onKeyup(event){
+      this.value = event;
       if(this.form.value.candidate.intitutionName !== ''){
       this.searchInstSubscription = this.exempService.searchInstName(event).subscribe(resp => {
        console.log(resp.data);

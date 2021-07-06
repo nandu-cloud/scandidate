@@ -1729,10 +1729,11 @@
               
           <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon">work</mat-icon>
-            <div class="labelHeading">
+           <span>{{candInt.get('intitutionName').value}} Institution</span>
+            <!-- <div class="labelHeading">
               Institution
-              <!-- <mat-icon>close</mat-icon> -->
-            </div>&nbsp; &nbsp; &nbsp;
+            </div> -->
+            &nbsp; &nbsp; &nbsp;
             <!-- <mat-icon class="cls" [disabled]="Insttabs.length === 1"
                 (click)="removeTab(i)">close</mat-icon> -->
           </ng-template>
