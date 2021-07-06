@@ -87,7 +87,6 @@ module.exports.saveCandidate = async (req, res, next) => {
           var { _id } = await instDAL.onboardInstitute(inst);
           d.instituteId = _id.toString();
         }
-
         let stdvalid = await stdValidator.addStudentSchema.validateAsync(d);
         var saveCandidate = await stdDAL.addStudent(stdvalid);
       }
@@ -364,8 +363,28 @@ module.exports.updateCandidateData = async (req, res, next) => {
             var candidateUpdate = await canddidateDAL.updateDataByIdEmp(d);
           }
         } else {
-          var newEmployee = { ...d, bgvCandidate: true };
-          candidateUpdate = await empDAL.addEmployee(newEmployee);
+          // var newEmployee = { ...d, bgvCandidate: true };
+          d.bgvCandidate = true;
+          var orgName = d.organizationName;
+          var getOrganisation = await orgDAL.findOrganisation({
+            organizationName: orgName,
+          });
+          if (getOrganisation) {
+            d.organisationId = getOrganisation._id.toString();
+          } else {
+            var org = {
+              organizationName: orgName,
+              organisationEmail: orgName + "@gmail.com",
+              scandiate: false,
+            };
+            var { _id } = await orgDAL.onboardOrganisation(org);
+            d.organisationId = _id.toString();
+          }
+          delete d["_id"];
+          let empValid = await empValidator.updateEmployeeSchema.validateAsync(
+            d
+          );
+          candidateUpdate = await empDAL.addEmployee(empValid);
         }
       } else {
         if (d._id != null) {
@@ -374,8 +393,28 @@ module.exports.updateCandidateData = async (req, res, next) => {
             candidateUpdate = await canddidateDAL.updateDataByIdStd(d);
           }
         } else {
-          var newStudent = { ...d, bgvCandidate: true };
-          candidateUpdate = await stdDAL.addStudent(newStudent);
+          // var newStudent = { ...d, bgvCandidate: true };
+          d.bgvCandidate = true;
+          var insName = d.intitutionName;
+          var getInstitute = await instDAL.findInstitution({
+            instituteName: insName,
+          });
+          if (getInstitute) {
+            d.instituteId = getInstitute._id.toString();
+          } else {
+            var inst = {
+              instituteName: insName,
+              instituteEmail: insName + "@gmail.com",
+              scandiate: false,
+            };
+            var { _id } = await instDAL.onboardInstitute(inst);
+            d.instituteId = _id.toString();
+          }
+          delete d["_id"];
+          let stdvalid = await stdValidator.updateStudentSchema.validateAsync(
+            d
+          );
+          candidateUpdate = await stdDAL.addStudent(stdvalid);
         }
       }
     }
