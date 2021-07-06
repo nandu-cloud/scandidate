@@ -402,6 +402,8 @@ console.log(o)
   }
   // Update candidate
   updateCandidate(candupdateData): Observable<any> {
+    var id = window.sessionStorage.getItem('ID');
+    var organizationId = window.sessionStorage.getItem('hrorganisationId');
     let bioobjj={
       'firstName': candupdateData.firstName,
       'lastName': candupdateData.lastName,
@@ -411,7 +413,10 @@ console.log(o)
       'adharNumber': candupdateData.adharNumber== "" ? "": candupdateData.adharNumber,
       'panNumber': candupdateData.panNumber,'city': candupdateData.city, 'state': candupdateData.state,
       'pinCode': candupdateData.pinCode,
-      'address': candupdateData.address, 'landMark': candupdateData.landMark
+      'address': candupdateData.address,
+       'landMark': candupdateData.landMark,
+       'addedById': id,
+       'hrorganisationId': organizationId
       }
 
       let cavArr=[]
