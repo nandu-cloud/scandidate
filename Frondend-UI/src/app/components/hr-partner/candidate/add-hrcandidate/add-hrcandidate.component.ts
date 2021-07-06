@@ -591,7 +591,7 @@ export class AddHrcandidateComponent implements OnInit {
 
     allOrganizationName = []
     onKeydown(event){
-      // this.value = event;
+      this.value = event;
       // for(var i=0; i<this.candidate.length; i++){
       //   if(this.candidate[i].organizationName == this.index){
          
