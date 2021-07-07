@@ -240,73 +240,73 @@ module.exports.searchByIdBGV = async (req, res, next) => {
             dob
           );
 
-          for (var i = 0; i < empAdharData.length; i++) {
-            var orgId = empAdharData[i].organisationId;
-            var id = mongoose.Types.ObjectId(orgId);
-            var result = await organizationDAL.getOrganisationById({ _id: id });
-            if (result.organisationLogo != null) {
-              empAdharData[i].organisationLogo = result.organisationLogo;
-            } else {
-              empAdharData[i].organisationLogo = "";
-            }
-          }
+          // for (var i = 0; i < empAdharData.length; i++) {
+          //   var orgId = empAdharData[i].organisationId;
+          //   var id = mongoose.Types.ObjectId(orgId);
+          //   var result = await organizationDAL.getOrganisationById({ _id: id });
+          //   if (result.organisationLogo != null) {
+          //     empAdharData[i].organisationLogo = result.organisationLogo;
+          //   } else {
+          //     empAdharData[i].organisationLogo = "";
+          //   }
+          // }
 
           if (studentAdharData.length > 0) {
-            for (var i = 0; i < studentAdharData.length; i++) {
-              var insId = studentAdharData[i].instituteId;
-              var id = mongoose.Types.ObjectId(insId);
-              var result = await instituionDAL.getInstituteById({
-                _id: id,
-              });
+            // for (var i = 0; i < studentAdharData.length; i++) {
+            //   var insId = studentAdharData[i].instituteId;
+            //   var id = mongoose.Types.ObjectId(insId);
+            //   var result = await instituionDAL.getInstituteById({
+            //     _id: id,
+            //   });
 
-              if (result.instituteLogo != null) {
-                studentAdharData[i].institutionLogo = result.instituteLogo;
-              } else {
-                studentAdharData[i].institutionLogo = "";
-              }
-            }
+            //   if (result.instituteLogo != null) {
+            //     studentAdharData[i].institutionLogo = result.instituteLogo;
+            //   } else {
+            //     studentAdharData[i].institutionLogo = "";
+            //   }
+            // }
             resultData = empAdharData.concat(studentAdharData);
           } else if (studentEmailData.length > 0) {
-            for (var i = 0; i < studentEmailData.length; i++) {
-              var instId = studentEmailData[i].instituteId;
-              var id = mongoose.Types.ObjectId(instId);
-              var result = await instituionDAL.getInstituteById({
-                _id: id,
-              });
-              if (result.instituteLogo != null) {
-                studentEmailData[i].institutionLogo = result.instituteLogo;
-              } else {
-                studentEmailData[i].institutionLogo = "";
-              }
-            }
+            // for (var i = 0; i < studentEmailData.length; i++) {
+            //   var instId = studentEmailData[i].instituteId;
+            //   var id = mongoose.Types.ObjectId(instId);
+            //   var result = await instituionDAL.getInstituteById({
+            //     _id: id,
+            //   });
+            //   if (result.instituteLogo != null) {
+            //     studentEmailData[i].institutionLogo = result.instituteLogo;
+            //   } else {
+            //     studentEmailData[i].institutionLogo = "";
+            //   }
+            // }
             resultData = empAdharData.concat(studentEmailData);
           } else if (studentPhoneData.length > 0) {
-            for (var i = 0; i < studentPhoneData.length; i++) {
-              var insId = studentPhoneData[i].instituteId;
-              var id = mongoose.Types.ObjectId(insId);
-              var result = await instituionDAL.getInstituteById({
-                _id: id,
-              });
-              if (result.instituteLogo != null) {
-                studentPhoneData[i].institutionLogo = result.instituteLogo;
-              } else {
-                studentPhoneData[i].institutionLogo = "";
-              }
-            }
+            // for (var i = 0; i < studentPhoneData.length; i++) {
+            //   var insId = studentPhoneData[i].instituteId;
+            //   var id = mongoose.Types.ObjectId(insId);
+            //   var result = await instituionDAL.getInstituteById({
+            //     _id: id,
+            //   });
+            //   if (result.instituteLogo != null) {
+            //     studentPhoneData[i].institutionLogo = result.instituteLogo;
+            //   } else {
+            //     studentPhoneData[i].institutionLogo = "";
+            //   }
+            // }
             resultData = empAdharData.concat(studentPhoneData);
           } else if (findByNameStudent.length > 0) {
-            for (var i = 0; i < findByNameStudent.length; i++) {
-              var insId = findByNameStudent[i].instituteId;
-              var id = mongoose.Types.ObjectId(insId);
-              var result = await instituionDAL.getInstituteById({
-                _id: id,
-              });
-              if (result.instituteLogo != null) {
-                findByNameStudent[i].institutionLogo = result.instituteLogo;
-              } else {
-                findByNameStudent[i].institutionLogo = "";
-              }
-            }
+            // for (var i = 0; i < findByNameStudent.length; i++) {
+            //   var insId = findByNameStudent[i].instituteId;
+            //   var id = mongoose.Types.ObjectId(insId);
+            //   var result = await instituionDAL.getInstituteById({
+            //     _id: id,
+            //   });
+            //   if (result.instituteLogo != null) {
+            //     findByNameStudent[i].institutionLogo = result.instituteLogo;
+            //   } else {
+            //     findByNameStudent[i].institutionLogo = "";
+            //   }
+            // }
             resultData = empAdharData.concat(findByNameStudent);
           } else {
             resultData = empAdharData;
@@ -330,75 +330,75 @@ module.exports.searchByIdBGV = async (req, res, next) => {
             dob
           );
 
-          for (var i = 0; i < empAdharData.length; i++) {
-            var orgId = empAdharData[i].organisationId;
-            var id = mongoose.Types.ObjectId(orgId);
-            var result = await organizationDAL.getOrganisationById({
-              _id: id,
-            });
-            if (result.organisationLogo != null) {
-              empAdharData[i].organisationLogo = result.organisationLogo;
-            } else {
-              empAdharData[i].organisationLogo = "";
-            }
-          }
+          // for (var i = 0; i < empAdharData.length; i++) {
+          //   var orgId = empAdharData[i].organisationId;
+          //   var id = mongoose.Types.ObjectId(orgId);
+          //   var result = await organizationDAL.getOrganisationById({
+          //     _id: id,
+          //   });
+          //   if (result.organisationLogo != null) {
+          //     empAdharData[i].organisationLogo = result.organisationLogo;
+          //   } else {
+          //     empAdharData[i].organisationLogo = "";
+          //   }
+          // }
 
           if (studentAdharData.length > 0) {
-            for (var i = 0; i < studentAdharData.length; i++) {
-              var insId = studentAdharData[i].instituteId;
-              var id = mongoose.Types.ObjectId(insId);
-              var result = await instituionDAL.getInstituteById({
-                _id: id,
-              });
+            // for (var i = 0; i < studentAdharData.length; i++) {
+            //   var insId = studentAdharData[i].instituteId;
+            //   var id = mongoose.Types.ObjectId(insId);
+            //   var result = await instituionDAL.getInstituteById({
+            //     _id: id,
+            //   });
 
-              if (result.instituteLogo != null) {
-                studentAdharData[i].institutionLogo = result.instituteLogo;
-              } else {
-                studentAdharData[i].institutionLogo = "";
-              }
-            }
+            //   if (result.instituteLogo != null) {
+            //     studentAdharData[i].institutionLogo = result.instituteLogo;
+            //   } else {
+            //     studentAdharData[i].institutionLogo = "";
+            //   }
+            // }
             resultData = empEmailData.concat(studentAdharData);
           } else if (studentEmailData.length > 0) {
-            for (var i = 0; i < studentEmailData.length; i++) {
-              var instId = studentEmailData[i].instituteId;
-              var id = mongoose.Types.ObjectId(instId);
-              var result = await instituionDAL.getInstituteById({
-                _id: id,
-              });
-              if (result.instituteLogo != null) {
-                studentEmailData[i].institutionLogo = result.instituteLogo;
-              } else {
-                studentEmailData[i].institutionLogo = "";
-              }
-            }
+            // for (var i = 0; i < studentEmailData.length; i++) {
+            //   var instId = studentEmailData[i].instituteId;
+            //   var id = mongoose.Types.ObjectId(instId);
+            //   var result = await instituionDAL.getInstituteById({
+            //     _id: id,
+            //   });
+            //   if (result.instituteLogo != null) {
+            //     studentEmailData[i].institutionLogo = result.instituteLogo;
+            //   } else {
+            //     studentEmailData[i].institutionLogo = "";
+            //   }
+            // }
             resultData = empEmailData.concat(studentEmailData);
           } else if (studentPhoneData.length > 0) {
-            for (var i = 0; i < studentPhoneData.length; i++) {
-              var insId = studentPhoneData[i].instituteId;
-              var id = mongoose.Types.ObjectId(insId);
-              var result = await instituionDAL.getInstituteById({
-                _id: id,
-              });
-              if (result.instituteLogo != null) {
-                studentPhoneData[i].institutionLogo = result.instituteLogo;
-              } else {
-                studentPhoneData[i].institutionLogo = "";
-              }
-            }
+            // for (var i = 0; i < studentPhoneData.length; i++) {
+            //   var insId = studentPhoneData[i].instituteId;
+            //   var id = mongoose.Types.ObjectId(insId);
+            //   var result = await instituionDAL.getInstituteById({
+            //     _id: id,
+            //   });
+            //   if (result.instituteLogo != null) {
+            //     studentPhoneData[i].institutionLogo = result.instituteLogo;
+            //   } else {
+            //     studentPhoneData[i].institutionLogo = "";
+            //   }
+            // }
             resultData = empEmailData.concat(studentPhoneData);
           } else if (findByNameStudent.length > 0) {
-            for (var i = 0; i < findByNameStudent.length; i++) {
-              var insId = findByNameStudent[i].instituteId;
-              var id = mongoose.Types.ObjectId(insId);
-              var result = await instituionDAL.getInstituteById({
-                _id: id,
-              });
-              if (result.instituteLogo != null) {
-                findByNameStudent[i].institutionLogo = result.instituteLogo;
-              } else {
-                findByNameStudent[i].institutionLogo = "";
-              }
-            }
+            // for (var i = 0; i < findByNameStudent.length; i++) {
+            //   var insId = findByNameStudent[i].instituteId;
+            //   var id = mongoose.Types.ObjectId(insId);
+            //   var result = await instituionDAL.getInstituteById({
+            //     _id: id,
+            //   });
+            //   if (result.instituteLogo != null) {
+            //     findByNameStudent[i].institutionLogo = result.instituteLogo;
+            //   } else {
+            //     findByNameStudent[i].institutionLogo = "";
+            //   }
+            // }
             resultData = empEmailData.concat(findByNameStudent);
           } else {
             resultData = empEmailData;
@@ -419,75 +419,75 @@ module.exports.searchByIdBGV = async (req, res, next) => {
             dob
           );
 
-          for (var i = 0; i < empAdharData.length; i++) {
-            var orgId = empAdharData[i].organisationId;
-            var id = mongoose.Types.ObjectId(orgId);
-            var result = await organizationDAL.getOrganisationById({
-              _id: id,
-            });
-            if (result.organisationLogo != null) {
-              empAdharData[i].organisationLogo = result.organisationLogo;
-            } else {
-              empAdharData[i].organisationLogo = "";
-            }
-          }
+          // for (var i = 0; i < empAdharData.length; i++) {
+          //   var orgId = empAdharData[i].organisationId;
+          //   var id = mongoose.Types.ObjectId(orgId);
+          //   var result = await organizationDAL.getOrganisationById({
+          //     _id: id,
+          //   });
+          //   if (result.organisationLogo != null) {
+          //     empAdharData[i].organisationLogo = result.organisationLogo;
+          //   } else {
+          //     empAdharData[i].organisationLogo = "";
+          //   }
+          // }
 
           if (studentAdharData.length > 0) {
-            for (var i = 0; i < studentAdharData.length; i++) {
-              var insId = studentAdharData[i].instituteId;
-              var id = mongoose.Types.ObjectId(insId);
-              var result = await instituionDAL.getInstituteById({
-                _id: id,
-              });
+            // for (var i = 0; i < studentAdharData.length; i++) {
+            //   var insId = studentAdharData[i].instituteId;
+            //   var id = mongoose.Types.ObjectId(insId);
+            //   var result = await instituionDAL.getInstituteById({
+            //     _id: id,
+            //   });
 
-              if (result.instituteLogo != null) {
-                studentAdharData[i].institutionLogo = result.instituteLogo;
-              } else {
-                studentAdharData[i].institutionLogo = "";
-              }
-            }
+            //   if (result.instituteLogo != null) {
+            //     studentAdharData[i].institutionLogo = result.instituteLogo;
+            //   } else {
+            //     studentAdharData[i].institutionLogo = "";
+            //   }
+            // }
             resultData = studentPhoneData.concat(studentAdharData);
           } else if (studentEmailData.length > 0) {
-            for (var i = 0; i < studentEmailData.length; i++) {
-              var instId = studentEmailData[i].instituteId;
-              var id = mongoose.Types.ObjectId(instId);
-              var result = await instituionDAL.getInstituteById({
-                _id: id,
-              });
-              if (result.instituteLogo != null) {
-                studentEmailData[i].institutionLogo = result.instituteLogo;
-              } else {
-                studentEmailData[i].institutionLogo = "";
-              }
-            }
+            // for (var i = 0; i < studentEmailData.length; i++) {
+            //   var instId = studentEmailData[i].instituteId;
+            //   var id = mongoose.Types.ObjectId(instId);
+            //   var result = await instituionDAL.getInstituteById({
+            //     _id: id,
+            //   });
+            //   if (result.instituteLogo != null) {
+            //     studentEmailData[i].institutionLogo = result.instituteLogo;
+            //   } else {
+            //     studentEmailData[i].institutionLogo = "";
+            //   }
+            // }
             resultData = studentPhoneData.concat(studentEmailData);
           } else if (studentPhoneData.length > 0) {
-            for (var i = 0; i < studentPhoneData.length; i++) {
-              var insId = studentPhoneData[i].instituteId;
-              var id = mongoose.Types.ObjectId(insId);
-              var result = await instituionDAL.getInstituteById({
-                _id: id,
-              });
-              if (result.instituteLogo != null) {
-                studentPhoneData[i].institutionLogo = result.instituteLogo;
-              } else {
-                studentPhoneData[i].institutionLogo = "";
-              }
-            }
+            // for (var i = 0; i < studentPhoneData.length; i++) {
+            //   var insId = studentPhoneData[i].instituteId;
+            //   var id = mongoose.Types.ObjectId(insId);
+            //   var result = await instituionDAL.getInstituteById({
+            //     _id: id,
+            //   });
+            //   if (result.instituteLogo != null) {
+            //     studentPhoneData[i].institutionLogo = result.instituteLogo;
+            //   } else {
+            //     studentPhoneData[i].institutionLogo = "";
+            //   }
+            // }
             resultData = studentPhoneData.concat(studentPhoneData);
           } else if (findByNameStudent.length > 0) {
-            for (var i = 0; i < findByNameStudent.length; i++) {
-              var insId = findByNameStudent[i].instituteId;
-              var id = mongoose.Types.ObjectId(insId);
-              var result = await instituionDAL.getInstituteById({
-                _id: id,
-              });
-              if (result.instituteLogo != null) {
-                findByNameStudent[i].institutionLogo = result.instituteLogo;
-              } else {
-                findByNameStudent[i].institutionLogo = "";
-              }
-            }
+            // for (var i = 0; i < findByNameStudent.length; i++) {
+            //   var insId = findByNameStudent[i].instituteId;
+            //   var id = mongoose.Types.ObjectId(insId);
+            //   var result = await instituionDAL.getInstituteById({
+            //     _id: id,
+            //   });
+            //   if (result.instituteLogo != null) {
+            //     findByNameStudent[i].institutionLogo = result.instituteLogo;
+            //   } else {
+            //     findByNameStudent[i].institutionLogo = "";
+            //   }
+            // }
             resultData = studentPhoneData.concat(findByNameStudent);
           } else {
             resultData = studentPhoneData;
@@ -520,7 +520,6 @@ module.exports.searchByIdBGV = async (req, res, next) => {
         let empEmailLength = empEmailData.length;
         let empPhonelength = empPhoneData.length;
         let empNameDoblength = empNameDobData.length;
-
         if (empPhonelength >= empEmailLength) {
           let studentEmailData = await bgvDAL.searchByEmailInstitute(email);
 
@@ -536,44 +535,44 @@ module.exports.searchByIdBGV = async (req, res, next) => {
             dob
           );
           if (studentEmailData.length > 0) {
-            for (var i = 0; i < studentEmailData.length; i++) {
-              var instId = studentEmailData[i].instituteId;
-              var id = mongoose.Types.ObjectId(instId);
-              var result = await instituionDAL.getInstituteById({ _id: id });
-              if (result.instituteLogo != null) {
-                studentEmailData[i].institutionLogo = result.instituteLogo;
-              } else {
-                studentEmailData[i].institutionLogo = "";
-              }
-            }
+            // for (var i = 0; i < studentEmailData.length; i++) {
+            //   var instId = studentEmailData[i].instituteId;
+            //   var id = mongoose.Types.ObjectId(instId);
+            //   var result = await instituionDAL.getInstituteById({ _id: id });
+            //   if (result.instituteLogo != null) {
+            //     studentEmailData[i].institutionLogo = result.instituteLogo;
+            //   } else {
+            //     studentEmailData[i].institutionLogo = "";
+            //   }
+            // }
             resultData = empPhoneData.concat(studentEmailData);
           } else if (studentPhoneData.length > 0) {
-            for (var i = 0; i < studentPhoneData.length; i++) {
-              var insId = studentPhoneData[i].instituteId;
-              var id = mongoose.Types.ObjectId(insId);
-              var result = await instituionDAL.getInstituteById({
-                _id: id,
-              });
-              if (result.instituteLogo != null) {
-                studentPhoneData[i].institutionLogo = result.instituteLogo;
-              } else {
-                studentPhoneData[i].institutionLogo = "";
-              }
-            }
+            // for (var i = 0; i < studentPhoneData.length; i++) {
+            //   var insId = studentPhoneData[i].instituteId;
+            //   var id = mongoose.Types.ObjectId(insId);
+            //   var result = await instituionDAL.getInstituteById({
+            //     _id: id,
+            //   });
+            //   if (result.instituteLogo != null) {
+            //     studentPhoneData[i].institutionLogo = result.instituteLogo;
+            //   } else {
+            //     studentPhoneData[i].institutionLogo = "";
+            //   }
+            // }
             resultData = empPhoneData.concat(studentPhoneData);
           } else if (findByNameStudent.length > 0) {
-            for (var i = 0; i < findByNameStudent.length; i++) {
-              var insId = findByNameStudent[i].instituteId;
-              var id = mongoose.Types.ObjectId(insId);
-              var result = await instituionDAL.getInstituteById({
-                _id: id,
-              });
-              if (result.instituteLogo != null) {
-                findByNameStudent[i].institutionLogo = result.instituteLogo;
-              } else {
-                findByNameStudent[i].institutionLogo = "";
-              }
-            }
+            // for (var i = 0; i < findByNameStudent.length; i++) {
+            //   var insId = findByNameStudent[i].instituteId;
+            //   var id = mongoose.Types.ObjectId(insId);
+            //   var result = await instituionDAL.getInstituteById({
+            //     _id: id,
+            //   });
+            //   if (result.instituteLogo != null) {
+            //     findByNameStudent[i].institutionLogo = result.instituteLogo;
+            //   } else {
+            //     findByNameStudent[i].institutionLogo = "";
+            //   }
+            // }
             resultData = empPhoneData.concat(findByNameStudent);
           } else {
             resultData = empPhoneData;
@@ -593,52 +592,51 @@ module.exports.searchByIdBGV = async (req, res, next) => {
             dob
           );
           if (studentEmailData.length > 0) {
-            for (var i = 0; i < studentEmailData.length; i++) {
-              var instId = studentEmailData[i].instituteId;
-              var id = mongoose.Types.ObjectId(instId);
-              var result = await instituionDAL.getInstituteById({
-                _id: id,
-              });
-              if (result.instituteLogo != null) {
-                studentEmailData[i].institutionLogo = result.instituteLogo;
-              } else {
-                studentEmailData[i].institutionLogo = "";
-              }
-            }
+            // for (var i = 0; i < studentEmailData.length; i++) {
+            //   var instId = studentEmailData[i].instituteId;
+            //   var id = mongoose.Types.ObjectId(instId);
+            //   var result = await instituionDAL.getInstituteById({
+            //     _id: id,
+            //   });
+            //   if (result.instituteLogo != null) {
+            //     studentEmailData[i].institutionLogo = result.instituteLogo;
+            //   } else {
+            //     studentEmailData[i].institutionLogo = "";
+            //   }
+            // }
             resultData = empEmailData.concat(studentEmailData);
           } else if (studentPhoneData.length > 0) {
-            for (var i = 0; i < studentPhoneData.length; i++) {
-              var insId = studentPhoneData[i].instituteId;
-              var id = mongoose.Types.ObjectId(insId);
-              var result = await instituionDAL.getInstituteById({
-                _id: id,
-              });
-              if (result.instituteLogo != null) {
-                studentPhoneData[i].institutionLogo = result.instituteLogo;
-              } else {
-                studentPhoneData[i].institutionLogo = "";
-              }
-            }
+            // for (var i = 0; i < studentPhoneData.length; i++) {
+            //   var insId = studentPhoneData[i].instituteId;
+            //   var id = mongoose.Types.ObjectId(insId);
+            //   var result = await instituionDAL.getInstituteById({
+            //     _id: id,
+            //   });
+            //   if (result.instituteLogo != null) {
+            //     studentPhoneData[i].institutionLogo = result.instituteLogo;
+            //   } else {
+            //     studentPhoneData[i].institutionLogo = "";
+            //   }
+            // }
             resultData = empEmailData.concat(studentPhoneData);
           } else if (findByNameStudent.length > 0) {
-            for (var i = 0; i < findByNameStudent.length; i++) {
-              var insId = findByNameStudent[i].instituteId;
-              var id = mongoose.Types.ObjectId(insId);
-              var result = await instituionDAL.getInstituteById({
-                _id: id,
-              });
-              if (result.instituteLogo != null) {
-                findByNameStudent[i].institutionLogo = result.instituteLogo;
-              } else {
-                findByNameStudent[i].institutionLogo = "";
-              }
-            }
+            // for (var i = 0; i < findByNameStudent.length; i++) {
+            //   var insId = findByNameStudent[i].instituteId;
+            //   var id = mongoose.Types.ObjectId(insId);
+            //   var result = await instituionDAL.getInstituteById({
+            //     _id: id,
+            //   });
+            //   if (result.instituteLogo != null) {
+            //     findByNameStudent[i].institutionLogo = result.instituteLogo;
+            //   } else {
+            //     findByNameStudent[i].institutionLogo = "";
+            //   }
+            // }
             resultData = empEmailData.concat(findByNameStudent);
           } else {
             resultData = empEmailData;
           }
         }
-
         return res
           .status(200)
           .json({ status: 200, message: "SUCCESS", data: resultData });
@@ -660,26 +658,26 @@ module.exports.searchByIdBGV = async (req, res, next) => {
           lastName
         );
 
-        for (var i = 0; i < empPhoneData.length; i++) {
-          var orgId = empPhoneData[i].organisationId;
-          var id = mongoose.Types.ObjectId(orgId);
-          var result = await organizationDAL.getOrganisationById({ _id: id });
-          if (result.organisationLogo != null) {
-            empPhoneData[i].organisationLogo = result.organisationLogo;
-          } else {
-            empPhoneData[i].organisationLogo = "";
-          }
-        }
-        for (var i = 0; i < studentPhoneData.length; i++) {
-          var insId = studentPhoneData[i].instituteId;
-          var id = mongoose.Types.ObjectId(insId);
-          var result = await instituionDAL.getInstituteById({ _id: id });
-          if (result.instituteLogo != null) {
-            studentPhoneData[i].institutionLogo = result.instituteLogo;
-          } else {
-            studentPhoneData[i].institutionLogo = "";
-          }
-        }
+        // for (var i = 0; i < empPhoneData.length; i++) {
+        //   var orgId = empPhoneData[i].organisationId;
+        //   var id = mongoose.Types.ObjectId(orgId);
+        //   var result = await organizationDAL.getOrganisationById({ _id: id });
+        //   if (result.organisationLogo != null) {
+        //     empPhoneData[i].organisationLogo = result.organisationLogo;
+        //   } else {
+        //     empPhoneData[i].organisationLogo = "";
+        //   }
+        // }
+        // for (var i = 0; i < studentPhoneData.length; i++) {
+        //   var insId = studentPhoneData[i].instituteId;
+        //   var id = mongoose.Types.ObjectId(insId);
+        //   var result = await instituionDAL.getInstituteById({ _id: id });
+        //   if (result.instituteLogo != null) {
+        //     studentPhoneData[i].institutionLogo = result.instituteLogo;
+        //   } else {
+        //     studentPhoneData[i].institutionLogo = "";
+        //   }
+        // }
 
         let resultData = empPhoneData.concat(studentPhoneData);
         return res.status(200).json({
@@ -1006,7 +1004,7 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
       }
     }
 
-    // //problemsolving
+    //problemsolving
 
     if (template[i].consistency) {
       if (template[i].consistency.IsSelect == 1) {
@@ -1163,6 +1161,7 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
         template[i].discrepancy_upload = discrpncy_upload;
       }
     }
+
     if (template[i].compliencyDiscrepancy) {
       if (template[i].compliencyDiscrepancy.IsSelect) {
         template[i].Compliance_date = Complnce_date;
@@ -1170,6 +1169,7 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
         template[i].Compliance_upload = Complnce_upload;
       }
     }
+
     if (template[i].warning) {
       if (template[i].warning.IsSelect) {
         template[i].warning_date = warningdate;
@@ -1177,6 +1177,7 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
         template[i].warning_upload = warningupload;
       }
     }
+
     if (template[i].showCausedIssue) {
       if (template[i].showCausedIssue.IsSelect) {
         template[i].showCause_date = showCausedate;
@@ -1184,6 +1185,7 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
         template[i].showCause_upload = showCauseupload;
       }
     }
+
     if (template[i].suspension) {
       if (template[i].suspension.IsSelect) {
         template[i].performance_date = performancedate;
@@ -1191,6 +1193,7 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
         template[i].performance_upload = performanceupload;
       }
     }
+
     if (template[i].termination) {
       if (template[i].termination.IsSelect) {
         template[i].termination_date = terminationdate;
@@ -1203,13 +1206,15 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
   let count = 0;
   var leadership = false;
   for (var i = 0; i < template.length; i++) {
-    if (
-      template[i].quality.IsSelect != null ||
-      template[i].consistency.IsSelect != null ||
-      template[i].building.IsSelect != null ||
-      template[i].stakeholder.IsSelect != null
-    ) {
-      count += 1;
+    if (template[i].quality) {
+      if (
+        template[i].quality.IsSelect != null ||
+        template[i].consistency.IsSelect != null ||
+        template[i].building.IsSelect != null ||
+        template[i].stakeholder.IsSelect != null
+      ) {
+        count += 1;
+      }
     }
   }
 
@@ -1220,8 +1225,10 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
   var isAward = false;
   let awardCount = 0;
   for (var i = 0; i < template.length; i++) {
-    if (template[i].awards.IsSelect != null) {
-      awardCount += 1;
+    if (template[i].awards) {
+      if (template[i].awards.IsSelect != null) {
+        awardCount += 1;
+      }
     }
   }
 
@@ -1232,15 +1239,17 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
   var isDocument = false;
   let countDoc = 0;
   for (var i = 0; i < template.length; i++) {
-    if (
-      template[i].discrepancyDocuments.descrepencyCauseActionTaken != null ||
-      template[i].compliencyDiscrepancy.compliencyCauseActionTaken != null ||
-      template[i].warning.warningCauseActionTaken != null ||
-      template[i].showCausedIssue.showCausedCauseActionTaken != null ||
-      template[i].suspension.suspensionCauseActionTaken != null ||
-      template[i].termination.terminationCauseActionTaken != null
-    ) {
-      countDoc += 1;
+    if (template[i].discrepancyDocuments) {
+      if (
+        template[i].discrepancyDocuments.descrepencyCauseActionTaken != null ||
+        template[i].compliencyDiscrepancy.compliencyCauseActionTaken != null ||
+        template[i].warning.warningCauseActionTaken != null ||
+        template[i].showCausedIssue.showCausedCauseActionTaken != null ||
+        template[i].suspension.suspensionCauseActionTaken != null ||
+        template[i].termination.terminationCauseActionTaken != null
+      ) {
+        countDoc += 1;
+      }
     }
   }
   if (countDoc > 0) {
@@ -1248,22 +1257,6 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
   }
 
   if (process.env.NODE_ENV === "development") {
-    var result = {
-      FirstName: fname,
-      LastName: lname,
-      phone: pNumber,
-      email: eml,
-      logo: `${process.env.FRONT_END_URL}/assets/images/logo1.png`,
-      orgLogo: `${process.env.FRONT_END_URL_LOCAL}/public/organization_logo/`,
-      instLogo: `${process.env.FRONT_END_URL_LOCAL}/public/institute_logo/`,
-      myDate: dateString,
-      data: template,
-      data1: icons,
-      ldrshp: leadership,
-      isAwarded: isAward,
-      isDocumentPresent: isDocument,
-    };
-  } else if (process.env.NODE_ENV === "uat") {
     var result = {
       FirstName: fname,
       LastName: lname,

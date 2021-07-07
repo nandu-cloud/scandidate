@@ -107,9 +107,11 @@
             <div class="mil-40">
                 <span>Exit date:&nbsp;&nbsp;<%=exitDate%></span><br />
             </div>
-            <div class="mil-40">
-                <span>Information provided by:&nbsp;&nbsp;<%=data[0].feedbackProviderName%></span><br />
-            </div>
+            <% if(data[0].feedbackProviderName){%>
+                <div class="mil-40">
+                    <span>Information provided by:&nbsp;&nbsp;<%=data[0].feedbackProviderName%></span><br />
+                </div>
+                <%}%>
         </div>
         <hr>
         <br />
