@@ -527,7 +527,7 @@
               </div> 
               
               
-              <div *ngIf="form.get('reasonForSerperation.IsSelect')?.value == 'voluntary'">
+              <div *ngIf="cand.get('reasonForSerperation.IsSelect')?.value == 'voluntary'">
                 <mat-form-field>
                 <mat-select class="dropdon br-btm input-w pt-4" tabindex="13" formControlName="voluntaryReason">
                 <mat-option  value="1">Select</mat-option>
@@ -552,7 +552,7 @@
               </div>
               
               
-              <!-- <div *ngIf="form.get('reasonForSerperation.IsSelect').value == 'inVoluntary'"> -->
+              <div *ngIf="cand.get('reasonForSerperation.IsSelect')?.value == 'inVoluntary'">
                 <mat-form-field>
                 <mat-select class="br-btm input-w pt-5" tabindex="13" formControlName="inVoluntaryReason"
               >
@@ -564,7 +564,7 @@
                 <mat-option value="23">Value Transgression</mat-option>
               </mat-select>
               </mat-form-field>
-              <!-- </div> -->
+              </div>
               </div>
               </div>
                 </div>
@@ -1800,17 +1800,11 @@
                           matInput
                           type="text" formControlName="feedbackProviderName"
                           class="br-btm input-w"
-                          autoComplete="off" tabindex="3"
+                          autoComplete="off" tabindex="7"
                         />
                       </mat-form-field>
-                      <mat-form-field>
+                      <!-- <mat-form-field>
                         <mat-label>Relationship</mat-label>
-                        <!-- <input
-                          matInput
-                          type="text" formControlName="feedbackProviderRelationship"
-                          class="br-btm input-w"
-                          autoComplete="off" tabindex="5"
-                        /> -->
                        <mat-select class="br-btm input-w" tabindex="5" formControlName="feedbackProviderRelationship">
                          <mat-option value="1">You managed this person directly</mat-option>
                          <mat-option value="2">You were the HR partner for this person</mat-option>
@@ -1821,14 +1815,14 @@
                          <mat-option value="7">You reported to this person directly</mat-option>
                          <mat-option value="8">This person was senior to you - no reporting relationship</mat-option>
                        </mat-select> 
-                      </mat-form-field>
+                      </mat-form-field> -->
                       <mat-form-field>
                         <mat-label>Phone Number</mat-label>
                         <input
                           matInput
                           type="text" formControlName="feedbackProviderPhoneNumber"
                           class="br-btm input-w"
-                          autoComplete="off" tabindex="7"
+                          autoComplete="off" tabindex="9"
                         />
                       </mat-form-field>
                     </div>
@@ -1839,7 +1833,7 @@
                           matInput
                           type="text" formControlName="feedbackProviderDesignation"
                           class="br-btm input-w"
-                          autoComplete="off" tabindex="4"
+                          autoComplete="off" tabindex="8"
                         />
                       </mat-form-field>
                       <mat-form-field>
@@ -1848,7 +1842,7 @@
                           matInput
                           type="text" formControlName="feedbackProviderEmail"
                           class="br-btm input-w"
-                          autoComplete="off" tabindex="6"
+                          autoComplete="off" tabindex="10"
                         />
                       </mat-form-field>
                     </div>
@@ -1864,13 +1858,13 @@
           <!-- <button tabindex="19" type="submit" class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
             Save Now
           </button> -->
-          <button
+          <button tabindex="11"
                 class="lg-button focus:outline-none focus:shadow-outline"
                 (click)="cancel()"
               >
                 Back
               </button>
-          <button tabindex="20" class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">
+          <button tabindex="12" class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">
             Next
           </button>
         </div>
@@ -1910,7 +1904,7 @@
               <div class="w-full md:w-1/2 sm:w-full">
                 <mat-form-field>
                   <mat-label>Verified For:</mat-label>
-                  <input  matInput type="text" class="br-btm input-w" autoComplete='off' formControlName="verifiedFor" required tabindex="3" placeholder="Organization Name">
+                  <input  matInput type="text" class="br-btm input-w" autoComplete='off' formControlName="verifiedFor" required tabindex="2" placeholder="Organization Name">
                   
                 </mat-form-field>
               </div>
@@ -1922,7 +1916,7 @@
                 <mat-form-field>
                   <mat-label>Personal Identity</mat-label>
                   <mat-select formControlName="personalIdentity"
-                    class="br-btm input-w" tabindex="2"
+                    class="br-btm input-w" tabindex="3"
                   >
                     <mat-option [value]=true>Yes</mat-option>
                     <mat-option [value]=false>No</mat-option>
@@ -1933,7 +1927,7 @@
                 </mat-form-field>
                 <mat-form-field >
                   <mat-label>Criminal</mat-label>
-                  <mat-select class="br-btm input-w" tabindex="6" formControlName="criminal" tabindex="4">
+                  <mat-select class="br-btm input-w" tabindex="5" formControlName="criminal" tabindex="4">
                     <mat-option [value]=true>Yes</mat-option>
                     <mat-option [value]=false>No</mat-option>
                   </mat-select>
@@ -1943,7 +1937,7 @@
                 </mat-form-field>
                 <mat-form-field >
                   <mat-label>Address</mat-label>
-                  <mat-select class="br-btm input-w" tabindex="6" formControlName="verificationAddress" tabindex="6">
+                  <mat-select class="br-btm input-w" tabindex="7" formControlName="verificationAddress" tabindex="6">
                     <mat-option [value]=true>Yes</mat-option>
                     <mat-option [value]=false>No</mat-option>
                   </mat-select>
@@ -1955,7 +1949,7 @@
               <div class="w-full md:w-1/2 sm:w-full">
                 <mat-form-field >
                   <mat-label>Drugs / Substance abuse</mat-label>
-                  <mat-select class="br-btm input-w" tabindex="6" formControlName="drugsAndSubstanceAbuse" tabindex="2">
+                  <mat-select class="br-btm input-w" tabindex="4" formControlName="drugsAndSubstanceAbuse" tabindex="2">
                     <mat-option [value]=true>Yes</mat-option>
                     <mat-option [value]=false>No</mat-option>
                   </mat-select>
@@ -1965,7 +1959,7 @@
                 </mat-form-field>
                 <mat-form-field >
                   <mat-label>Salary Slip / CTC Document</mat-label>
-                  <mat-select formControlName="salarySlipCTCdocument" class="br-btm input-w" tabindex="5">
+                  <mat-select formControlName="salarySlipCTCdocument" class="br-btm input-w" tabindex="6">
                     <mat-option [value]=true>Yes</mat-option>
                     <mat-option [value]=false>No</mat-option>
                   </mat-select>
@@ -1976,16 +1970,16 @@
               </div>
             </div>
             <div class="flex justify-end lg:pb-6 lg:pr-48">
-              <button class="lg-button focus:outline-none focus:shadow-outline" (click)="submit()" *ngIf=!empIdedit>
+              <button class="lg-button focus:outline-none focus:shadow-outline" (click)="submit()" *ngIf=!empIdedit tabindex="8">
                 Submit
               </button>
-              <button  tabindex="31"
+              <button  tabindex="8"
               class="lg-button focus:outline-none focus:shadow-outline"
               (click)="update(id)" *ngIf=empIdedit
                >
               update
               </button>
-              <button
+              <button tabindex="9"
                 class="lg-button focus:outline-none focus:shadow-outline"
                 (click)="cancel()"
               >
