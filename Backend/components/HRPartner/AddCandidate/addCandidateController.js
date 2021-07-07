@@ -937,6 +937,12 @@ module.exports.downloadReportPDF = async (req, res, next) => {
       ) {
         countDoc += 1;
       }
+      var joining = template[i].dateOfJoining;
+      const join = new Date(joining);
+      var joiningDate = format(join);
+      var exit = template[i].exitDate;
+      const exit1 = new Date(exit);
+      var exitDate = format(exit1);
     }
     if (countDoc > 0) {
       isDocument = true;
@@ -950,11 +956,13 @@ module.exports.downloadReportPDF = async (req, res, next) => {
       logo: `${process.env.FRONT_END_URL}/assets/images/logo1.png`,
       myDate: dateString,
       data: template,
+      joiningdate: joiningDate,
+      exitDate: exitDate,
       ldrshp: leadership,
       isAwarded: isAward,
       isDocumentPresent: isDocument,
     };
-
+    console.log(result);
     try {
       ejs.renderFile(
         path.join(
