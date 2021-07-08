@@ -20,9 +20,6 @@ module.exports.addEmployee = async (req, res, next) => {
     template.logo = `${process.env.FRONT_END_URL}/assets/images/logo1.png`;
 
     if (process.env.NODE_ENV === "development") {
-      template.agreelink = `${process.env.FRONT_END_URL_LOCAL}/validate/${result._id}/1`;
-      template.disagreelink = `${process.env.FRONT_END_URL_LOCAL}/validate/${result._id}/0`;
-    } else if (process.env.NODE_ENV === "uat") {
       template.agreelink = `${process.env.FRONT_END_URL_DEV}/validate/${result._id}/1`;
       template.disagreelink = `${process.env.FRONT_END_URL_DEV}/validate/${result._id}/0`;
     } else if (process.env.NODE_ENV === "production") {

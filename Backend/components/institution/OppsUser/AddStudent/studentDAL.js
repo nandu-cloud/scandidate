@@ -130,7 +130,7 @@ async function search_student_new(data) {
 
 async function findDistinctStudent() {
   try {
-    let result = (await studentModel.distinct("email")).length;
+    let result = await studentModel.find({});
     return result;
   } catch (err) {
     throw err;

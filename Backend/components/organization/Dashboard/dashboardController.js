@@ -7,28 +7,36 @@ const stuDAL = require("../../institution/OppsUser/AddStudent/studentDAL");
 
 module.exports.countTotalOrgUsers = async function (req, res, next) {
   let organisationId = req.params.organisationId;
+  let totalEmail = [];
   let id = req.params.id;
   try {
     let totalEmployee = await employeeModel.countDocuments({
       organisationId: organisationId,
     });
-    // let totalStudentCount = await studenModel.estimatedDocumentCount();
     let totalStudentCount = await stuDAL.findDistinctStudent();
-    // let totalEmployeeCount = await employeeModel.estimatedDocumentCount();
+    totalStudentCount.map((e) => {
+      totalEmail.push(e.email);
+    });
     let totalEmployeeCount = await empDAL.findDistinctEmployee();
-    var totalCandidate = totalStudentCount + totalEmployeeCount;
+    totalEmployeeCount.map((e) => {
+      totalEmail.push(e.email);
+    });
+    var uniqEmail = new Set();
+    totalEmail.map((e) => {
+      uniqEmail.add(e);
+    });
+    // var totalCandidate = totalStudentCount + totalEmployeeCount;
     let totalBGVCount = await bgvDAL.getBySearchedById({ _id: id });
     var sumCount = 0;
     totalBGVCount.map((d) => {
       sumCount = sumCount + d.bgvSearchCount;
     });
-    // console.log(totalBGVCount);
     let totalBGV = sumCount;
     return res.status(200).json({
       status: "SUCCESS",
       data: {
         totalEmployee: totalEmployee,
-        totalCandidate: totalCandidate,
+        totalCandidate: uniqEmail.size,
         totalBGV: totalBGV,
       },
     });

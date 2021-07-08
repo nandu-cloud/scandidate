@@ -130,7 +130,6 @@
                 <%if(isDocumentPresent){%>
                   <th>ISSUES</th>
                   <%}%>
-                    <!-- <th width="10px">ANY ATTACHMENTS</th> -->
       </tr>
       <% for(let list of data){%>
         <tr>
@@ -246,46 +245,7 @@
                                               </td>
                                               <%}%>
                                                 <%}%>
-                                                  <!-- <% if(list.organisationId !='' && list.organisationId !=undefined) {%>
-                                        <td>
-                                            <% if(list.awards.originalFilename) {%>
-                                              <li>
-                                                <%=list.awards.originalFilename %>
-                                              </li>
-                                              <%}%>
-                                                  <% if(list.discrepancyDocuments.originalFilename || list.discrepancyDocuments.originalFilename !='' ){%>
-                                                    <li>
-                                                      <%=list.discrepancyDocuments.originalFilename %>
-                                                    </li>
-                                                    <%}%>
-                                                      <% if(list.compliencyDiscrepancy.originalFilename && list.compliencyDiscrepancy.originalFilename !='' ){%>
-                                                        <li>
-                                                          <%=list.compliencyDiscrepancy.originalFilename %>
-                                                        </li>
-                                                        <%}%>
-                                                          <% if(list.warning.originalFilename ||list.warning.originalFilename !='' ) {%>
-                                                            <li>
-                                                              <%=list.warning.originalFilename %>
-                                                            </li>
-                                                            <%}%>
-                                                              <% if(list.showCausedIssue.originalFilename || list.showCausedIssue.originalFilename !='' ){%>
-                                                                <li>
-                                                                  <%=list.showCausedIssue.originalFilename %>
-                                                                </li>
-                                                                <%}%>
-                                                                  <% if(list.suspension.originalFilename || list.suspension.originalFilename !='' ) {%>
-                                                                    <li>
-                                                                      <%=list.suspension.originalFilename %>
-                                                                    </li>
-                                                                    <%}%>
-                                                                      <% if(list.termination.originalFilename ||list.termination.originalFilename !='' ) {%>
-                                                                        <li>
-                                                                          <%=list.termination.terminationUploadDocument
-                                                                            %>
-                                                                        </li>
-                                                                        <%}%>
-                                        </td>
-                                        <%}%> -->
+
         </tr>
         <%}%>
 
@@ -337,21 +297,6 @@
                                 <%=list.yearOfPassout %>
                             </td>
                             <%}%>
-                              <!-- <% if(list.instituteId !='' && list.instituteId !=undefined) {%>
-                                <td>
-
-                                </td>
-                                <%}%>
-                                  <% if(list.instituteId !='' && list.instituteId !=undefined) {%>
-                                    <td>
-
-                                    </td>
-                                    <%}%>
-                                      <% if(list.instituteId !='' && list.instituteId !=undefined) {%>
-                                        <td>
-
-                                        </td>
-                                        <%}%> -->
 
         </tr>
         <%}%>

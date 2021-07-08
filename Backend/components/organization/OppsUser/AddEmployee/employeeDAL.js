@@ -155,7 +155,7 @@ async function checkDuplicateEmpRecord(data) {
 
 async function findDistinctEmployee() {
   try {
-    let result = (await employeeModel.distinct("email")).length;
+    let result = await employeeModel.find({});
     return result;
   } catch (err) {
     throw err;

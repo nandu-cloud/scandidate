@@ -240,73 +240,83 @@ module.exports.searchByIdBGV = async (req, res, next) => {
             dob
           );
 
-          // for (var i = 0; i < empAdharData.length; i++) {
-          //   var orgId = empAdharData[i].organisationId;
-          //   var id = mongoose.Types.ObjectId(orgId);
-          //   var result = await organizationDAL.getOrganisationById({ _id: id });
-          //   if (result.organisationLogo != null) {
-          //     empAdharData[i].organisationLogo = result.organisationLogo;
-          //   } else {
-          //     empAdharData[i].organisationLogo = "";
-          //   }
-          // }
+          for (var i = 0; i < empAdharData.length; i++) {
+            var orgId = empAdharData[i].organisationId;
+            var id = mongoose.Types.ObjectId(orgId);
+            var result = await organizationDAL.getOrganisationById({ _id: id });
+            if (result.organisationLogo) {
+              if (result.organisationLogo != null) {
+                empAdharData[i].organisationLogo = result.organisationLogo;
+              } else {
+                empAdharData[i].organisationLogo = "";
+              }
+            }
+          }
 
           if (studentAdharData.length > 0) {
-            // for (var i = 0; i < studentAdharData.length; i++) {
-            //   var insId = studentAdharData[i].instituteId;
-            //   var id = mongoose.Types.ObjectId(insId);
-            //   var result = await instituionDAL.getInstituteById({
-            //     _id: id,
-            //   });
+            for (var i = 0; i < studentAdharData.length; i++) {
+              var insId = studentAdharData[i].instituteId;
+              var id = mongoose.Types.ObjectId(insId);
+              var result = await instituionDAL.getInstituteById({
+                _id: id,
+              });
 
-            //   if (result.instituteLogo != null) {
-            //     studentAdharData[i].institutionLogo = result.instituteLogo;
-            //   } else {
-            //     studentAdharData[i].institutionLogo = "";
-            //   }
-            // }
+              if (result.hasOwnProperty("instituteLogo")) {
+                if (result.instituteLogo != null) {
+                  studentEmailData[i].institutionLogo = result.instituteLogo;
+                } else {
+                  studentEmailData[i].institutionLogo = "";
+                }
+              }
+            }
             resultData = empAdharData.concat(studentAdharData);
           } else if (studentEmailData.length > 0) {
-            // for (var i = 0; i < studentEmailData.length; i++) {
-            //   var instId = studentEmailData[i].instituteId;
-            //   var id = mongoose.Types.ObjectId(instId);
-            //   var result = await instituionDAL.getInstituteById({
-            //     _id: id,
-            //   });
-            //   if (result.instituteLogo != null) {
-            //     studentEmailData[i].institutionLogo = result.instituteLogo;
-            //   } else {
-            //     studentEmailData[i].institutionLogo = "";
-            //   }
-            // }
+            for (var i = 0; i < studentEmailData.length; i++) {
+              var instId = studentEmailData[i].instituteId;
+              var id = mongoose.Types.ObjectId(instId);
+              var result = await instituionDAL.getInstituteById({
+                _id: id,
+              });
+              if (result.hasOwnProperty("instituteLogo")) {
+                if (result.instituteLogo != null) {
+                  studentEmailData[i].institutionLogo = result.instituteLogo;
+                } else {
+                  studentEmailData[i].institutionLogo = "";
+                }
+              }
+            }
             resultData = empAdharData.concat(studentEmailData);
           } else if (studentPhoneData.length > 0) {
-            // for (var i = 0; i < studentPhoneData.length; i++) {
-            //   var insId = studentPhoneData[i].instituteId;
-            //   var id = mongoose.Types.ObjectId(insId);
-            //   var result = await instituionDAL.getInstituteById({
-            //     _id: id,
-            //   });
-            //   if (result.instituteLogo != null) {
-            //     studentPhoneData[i].institutionLogo = result.instituteLogo;
-            //   } else {
-            //     studentPhoneData[i].institutionLogo = "";
-            //   }
-            // }
+            for (var i = 0; i < studentPhoneData.length; i++) {
+              var insId = studentPhoneData[i].instituteId;
+              var id = mongoose.Types.ObjectId(insId);
+              var result = await instituionDAL.getInstituteById({
+                _id: id,
+              });
+              if (result.hasOwnProperty("instituteLogo")) {
+                if (result.instituteLogo != null) {
+                  studentEmailData[i].institutionLogo = result.instituteLogo;
+                } else {
+                  studentEmailData[i].institutionLogo = "";
+                }
+              }
+            }
             resultData = empAdharData.concat(studentPhoneData);
           } else if (findByNameStudent.length > 0) {
-            // for (var i = 0; i < findByNameStudent.length; i++) {
-            //   var insId = findByNameStudent[i].instituteId;
-            //   var id = mongoose.Types.ObjectId(insId);
-            //   var result = await instituionDAL.getInstituteById({
-            //     _id: id,
-            //   });
-            //   if (result.instituteLogo != null) {
-            //     findByNameStudent[i].institutionLogo = result.instituteLogo;
-            //   } else {
-            //     findByNameStudent[i].institutionLogo = "";
-            //   }
-            // }
+            for (var i = 0; i < findByNameStudent.length; i++) {
+              var insId = findByNameStudent[i].instituteId;
+              var id = mongoose.Types.ObjectId(insId);
+              var result = await instituionDAL.getInstituteById({
+                _id: id,
+              });
+              if (result.hasOwnProperty("instituteLogo")) {
+                if (result.instituteLogo != null) {
+                  studentEmailData[i].institutionLogo = result.instituteLogo;
+                } else {
+                  studentEmailData[i].institutionLogo = "";
+                }
+              }
+            }
             resultData = empAdharData.concat(findByNameStudent);
           } else {
             resultData = empAdharData;
@@ -330,75 +340,85 @@ module.exports.searchByIdBGV = async (req, res, next) => {
             dob
           );
 
-          // for (var i = 0; i < empAdharData.length; i++) {
-          //   var orgId = empAdharData[i].organisationId;
-          //   var id = mongoose.Types.ObjectId(orgId);
-          //   var result = await organizationDAL.getOrganisationById({
-          //     _id: id,
-          //   });
-          //   if (result.organisationLogo != null) {
-          //     empAdharData[i].organisationLogo = result.organisationLogo;
-          //   } else {
-          //     empAdharData[i].organisationLogo = "";
-          //   }
-          // }
+          for (var i = 0; i < empAdharData.length; i++) {
+            var orgId = empAdharData[i].organisationId;
+            var id = mongoose.Types.ObjectId(orgId);
+            var result = await organizationDAL.getOrganisationById({
+              _id: id,
+            });
+            if (result.organisationLogo) {
+              if (result.organisationLogo != null) {
+                empAdharData[i].organisationLogo = result.organisationLogo;
+              } else {
+                empAdharData[i].organisationLogo = "";
+              }
+            }
+          }
 
           if (studentAdharData.length > 0) {
-            // for (var i = 0; i < studentAdharData.length; i++) {
-            //   var insId = studentAdharData[i].instituteId;
-            //   var id = mongoose.Types.ObjectId(insId);
-            //   var result = await instituionDAL.getInstituteById({
-            //     _id: id,
-            //   });
+            for (var i = 0; i < studentAdharData.length; i++) {
+              var insId = studentAdharData[i].instituteId;
+              var id = mongoose.Types.ObjectId(insId);
+              var result = await instituionDAL.getInstituteById({
+                _id: id,
+              });
 
-            //   if (result.instituteLogo != null) {
-            //     studentAdharData[i].institutionLogo = result.instituteLogo;
-            //   } else {
-            //     studentAdharData[i].institutionLogo = "";
-            //   }
-            // }
+              if (result.hasOwnProperty("instituteLogo")) {
+                if (result.instituteLogo != null) {
+                  studentEmailData[i].institutionLogo = result.instituteLogo;
+                } else {
+                  studentEmailData[i].institutionLogo = "";
+                }
+              }
+            }
             resultData = empEmailData.concat(studentAdharData);
           } else if (studentEmailData.length > 0) {
-            // for (var i = 0; i < studentEmailData.length; i++) {
-            //   var instId = studentEmailData[i].instituteId;
-            //   var id = mongoose.Types.ObjectId(instId);
-            //   var result = await instituionDAL.getInstituteById({
-            //     _id: id,
-            //   });
-            //   if (result.instituteLogo != null) {
-            //     studentEmailData[i].institutionLogo = result.instituteLogo;
-            //   } else {
-            //     studentEmailData[i].institutionLogo = "";
-            //   }
-            // }
+            for (var i = 0; i < studentEmailData.length; i++) {
+              var instId = studentEmailData[i].instituteId;
+              var id = mongoose.Types.ObjectId(instId);
+              var result = await instituionDAL.getInstituteById({
+                _id: id,
+              });
+              if (result.hasOwnProperty("instituteLogo")) {
+                if (result.instituteLogo != null) {
+                  studentEmailData[i].institutionLogo = result.instituteLogo;
+                } else {
+                  studentEmailData[i].institutionLogo = "";
+                }
+              }
+            }
             resultData = empEmailData.concat(studentEmailData);
           } else if (studentPhoneData.length > 0) {
-            // for (var i = 0; i < studentPhoneData.length; i++) {
-            //   var insId = studentPhoneData[i].instituteId;
-            //   var id = mongoose.Types.ObjectId(insId);
-            //   var result = await instituionDAL.getInstituteById({
-            //     _id: id,
-            //   });
-            //   if (result.instituteLogo != null) {
-            //     studentPhoneData[i].institutionLogo = result.instituteLogo;
-            //   } else {
-            //     studentPhoneData[i].institutionLogo = "";
-            //   }
-            // }
+            for (var i = 0; i < studentPhoneData.length; i++) {
+              var insId = studentPhoneData[i].instituteId;
+              var id = mongoose.Types.ObjectId(insId);
+              var result = await instituionDAL.getInstituteById({
+                _id: id,
+              });
+              if (result.hasOwnProperty("instituteLogo")) {
+                if (result.instituteLogo != null) {
+                  studentEmailData[i].institutionLogo = result.instituteLogo;
+                } else {
+                  studentEmailData[i].institutionLogo = "";
+                }
+              }
+            }
             resultData = empEmailData.concat(studentPhoneData);
           } else if (findByNameStudent.length > 0) {
-            // for (var i = 0; i < findByNameStudent.length; i++) {
-            //   var insId = findByNameStudent[i].instituteId;
-            //   var id = mongoose.Types.ObjectId(insId);
-            //   var result = await instituionDAL.getInstituteById({
-            //     _id: id,
-            //   });
-            //   if (result.instituteLogo != null) {
-            //     findByNameStudent[i].institutionLogo = result.instituteLogo;
-            //   } else {
-            //     findByNameStudent[i].institutionLogo = "";
-            //   }
-            // }
+            for (var i = 0; i < findByNameStudent.length; i++) {
+              var insId = findByNameStudent[i].instituteId;
+              var id = mongoose.Types.ObjectId(insId);
+              var result = await instituionDAL.getInstituteById({
+                _id: id,
+              });
+              if (result.hasOwnProperty("instituteLogo")) {
+                if (result.instituteLogo != null) {
+                  studentEmailData[i].institutionLogo = result.instituteLogo;
+                } else {
+                  studentEmailData[i].institutionLogo = "";
+                }
+              }
+            }
             resultData = empEmailData.concat(findByNameStudent);
           } else {
             resultData = empEmailData;
@@ -419,75 +439,85 @@ module.exports.searchByIdBGV = async (req, res, next) => {
             dob
           );
 
-          // for (var i = 0; i < empAdharData.length; i++) {
-          //   var orgId = empAdharData[i].organisationId;
-          //   var id = mongoose.Types.ObjectId(orgId);
-          //   var result = await organizationDAL.getOrganisationById({
-          //     _id: id,
-          //   });
-          //   if (result.organisationLogo != null) {
-          //     empAdharData[i].organisationLogo = result.organisationLogo;
-          //   } else {
-          //     empAdharData[i].organisationLogo = "";
-          //   }
-          // }
+          for (var i = 0; i < empAdharData.length; i++) {
+            var orgId = empAdharData[i].organisationId;
+            var id = mongoose.Types.ObjectId(orgId);
+            var result = await organizationDAL.getOrganisationById({
+              _id: id,
+            });
+            if (result.organisationLogo) {
+              if (result.organisationLogo != null) {
+                empAdharData[i].organisationLogo = result.organisationLogo;
+              } else {
+                empAdharData[i].organisationLogo = "";
+              }
+            }
+          }
 
           if (studentAdharData.length > 0) {
-            // for (var i = 0; i < studentAdharData.length; i++) {
-            //   var insId = studentAdharData[i].instituteId;
-            //   var id = mongoose.Types.ObjectId(insId);
-            //   var result = await instituionDAL.getInstituteById({
-            //     _id: id,
-            //   });
+            for (var i = 0; i < studentAdharData.length; i++) {
+              var insId = studentAdharData[i].instituteId;
+              var id = mongoose.Types.ObjectId(insId);
+              var result = await instituionDAL.getInstituteById({
+                _id: id,
+              });
 
-            //   if (result.instituteLogo != null) {
-            //     studentAdharData[i].institutionLogo = result.instituteLogo;
-            //   } else {
-            //     studentAdharData[i].institutionLogo = "";
-            //   }
-            // }
+              if (result.hasOwnProperty("instituteLogo")) {
+                if (result.instituteLogo != null) {
+                  studentEmailData[i].institutionLogo = result.instituteLogo;
+                } else {
+                  studentEmailData[i].institutionLogo = "";
+                }
+              }
+            }
             resultData = studentPhoneData.concat(studentAdharData);
           } else if (studentEmailData.length > 0) {
-            // for (var i = 0; i < studentEmailData.length; i++) {
-            //   var instId = studentEmailData[i].instituteId;
-            //   var id = mongoose.Types.ObjectId(instId);
-            //   var result = await instituionDAL.getInstituteById({
-            //     _id: id,
-            //   });
-            //   if (result.instituteLogo != null) {
-            //     studentEmailData[i].institutionLogo = result.instituteLogo;
-            //   } else {
-            //     studentEmailData[i].institutionLogo = "";
-            //   }
-            // }
+            for (var i = 0; i < studentEmailData.length; i++) {
+              var instId = studentEmailData[i].instituteId;
+              var id = mongoose.Types.ObjectId(instId);
+              var result = await instituionDAL.getInstituteById({
+                _id: id,
+              });
+              if (result.hasOwnProperty("instituteLogo")) {
+                if (result.instituteLogo != null) {
+                  studentEmailData[i].institutionLogo = result.instituteLogo;
+                } else {
+                  studentEmailData[i].institutionLogo = "";
+                }
+              }
+            }
             resultData = studentPhoneData.concat(studentEmailData);
           } else if (studentPhoneData.length > 0) {
-            // for (var i = 0; i < studentPhoneData.length; i++) {
-            //   var insId = studentPhoneData[i].instituteId;
-            //   var id = mongoose.Types.ObjectId(insId);
-            //   var result = await instituionDAL.getInstituteById({
-            //     _id: id,
-            //   });
-            //   if (result.instituteLogo != null) {
-            //     studentPhoneData[i].institutionLogo = result.instituteLogo;
-            //   } else {
-            //     studentPhoneData[i].institutionLogo = "";
-            //   }
-            // }
+            for (var i = 0; i < studentPhoneData.length; i++) {
+              var insId = studentPhoneData[i].instituteId;
+              var id = mongoose.Types.ObjectId(insId);
+              var result = await instituionDAL.getInstituteById({
+                _id: id,
+              });
+              if (result.hasOwnProperty("instituteLogo")) {
+                if (result.instituteLogo != null) {
+                  studentEmailData[i].institutionLogo = result.instituteLogo;
+                } else {
+                  studentEmailData[i].institutionLogo = "";
+                }
+              }
+            }
             resultData = studentPhoneData.concat(studentPhoneData);
           } else if (findByNameStudent.length > 0) {
-            // for (var i = 0; i < findByNameStudent.length; i++) {
-            //   var insId = findByNameStudent[i].instituteId;
-            //   var id = mongoose.Types.ObjectId(insId);
-            //   var result = await instituionDAL.getInstituteById({
-            //     _id: id,
-            //   });
-            //   if (result.instituteLogo != null) {
-            //     findByNameStudent[i].institutionLogo = result.instituteLogo;
-            //   } else {
-            //     findByNameStudent[i].institutionLogo = "";
-            //   }
-            // }
+            for (var i = 0; i < findByNameStudent.length; i++) {
+              var insId = findByNameStudent[i].instituteId;
+              var id = mongoose.Types.ObjectId(insId);
+              var result = await instituionDAL.getInstituteById({
+                _id: id,
+              });
+              if (result.hasOwnProperty("instituteLogo")) {
+                if (result.instituteLogo != null) {
+                  studentEmailData[i].institutionLogo = result.instituteLogo;
+                } else {
+                  studentEmailData[i].institutionLogo = "";
+                }
+              }
+            }
             resultData = studentPhoneData.concat(findByNameStudent);
           } else {
             resultData = studentPhoneData;
@@ -520,6 +550,7 @@ module.exports.searchByIdBGV = async (req, res, next) => {
         let empEmailLength = empEmailData.length;
         let empPhonelength = empPhoneData.length;
         let empNameDoblength = empNameDobData.length;
+        console.log(empEmailData);
         if (empPhonelength >= empEmailLength) {
           let studentEmailData = await bgvDAL.searchByEmailInstitute(email);
 
@@ -535,44 +566,50 @@ module.exports.searchByIdBGV = async (req, res, next) => {
             dob
           );
           if (studentEmailData.length > 0) {
-            // for (var i = 0; i < studentEmailData.length; i++) {
-            //   var instId = studentEmailData[i].instituteId;
-            //   var id = mongoose.Types.ObjectId(instId);
-            //   var result = await instituionDAL.getInstituteById({ _id: id });
-            //   if (result.instituteLogo != null) {
-            //     studentEmailData[i].institutionLogo = result.instituteLogo;
-            //   } else {
-            //     studentEmailData[i].institutionLogo = "";
-            //   }
-            // }
+            for (var i = 0; i < studentEmailData.length; i++) {
+              var instId = studentEmailData[i].instituteId;
+              var id = mongoose.Types.ObjectId(instId);
+              var result = await instituionDAL.getInstituteById({ _id: id });
+              if (result.hasOwnProperty("instituteLogo")) {
+                if (result.instituteLogo != null) {
+                  studentEmailData[i].institutionLogo = result.instituteLogo;
+                } else {
+                  studentEmailData[i].institutionLogo = "";
+                }
+              }
+            }
             resultData = empPhoneData.concat(studentEmailData);
           } else if (studentPhoneData.length > 0) {
-            // for (var i = 0; i < studentPhoneData.length; i++) {
-            //   var insId = studentPhoneData[i].instituteId;
-            //   var id = mongoose.Types.ObjectId(insId);
-            //   var result = await instituionDAL.getInstituteById({
-            //     _id: id,
-            //   });
-            //   if (result.instituteLogo != null) {
-            //     studentPhoneData[i].institutionLogo = result.instituteLogo;
-            //   } else {
-            //     studentPhoneData[i].institutionLogo = "";
-            //   }
-            // }
+            for (var i = 0; i < studentPhoneData.length; i++) {
+              var insId = studentPhoneData[i].instituteId;
+              var id = mongoose.Types.ObjectId(insId);
+              var result = await instituionDAL.getInstituteById({
+                _id: id,
+              });
+              if (result.hasOwnProperty("instituteLogo")) {
+                if (result.instituteLogo != null) {
+                  studentEmailData[i].institutionLogo = result.instituteLogo;
+                } else {
+                  studentEmailData[i].institutionLogo = "";
+                }
+              }
+            }
             resultData = empPhoneData.concat(studentPhoneData);
           } else if (findByNameStudent.length > 0) {
-            // for (var i = 0; i < findByNameStudent.length; i++) {
-            //   var insId = findByNameStudent[i].instituteId;
-            //   var id = mongoose.Types.ObjectId(insId);
-            //   var result = await instituionDAL.getInstituteById({
-            //     _id: id,
-            //   });
-            //   if (result.instituteLogo != null) {
-            //     findByNameStudent[i].institutionLogo = result.instituteLogo;
-            //   } else {
-            //     findByNameStudent[i].institutionLogo = "";
-            //   }
-            // }
+            for (var i = 0; i < findByNameStudent.length; i++) {
+              var insId = findByNameStudent[i].instituteId;
+              var id = mongoose.Types.ObjectId(insId);
+              var result = await instituionDAL.getInstituteById({
+                _id: id,
+              });
+              if (result.hasOwnProperty("instituteLogo")) {
+                if (result.instituteLogo != null) {
+                  studentEmailData[i].institutionLogo = result.instituteLogo;
+                } else {
+                  studentEmailData[i].institutionLogo = "";
+                }
+              }
+            }
             resultData = empPhoneData.concat(findByNameStudent);
           } else {
             resultData = empPhoneData;
@@ -592,46 +629,52 @@ module.exports.searchByIdBGV = async (req, res, next) => {
             dob
           );
           if (studentEmailData.length > 0) {
-            // for (var i = 0; i < studentEmailData.length; i++) {
-            //   var instId = studentEmailData[i].instituteId;
-            //   var id = mongoose.Types.ObjectId(instId);
-            //   var result = await instituionDAL.getInstituteById({
-            //     _id: id,
-            //   });
-            //   if (result.instituteLogo != null) {
-            //     studentEmailData[i].institutionLogo = result.instituteLogo;
-            //   } else {
-            //     studentEmailData[i].institutionLogo = "";
-            //   }
-            // }
+            for (var i = 0; i < studentEmailData.length; i++) {
+              var instId = studentEmailData[i].instituteId;
+              var id = mongoose.Types.ObjectId(instId);
+              var result = await instituionDAL.getInstituteById({
+                _id: id,
+              });
+              if (result.hasOwnProperty("instituteLogo")) {
+                if (result.instituteLogo != null) {
+                  studentEmailData[i].institutionLogo = result.instituteLogo;
+                } else {
+                  studentEmailData[i].institutionLogo = "";
+                }
+              }
+            }
             resultData = empEmailData.concat(studentEmailData);
           } else if (studentPhoneData.length > 0) {
-            // for (var i = 0; i < studentPhoneData.length; i++) {
-            //   var insId = studentPhoneData[i].instituteId;
-            //   var id = mongoose.Types.ObjectId(insId);
-            //   var result = await instituionDAL.getInstituteById({
-            //     _id: id,
-            //   });
-            //   if (result.instituteLogo != null) {
-            //     studentPhoneData[i].institutionLogo = result.instituteLogo;
-            //   } else {
-            //     studentPhoneData[i].institutionLogo = "";
-            //   }
-            // }
+            for (var i = 0; i < studentPhoneData.length; i++) {
+              var insId = studentPhoneData[i].instituteId;
+              var id = mongoose.Types.ObjectId(insId);
+              var result = await instituionDAL.getInstituteById({
+                _id: id,
+              });
+              if (result.hasOwnProperty("instituteLogo")) {
+                if (result.instituteLogo != null) {
+                  studentEmailData[i].institutionLogo = result.instituteLogo;
+                } else {
+                  studentEmailData[i].institutionLogo = "";
+                }
+              }
+            }
             resultData = empEmailData.concat(studentPhoneData);
           } else if (findByNameStudent.length > 0) {
-            // for (var i = 0; i < findByNameStudent.length; i++) {
-            //   var insId = findByNameStudent[i].instituteId;
-            //   var id = mongoose.Types.ObjectId(insId);
-            //   var result = await instituionDAL.getInstituteById({
-            //     _id: id,
-            //   });
-            //   if (result.instituteLogo != null) {
-            //     findByNameStudent[i].institutionLogo = result.instituteLogo;
-            //   } else {
-            //     findByNameStudent[i].institutionLogo = "";
-            //   }
-            // }
+            for (var i = 0; i < findByNameStudent.length; i++) {
+              var insId = findByNameStudent[i].instituteId;
+              var id = mongoose.Types.ObjectId(insId);
+              var result = await instituionDAL.getInstituteById({
+                _id: id,
+              });
+              if (result.hasOwnProperty("instituteLogo")) {
+                if (result.instituteLogo != null) {
+                  studentEmailData[i].institutionLogo = result.instituteLogo;
+                } else {
+                  studentEmailData[i].institutionLogo = "";
+                }
+              }
+            }
             resultData = empEmailData.concat(findByNameStudent);
           } else {
             resultData = empEmailData;
@@ -658,26 +701,32 @@ module.exports.searchByIdBGV = async (req, res, next) => {
           lastName
         );
 
-        // for (var i = 0; i < empPhoneData.length; i++) {
-        //   var orgId = empPhoneData[i].organisationId;
-        //   var id = mongoose.Types.ObjectId(orgId);
-        //   var result = await organizationDAL.getOrganisationById({ _id: id });
-        //   if (result.organisationLogo != null) {
-        //     empPhoneData[i].organisationLogo = result.organisationLogo;
-        //   } else {
-        //     empPhoneData[i].organisationLogo = "";
-        //   }
-        // }
-        // for (var i = 0; i < studentPhoneData.length; i++) {
-        //   var insId = studentPhoneData[i].instituteId;
-        //   var id = mongoose.Types.ObjectId(insId);
-        //   var result = await instituionDAL.getInstituteById({ _id: id });
-        //   if (result.instituteLogo != null) {
-        //     studentPhoneData[i].institutionLogo = result.instituteLogo;
-        //   } else {
-        //     studentPhoneData[i].institutionLogo = "";
-        //   }
-        // }
+        for (var i = 0; i < empPhoneData.length; i++) {
+          var orgId = empPhoneData[i].organisationId;
+          var id = mongoose.Types.ObjectId(orgId);
+          var result = await organizationDAL.getOrganisationById({ _id: id });
+          if (result.hasOwnProperty("instituteLogo")) {
+            if (result.organisationLogo) {
+              if (result.organisationLogo != null) {
+                empAdharData[i].organisationLogo = result.organisationLogo;
+              } else {
+                empAdharData[i].organisationLogo = "";
+              }
+            }
+          }
+        }
+        for (var i = 0; i < studentPhoneData.length; i++) {
+          var insId = studentPhoneData[i].instituteId;
+          var id = mongoose.Types.ObjectId(insId);
+          var result = await instituionDAL.getInstituteById({ _id: id });
+          if (result.hasOwnProperty("instituteLogo")) {
+            if (result.instituteLogo != null) {
+              studentEmailData[i].institutionLogo = result.instituteLogo;
+            } else {
+              studentEmailData[i].institutionLogo = "";
+            }
+          }
+        }
 
         let resultData = empPhoneData.concat(studentPhoneData);
         return res.status(200).json({
@@ -705,20 +754,24 @@ module.exports.searchByIdBGV = async (req, res, next) => {
           var orgId = findByNameEmp[i].organisationId;
           var id = mongoose.Types.ObjectId(orgId);
           var result = await organizationDAL.getOrganisationById({ _id: id });
-          if (result.organisationLogo != null) {
-            findByNameEmp[i].organisationLogo = result.organisationLogo;
-          } else {
-            findByNameEmp[i].organisationLogo = "";
+          if (result.organisationLogo) {
+            if (result.organisationLogo != null) {
+              empAdharData[i].organisationLogo = result.organisationLogo;
+            } else {
+              empAdharData[i].organisationLogo = "";
+            }
           }
         }
         for (var i = 0; i < findByNameStudent.length; i++) {
           var insId = findByNameStudent[i].instituteId;
           var id = mongoose.Types.ObjectId(insId);
           var result = await instituionDAL.getInstituteById({ _id: id });
-          if (result.instituteLogo != null) {
-            findByNameStudent[i].institutionLogo = result.instituteLogo;
-          } else {
-            findByNameStudent[i].institutionLogo = "";
+          if (result.hasOwnProperty("instituteLogo")) {
+            if (result.instituteLogo != null) {
+              studentEmailData[i].institutionLogo = result.instituteLogo;
+            } else {
+              studentEmailData[i].institutionLogo = "";
+            }
           }
         }
 

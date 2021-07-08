@@ -68,8 +68,20 @@ module.exports.saveCandidate = async (req, res, next) => {
           d.organisationId = _id.toString();
         }
         let empValid = await empValidator.addEmployeeSchema.validateAsync(d);
-
-        var saveCandidate = await empDAL.addEmployee(empValid);
+        var checkDupl = {
+          email: d.email,
+          organizationName: d.organizationName,
+          dateOfJoining: d.dateOfJoining,
+          exitDate: d.exitDate,
+        };
+        var checkDuplicate = await canddidateDAL.checkDiplicateEmployee(
+          checkDupl
+        );
+        if (!checkDuplicate) {
+          var saveCandidate = await empDAL.addEmployee(empValid);
+        } else {
+          continue;
+        }
       } else if (d.intitutionName.length > 0) {
         d.bgvCandidate = true;
         var insName = d.intitutionName;
@@ -88,7 +100,15 @@ module.exports.saveCandidate = async (req, res, next) => {
           d.instituteId = _id.toString();
         }
         let stdvalid = await stdValidator.addStudentSchema.validateAsync(d);
-        var saveCandidate = await stdDAL.addStudent(stdvalid);
+        var checkDup = { intitutionName: d.intitutionName, email: d.email };
+        var checkDuplicate = await canddidateDAL.checkDuplicateStudentRecord(
+          checkDup
+        );
+        if (!checkDuplicate) {
+          var saveCandidate = await stdDAL.addStudent(stdvalid);
+        } else {
+          continue;
+        }
       }
     }
     if (saveCandidate) {

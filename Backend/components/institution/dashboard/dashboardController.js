@@ -8,6 +8,7 @@ const empDAL = require("../../organization/OppsUser/AddEmployee/employeeDAL");
 
 module.exports.countTotalInstUsers = async function (req, res, next) {
   let instituteId = req.params.instituteId;
+  let totalEmail = [];
   let id = req.params.id;
   try {
     let totalStudent = await studentModel.countDocuments({
@@ -15,9 +16,19 @@ module.exports.countTotalInstUsers = async function (req, res, next) {
     });
     // let totalEmployeeCount = await studentModel.estimatedDocumentCount();
     // let totalStudentCount = await empModel.estimatedDocumentCount();
-    let totalEmployeeCount = await empDAL.findDistinctEmployee();
     let totalStudentCount = await stuDAL.findDistinctStudent();
-    let totalCandidate = totalEmployeeCount + totalStudentCount;
+    totalStudentCount.map((e) => {
+      totalEmail.push(e.email);
+    });
+    let totalEmployeeCount = await empDAL.findDistinctEmployee();
+    totalEmployeeCount.map((e) => {
+      totalEmail.push(e.email);
+    });
+    var uniqEmail = new Set();
+    totalEmail.map((e) => {
+      uniqEmail.add(e);
+    });
+    // let totalCandidate = totalEmployeeCount + totalStudentCount;
     let totalBGVCount = await bgvDAL.getBySearchedById({ _id: id });
     var sumCount = 0;
     totalBGVCount.map((d) => {
@@ -29,7 +40,7 @@ module.exports.countTotalInstUsers = async function (req, res, next) {
       status: "SUCCESS",
       data: {
         totalStudent: totalStudent,
-        totalCandidate: totalCandidate,
+        totalCandidate: uniqEmail.size,
         totalBGV: totalBGV,
       },
     });
