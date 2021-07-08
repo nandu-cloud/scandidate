@@ -333,15 +333,25 @@ export class AddHrcandidateComponent implements OnInit {
         this.form = this.fb.group(this.formGroup)
         this.form.patchValue(respObj.data)
         this.candidate = this.form.get('candidate') as FormArray
+        // this.candidateIndex = this.form.get('candidate.index') as FormArray
         this.canidateInstitute = this.form.get('canidateInstitute') as FormArray
+        // candidates.forEach(val, index){
 
+        // }
+        
+      
         if(candidates.length > 0){
-          candidates.forEach( can => {
+          
+          candidates.forEach( (can, idx) => {
             const candidateControls = this.createItem()
             candidateControls.patchValue(can)
             console.log("hiiiii", can);
+            console.log("hellooooooo", idx);
+            // var ind = this.idx
             this.candidate.push(candidateControls)
           })
+          // var idx = candidates.indexOf(Element);
+          // console.log("hellooooooo", idx);
           // function getIndex(val){
           //   for (var i = 0; i<candidates.length; i++){}
           // }
@@ -560,12 +570,18 @@ export class AddHrcandidateComponent implements OnInit {
      
     }
 
+    // idValue(i) {
+    //   if(!this.indexArr[i]) { this.indexArr[i] = 0};
+    //     this.indexArr[i] += 1;
+    //     console.log('index:', i, ' Click number', this.indexArr[i]);
+    // }
     
-    downloadPDF(){
+    downloadPDF(c){
       console.log(this.candidate.length);
+      // var index = this.candidate
       var index = (this.candidate.length) - 1;
-      console.log(index)
-      this.downloadPDFSubscription = this.exempService.downloadReport(this.form.value, index).subscribe(resp => {
+      // console.log(index)
+      this.downloadPDFSubscription = this.exempService.downloadReport(this.form.value, c).subscribe(resp => {
         console.log(resp);
         // alert("download")
         let blob = new Blob([resp], {type: 'application/pdf'});
