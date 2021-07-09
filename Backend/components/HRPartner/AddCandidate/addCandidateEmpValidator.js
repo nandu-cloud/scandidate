@@ -104,6 +104,8 @@ const addEmployeeSchema = Joi.object({
   verificationAddress: Joi.boolean().allow("").allow(null),
   drugsAndSubstanceAbuse: Joi.boolean().allow("").allow(null),
   salarySlipCTCdocument: Joi.boolean().allow("").allow(null),
+  documentUpload: Joi.string().allow("").allow(null),
+  originalFilename: Joi.string().allow("").allow(null),
 });
 const updateEmployeeSchema = Joi.object({
   //Required Fields
@@ -209,6 +211,8 @@ const updateEmployeeSchema = Joi.object({
   verificationAddress: Joi.boolean().allow("").allow(null),
   drugsAndSubstanceAbuse: Joi.boolean().allow("").allow(null),
   salarySlipCTCdocument: Joi.boolean().allow("").allow(null),
+  documentUpload: Joi.string().allow("").allow(null),
+  originalFilename: Joi.string().allow("").allow(null),
 });
 
 module.exports = {

@@ -498,6 +498,14 @@ const employeeSchema = new mongoose.Schema({
     type: Boolean,
     required: false,
   },
+  documentUpload: {
+    type: String,
+    required: false,
+  },
+  originalFilename: {
+    type: String,
+    required: false,
+  },
 });
 // compile schema to model
 module.exports = mongoose.model("employees", employeeSchema, "employees");

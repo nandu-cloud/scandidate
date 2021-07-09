@@ -550,10 +550,8 @@ module.exports.searchByIdBGV = async (req, res, next) => {
         let empEmailLength = empEmailData.length;
         let empPhonelength = empPhoneData.length;
         let empNameDoblength = empNameDobData.length;
-        console.log(empEmailData);
         if (empPhonelength >= empEmailLength) {
           let studentEmailData = await bgvDAL.searchByEmailInstitute(email);
-
           let studentPhoneData = await bgvDAL.searchByPhoneNumberInstitute(
             phoneNumber,
             firstName,
