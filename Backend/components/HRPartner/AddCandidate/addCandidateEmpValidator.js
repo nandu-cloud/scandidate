@@ -104,8 +104,16 @@ const addEmployeeSchema = Joi.object({
   verificationAddress: Joi.boolean().allow("").allow(null),
   drugsAndSubstanceAbuse: Joi.boolean().allow("").allow(null),
   salarySlipCTCdocument: Joi.boolean().allow("").allow(null),
-  documentUpload: Joi.string().allow("").allow(null),
-  originalFilename: Joi.string().allow("").allow(null),
+  documentUploadPersonalIdentity: Joi.string().allow("").allow(null),
+  originalFilenamePersonalIdentity: Joi.string().allow("").allow(null),
+  documentUploadcriminal: Joi.string().allow("").allow(null),
+  originalFilenamecriminal: Joi.string().allow("").allow(null),
+  documentUploadverificationAddress: Joi.string().allow("").allow(null),
+  originalFilenameverificationAddress: Joi.string().allow("").allow(null),
+  documentUploaddrugsAndSubstanceAbuse: Joi.string().allow("").allow(null),
+  originalFilenamedrugsAndSubstanceAbuse: Joi.string().allow("").allow(null),
+  documentUploadsalarySlipCTCdocument: Joi.string().allow("").allow(null),
+  originalFilenamesalarySlipCTCdocument: Joi.string().allow("").allow(null),
 });
 const updateEmployeeSchema = Joi.object({
   //Required Fields
@@ -211,8 +219,16 @@ const updateEmployeeSchema = Joi.object({
   verificationAddress: Joi.boolean().allow("").allow(null),
   drugsAndSubstanceAbuse: Joi.boolean().allow("").allow(null),
   salarySlipCTCdocument: Joi.boolean().allow("").allow(null),
-  documentUpload: Joi.string().allow("").allow(null),
-  originalFilename: Joi.string().allow("").allow(null),
+  documentUploadPersonalIdentity: Joi.string().allow("").allow(null),
+  originalFilenamePersonalIdentity: Joi.string().allow("").allow(null),
+  documentUploadcriminal: Joi.string().allow("").allow(null),
+  originalFilenamecriminal: Joi.string().allow("").allow(null),
+  documentUploadverificationAddress: Joi.string().allow("").allow(null),
+  originalFilenameverificationAddress: Joi.string().allow("").allow(null),
+  documentUploaddrugsAndSubstanceAbuse: Joi.string().allow("").allow(null),
+  originalFilenamedrugsAndSubstanceAbuse: Joi.string().allow("").allow(null),
+  documentUploadsalarySlipCTCdocument: Joi.string().allow("").allow(null),
+  originalFilenamesalarySlipCTCdocument: Joi.string().allow("").allow(null),
 });
 
 module.exports = {

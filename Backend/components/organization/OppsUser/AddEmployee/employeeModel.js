@@ -498,11 +498,43 @@ const employeeSchema = new mongoose.Schema({
     type: Boolean,
     required: false,
   },
-  documentUpload: {
+  documentUploadPersonalIdentity: {
     type: String,
     required: false,
   },
-  originalFilename: {
+  originalFilenamePersonalIdentity: {
+    type: String,
+    required: false,
+  },
+  documentUploadcriminal: {
+    type: String,
+    required: false,
+  },
+  originalFilenamecriminal: {
+    type: String,
+    required: false,
+  },
+  documentUploadverificationAddress: {
+    type: String,
+    required: false,
+  },
+  originalFilenameverificationAddress: {
+    type: String,
+    required: false,
+  },
+  documentUploaddrugsAndSubstanceAbuse: {
+    type: String,
+    required: false,
+  },
+  originalFilenamedrugsAndSubstanceAbuse: {
+    type: String,
+    required: false,
+  },
+  documentUploadsalarySlipCTCdocument: {
+    type: String,
+    required: false,
+  },
+  originalFilenamesalarySlipCTCdocument: {
     type: String,
     required: false,
   },
