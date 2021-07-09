@@ -40,6 +40,19 @@ module.exports.saveCandidate = async (req, res, next) => {
     criminal: verification.criminal,
     verificationAddress: verification.verificationAddress,
     drugsAndSubstanceAbuse: verification.drugsAndSubstanceAbuse,
+    documentUploadPersonalIdentity: verification.documentUploadPersonalIdentity,
+    originalFilenamePersonalIdentity:
+      verification.originalFilenamePersonalIdentity,
+    documentUploadcriminal: verification.documentUploadcriminal,
+    originalFilenamecriminal: verification.originalFilenamecriminal,
+    documentUploadverificationAddress:
+      verification.documentUploadverificationAddress,
+    originalFilenameverificationAddress:
+      verification.originalFilenameverificationAddress,
+    documentUploaddrugsAndSubstanceAbuse:
+      verification.documentUploaddrugsAndSubstanceAbuse,
+    originalFilenamedrugsAndSubstanceAbuse:
+      verification.originalFilenamedrugsAndSubstanceAbuse,
   };
   if (canidateInstitute) {
     for (var d1 of canidateInstitute) {
@@ -325,6 +338,22 @@ module.exports.showCandidateById = async (req, res, next) => {
       verificationAddress: empBio.verificationAddress,
       drugsAndSubstanceAbuse: empBio.drugsAndSubstanceAbuse,
       salarySlipCTCdocument: empBio.salarySlipCTCdocument,
+      documentUploadPersonalIdentity: empBio.documentUploadPersonalIdentity,
+      originalFilenamePersonalIdentity: empBio.originalFilenamePersonalIdentity,
+      documentUploadcriminal: empBio.documentUploadcriminal,
+      originalFilenamecriminal: empBio.originalFilenamecriminal,
+      documentUploadverificationAddress:
+        empBio.documentUploadverificationAddress,
+      originalFilenameverificationAddress:
+        empBio.originalFilenameverificationAddress,
+      documentUploaddrugsAndSubstanceAbuse:
+        empBio.documentUploaddrugsAndSubstanceAbuse,
+      originalFilenamedrugsAndSubstanceAbuse:
+        empBio.originalFilenamedrugsAndSubstanceAbuse,
+      documentUploadsalarySlipCTCdocument:
+        empBio.documentUploadsalarySlipCTCdocument,
+      originalFilenamesalarySlipCTCdocument:
+        empBio.originalFilenamesalarySlipCTCdocument,
       candidate: candidate,
       canidateInstitute: candiadteSudnt,
     };
@@ -365,6 +394,19 @@ module.exports.updateCandidateData = async (req, res, next) => {
     criminal: verification.criminal,
     verificationAddress: verification.verificationAddress,
     drugsAndSubstanceAbuse: verification.drugsAndSubstanceAbuse,
+    documentUploadPersonalIdentity: verification.documentUploadPersonalIdentity,
+    originalFilenamePersonalIdentity:
+      verification.originalFilenamePersonalIdentity,
+    documentUploadcriminal: verification.documentUploadcriminal,
+    originalFilenamecriminal: verification.originalFilenamecriminal,
+    documentUploadverificationAddress:
+      verification.documentUploadverificationAddress,
+    originalFilenameverificationAddress:
+      verification.originalFilenameverificationAddress,
+    documentUploaddrugsAndSubstanceAbuse:
+      verification.documentUploaddrugsAndSubstanceAbuse,
+    originalFilenamedrugsAndSubstanceAbuse:
+      verification.originalFilenamedrugsAndSubstanceAbuse,
   };
   if (canidateInstitute) {
     for (var d1 of canidateInstitute) {

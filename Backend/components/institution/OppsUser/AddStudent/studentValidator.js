@@ -50,6 +50,14 @@ const addStudentSchema = Joi.object({
   criminal: Joi.string().allow("").allow(null),
   verificationAddress: Joi.string().allow("").allow(null),
   drugsAndSubstanceAbuse: Joi.string().allow("").allow(null),
+  documentUploadPersonalIdentity: Joi.string().allow("").allow(null),
+  originalFilenamePersonalIdentity: Joi.string().allow("").allow(null),
+  documentUploadcriminal: Joi.string().allow("").allow(null),
+  originalFilenamecriminal: Joi.string().allow("").allow(null),
+  documentUploadverificationAddress: Joi.string().allow("").allow(null),
+  originalFilenameverificationAddress: Joi.string().allow("").allow(null),
+  documentUploaddrugsAndSubstanceAbuse: Joi.string().allow("").allow(null),
+  originalFilenamedrugsAndSubstanceAbuse: Joi.string().allow("").allow(null),
 });
 
 const updateStudentSchema = Joi.object({
@@ -102,6 +110,16 @@ const updateStudentSchema = Joi.object({
   criminal: Joi.string().allow("").allow(null),
   verificationAddress: Joi.string().allow("").allow(null),
   drugsAndSubstanceAbuse: Joi.string().allow("").allow(null),
+  documentUploadPersonalIdentity: Joi.string().allow("").allow(null),
+  originalFilenamePersonalIdentity: Joi.string().allow("").allow(null),
+  documentUploadcriminal: Joi.string().allow("").allow(null),
+  originalFilenamecriminal: Joi.string().allow("").allow(null),
+  documentUploadverificationAddress: Joi.string().allow("").allow(null),
+  originalFilenameverificationAddress: Joi.string().allow("").allow(null),
+  documentUploaddrugsAndSubstanceAbuse: Joi.string().allow("").allow(null),
+  originalFilenamedrugsAndSubstanceAbuse: Joi.string().allow("").allow(null),
+  documentUploadsalarySlipCTCdocument: Joi.string().allow("").allow(null),
+  originalFilenamesalarySlipCTCdocument: Joi.string().allow("").allow(null),
 });
 
 module.exports = {
