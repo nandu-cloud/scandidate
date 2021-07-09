@@ -520,9 +520,9 @@
               
               <mat-radio-group
               formControlName="IsSelect"
-              aria-label="Select an option" tabindex="12">
-                <mat-radio-button value="voluntary">voluntary</mat-radio-button>
-                <mat-radio-button value="inVoluntary">In-Voluntary</mat-radio-button>
+              aria-label="Select an option" >
+                <mat-radio-button value="voluntary" tabindex="13">voluntary</mat-radio-button>
+                <mat-radio-button value="inVoluntary" tabindex="13">In-Voluntary</mat-radio-button>
               </mat-radio-group>
               </div> 
               
@@ -827,10 +827,10 @@
                     class="example-radio-group"
                     formControlName="rehireAgain"
                   >
-                    <mat-radio-button value="yes"
+                    <mat-radio-button value="yes" tabindex="26"
                       >Yes</mat-radio-button
                     ><br />
-                    <mat-radio-button value="No"
+                    <mat-radio-button value="No" tabindex="26"
                       >No</mat-radio-button
                     >
                   </mat-radio-group>
@@ -901,18 +901,18 @@
                   <mat-radio-group
                     aria-labelledby="example-radio-group-label"
                     class="example-radio-group"
-                    formControlName="IsSelect" tabindex="27"
+                    formControlName="IsSelect" 
                   >
-                    <mat-radio-button value="Performer & Awarded"
+                    <mat-radio-button value="Performer & Awarded" tabindex="28"
                       >Performer & Awarded</mat-radio-button
                     ><br />
-                    <mat-radio-button value="Non-Performer & Awarded"
+                    <mat-radio-button value="Non-Performer & Awarded" tabindex="28"
                       >Non-Performer & Awarded</mat-radio-button
                     ><br />
-                    <mat-radio-button value="Performer & Not Awarded"
+                    <mat-radio-button value="Performer & Not Awarded" tabindex="28"
                       >Performer & Not Awarded</mat-radio-button
                     ><br />
-                    <mat-radio-button value="Non-Performer & Not Awarded"
+                    <mat-radio-button value="Non-Performer & Not Awarded" tabindex="28"
                       >Non-Performer & Not Awarded</mat-radio-button
                     >
                   </mat-radio-group>
@@ -925,7 +925,7 @@
                           formControlName="remarks"
                           class="br-btm input-w"
                           placeholder="Remarks"
-                          tabindex="28"
+                          tabindex="33"
                         ></textarea>
                       </mat-form-field>
                     </div>
@@ -945,7 +945,7 @@
                         <mat-select
                           class="br-btm input-w"
                           formControlName="IsSelect"
-                          tabindex="29"
+                          tabindex="34"
                         >
                           <mat-option [value]=0>Select</mat-option>
                           <mat-option [value]=1>Not satisfactory</mat-option>
@@ -969,7 +969,7 @@
                           class="br-btm input-w"
                           placeholder="Strategic Thinking Remarks"
                           style="resize: none"
-                          tabindex="30"
+                          tabindex="35"
                         ></textarea>
                       </mat-form-field>
                     </div>
@@ -982,7 +982,7 @@
                         <mat-select
                           class="br-btm input-w"
                           formControlName="IsSelect"
-                          tabindex="31"
+                          tabindex="36"
                         >
                           <mat-option [value]=0>Select</mat-option>
                           <mat-option [value]=1>Not satisfactory</mat-option>
@@ -1003,7 +1003,7 @@
                           class="br-btm input-w"
                           placeholder="Problem Solving Remarks"
                           style="resize: none"
-                          tabindex="32"
+                          tabindex="37"
                         ></textarea>
                       </mat-form-field>
                     </div>
@@ -1016,7 +1016,7 @@
                         <mat-select
                           class="br-btm input-w"
                           formControlName="IsSelect"
-                          tabindex="33"
+                          tabindex="38"
                         >
                           <mat-option [value]=0>Select</mat-option>
                           <mat-option [value]=1>Not satisfactory</mat-option>
@@ -1046,7 +1046,7 @@
                           class="br-btm input-w"
                           placeholder="Building High Performance Team Remarks"
                           style="resize: none"
-                          tabindex="34"
+                          tabindex="39"
                         ></textarea>
                       </mat-form-field>
                     </div>
@@ -1059,7 +1059,7 @@
                         <mat-select
                           class="br-btm input-w"
                           formControlName="IsSelect"
-                          tabindex="35"
+                          tabindex="40"
                         >
                           <mat-option [value]=0>Select</mat-option>
                           <mat-option [value]=1>Not satisfactory</mat-option>
@@ -1091,7 +1091,7 @@
                           class="br-btm input-w"
                           placeholder=" StakeHolder Management Remarks"
                           style="resize: none"
-                          tabindex="36"
+                          tabindex="41"
                         ></textarea>
                       </mat-form-field>
                     </div>
@@ -1103,7 +1103,7 @@
                       style="line-height: 2px; font-size: smaller"
                       class="remarks br-btm input-w"
                       placeholder="How would you describe this individual’s leadership style?" 
-                      tabindex="37"
+                      tabindex="42"
                       maxlength="200" style="resize: none"
                       ></textarea>
                   </mat-form-field>
@@ -1123,7 +1123,7 @@
                         <mat-select
                           class="br-btm input-w"
                           formControlName="IsSelect"
-                          tabindex="38"
+                          tabindex="43"
                         >
                           <mat-option [value]=true>Yes</mat-option>
                           <mat-option [value]=false>No</mat-option>
@@ -1164,7 +1164,7 @@
                                 [matDatepicker]="picker3"
                                 class="date br-btm input-w"
                                 placeholder="DD/MM/YYYY"
-                                tabindex="39"
+                                tabindex="44"
                               />
                               <mat-datepicker-toggle
                                 matSuffix
@@ -1185,7 +1185,7 @@
                                 type="text"
                                 class="br-btm input-w"
                                 autoComplete="off"
-                                tabindex="40"
+                                tabindex="45"
                               />
                             </td>
                             <td
@@ -1225,7 +1225,7 @@
                         <mat-select
                           class="br-btm input-w"
                           formControlName="IsSelect"
-                          tabindex="41"
+                          tabindex="46"
                         >
                           <mat-option [value]=true>Yes</mat-option>
                           <mat-option [value]=false>No</mat-option>
@@ -1252,7 +1252,7 @@
                                 class="date br-btm input-w"
                                 [min]="minDate"
                                 [max]="maxDate"
-                                tabindex="42"
+                                tabindex="47"
                                 placeholder="DD/MM/YYYY"
                               />
                               <mat-datepicker-toggle
@@ -1274,7 +1274,7 @@
                                 type="text"
                                 class="br-btm input-w"
                                 autoComplete="off"
-                                tabindex="43"
+                                tabindex="48"
                               />
                             </td>
     
@@ -1316,7 +1316,7 @@
                         <mat-select
                           class="br-btm input-w"
                           formControlName="IsSelect"
-                          tabindex="44"
+                          tabindex="49"
                         >
                           <mat-option [value]=true>Yes</mat-option>
                           <mat-option [value]=false>No</mat-option>
@@ -1344,7 +1344,7 @@
                                 [min]="minDate"
                                 [max]="maxDate"
                                 placeholder="DD/MM/YYYY"
-                                tabindex="45"
+                                tabindex="50"
                               />
                               <mat-datepicker-toggle
                                 matSuffix
@@ -1365,7 +1365,7 @@
                                 type="text"
                                 class="br-btm input-w"
                                 autoComplete="off"
-                                tabindex="46"
+                                tabindex="51"
                               />
                             </td>
     
@@ -1407,7 +1407,7 @@
                         <mat-select
                           class="br-btm input-w"
                           formControlName="IsSelect"
-                          tabindex="47"
+                          tabindex="52"
                         >
                           <mat-option [value]=true>Yes</mat-option>
                           <mat-option [value]=false>No</mat-option>
@@ -1436,7 +1436,7 @@
                                 [min]="minDate"
                                 [max]="maxDate"
                                 placeholder="DD/MM/YYYY"
-                                tabindex="48"
+                                tabindex="53"
                               />
                               <mat-datepicker-toggle
                                 matSuffix
@@ -1457,7 +1457,7 @@
                                 type="text"
                                 class="br-btm input-w"
                                 autoComplete="off"
-                                tabindex="49"
+                                tabindex="54"
                               />
                             </td>
     
@@ -1499,7 +1499,7 @@
                         <mat-select
                           class="br-btm input-w"
                           formControlName="IsSelect"
-                          tabindex="50"
+                          tabindex="55"
                         >
                           <mat-option [value]=true>Yes</mat-option>
                           <mat-option [value]=false>No</mat-option>
@@ -1529,7 +1529,7 @@
                                 [min]="minDate"
                                 [max]="maxDate"
                                 placeholder="DD/MM/YYYY"
-                                tabindex="51"
+                                tabindex="56"
                               />
                               <mat-datepicker-toggle
                                 matSuffix
@@ -1550,7 +1550,7 @@
                                 type="text"
                                 class="br-btm input-w"
                                 autoComplete="off"
-                                tabindex="52"
+                                tabindex="57"
                               />
                             </td>
     
@@ -1592,7 +1592,7 @@
                         <mat-select
                           class="br-btm input-w"
                           formControlName="IsSelect"
-                          tabindex="53"
+                          tabindex="58"
                         >
                           <mat-option [value]=true>Yes</mat-option>
                           <mat-option [value]=false>No</mat-option>
@@ -1622,7 +1622,7 @@
                                 [min]="minDate"
                                 [max]="maxDate"
                                 placeholder="DD/MM/YYYY"
-                                tabindex="54"
+                                tabindex="59"
                               />
                               <mat-datepicker-toggle
                                 matSuffix
@@ -1643,7 +1643,7 @@
                                 type="text"
                                 class="br-btm input-w"
                                 autoComplete="off"
-                                tabindex="55"
+                                tabindex="60"
                               />
                             </td>
     
@@ -1686,7 +1686,7 @@
                           style="line-height: 2px; font-size: smaller"
                           class="remarks br-btm input-w"
                           placeholder=" Is there any other information about this individual you would like to record for future employers?" 
-                          tabindex="56"
+                          tabindex="61"
                           maxlength="200" style="resize: none"
                           ></textarea>
                   </mat-form-field>
@@ -1699,17 +1699,17 @@
                 <!-- <button class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
                   Save Now
                 </button> -->
-                <button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button" tabindex="58"
+                <button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button" tabindex="62"
                 (click)="downloadPDF(c)">
                   Download PDF
                 </button>
-                <button tabindex="59"
+                <button tabindex="63"
                   class="lg-button focus:outline-none focus:shadow-outline mr-12"
                   (click)="cancel()"
                 >
                   Back
                 </button>
-                <button tabindex="60"
+                <button tabindex="64"
                   class="lg-button focus:outline-none focus:shadow-outline"
                   (click)="nextStep()"
                 >
@@ -1772,7 +1772,7 @@
                 </mat-form-field>
                 <mat-form-field class="enrollment">
                   <mat-label class="enr">Enrollment type</mat-label>
-                  <input matInput placeholder="Input" style="display: none" required><br><br>
+                  <input matInput placeholder="Input" style="display: none" required tabindex="6"><br><br>
                   <mat-radio-group class="radio" formControlName="studentType" required>
                     <mat-radio-button value="regular" tabindex="6">Regular</mat-radio-button>&nbsp;
                     <mat-radio-button value="correspondance" tabindex="7">Correspondance</mat-radio-button>
