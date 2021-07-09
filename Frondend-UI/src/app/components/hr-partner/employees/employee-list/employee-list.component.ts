@@ -108,7 +108,7 @@ export class EmployeeListComponent implements OnInit {
     }
     
     );
-    // dialogRef.componentInstance.employeeid = itm
+    dialogRef.componentInstance.employeeid = itm
     // console.log("gggggggggggggggggggggg", itm);
     dialogRef.afterClosed().subscribe( result => { 
       if (result){

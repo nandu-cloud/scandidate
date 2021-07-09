@@ -351,7 +351,7 @@ export class ExEmployeeService {
         "nameOfCourse": element.nameOfCourse,
         "yearOfJoining": element.yearOfJoining,
         "yearOfPassout": element.yearOfPassout,
-        "studentType": element.yearOfPassout,
+        "studentType": element.studentType,
         "roll": element.roll
       })
     });
@@ -471,7 +471,7 @@ console.log(o)
           'nameOfCourse': element.nameOfCourse,
           'yearOfJoining': element.yearOfJoining,
           'yearOfPassout': element.yearOfPassout,
-          'studentType': element.yearOfPassout,
+          'studentType': element.studentType,
           'roll': element.roll
         })
       });
@@ -637,5 +637,11 @@ console.log(o)
     public getCandLinemanagerData(): Observable<any> {
       var organizationId = window.sessionStorage.getItem('hrorganisationId');
       return this.http.get(this.baseUrl + '/api/organisation/admin/show/lineManager/' + organizationId);
+    }
+
+    public assignLinemanager(empId, linemanagerId, redata): Observable<any> {
+      // return this.http.post(`${this.baseUrl}/api/organisation/lineManager/savenow/assigneddata/${empId}/${linemanagerId}`);
+         return this.http.post(`${this.baseUrl}/api/organisation/lineManager/savenow/assigneddata/${empId}/${linemanagerId}`, redata);
+        // return this.http.post(this.baseUrl + '/api/organisation/lineManager/savenow/assigneddata/' + empId + '/' +linemanagerId);
     }
 }

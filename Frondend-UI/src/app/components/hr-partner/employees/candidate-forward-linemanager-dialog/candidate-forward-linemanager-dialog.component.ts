@@ -32,7 +32,7 @@ export class CandidateForwardLinemanagerDialogComponent implements OnInit {
   assign: any;
   constructor(
     public exempService: ExEmployeeService,
-    public linemanagerService: AdminOrganizationService,
+    public linemanagerService: ExEmployeeService,
      public dialog: MatDialog,
       public empService: EmployeeService,
     // public dialogg: MatDialogRef<ForwardToLinemanagerDialogComponent>,
@@ -45,6 +45,7 @@ export class CandidateForwardLinemanagerDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.employeeid._id);
     this.getLinemanagerSubscription = this.exempService.getCandLinemanagerData()
     .subscribe(respObj => {
       this.lm = respObj.data;
@@ -66,10 +67,10 @@ export class CandidateForwardLinemanagerDialogComponent implements OnInit {
   assignLinemanager() {
 
     console.log(this.employeeid)
-    if(this.employeeid.firstName == ''  || this.employeeid.lastName == '' || this.employeeid.dateOfJoining == '' || this.employeeid.exitDate == '' || this.employeeid.phoneNumber == '' || this.employeeid.email == ''){
-      this.methodtype = 'empty';
-      this.openDialog()
-    }else{
+    // if(this.employeeid.firstName == ''  || this.employeeid.lastName == '' || this.employeeid.dateOfJoining == '' || this.employeeid.exitDate == '' || this.employeeid.phoneNumber == '' || this.employeeid.email == ''){
+    //   this.methodtype = 'empty';
+    //   this.openDialog()
+    // }else{
 
     let data = {
     
@@ -105,7 +106,7 @@ export class CandidateForwardLinemanagerDialogComponent implements OnInit {
         this.error = this.setMessage.message;
         throw this.setMessage.message;
       })
-    }
+    // }
   }
   close() {
     // this.dialogRef.close(true);

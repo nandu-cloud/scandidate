@@ -100,13 +100,13 @@
 
 <div class="overflow-hidden shadow max-w-full my-3 ">
   <h1 class="text-black text-sm bold font-sans text-left px-20">Documents</h1>
-  <h3 class="text-black text-sm bold font-sans text-left px-20 underline">Organization Document</h3>
-  <div class="scroll text-left px-5 pb-6 pt-2 flex ...">
+  <!-- <h3 class="text-black text-sm bold font-sans text-left px-20 underline">Organization Document</h3> -->
+  <!-- <div class="scroll text-left px-5 pb-6 pt-2 flex ...">
       <div class="md:flex-1 ... mr-3 border-r pr-2 ">
         <h5>Awards Document</h5>
           <div *ngFor="let list of data">
             <span class="justify-start" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
-                <!-- <span>{{list.awards.documentName}}</span> -->
+               
                 <li *ngIf="list.awards.originalFilename"><a
                   (click)="downloadDoc(list.awards.documentUpload)">{{list.awards.originalFilename}}</a></li>
             </span>
@@ -116,7 +116,7 @@
         <h5>Discrepancy Document</h5>
         <div *ngFor="let list of data">
           <span class="justify-start" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
-              <!-- <span>{{list.awards.documentName}}</span> -->
+             
               <li *ngIf="list.discrepancyDocuments.originalFilename || list.discrepancyDocuments.originalFilename != '' "><a
                 (click)="downloadDoc(list.discrepancyDocuments.descrepencyUploadDocument)">{{list.discrepancyDocuments.originalFilename}}</a></li>
           </span>
@@ -126,7 +126,7 @@
         <h5>Compliance Document</h5>
         <div *ngFor="let list of data">
           <span class="justify-start" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
-              <!-- <span>{{list.awards.documentName}}</span> -->
+             
               <li *ngIf="list.compliencyDiscrepancy.originalFilename && list.compliencyDiscrepancy.originalFilename != '' "><a
                 (click)="downloadDoc(list.compliencyDiscrepancy.compliencyUploadDocument)">{{list.compliencyDiscrepancy.originalFilename}}</a></li>
           </span>
@@ -136,7 +136,7 @@
         <h5>Warning Document</h5>
         <div *ngFor="let list of data">
           <span class="justify-start" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
-              <!-- <span>{{list.awards.documentName}}</span> -->
+        
               <li *ngIf="list.warning.originalFilename || list.warning.originalFilename != '' "><a
                 (click)="downloadDoc(list.warning.warningUploadDocument)">{{list.warning.originalFilename}}</a></li>
           </span>
@@ -146,7 +146,7 @@
         <h5>Show cause Document</h5>
         <div *ngFor="let list of data">
           <span class="justify-start" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
-              <!-- <span>{{list.awards.documentName}}</span> -->
+          
               <li *ngIf="list.showCausedIssue.originalFilename || list.showCausedIssue.originalFilename != '' "><a
                 (click)="downloadDoc(list.showCausedIssue.showCausedUploadDocument)">{{list.showCausedIssue.originalFilename}}</a></li>
           </span>
@@ -156,7 +156,7 @@
         <h5>PIP Document</h5>
         <div *ngFor="let list of data">
           <span class="justify-start" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
-              <!-- <span>{{list.awards.documentName}}</span> -->
+              
               <li *ngIf="list.suspension.originalFilename || list.suspension.originalFilename != '' "><a
                 (click)="downloadDoc(list.suspension.suspensionUploadDocument)">{{list.suspension.originalFilename}}</a></li>
           </span>
@@ -166,13 +166,13 @@
         <h5>Termination Document</h5> 
         <div *ngFor="let list of data">
           <span class="justify-start" *ngIf="list.organisationId != '' && list.organisationId != undefined ">
-              <!-- <span>{{list.awards.documentName}}</span> -->
+              
               <li *ngIf="list.termination.originalFilename || list.termination.originalFilename != '' "><a
                 (click)="downloadDoc(list.termination.terminationUploadDocument)">{{list.termination.terminationUploadDocument}}</a></li>
           </span>
         </div>
       </div>
-  </div>
+  </div> -->
   <h3 class="text-black text-sm bold font-sans text-left px-20 underline">Institution Document</h3>
   <div class="text-left px-5 pb-6 pt-2 flex ..." >
     <div class="md:flex-1 ... mr-3 border-r pr-2 ">

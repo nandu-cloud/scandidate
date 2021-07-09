@@ -35,7 +35,7 @@ forwordToLinemanager(): void {
     }
     
     );
-    // dialogRef.componentInstance.employeeid = this.rowinfo.rowinfo
+    dialogRef.componentInstance.employeeid = this.rowinfo.rowinfo
     console.log()
     dialogRef.afterClosed().subscribe( result => { 
       // this.dataSource.data = result;

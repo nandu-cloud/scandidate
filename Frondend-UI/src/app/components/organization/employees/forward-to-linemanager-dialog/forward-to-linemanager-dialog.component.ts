@@ -46,7 +46,7 @@ export class ForwardToLinemanagerDialogComponent implements OnInit {
     // this.rowinfo.status
     // console.log(this.rowinfo.rowinfo.status)
     // console.log(this.rowinfo);
-    // console.log(this.employeeid._id);
+    console.log(this.employeeid._id);
     this.getLinemanagerSubscription = this.linemanagerService.getLinemanagerData()
     .subscribe(respObj => {
       this.lm = respObj.data;

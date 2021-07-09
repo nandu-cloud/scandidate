@@ -94,7 +94,8 @@ updateUser(updateUser): Observable<any> {
 }
 
 public getLinemanagerData(): Observable<any> {
-  return this.http.get(this.baseUrl + '/api/organisation/admin/show/lineManager');
+  var organizationId = window.sessionStorage.getItem('organizationId');
+  return this.http.get(this.baseUrl + '/api/organisation/admin/show/lineManager/' + organizationId);
 }
 public checkLinemanager(empId): Observable<any> {
   return this.http.get(`${this.baseUrl}/api/organisation/lineManager/checkLinemanagerName/${empId}`);
