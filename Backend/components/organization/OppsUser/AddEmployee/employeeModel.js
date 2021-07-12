@@ -499,43 +499,43 @@ const employeeSchema = new mongoose.Schema({
     required: false,
   },
   documentUploadPersonalIdentity: {
-    type: String,
+    type: Array,
     required: false,
   },
   originalFilenamePersonalIdentity: {
-    type: String,
+    type: Array,
     required: false,
   },
   documentUploadcriminal: {
-    type: String,
+    type: Array,
     required: false,
   },
   originalFilenamecriminal: {
-    type: String,
+    type: Array,
     required: false,
   },
   documentUploadverificationAddress: {
-    type: String,
+    type: Array,
     required: false,
   },
   originalFilenameverificationAddress: {
-    type: String,
+    type: Array,
     required: false,
   },
   documentUploaddrugsAndSubstanceAbuse: {
-    type: String,
+    type: Array,
     required: false,
   },
   originalFilenamedrugsAndSubstanceAbuse: {
-    type: String,
+    type: Array,
     required: false,
   },
   documentUploadsalarySlipCTCdocument: {
-    type: String,
+    type: Array,
     required: false,
   },
   originalFilenamesalarySlipCTCdocument: {
-    type: String,
+    type: Array,
     required: false,
   },
 });

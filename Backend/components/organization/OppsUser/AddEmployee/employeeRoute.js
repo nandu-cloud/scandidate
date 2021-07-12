@@ -33,7 +33,13 @@ let storage = multer.diskStorage({
 //Document Filter
 function fileFilter(req, file, cb) {
   let ext = mime.getExtension(file.mimetype);
-  if (ext === "doc" || ext === "pdf" || ext === "docx") {
+  if (
+    ext === "png" ||
+    ext === "jpeg" ||
+    ext === "doc" ||
+    ext === "pdf" ||
+    ext === "docx"
+  ) {
     cb(null, true);
   } else {
     cb(new Error("The file extension is invalid! only pdf/doc are accepted."));
@@ -42,12 +48,21 @@ function fileFilter(req, file, cb) {
 }
 
 let upload = multer({ storage: storage, fileFilter: fileFilter });
+let multiUpload = multer({ storage: storage, fileFilter: fileFilter });
 
 router
   .route("/uploads")
   .post(
     authJWT.verifyJWTToken,
     upload.single("document"),
+    addEmployeeController.fileUpload
+  );
+
+router
+  .route("/uploadFiles")
+  .post(
+    authJWT.verifyJWTToken,
+    multiUpload.array("files", 12),
     addEmployeeController.fileUpload
   );
 

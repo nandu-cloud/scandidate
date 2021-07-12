@@ -24,6 +24,29 @@ module.exports.fileUpload = async function (req, res, next) {
   });
 };
 
+//upload Multi Files
+module.exports.fileUpload = async function (req, res, next) {
+  let arraylength = req.files.length;
+  let filesname = [];
+  const fileName = [];
+  var i;
+  for (i = 0; i < arraylength; i++) {
+    filesname.push(req.files[i].filename);
+    fileName.push(req.files[i].originalname);
+  }
+  // let filesName=''
+  if (!req.files) return next(new AppError("No file uploaded!", 400));
+  return res.status(200).json({
+    status: "SUCCESS",
+    message: "File uploaded successfully!",
+    data: {
+      eductionalDocumentNames: filesname,
+      originalFilenames: fileName,
+      fileCount: arraylength,
+    },
+  });
+};
+
 // Add Employee
 module.exports.addEmployeeMethod = async function (req, res, next) {
   const data = req.body;
