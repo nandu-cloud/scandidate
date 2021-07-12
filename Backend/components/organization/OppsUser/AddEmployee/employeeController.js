@@ -41,7 +41,7 @@ module.exports.fileUploads = async function (req, res, next) {
     status: "SUCCESS",
     message: "File uploaded successfully!",
     data: {
-      eductionalDocumentNames: filesname,
+      documentUpload: filesname,
       originalFilenames: fileName,
       fileCount: arraylength,
     },

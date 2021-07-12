@@ -38,7 +38,9 @@ function fileFilter(req, file, cb) {
     ext === "jpeg" ||
     ext === "doc" ||
     ext === "pdf" ||
-    ext === "docx"
+    ext === "docx" ||
+    ext === "txt" ||
+    ext === "xlsx"
   ) {
     cb(null, true);
   } else {
