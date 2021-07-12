@@ -10,6 +10,7 @@ const ejs = require("ejs");
 const email = require("../../../../helpers/email");
 const consentDAL = require("../Consent/consentDAL");
 const cron = require("node-cron");
+const e = require("express");
 
 module.exports.fileUpload = async function (req, res, next) {
   const fileName = req.file.originalname;
@@ -25,7 +26,7 @@ module.exports.fileUpload = async function (req, res, next) {
 };
 
 //upload Multi Files
-module.exports.fileUpload = async function (req, res, next) {
+module.exports.fileUploads = async function (req, res, next) {
   let arraylength = req.files.length;
   let filesname = [];
   const fileName = [];

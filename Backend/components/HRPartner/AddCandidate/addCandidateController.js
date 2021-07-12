@@ -10,6 +10,7 @@ const mongoose = require("mongoose");
 const ejs = require("ejs");
 const path = require("path");
 var pdf = require("html-pdf");
+const e = require("express");
 
 module.exports.saveCandidate = async (req, res, next) => {
   const { bio, candidate, canidateInstitute, verification } = req.body;
@@ -143,7 +144,7 @@ module.exports.showCandidate = async (req, res, next) => {
       hrorganisationId: req.params.hrorganisationId,
     });
     let result = emp.concat(stud);
-    let newEmployeeArray = [];
+    var newEmployeeArray = [];
     let uniqueEmployee = {};
     for (let i in result) {
       empEmail = result[i]["email"];

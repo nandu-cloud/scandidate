@@ -63,7 +63,7 @@ router
   .post(
     authJWT.verifyJWTToken,
     multiUpload.array("files", 12),
-    addEmployeeController.fileUpload
+    addEmployeeController.fileUploads
   );
 
 router
