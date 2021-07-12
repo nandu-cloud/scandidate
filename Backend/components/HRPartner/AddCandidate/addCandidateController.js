@@ -816,7 +816,8 @@ module.exports.downloadReportPDF = async (req, res, next) => {
             var temp = template[i].discrepancyDocuments.descrepencyPeriod;
             const dis_date = new Date(temp);
             // discrpncy_date = format(template[i].discrepancyDocuments.descrepencyPeriod);
-            discrpncy_date = format(dis_date);
+            // discrpncy_date = format(dis_date);
+            discrpncy_date = dis_date.toLocaleDateString();
           }
           discrpncy_cause =
             template[i].discrepancyDocuments.descrepencyCauseActionTaken;
@@ -831,7 +832,8 @@ module.exports.downloadReportPDF = async (req, res, next) => {
             var temp = template[i].compliencyDiscrepancy.compliencyPeriod;
             const comp_date = new Date(temp);
             // Complnce_date = template[i].compliencyDiscrepancy.compliencyPeriod;
-            Complnce_date = format(comp_date);
+            // Complnce_date = format(comp_date);
+            Complnce_date = comp_date.toLocaleDateString();
           }
           Complnce_cause =
             template[i].compliencyDiscrepancy.compliencyCauseActionTaken;
@@ -846,7 +848,8 @@ module.exports.downloadReportPDF = async (req, res, next) => {
             var temp = template[i].warning.warningPeriod;
             const warn_date = new Date(temp);
             // warningdate = template[i].warning.warningPeriod;
-            warningdate = format(warn_date);
+            // warningdate = format(warn_date);
+            warningdate = warn_date.toLocaleDateString();
           }
           warningcause = template[i].warning.warningCauseActionTaken;
           warningupload = template[i].warning.warningUploadDocument;
@@ -859,7 +862,8 @@ module.exports.downloadReportPDF = async (req, res, next) => {
             var temp = template[i].showCausedIssue.showCausedPeriod;
             const show_caused_date = new Date(temp);
             // showCausedate = template[i].showCausedIssue.showCausedPeriod;
-            showCausedate = format(show_caused_date);
+            // showCausedate = format(show_caused_date);
+            showCausedate = show_caused_date.toLocaleDateString();
           }
           showCausecause =
             template[i].showCausedIssue.showCausedCauseActionTaken;
@@ -874,7 +878,8 @@ module.exports.downloadReportPDF = async (req, res, next) => {
             var temp = template[i].suspension.suspensionPeriod;
             const susp_date = new Date(temp);
             // performancedate = template[i].suspension.suspensionPeriod;
-            performancedate = format(susp_date);
+            // performancedate = format(susp_date);
+            performancedate = susp_date.toLocaleDateString();
           }
           performancecause = template[i].suspension.suspensionCauseActionTaken;
           performanceupload = template[i].suspension.suspensionUploadDocument;
@@ -887,7 +892,8 @@ module.exports.downloadReportPDF = async (req, res, next) => {
             var temp = template[i].termination.terminationPeriod;
             const term_date = new Date(temp);
             // terminationdate = template[i].termination.terminationPeriod;
-            terminationdate = format(term_date);
+            // terminationdate = format(term_date);
+            terminationdate = term_date.toLocaleDateString();
           }
           terminationcause =
             template[i].termination.terminationCauseActionTaken;
@@ -1001,10 +1007,17 @@ module.exports.downloadReportPDF = async (req, res, next) => {
       }
       var joining = template[i].dateOfJoining;
       const join = new Date(joining);
-      var joiningDate = format(join);
+      const j = join.toLocaleDateString();
+      var joiningDate = j;
       var exit = template[i].exitDate;
-      const exit1 = new Date(exit);
-      var exitDate = format(exit1);
+      var exit1 = new Date(exit);
+      var e = exit1.toLocaleDateString();
+      var exitDate = e;
+      // var joiningDate = format(j);
+      // var exit = template[i].exitDate;
+      // const exit1 = new Date(exit);
+      // const e = exit1.toLocaleDateString();
+      // var exitDate = format(e);
     }
     if (countDoc > 0) {
       isDocument = true;
