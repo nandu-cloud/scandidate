@@ -71,6 +71,7 @@ export class AddHrcandidateComponent implements OnInit {
   downloadPDFSubscription: Subscription;
   searchInstSubscription: Subscription;
   searchorgSubscription: Subscription;
+  verifyDocSubscription: Subscription;
   showSave: boolean = true;
   submitValue : boolean = true;
   empIdsave : any;
@@ -210,10 +211,20 @@ export class AddHrcandidateComponent implements OnInit {
     dateOfVerification: new FormControl(),
     verifiedFor: new FormControl(),
     personalIdentity: new FormControl(),
+    documentUploadPersonalIdentity: new FormControl(),
+    originalFilenamePersonalIdentity: new FormControl(),
     criminal: new FormControl(),
+    documentUploadcriminal: new FormControl(),
+    originalFilenamecriminal: new FormControl(),
     verificationAddress: new FormControl(),
+    documentUploadverificationAddress: new FormControl(),
+    originalFilenameverificationAddress: new FormControl(),
     drugsAndSubstanceAbuse: new FormControl(),
-    salarySlipCTCdocument: new FormControl()
+    documentUploaddrugsAndSubstanceAbuse: new FormControl(),
+    originalFilenamedrugsAndSubstanceAbuse: new FormControl(),
+    salarySlipCTCdocument: new FormControl(),
+    documentUploadsalarySlipCTCdocument: new FormControl(),
+    originalFilenamesalarySlipCTCdocument: new FormControl()
   }
   candidates: FormArray
   canidateInstitutes: FormArray
@@ -222,6 +233,7 @@ export class AddHrcandidateComponent implements OnInit {
     private cd: ChangeDetectorRef,
      public dialog: MatDialog,
      public route: ActivatedRoute,
+     public empService: EmployeeService,
     private el: ElementRef, private exempService: ExEmployeeService
   ) {
     this.route.params.subscribe(params => {
@@ -234,7 +246,17 @@ export class AddHrcandidateComponent implements OnInit {
   //  get f() { return this.form.controls; }
   //  get t() { return this.f.candidate as FormArray; }
 
-  
+  uploadIssuesFile(file: FileList, type){
+    this.fileToUpload = file[0];
+    this.fileName = this.fileToUpload.name;
+    this.verifyDocSubscription = this.empService.postIssuesFile(this.fileToUpload).subscribe(
+      data => {
+        this.form.patchValue({originalFilenamePersonalIdentity: data.data.originalFilenamePersonalIdentity});
+        console.log(data.data.originalFilenamePersonalIdentity);
+        // this.documentNameData = `$`
+      }
+    )
+  }
   
   validateExitDate(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
