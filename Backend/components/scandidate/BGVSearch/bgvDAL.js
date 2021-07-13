@@ -41,7 +41,6 @@ async function searchBgvDataEmployeeId(data) {
 }
 
 async function searchBgvDataStudent(data) {
-  console.log(data);
   var count = Object.keys(data).length;
   if (count == 0) {
     try {
@@ -52,7 +51,6 @@ async function searchBgvDataStudent(data) {
     }
   } else {
     try {
-      console.log("---Data1----", data);
       let studentSearch = await studentModel
         .find()
         .and([
@@ -63,7 +61,6 @@ async function searchBgvDataStudent(data) {
           { adharNumber: { $regex: data.adharNumber || "" } },
         ]);
       // .collation({ locale: "en", strength: 1 });
-      console.log(studentSearch);
       return studentSearch;
     } catch (err) {
       throw err;
