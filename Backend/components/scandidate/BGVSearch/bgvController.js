@@ -35,9 +35,21 @@ module.exports.searchbgv = async (req, res, next) => {
         userInputData: data,
       };
       bgvSeachDAL.saveSearchResult(d);
+
+      const resultArray = result.reduce((o, j) => {
+        const x = o.find(
+          (o) => o.email === j.email || o.phoneNumber == j.phoneNumber
+        );
+        if (!x) {
+          return o.concat([j]);
+        } else {
+          return o;
+        }
+      }, []);
+
       return res
         .status(200)
-        .json({ status: 200, message: "Success", data: result });
+        .json({ status: 200, message: "Success", data: resultArray });
     } else if (empData.length > 0 && !stdData.length > 0) {
       var d = {
         searchdedBy: id,
@@ -47,9 +59,19 @@ module.exports.searchbgv = async (req, res, next) => {
         userInputData: data,
       };
       bgvSeachDAL.saveSearchResult(d);
+      const resultArray = empData.reduce((o, j) => {
+        const x = o.find(
+          (o) => o.email === j.email || o.phoneNumber == j.phoneNumber
+        );
+        if (!x) {
+          return o.concat([j]);
+        } else {
+          return o;
+        }
+      }, []);
       return res
         .status(200)
-        .json({ status: 200, message: "Success", data: empData });
+        .json({ status: 200, message: "Success", data: resultArray });
     } else if (!empData.length > 0 && stdData.length > 0) {
       var d = {
         searchdedBy: id,
@@ -59,9 +81,19 @@ module.exports.searchbgv = async (req, res, next) => {
         userInputData: data,
       };
       bgvSeachDAL.saveSearchResult(d);
+      const resultArray = stdData.reduce((o, j) => {
+        const x = o.find(
+          (o) => o.email === j.email || o.phoneNumber == j.phoneNumber
+        );
+        if (!x) {
+          return o.concat([j]);
+        } else {
+          return o;
+        }
+      }, []);
       return res
         .status(200)
-        .json({ status: 200, message: "Success", data: stdData });
+        .json({ status: 200, message: "Success", data: resultArray });
     } else {
       var d = {
         searchdedBy: id,
