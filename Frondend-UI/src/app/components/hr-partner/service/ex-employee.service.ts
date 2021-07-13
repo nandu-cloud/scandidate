@@ -356,22 +356,20 @@ export class ExEmployeeService {
       })
     });
    
-    let bckverification:{
-       'dateOfVerification': string,
-       'verifiedFor': string
-        'personalIdentity': boolean,
-         'criminal': boolean,
-         'verificationAddress': boolean,
-         'drugsAndSubstanceAbuse': boolean,
-         'salarySlipCTCdocument': boolean
-    } = {
+    let bckverification = {
       'dateOfVerification': empData.dateOfVerification,
       'verifiedFor': empData.verifiedFor,
         'personalIdentity': empData.personalIdentity,
         'criminal': empData.criminal,
+        'documentUploadcriminal': empData.documentUploadcriminal,
+        'originalFilenamecriminal': empData.originalFilenamecriminal,
+        'documentUploaddrugsAndSubstanceAbuse': empData.documentUploaddrugsAndSubstanceAbuse,
+        'originalFilenamedrugsAndSubstanceAbuse': empData.originalFilenamedrugsAndSubstanceAbuse,
         'verificationAddress': empData.verificationAddress,
         'drugsAndSubstanceAbuse': empData.drugsAndSubstanceAbuse,
         'salarySlipCTCdocument': empData.salarySlipCTCdocument,
+        'documentUploadsalarySlipCTCdocument': empData.documentUploadsalarySlipCTCdocument,
+        'originalFilenamesalarySlipCTCdocument': empData.originalFilenamesalarySlipCTCdocument
     }
 let o={bio:bioobjj,
        candidate:cavArr,

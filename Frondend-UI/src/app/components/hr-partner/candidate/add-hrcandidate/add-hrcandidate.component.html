@@ -1147,7 +1147,7 @@
                             <th 
                               class="border border-gray-400 px-4 py-2 text-gray-800"
                             >
-                              Cause/Action Taken
+                              File Name
                             </th>
                     
                           </tr>
@@ -1181,7 +1181,6 @@
                             >
                               <input
                                 matInput
-                                formControlName="descrepencyCauseActionTaken"
                                 type="text"
                                 class="br-btm input-w"
                                 autoComplete="off"
@@ -1913,63 +1912,404 @@
             
             <h3>Verified by:</h3>
             <div class="flex flex-wrap">
-              <div class="w-full md:w-1/2 sm:w-full">
-                <mat-form-field>
-                  <mat-label>Personal Identity</mat-label>
-                  <mat-select formControlName="personalIdentity"
-                    class="br-btm input-w" tabindex="3"
+              <!-- <div class="w-full md:w-full sm:w-full"> -->
+            <!-- <div class="w-full md:w-full sm:w-full"> -->
+                
+              <mat-form-field>
+                <mat-label>Personal Identity</mat-label>
+                <mat-select formControlName="personalIdentity"
+                  class="br-btm input-w" tabindex="3"
+                >
+                  <mat-option [value]=true>Yes</mat-option>
+                  <mat-option [value]=false>No</mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
+                  Please select Compliance and Discrepancy
+                </mat-error> -->
+              </mat-form-field>
+            <div
+               *ngIf="form.get('personalIdentity').value == true ">
+            <table class="verify border-collapse border-1 border-gray-200">
+              <thead>
+                <tr>
+                  <th 
+                    class="border border-gray-400 px-2 py-2 text-gray-800"
                   >
-                    <mat-option [value]=true>Yes</mat-option>
-                    <mat-option [value]=false>No</mat-option>
-                  </mat-select>
-                  <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
-                    Please select Compliance and Discrepancy
-                  </mat-error> -->
-                </mat-form-field>
-                <mat-form-field >
-                  <mat-label>Criminal</mat-label>
-                  <mat-select class="br-btm input-w" tabindex="5" formControlName="criminal" tabindex="4">
-                    <mat-option [value]=true>Yes</mat-option>
-                    <mat-option [value]=false>No</mat-option>
-                  </mat-select>
-                  <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
-                    Please select Compliance and Discrepancy
-                  </mat-error> -->
-                </mat-form-field>
-                <mat-form-field >
-                  <mat-label>Address</mat-label>
-                  <mat-select class="br-btm input-w" tabindex="7" formControlName="verificationAddress" tabindex="6">
-                    <mat-option [value]=true>Yes</mat-option>
-                    <mat-option [value]=false>No</mat-option>
-                  </mat-select>
-                  <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
-                    Please select Compliance and Discrepancy
-                  </mat-error> -->
-                </mat-form-field>
-              </div>
-              <div class="w-full md:w-1/2 sm:w-full">
-                <mat-form-field >
-                  <mat-label>Drugs / Substance abuse</mat-label>
-                  <mat-select class="br-btm input-w" tabindex="4" formControlName="drugsAndSubstanceAbuse" tabindex="2">
-                    <mat-option [value]=true>Yes</mat-option>
-                    <mat-option [value]=false>No</mat-option>
-                  </mat-select>
-                  <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
-                    Please select Compliance and Discrepancy
-                  </mat-error> -->
-                </mat-form-field>
-                <mat-form-field >
-                  <mat-label>Salary Slip / CTC Document</mat-label>
-                  <mat-select formControlName="salarySlipCTCdocument" class="br-btm input-w" tabindex="6">
-                    <mat-option [value]=true>Yes</mat-option>
-                    <mat-option [value]=false>No</mat-option>
-                  </mat-select>
-                  <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
-                    Please select Compliance and Discrepancy
-                  </mat-error> -->
-                </mat-form-field>
-              </div>
+                    Upload Document
+                  </th>
+                  <th 
+                    class="border border-gray-400 px-4 py-2 text-gray-800"
+                  >
+                    Document Name
+                  </th>
+                  <!-- <th class="border border-gray-400 px-4 py-2 text-gray-800">Action Taken</th> -->
+                  <!-- <th
+                    class="border border-gray-400 px-4 py-2 text-gray-800"
+                  >
+                    Upload Document
+                  </th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td
+                    style="display: flex;"
+                    class="border border-gray-400 px-4 py-2 text-gray-800 w-52"
+                  >
+                  <div class="group-gap">
+                    <div class="avatar-upload">
+                      <div class="avatar-edit">
+                        <!-- <label class="image-text">Documents Upload</label> -->
+                        <input
+                          type="file"
+                          placeholder="Upload Document"
+                          id="imageUpload"
+                          accept=".pdf"
+                          #dd 
+                          (change)="
+                            uploadIssuesFile(
+                              $event.target.files,
+                              'discrepancyDocuments'
+                            )
+                          "
+                        />
+                        <div id="imagePreview">{{this.discrepancyFileName}}</div> 
+                      </div>
+                    </div>
+                    <div>{{this.documentName}}</div>
+                    <button mat-button (click)="dd.click()" tabindex="4">
+                      <mat-icon>file_upload</mat-icon>
+                    </button>
+                    <!-- <button tabindex="5"
+                      mat-button
+                      (click)="view(form.value.documentUploadPersonalIdentity)"
+                    >
+                      <mat-icon>file_download</mat-icon>
+                    </button> -->
+                  </div>
+                  </td>
+                  <td
+                    class="action border border-gray-400 px-4 py-2 text-gray-800"
+                  >
+                   
+                  </td>
+            
+                </tr>
+              </tbody>
+            </table>
+           </div>
+          </div>
+
+          <div class="flex flex-wrap">
+           <mat-form-field >
+            <mat-label>Drugs / Substance abuse</mat-label>
+            <mat-select class="br-btm input-w" tabindex="4" formControlName="drugsAndSubstanceAbuse" tabindex="2">
+              <mat-option [value]=true>Yes</mat-option>
+              <mat-option [value]=false>No</mat-option>
+            </mat-select>
+            <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
+              Please select Compliance and Discrepancy
+            </mat-error> -->
+          </mat-form-field>   
+          <div *ngIf="form.get('drugsAndSubstanceAbuse').value == true">
+            <table class="verify border-collapse border-1 border-gray-200">
+              <thead>
+                <tr>
+                  <th 
+                    class="border border-gray-400 px-2 py-2 text-gray-800"
+                  >
+                    Upload Document
+                  </th>
+                  <th 
+                    class="border border-gray-400 px-4 py-2 text-gray-800"
+                  >
+                    Document Name
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="display: flex;" class="border border-gray-400 px-4 py-2 text-gray-800 w-52">
+                    <div class="group-gap">
+                      <div class="avatar-upload">
+                        <div class="avatar-edit">
+                          <!-- <label class="image-text">Documents Upload</label> -->
+                          <input
+                            type="file"
+                            placeholder="Upload Document"
+                            id="imageUpload"
+                            accept=".pdf"
+                            #dd 
+                            (change)="
+                              uploadIssuesFile(
+                                $event.target.files,
+                                'discrepancyDocuments'
+                              )
+                            "
+                          />
+                          <div id="imagePreview">{{this.discrepancyFileName}}</div> 
+                        </div>
+                      </div>
+                      <div>{{this.documentName}}</div>
+                      <button mat-button (click)="dd.click()" tabindex="4">
+                        <mat-icon>file_upload</mat-icon>
+                      </button>
+                      <!-- <button tabindex="5"
+                        mat-button
+                        (click)="view(form.value.documentUploadPersonalIdentity)"
+                      >
+                        <mat-icon>file_download</mat-icon>
+                      </button> -->
+                    </div>
+                  </td>
+                  <td class="action border border-gray-400 px-4 py-2 text-gray-800">
+                    <!-- <input
+                      matInput
+                      type="text"
+                      class="br-btm input-w"
+                      autoComplete="off"
+                      tabindex="3"
+                    /> -->
+                  </td>
+                 
+                </tr>
+              </tbody>
+            </table>
+          </div>        
+          </div>
+
+          <div class="flex flex-wrap">
+            <mat-form-field>
+              <mat-label>Criminal</mat-label>
+              <mat-select class="br-btm input-w" tabindex="5" formControlName="criminal" tabindex="4">
+                <mat-option [value]=true>Yes</mat-option>
+                <mat-option [value]=false>No</mat-option>
+              </mat-select>
+              <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
+                Please select Compliance and Discrepancy
+              </mat-error> -->
+            </mat-form-field>
+            <div *ngIf="form.get('criminal').value == true">
+              <table class="verify border-collapse border-1 border-gray-200">
+                <thead>
+                  <tr>
+                   <th 
+                    class="border border-gray-400 px-2 py-2 text-gray-800"
+                   >
+                    Upload Document
+                  </th>
+                  <th 
+                    class="border border-gray-400 px-4 py-2 text-gray-800"
+                  >
+                    Document Name
+                  </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+              
+                    <td
+                    style="display: flex;"
+                    class="border border-gray-400 px-4 py-2 text-gray-800 w-52"
+                  >
+                  <div class="group-gap">
+                    <div class="avatar-upload">
+                      <div class="avatar-edit">
+                        <!-- <label class="image-text">Documents Upload</label> -->
+                        <input
+                          type="file"
+                          placeholder="Upload Document"
+                          id="imageUpload"
+                          accept=".pdf"
+                          #dd 
+                          (change)="
+                            uploadIssuesFile(
+                              $event.target.files,
+                              'discrepancyDocuments'
+                            )
+                          "
+                        />
+                        <div id="imagePreview">{{this.discrepancyFileName}}</div> 
+                      </div>
+                    </div>
+                    <div>{{this.documentName}}</div>
+                    <button mat-button (click)="dd.click()" tabindex="4">
+                      <mat-icon>file_upload</mat-icon>
+                    </button>
+                    <!-- <button tabindex="5"
+                      mat-button
+                      (click)="view(form.value.documentUploadPersonalIdentity)"
+                    >
+                      <mat-icon>file_download</mat-icon>
+                    </button> -->
+                  </div>
+                  </td>
+                  <td
+                    class="action border border-gray-400 px-4 py-2 text-gray-800"
+                  >
+                   
+                  </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
+          </div>  
+
+          <div class="flex flex-wrap">
+            <mat-form-field >
+              <mat-label>Salary Slip / CTC Document</mat-label>
+              <mat-select formControlName="salarySlipCTCdocument" class="br-btm input-w" tabindex="6">
+                <mat-option [value]=true>Yes</mat-option>
+                <mat-option [value]=false>No</mat-option>
+              </mat-select>
+              <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
+                Please select Compliance and Discrepancy
+              </mat-error> -->
+            </mat-form-field>
+            <div *ngIf="form.get('salarySlipCTCdocument').value == true">
+              <table class="verify border-collapse border-1 border-gray-200">
+                <thead>
+                  <tr>
+                    <th 
+                    class="border border-gray-400 px-2 py-2 text-gray-800"
+                  >
+                    Upload Document
+                  </th>
+                  <th 
+                    class="border border-gray-400 px-4 py-2 text-gray-800"
+                  >
+                    Document Name
+                  </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+              
+                    <td
+                    style="display: flex;"
+                    class="border border-gray-400 px-4 py-2 text-gray-800 w-52"
+                  >
+                  <div class="group-gap">
+                    <div class="avatar-upload">
+                      <div class="avatar-edit">
+                        <!-- <label class="image-text">Documents Upload</label> -->
+                        <input
+                          type="file"
+                          placeholder="Upload Document"
+                          id="imageUpload"
+                          accept=".pdf"
+                          #dd 
+                          (change)="
+                            uploadIssuesFile(
+                              $event.target.files,
+                              'discrepancyDocuments'
+                            )
+                          "
+                        />
+                        <div id="imagePreview">{{this.discrepancyFileName}}</div> 
+                      </div>
+                    </div>
+                    <div>{{this.documentName}}</div>
+                    <button mat-button (click)="dd.click()" tabindex="4">
+                      <mat-icon>file_upload</mat-icon>
+                    </button>
+                    <!-- <button tabindex="5"
+                      mat-button
+                      (click)="view(form.value.documentUploadPersonalIdentity)"
+                    >
+                      <mat-icon>file_download</mat-icon>
+                    </button> -->
+                  </div>
+                  </td>
+                  <td
+                    class="action border border-gray-400 px-4 py-2 text-gray-800"
+                  >
+                   
+                  </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div> 
+
+          <div class="flex flex-wrap">
+            <mat-form-field >
+              <mat-label>Address</mat-label>
+              <mat-select class="br-btm input-w" tabindex="7" formControlName="verificationAddress" tabindex="6">
+                <mat-option [value]=true>Yes</mat-option>
+                <mat-option [value]=false>No</mat-option>
+              </mat-select>
+              <!-- <mat-error *ngIf ="createCandidate.get('').errors?.required">
+                Please select Compliance and Discrepancy
+              </mat-error> -->
+            </mat-form-field>
+            <div *ngIf="form.get('verificationAddress').value == true">
+              <table class="verify border-collapse border-1 border-gray-200">
+                <thead>
+                  <tr>
+                    <th 
+                    class="border border-gray-400 px-2 py-2 text-gray-800"
+                  >
+                    Upload Document
+                  </th>
+                  <th 
+                    class="border border-gray-400 px-4 py-2 text-gray-800"
+                  >
+                    Document Name
+                  </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+              
+                    <td style="display: flex;" class="border border-gray-400 px-4 py-2 text-gray-800 w-52">
+                      <div class="group-gap">
+                        <div class="avatar-upload">
+                          <div class="avatar-edit">
+                            <!-- <label class="image-text">Documents Upload</label> -->
+                            <input
+                              type="file"
+                              placeholder="Upload Document"
+                              id="imageUpload"
+                              accept=".pdf"
+                              #dd 
+                              (change)="
+                                uploadIssuesFile(
+                                  $event.target.files,
+                                  'discrepancyDocuments'
+                                )
+                              "
+                            />
+                            <div id="imagePreview">{{this.discrepancyFileName}}</div> 
+                          </div>
+                        </div>
+                        <div>{{this.documentName}}</div>
+                        <button mat-button (click)="dd.click()" tabindex="4">
+                          <mat-icon>file_upload</mat-icon>
+                        </button>
+                        <!-- <button tabindex="5"
+                          mat-button
+                          (click)="view(form.value.documentUploadPersonalIdentity)"
+                        >
+                          <mat-icon>file_download</mat-icon>
+                        </button> -->
+                      </div>
+                    </td>
+                    <td class="action border border-gray-400 px-4 py-2 text-gray-800">
+                      <!-- <input
+                        matInput
+                        type="text"
+                        class="br-btm input-w"
+                        autoComplete="off"
+                        tabindex="3"
+                      /> -->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div> 
+
             <div class="flex justify-end lg:pb-6 lg:pr-48">
               <button class="lg-button focus:outline-none focus:shadow-outline" (click)="submit()" *ngIf=!empIdedit tabindex="8">
                 Submit
