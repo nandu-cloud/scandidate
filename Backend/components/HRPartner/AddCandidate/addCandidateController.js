@@ -11,6 +11,7 @@ const ejs = require("ejs");
 const path = require("path");
 var pdf = require("html-pdf");
 const e = require("express");
+const moment = require("moment");
 
 module.exports.saveCandidate = async (req, res, next) => {
   const { bio, candidate, canidateInstitute, verification } = req.body;
@@ -1006,14 +1007,18 @@ module.exports.downloadReportPDF = async (req, res, next) => {
       ) {
         countDoc += 1;
       }
-      var joining = template[i].dateOfJoining;
-      const join = new Date(joining);
-      const j = join.toLocaleDateString();
-      var joiningDate = j;
-      var exit = template[i].exitDate;
-      var exit1 = new Date(exit);
-      var e = exit1.toLocaleDateString();
-      var exitDate = e;
+      // var joining = template[i].dateOfJoining;
+      // const join = new Date(joining);
+      // const j = join.toLocaleDateString();
+      // var joiningDate = j;
+      // var exit = template[i].exitDate;
+      // var exit1 = new Date(exit);
+      // var e = exit1.toLocaleDateString();
+      // var exitDate = e;
+
+      var joiningDate = moment(template[i].dateOfJoining).format("LL");
+      var exitDate = moment(template[i].exitDate).format("LL");
+
       // var joiningDate = format(j);
       // var exit = template[i].exitDate;
       // const exit1 = new Date(exit);
@@ -1038,7 +1043,6 @@ module.exports.downloadReportPDF = async (req, res, next) => {
       isAwarded: isAward,
       isDocumentPresent: isDocument,
     };
-    console.log(result);
     try {
       ejs.renderFile(
         path.join(
