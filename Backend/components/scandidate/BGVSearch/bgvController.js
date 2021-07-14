@@ -36,40 +36,6 @@ module.exports.searchbgv = async (req, res, next) => {
       };
       bgvSeachDAL.saveSearchResult(d);
 
-      // var orgName = "";
-      // var count = 0;
-      // for (var j = 0; j < result.length; j++) {
-      //   if (result[j].organizationName != null) {
-      //     count = count + 1;
-      //   }
-      // }
-      // for (var i = 0; i < count; i++) {
-      //   if (result[i].organizationName != null) {
-      //     if (i < count - 1) {
-      //       orgName = orgName + result[i].organizationName + ",";
-      //     } else {
-      //       orgName = orgName + result[i].organizationName;
-      //     }
-      //   }
-      // }
-      // console.log("-----OrganisationName-----", orgName);
-      // const resultArray = result.reduce((o, j) => {
-      //   const x = o.find(
-      //     (o) => o.email === j.email || o.phoneNumber == j.phoneNumber
-      //   );
-      //   if (!x) {
-      //     return o.concat([j]);
-      //   } else {
-      //     return o;
-      //   }
-      // }, []);
-
-      // if (resultArray.length == 1) {
-      //   resultArray.map((e) => {
-      //     e.organizationName = orgName;
-      //   });
-      // }
-
       arr = [...result];
 
       for (var i = 0; i < arr.length; i++) {
@@ -86,9 +52,7 @@ module.exports.searchbgv = async (req, res, next) => {
             } else {
               r = d;
             }
-
             arr[i].organizationName = r;
-            // arr.splice(j, 1);
           }
         }
       }
@@ -116,39 +80,6 @@ module.exports.searchbgv = async (req, res, next) => {
         userInputData: data,
       };
       bgvSeachDAL.saveSearchResult(d);
-
-      // var orgName = "";
-      // var count = 0;
-      // for (var j = 0; j < empData.length; j++) {
-      //   if (empData[j].organizationName != null) {
-      //     count = count + 1;
-      //   }
-      // }
-      // for (var i = 0; i < count; i++) {
-      //   if (empData[i].organizationName != null) {
-      //     if (i < count - 1) {
-      //       orgName = orgName + empData[i].organizationName + ",";
-      //     } else {
-      //       orgName = orgName + empData[i].organizationName;
-      //     }
-      //   }
-      // }
-      // console.log(orgName);
-      // const resultArray = empData.reduce((o, j) => {
-      //   const x = o.find(
-      //     (o) => o.email === j.email || o.phoneNumber == j.phoneNumber
-      //   );
-      //   if (!x) {
-      //     return o.concat([j]);
-      //   } else {
-      //     return o;
-      //   }
-      // }, []);
-      // if (resultArray.length == 1) {
-      //   resultArray.map((e) => {
-      //     e.organizationName = orgName;
-      //   });
-      // }
 
       arr = [...empData];
       for (var i = 0; i < arr.length; i++) {
@@ -997,7 +928,6 @@ module.exports.searchIconOrganizationInstitute = async (req, res, next) => {
 module.exports.downloadscandidateSeach = async (req, res, next) => {
   let template = req.body.data;
   let icons = req.body.data1;
-
   if (!template || !icons) {
     return next(new AppError("Employee/Student details not found", 400));
   } else if (template.length === 0 || icons.length === 0) {
@@ -1506,80 +1436,6 @@ module.exports.downloadscandidateSeach = async (req, res, next) => {
     };
   }
 
-  // var result = {
-  //   FirstName: fname,
-  //   LastName: lname,
-  //   phone: pNumber,
-  //   email: eml,
-  //   logo: `${process.env.FRONT_END_URL}/assets/images/logo1.png`,
-  //   orgLogo: `${process.env.FRONT_END_ICON_URL}/public/organization_logo/`,
-  //   instLogo: `${process.env.FRONT_END_ICON_URL}/public/institute_logo/`,
-  //   myDate: dateString,
-  //   data: template,
-  //   data1: icons,
-  //   ldrshp: leadership,
-  //   isAwarded: isAward,
-  //   isDocumentPresent: isDocument,
-  // };
-
-  // let count = 0;
-  // let isOrganisation = false;
-  // for (var i = 0; i < template.length; i++) {
-  //   if (!template[i].hasOwnProperty('organisationId')) {
-  //     count += 1;
-  //   }
-  // }
-
-  // if (template.length > count) {
-  //   isOrganisation = true;
-  // }
-
-  // if (!isOrganisation) {
-  //   try {
-  //     ejs.renderFile(
-  //       path.join(
-  //         __dirname,
-  //         "../../scandidate/BGVSearch/BGVTemplate/scandidate-report-inst.ejs"
-  //       ),
-  //       result,
-  //       function (err, str) {
-  //         if (err) {
-  //           return next(new AppError(err, 400));
-  //         }
-
-  //         // Test
-
-  //         var fileName = fname + new Date().getTime() + ".pdf";
-
-  //         var checkFilePath = path.join(
-  //           __dirname,
-  //           "../../../uploads/scandidate-report/" + fileName
-  //         );
-
-  //         // var tempFilename =
-  //         //   "uploads/scandidate-report/" + fname + new Date().getTime() + ".pdf";
-  //         // var temFilepath = checkFilePath;
-  //         // var options = { format: "A4", orientation: "Letter" };
-  //         var options = { height: "10.5in", width: "15in" };
-  //         pdf.create(str, options).toFile(checkFilePath, function (err, data) {
-  //           if (err) {
-  //             return next(new AppError(err, 400));
-  //           }
-
-  //           return res.status(200).download(checkFilePath, fileName, (err) => {
-  //             if (err) {
-  //               if (err.code == "ENOENT")
-  //                 return next(new AppError("user document not found", 404));
-  //             }
-  //           });
-  //         });
-  //       }
-  //     );
-  //   } catch (err) {
-  //     return next(new AppError(err, 400));
-  //   }
-  // }
-  // else {
   try {
     ejs.renderFile(
       path.join(

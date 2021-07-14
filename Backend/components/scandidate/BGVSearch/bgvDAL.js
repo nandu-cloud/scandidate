@@ -255,7 +255,8 @@ async function getBGVDataEmail(data) {
   try {
     let result = await employeeModel
       .find({ _id: id })
-      .where({ organisationId: orgId });
+      .where({ organisationId: orgId })
+      .lean();
     return result;
   } catch (err) {
     throw err;

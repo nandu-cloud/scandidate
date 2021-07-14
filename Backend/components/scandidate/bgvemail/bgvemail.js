@@ -7,6 +7,7 @@ const nodemailer = require("nodemailer");
 const AWS = require("aws-sdk");
 const ejs = require("ejs");
 const moment = require("moment");
+var pdf = require("html-pdf");
 
 function format(date) {
   var d = date.getDate();
@@ -15,498 +16,531 @@ function format(date) {
   return "" + (d <= 9 ? "0" + d : d) + "-" + (m <= 9 ? "0" + m : m) + "-" + y;
 }
 
-function createXL(template) {
-  var discrpncy_date = "";
-  var discrpncy_cause = "";
-  var Complnce_date = "";
-  var Complnce_cause = "";
-  var warningdate = "";
-  var warningcause = "";
-  var showCausedate = "";
-  var showCausecause = "";
-  var performancedate = "";
-  var performancecause = "";
-  var terminationdate = "";
-  var terminationcause = "";
-
-  var dir = path.join(__dirname, "../../../uploads/report-excel/");
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir);
-  }
-  var fileName = template.firstName + new Date().getTime() + ".csv";
-  var writeStream = fs.createWriteStream(dir + fileName);
-  var row1 =
-    "NAME:" + ",," + template.firstName + "," + template.lastName + "\n\n";
-  var row2 = "EMAIL ID:" + ",," + template.email + "\n\n";
-  var row3 = "PHONE NUMBER: " + ",," + template.phoneNumber + "\n\n";
-  var row4 = "Role: " + ",," + template.role + "\n\n";
-
-  var joiningDate = moment(template.dateOfJoining).format("LL");
-  var exitDate = moment(template.exitDate).format("LL");
-
-  var row5 = "Start date: " + ",," + joiningDate + "\n\n";
-  var row6 = "Exit date: " + ",," + exitDate + "\n\n";
-
-  var header =
-    "COMPANY NAME" +
-    ",,,,," +
-    "WORK ETHIC" +
-    ",,,,," +
-    "MERIT QUALITY" +
-    ",,,,," +
-    "RECOGNITION" +
-    ",,,,," +
-    "LEADERSHIP" +
-    ",,,,,," +
-    "ISSUES" +
-    "\n\n";
-  writeStream.write(row1 + row2 + row3 + row4 + row5 + row6 + header);
-  writeStream.write(template.organizationName + ",,,,,");
-
-  // SelfDriven
-  var selfDriven = template.selfDriven;
-  var selfDrvn = "";
-  switch (selfDriven) {
-    case 1:
-      selfDrvn = "Not satisfactory";
-      break;
-    case 2:
-      selfDrvn = "Needs Improvement";
-      break;
-    case 3:
-      selfDrvn = "Meets Expectations";
-      break;
-    default:
-      selfDrvn = "Exceeds Expectations";
-      break;
-  }
-  var SelfDriven = "SelfDriven/Initiative: " + selfDrvn;
-  writeStream.write(SelfDriven + ",,,,,");
-
-  // Communication
-  var communiation = template.communicationSkills;
-  var comm = "";
-  switch (communiation) {
-    case 1:
-      comm = "Basic";
-      break;
-    case 2:
-      comm = "Intermediate";
-      break;
-    case 3:
-      comm = "Proficient";
-      break;
-    default:
-      comm = "Expert";
-      break;
-  }
-  var comm = "Communication: " + comm;
-  writeStream.write(comm + ",,,,,");
-
-  // Awards
-  var awards = template.awards.IsSelect;
-  if (awards != null) {
-    writeStream.write(awards + ",,,,,");
-  } else {
-    writeStream.write("Nill", +",,,,,");
-  }
-
-  // Quality
-  var quality = template.quality.IsSelect;
-  if (quality != null) {
-    var stragThink = "";
-    switch (quality) {
-      case 1:
-        stragThink = "Not satisfactory";
-        break;
-      case 2:
-        stragThink = "Needs Improvement";
-        break;
-      case 3:
-        stragThink = "Meets Expectations";
-        break;
-      default:
-        stragThink = "Exceeds Expectations";
-        break;
-    }
-    var stragThnk = "Strategic thinking: " + stragThink;
-    writeStream.write(stragThnk + ",,,,,,");
-  } else {
-    var stragThnk = "Strategic thinking: " + "";
-    writeStream.write(stragThnk + ",,,,,,");
-  }
-
-  //Discrepancy Documents
-
-  if (template.discrepancyDocuments) {
-    if (template.discrepancyDocuments.IsSelect) {
-      if (template.discrepancyDocuments.descrepencyPeriod) {
-        var temp = template[i].discrepancyDocuments.descrepencyPeriod;
-        const dis_date = new Date(temp);
-        // discrpncy_date = format(template[i].discrepancyDocuments.descrepencyPeriod);
-        discrpncy_date = format(dis_date);
-      }
-      discrpncy_cause =
-        template.discrepancyDocuments.descrepencyCauseActionTaken;
-    }
-    var disDocumnt = "Document discrepancies: " + discrpncy_date;
-    var disCause = "Causes: " + discrpncy_cause;
-    writeStream.write(disDocumnt + ",," + disCause + "\n,,,,,", "UTF8");
-  }
-
-  // Work Independently
-  var workIndepent = template.workIndependenty;
-  var work = "";
-  switch (workIndepent) {
-    case 1:
-      work = "Not satisfactory";
-      break;
-    case 2:
-      work = "Needs Improvement";
-    case 3:
-      work = "Meets Expectations";
-      break;
-    default:
-      work = "Exceeds Expectations";
-  }
-  var workIndep = "Work Independently: " + work;
-  writeStream.write(workIndep + ",,,,,", "UTF8");
-
-  // Product Knowledge
-
-  var prodKldge = template.productKnowledge;
-  var prod = "";
-  switch (prodKldge) {
-    case 1:
-      prod = "Basic";
-      break;
-    case 2:
-      prod = "Intermediate";
-      break;
-    case 3:
-      prod = "Proficient";
-      break;
-    default:
-      prod = "Expert";
-  }
-  var prodKnow = "Product understanding: " + prod;
-  writeStream.write(prodKnow + ",,,,,,,,,,", "UTF8");
-
-  // Problem solving
-
-  var probSolv = template.consistency.IsSelect;
-  if (probSolv != null) {
-    var prob = "";
-    switch (probSolv) {
-      case 1:
-        prob = "Not satisfactory";
-        break;
-      case 2:
-        prob = "Needs Improvement";
-        break;
-      case 3:
-        prob = "Meets Expectations";
-        break;
-      default:
-        prob = "Exceeds Expectations";
-    }
-    var probSolv = "Problem solving: " + prob;
-    writeStream.write(probSolv + ",,,,,,", "UTF8");
-  } else {
-    var probSolv = "Problem solving: " + "";
-    writeStream.write(probSolv + ",,,,,,", "UTF8");
-  }
-
-  // Compliency Documents
-
-  if (template.compliencyDiscrepancy) {
-    if (template.compliencyDiscrepancy.IsSelect) {
-      if (template.compliencyDiscrepancy.compliencyPeriod) {
-        var temp = template.compliencyDiscrepancy.compliencyPeriod;
-        const comp_date = new Date(temp);
-        // Complnce_date = template[i].compliencyDiscrepancy.compliencyPeriod;
-        Complnce_date = format(comp_date);
-      }
-      Complnce_cause =
-        template.compliencyDiscrepancy.compliencyCauseActionTaken;
-      Complnce_upload = template.compliencyDiscrepancy.compliencyUploadDocument;
-    }
-    var compDocumnt = "Compliance: " + Complnce_date;
-    var comCause = "Causes: " + Complnce_cause;
-    writeStream.write(compDocumnt + ",," + comCause + "\n,,,,,", "UTF8");
-  }
-
-  // Creativity
-  var creativity = template.creativity;
-  var creatvty = "";
-  switch (creativity) {
-    case 1:
-      creatvty = "Not satisfactory";
-      break;
-    case 2:
-      creatvty = "Needs Improvement";
-      break;
-    case 3:
-      creatvty = "Meets Expectations";
-      break;
-    default:
-      creatvty = "Exceeds Expectations";
-      break;
-  }
-  var cred = "Creativity: " + creatvty;
-  writeStream.write(cred + ",,,,,", "UTF8");
-
-  // Industry knowledge
-  var indKnow = template.industryKnowledge;
-  var indusKnow = "";
-  switch (indKnow) {
-    case 1:
-      indusKnow = "Basic";
-      break;
-    case 2:
-      indusKnow = "Intermediate";
-      break;
-    case 3:
-      indusKnow = "Proficient";
-      break;
-    default:
-      indusKnow = "Expert";
-  }
-  var inKnow = "Industry/domain knowledge: " + indusKnow;
-  writeStream.write(inKnow + ",,,,,,,,,,", "UTF8");
-
-  // Building high performance team
-
-  var buildPerf = template.building.IsSelect;
-  if (buildPerf != null) {
-    var buidPerformance = "";
-    switch (buildPerf) {
-      case 1:
-        buidPerformance = "Not satisfactory";
-        break;
-      case 2:
-        buidPerformance = "Needs Improvement";
-        break;
-      case 3:
-        buidPerformance = "Meets Expectations";
-        break;
-      default:
-        buidPerformance = "Exceeds Expectations";
-        break;
-    }
-    var buildPer = "Building High-Performance teams: " + buidPerformance;
-    writeStream.write(buildPer + ",,,,,,", "UTF8");
-  } else {
-    var buildPer = "Building High-Performance teams: " + "";
-    writeStream.write(buildPer + ",,,,,,", "UTF8");
-  }
-
-  // Warning Period
-  if (template.warning) {
-    if (template.warning.IsSelect) {
-      if (template.warning.warningPeriod) {
-        var temp = template.warning.warningPeriod;
-        const warn_date = new Date(temp);
-        // warningdate = template[i].warning.warningPeriod;
-        warningdate = format(warn_date);
-      }
-      warningcause = template.warning.warningCauseActionTaken;
-      warningupload = template.warning.warningUploadDocument;
-    }
-    var warnDocumnt = "Warning: " + warningdate;
-    var warnCause = "Causes: " + warningcause;
-    writeStream.write(warnDocumnt + ",," + warnCause + "\n,,,,,", "UTF8");
-  }
-
-  // Team Work
-
-  var teamWork = template.teamWork;
-  var team = "";
-  switch (teamWork) {
-    case 1:
-      team = "Not satisfactory";
-      break;
-    case 2:
-      team = "Needs Improvement";
-      break;
-    case 3:
-      team = "Meets Expectations";
-      break;
-    default:
-      team = "Exceeds Expectations";
-      break;
-  }
-  var teamWrk = "Teamwork: " + team;
-  writeStream.write(teamWrk + ",,,,,", "UTF8");
-
-  // Subject matter Expert
-  var subjMtr = template.academicKnowledge;
-  var subMtr = "";
-  switch (subjMtr) {
-    case 1:
-      subMtr = "Basic";
-      break;
-    case 2:
-      subMtr = "Intermediate";
-      break;
-    case 3:
-      subMtr = "Proficient";
-      break;
-    default:
-      subMtr = "Expert";
-  }
-  var subjMatter = "Subject matter expertise: " + subMtr;
-  writeStream.write(subjMatter + ",,,,,,,,,,", "UTF8");
-
-  // Stake Holder Management
-
-  var stkMgmt = template.stakeholder.IsSelect;
-  if (stkMgmt != null) {
-    var stakeMgmnt = "";
-    switch (stkMgmt) {
-      case 1:
-        stakeMgmnt = "Not satisfactory";
-        break;
-      case 2:
-        stakeMgmnt = "Needs Improvement";
-        break;
-      case 3:
-        stakeMgmnt = "Meets Expectations";
-        break;
-      default:
-        stakeMgmnt = "Exceeds Expectations";
-    }
-    var stakMgmnt = "Stakeholder management: " + stakeMgmnt;
-    writeStream.write(stakMgmnt + ",,,,,,", "UTF8");
-  } else {
-    var stakMgmnt = "Stakeholder management: " + "";
-    writeStream.write(stakMgmnt + ",,,,,,", "UTF8");
-  }
-
-  // Show Caused Issue
-
-  if (template.showCausedIssue) {
-    if (template.showCausedIssue.IsSelect) {
-      if (template.showCausedIssue.showCausedPeriod) {
-        var temp = template.showCausedIssue.showCausedPeriod;
-        const show_caused_date = new Date(temp);
-        // showCausedate = template[i].showCausedIssue.showCausedPeriod;
-        showCausedate = format(show_caused_date);
-      }
-      showCausecause = template.showCausedIssue.showCausedCauseActionTaken;
-      showCauseupload = template.showCausedIssue.showCausedUploadDocument;
-    }
-    var showCauseDocumnt = "Show cause: " + showCausedate;
-    var showCauseCause = "Causes: " + showCausecause;
-    writeStream.write(
-      showCauseDocumnt + ",," + showCauseCause + "\n,,,,,",
-      "UTF8"
-    );
-  }
-
-  // Deals constuctively with pressure
-  var constr = template.dealConstructivelyWithPressure;
+function createXL(reqData) {
+  var template = [];
+  template = reqData;
+  var today = new Date();
+  var dateString = format(today);
+  var selfDriv = "";
+  var workIndepend = "";
+  var credvity = "";
+  var tWork = "";
   var dealConstructivelyPressure = "";
-  switch (constr) {
-    case 1:
-      dealConstructivelyPressure = "Not satisfactory";
-      break;
-    case 2:
-      dealConstructivelyPressure = "Needs Improvement";
-      break;
-    case 3:
-      dealConstructivelyPressure = "Meets Expectations";
-      break;
-    default:
-      dealConstructivelyPressure = "Exceeds Expectations";
-      break;
-  }
-  var pressure = "Ability to handle pressure: " + dealConstructivelyPressure;
-  writeStream.write(pressure + ",,,,,", "UTF8");
-
-  // Key Skills
-
-  var kSkills = template.keySkills;
-  if (kSkills != null) {
-    var keySkl = "Key Skills: " + template.keySkills;
-    writeStream.write(keySkl + ",,,,,,,,,,,,,,,", "UTF8");
-  } else {
-    var keySkl = "Key Skills: " + "Nill";
-    writeStream.write(keySkl + ",,,,,,,,,,,,,,,,", "UTF8");
-  }
-
-  // Suspension
-
-  if (template.suspension) {
-    if (template.suspension.IsSelect) {
-      if (template.suspension.suspensionPeriod) {
-        var temp = template.suspension.suspensionPeriod;
-        const susp_date = new Date(temp);
-        performancedate = format(susp_date);
-      }
-      performancecause = template.suspension.suspensionCauseActionTaken;
-    }
-    var performnaceDocumnt = "PIP: " + performancedate;
-    var performnaceCause = "Causes: " + performancecause;
-    writeStream.write(
-      performnaceDocumnt + ",," + performnaceCause + "\n,,,,,",
-      "UTF8"
-    );
-  }
-
-  // Discipline
-
-  var displn = template.discipline;
   var discipln = "";
-  switch (displn) {
-    case 1:
-      discipln = "Not satisfactory";
-      break;
-    case 2:
-      discipln = "Needs Improvement";
-      break;
-    case 3:
-      discipln = "Meets Expectations";
-      break;
-    default:
-      discipln = "Exceeds Expectations";
-  }
-  var displn = "Discipline: " + discipln;
-  writeStream.write(displn + ",,,,,", "UTF8");
-
-  // Rhire Again
-
-  var rehireAgain = template.rehireAgain;
-  if (rehireAgain != null) {
-    var rehire = "Re-hire: " + template.rehireAgain;
-    writeStream.write(rehire + ",,,,,,,,,,,,,,,,", "UTF8");
-  } else {
-    var rehire = "Re-hire: " + "Nill";
-    writeStream.write(rehire + ",,,,,,,,,,,,,,,,", "UTF8");
-  }
-
-  //Termination
-
-  if (template.termination) {
-    if (template.termination.IsSelect) {
-      if (template.termination.terminationPeriod) {
-        var temp = template.termination.terminationPeriod;
-        const term_date = new Date(temp);
-        // terminationdate = template[i].termination.terminationPeriod;
-        terminationdate = format(term_date);
+  var commSkill = "";
+  var indusKnow = "";
+  var prodKnow = "";
+  var subMtr = "";
+  var stragThink = "";
+  var problemSolv = "";
+  var buidPerformance = "";
+  var stakeMgmnt = "";
+  var discrpncy_date = "";
+  var Complnce_date = "";
+  var warningdate = "";
+  var showCausedate = "";
+  var performancedate = "";
+  var terminationdate = "";
+  for (let i = 0; i < template.length; i++) {
+    if (template[i].selfDriven) {
+      if (template[i].selfDriven == 1) {
+        selfDriv = "Not satisfactory";
       }
-      terminationcause = template.termination.terminationCauseActionTaken;
+      if (template[i].selfDriven == 2) {
+        selfDriv = "Needs Improvement";
+      }
+      if (template[i].selfDriven == 3) {
+        selfDriv = "Meets Expectations";
+      }
+      if (template[i].selfDriven == 4) {
+        selfDriv = "Exceeds Expectations";
+      }
     }
-    var terminationDocumnt = "Termination: " + terminationdate;
-    var terminationCause = "Causes: " + terminationcause;
-    writeStream.write(
-      terminationDocumnt + ",," + terminationCause + "\n,,,,,,",
-      "UTF8"
-    );
+
+    if (template[i].workIndependenty) {
+      if (template[i].workIndependenty == 1) {
+        workIndepend = "Not satisfactory";
+      }
+      if (template[i].workIndependenty == 2) {
+        workIndepend = "Needs Improvement";
+      }
+      if (template[i].workIndependenty == 3) {
+        workIndepend = "Meets Expectations";
+      }
+      if (template[i].workIndependenty == 4) {
+        workIndepend = "Exceeds Expectations";
+      }
+    }
+
+    //Creativity
+
+    if (template[i].creativity) {
+      if (template[i].creativity == 1) {
+        credvity = "Not satisfactory";
+      }
+      if (template[i].creativity == 2) {
+        credvity = "Needs Improvement";
+      }
+      if (template[i].creativity == 3) {
+        credvity = "Meets Expectations";
+      }
+      if (template[i].creativity == 4) {
+        credvity = "Exceeds Expectations";
+      }
+    }
+
+    //Team Work
+
+    if (template[i].teamWork) {
+      if (template[i].teamWork == 1) {
+        tWork = "Not satisfactory";
+      }
+      if (template[i].teamWork == 2) {
+        tWork = "Needs Improvement";
+      }
+      if (template[i].teamWork == 3) {
+        tWork = "Meets Expectations";
+      }
+      if (template[i].teamWork == 4) {
+        tWork = "Exceeds Expectations";
+      }
+    }
+
+    //Deals Constructively With Pressure
+
+    if (template[i].dealConstructivelyWithPressure) {
+      if (template[i].dealConstructivelyWithPressure == 1) {
+        dealConstructivelyPressure = "Not satisfactory";
+      }
+      if (template[i].dealConstructivelyWithPressure == 2) {
+        dealConstructivelyPressure = "Needs Improvement";
+      }
+      if (template[i].dealConstructivelyWithPressure == 3) {
+        dealConstructivelyPressure = "Meets Expectations";
+      }
+      if (template[i].dealConstructivelyWithPressure == 4) {
+        dealConstructivelyPressure = "Exceeds Expectations";
+      }
+    }
+
+    //discipline
+
+    if (template[i].discipline) {
+      if (template[i].discipline == 1) {
+        discipln = "Not satisfactory";
+      }
+      if (template[i].discipline == 2) {
+        discipln = "Needs Improvement";
+      }
+      if (template[i].discipline == 3) {
+        discipln = "Meets Expectations";
+      }
+      if (template[i].discipline == 4) {
+        discipln = "Exceeds Expectations";
+      }
+    }
+
+    //comm skill
+
+    if (template[i].communicationSkills) {
+      if (template[i].communicationSkills == 1) {
+        commSkill = "Basic";
+      }
+      if (template[i].communicationSkills == 2) {
+        commSkill = "Intermediate";
+      }
+      if (template[i].communicationSkills == 3) {
+        commSkill = "Proficient";
+      }
+      if (template[i].communicationSkills == 4) {
+        commSkill = "Expert";
+      }
+    }
+
+    //industry know
+
+    if (template[i].industryKnowledge) {
+      if (template[i].industryKnowledge == 1) {
+        indusKnow = "Basic";
+      }
+      if (template[i].industryKnowledge == 2) {
+        indusKnow = "Intermediate";
+      }
+      if (template[i].industryKnowledge == 3) {
+        indusKnow = "Proficient";
+      }
+      if (template[i].industryKnowledge == 4) {
+        indusKnow = "Expert";
+      }
+    }
+    //pro unders
+
+    if (template[i].productKnowledge) {
+      if (template[i].productKnowledge == 1) {
+        prodKnow = "Basic";
+      }
+      if (template[i].productKnowledge == 2) {
+        prodKnow = "Intermediate";
+      }
+      if (template[i].productKnowledge == 3) {
+        prodKnow = "Proficient";
+      }
+      if (template[i].productKnowledge == 4) {
+        prodKnow = "Expert";
+      }
+    }
+
+    //sub matter to expertise
+    if (template[i].academicKnowledge) {
+      if (template[i].academicKnowledge == 1) {
+        subMtr = "Basic";
+      }
+      if (template[i].academicKnowledge == 2) {
+        subMtr = "Intermediate";
+      }
+      if (template[i].academicKnowledge == 3) {
+        subMtr = "Proficient";
+      }
+      if (template[i].academicKnowledge == 4) {
+        subMtr = "Expert";
+      }
+    }
+
+    // Leadership
+
+    if (template[i].quality) {
+      if (template[i].quality.IsSelect == 1) {
+        stragThink = "Not satisfactory";
+      }
+      if (template[i].quality.IsSelect == 2) {
+        stragThink = "Needs Improvement";
+      }
+      if (template[i].quality.IsSelect == 3) {
+        stragThink = "Meets Expectations";
+      }
+      if (template[i].quality.IsSelect == 4) {
+        stragThink = "Exceeds Expectations";
+      }
+    }
+
+    //problemsolving
+
+    if (template[i].consistency) {
+      if (template[i].consistency.IsSelect == 1) {
+        problemSolv = "Not satisfactory";
+      }
+      if (template[i].consistency.IsSelect == 2) {
+        problemSolv = "Needs Improvement";
+      }
+      if (template[i].consistency.IsSelect == 3) {
+        problemSolv = "Meets Expectations";
+      }
+      if (template[i].consistency.IsSelect == 4) {
+        problemSolv = "Exceeds Expectations";
+      }
+    }
+
+    //buildingHighPer
+    if (template[i].building) {
+      if (template[i].building.IsSelect == 1) {
+        buidPerformance = "Not satisfactory";
+      }
+      if (template[i].building.IsSelect == 2) {
+        buidPerformance = "Needs Improvement";
+      }
+      if (template[i].building.IsSelect == 3) {
+        buidPerformance = "Meets Expectations";
+      }
+      if (template[i].building.IsSelect == 4) {
+        buidPerformance = "Exceeds Expectations";
+      }
+    }
+
+    //buildingHighPer
+
+    if (template[i].stakeholder) {
+      if (template[i].stakeholder.IsSelect == 1) {
+        stakeMgmnt = "Not satisfactory";
+      }
+      if (template[i].stakeholder.IsSelect == 2) {
+        stakeMgmnt = "Needs Improvement";
+      }
+      if (template[i].stakeholder.IsSelect == 3) {
+        stakeMgmnt = "Meets Expectations";
+      }
+      if (template[i].stakeholder.IsSelect == 4) {
+        stakeMgmnt = "Exceeds Expectations";
+      }
+    }
+
+    if (template[i].discrepancyDocuments) {
+      if (template[i].discrepancyDocuments.IsSelect) {
+        if (template[i].discrepancyDocuments.descrepencyPeriod) {
+          var temp = template[i].discrepancyDocuments.descrepencyPeriod;
+          const dis_date = new Date(temp);
+          // discrpncy_date = format(template[i].discrepancyDocuments.descrepencyPeriod);
+          discrpncy_date = format(dis_date);
+        }
+        discrpncy_cause =
+          template[i].discrepancyDocuments.descrepencyCauseActionTaken;
+        discrpncy_upload =
+          template[i].discrepancyDocuments.descrepencyUploadDocument;
+      }
+    }
+
+    if (template[i].compliencyDiscrepancy) {
+      if (template[i].compliencyDiscrepancy.IsSelect) {
+        if (template[i].compliencyDiscrepancy.compliencyPeriod) {
+          var temp = template[i].compliencyDiscrepancy.compliencyPeriod;
+          const comp_date = new Date(temp);
+          // Complnce_date = template[i].compliencyDiscrepancy.compliencyPeriod;
+          Complnce_date = format(comp_date);
+        }
+        Complnce_cause =
+          template[i].compliencyDiscrepancy.compliencyCauseActionTaken;
+        Complnce_upload =
+          template[i].compliencyDiscrepancy.compliencyUploadDocument;
+      }
+    }
+
+    if (template[i].warning) {
+      if (template[i].warning.IsSelect) {
+        if (template[i].warning.warningPeriod) {
+          var temp = template[i].warning.warningPeriod;
+          const warn_date = new Date(temp);
+          // warningdate = template[i].warning.warningPeriod;
+          warningdate = format(warn_date);
+        }
+        warningcause = template[i].warning.warningCauseActionTaken;
+        warningupload = template[i].warning.warningUploadDocument;
+      }
+    }
+
+    if (template[i].showCausedIssue) {
+      if (template[i].showCausedIssue.IsSelect) {
+        if (template[i].showCausedIssue.showCausedPeriod) {
+          var temp = template[i].showCausedIssue.showCausedPeriod;
+          const show_caused_date = new Date(temp);
+          // showCausedate = template[i].showCausedIssue.showCausedPeriod;
+          showCausedate = format(show_caused_date);
+        }
+        showCausecause = template[i].showCausedIssue.showCausedCauseActionTaken;
+        showCauseupload = template[i].showCausedIssue.showCausedUploadDocument;
+      }
+    }
+
+    if (template[i].suspension) {
+      if (template[i].suspension.IsSelect) {
+        if (template[i].suspension.suspensionPeriod) {
+          var temp = template[i].suspension.suspensionPeriod;
+          const susp_date = new Date(temp);
+          // performancedate = template[i].suspension.suspensionPeriod;
+          performancedate = format(susp_date);
+        }
+        performancecause = template[i].suspension.suspensionCauseActionTaken;
+        performanceupload = template[i].suspension.suspensionUploadDocument;
+      }
+    }
+
+    if (template[i].termination) {
+      if (template[i].termination.IsSelect) {
+        if (template[i].termination.terminationPeriod) {
+          var temp = template[i].termination.terminationPeriod;
+          const term_date = new Date(temp);
+          // terminationdate = template[i].termination.terminationPeriod;
+          terminationdate = format(term_date);
+        }
+        terminationcause = template[i].termination.terminationCauseActionTaken;
+        terminationupload = template[i].termination.terminationUploadDocument;
+      }
+    }
+
+    template[i].selfDriven = selfDriv;
+    template[i].workIndependenty = workIndepend;
+    template[i].creativity = credvity;
+    template[i].teamWork = tWork;
+    template[i].dealConstructivelyWithPressure = dealConstructivelyPressure;
+    template[i].discipline = discipln;
+    template[i].communicationSkills = commSkill;
+    template[i].industryKnowledge = indusKnow;
+    template[i].productKnowledge = prodKnow;
+    template[i].subMatter = subMtr;
+
+    // Leadership
+
+    template[i].stategicThinking = stragThink;
+    template[i].problemSolving = problemSolv;
+    template[i].buildingHighPerformanceTeam = buidPerformance;
+    template[i].stakeHolderManagment = stakeMgmnt;
+
+    if (template[i].discrepancyDocuments) {
+      if (template[i].discrepancyDocuments.IsSelect) {
+        template[i].discrepancy_date = discrpncy_date;
+        template[i].discrepancy_cause = discrpncy_cause;
+        template[i].discrepancy_upload = discrpncy_upload;
+      }
+    }
+
+    if (template[i].compliencyDiscrepancy) {
+      if (template[i].compliencyDiscrepancy.IsSelect) {
+        template[i].Compliance_date = Complnce_date;
+        template[i].Compliance_cause = Complnce_cause;
+        template[i].Compliance_upload = Complnce_upload;
+      }
+    }
+
+    if (template[i].warning) {
+      if (template[i].warning.IsSelect) {
+        template[i].warning_date = warningdate;
+        template[i].warning_cause = warningcause;
+        template[i].warning_upload = warningupload;
+      }
+    }
+
+    if (template[i].showCausedIssue) {
+      if (template[i].showCausedIssue.IsSelect) {
+        template[i].showCause_date = showCausedate;
+        template[i].showCause_cause = showCausecause;
+        template[i].showCause_upload = showCauseupload;
+      }
+    }
+
+    if (template[i].suspension) {
+      if (template[i].suspension.IsSelect) {
+        template[i].performance_date = performancedate;
+        template[i].performance_cause = performancecause;
+        template[i].performance_upload = performanceupload;
+      }
+    }
+
+    if (template[i].termination) {
+      if (template[i].termination.IsSelect) {
+        template[i].termination_date = terminationdate;
+        template[i].termination_cause = terminationcause;
+        template[i].termination_upload = terminationupload;
+      }
+    }
   }
 
-  writeStream.close();
-  return fileName;
+  let count = 0;
+  var leadership = false;
+  for (var i = 0; i < template.length; i++) {
+    if (template[i].quality) {
+      if (
+        template[i].quality.IsSelect != null ||
+        template[i].consistency.IsSelect != null ||
+        template[i].building.IsSelect != null ||
+        template[i].stakeholder.IsSelect != null
+      ) {
+        count += 1;
+      }
+    }
+  }
+
+  if (count > 0) {
+    leadership = true;
+  }
+
+  var isAward = false;
+  let awardCount = 0;
+  for (var i = 0; i < template.length; i++) {
+    if (template[i].awards) {
+      if (template[i].awards.IsSelect != null) {
+        awardCount += 1;
+      }
+    }
+  }
+
+  if (awardCount > 0) {
+    isAward = true;
+  }
+
+  var isDocument = false;
+  let countDoc = 0;
+  for (var i = 0; i < template.length; i++) {
+    if (template[i].discrepancyDocuments) {
+      if (
+        template[i].discrepancyDocuments.descrepencyCauseActionTaken != null ||
+        template[i].compliencyDiscrepancy.compliencyCauseActionTaken != null ||
+        template[i].warning.warningCauseActionTaken != null ||
+        template[i].showCausedIssue.showCausedCauseActionTaken != null ||
+        template[i].suspension.suspensionCauseActionTaken != null ||
+        template[i].termination.terminationCauseActionTaken != null
+      ) {
+        countDoc += 1;
+      }
+    }
+    if (
+      process.env.NODE_ENV === "development" ||
+      process.env.NODE_ENV === "production"
+    ) {
+      var joiningDate = moment(template[i].dateOfJoining)
+        .add(1, "d")
+        .format("LL");
+      var exitDate = moment(template[i].exitDate).add(1, "d").format("LL");
+    } else {
+      var joiningDate = moment(template[i].dateOfJoining).format("LL");
+      var exitDate = moment(template[i].exitDate).format("LL");
+    }
+  }
+  if (countDoc > 0) {
+    isDocument = true;
+  }
+  if (process.env.NODE_ENV === "development") {
+    var result = {
+      FirstName: template[0].firstName,
+      LastName: template[0].lastName,
+      phone: template[0].phoneNumber,
+      email: template[0].email,
+      logo: `${process.env.FRONT_END_URL}/assets/images/logo1.png`,
+      orgLogo: `${process.env.FRONT_END_URL_DEV}/public/organization_logo/`,
+      instLogo: `${process.env.FRONT_END_URL_DEV}/public/institute_logo/`,
+      myDate: dateString,
+      data: template,
+      ldrshp: leadership,
+      isAwarded: isAward,
+      joiningdate: joiningDate,
+      exitDate: exitDate,
+      isDocumentPresent: isDocument,
+    };
+  } else if (process.env.NODE_ENV === "production") {
+    var result = {
+      FirstName: template[0].firstName,
+      LastName: template[0].lastName,
+      phone: template[0].phoneNumber,
+      email: template[0].email,
+      logo: `${process.env.FRONT_END_URL}/assets/images/logo1.png`,
+      myDate: dateString,
+      data: template,
+      ldrshp: leadership,
+      isAwarded: isAward,
+      joiningdate: joiningDate,
+      exitDate: exitDate,
+      isDocumentPresent: isDocument,
+    };
+  }
+  let originalFileName = "";
+  ejs.renderFile(
+    path.join(
+      __dirname,
+      "../../scandidate/BGVSearch/BGVTemplate/scandidate-report-org.ejs"
+    ),
+    result,
+    function (err, str) {
+      if (err) {
+      }
+      var fileName = template[0].firstName + new Date().getTime() + ".pdf";
+      fileName = fileName.replace(/ +/g, "");
+      var checkFilePath = path.join(
+        __dirname,
+        "../../../uploads/report-excel/" + fileName
+      );
+      var options = { height: "10.5in", width: "15in" };
+      pdf.create(str, options).toFile(checkFilePath, function (err, data) {});
+      originalFileName = fileName;
+    }
+  );
+  return originalFileName;
 }
 
 module.exports.createbgvXL = async (req, res, next) => {
@@ -516,7 +550,7 @@ module.exports.createbgvXL = async (req, res, next) => {
 
   var result = await bgvDAL.getBGVDataEmail(data);
   try {
-    var fileName = createXL(result[0]);
+    var fileName = createXL(result);
     return res.status(200).json({
       status: 200,
       message: "BGV report created successfully",
