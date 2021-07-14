@@ -52,6 +52,7 @@ module.exports.searchbgv = async (req, res, next) => {
       //     }
       //   }
       // }
+      // console.log("-----OrganisationName-----", orgName);
       // const resultArray = result.reduce((o, j) => {
       //   const x = o.find(
       //     (o) => o.email === j.email || o.phoneNumber == j.phoneNumber
@@ -79,14 +80,15 @@ module.exports.searchbgv = async (req, res, next) => {
           ) {
             var d = arr[i].organizationName;
             var d1 = arr[j].organizationName;
-            console.log(d, d1);
+
             if (d1 != undefined) {
               var r = d + "," + d1;
             } else {
               r = d;
             }
+
             arr[i].organizationName = r;
-            arr.splice(j, 1);
+            // arr.splice(j, 1);
           }
         }
       }
@@ -131,6 +133,7 @@ module.exports.searchbgv = async (req, res, next) => {
       //     }
       //   }
       // }
+      // console.log(orgName);
       // const resultArray = empData.reduce((o, j) => {
       //   const x = o.find(
       //     (o) => o.email === j.email || o.phoneNumber == j.phoneNumber
@@ -148,7 +151,6 @@ module.exports.searchbgv = async (req, res, next) => {
       // }
 
       arr = [...empData];
-
       for (var i = 0; i < arr.length; i++) {
         for (var j = i + 1; j < arr.length; j++) {
           if (
@@ -163,7 +165,6 @@ module.exports.searchbgv = async (req, res, next) => {
               r = d;
             }
             arr[i].organizationName = r;
-            arr.splice(j, 1);
           }
         }
       }
