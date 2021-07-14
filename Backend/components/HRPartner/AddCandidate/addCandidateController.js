@@ -1016,8 +1016,18 @@ module.exports.downloadReportPDF = async (req, res, next) => {
       // var e = exit1.toLocaleDateString();
       // var exitDate = e;
 
-      var joiningDate = moment(template[i].dateOfJoining).format("LL");
-      var exitDate = moment(template[i].exitDate).format("LL");
+      if (
+        process.env.NODE_ENV === "development" ||
+        process.env.NODE_ENV === "production"
+      ) {
+        var joiningDate = moment(template[i].dateOfJoining)
+          .add(1, "d")
+          .format("LL");
+        var exitDate = moment(template[i].exitDate).add(1, "d").format("LL");
+      } else {
+        var joiningDate = moment(template[i].dateOfJoining).format("LL");
+        var exitDate = moment(template[i].exitDate).format("LL");
+      }
 
       // var joiningDate = format(j);
       // var exit = template[i].exitDate;

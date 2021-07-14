@@ -6,8 +6,16 @@ const colors = require("./../../../helpers/colors");
 
 module.exports.countTotalOrgInstUsers = async function (req, res, next) {
   try {
-    let totalOrganizations = await organizationModel.estimatedDocumentCount();
-    let totalInstitutions = await instituteModel.estimatedDocumentCount();
+    // let totalOrganizations = await organizationModel.estimatedDocumentCount();
+    let totalOrganizations = await organizationModel
+      .find({
+        scandiate: undefined,
+      })
+      .count();
+    // let totalInstitutions = await instituteModel.estimatedDocumentCount();
+    let totalInstitutions = await instituteModel
+      .find({ scandiate: undefined })
+      .count();
     let totalUsers = await userModel.estimatedDocumentCount();
     return res.status(200).json({
       status: "SUCCESS",

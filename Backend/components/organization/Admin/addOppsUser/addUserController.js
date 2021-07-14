@@ -135,14 +135,7 @@ module.exports.showLineManager = async (req, res, next) => {
   const data = mongoose.Types.ObjectId(req.params.organizationId);
   try {
     let getlineManager = await userDAL.showAllLineManager({
-      $or: [
-        {
-          organizationId: data,
-        },
-        {
-          hrorganisationId: data,
-        },
-      ],
+      organizationId: data,
     });
     return res
       .status(200)

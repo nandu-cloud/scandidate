@@ -36,23 +36,62 @@ module.exports.searchbgv = async (req, res, next) => {
       };
       bgvSeachDAL.saveSearchResult(d);
 
-      var orgName = "";
-      var count = 0;
-      for (var j = 0; j < result.length; j++) {
-        if (result[j].organizationName != null) {
-          count = count + 1;
-        }
-      }
-      for (var i = 0; i < count; i++) {
-        if (result[i].organizationName != null) {
-          if (i < count - 1) {
-            orgName = orgName + result[i].organizationName + ",";
-          } else {
-            orgName = orgName + result[i].organizationName;
+      // var orgName = "";
+      // var count = 0;
+      // for (var j = 0; j < result.length; j++) {
+      //   if (result[j].organizationName != null) {
+      //     count = count + 1;
+      //   }
+      // }
+      // for (var i = 0; i < count; i++) {
+      //   if (result[i].organizationName != null) {
+      //     if (i < count - 1) {
+      //       orgName = orgName + result[i].organizationName + ",";
+      //     } else {
+      //       orgName = orgName + result[i].organizationName;
+      //     }
+      //   }
+      // }
+      // const resultArray = result.reduce((o, j) => {
+      //   const x = o.find(
+      //     (o) => o.email === j.email || o.phoneNumber == j.phoneNumber
+      //   );
+      //   if (!x) {
+      //     return o.concat([j]);
+      //   } else {
+      //     return o;
+      //   }
+      // }, []);
+
+      // if (resultArray.length == 1) {
+      //   resultArray.map((e) => {
+      //     e.organizationName = orgName;
+      //   });
+      // }
+
+      arr = [...result];
+
+      for (var i = 0; i < arr.length; i++) {
+        for (var j = i + 1; j < arr.length; j++) {
+          if (
+            arr[i].phoneNumber === arr[j].phoneNumber ||
+            arr[i].email === arr[j].email
+          ) {
+            var d = arr[i].organizationName;
+            var d1 = arr[j].organizationName;
+            console.log(d, d1);
+            if (d1 != undefined) {
+              var r = d + "," + d1;
+            } else {
+              r = d;
+            }
+            arr[i].organizationName = r;
+            arr.splice(j, 1);
           }
         }
       }
-      const resultArray = result.reduce((o, j) => {
+
+      const resultArray = arr.reduce((o, j) => {
         const x = o.find(
           (o) => o.email === j.email || o.phoneNumber == j.phoneNumber
         );
@@ -62,12 +101,6 @@ module.exports.searchbgv = async (req, res, next) => {
           return o;
         }
       }, []);
-
-      if (resultArray.length == 1) {
-        resultArray.map((e) => {
-          e.organizationName = orgName;
-        });
-      }
 
       return res
         .status(200)
@@ -82,23 +115,60 @@ module.exports.searchbgv = async (req, res, next) => {
       };
       bgvSeachDAL.saveSearchResult(d);
 
-      var orgName = "";
-      var count = 0;
-      for (var j = 0; j < empData.length; j++) {
-        if (empData[j].organizationName != null) {
-          count = count + 1;
-        }
-      }
-      for (var i = 0; i < count; i++) {
-        if (empData[i].organizationName != null) {
-          if (i < count - 1) {
-            orgName = orgName + empData[i].organizationName + ",";
-          } else {
-            orgName = orgName + empData[i].organizationName;
+      // var orgName = "";
+      // var count = 0;
+      // for (var j = 0; j < empData.length; j++) {
+      //   if (empData[j].organizationName != null) {
+      //     count = count + 1;
+      //   }
+      // }
+      // for (var i = 0; i < count; i++) {
+      //   if (empData[i].organizationName != null) {
+      //     if (i < count - 1) {
+      //       orgName = orgName + empData[i].organizationName + ",";
+      //     } else {
+      //       orgName = orgName + empData[i].organizationName;
+      //     }
+      //   }
+      // }
+      // const resultArray = empData.reduce((o, j) => {
+      //   const x = o.find(
+      //     (o) => o.email === j.email || o.phoneNumber == j.phoneNumber
+      //   );
+      //   if (!x) {
+      //     return o.concat([j]);
+      //   } else {
+      //     return o;
+      //   }
+      // }, []);
+      // if (resultArray.length == 1) {
+      //   resultArray.map((e) => {
+      //     e.organizationName = orgName;
+      //   });
+      // }
+
+      arr = [...empData];
+
+      for (var i = 0; i < arr.length; i++) {
+        for (var j = i + 1; j < arr.length; j++) {
+          if (
+            arr[i].phoneNumber === arr[j].phoneNumber ||
+            arr[i].email === arr[j].email
+          ) {
+            var d = arr[i].organizationName;
+            var d1 = arr[j].organizationName;
+            if (d1 != undefined) {
+              var r = d + "," + d1;
+            } else {
+              r = d;
+            }
+            arr[i].organizationName = r;
+            arr.splice(j, 1);
           }
         }
       }
-      const resultArray = empData.reduce((o, j) => {
+
+      const resultArray = arr.reduce((o, j) => {
         const x = o.find(
           (o) => o.email === j.email || o.phoneNumber == j.phoneNumber
         );
@@ -108,11 +178,6 @@ module.exports.searchbgv = async (req, res, next) => {
           return o;
         }
       }, []);
-      if (resultArray.length == 1) {
-        resultArray.map((e) => {
-          e.organizationName = orgName;
-        });
-      }
       return res
         .status(200)
         .json({ status: 200, message: "Success", data: resultArray });

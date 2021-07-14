@@ -56,7 +56,13 @@ async function updateUser(data) {
 async function showAllLineManager(data) {
   try {
     let result = await userModel
-      .find({ subRole: "LINE MANAGER", organizationId: data.organizationId })
+      .find({
+        subRole: "LINE MANAGER",
+        $or: [
+          { organizationId: data.organizationId },
+          { hrorganisationId: data.organizationId },
+        ],
+      })
       .select("_id firstName lastName")
       .sort({ _id: -1 })
       .lean();
