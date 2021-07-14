@@ -34,6 +34,10 @@ export class AddHrcandidateComponent implements OnInit {
   editEmployeeSubscription: Subscription;
   employeeUpdateSubscription: Subscription;
   downloadStudentSubscription: Subscription;
+  drugSubscription: Subscription;
+  criminalSubscription: Subscription;
+  salarySubscription: Subscription;
+  addressSubscription: Subscription;
   searchSubscription: Subscription;
   public setMessage: any = {};
   error = '';
@@ -88,6 +92,36 @@ export class AddHrcandidateComponent implements OnInit {
   value; 
   candIndex: any;
   index: any;
+  selectedFiles: FileList
+  displaySelectedFiles:any=[];
+  selectedDrugFiles: FileList
+  selectedCrimialFiles: FileList
+  selectedSalaryFiles: FileList
+  selectedAddressFiles: FileList
+  displayFiles: any = [];
+  displayCriminalFiles: any = [];
+  files: File[] = [];
+  eductionalDoc: any = [];
+  drugFile: any = [];
+  criminalFile: any = [];
+  bckverificationdocumentName: any;
+  imagePreview = false;
+  documentCount: any;
+
+  PersonalIdentityDocumentUpload: '';
+  PersonalIdentityFilename: '';
+
+  documentUploadcriminal: '';
+  originalFilenamecriminal: '';
+
+  documentUploadverificationAddress: '';
+  originalFilenameverificationAddress: '';
+
+  documentUploaddrugs: '';
+  originalFilenamedrugs: '';
+
+  documentUploadsalarySlipCTCdocument: '';
+  originalFilenamesalarySlipCTCdocument: '';
 
   createItem(): FormGroup{
     return new FormGroup({ 
@@ -243,21 +277,96 @@ export class AddHrcandidateComponent implements OnInit {
     });
    }
 
-  //  get f() { return this.form.controls; }
-  //  get t() { return this.f.candidate as FormArray; }
+  //   this.verifyDocSubscription = this.empService.postIssuesFile(this.files[i]).subscribe(
+  //     data => {
+  //       this.form.patchValue({documentUpload: data.data.documentUpload});
+  //       console.log(data.data.documentUpload);
 
-  uploadIssuesFile(file: FileList, type){
-    this.fileToUpload = file[0];
-    this.fileName = this.fileToUpload.name;
-    this.verifyDocSubscription = this.empService.postIssuesFile(this.fileToUpload).subscribe(
+  //       this.documentNameData = `${this.baseUrl}/public/organization_doc/${data.data.eductionalDocumentNames}`;
+  //     }
+  //   )
+
+    
+  // }
+
+  uploadIssuesFile(event){
+    this.fileToUpload = File[0];
+    this.selectedFiles = event.target.files;
+    console.log('filename' + this.fileName);
+    this.files=[];
+    for (let i = 0; i < event.target.files.length; i++)
+    {
+      
+      this.files.push(this.selectedFiles[i]);
+    }
+    // if(this.files.length>0){
+      this.displaySelectedFiles=this.files;
+
+      console.log(this.selectedFiles)
+    this.verifyDocSubscription = this.empService.postIssuesFile(this.files).subscribe(
       data => {
-        this.form.patchValue({originalFilenamePersonalIdentity: data.data.originalFilenamePersonalIdentity});
-        console.log(data.data.originalFilenamePersonalIdentity);
-        // this.documentNameData = `$`
+        // if(type == 'personalIdentity'){
+          this.form.patchValue({documentUploadPersonalIdentity: data.data.documentUpload}); 
+          console.log(data.data.documentUpload);
+          this.PersonalIdentityDocumentUpload = data.data.documentUpload;
+          this.form.patchValue({originalFilenamePersonalIdentity: data.data.originalFilenames});
+          this.PersonalIdentityFilename = data.data.originalFilenames;
+          this.form.value.documentUploadPersonalIdentity.originalFilenames = this.PersonalIdentityFilename;
+          console.log(''+ this.PersonalIdentityFilename)
+        // }
+        // if(type == 'drugsAndSubstanceAbuse'){
+          // this.form.patchValue({documentUploaddrugsAndSubstanceAbuse: data.data.documentUpload});
+          // console.log(data.data.documentUpload);
+          // this.form.patchValue({originalFilenamedrugsAndSubstanceAbuse: data.data.originalFilenames})
+        // }
+        // this.form.value.
+        // this.documentNameData = `${this.baseUrl}/public/organization_doc/${data.data.eductionalDocumentNames}`;
+        // this.imagePreview = true;
+        // this.documentCount = this.displaySelectedFiles.length;
       }
     )
+  // }
   }
-  
+  uploadDrugFile(event){
+    this.fileToUpload = File[0];
+    this.selectedDrugFiles = event.target.files;
+    console.log('filename' + this.fileName);
+    this.files=[];
+    for (let i = 0; i < event.target.files.length; i++)
+    {
+      this.files.push(this.selectedDrugFiles[i]);
+    }
+    // if(this.files.length>0){
+      this.displayFiles=this.files;
+      this.drugSubscription = this.empService.postIssuesFile(this.files).subscribe(
+        data => {
+            this.form.patchValue( {documentUploaddrugsAndSubstanceAbuse: data.data.documentUpload});
+            console.log(data.data.documentUpload);
+            this.form.patchValue({originalFilenamedrugsAndSubstanceAbuse: data.data.originalFilenames})
+            this.originalFilenamedrugs = data.data.originalFilenames
+            this.form.value.documentUploaddrugsAndSubstanceAbuse.originalFilename = this.originalFilenamedrugs
+         })
+    // }
+  }
+  uploadCriminalFile(event){
+    this.selectedCrimialFiles = event.target.files;
+    this.files=[];
+    for (let i = 0; i < event.target.files.length; i++)
+    {
+      this.files.push(this.selectedCrimialFiles[i]);
+    }
+    // if(this.files.length>0){
+      this.displayCriminalFiles=this.files;
+      this.criminalSubscription = this.empService.postIssuesFile(this.files).subscribe(
+        data => {
+            this.form.patchValue( {documentUploadcriminal: data.data.documentUpload});
+            console.log(data.data.documentUpload);
+            this.form.patchValue({originalFilenamecriminal: data.data.originalFilenames})
+            this.originalFilenamecriminal = data.data.originalFilenames
+            this.form.value.documentUploadcriminal.originalFilename = this.originalFilenamecriminal
+         })
+    // }
+  }
   validateExitDate(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       if (this.form !== undefined) {
@@ -358,10 +467,34 @@ export class AddHrcandidateComponent implements OnInit {
         // this.candidateIndex = this.form.get('candidate.index') as FormArray
         this.canidateInstitute = this.form.get('canidateInstitute') as FormArray
         // candidates.forEach(val, index){
+          // this.PersonalIdentityFilename = (((respObj.data.documentUploadPersonalIdentity.originalFilename !== null)
+          //  ||(respObj.data.documentUploadPersonalIdentity.originalFilename !== undefined)) ? respObj.data.documentUploadPersonalIdentity.originalFilename : ''); 
 
         // }
-        
-      
+        if(respObj.data.originalFilenamePersonalIdentity){
+          for(let i=0; i<respObj.data.originalFilenamePersonalIdentity.length; i++){
+            const data = respObj.data.originalFilenamePersonalIdentity[i]
+            this.eductionalDoc.push(data);
+            console.log("orginal filename" + this.eductionalDoc);
+          }
+        }
+        if(respObj.data.originalFilenamedrugsAndSubstanceAbuse){
+          for(let i=0; i<respObj.data.originalFilenamedrugsAndSubstanceAbuse.length; i++){
+            const data = respObj.data.originalFilenamedrugsAndSubstanceAbuse[i]
+            this.drugFile.push(data);
+            console.log("orginal filename" + this.drugFile);
+          }
+        }
+        if(respObj.data.originalFilenamecriminal){
+          for(let i=0; i<respObj.data.originalFilenamecriminal.length; i++){
+            const data = respObj.data.originalFilenamecriminal[i]
+            this.criminalFile.push(data);
+            console.log("orginal filename" + this.criminalFile);
+          }
+        }
+        this.imagePreview = true;
+        this.documentNameData = `${this.baseUrl}/public/organization_doc/${respObj.data.documentUpload}`;
+
         if(candidates.length > 0){
           
           candidates.forEach( (can, idx) => {

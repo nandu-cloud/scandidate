@@ -360,13 +360,17 @@ export class ExEmployeeService {
       'dateOfVerification': empData.dateOfVerification,
       'verifiedFor': empData.verifiedFor,
         'personalIdentity': empData.personalIdentity,
+        'documentUploadPersonalIdentity': empData.documentUploadPersonalIdentity,
+        'originalFilenamePersonalIdentity': empData.originalFilenamePersonalIdentity,
         'criminal': empData.criminal,
         'documentUploadcriminal': empData.documentUploadcriminal,
         'originalFilenamecriminal': empData.originalFilenamecriminal,
+        'drugsAndSubstanceAbuse': empData.drugsAndSubstanceAbuse,
         'documentUploaddrugsAndSubstanceAbuse': empData.documentUploaddrugsAndSubstanceAbuse,
         'originalFilenamedrugsAndSubstanceAbuse': empData.originalFilenamedrugsAndSubstanceAbuse,
         'verificationAddress': empData.verificationAddress,
-        'drugsAndSubstanceAbuse': empData.drugsAndSubstanceAbuse,
+        'documentUploadverificationAddress': empData.documentUploadverificationAddress,
+        'originalFilenameverificationAddress': empData.originalFilenameverificationAddress,
         'salarySlipCTCdocument': empData.salarySlipCTCdocument,
         'documentUploadsalarySlipCTCdocument': empData.documentUploadsalarySlipCTCdocument,
         'originalFilenamesalarySlipCTCdocument': empData.originalFilenamesalarySlipCTCdocument
@@ -461,10 +465,10 @@ console.log(o)
         inst.push({
           '_id': element._id,
           "feedbackProviderName": element.feedbackProviderName,
-        "feedbackProviderDesignation": element.feedbackProviderDesignation,
-        "feedbackProviderRelationship": element.feedbackProviderRelationship,
-        "feedbackProviderEmail": element.feedbackProviderEmail,
-        "feedbackProviderPhoneNumber": element.feedbackProviderPhoneNumber,
+          "feedbackProviderDesignation": element.feedbackProviderDesignation,
+          "feedbackProviderRelationship": element.feedbackProviderRelationship,
+          "feedbackProviderEmail": element.feedbackProviderEmail,
+          "feedbackProviderPhoneNumber": element.feedbackProviderPhoneNumber,
           'intitutionName': element.intitutionName,
           'nameOfCourse': element.nameOfCourse,
           'yearOfJoining': element.yearOfJoining,
@@ -474,22 +478,24 @@ console.log(o)
         })
       });
 
-      let bckverification: {
-        'dateOfVerification': string,
-        'personalIdentity': boolean,
-         'criminal': boolean,
-         'verificationAddress': boolean,
-         'drugsAndSubstanceAbuse': boolean,
-         'salarySlipCTCdocument': boolean,
-         'verifiedFor': string
-      } = {
+      let bckverification = {
         'dateOfVerification': candupdateData.dateOfVerification,
         'verifiedFor': candupdateData.verifiedFor,
-          'personalIdentity': candupdateData.personalIdentity,
-          'criminal': candupdateData.criminal,
-          'verificationAddress': candupdateData.verificationAddress,
-          'drugsAndSubstanceAbuse': candupdateData.drugsAndSubstanceAbuse,
-          'salarySlipCTCdocument': candupdateData.salarySlipCTCdocument,
+        'personalIdentity': candupdateData.personalIdentity,
+        'documentUploadPersonalIdentity': candupdateData.documentUploadPersonalIdentity,
+        'originalFilenamePersonalIdentity': candupdateData.originalFilenamePersonalIdentity,
+        'criminal': candupdateData.criminal,
+        'documentUploadcriminal': candupdateData.documentUploadcriminal,
+        'originalFilenamecriminal': candupdateData.originalFilenamecriminal,
+        'drugsAndSubstanceAbuse': candupdateData.drugsAndSubstanceAbuse,
+        'documentUploaddrugsAndSubstanceAbuse': candupdateData.documentUploaddrugsAndSubstanceAbuse,
+        'originalFilenamedrugsAndSubstanceAbuse': candupdateData.originalFilenamedrugsAndSubstanceAbuse,
+        'verificationAddress': candupdateData.verificationAddress,
+        'documentUploadverificationAddress': candupdateData.documentUploadverificationAddress,
+        'originalFilenameverificationAddress': candupdateData.originalFilenameverificationAddress,
+        'salarySlipCTCdocument': candupdateData.salarySlipCTCdocument,
+        'documentUploadsalarySlipCTCdocument': candupdateData.documentUploadsalarySlipCTCdocument,
+        'originalFilenamesalarySlipCTCdocument': candupdateData.originalFilenamesalarySlipCTCdocument
       }
       let update={bio:bioobjj,
         candidate:cavArr,

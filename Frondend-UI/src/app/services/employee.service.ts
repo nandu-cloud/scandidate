@@ -168,10 +168,18 @@ export class EmployeeService {
       }
     );
   }
-  postIssuesFile(fileToUpload: File): Observable<any> {
+  // postIssuesFile(fileToUpload: File): Observable<any> {
+  //   const formData: FormData = new FormData();
+  //   formData.append('document', fileToUpload);
+  //   return this.http.post(this.baseUrl + '/api/organisation/operational/uploadFiles', formData
+  //   );
+  // }
+  postIssuesFile(fileToUpload: File[]): Observable<any> {
     const formData: FormData = new FormData();
-    formData.append('document', fileToUpload);
-    return this.http.post(this.baseUrl + '/api/organisation/operational/uploads', formData
+    for  (var i =  0; i <  fileToUpload.length; i++)  {  
+      formData.append("files",  fileToUpload[i]);
+  } 
+    return this.http.post(this.baseUrl + '/api/organisation/operational/uploadFiles', formData
     );
   }
   downloadFile(employeedocumentlink): Observable<Blob> {
