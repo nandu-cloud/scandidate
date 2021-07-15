@@ -168,7 +168,9 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-
+  verifiedBy: {
+    type: String,
+  },
   personalIdentity: {
     type: String,
     required: false,

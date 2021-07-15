@@ -38,6 +38,7 @@ module.exports.saveCandidate = async (req, res, next) => {
   var studentVerification = {
     dateOfVerification: verification.dateOfVerification,
     verifiedFor: verification.verifiedFor,
+    verifiedBy: verification.verifiedBy,
     personalIdentity: verification.personalIdentity,
     criminal: verification.criminal,
     verificationAddress: verification.verificationAddress,
@@ -217,6 +218,7 @@ module.exports.showCandidateById = async (req, res, next) => {
     var verification = {
       dateOfVerification: empBio.dateOfVerification,
       verifiedFor: empBio.verifiedFor,
+      verifiedBy: empBio.verifiedBy,
       personalIdentity: empBio.personalIdentity,
       criminal: empBio.criminal,
       verificationAddress: empBio.verificationAddress,
@@ -335,6 +337,7 @@ module.exports.showCandidateById = async (req, res, next) => {
 
       dateOfVerification: empBio.dateOfVerification,
       verifiedFor: empBio.verifiedFor,
+      verifiedBy: empBio.verifiedBy,
       personalIdentity: empBio.personalIdentity,
       criminal: empBio.criminal,
       verificationAddress: empBio.verificationAddress,
@@ -392,6 +395,7 @@ module.exports.updateCandidateData = async (req, res, next) => {
   var studentVerification = {
     dateOfVerification: verification.dateOfVerification,
     verifiedFor: verification.verifiedFor,
+    verifiedBy: verification.verifiedBy,
     personalIdentity: verification.personalIdentity,
     criminal: verification.criminal,
     verificationAddress: verification.verificationAddress,

@@ -478,6 +478,9 @@ const employeeSchema = new mongoose.Schema({
     required: false,
   },
 
+  verifiedBy: {
+    type: String,
+  },
   personalIdentity: {
     type: Boolean,
     required: false,
