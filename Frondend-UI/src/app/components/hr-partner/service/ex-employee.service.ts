@@ -358,6 +358,7 @@ export class ExEmployeeService {
    
     let bckverification = {
       'dateOfVerification': empData.dateOfVerification,
+      'verifiedBy': empData.verifiedBy,
       'verifiedFor': empData.verifiedFor,
         'personalIdentity': empData.personalIdentity,
         'documentUploadPersonalIdentity': empData.documentUploadPersonalIdentity,
@@ -480,6 +481,7 @@ console.log(o)
 
       let bckverification = {
         'dateOfVerification': candupdateData.dateOfVerification,
+        'verifiedBy': candupdateData.verifiedBy,
         'verifiedFor': candupdateData.verifiedFor,
         'personalIdentity': candupdateData.personalIdentity,
         'documentUploadPersonalIdentity': candupdateData.documentUploadPersonalIdentity,

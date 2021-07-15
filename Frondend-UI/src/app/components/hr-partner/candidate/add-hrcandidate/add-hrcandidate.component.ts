@@ -100,10 +100,14 @@ export class AddHrcandidateComponent implements OnInit {
   selectedAddressFiles: FileList
   displayFiles: any = [];
   displayCriminalFiles: any = [];
+  displaySalaryFiles: any = [];
+  displayAddressFiles: any = [];
   files: File[] = [];
   eductionalDoc: any = [];
   drugFile: any = [];
   criminalFile: any = [];
+  salaryFile: any = [];
+  addressFile: any = [];
   bckverificationdocumentName: any;
   imagePreview = false;
   documentCount: any;
@@ -114,14 +118,14 @@ export class AddHrcandidateComponent implements OnInit {
   documentUploadcriminal: '';
   originalFilenamecriminal: '';
 
-  documentUploadverificationAddress: '';
-  originalFilenameverificationAddress: '';
+  documentAddressVerification: '';
+  originalFileAddressVerification: '';
 
   documentUploaddrugs: '';
   originalFilenamedrugs: '';
 
-  documentUploadsalarySlipCTCdocument: '';
-  originalFilenamesalarySlipCTCdocument: '';
+  documentUploadsalarydocument: '';
+  originalFilenamesalarydocument: '';
 
   createItem(): FormGroup{
     return new FormGroup({ 
@@ -244,6 +248,7 @@ export class AddHrcandidateComponent implements OnInit {
     canidateInstitute: new FormArray([]),
     dateOfVerification: new FormControl(),
     verifiedFor: new FormControl(),
+    verifiedBy: new FormControl(),
     personalIdentity: new FormControl(),
     documentUploadPersonalIdentity: new FormControl(),
     originalFilenamePersonalIdentity: new FormControl(),
@@ -366,6 +371,42 @@ export class AddHrcandidateComponent implements OnInit {
             this.form.value.documentUploadcriminal.originalFilename = this.originalFilenamecriminal
          })
     // }
+  }
+  uploadsalaryFile(event){
+    this.selectedSalaryFiles = event.target.files;
+    this.files=[];
+    for (let i = 0; i < event.target.files.length; i++)
+    {
+      this.files.push(this.selectedSalaryFiles[i]);
+    }
+    // if(this.files.length>0){
+      this.displaySalaryFiles=this.files;
+      this.salarySubscription = this.empService.postIssuesFile(this.files).subscribe(
+        data => {
+            this.form.patchValue( {documentUploadsalarySlipCTCdocument: data.data.documentUpload});
+            console.log(data.data.documentUpload);
+            this.form.patchValue({originalFilenamesalarySlipCTCdocument: data.data.originalFilenames})
+            this.originalFilenamesalarydocument = data.data.originalFilenames
+            this.form.value.documentUploadsalarySlipCTCdocument.originalFilename = this.originalFilenamesalarydocument
+         })
+  }
+  uploadaddressFile(event){
+    this.selectedAddressFiles = event.target.files;
+    this.files=[];
+    for (let i = 0; i < event.target.files.length; i++)
+    {
+      this.files.push(this.selectedAddressFiles[i]);
+    }
+    // if(this.files.length>0){
+      this.displayAddressFiles=this.files;
+      this.addressSubscription = this.empService.postIssuesFile(this.files).subscribe(
+        data => {
+            this.form.patchValue( {documentUploadverificationAddress: data.data.documentUpload});
+            console.log(data.data.documentUpload);
+            this.form.patchValue({originalFilenameverificationAddress: data.data.originalFilenames})
+            this.documentAddressVerification = data.data.originalFilenames
+            this.form.value.documentUploadverificationAddress.originalFilename = this.documentAddressVerification
+         })
   }
   validateExitDate(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
@@ -490,6 +531,20 @@ export class AddHrcandidateComponent implements OnInit {
             const data = respObj.data.originalFilenamecriminal[i]
             this.criminalFile.push(data);
             console.log("orginal filename" + this.criminalFile);
+          }
+        }
+        if(respObj.data.originalFilenamesalarydocument){
+          for(let i=0; i<respObj.data.originalFilenamesalarydocument.length; i++){
+            const data = respObj.data.originalFilenamesalarydocument[i]
+            this.salaryFile.push(data);
+            console.log("orginal filename" + this.salaryFile);
+          }
+        }
+        if(respObj.data.originalFileAddressVerification){
+          for(let i=0; i<respObj.data.originalFileAddressVerification.length; i++){
+            const data = respObj.data.originalFileAddressVerification[i]
+            this.addressFile.push(data);
+            console.log("orginal filename" + this.addressFile);
           }
         }
         this.imagePreview = true;

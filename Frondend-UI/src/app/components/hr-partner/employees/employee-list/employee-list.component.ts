@@ -14,6 +14,7 @@ import { elementAt } from 'rxjs/operators';
 import { AssignToLinemanagerDialogComponent } from '../assign-to-linemanager-dialog/assign-to-linemanager-dialog.component';
 import { ExEmployeeService } from '../../service/ex-employee.service';
 import { CandidateForwardLinemanagerDialogComponent } from '../candidate-forward-linemanager-dialog/candidate-forward-linemanager-dialog.component';
+import { AssignDialogComponent } from '../assign-dialog/assign-dialog.component';
 
 @Component({
   selector: 'app-employee-list',
@@ -122,7 +123,7 @@ export class EmployeeListComponent implements OnInit {
       
        this.checkSubscription = this.linemanagerService.checkLinemanager(employeeid).subscribe(respObj => {
         // this.msgdata = respObj.message;
-        const dialogRef = this.dialog.open(AssignToLinemanagerDialogComponent,
+        const dialogRef = this.dialog.open(AssignDialogComponent,
           { width: '350px', height: '200px', data: {
             rowinfo : itm,
             messagedata : respObj.message
