@@ -285,25 +285,25 @@ export class AddEmployeeComponent implements OnInit {
    }
  }
 
-  uploadawardsFile(file: FileList) {
-    this.fileToUpload = file[0];
-    this.documentName = this.fileToUpload.name;
-    this.studentDocSubscription =  this.empService.postIssuesFile(this.fileToUpload).subscribe(
-      data => {
-        this.fourthFormGroup.patchValue({ awards: { documentUpload: data.data.documentUpload } });
-        this.fourthFormGroup.value.awards.originalFilename = this.documentName;
-        // this.fourthFormGroup.controls.awards.setValue({documentUpload: data.data.documentUpload});
-        // this.fourthFormGroup.setValue({awards: {documentUpload: data.data.documentUpload}});
-        //  patchValue({ awards: { documentUpload: data.data.documentUpload } });
-        console.log('testing awards' + data.data.documentUpload);
-        // this.documentNameData = `${data.data.documentUpload}`;
-        this.documentNameData = `${this.baseUrl}/public/organization_doc/${data.data.documentUpload}`;
-        // console.log('testing awards'+ this.documentNameData);
-        // this.studentDocSubscription = this.stuService.deleteFile(this.imageFilename).subscribe();
-      }
-    );
-    // console.log(this.documentNameData + 'jkfshhhhhhhhhhhhhhhhhhhhhhhhhhh');
-  }
+  // uploadawardsFile(file: FileList) {
+  //   this.fileToUpload = file[0];
+  //   this.documentName = this.fileToUpload.name;
+  //   this.studentDocSubscription =  this.empService.postIssuesFile(this.fileToUpload).subscribe(
+  //     data => {
+  //       this.fourthFormGroup.patchValue({ awards: { documentUpload: data.data.documentUpload } });
+  //       this.fourthFormGroup.value.awards.originalFilename = this.documentName;
+  //       // this.fourthFormGroup.controls.awards.setValue({documentUpload: data.data.documentUpload});
+  //       // this.fourthFormGroup.setValue({awards: {documentUpload: data.data.documentUpload}});
+  //       //  patchValue({ awards: { documentUpload: data.data.documentUpload } });
+  //       console.log('testing awards' + data.data.documentUpload);
+  //       // this.documentNameData = `${data.data.documentUpload}`;
+  //       this.documentNameData = `${this.baseUrl}/public/organization_doc/${data.data.documentUpload}`;
+  //       // console.log('testing awards'+ this.documentNameData);
+  //       // this.studentDocSubscription = this.stuService.deleteFile(this.imageFilename).subscribe();
+  //     }
+  //   );
+  //   // console.log(this.documentNameData + 'jkfshhhhhhhhhhhhhhhhhhhhhhhhhhh');
+  // }
 
   discrepancyFileName = '';
   compliencyFileName = '';
@@ -311,49 +311,49 @@ export class AddEmployeeComponent implements OnInit {
   showcausedFileName = '';
   suspensionFileName = '';
   terminationFileName = '';
-  uploadIssuesFile(file: FileList, type) {
-    this.fileToUpload = file[0];
-    this.fileName = this.fileToUpload.name;
-    this.studentDocSubscription = this.empService.postIssuesFile(this.fileToUpload).subscribe(
-      data => {
-        if (type == 'discrepancyDocuments') {
-          this.sixthFormGroup.patchValue({ discrepancyDocuments: { descrepencyUploadDocument: data.data.documentUpload }});
-          this.discrepancyFileName = data.data.originalFilename;
-          // this.discrepancyDownloadFile = data.data.documentUpload;
-          this.sixthFormGroup.value.discrepancyDocuments.originalFilename = this.discrepancyFileName;
-          console.log('sssssssss' + this.discrepancyFileName)
-        }
-        if (type == 'compliencyDiscrepancy') {
-          this.sixthFormGroup.patchValue({ compliencyDiscrepancy: { compliencyUploadDocument: data.data.documentUpload } });
-          this.compliencyFileName = data.data.originalFilename;
-          this.sixthFormGroup.value.compliencyDiscrepancy.originalFilename = this.compliencyFileName;
-        }
-        if (type == 'Warning') {
-          this.sixthFormGroup.patchValue({ warning: { warningUploadDocument: data.data.documentUpload } });
-          this.warningFileName = data.data.originalFilename;
-          this.sixthFormGroup.value.warning.originalFilename = this.warningFileName;
-        }
-        if (type == 'showCausedIssue') {
-          this.sixthFormGroup.patchValue({ showCausedIssue: { showCausedUploadDocument: data.data.documentUpload } });
-          this.showcausedFileName = data.data.originalFilename;
-          this.sixthFormGroup.value.showCausedIssue.originalFilename = this.showcausedFileName;
-        }
-        if (type == 'suspension') {
-          this.sixthFormGroup.patchValue({ suspension: { suspensionUploadDocument: data.data.documentUpload } });
-          this.suspensionFileName = data.data.originalFilename;
-          this.sixthFormGroup.value.suspension.originalFilename = this.suspensionFileName;
-        }
-        if (type == 'termination') {
-          this.sixthFormGroup.patchValue({ termination: { terminationUploadDocument: data.data.documentUpload } });
-          this.terminationFileName = data.data.originalFilename;
-          this.sixthFormGroup.value.termination.originalFilename = this.terminationFileName;
-        }
-        // this.documentName = `${this.baseUrl}/public/organization_doc/${data.data.documentUpload}`;
-        // this.fileNameData = this.fileName;
-        // this.studentDocSubscription = this.stuService.deleteFile(this.imageFilename).subscribe();
-      }
-    )
-  }
+  // uploadIssuesFile(file: FileList, type) {
+  //   this.fileToUpload = file[0];
+  //   this.fileName = this.fileToUpload.name;
+  //   this.studentDocSubscription = this.empService.postIssuesFile(this.fileToUpload).subscribe(
+  //     data => {
+  //       if (type == 'discrepancyDocuments') {
+  //         this.sixthFormGroup.patchValue({ discrepancyDocuments: { descrepencyUploadDocument: data.data.documentUpload }});
+  //         this.discrepancyFileName = data.data.originalFilename;
+  //         // this.discrepancyDownloadFile = data.data.documentUpload;
+  //         this.sixthFormGroup.value.discrepancyDocuments.originalFilename = this.discrepancyFileName;
+  //         console.log('sssssssss' + this.discrepancyFileName)
+  //       }
+  //       if (type == 'compliencyDiscrepancy') {
+  //         this.sixthFormGroup.patchValue({ compliencyDiscrepancy: { compliencyUploadDocument: data.data.documentUpload } });
+  //         this.compliencyFileName = data.data.originalFilename;
+  //         this.sixthFormGroup.value.compliencyDiscrepancy.originalFilename = this.compliencyFileName;
+  //       }
+  //       if (type == 'Warning') {
+  //         this.sixthFormGroup.patchValue({ warning: { warningUploadDocument: data.data.documentUpload } });
+  //         this.warningFileName = data.data.originalFilename;
+  //         this.sixthFormGroup.value.warning.originalFilename = this.warningFileName;
+  //       }
+  //       if (type == 'showCausedIssue') {
+  //         this.sixthFormGroup.patchValue({ showCausedIssue: { showCausedUploadDocument: data.data.documentUpload } });
+  //         this.showcausedFileName = data.data.originalFilename;
+  //         this.sixthFormGroup.value.showCausedIssue.originalFilename = this.showcausedFileName;
+  //       }
+  //       if (type == 'suspension') {
+  //         this.sixthFormGroup.patchValue({ suspension: { suspensionUploadDocument: data.data.documentUpload } });
+  //         this.suspensionFileName = data.data.originalFilename;
+  //         this.sixthFormGroup.value.suspension.originalFilename = this.suspensionFileName;
+  //       }
+  //       if (type == 'termination') {
+  //         this.sixthFormGroup.patchValue({ termination: { terminationUploadDocument: data.data.documentUpload } });
+  //         this.terminationFileName = data.data.originalFilename;
+  //         this.sixthFormGroup.value.termination.originalFilename = this.terminationFileName;
+  //       }
+  //       // this.documentName = `${this.baseUrl}/public/organization_doc/${data.data.documentUpload}`;
+  //       // this.fileNameData = this.fileName;
+  //       // this.studentDocSubscription = this.stuService.deleteFile(this.imageFilename).subscribe();
+  //     }
+  //   )
+  // }
 
   view(employeedocumentlink){
   // window.location.href = `${this.baseUrl}/public/organization_doc/${employeedocumentlink}`;
