@@ -12,7 +12,8 @@ const addEmployeeSchema = Joi.object({
   assignedId: Joi.string().allow("").allow(null),
   organisationId: Joi.string().allow("").allow(null),
   organizationName: Joi.string().allow("").allow(null),
-  status: Joi.boolean().allow("").allow(null),
+  status: Joi.boolean().allow(null),
+  finalStatus: Joi.boolean().allow(null),
 
   //Issues
   discrepancyDocuments: Joi.object().allow("").allow(null),
@@ -69,6 +70,32 @@ const addEmployeeSchema = Joi.object({
   communicationSkills: Joi.number().allow("").allow(null),
 
   //Other Variables
+  organiationLocation: Joi.string().allow("").allow(null),
+  feedbackProviderName: Joi.string().allow("").allow(null),
+  feedbackProviderDesignation: Joi.string().allow("").allow(null),
+  feedbackProviderRelationship: Joi.string().allow("").allow(null),
+  feedbackProviderEmail: Joi.string().allow("").allow(null),
+  feedbackProviderPhoneNumber: Joi.number().allow("").allow(null),
+  bgvCandidate: Joi.boolean().allow(null).allow(""),
+  hrorganisationId: Joi.string().min(24).max(24).allow(null).allow(""),
+  dateOfVerification: Joi.date().allow(null).allow(""),
+  verifiedFor: Joi.string().allow("").allow(null),
+  verifiedBy: Joi.string().allow("").allow(null),
+  personalIdentity: Joi.boolean().allow("").allow(null),
+  criminal: Joi.boolean().allow("").allow(null),
+  verificationAddress: Joi.boolean().allow("").allow(null),
+  drugsAndSubstanceAbuse: Joi.boolean().allow("").allow(null),
+  salarySlipCTCdocument: Joi.boolean().allow("").allow(null),
+  documentUploadPersonalIdentity: Joi.array().allow(null),
+  originalFilenamePersonalIdentity: Joi.array().allow(null),
+  documentUploadcriminal: Joi.array().allow("").allow(null),
+  originalFilenamecriminal: Joi.array().allow(null),
+  documentUploadverificationAddress: Joi.array().allow(null),
+  originalFilenameverificationAddress: Joi.array().allow(null),
+  documentUploaddrugsAndSubstanceAbuse: Joi.array().allow(null),
+  originalFilenamedrugsAndSubstanceAbuse: Joi.array().allow(null),
+  documentUploadsalarySlipCTCdocument: Joi.array().allow(null),
+  originalFilenamesalarySlipCTCdocument: Joi.array().allow(null),
 });
 
 module.exports = {

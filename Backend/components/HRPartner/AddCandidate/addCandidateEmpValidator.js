@@ -147,6 +147,7 @@ const updateEmployeeSchema = Joi.object({
     .required()
     .messages({ "any.required": "Organization name is required" }),
   status: Joi.boolean().allow("").allow(null),
+  finalStatus: Joi.boolean().allow(null),
 
   professionalExperience: Joi.string().allow("").allow(null),
   state: Joi.string().allow("").allow(null),

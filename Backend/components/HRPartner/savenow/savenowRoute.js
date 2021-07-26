@@ -4,8 +4,7 @@ const saveNowController = require("./savenowController");
 const authJWT = require("../../../middlewares/authJWT");
 
 router
-  .route("/:candidateId")
-  .post(authJWT.verifyJWTToken, saveNowController.saveNowExEmployee)
-  .get(authJWT.verifyJWTToken, saveNowController.getSaveNowCandidate);
+  .route("/savenow")
+  .post(authJWT.verifyJWTToken, saveNowController.saveNowCandidate);
 
 module.exports = router;

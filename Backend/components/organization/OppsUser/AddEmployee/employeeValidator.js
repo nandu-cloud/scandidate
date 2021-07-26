@@ -31,6 +31,7 @@ const addEmployeeSchema = Joi.object({
     .required()
     .messages({ "any.required": "Organization name is required" }),
   status: Joi.boolean().allow("").allow(null),
+  finalStatus: Joi.boolean().allow(null),
 
   //Issues
   discrepancyDocuments: Joi.object().allow("").allow(null),

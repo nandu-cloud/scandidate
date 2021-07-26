@@ -6,6 +6,7 @@ const stdDAL = require("../../institution/OppsUser/AddStudent/studentDAL");
 const canddidateDAL = require("./addCandidateDAL");
 const empValidator = require("./addCandidateEmpValidator");
 const stdValidator = require("./addCandidateStdValidator");
+const saveNowDAL = require("../savenow/saveNowDAL");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
 const path = require("path");
@@ -16,9 +17,11 @@ const moment = require("moment");
 module.exports.saveCandidate = async (req, res, next) => {
   const { bio, candidate, canidateInstitute, verification } = req.body;
   var data = [];
-  for (var d of candidate) {
-    var r = { ...bio, ...d, ...verification };
-    data.push(r);
+  if (candidate) {
+    for (var d of candidate) {
+      var r = { ...bio, ...d, ...verification };
+      data.push(r);
+    }
   }
   var studentBio = {
     firstName: bio.firstName,
@@ -31,6 +34,7 @@ module.exports.saveCandidate = async (req, res, next) => {
     city: bio.city,
     state: bio.state,
     landMark: bio.landMark,
+    finalStatus: bio.finalStatus,
     zipCode: bio.zipCode,
     addedById: bio.addedById,
     hrorganisationId: bio.hrorganisationId,
@@ -65,6 +69,7 @@ module.exports.saveCandidate = async (req, res, next) => {
   }
   try {
     for (let d of data) {
+      console.log(d);
       if (d.hasOwnProperty("organizationName")) {
         d.bgvCandidate = true;
         var orgName = d.organizationName;
@@ -145,7 +150,17 @@ module.exports.showCandidate = async (req, res, next) => {
     let stud = await stdDAL.showStudent({
       hrorganisationId: req.params.hrorganisationId,
     });
-    let result = emp.concat(stud);
+    let saveNowEmployee = await saveNowDAL.showEmployeeByHrOrganisation(
+      mongoose.Types.ObjectId(req.params.hrorganisationId)
+    );
+    let saveNowStudent = await saveNowDAL.showStudentByHrOrganisation(
+      mongoose.Types.ObjectId(req.params.hrorganisationId)
+    );
+    let result = emp
+      .concat(stud)
+      .concat(saveNowEmployee)
+      .concat(saveNowStudent);
+
     var newEmployeeArray = [];
     let uniqueEmployee = {};
     for (let i in result) {
@@ -175,8 +190,16 @@ module.exports.showCandidateById = async (req, res, next) => {
       _id: candidateId,
     });
     if (!data) {
-      data = await canddidateDAL.fetchCandidateStudent({ _id: candidateId });
+      data = await saveNowDAL.showEmployeeById({ _id: candidateId });
     }
+    if (!data) {
+      data = await canddidateDAL.fetchCandidateStudent({ _id: candidateId });
+      // data = await saveNowDAL.showEmployeeById({ _id: candidateId });
+    }
+    if (!data) {
+      data = await saveNowDAL.showStudentById({ _id: candidateId });
+    }
+
     if (!data) {
       return next(new AppError("Employee not found", 422));
     }
@@ -187,7 +210,17 @@ module.exports.showCandidateById = async (req, res, next) => {
     var empData = await canddidateDAL.fetchEmployee({
       email: email,
     });
-    var totalData = studentData.concat(empData);
+
+    var saveNowEmp = await saveNowDAL.fetchEmployeeEmail({
+      email: email,
+    });
+
+    var saveNowStd = await saveNowDAL.fetchStudentEmail({ email: email });
+
+    var totalData = studentData
+      .concat(empData)
+      .concat(saveNowEmp)
+      .concat(saveNowStd);
 
     for (var i = 0; i < totalData.length; i++) {
       var org = totalData[i];
@@ -213,6 +246,7 @@ module.exports.showCandidateById = async (req, res, next) => {
       landMark: empBio.landMark,
       zipCode: empBio.zipCode,
       addedById: empBio.addedById,
+      finalStatus: empBio.finalStatus,
       hrorganisationId: empBio.hrorganisationId,
     };
     var verification = {
@@ -333,6 +367,7 @@ module.exports.showCandidateById = async (req, res, next) => {
       landMark: empBio.landMark,
       zipCode: empBio.zipCode,
       addedById: empBio.addedById,
+      finalStatus: empBio.finalStatus,
       hrorganisationId: empBio.hrorganisationId,
 
       dateOfVerification: empBio.dateOfVerification,
@@ -390,6 +425,7 @@ module.exports.updateCandidateData = async (req, res, next) => {
     landMark: bio.landMark,
     zipCode: bio.zipCode,
     addedById: bio.addedById,
+    finalStatus: bio.finalStatus,
     hrorganisationId: bio.hrorganisationId,
   };
   var studentVerification = {

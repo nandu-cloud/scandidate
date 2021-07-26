@@ -93,6 +93,7 @@ const updateStudentSchema = Joi.object({
   originalFilenames: Joi.array().allow("").allow(null),
   purposeOfFile: Joi.array().allow("").allow(null),
   status: Joi.boolean().allow("").allow(null),
+  finalStatus: Joi.boolean().allow(null),
 
   // CANDIDATE
   // nameofFeedbackProvider: Joi.string().allow("").allow(null),

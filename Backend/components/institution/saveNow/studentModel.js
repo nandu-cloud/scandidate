@@ -10,11 +10,9 @@ const studentSaveNowSchema = new mongoose.Schema({
   },
   yearOfJoining: {
     type: String,
-    required: false,
   },
   yearOfPassout: {
     type: String,
-    required: false,
   },
   studentType: {
     type: String,
@@ -22,19 +20,15 @@ const studentSaveNowSchema = new mongoose.Schema({
   },
   extraActivity: {
     type: String,
-    required: false,
   },
   extraActivityDocumentName: {
     type: String,
-    required: false,
   },
   noOfEductionalDocuments: {
     type: Number,
-    required: false,
   },
   eductionalDocumentNames: {
     type: Array,
-    required: false,
   },
   originalFilename: {
     type: String,
@@ -61,8 +55,8 @@ const studentSaveNowSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    lowercase: true,
-    trim: true,
+    lowercase: false,
+    trim: false,
   },
   phoneNumber: {
     type: String,
@@ -78,10 +72,6 @@ const studentSaveNowSchema = new mongoose.Schema({
   },
   zipCode: {
     type: Number,
-    required: false,
-  },
-  panNumber: {
-    type: String,
     required: false,
   },
   city: {
@@ -125,21 +115,47 @@ const studentSaveNowSchema = new mongoose.Schema({
     type: Boolean,
     required: false,
   },
+  finalStatus: {
+    type: Boolean,
+    required: false,
+  },
 
   // CANDIDATE ATTRIBUTES
-  nameofFeedbackProvider: {
+  // nameofFeedbackProvider: {
+  //   type: String,
+  //   required: false,
+  // },
+  // designationOfFeedbackProvider: {
+  //   type: String,
+  //   required: false,
+  // },
+
+  feedbackProviderName: {
     type: String,
     required: false,
   },
-  designationOfFeedbackProvider: {
+  feedbackProviderDesignation: {
+    type: String,
+    required: false,
+  },
+  feedbackProviderRelationship: {
+    type: String,
+    required: false,
+  },
+  feedbackProviderEmail: {
+    type: String,
+    required: false,
+  },
+  feedbackProviderPhoneNumber: {
+    type: Number,
+    required: false,
+  },
+
+  institutionlocation: {
     type: String,
     required: false,
   },
 
-  candidateInstituteId: {
-    type: Schema.Types.ObjectId,
-    required: false,
-  },
   bgvCandidate: {
     type: Boolean,
     required: false,
@@ -152,7 +168,13 @@ const studentSaveNowSchema = new mongoose.Schema({
     type: Date,
     required: false,
   },
-
+  verifiedFor: {
+    type: String,
+    required: false,
+  },
+  verifiedBy: {
+    type: String,
+  },
   personalIdentity: {
     type: String,
     required: false,

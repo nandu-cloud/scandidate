@@ -16,9 +16,8 @@ const saveEmployee = new Schema({
   },
   email: {
     type: String,
-    lowercase: true,
-    trim: true,
-    required: true,
+    lowercase: false,
+    trim: false,
   },
   role: {
     type: String,
@@ -77,9 +76,23 @@ const saveEmployee = new Schema({
     type: Date,
     required: false,
   },
+  reasonForSerperation: {
+    IsSelect: {
+      type: String,
+      required: false,
+    },
+    voluntaryReason: {
+      type: String,
+      required: false,
+    },
+    inVoluntaryReason: {
+      type: String,
+      required: false,
+    },
+  },
   professionalExperience: {
     type: String,
-    // required: [true, "Professional Experience Cannot Be Empty"],
+    // required: [false, "Professional Experience Cannot Be Empty"],
     required: false,
   },
   //Work Ethic
@@ -122,6 +135,34 @@ const saveEmployee = new Schema({
       type: String,
     },
   },
+
+  // Recognition
+
+  awards: {
+    IsSelect: {
+      type: String,
+      required: false,
+    },
+    remarks: {
+      type: String,
+      required: false,
+    },
+    documentName: {
+      type: String,
+      required: false,
+    },
+    documentUpload: {
+      type: String,
+      required: false,
+    },
+    originalFilename: {
+      type: String,
+      required: false,
+    },
+  },
+
+  // Leadership
+
   quality: {
     IsSelect: {
       type: Number,
@@ -159,14 +200,11 @@ const saveEmployee = new Schema({
     },
   },
 
-  empThrive: {
-    type: String,
-    required: false,
-  },
   inLeadership: {
     type: String,
     required: false,
   },
+
   otherInfo: {
     type: String,
     required: false,
@@ -200,6 +238,11 @@ const saveEmployee = new Schema({
     required: false,
   },
 
+  empThrive: {
+    type: String,
+    required: false,
+  },
+
   keySkills: {
     type: String,
     required: false,
@@ -210,56 +253,11 @@ const saveEmployee = new Schema({
     required: false,
   },
 
-  awards: {
-    IsSelect: {
-      type: String,
-      required: false,
-    },
-    remarks: {
-      type: String,
-      required: false,
-    },
-    documentName: {
-      type: String,
-      required: false,
-    },
-    documentUpload: {
-      type: String,
-      required: false,
-    },
-    originalFilename: {
-      type: String,
-      required: false,
-    },
-  },
-
-  reasonForSerperation: {
-    IsSelect: {
-      type: String,
-      required: false,
-    },
-    voluntaryReason: {
-      type: String,
-      required: false,
-    },
-    inVoluntaryReason: {
-      type: String,
-      required: false,
-    },
-  },
-
   //Other Details
   addedById: {
     type: String,
     required: false,
   },
-
-  // Assigned to Line Manager
-  assignedId: {
-    type: String,
-    required: false,
-  },
-
   organisationId: {
     type: String,
     required: false,
@@ -413,20 +411,35 @@ const saveEmployee = new Schema({
     type: Boolean,
     required: false,
   },
+  finalStatus: {
+    type: Boolean,
+    required: false,
+  },
 
   // CANDIDATE ATTRIBUTES
 
-  nameofFeedbackProvider: {
+  organiationLocation: {
     type: String,
     required: false,
   },
-  designationOfFeedbackProvider: {
+  feedbackProviderName: {
     type: String,
     required: false,
   },
-
-  candidateOrganisationId: {
-    type: Schema.Types.ObjectId,
+  feedbackProviderDesignation: {
+    type: String,
+    required: false,
+  },
+  feedbackProviderRelationship: {
+    type: String,
+    required: false,
+  },
+  feedbackProviderEmail: {
+    type: String,
+    required: false,
+  },
+  feedbackProviderPhoneNumber: {
+    type: Number,
     required: false,
   },
   bgvCandidate: {
@@ -441,25 +454,72 @@ const saveEmployee = new Schema({
     type: Date,
     required: false,
   },
-
-  personalIdentity: {
+  verifiedFor: {
     type: String,
+    required: false,
+  },
+
+  verifiedBy: {
+    type: String,
+  },
+  personalIdentity: {
+    type: Boolean,
     required: false,
   },
   criminal: {
-    type: String,
+    type: Boolean,
     required: false,
   },
   verificationAddress: {
-    type: String,
+    type: Boolean,
     required: false,
   },
   drugsAndSubstanceAbuse: {
-    type: String,
+    type: Boolean,
     required: false,
   },
   salarySlipCTCdocument: {
-    type: String,
+    type: Boolean,
+    required: false,
+  },
+  documentUploadPersonalIdentity: {
+    type: Array,
+    required: false,
+  },
+  originalFilenamePersonalIdentity: {
+    type: Array,
+    required: false,
+  },
+  documentUploadcriminal: {
+    type: Array,
+    required: false,
+  },
+  originalFilenamecriminal: {
+    type: Array,
+    required: false,
+  },
+  documentUploadverificationAddress: {
+    type: Array,
+    required: false,
+  },
+  originalFilenameverificationAddress: {
+    type: Array,
+    required: false,
+  },
+  documentUploaddrugsAndSubstanceAbuse: {
+    type: Array,
+    required: false,
+  },
+  originalFilenamedrugsAndSubstanceAbuse: {
+    type: Array,
+    required: false,
+  },
+  documentUploadsalarySlipCTCdocument: {
+    type: Array,
+    required: false,
+  },
+  originalFilenamesalarySlipCTCdocument: {
+    type: Array,
     required: false,
   },
 });

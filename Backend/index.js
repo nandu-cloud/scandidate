@@ -110,7 +110,7 @@ app.use(
 );
 
 app.use(
-  "/api/candidate/savenow/",
+  "/api/candidate",
   require("./components/HRPartner/savenow/savenowRoute")
 );
 
