@@ -19,6 +19,7 @@ import { saveAs } from 'file-saver/dist/FileSaver';
   styleUrls: ['./add-hrcandidate.component.css']
 })
 export class AddHrcandidateComponent implements OnInit {
+  
   createCandidate: FormGroup;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -59,9 +60,9 @@ export class AddHrcandidateComponent implements OnInit {
   documentName: any;
   fileName: any;
   fileNameData: string;
-  documentNameData: string;
+  documentNameData: string;va
   studentDocSubscription: any;
-  stuService: any;
+  stuService: any; 
   studentForm: any;
   baseUrl: any = environment.baseUrl;
   awardActivities: boolean = false;
@@ -660,24 +661,25 @@ export class AddHrcandidateComponent implements OnInit {
     this.canidateInstitute.push(this.createInst());
     // this.tabGroup.selectedIndex = this.Insttabs.length - 1;
   }
-  // closeTab(index :number) {
-  //   this.candidates.splice(index, 1);
-  // }
-  removeTabs(index :number) {
-    // this.candidates.splice(index, 1);
+   closeTab(c:number) {
+    this.candidate.removeAt(c)
+  }
+  removeTabs(i:number) {
+
+    this.canidateInstitute.removeAt(i)
   }
 
-  // closeTab(){
-    // for (let i = 0; i < this.candidate.length; i++) {
-    //   if (this.candidate[i] === cand) {
-    //     this.tabs.splice(i, 1);
+  // removeTab(){
+  //   for (let i = 0; i < this.candidate.length; i++) {
+  //     if (this.candidate[i] === this.cand) {
+  //       this.cand.splice(i, 1);
 
-    //   }
-    // }
+  //     }
+  //   }
 
   // }
   // public tabSub = new BehaviorSubject<cand>(this.tabs);
-  closeTab(index: number) {
+ // closeTab(index: number) {
     // this.tabs.splice(c, 1);
     // if (this.tabs.length > 0) {
     // this.tabs[this.tabs.length - 1].active = true;
@@ -687,9 +689,10 @@ export class AddHrcandidateComponent implements OnInit {
     // this.tabSub.next(this.tabs);
     // this.candidates.splice(index, 1);
     // if (selectAfterAdding) {
-      this.selected.setValue(this.candidate.length - 1);
+  
+     // this.selected.setValue(this.candidate.length - 1);
     // }
-  }
+ // }
   public nextStep() {
     if (this.selectedIndex != this.maxNumberOfTabs) {
       this.selectedIndex ++;
@@ -777,7 +780,20 @@ export class AddHrcandidateComponent implements OnInit {
     // this.showText = true;
   }
   saveNow(){
-     
+    this.count = true;
+    this.savenowSubscription = this.exempService.savenowEmployee({
+      ...this.firstFormGroup.value, ...this.secondFormGroup.value,
+      ...this.thirdFormGroup.value, ...this.fourthFormGroup.value
+    })
+      .subscribe(resp => {
+        // console.log(this.createCandidate.value);
+        this.methodtype = 'save';
+        this.openDialog();
+      }, err => {
+        this.setMessage = { message: err.error.message, error: true };
+        this.error = this.setMessage.message;
+        throw this.setMessage.message;
+      })
     }
 
     // idValue(i) {

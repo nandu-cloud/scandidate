@@ -52,10 +52,23 @@ export class HrcandidateListComponent implements OnInit {
     this.EmployeeSubscription = this.empService.getCandidateList().subscribe(respObj=>{
       this.dataSource = new MatTableDataSource(respObj.data);
       this.dataSource.paginator = this.paginator;
-    },err => {
+      this.dataSource.filterPredicate = function(data, filter: string): boolean {
+             return data.firstName.toLowerCase().includes(filter);
+         };
+    },err => {   
       this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
     })
   }
+  // this.EmployeeSubscription = this.empService.getEmployeeData().subscribe(respObj => {
+  //   this.dataSource = new MatTableDataSource(respObj.data);
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.filterPredicate = function(data, filter: string): boolean {
+  //     return data.firstName.toLowerCase().includes(filter);
+  //   };
+  // }, err => {
+  //   this.setMessage = { message: 'Server Unreachable ,Please Try Again Later !!', error: true };
+  // })
+  // }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace

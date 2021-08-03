@@ -45,7 +45,7 @@ export class AddEmployeeComponent implements OnInit {
   organizationName: any = window.sessionStorage.getItem('hrorgName');
   selectedIndex: number = 0;
   tabChangeEvent: any;
-  fileToUpload: File;
+  fileToUpload: File; 
   documentName: any;
   fileName: any;
   fileNameData: string;
@@ -538,7 +538,7 @@ export class AddEmployeeComponent implements OnInit {
         ...this.firstFormGroup.value, ...this.secondFormGroup.value,
         ...this.thirdFormGroup.value, ...this.fourthFormGroup.value, ...this.fifthFormGroup.value,
         ...this.sixthFormGroup.value
-      })
+      }) 
         .subscribe(resp => {
           // console.log(this.createCandidate.value);
           this.methodtype = 'save';

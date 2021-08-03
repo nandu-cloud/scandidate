@@ -314,9 +314,9 @@
                 <a routerLink="/hrcandidate-list"><button class="lg-button focus:outline-none focus:shadow-outline" tabindex="18" type="button">
                   Cancel
                 </button></a>
-                <!-- <button tabindex="19" type="submit" class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
+                <button tabindex="19" type="submit" class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
                   Save Now
-                </button> -->
+                </button>
                 <button tabindex="20" class="lg-button focus:outline-none focus:shadow-outline" (click)="nextStep()">
                   Next
                 </button>
@@ -339,8 +339,9 @@
                 <!-- <span  *ngIf="c != 0">{{ value }} </span>  -->
               </div> &nbsp; &nbsp; &nbsp;
 
-                <!-- <mat-icon class="cls"
-                (click)="closeTab(index)">close</mat-icon> -->
+                 <mat-icon class="cls" (click)="closeTab(c)"
+                >close</mat-icon> 
+                
               
               </ng-template>
               
@@ -1695,9 +1696,9 @@
             
 
               <div class="flex justify-end lg:pb-6 lg:pr-48">
-                <!-- <button class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
+                <button class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
                   Save Now
-                </button> -->
+                </button> 
                 <button class="lg-button focus:outline-none focus:shadow-outline mr-12" type="button" tabindex="62"
                 (click)="downloadPDF(c)">
                   Download PDF
@@ -1734,8 +1735,8 @@
               Institution
             </div> -->
             &nbsp; &nbsp; &nbsp;
-            <!-- <mat-icon class="cls" [disabled]="Insttabs.length === 1"
-                (click)="removeTab(i)">close</mat-icon> -->
+            <mat-icon class="cls" [disabled]="Insttabs.length === 1"
+                (click)="removeTabs(i)">close</mat-icon> 
           </ng-template>
           <div class="flex flex-wrap">
             <div class="w-full md:w-1/2 sm:w-full">
@@ -1855,9 +1856,9 @@
           <!-- <a routerLink="/hrcandidate-list"><button class="lg-button focus:outline-none focus:shadow-outline" tabindex="18" type="button">
             Cancel
           </button></a> -->
-          <!-- <button tabindex="19" type="submit" class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
+          <button tabindex="19" type="submit" class="lg-button focus:outline-none focus:shadow-outline" (click)="saveNow()" *ngIf="showSave">
             Save Now
-          </button> -->
+          </button> 
           <button tabindex="11"
                 class="lg-button focus:outline-none focus:shadow-outline"
                 (click)="cancel()"
