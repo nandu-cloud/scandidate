@@ -780,11 +780,12 @@ export class AddHrcandidateComponent implements OnInit {
     // this.showText = true;
   }
   saveNow(){
-    this.count = true;
-    this.savenowSubscription = this.exempService.savenowEmployee({
-      ...this.firstFormGroup.value, ...this.secondFormGroup.value,
-      ...this.thirdFormGroup.value, ...this.fourthFormGroup.value
-    })
+  this.count = true;
+    this.savenowSubscription = this.exempService.savenowCandidate
+
+    (
+      this.form.value
+    )
       .subscribe(resp => {
         // console.log(this.createCandidate.value);
         this.methodtype = 'save';

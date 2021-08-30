@@ -28,12 +28,13 @@ export class ExEmployeeService {
         return this.http.get(this.baseUrl + '/api/organisation/operational/getEmployee/' + organizationId);
       }  
 
+     
     savenowEmployee(empData): Observable<any> {
-    if(this.empIdSave){
-      this.empIdSave = this.empIdSave;
-    } else {
-      this.empIdSave = window.sessionStorage.getItem('hrorganisationId');
-    }
+    // if(this.empIdSave){
+    //   this.empIdSave = this.empIdSave;
+    // } else {
+    //   this.empIdSave = window.sessionStorage.getItem('hrorganisationId');
+    // }
     var id = window.sessionStorage.getItem('ID');
     var organizationId = window.sessionStorage.getItem('hrorganisationId');
     var EmployeeData: {
@@ -78,6 +79,78 @@ export class ExEmployeeService {
     );
   }
 
+  savenowCandidate(empData): Observable<any> {
+    var id = window.sessionStorage.getItem('ID');
+    var hrorganisationId = window.sessionStorage.getItem('hrorganisationId');
+       let bioobjj={
+      'firstName': empData.firstName,
+      'lastName': empData.lastName,
+      'email': empData.email,
+      'phoneNumber': empData.phoneNumber,
+      'dateOfBirth': empData.dateOfBirth == "" ? "" : empData.dateOfBirth,
+      'adharNumber': empData.adharNumber== "" ? "": empData.adharNumber,
+      'panNumber': empData.panNumber,
+      'addedById': id,
+      'address': empData.address, 
+      'hrorganisationId': hrorganisationId, 
+      'finalStatus':false
+}
+let  cavArr=[]
+empData.candidate.forEach(element => {
+  cavArr.push({
+    "organizationName": element.organizationName== "" ? "null":  element.organizationName,
+    "organiationLocation": element.organiationLocation,
+      "feedbackProviderName": element.feedbackProviderName,
+      "feedbackProviderDesignation": element.feedbackProviderDesignation,
+      "feedbackProviderRelationship": element.feedbackProviderRelationship,
+      "feedbackProviderEmail": element.feedbackProviderEmail,
+      "feedbackProviderPhoneNumber": element.feedbackProviderPhoneNumber,
+    'exitDate': element.exitDate, 'dateOfJoining': element.dateOfJoining,
+      'employeeId': element.employeeId, 'role': element.role, 'status': element.status
+  })
+});
+
+let inst = []
+empData.canidateInstitute.forEach(element => {
+  inst.push({
+    "feedbackProviderName": element.feedbackProviderName,
+    "feedbackProviderDesignation": element.feedbackProviderDesignation,
+    "feedbackProviderRelationship": element.feedbackProviderRelationship,
+    "feedbackProviderEmail": element.feedbackProviderEmail,
+    "feedbackProviderPhoneNumber": element.feedbackProviderPhoneNumber,
+    "intitutionName": element.intitutionName == "" ? "" : element.intitutionName,
+    "intitutionlocation": element.intitutionlocation,
+    "nameOfCourse": element.nameOfCourse,
+    "yearOfJoining": element.yearOfJoining,
+    "yearOfPassout": element.yearOfPassout,
+    "studentType": element.studentType,
+    "roll": element.roll,
+    "status": element.status
+  })
+});
+
+let bckverification = {
+  'dateOfVerification': empData.dateOfVerification,
+   'verifiedFor': empData.verifiedFor,
+   'personalIdentity': empData.personalIdentity
+}      
+let update={bio:bioobjj,
+  candidate:cavArr,
+  verification: bckverification,
+  canidateInstitute: inst
+  }
+
+return this.http.post(this.baseUrl + '/api/candidate/savenow', update,
+ {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
+  })
+}
+);
+}
+
+ 
   addExEmployee(empData): Observable<any> {
     var id = window.sessionStorage.getItem('ID');
     var organizationId = window.sessionStorage.getItem('hrorganisationId');
