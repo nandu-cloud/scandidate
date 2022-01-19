@@ -41,6 +41,10 @@ function createXL(reqData) {
   var showCausedate = "";
   var performancedate = "";
   var terminationdate = "";
+  // var dir = path.join(__dirname, "../../../uploads/report-excel/");
+  // if (!fs.existsSync(dir)) {
+  //   fs.mkdirSync(dir);
+  // }
   for (let i = 0; i < template.length; i++) {
     if (template[i].selfDriven) {
       if (template[i].selfDriven == 1) {
