@@ -16,6 +16,10 @@ const employeeSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  assignedId: {
+    type: String,
+    required: false,
+  },
   email: {
     type: String,
     lowercase: true,

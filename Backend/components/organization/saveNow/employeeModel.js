@@ -14,6 +14,10 @@ const saveEmployee = new Schema({
     type: String,
     required: false,
   },
+  assignedId: {
+    type: String,
+    required: false,
+  },
   email: {
     type: String,
     lowercase: false,
