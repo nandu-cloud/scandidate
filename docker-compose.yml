@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  frontend-ui:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DEV_SERVER_URL=value
+      - UAT_SERVER_URL=value
+      - PROD_SERVER_URL=value
+
+  backend:
+    build: ./backend
+    ports:
+      - "2000:2000"
+    environment:
+      - NODE_ENV=development
+      - NODE_PORT=2000
+      - MONGODB_DEV_URI=mongodb://mongodb:27017/scandidate
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=scandidate
